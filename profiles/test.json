@@ -1,48 +1,43 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://csrc.nist.gov/ns/oscal/1.1.3/oscal-profile-schema.json",
   "profile": {
     "uuid": "d3f5c9e2-4b6a-4c8e-9f3a-123456789abc",
     "metadata": {
       "title": "Tailored AC-2 Control Profile",
       "last-modified": "2025-07-09T15:37:00-04:00",
-      "oscal-version": "1.1.3",
-      "version": "1.0.0"
+      "version": "1.0.0",
+      "oscal-version": "1.1.3"
     },
     "imports": [
       {
-        "href": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
-        "include-controls": [
-          {
-            "with-ids": ["ac-2"]
-          }
-        ]
+        "href": "https://raw.githubusercontent.com/usnistgov/oscal-content/master/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json"
       }
     ],
     "modify": {
-      "alter": [
+      "alterations": [
         {
           "control-id": "ac-2",
           "removes": [
             {
-              "id-ref": "ac-2_smt.a"
+              "by-id": "ac-2_smt.a"
             }
           ],
           "adds": [
             {
               "position": "before",
-              "id-ref": "ac-2_smt.a",
-              "part": {
-                "id": "ac-2_smt.a",
-                "name": "item",
-                "class": "text",
-                "props": [
-                  {
-                    "name": "guidance",
-                    "value": "abc"
-                  }
-                ]
-              }
+              "by-id": "ac-2_smt.a",
+              "parts": [
+                {
+                  "id": "ac-2_smt.a",
+                  "name": "item",
+                  "class": "text",
+                  "props": [
+                    {
+                      "name": "guidance",
+                      "value": "abc"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
