@@ -3546,6 +3546,469 @@
                                 ]
                             }
                         ]
+                    },
+                    {
+                        "id": "ac-08",
+                        "class": "SP800-171",
+                        "title": "Unsuccessful Logon Attempts",
+                        "params": [
+                            {
+                                "id": "ac-08_prm_01",
+                                "props": [
+                                    {
+                                        "name": "label",
+                                        "value": "03.01.08_ODP[01]",
+                                        "class": "sp800-171"
+                                    }
+                                ],
+                                "label": "organization-defined number",
+                                "guidelines": [
+                                    {
+                                        "prose": "the number of consecutive invalid logon attempts by a user allowed during a time period;"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "ac-08_prm_02",
+                                "props": [
+                                    {
+                                        "name": "label",
+                                        "value": "03.01.08_ODP[02]",
+                                        "class": "sp800-171"
+                                    }
+                                ],
+                                "label": "organization-defined time period",
+                                "guidelines": [
+                                    {
+                                        "prose": "the time period to which the number of consecutive invalid logon attempts by a user is limited is defined.;"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "ac-08_prm_03",
+                                "props": [
+                                    {
+                                        "name": "label",
+                                        "value": "03.01.08_ODP[03]",
+                                        "class": "sp800-171"
+                                    }
+                                ],
+                                "label": "organization-defined actions",
+                                "select": {
+                                    "how-many": "one-or-more",
+                                    "choice": [
+                                        "the account or node is locked automatically for {{ insert: param, ac-08_prm_04 }}",
+                                        "the account or node is locked automatically until released by an administrator",
+                                        "the next logon prompt is delayed automatically",
+                                        "the system administrator is notified automatically",
+                                        "other action is taken automatically}"
+                                    ]
+                                },
+                                "guidelines": [
+                                    {
+                                        "prose": "one or more of the following PARAMETER VALUES are selected: {the account or node is locked automatically for {{ insert: param, ac-08_prm_04 }}; the account or node is locked automatically until released by an administrator; the next logon prompt is delayed automatically; the system administrator is notified automatically; other action is taken automatically}.;"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "ac-08_prm_04",
+                                "props": [
+                                    {
+                                        "name": "label",
+                                        "value": "03.01.08_ODP[02]",
+                                        "class": "sp800-171"
+                                    }
+                                ],
+                                "label": "organization-defined time period",
+                                "guidelines": [
+                                    {
+                                        "prose": "time period for an account or node to be locked is defined (if selected).;"
+                                    }
+                                ]
+                            }
+                        ],
+                        "props": [
+                            {
+                                "name": "label",
+                                "value": "03.01.08",
+                                "class": "zero-padded"
+                            },
+                            {
+                                "name": "label",
+                                "value": "3.1.8"
+                            },
+                            {
+                                "name": "label",
+                                "value": "03.01.08",
+                                "class": "sp800-171"
+                            },
+                            {
+                                "name": "sort-id",
+                                "value": "03-01-08"
+                            },
+                            {
+                                "name": "implementation-level",
+                                "ns": "http://csrc.nist.gov/ns/rmf",
+                                "value": "organization"
+                            },
+                            {
+                                "name": "contributes-to-assurance",
+                                "ns": "http://csrc.nist.gov/ns/rmf",
+                                "value": "true"
+                            }
+                        ],
+                        "links": [
+                            {
+                                "href": "#27847491-5ce1-4f6a-a1e4-9e483782f0ef",
+                                "rel": "reference"
+                            },
+                            {
+                                "href": "#c7ac44e8-10db-4b64-b2b9-9e32ec1efed0",
+                                "rel": "reference"
+                            },
+                            {
+                                "href": "#08b07465-dbdc-48d6-8a0b-37279602ac16",
+                                "rel": "reference"
+                            },
+                            {
+                                "href": "#cec037f3-8aba-4c97-84b4-4082f9e515d2",
+                                "rel": "reference"
+                            },
+                            {
+                                "href": "#4c0ec2ee-a0d6-428a-9043-4504bc3ade6f",
+                                "rel": "reference"
+                            },
+                            {
+                                "href": "#7f473f21-fdbf-4a6c-81a1-0ab95919609d",
+                                "rel": "reference"
+                            }
+                        ],
+                        "parts": [
+                            {
+                                "id": "ac-08_smt",
+                                "name": "statement",
+                                "parts": [
+                                    {
+                                        "id": "ac-08_smt.a",
+                                        "name": "item",
+                                        "props": [
+                                            {
+                                                "name": "label",
+                                                "value": "a."
+                                            },
+                                            {
+                                                "name": "label",
+                                                "value": "03.01.08.a",
+                                                "class": "sp800-171"
+                                            }
+                                        ],
+                                        "prose": "Enforce a limit of {{ insert: param, ac-08_prm_01 }} consecutive invalid logon attempts by a user during a {{ insert: param, ac-06_prm_02 }}.",
+                                        "parts": []
+                                    },
+                                    {
+                                        "id": "ac-08_smt.b",
+                                        "name": "item",
+                                        "props": [
+                                            {
+                                                "name": "label",
+                                                "value": "b."
+                                            },
+                                            {
+                                                "name": "label",
+                                                "value": "03.01.08.b",
+                                                "class": "sp800-171"
+                                            }
+                                        ],
+                                        "prose": "Automatically [Selection (one or more): lock the account or node for an {{ insert: param, ac-08_prm_03 }} when the maximum number of unsuccessful attempts is exceeded.",
+                                        "parts": []
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "ac-08_gdn",
+                                "name": "guidance",
+                                "prose": "Due to the potential for denial of service, automatic system lockouts are in most cases, temporary and automatically release after a predetermined time period established by the organization (i.e., using a delay algorithm). Organizations may employ different delay algorithms for different system components based on the capabilities of the respective components. Responses to unsuccessful system logon attempts may be implemented at the system and application levels.\n\nOrganization-defined actions that may be taken include prompting the user to answer a secret question in addition to the username and password, invoking a lockdown mode with limited user capabilities (instead of a full lockout), allowing users to only logon from specified Internet Protocol (IP) addresses, requiring a CAPTCHA to prevent automated attacks, or applying user profiles, such as location, time of day, IP address, device, or Media Access Control (MAC) address."
+                            },
+                            {
+                                "id": "ac-08_obj",
+                                "name": "objective",
+                                "props": [
+                                    {
+                                        "name": "label",
+                                        "value": "A.03.01.08",
+                                        "class": "sp800-171a"
+                                    }
+                                ],
+                                "links": [
+                                    {
+                                        "href": "#ac-08_smt",
+                                        "rel": "statement-for"
+                                    }
+                                ],
+                                "parts": [
+                                    {
+                                        "name": "sub-objective",
+                                        "id": "ac-08_obj.odp_01",
+                                        "props": [
+                                            {
+                                                "name": "label",
+                                                "value": "ODP[01]"
+                                            },
+                                            {
+                                                "name": "label",
+                                                "value": "A.03.01.08.ODP[01]",
+                                                "class": "sp800-171a"
+                                            }
+                                        ],
+                                        "prose": "The number of consecutive invalid logon attempts by a user allowed during a time period is defined.",
+                                        "links": [
+                                            {
+                                                "href": "#ac-08_smt.a",
+                                                "rel": "statement-for"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "sub-objective",
+                                        "id": "ac-08_obj.odp_02",
+                                        "props": [
+                                            {
+                                                "name": "label",
+                                                "value": "ODP[02]"
+                                            },
+                                            {
+                                                "name": "label",
+                                                "value": "A.03.01.08.ODP[02]",
+                                                "class": "sp800-171a"
+                                            }
+                                        ],
+                                        "prose": "The time period to which the number of consecutive invalid logon attempts by a user is limited is defined.",
+                                        "links": [
+                                            {
+                                                "href": "#ac-08_smt.a",
+                                                "rel": "statement-for"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "sub-objective",
+                                        "id": "ac-08_obj.odp_03",
+                                        "props": [
+                                            {
+                                                "name": "label",
+                                                "value": "ODP[03]"
+                                            },
+                                            {
+                                                "name": "label",
+                                                "value": "A.03.01.08.ODP[03]",
+                                                "class": "sp800-171a"
+                                            }
+                                        ],
+                                        "prose": "One or more of the following PARAMETER VALUES are selected: {the account or node is locked automatically for {{ insert: param, ac-08_prm_04 }}; the account or node is locked automatically until released by an administrator; the next logon prompt is delayed automatically; the system administrator is notified automatically; other action is taken automatically}.",
+                                        "links": [
+                                            {
+                                                "href": "#ac-08_smt.a",
+                                                "rel": "statement-for"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "sub-objective",
+                                        "id": "ac-08_obj.odp_04",
+                                        "props": [
+                                            {
+                                                "name": "label",
+                                                "value": "ODP[04]"
+                                            },
+                                            {
+                                                "name": "label",
+                                                "value": "A.03.01.08.ODP[04]",
+                                                "class": "sp800-171a"
+                                            }
+                                        ],
+                                        "prose": "The time period for an account or node to be locked is defined (if selected).",
+                                        "links": [
+                                            {
+                                                "href": "#ac-08_smt.a",
+                                                "rel": "statement-for"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "sub-objective",
+                                        "id": "ac-08_obj.a_01",
+                                        "props": [
+                                            {
+                                                "name": "label",
+                                                "value": "a[01]"
+                                            },
+                                            {
+                                                "name": "label",
+                                                "value": "A.03.01.08.a[01]",
+                                                "class": "sp800-171a"
+                                            }
+                                        ],
+                                        "prose": "A limit of {{ insert: param, ac-08_prm_01 }} consecutive invalid logon attempts by a user during {{ insert: param, ac-08_prm_02 }} is enforced.",
+                                        "links": [
+                                            {
+                                                "href": "#ac-08_smt.a",
+                                                "rel": "statement-for"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "sub-objective",
+                                        "id": "ac-08_obj.b_01",
+                                        "props": [
+                                            {
+                                                "name": "label",
+                                                "value": "b[01]"
+                                            },
+                                            {
+                                                "name": "label",
+                                                "value": "A.03.01.08.b[01]",
+                                                "class": "sp800-171a"
+                                            }
+                                        ],
+                                        "prose": "{{ insert: param, ac-08_prm_03 }} when the maximum number of unsuccessful attempts is exceeded.",
+                                        "links": [
+                                            {
+                                                "href": "#ac-08_smt.b",
+                                                "rel": "statement-for"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "ac-08_asm-examine",
+                                "name": "assessment-method",
+                                "props": [
+                                    {
+                                        "name": "method",
+                                        "value": "EXAMINE",
+                                        "ns": "http://csrc.nist.gov/ns/rmf"
+                                    },
+                                    {
+                                        "name": "label",
+                                        "value": "03.01.08-Examine"
+                                    },                            
+                                    {
+                                        "name": "label",
+                                        "value": "03.01.08-Examine",
+                                        "class": "sp800-171a"
+                                    }
+                                ],
+                                "parts": [
+                                    {
+                                        "name": "assessment-objects",
+                                        "props": [
+                                            {
+                                                "name": "object-option",
+                                                "value": "access control policy and procedures"
+                                            },
+                                            {
+                                                "name": "object-option",
+                                                "value": "procedures for unsuccessful logon attempts"
+                                            },
+                                            {
+                                                "name": "object-option",
+                                                "value": "system design documentation"
+                                            },
+                                            {
+                                                "name": "object-option",
+                                                "value": "system audit records"
+                                            },
+                                            {
+                                                "name": "object-option",
+                                                "value": "system configuration settings"
+                                            },
+                                            {
+                                                "name": "object-option",
+                                                "value": "system security plan"
+                                            },
+                                            {
+                                                "name": "object-option",
+                                                "value": "other relevant documents or records"
+                                            }
+                                        ],
+                                        "prose": "EXAMINE: Select one or more documents or records to examine based on system implementation and assessment scope. [SELECT FROM: access control policy and procedures; procedures for unsuccessful logon attempts; system design documentation; system audit records; system configuration settings; system security plan; other relevant documents or records]"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "ac-08_asm-interview",
+                                "name": "assessment-method",
+                                "props": [
+                                    {
+                                        "name": "method",
+                                        "value": "INTERVIEW",
+                                        "ns": "http://csrc.nist.gov/ns/rmf"
+                                    },
+                                    {
+                                        "name": "label",
+                                        "value": "03.01.08-Interview"
+                                    },
+                                    {
+                                        "name": "label",
+                                        "value": "03.01.08-Interview",
+                                        "class": "sp800-171a"
+                                    }
+                                ],
+                                "parts": [
+                                    {
+                                        "name": "assessment-objects",
+                                        "props": [
+                                            {
+                                                "name": "object-option",
+                                                "value": "system developers"
+                                            },
+                                            {
+                                                "name": "object-option",
+                                                "value": "system administrators"
+                                            },
+                                            {
+                                                "name": "object-option",
+                                                "value": "personnel with information security responsibilities"
+                                            }
+                                        ],
+                                        "prose": "INTERVIEW: Select one or more personnel types to interview based on system implementation. [SELECT FROM: personnel with information security responsibilities; system developers; system administrators]"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "ac-08_asm-test",
+                                "name": "assessment-method",
+                                "props": [
+                                    {
+                                        "name": "method",
+                                        "value": "TEST",
+                                        "ns": "http://csrc.nist.gov/ns/rmf"
+                                    },
+                                    {
+                                        "name": "label",
+                                        "value": "03.01.08-Test"
+                                    },
+                                    {
+                                        "name": "label",
+                                        "value": "03.01.08-Test",
+                                        "class": "sp800-171a"
+                                    }
+                                ],
+                                "parts": [
+                                    {
+                                        "name": "assessment-objects",
+                                        "props": [
+                                            {
+                                                "name": "object-option",
+                                                "value": "mechanisms for implementing the access control policy for unsuccessful logon attempts"
+                                            }
+                                        ],
+                                        "prose": "TEST: Select one or more options based on system implementation. [SELECT FROM: mechanisms for implementing the access control policy for unsuccessful logon attempts]"
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 ]  
             },
