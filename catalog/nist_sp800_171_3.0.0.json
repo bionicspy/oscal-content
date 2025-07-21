@@ -103,7 +103,16 @@
                 ]
                 }
             ]
-        },  
+        },
+        "params": [
+            {
+                "id": "param.data.label",
+                "label": "Data Label",
+                "description": "Specifies data label",
+                "values": ["{{ insert: param, param.data.label }}"],
+                "remarks": "NIST SP800 171, ITSP.10.171, and other revisions of doc label the data differently, rather than replace every control paramaterized."
+            }
+        ],
         "groups": [
             {
                 "id": "ac",
@@ -1551,13 +1560,13 @@
                             {
                                 "id": "ac-02_smt",
                                 "name": "statement",
-                                "prose": "Enforce approved authorizations for logical access to CUI and system resources in accordance with applicable access control policies.",
+                                "prose": "Enforce approved authorizations for logical access to {{ insert: param, param.data.label }} and system resources in accordance with applicable access control policies.",
                                 "parts": []
                             },
                             {
                                 "id": "ac-02_gdn",
                                 "name": "guidance",
-                                "prose": "Access control policies control access between active entities or subjects (i.e., users or system processes acting on behalf of users) and passive entities or objects (i.e., devices, files, records, domains) in organizational systems. Types of system access include remote access and access to systems that communicate through external networks, such as the internet. Access enforcement mechanisms can also be employed at the application and service levels to provide increased protection for CUI. This recognizes that the system can host many applications and services in support of mission and business functions. Access control policies are defined in 03.15.01."
+                                "prose": "Access control policies control access between active entities or subjects (i.e., users or system processes acting on behalf of users) and passive entities or objects (i.e., devices, files, records, domains) in organizational systems. Types of system access include remote access and access to systems that communicate through external networks, such as the internet. Access enforcement mechanisms can also be employed at the application and service levels to provide increased protection for {{ insert: param, param.data.label }}. This recognizes that the system can host many applications and services in support of mission and business functions. Access control policies are defined in 03.15.01."
                             },
                             {
                                 "id": "ac-02_obj",
@@ -1590,7 +1599,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Approved authorizations for logical access to CUI are enforced in accordance with applicable access control policies.",
+                                        "prose": "Approved authorizations for logical access to {{ insert: param, param.data.label }} are enforced in accordance with applicable access control policies.",
                                         "links": [
                                             {
                                                 "href": "#ac-02_smt",
@@ -1825,13 +1834,13 @@
                             {
                                 "id": "ac-03_smt",
                                 "name": "statement",
-                                "prose": "Enforce approved authorizations for controlling the flow of CUI within the system and between connected systems.",
+                                "prose": "Enforce approved authorizations for controlling the flow of {{ insert: param, param.data.label }} within the system and between connected systems.",
                                 "parts": []
                             },
                             {
                                 "id": "ac-03_gdn",
                                 "name": "guidance",
-                                "prose": "Information flow control regulates where CUI can transit within a system and between systems (in contrast to who is allowed to access the information) and without regard to subsequent accesses to that information. Flow control restrictions include keeping CUI from being transmitted in the clear to the internet, blocking external communications traffic that claims to be sourced from within the organization, restricting requests to the internet that are not from the internal web proxy server, and limiting CUI transfers between organizations based on data structures and content.\n\nTransferring CUI between organizations may require an agreement that specifies how the information flow is enforced (see 03.12.05). Transferring CUI between systems that represent different security domains with different security policies introduces the risk that such transfers violate one or more domain security policies. In such situations, information owners or stewards provide guidance at designated policy enforcement points between interconnected systems. Organizations consider mandating specific architectural solutions when required to enforce specific security policies. Enforcement includes prohibiting CUI transfers between interconnected systems (i.e., allowing information access only), employing hardware mechanisms to enforce one-way information flows, and implementing trustworthy regrading mechanisms to reassign security attributes and security labels.\n\nOrganizations commonly use information flow control policies and enforcement mechanisms to control the flow of CUI between designated sources and destinations (e.g., networks, individuals, and devices) within systems and between interconnected systems. Flow control is based on characteristics of the information or the information path. Enforcement occurs in boundary protection devices (e.g., encrypted tunnels, routers, gateways, and firewalls) that use rule sets or establish configuration settings that restrict system services, provide a packet-filtering capability based on header information, or provide a message-filtering capability based on message content (e.g., implementing key word searches or using document characteristics). Organizations also consider the trustworthiness of filtering and inspection mechanisms (i.e., hardware, firmware, and software components) that are critical to information flow enforcement."
+                                "prose": "Information flow control regulates where {{ insert: param, param.data.label }} can transit within a system and between systems (in contrast to who is allowed to access the information) and without regard to subsequent accesses to that information. Flow control restrictions include keeping {{ insert: param, param.data.label }} from being transmitted in the clear to the internet, blocking external communications traffic that claims to be sourced from within the organization, restricting requests to the internet that are not from the internal web proxy server, and limiting {{ insert: param, param.data.label }} transfers between organizations based on data structures and content.\n\nTransferring {{ insert: param, param.data.label }} between organizations may require an agreement that specifies how the information flow is enforced (see 03.12.05). Transferring {{ insert: param, param.data.label }} between systems that represent different security domains with different security policies introduces the risk that such transfers violate one or more domain security policies. In such situations, information owners or stewards provide guidance at designated policy enforcement points between interconnected systems. Organizations consider mandating specific architectural solutions when required to enforce specific security policies. Enforcement includes prohibiting {{ insert: param, param.data.label }} transfers between interconnected systems (i.e., allowing information access only), employing hardware mechanisms to enforce one-way information flows, and implementing trustworthy regrading mechanisms to reassign security attributes and security labels.\n\nOrganizations commonly use information flow control policies and enforcement mechanisms to control the flow of {{ insert: param, param.data.label }} between designated sources and destinations (e.g., networks, individuals, and devices) within systems and between interconnected systems. Flow control is based on characteristics of the information or the information path. Enforcement occurs in boundary protection devices (e.g., encrypted tunnels, routers, gateways, and firewalls) that use rule sets or establish configuration settings that restrict system services, provide a packet-filtering capability based on header information, or provide a message-filtering capability based on message content (e.g., implementing key word searches or using document characteristics). Organizations also consider the trustworthiness of filtering and inspection mechanisms (i.e., hardware, firmware, and software components) that are critical to information flow enforcement."
                             },
                             {
                                 "id": "ac-03_obj",
@@ -1864,7 +1873,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "approved authorizations are enforced for controlling the flow of CUI within the system.",
+                                        "prose": "approved authorizations are enforced for controlling the flow of {{ insert: param, param.data.label }} within the system.",
                                         "links": [
                                             {
                                                 "href": "#ac-03_smt",
@@ -1886,7 +1895,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "approved authorizations are enforced for controlling the flow of CUI between connected systems.",
+                                        "prose": "approved authorizations are enforced for controlling the flow of {{ insert: param, param.data.label }} between connected systems.",
                                         "links": [
                                             {
                                                 "href": "#ac-03_smt",
@@ -4080,13 +4089,13 @@
                             {
                                 "id": "ac-09_smt",
                                 "name": "statement",
-                                "prose": "Display a system use notification message with privacy and security notices consistent with applicable CUI rules before granting access to the system.",
+                                "prose": "Display a system use notification message with privacy and security notices consistent with applicable {{ insert: param, param.data.label }} rules before granting access to the system.",
                                 "parts": []
                             },
                             {
                                 "id": "ac-09_gdn",
                                 "name": "guidance",
-                                "prose": "System use notifications can be implemented using messages or warning banners. The messages or warning banners are displayed before individuals log in to a system that processes, stores, or transmits CUI. System use notifications are used for access via logon interfaces with human users and are not required when human interfaces do not exist. Organizations consider whether a secondary use notification is needed to access applications or other system resources after the initial network logon. Posters or other printed materials may be used in lieu of an automated system message. This requirement is related to 03.15.03."
+                                "prose": "System use notifications can be implemented using messages or warning banners. The messages or warning banners are displayed before individuals log in to a system that processes, stores, or transmits {{ insert: param, param.data.label }}. System use notifications are used for access via logon interfaces with human users and are not required when human interfaces do not exist. Organizations consider whether a secondary use notification is needed to access applications or other system resources after the initial network logon. Posters or other printed materials may be used in lieu of an automated system message. This requirement is related to 03.15.03."
                             },
                             {
                                 "id": "ac-09_obj",
@@ -4104,7 +4113,7 @@
                                         "rel": "statement-for"
                                     }
                                 ],
-                                "prose": "A system use notification message with privacy and security notices consistent with applicable CUI rules is displayed before granting access to the system.",
+                                "prose": "A system use notification message with privacy and security notices consistent with applicable {{ insert: param, param.data.label }} rules is displayed before granting access to the system.",
                                 "parts": []
                             },
                             {
@@ -5110,7 +5119,7 @@
                             {
                                 "id": "ac-12_gdn",
                                 "name": "guidance",
-                                "prose": "Remote access is access to systems (or processes acting on behalf of users) that communicate through external networks, such as the internet. Monitoring and controlling remote access methods allows organizations to detect attacks and ensure compliance with remote access policies. Routing remote access through managed access control points enhances explicit control over such connections and reduces susceptibility to unauthorized access to the system, which could result in the unauthorized disclosure of CUI.\n\nRemote access to the system represents a significant potential vulnerability that can be exploited by adversaries. Restricting the execution of privileged commands and access to security-relevant information via remote access reduces the exposure of the organization and its susceptibility to threats by adversaries. A privileged command is a human-initiated command executed on a system that involves the control, monitoring, or administration of the system, including security functions and security-relevant information. Security-relevant information is information that can potentially impact the operation of security functions or the provision of security services in a manner that could result in failure to enforce the system security policy or maintain isolation of code and data. Privileged commands give individuals the ability to execute sensitive, security-critical, or security-relevant system functions."
+                                "prose": "Remote access is access to systems (or processes acting on behalf of users) that communicate through external networks, such as the internet. Monitoring and controlling remote access methods allows organizations to detect attacks and ensure compliance with remote access policies. Routing remote access through managed access control points enhances explicit control over such connections and reduces susceptibility to unauthorized access to the system, which could result in the unauthorized disclosure of {{ insert: param, param.data.label }}.\n\nRemote access to the system represents a significant potential vulnerability that can be exploited by adversaries. Restricting the execution of privileged commands and access to security-relevant information via remote access reduces the exposure of the organization and its susceptibility to threats by adversaries. A privileged command is a human-initiated command executed on a system that involves the control, monitoring, or administration of the system, including security functions and security-relevant information. Security-relevant information is information that can potentially impact the operation of security functions or the provision of security services in a manner that could result in failure to enforce the system security policy or maintain isolation of code and data. Privileged commands give individuals the ability to execute sensitive, security-critical, or security-relevant system functions."
                             },
                             {
                                 "id": "ac-12_obj",
@@ -6247,7 +6256,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Implement full-device or container-based encryption to protect the confidentiality of CUI on mobile devices.",
+                                        "prose": "Implement full-device or container-based encryption to protect the confidentiality of {{ insert: param, param.data.label }} on mobile devices.",
                                         "parts": []
                                     }
                                 ]
@@ -6255,7 +6264,7 @@
                             {
                                 "id": "ac-18_gdn",
                                 "name": "guidance",
-                                "prose": "A mobile device is a computing device with a small form factor such that it can be carried by a single individual; is designed to operate without a physical connection; possesses local, non-removable, or removable data storage; and includes a self-contained power source. Mobile device functionality may include on-board sensors that allow the device to capture information, voice communication capabilities, and/or built-in features for synchronizing local data with remote locations. Examples include smart phones, smart watches, and tablets. Mobile devices are typically associated with a single individual. The processing, storage, and transmission capabilities of mobile devices may be comparable to or a subset of notebook or desktop systems, depending on the nature and intended purpose of the device. Some organizations may consider notebook computers to be mobile devices. The protection and control of mobile devices are behavior- or policy-based and require users to take physical action to protect and control such devices when outside of controlled areas. Controlled areas are spaces for which the organization provides physical or procedural controls to meet the requirements established for protecting CUI.\n\nDue to the large variety of mobile devices with different characteristics and capabilities, organizational restrictions may vary for the different classes or types of such devices. Usage restrictions, configuration requirements, and connection requirements for mobile devices include configuration management, device identification and authentication, implementing mandatory protective software, scanning devices for malicious code, updating virus protection software, scanning for critical software updates and patches, conducting operating system and possibly other software integrity checks, and disabling unnecessary hardware. On mobile devices, secure containers provide software-based data isolation designed to segment enterprise applications and information from personal apps and data. Containers may present multiple user interfaces, one of the most common being a mobile application that acts as a portal to a suite of business productivity apps, such as email, contacts, and calendar. Organizations can employ full-device encryption or container-based encryption to protect the confidentiality of CUI on mobile devices."
+                                "prose": "A mobile device is a computing device with a small form factor such that it can be carried by a single individual; is designed to operate without a physical connection; possesses local, non-removable, or removable data storage; and includes a self-contained power source. Mobile device functionality may include on-board sensors that allow the device to capture information, voice communication capabilities, and/or built-in features for synchronizing local data with remote locations. Examples include smart phones, smart watches, and tablets. Mobile devices are typically associated with a single individual. The processing, storage, and transmission capabilities of mobile devices may be comparable to or a subset of notebook or desktop systems, depending on the nature and intended purpose of the device. Some organizations may consider notebook computers to be mobile devices. The protection and control of mobile devices are behavior- or policy-based and require users to take physical action to protect and control such devices when outside of controlled areas. Controlled areas are spaces for which the organization provides physical or procedural controls to meet the requirements established for protecting {{ insert: param, param.data.label }}.\n\nDue to the large variety of mobile devices with different characteristics and capabilities, organizational restrictions may vary for the different classes or types of such devices. Usage restrictions, configuration requirements, and connection requirements for mobile devices include configuration management, device identification and authentication, implementing mandatory protective software, scanning devices for malicious code, updating virus protection software, scanning for critical software updates and patches, conducting operating system and possibly other software integrity checks, and disabling unnecessary hardware. On mobile devices, secure containers provide software-based data isolation designed to segment enterprise applications and information from personal apps and data. Containers may present multiple user interfaces, one of the most common being a mobile application that acts as a portal to a suite of business productivity apps, such as email, contacts, and calendar. Organizations can employ full-device encryption or container-based encryption to protect the confidentiality of {{ insert: param, param.data.label }} on mobile devices."
                             },
                             {
                                 "id": "ac-18_obj",
@@ -6376,7 +6385,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Full-device or container-based encryption is implemented to protect the confidentiality of CUI on mobile devices.",
+                                        "prose": "Full-device or container-based encryption is implemented to protect the confidentiality of {{ insert: param, param.data.label }} on mobile devices.",
                                         "links": [
                                             {
                                                 "href": "#ac-18_smt.c",
@@ -6527,14 +6536,14 @@
                                             },
                                             {
                                                 "name": "object-option",
-                                                "value": "encryption mechanisms for protecting the confidentiality of CUI on mobile devices"
+                                                "value": "encryption mechanisms for protecting the confidentiality of {{ insert: param, param.data.label }} on mobile devices"
                                             },
                                             {
                                                 "name": "object-option",
                                                 "value": "configurations of mobile devices"
                                             }
                                         ],
-                                        "prose": "TEST: Select one or more options based on system implementation. [SELECT FROM: access control capability for mobile device connections to organizational systems; encryption mechanisms for protecting the confidentiality of CUI on mobile devices; configurations of mobile devices]"
+                                        "prose": "TEST: Select one or more options based on system implementation. [SELECT FROM: access control capability for mobile device connections to organizational systems; encryption mechanisms for protecting the confidentiality of {{ insert: param, param.data.label }} on mobile devices; configurations of mobile devices]"
                                     }
                                 ]
                             }
@@ -6710,7 +6719,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Permit authorized individuals to use external systems to access the organizational system or to process, store, or transmit CUI only after:",
+                                        "prose": "Permit authorized individuals to use external systems to access the organizational system or to process, store, or transmit {{ insert: param, param.data.label }} only after:",
                                         "parts": [
                                             {
                                                 "id": "ac-20_smt.c.01",
@@ -6869,7 +6878,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Authorized individuals are permitted to use external systems to access the organizational system or to process, store, or transmit CUI only after verifying that the security requirements on the external systems as specified in the organization's system security plans have been satisfied.",
+                                        "prose": "Authorized individuals are permitted to use external systems to access the organizational system or to process, store, or transmit {{ insert: param, param.data.label }} only after verifying that the security requirements on the external systems as specified in the organization's system security plans have been satisfied.",
                                         "links": [
                                             {
                                                 "href": "#ac-20_smt.c",
@@ -6891,7 +6900,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Authorized individuals are permitted to use external systems to access the organizational system or to process, store, or transmit CUI only after retaining approved system connection or processing agreements with the organizational entity hosting the external systems.",
+                                        "prose": "Authorized individuals are permitted to use external systems to access the organizational system or to process, store, or transmit {{ insert: param, param.data.label }} only after retaining approved system connection or processing agreements with the organizational entity hosting the external systems.",
                                         "links": [
                                             {
                                                 "href": "#ac-20_smt.c",
@@ -7172,7 +7181,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Train authorized individuals to ensure that publicly accessible information does not contain CUI.",
+                                        "prose": "Train authorized individuals to ensure that publicly accessible information does not contain {{ insert: param, param.data.label }}.",
                                         "parts": []
                                     },
                                     {
@@ -7189,7 +7198,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Review the content on publicly accessible systems for CUI and remove such information, if discovered.",
+                                        "prose": "Review the content on publicly accessible systems for {{ insert: param, param.data.label }} and remove such information, if discovered.",
                                         "parts": []
                                     }
                                 ]
@@ -7197,7 +7206,7 @@
                             {
                                 "id": "ac-22_gdn",
                                 "name": "guidance",
-                                "prose": "In accordance with applicable laws, Executive Orders, directives, policies, regulations, standards, and guidelines, the public is not authorized to have access to nonpublic information, including CUI."
+                                "prose": "In accordance with applicable laws, Executive Orders, directives, policies, regulations, standards, and guidelines, the public is not authorized to have access to nonpublic information, including {{ insert: param, param.data.label }}."
                             },
                             {
                                 "id": "ac-22_obj",
@@ -7230,7 +7239,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Authorized individuals are trained to ensure that publicly accessible information does not contain CUI.",
+                                        "prose": "Authorized individuals are trained to ensure that publicly accessible information does not contain {{ insert: param, param.data.label }}.",
                                         "links": [
                                             {
                                                 "href": "#ac-22_smt.a",
@@ -7252,7 +7261,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "The content on publicly accessible systems is reviewed for CUI.",
+                                        "prose": "The content on publicly accessible systems is reviewed for {{ insert: param, param.data.label }}.",
                                         "links": [
                                             {
                                                 "href": "#ac-22_smt.b",
@@ -7274,7 +7283,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "CUI is removed from publicly accessible systems, if discovered.",
+                                        "prose": "{{ insert: param, param.data.label }} is removed from publicly accessible systems, if discovered.",
                                         "links": [
                                             {
                                                 "href": "#ac-22_smt.b",
@@ -7329,7 +7338,7 @@
                                             },
                                             {
                                                 "name": "object-option",
-                                                "value": "records of response to CUI discovered on public websites"
+                                                "value": "records of response to {{ insert: param, param.data.label }} discovered on public websites"
                                             },
                                             {
                                                 "name": "object-option",
@@ -7348,7 +7357,7 @@
                                                 "value": "other relevant documents or records"
                                             }
                                         ],
-                                        "prose": "EXAMINE: Select one or more documents or records to examine based on system implementation and assessment scope. [SELECT FROM: access control policy and procedures; procedures for publicly accessible content; list of users authorized to post publicly accessible content on organizational systems; training materials or records; records of publicly accessible information reviews; records of response to CUI discovered on public websites; system audit logs; security awareness training records; system security plan; other relevant documents or records]"
+                                        "prose": "EXAMINE: Select one or more documents or records to examine based on system implementation and assessment scope. [SELECT FROM: access control policy and procedures; procedures for publicly accessible content; list of users authorized to post publicly accessible content on organizational systems; training materials or records; records of publicly accessible information reviews; records of response to {{ insert: param, param.data.label }} discovered on public websites; system audit logs; security awareness training records; system security plan; other relevant documents or records]"
                                     }
                                 ]
                             },
@@ -7651,7 +7660,7 @@
                             {
                                 "id": "at-01_gdn",
                                 "name": "guidance",
-                                "prose": "Organizations provide basic and advanced levels of security literacy training to system users (including managers, senior executives, system administrators, and contractors) and measures to test the knowledge level of users. Organizations determine the content of literacy training based on specific organizational requirements, the systems to which personnel have authorized access, and work environments (e.g., telework). The content includes an understanding of the need for security and the actions required of users to maintain security and respond to incidents. The content also addresses the need for operations security and the handling of CUI.\n\nSecurity awareness techniques include displaying posters, offering supplies inscribed with security reminders, generating email advisories or notices from organizational officials, displaying logon screen messages, and conducting awareness events using podcasts, videos, and webinars. Security literacy training is conducted at a frequency consistent with applicable laws, directives, regulations, and policies. Updating literacy training content on a regular basis ensures that the content remains relevant. Events that may precipitate an update to literacy training content include assessment or audit findings, security incidents or breaches, or changes in applicable laws, Executive Orders, directives, regulations, policies, standards, and guidelines.\n\nPotential indicators and possible precursors of insider threats include behaviors such as inordinate, long-term job dissatisfaction; attempts to gain access to information that is not required for job performance; unexplained access to financial resources; sexual harassment or bullying of fellow employees; workplace violence; and other serious violations of the policies, procedures, rules, directives, or practices of organizations. Organizations may consider tailoring insider threat awareness topics to roles (e.g., training for managers may be focused on specific changes in the behavior of team members, while training for employees may be focused on more general observations). Social engineering is an attempt to deceive an individual into revealing information or taking an action that can be used to breach, compromise, or otherwise adversely impact a system. Social engineering includes phishing, pretexting, impersonation, baiting, quid pro quo, threadjacking, social media exploitation, and tailgating. Social mining is an attempt to gather information about the organization that may be used to support future attacks. Security literacy training includes how to communicate employee and management concerns regarding potential indicators of insider threat and potential and actual instances of social engineering and data mining through appropriate organizational channels in accordance with established policies and procedures. "
+                                "prose": "Organizations provide basic and advanced levels of security literacy training to system users (including managers, senior executives, system administrators, and contractors) and measures to test the knowledge level of users. Organizations determine the content of literacy training based on specific organizational requirements, the systems to which personnel have authorized access, and work environments (e.g., telework). The content includes an understanding of the need for security and the actions required of users to maintain security and respond to incidents. The content also addresses the need for operations security and the handling of {{ insert: param, param.data.label }}.\n\nSecurity awareness techniques include displaying posters, offering supplies inscribed with security reminders, generating email advisories or notices from organizational officials, displaying logon screen messages, and conducting awareness events using podcasts, videos, and webinars. Security literacy training is conducted at a frequency consistent with applicable laws, directives, regulations, and policies. Updating literacy training content on a regular basis ensures that the content remains relevant. Events that may precipitate an update to literacy training content include assessment or audit findings, security incidents or breaches, or changes in applicable laws, Executive Orders, directives, regulations, policies, standards, and guidelines.\n\nPotential indicators and possible precursors of insider threats include behaviors such as inordinate, long-term job dissatisfaction; attempts to gain access to information that is not required for job performance; unexplained access to financial resources; sexual harassment or bullying of fellow employees; workplace violence; and other serious violations of the policies, procedures, rules, directives, or practices of organizations. Organizations may consider tailoring insider threat awareness topics to roles (e.g., training for managers may be focused on specific changes in the behavior of team members, while training for employees may be focused on more general observations). Social engineering is an attempt to deceive an individual into revealing information or taking an action that can be used to breach, compromise, or otherwise adversely impact a system. Social engineering includes phishing, pretexting, impersonation, baiting, quid pro quo, threadjacking, social media exploitation, and tailgating. Social mining is an attempt to gather information about the organization that may be used to support future attacks. Security literacy training includes how to communicate employee and management concerns regarding potential indicators of insider threat and potential and actual instances of social engineering and data mining through appropriate organizational channels in accordance with established policies and procedures. "
                             },
                             {
                                 "id": "at-01_obj",
@@ -8298,7 +8307,7 @@
                                                         "class": "sp800-171"
                                                     }
                                                 ],
-                                                "prose": "Before authorizing access to the system or CUI, before performing assigned duties, and {{ insert: param, at-02_prm_01 }} thereafter.",
+                                                "prose": "Before authorizing access to the system or {{ insert: param, param.data.label }}, before performing assigned duties, and {{ insert: param, at-02_prm_01 }} thereafter.",
                                                 "parts": []
                                             },
                                             {
@@ -8464,7 +8473,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Role-based security training is provided to organizational personnel before authorizing access to the system or CUI.",
+                                        "prose": "Role-based security training is provided to organizational personnel before authorizing access to the system or {{ insert: param, param.data.label }}.",
                                         "links": [
                                             {
                                                 "href": "#at-02_smt.a.01",
@@ -15681,13 +15690,13 @@
                                     {
                                         "id": "cm-11_smt.a",
                                         "name": "item",
-                                        "prose": "Identify and document the location of CUI and the system components on which the information is processed and stored.",
+                                        "prose": "Identify and document the location of {{ insert: param, param.data.label }} and the system components on which the information is processed and stored.",
                                         "props": []
                                     },
                                     {
                                         "id": "cm-08_smt.b",
                                         "name": "item",
-                                        "prose": "Document changes to the system or system component location where CUI is processed and stored.",
+                                        "prose": "Document changes to the system or system component location where {{ insert: param, param.data.label }} is processed and stored.",
                                         "props": []
                                     }
                                 ]
@@ -15695,7 +15704,7 @@
                             {
                                 "id": "cm-11_gdn",
                                 "name": "guidance",
-                                "prose": "Information location addresses the need to understand the specific system components where CUI is being processed and stored and the users who have access to CUI so that appropriate protection mechanisms can be provided, including information flow controls, access controls, and information management."
+                                "prose": "Information location addresses the need to understand the specific system components where {{ insert: param, param.data.label }} is being processed and stored and the users who have access to {{ insert: param, param.data.label }} so that appropriate protection mechanisms can be provided, including information flow controls, access controls, and information management."
                             },
                             {
                                 "id": "cm-11_obj",
@@ -15728,7 +15737,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "The location of CUI is identified and documented.",
+                                        "prose": "The location of {{ insert: param, param.data.label }} is identified and documented.",
                                         "links": [
                                             {
                                                 "href": "#cm-11_smt.a",
@@ -15750,7 +15759,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "The system components on which CUI is processed are identified and documented.",
+                                        "prose": "The system components on which {{ insert: param, param.data.label }} is processed are identified and documented.",
                                         "links": [
                                             {
                                                 "href": "#cm-11_smt.a",
@@ -15772,7 +15781,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "The system components on which CUI is stored are identified and documented.",
+                                        "prose": "The system components on which {{ insert: param, param.data.label }} is stored are identified and documented.",
                                         "links": [
                                             {
                                                 "href": "#cm-11_smt.a",
@@ -15794,7 +15803,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Changes to the system or system component location where CUI is processed are documented.",
+                                        "prose": "Changes to the system or system component location where {{ insert: param, param.data.label }} is processed are documented.",
                                         "links": [
                                             {
                                                 "href": "#cm-11_smt.b",
@@ -15816,7 +15825,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Changes to the system or system component location where CUI is stored are documented.",
+                                        "prose": "Changes to the system or system component location where {{ insert: param, param.data.label }} is stored are documented.",
                                         "links": [
                                             {
                                                 "href": "#cm-11_smt.b",
@@ -22344,7 +22353,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Prevent the removal of system maintenance equipment containing CUI by verifying that there is no CUI on the equipment, sanitizing or destroying the equipment, or retaining the equipment within the facility.",
+                                        "prose": "Prevent the removal of system maintenance equipment containing {{ insert: param, param.data.label }} by verifying that there is no {{ insert: param, param.data.label }} on the equipment, sanitizing or destroying the equipment, or retaining the equipment within the facility.",
                                         "parts": []
                                     }
                                 ]
@@ -22473,7 +22482,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "The removal of system maintenance equipment containing CUI is prevented by verifying that there is no CUI on the equipment, sanitizing or destroying the equipment, or retaining the equipment within the facility.",
+                                        "prose": "The removal of system maintenance equipment containing {{ insert: param, param.data.label }} is prevented by verifying that there is no {{ insert: param, param.data.label }} on the equipment, sanitizing or destroying the equipment, or retaining the equipment within the facility.",
                                         "links": [
                                             {
                                                 "href": "#m-04_smt",
@@ -23570,13 +23579,13 @@
                             {
                                 "id": "mp-01_smt",
                                 "name": "statement",
-                                "prose": "Physically control and securely store system media that contain CUI.",
+                                "prose": "Physically control and securely store system media that contain {{ insert: param, param.data.label }}.",
                                 "parts": []
                             },
                             {
                                 "id": "mp-01_gdn",
                                 "name": "guidance",
-                                "prose": "System media include digital and non-digital media. Digital media include diskettes, flash drives, magnetic tapes, external or removable solid state or magnetic drives, compact discs, and digital versatile discs. Non-digital media include paper and microfilm. Physically controlling stored media includes conducting inventories, establishing procedures to allow individuals to check out and return media to libraries, and maintaining accountability for stored media. Secure storage includes a locked drawer, desk, or cabinet or a controlled media library. Controlled areas provide physical and procedural controls to meet the requirements established for protecting information and systems. Sanitization techniques (e.g., destroying, cryptographically erasing, clearing, and purging) prevent the disclosure of CUI to unauthorized individuals. The sanitization process removes CUI from media such that the information cannot be retrieved or reconstructed."
+                                "prose": "System media include digital and non-digital media. Digital media include diskettes, flash drives, magnetic tapes, external or removable solid state or magnetic drives, compact discs, and digital versatile discs. Non-digital media include paper and microfilm. Physically controlling stored media includes conducting inventories, establishing procedures to allow individuals to check out and return media to libraries, and maintaining accountability for stored media. Secure storage includes a locked drawer, desk, or cabinet or a controlled media library. Controlled areas provide physical and procedural controls to meet the requirements established for protecting information and systems. Sanitization techniques (e.g., destroying, cryptographically erasing, clearing, and purging) prevent the disclosure of {{ insert: param, param.data.label }} to unauthorized individuals. The sanitization process removes {{ insert: param, param.data.label }} from media such that the information cannot be retrieved or reconstructed."
                             },
                             {
                                 "id": "mp-01_obj",
@@ -23610,7 +23619,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "System media that contains CUI are physically controlled.",
+                                        "prose": "System media that contains {{ insert: param, param.data.label }} are physically controlled.",
                                         "links": [
                                             {
                                                 "href": "#mp-01_smt",
@@ -23632,7 +23641,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "System media that contains CUI are securely stored.",
+                                        "prose": "System media that contains {{ insert: param, param.data.label }} are securely stored.",
                                         "links": [
                                             {
                                                 "href": "#mp-01_smt",
@@ -23837,13 +23846,13 @@
                             {
                                 "id": "mp-02_smt",
                                 "name": "statement",
-                                "prose": "Restrict access to CUI on system media to authorized personnel or roles.",
+                                "prose": "Restrict access to {{ insert: param, param.data.label }} on system media to authorized personnel or roles.",
                                 "parts": []
                             },
                             {
                                 "id": "mp-02_gdn",
                                 "name": "guidance",
-                                "prose": "System media include digital and non-digital media. Access to CUI on system media can be restricted by physically controlling such media. This includes conducting inventories, ensuring that procedures are in place to allow individuals to check out and return media to the media library, and maintaining accountability for stored media. For digital media, access to CUI can be restricted by using cryptographic means. Encrypting data in storage or at rest is addressed in 03.13.08."
+                                "prose": "System media include digital and non-digital media. Access to {{ insert: param, param.data.label }} on system media can be restricted by physically controlling such media. This includes conducting inventories, ensuring that procedures are in place to allow individuals to check out and return media to the media library, and maintaining accountability for stored media. For digital media, access to {{ insert: param, param.data.label }} can be restricted by using cryptographic means. Encrypting data in storage or at rest is addressed in 03.13.08."
                             },
                             {
                                 "id": "mp-02_obj",
@@ -23876,7 +23885,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Access to CUI on system media is restricted to authorized personnel or roles.",
+                                        "prose": "Access to {{ insert: param, param.data.label }} on system media is restricted to authorized personnel or roles.",
                                         "links": [
                                             {
                                                 "href": "#mp-02_smt",
@@ -24089,13 +24098,13 @@
                             {
                                 "id": "mp-03_smt",
                                 "name": "statement",
-                                "prose": "Sanitize system media that contain CUI prior to disposal, release out of organizational control, or release for reuse.",
+                                "prose": "Sanitize system media that contain {{ insert: param, param.data.label }} prior to disposal, release out of organizational control, or release for reuse.",
                                 "parts": []
                             },
                             {
                                 "id": "mp-03_gdn",
                                 "name": "guidance",
-                                "prose": "Media sanitization applies to digital and non-digital media that are subject to disposal or reuse, whether or not the media are considered removable. Examples include digital media in scanners, copiers, printers, notebook computers, mobile devices, workstations, network components, and non-digital media. The sanitization process removes CUI from media such that the information cannot be retrieved or reconstructed. Sanitization techniques (e.g., cryptographically erasing, clearing, purging, and destroying) prevent the disclosure of CUI to unauthorized individuals when such media are reused or released for disposal. NARA policies control the sanitization process for media that contain CUI and may require destruction when other methods cannot be applied to the media."
+                                "prose": "Media sanitization applies to digital and non-digital media that are subject to disposal or reuse, whether or not the media are considered removable. Examples include digital media in scanners, copiers, printers, notebook computers, mobile devices, workstations, network components, and non-digital media. The sanitization process removes {{ insert: param, param.data.label }} from media such that the information cannot be retrieved or reconstructed. Sanitization techniques (e.g., cryptographically erasing, clearing, purging, and destroying) prevent the disclosure of {{ insert: param, param.data.label }} to unauthorized individuals when such media are reused or released for disposal. NARA policies control the sanitization process for media that contain {{ insert: param, param.data.label }} and may require destruction when other methods cannot be applied to the media."
                             },
                             {
                                 "id": "mp-03_obj",
@@ -24128,7 +24137,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "system media that contain CUI are sanitized prior to disposal, release out of organizational control, or release for reuse.",
+                                        "prose": "system media that contain {{ insert: param, param.data.label }} are sanitized prior to disposal, release out of organizational control, or release for reuse.",
                                         "links": [
                                             {
                                                 "href": "#mp-03_smt",
@@ -24357,13 +24366,13 @@
                             {
                                 "id": "mp-04_smt",
                                 "name": "statement",
-                                "prose": "Mark system media that contain CUI to indicate distribution limitations, handling caveats, and applicable CUI markings.",
+                                "prose": "Mark system media that contain {{ insert: param, param.data.label }} to indicate distribution limitations, handling caveats, and applicable {{ insert: param, param.data.label }} markings.",
                                 "parts": []
                             },
                             {
                                 "id": "mp-04_gdn",
                                 "name": "guidance",
-                                "prose": "System media include digital and non-digital media. Marking refers to the use or application of human-readable security attributes. Labeling refers to the use of security attributes for internal system data structures. Digital media include diskettes, magnetic tapes, external or removable solid state or magnetic drives, flash drives, compact discs, and digital versatile discs. Non-digital media include paper and microfilm. CUI is defined by NARA along with marking, safeguarding, and dissemination requirements for such information."
+                                "prose": "System media include digital and non-digital media. Marking refers to the use or application of human-readable security attributes. Labeling refers to the use of security attributes for internal system data structures. Digital media include diskettes, magnetic tapes, external or removable solid state or magnetic drives, flash drives, compact discs, and digital versatile discs. Non-digital media include paper and microfilm. {{ insert: param, param.data.label }} is defined by NARA along with marking, safeguarding, and dissemination requirements for such information."
                             },
                             {
                                 "id": "mp-04_obj",
@@ -24396,7 +24405,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "System media that contain CUI are marked to indicate distribution limitations.",
+                                        "prose": "System media that contain {{ insert: param, param.data.label }} are marked to indicate distribution limitations.",
                                         "links": [
                                             {
                                                 "href": "#mp-04_smt",
@@ -24418,7 +24427,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "System media that contain CUI are marked to indicate handling caveats.",
+                                        "prose": "System media that contain {{ insert: param, param.data.label }} are marked to indicate handling caveats.",
                                         "links": [
                                             {
                                                 "href": "#mp-04_smt",
@@ -24440,7 +24449,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "System media that contain CUI are marked to indicate applicable CUI markings. ",
+                                        "prose": "System media that contain {{ insert: param, param.data.label }} are marked to indicate applicable {{ insert: param, param.data.label }} markings. ",
                                         "links": [
                                             {
                                                 "href": "#mp-04_smt",
@@ -24656,7 +24665,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Protect and control system media that contain CUI during transport outside of controlled areas.",
+                                        "prose": "Protect and control system media that contain {{ insert: param, param.data.label }} during transport outside of controlled areas.",
                                         "parts": []
                                     },
                                     {
@@ -24673,7 +24682,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Maintain accountability of system media that contain CUI during transport outside of controlled areas.",
+                                        "prose": "Maintain accountability of system media that contain {{ insert: param, param.data.label }} during transport outside of controlled areas.",
                                         "parts": []
                                     },
                                     {
@@ -24690,7 +24699,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Document activities associated with the transport of system media that contain CUI.",
+                                        "prose": "Document activities associated with the transport of system media that contain {{ insert: param, param.data.label }}.",
                                         "parts": []
                                     }
                                 ]
@@ -24698,7 +24707,7 @@
                             {
                                 "id": "mp-05_gdn",
                                 "name": "guidance",
-                                "prose": "System media include digital and non-digital media. Digital media include flash drives, diskettes, magnetic tapes, external or removable solid state or magnetic drives, compact discs, and digital versatile discs. Non-digital media include microfilm and paper. Controlled areas are spaces for which organizations provide physical or procedural measures to meet the requirements established for protecting CUI and systems. Media protection during transport can include cryptography and/or locked containers. Activities associated with media transport include releasing media for transport, ensuring that media enter the appropriate transport processes, and the actual transport. Authorized transport and courier personnel may include individuals external to the organization. Maintaining accountability of media during transport includes restricting transport activities to authorized personnel and tracking or obtaining the records of transport activities as the media move through the transportation system to prevent and detect loss, destruction, or tampering. This requirement is related to 03.13.08 and 03.13.11."
+                                "prose": "System media include digital and non-digital media. Digital media include flash drives, diskettes, magnetic tapes, external or removable solid state or magnetic drives, compact discs, and digital versatile discs. Non-digital media include microfilm and paper. Controlled areas are spaces for which organizations provide physical or procedural measures to meet the requirements established for protecting {{ insert: param, param.data.label }} and systems. Media protection during transport can include cryptography and/or locked containers. Activities associated with media transport include releasing media for transport, ensuring that media enter the appropriate transport processes, and the actual transport. Authorized transport and courier personnel may include individuals external to the organization. Maintaining accountability of media during transport includes restricting transport activities to authorized personnel and tracking or obtaining the records of transport activities as the media move through the transportation system to prevent and detect loss, destruction, or tampering. This requirement is related to 03.13.08 and 03.13.11."
                             },
                             {
                                 "id": "mp-05_obj",
@@ -24731,7 +24740,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "System media that contain CUI are protected during transport outside of controlled areas.",
+                                        "prose": "System media that contain {{ insert: param, param.data.label }} are protected during transport outside of controlled areas.",
                                         "links": [
                                             {
                                                 "href": "#mp-05_smt",
@@ -24753,7 +24762,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "System media that contain CUI are controlled during transport outside of controlled areas.",
+                                        "prose": "System media that contain {{ insert: param, param.data.label }} are controlled during transport outside of controlled areas.",
                                         "links": [
                                             {
                                                 "href": "#mp-05_smt",
@@ -24775,7 +24784,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Accountability for system media that contain CUI is maintained during transport outside of controlled areas.",
+                                        "prose": "Accountability for system media that contain {{ insert: param, param.data.label }} is maintained during transport outside of controlled areas.",
                                         "links": [
                                             {
                                                 "href": "#mp-05_smt",
@@ -24797,7 +24806,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Activities associated with the transport of system media that contain CUI are documented.",
+                                        "prose": "Activities associated with the transport of system media that contain {{ insert: param, param.data.label }} are documented.",
                                         "links": [
                                             {
                                                 "href": "#mp-05_smt",
@@ -25511,7 +25520,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Implement cryptographic mechanisms to prevent the unauthorized disclosure of CUI at backup storage locations.",
+                                        "prose": "Implement cryptographic mechanisms to prevent the unauthorized disclosure of {{ insert: param, param.data.label }} at backup storage locations.",
                                         "parts": []
                                     }
                                 ]
@@ -25574,7 +25583,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Cryptographic mechanisms are implemented to prevent the unauthorized disclosure of CUI at backup storage locations.",
+                                        "prose": "Cryptographic mechanisms are implemented to prevent the unauthorized disclosure of {{ insert: param, param.data.label }} at backup storage locations.",
                                         "links": [
                                             {
                                                 "href": "#mp-09_smt",
@@ -26781,7 +26790,7 @@
                             {
                                 "id": "pp-01_gdn",
                                 "name": "guidance",
-                                "prose": "A facility can include one or more physical locations containing systems or system components that process, store, or transmit CUI. Physical access authorizations apply to employees and visitors. Individuals with permanent physical access authorization credentials are not considered visitors. Authorization credentials include identification badges, identification cards, and smart cards. Organizations determine the strength of the authorization credentials consistent with applicable laws, Executive Orders, directives, regulations, policies, standards, and guidelines. Physical access authorizations may not be necessary to access certain areas within facilities that are designated as publicly accessible."
+                                "prose": "A facility can include one or more physical locations containing systems or system components that process, store, or transmit {{ insert: param, param.data.label }}. Physical access authorizations apply to employees and visitors. Individuals with permanent physical access authorization credentials are not considered visitors. Authorization credentials include identification badges, identification cards, and smart cards. Organizations determine the strength of the authorization credentials consistent with applicable laws, Executive Orders, directives, regulations, policies, standards, and guidelines. Physical access authorizations may not be necessary to access certain areas within facilities that are designated as publicly accessible."
                             },
                             {
                                 "id": "pp-01_obj",
@@ -27232,7 +27241,7 @@
                             {
                                 "id": "pp-02_gdn",
                                 "name": "guidance",
-                                "prose": "A facility can include one or more physical locations containing systems or system components that process, store, or transmit CUI. Physical access monitoring includes publicly accessible areas within organizational facilities. Examples of physical access monitoring include guards, video surveillance equipment (i.e., cameras), and sensor devices. Reviewing physical access logs can help to identify suspicious activities, anomalous events, or potential threats. The reviews can be supported by audit logging controls if the access logs are part of an automated system. Incident response capabilities include investigations of physical security incidents and responses to those incidents. Incidents include security violations or suspicious physical access activities, such as access outside of normal work hours, repeated access to areas not normally accessed, access for unusual lengths of time, and out-of-sequence access."
+                                "prose": "A facility can include one or more physical locations containing systems or system components that process, store, or transmit {{ insert: param, param.data.label }}. Physical access monitoring includes publicly accessible areas within organizational facilities. Examples of physical access monitoring include guards, video surveillance equipment (i.e., cameras), and sensor devices. Reviewing physical access logs can help to identify suspicious activities, anomalous events, or potential threats. The reviews can be supported by audit logging controls if the access logs are part of an automated system. Incident response capabilities include investigations of physical security incidents and responses to those incidents. Incidents include security violations or suspicious physical access activities, such as access outside of normal work hours, repeated access to areas not normally accessed, access for unusual lengths of time, and out-of-sequence access."
                             },
                             {
                                 "id": "pp-02_obj",
@@ -28174,7 +28183,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Control physical access to output devices to prevent unauthorized individuals from obtaining access to CUI.",
+                                        "prose": "Control physical access to output devices to prevent unauthorized individuals from obtaining access to {{ insert: param, param.data.label }}.",
                                         "parts": []
                                     }
                                 ]
@@ -28182,7 +28191,7 @@
                             {
                                 "id": "pp-07_gdn",
                                 "name": "guidance",
-                                "prose": "This requirement addresses physical locations containing systems or system components that process, store, or transmit CUI. Organizations determine the types of guards needed, including professional security staff or administrative staff. Physical access devices include keys, locks, combinations, biometric readers, and card readers. Physical access control systems comply with applicable laws, Executive Orders, directives, policies, regulations, standards, and guidelines. Organizations have flexibility in the types of audit logs employed. Audit logs can be procedural, automated, or some combination thereof. Physical access points can include exterior access points, interior access points to systems that require supplemental access controls, or both. Physical access control applies to employees and visitors. Individuals with permanent physical access authorizations are not considered visitors.\n\nControlling physical access to output devices includes placing output devices in locked rooms or other secured areas with keypad or card reader access controls and only allowing access to authorized individuals, placing output devices in locations that can be monitored by personnel, installing monitor or screen filters, and using headphones. Examples of output devices include monitors, printers, scanners, facsimile machines, audio devices, and copiers."
+                                "prose": "This requirement addresses physical locations containing systems or system components that process, store, or transmit {{ insert: param, param.data.label }}. Organizations determine the types of guards needed, including professional security staff or administrative staff. Physical access devices include keys, locks, combinations, biometric readers, and card readers. Physical access control systems comply with applicable laws, Executive Orders, directives, policies, regulations, standards, and guidelines. Organizations have flexibility in the types of audit logs employed. Audit logs can be procedural, automated, or some combination thereof. Physical access points can include exterior access points, interior access points to systems that require supplemental access controls, or both. Physical access control applies to employees and visitors. Individuals with permanent physical access authorizations are not considered visitors.\n\nControlling physical access to output devices includes placing output devices in locked rooms or other secured areas with keypad or card reader access controls and only allowing access to authorized individuals, placing output devices in locations that can be monitored by personnel, installing monitor or screen filters, and using headphones. Examples of output devices include monitors, printers, scanners, facsimile machines, audio devices, and copiers."
                             },
                             {
                                 "id": "pp-07_obj",
@@ -28347,7 +28356,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Physical access to output devices is controlled to prevent unauthorized individuals from obtaining access to CUI.",
+                                        "prose": "Physical access to output devices is controlled to prevent unauthorized individuals from obtaining access to {{ insert: param, param.data.label }}.",
                                         "links": [
                                             {
                                                 "href": "#pp-07_smt.e",
@@ -28883,7 +28892,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Assess the risk (including supply chain risk) of unauthorized disclosure resulting from the processing, storage, or transmission of CUI.",
+                                        "prose": "Assess the risk (including supply chain risk) of unauthorized disclosure resulting from the processing, storage, or transmission of {{ insert: param, param.data.label }}.",
                                         "parts": []
                                     },
                                     {
@@ -28908,7 +28917,7 @@
                             {
                                 "id": "ra-01_gdn",
                                 "name": "guidance",
-                                "prose": "Establishing the system boundary is a prerequisite to assessing the risk of the unauthorized disclosure of the University's data. Risk assessments consider threats, vulnerabilities, likelihood, and adverse impacts to organizational operations and assets based on the operation and use of the system and the unauthorized disclosure of the University's data. Risk assessments also consider risks from external parties (e.g., contractors operating systems on behalf of the organization, service providers, individuals accessing systems, and outsourcing entities). Risk assessments can be conducted at the organization level, the mission or business process level, or the system level and at any phase in the system development life cycle. Risk assessments include supply chain-related risks associated with suppliers or contractors and the system, system component, or system service that they provide."
+                                "prose": "Establishing the system boundary is a prerequisite to assessing the risk of the unauthorized disclosure of {{ insert: param, param.data.label }}. Risk assessments consider threats, vulnerabilities, likelihood, and adverse impacts to organizational operations and assets based on the operation and use of the system and the unauthorized disclosure of {{ insert: param, param.data.label }}. Risk assessments also consider risks from external parties (e.g., contractors operating systems on behalf of the organization, service providers, individuals accessing systems, and outsourcing entities). Risk assessments can be conducted at the organization level, the mission or business process level, or the system level and at any phase in the system development life cycle. Risk assessments include supply chain-related risks associated with suppliers or contractors and the system, system component, or system service that they provide."
                             },
                             {
                                 "id": "ra-01_obj",
@@ -28963,7 +28972,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "The risk (including supply chain risk) of unauthorized disclosure resulting from the processing, storage, or transmission of the University's data is assessed.",
+                                        "prose": "The risk (including supply chain risk) of unauthorized disclosure resulting from the processing, storage, or transmission of {{ insert: param, param.data.label }} is assessed.",
                                         "links": [
                                             {
                                                 "href": "#ra-01_smt.a",
@@ -30538,7 +30547,7 @@
                             {
                                 "id": "sa-02_gdn",
                                 "name": "guidance",
-                                "prose": "Plans of action and milestones (POAMs) are important documents in organizational security programs. Organizations use POAMs to describe how unsatisfied security requirements will be met and how planned mitigations will be implemented. Organizations can document system security plans and POAMs as separate or combined documents in any format. Federal agencies may consider system security plans and POAMs as inputs to risk-based decisions on whether to process, store, or transmit CUI on a system hosted by a nonfederal organization."
+                                "prose": "Plans of action and milestones (POAMs) are important documents in organizational security programs. Organizations use POAMs to describe how unsatisfied security requirements will be met and how planned mitigations will be implemented. Organizations can document system security plans and POAMs as separate or combined documents in any format. Federal agencies may consider system security plans and POAMs as inputs to risk-based decisions on whether to process, store, or transmit {{ insert: param, param.data.label }} on a system hosted by a nonfederal organization."
                             },
                             {
                                 "id": "sa-02_obj",
@@ -31312,7 +31321,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Approve and manage the exchange of CUI between the system and other systems using {{ insert: param, sa-05_prm_01 }}.",
+                                        "prose": "Approve and manage the exchange of {{ insert: param, param.data.label }} between the system and other systems using {{ insert: param, sa-05_prm_01 }}.",
                                         "parts": []
                                     },
                                     {
@@ -31431,7 +31440,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "The exchange of CUI between the system and other systems is approved using {{ insert: param, sa-05_prm_01 }}.",
+                                        "prose": "The exchange of {{ insert: param, param.data.label }} between the system and other systems is approved using {{ insert: param, sa-05_prm_01 }}.",
                                         "links": [
                                             {
                                                 "href": "#sa-05_smt.a",
@@ -31453,7 +31462,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "The exchange of the University's data between the system and other systems is managed using {{ insert: param, sa-05_prm_01 }}. ",
+                                        "prose": "The exchange of {{ insert: param, param.data.label }} between the system and other systems is managed using {{ insert: param, sa-05_prm_01 }}. ",
                                         "links": [
                                             {
                                                 "href": "#sa-05_smt.a",
@@ -32947,13 +32956,13 @@
                             {
                                 "id": "scp-08_smt",
                                 "name": "statement",
-                                "prose": "Implement cryptographic mechanisms to prevent the unauthorized disclosure of CUI during transmission and while in storage.",
+                                "prose": "Implement cryptographic mechanisms to prevent the unauthorized disclosure of {{ insert: param, param.data.label }} during transmission and while in storage.",
                                 "parts": []
                             },
                             {
                                 "id": "scp-08_gdn",
                                 "name": "guidance",
-                                "prose": "This requirement applies to internal and external networks and any system components that can transmit CUI, including servers, notebook computers, desktop computers, mobile devices, printers, copiers, scanners, facsimile machines, and radios. Unprotected communication paths are susceptible to interception and modification. Encryption protects CUI from unauthorized disclosure during transmission and while in storage. Cryptographic mechanisms that protect the confidentiality of CUI during transmission include TLS and IPsec. Information in storage (i.e., information at rest) refers to the state of CUI when it is not in process or in transit and resides on internal or external storage devices, storage area network devices, and databases. Protecting CUI in storage does not focus on the type of storage device or the frequency of access to that device but rather on the state of the information. This requirement relates to 03.13.11."
+                                "prose": "This requirement applies to internal and external networks and any system components that can transmit {{ insert: param, param.data.label }}, including servers, notebook computers, desktop computers, mobile devices, printers, copiers, scanners, facsimile machines, and radios. Unprotected communication paths are susceptible to interception and modification. Encryption protects {{ insert: param, param.data.label }} from unauthorized disclosure during transmission and while in storage. Cryptographic mechanisms that protect the confidentiality of {{ insert: param, param.data.label }} during transmission include TLS and IPsec. Information in storage (i.e., information at rest) refers to the state of {{ insert: param, param.data.label }} when it is not in process or in transit and resides on internal or external storage devices, storage area network devices, and databases. Protecting {{ insert: param, param.data.label }} in storage does not focus on the type of storage device or the frequency of access to that device but rather on the state of the information. This requirement relates to 03.13.11."
                             },
                             {
                                 "id": "scp-08_obj",
@@ -32986,7 +32995,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Cryptographic mechanisms are implemented to prevent the unauthorized disclosure of CUI during transmission.",
+                                        "prose": "Cryptographic mechanisms are implemented to prevent the unauthorized disclosure of {{ insert: param, param.data.label }} during transmission.",
                                         "links": [
                                             {
                                                 "href": "#scp-08_smt",
@@ -33008,7 +33017,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Cryptographic mechanisms are implemented to prevent the unauthorized disclosure of CUI while in storage.",
+                                        "prose": "Cryptographic mechanisms are implemented to prevent the unauthorized disclosure of {{ insert: param, param.data.label }} while in storage.",
                                         "links": [
                                             {
                                                 "href": "#scp-08_smt",
@@ -33777,7 +33786,7 @@
                                 "label": "organization-defined types of cryptography",
                                 "guidelines": [
                                     {
-                                        "prose": "the types of cryptography for protecting the confidentiality of CUI;"
+                                        "prose": "the types of cryptography for protecting the confidentiality of {{ insert: param, param.data.label }};"
                                     }
                                 ]
                             }
@@ -33842,13 +33851,13 @@
                             {
                                 "id": "scp-11_smt",
                                 "name": "statement",
-                                "prose": "Implement the following types of cryptography to protect the confidentiality of CUI: {{ insert: param, scp-11_prm_01 }}.",
+                                "prose": "Implement the following types of cryptography to protect the confidentiality of {{ insert: param, param.data.label }}: {{ insert: param, scp-11_prm_01 }}.",
                                 "parts": []
                             },
                             {
                                 "id": "scp-11_gdn",
                                 "name": "guidance",
-                                "prose": "Cryptography is implemented in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, and guidelines. FIPS-validated cryptography is recommended for the protection of CUI."
+                                "prose": "Cryptography is implemented in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, and guidelines. FIPS-validated cryptography is recommended for the protection of {{ insert: param, param.data.label }}."
                             },
                             {
                                 "id": "scp-11_obj",
@@ -33881,7 +33890,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "The types of cryptography for protecting the confidentiality of CUI are defined.",
+                                        "prose": "The types of cryptography for protecting the confidentiality of {{ insert: param, param.data.label }} are defined.",
                                         "links": [
                                             {
                                                 "href": "#scp-11_smt",
@@ -33903,7 +33912,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "The following types of cryptography are implemented to protect the confidentiality of CUI: {{ insert: param, scp-10_prm_01 }}.",
+                                        "prose": "The following types of cryptography are implemented to protect the confidentiality of {{ insert: param, param.data.label }}: {{ insert: param, scp-10_prm_01 }}.",
                                         "links": [
                                             {
                                                 "href": "#scp-11_smt",
@@ -37062,13 +37071,13 @@
                             {
                                 "id": "sii-08_smt",
                                 "name": "statement",
-                                "prose": "Manage and retain CUI within the system and CUI output from the system in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.",
+                                "prose": "Manage and retain {{ insert: param, param.data.label }} within the system and {{ insert: param, param.data.label }} output from the system in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.",
                                 "parts": []
                             },
                             {
                                 "id": "sii-08_gdn",
                                 "name": "guidance",
-                                "prose": "Federal agencies consider data retention requirements for nonfederal organizations. Retaining CUI on nonfederal systems after contracts or agreements have concluded increases the attack surface for those systems and the risk of the information being compromised. NARA provides federal policy and guidance on records retention and schedules."
+                                "prose": "Federal agencies consider data retention requirements for nonfederal organizations. Retaining {{ insert: param, param.data.label }} on nonfederal systems after contracts or agreements have concluded increases the attack surface for those systems and the risk of the information being compromised. NARA provides federal policy and guidance on records retention and schedules."
                             },
                             {
                                 "id": "sii-08_obj",
@@ -37101,7 +37110,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "CUI within the system is managed in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.",
+                                        "prose": "{{ insert: param, param.data.label }} within the system is managed in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.",
                                         "links": [
                                             {
                                                 "href": "#sii-08_smt",
@@ -37123,7 +37132,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "CUI within the system is retained in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.",
+                                        "prose": "{{ insert: param, param.data.label }} within the system is retained in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.",
                                         "links": [
                                             {
                                                 "href": "#sii-08_smt",
@@ -37145,7 +37154,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "CUI output from the system is managed in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.",
+                                        "prose": "{{ insert: param, param.data.label }} output from the system is managed in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.",
                                         "links": [
                                             {
                                                 "href": "#sii-08_smt",
@@ -37167,7 +37176,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "CUI output from the system is retained in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.",
+                                        "prose": "{{ insert: param, param.data.label }} output from the system is retained in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.",
                                         "links": [
                                             {
                                                 "href": "#sii-08_smt",
@@ -37423,7 +37432,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Develop, document, and disseminate to organizational personnel or roles the policies and procedures needed to satisfy the security requirements for the protection of CUI.",
+                                        "prose": "Develop, document, and disseminate to organizational personnel or roles the policies and procedures needed to satisfy the security requirements for the protection of {{ insert: param, param.data.label }}.",
                                         "parts": []
                                     },
                                     {
@@ -37448,7 +37457,7 @@
                             {
                                 "id": "pl-01_gdn",
                                 "name": "guidance",
-                                "prose": "This requirement addresses policies and procedures for the protection of CUI. Policies and procedures contribute to security assurance and should address each family of the CUI security requirements. Policies can be included as part of the organizational security policy or be represented by separate policies that address each family of security requirements. Procedures describe how policies are implemented and can be directed at the individual or role that is the object of the procedure. Procedures can be documented in system security plans or in one or more separate documents."
+                                "prose": "This requirement addresses policies and procedures for the protection of {{ insert: param, param.data.label }}. Policies and procedures contribute to security assurance and should address each family of the {{ insert: param, param.data.label }} security requirements. Policies can be included as part of the organizational security policy or be represented by separate policies that address each family of security requirements. Procedures describe how policies are implemented and can be directed at the individual or role that is the object of the procedure. Procedures can be documented in system security plans or in one or more separate documents."
                             },
                             {
                                 "id": "pl-01_obj",
@@ -37504,7 +37513,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Policies needed to satisfy the security requirements for the protection of the University's data are developed and documented.",
+                                        "prose": "Policies needed to satisfy the security requirements for the protection of {{ insert: param, param.data.label }} are developed and documented.",
                                         "links": [
                                             {
                                                 "href": "#pl-01_smt.a",
@@ -37526,7 +37535,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Policies needed to satisfy the security requirements for the protection of the University's data are disseminated to organizational personnel or roles.",
+                                        "prose": "Policies needed to satisfy the security requirements for the protection of {{ insert: param, param.data.label }} are disseminated to organizational personnel or roles.",
                                         "links": [
                                             {
                                                 "href": "#pl-01_smt.a",
@@ -37548,7 +37557,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Procedures needed to satisfy the security requirements for the protection of the University's data are developed and documented.",
+                                        "prose": "Procedures needed to satisfy the security requirements for the protection of {{ insert: param, param.data.label }} are developed and documented.",
                                         "links": [
                                             {
                                                 "href": "#pl-01_smt.a",
@@ -37570,7 +37579,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Procedures needed to satisfy the security requirements for the protection of the University's data are disseminated to organizational personnel or roles.",
+                                        "prose": "Procedures needed to satisfy the security requirements for the protection of {{ insert: param, param.data.label }} are disseminated to organizational personnel or roles.",
                                         "links": [
                                             {
                                                 "href": "#pl-01_smt.a",
@@ -37649,7 +37658,7 @@
                                     "props": [
                                         {
                                             "name": "object-option",
-                                            "value": "security policies and procedures associated with the protection of CUI"
+                                            "value": "security policies and procedures associated with the protection of {{ insert: param, param.data.label }}"
                                         },
                                         {
                                             "name": "object-option",
@@ -37664,7 +37673,7 @@
                                             "value": "other relevant documents or records"
                                         }
                                     ],
-                                    "prose": "EXAMINE: Select one or more documents or records to examine based on system implementation and assessment scope. [SELECT FROM: security policies and procedures associated with the protection of CUI; audit findings; system security plan; other relevant documents or records]"
+                                    "prose": "EXAMINE: Select one or more documents or records to examine based on system implementation and assessment scope. [SELECT FROM: security policies and procedures associated with the protection of {{ insert: param, param.data.label }}; audit findings; system security plan; other relevant documents or records]"
                                     }
                                 ]
                             },
@@ -37961,7 +37970,7 @@
                                                         "class": "sp800-171"
                                                     }
                                                 ],
-                                                "prose": "Includes other relevant information necessary for the protection of CUI.",
+                                                "prose": "Includes other relevant information necessary for the protection of {{ insert: param, param.data.label }}.",
                                                 "parts": []
                                             }
                                         ]
@@ -38005,7 +38014,7 @@
                             {
                                 "id": "pl-02_gdn",
                                 "name": "guidance",
-                                "prose": "System security plans provide key characteristics of the system that is processing, storing, and transmitting CUI and how the system and information are protected. System security plans contain sufficient information to enable a design and implementation that are unambiguously compliant with the intent of the plans and the subsequent determinations of risk if the plan is implemented as intended. System security plans can be a collection of documents, including documents that already exist. Effective system security plans reference policies, procedures, and documents (e.g., design specifications) that provide additional detailed information. This reduces the documentation requirements associated with security programs and maintains security information in other established management or operational areas related to enterprise architecture, the system development life cycle, systems engineering, and acquisition."
+                                "prose": "System security plans provide key characteristics of the system that is processing, storing, and transmitting {{ insert: param, param.data.label }} and how the system and information are protected. System security plans contain sufficient information to enable a design and implementation that are unambiguously compliant with the intent of the plans and the subsequent determinations of risk if the plan is implemented as intended. System security plans can be a collection of documents, including documents that already exist. Effective system security plans reference policies, procedures, and documents (e.g., design specifications) that provide additional detailed information. This reduces the documentation requirements associated with security programs and maintains security information in other established management or operational areas related to enterprise architecture, the system development life cycle, systems engineering, and acquisition."
                             },
                             {
                                 "id": "pl-02_obj",
@@ -38215,7 +38224,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "A system security plan that includes other relevant information necessary for the protection of CUI is developed.",
+                                        "prose": "A system security plan that includes other relevant information necessary for the protection of {{ insert: param, param.data.label }} is developed.",
                                         "links": [
                                             {
                                                 "href": "#pl-02_smt.a",
@@ -38530,7 +38539,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Establish rules that describe the responsibilities and expected behavior for system usage and protecting CUI.",
+                                        "prose": "Establish rules that describe the responsibilities and expected behavior for system usage and protecting {{ insert: param, param.data.label }}.",
                                         "parts": []
                                     },
                                     {
@@ -38564,7 +38573,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Receive a documented acknowledgement from individuals indicating that they have read, understand, and agree to abide by the rules of behavior before authorizing access to the University's data and the system.",
+                                        "prose": "Receive a documented acknowledgement from individuals indicating that they have read, understand, and agree to abide by the rules of behavior before authorizing access to {{ insert: param, param.data.label }} and the system.",
                                         "parts": []
                                     },
                                     {
@@ -38589,7 +38598,7 @@
                             {
                                 "id": "pl-03_gdn",
                                 "name": "guidance",
-                                "prose": "Rules of behavior represent a type of access agreement for system users. Organizations consider rules of behavior for the handling of CUI based on individual user roles and responsibilities and differentiate between rules that apply to privileged users and rules that apply to general users."
+                                "prose": "Rules of behavior represent a type of access agreement for system users. Organizations consider rules of behavior for the handling of {{ insert: param, param.data.label }} based on individual user roles and responsibilities and differentiate between rules that apply to privileged users and rules that apply to general users."
                             },
                             {
                                 "id": "pl-03_obj",
@@ -38645,7 +38654,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "Rules that describe responsibilities and expected behavior for system usage and protecting the University's data are established.",
+                                        "prose": "Rules that describe responsibilities and expected behavior for system usage and protecting {{ insert: param, param.data.label }} are established.",
                                         "links": [
                                             {
                                                 "href": "#pl-03_smt.a",
@@ -38689,7 +38698,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "A documented acknowledgement from individuals indicating that they have read, understand, and agree to abide by the rules of behavior is received before authorizing access to the University's data and the system.",
+                                        "prose": "A documented acknowledgement from individuals indicating that they have read, understand, and agree to abide by the rules of behavior is received before authorizing access to {{ insert: param, param.data.label }} and the system.",
                                         "links": [
                                             {
                                                 "href": "#pl-03_smt.c",
@@ -39586,7 +39595,7 @@
                                                 "class": "sp800-171"
                                             }
                                         ],
-                                        "prose": "Require the providers of external system services used for the processing, storage, or transmission of CUI to comply with the following security requirements: {{ insert: param, ssa-03_prm_01 }}.",
+                                        "prose": "Require the providers of external system services used for the processing, storage, or transmission of {{ insert: param, param.data.label }} to comply with the following security requirements: {{ insert: param, ssa-03_prm_01 }}.",
                                         "parts": []
                                     },
                                     {
@@ -39628,7 +39637,7 @@
                             {
                                 "id": "ssa-03_gdn",
                                 "name": "guidance",
-                                "prose": "External system services are provided by external service providers. Organizations establish relationships with external service providers in a variety of ways, including through business partnerships, contracts, interagency agreements, lines of business arrangements, licensing agreements, joint ventures, and supply chain exchanges. The responsibility for managing risks from the use of external system services remains with the organization charged with protecting CUI. Service-level agreements define expectations of performance, describe measurable outcomes, and identify remedies, mitigations, and response requirements for instances of noncompliance. Information from external service providers regarding the specific functions, ports, protocols, and services used in the provision of such services can be useful when there is a need to understand the trade-offs involved in restricting certain functions and services or blocking certain ports and protocols. This requirement is related to 03.01.20."
+                                "prose": "External system services are provided by external service providers. Organizations establish relationships with external service providers in a variety of ways, including through business partnerships, contracts, interagency agreements, lines of business arrangements, licensing agreements, joint ventures, and supply chain exchanges. The responsibility for managing risks from the use of external system services remains with the organization charged with protecting {{ insert: param, param.data.label }}. Service-level agreements define expectations of performance, describe measurable outcomes, and identify remedies, mitigations, and response requirements for instances of noncompliance. Information from external service providers regarding the specific functions, ports, protocols, and services used in the provision of such services can be useful when there is a need to understand the trade-offs involved in restricting certain functions and services or blocking certain ports and protocols. This requirement is related to 03.01.20."
                             },
                             {
                                 "id": "ssa-03_obj",
@@ -39640,7 +39649,7 @@
                                         "class": "sp800-171a"
                                     }
                                 ],
-                                "prose": "To ensure the security of CUI handled by external service providers, defined security requirements must be met. This includes establishing provider compliance, clarifying shared responsibilities, and implementing ongoing monitoring processes to verify adherence to these requirements.:",
+                                "prose": "To ensure the security of {{ insert: param, param.data.label }} handled by external service providers, defined security requirements must be met. This includes establishing provider compliance, clarifying shared responsibilities, and implementing ongoing monitoring processes to verify adherence to these requirements.:",
                                 "links": [
                                     {
                                         "href": "#ssa-03_smt",
@@ -39684,7 +39693,7 @@
                                                 "class": "sp800-171a"
                                             }
                                         ],
-                                        "prose": "The providers of external system services used for the processing, storage, or transmission of the University's data comply with the following security requirements: {{ insert: param, ssa-03_prm_01 }}.",
+                                        "prose": "The providers of external system services used for the processing, storage, or transmission of {{ insert: param, param.data.label }} comply with the following security requirements: {{ insert: param, ssa-03_prm_01 }}.",
                                         "links": [
                                             {
                                                 "href": "#ssa-03_smt",
