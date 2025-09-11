@@ -15,14 +15,17 @@ Highlights
   * University of Toronto (oscal-author)
 - Back-matter with source citations (resources) and SHA-256 hashes in rlinks
 - Timezone-aware last-modified (Python 3.12+ friendly)
-- NEW: ATLAS dataset version recorded (from ATLAS.yaml) and added to metadata.props and metadata.revisions
-- NEW: --carry-revisions-from to preserve+extend version history across runs
+- ATLAS dataset version recorded (from ATLAS.yaml) and added to metadata.props and metadata.revisions
+- Version history: by default the last 5 ATLAS Data releases are fetched from GitHub and merged into metadata.revisions
+  (override with --revisions-from-releases N; set 0 to disable)
+- --carry-revisions-from lets you merge prior metadata.revisions into the new output
 
 References:
 - ATLAS.yaml top-level exposes the data release version.  # https://github.com/mitre-atlas/atlas-data
 - STIX data in atlas-navigator-data is generated from atlas-data.  # https://github.com/mitre-atlas/atlas-navigator-data
 - OSCAL metadata.revisions[] is the schema place for version history.  # https://pages.nist.gov/OSCAL-Reference/models/develop/complete/json-outline/
 - ATLAS Data releases page (human-readable history).  # https://github.com/mitre-atlas/atlas-data/releases
+- YAML media type guidance (application/yaml).  # https://github.com/usnistgov/OSCAL/issues/1255
 """
 from __future__ import annotations
 
@@ -30,6 +33,7 @@ import argparse
 import datetime as dt
 import hashlib
 import json
+import os
 import re
 import sys
 import uuid
@@ -58,6 +62,13 @@ def fetch_bytes(path_or_url: str) -> bytes:
             return r.read()
     with open(path_or_url, "rb") as f:
         return f.read()
+
+
+def fetch_json(url: str, headers: dict | None = None) -> dict | list:
+    """Fetch JSON from a URL using urllib with a default User-Agent."""
+    req = urllib.request.Request(url, headers=headers or {"User-Agent": "atlas-to-oscal/1.0"})
+    with urllib.request.urlopen(req) as r:
+        return json.loads(r.read().decode("utf-8"))
 
 
 def sha256_hex(data: bytes) -> str:
@@ -193,7 +204,6 @@ def parse_yaml(atlas_yaml_bytes: bytes, source_url: str | None = None) -> dict:
         tactics_by_id[sid] = {**t, "id": sid, "shortname": shortname}
         tactic_by_shortname[shortname] = tactics_by_id[sid]
 
-    # Shim to mimic STIX parse return
     tech_map = {}
     parent_to_children = {}
     tech_to_tactics = {}
@@ -274,10 +284,53 @@ def extract_atlas_yaml_version(atlas_yaml_bytes: bytes) -> str | None:
         return data.get("version")
     except Exception:
         return None
+
+
+def revisions_from_atlas_releases(limit: int = 5) -> list[dict]:
+    """
+    Build OSCAL revision entries from the last N GitHub releases of mitre-atlas/atlas-data.
+    Each revision includes version (tag_name), published timestamp, and a link to the release.
+    """
+    if limit is None or int(limit) <= 0:
+        return []
+    url = "https://api.github.com/repos/mitre-atlas/atlas-data/releases"
+    headers = {"User-Agent": "atlas-to-oscal/1.0"}
+    token = os.environ.get("GITHUB_TOKEN")  # optional to raise rate limit
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    try:
+        releases = fetch_json(url, headers=headers)
+    except Exception:
+        return []
+    revs = []
+    for rel in releases[:int(limit)]:
+        version = rel.get("tag_name") or rel.get("name") or ""
+        if not version:
+            continue
+        rev = {
+            "title": "MITRE ATLAS Data Release",
+            "version": str(version),
+            # GitHub returns ISO 8601 with 'Z' which is valid for OSCAL
+            "published": rel.get("published_at"),
+            "links": [
+                {"href": rel.get("html_url"), "rel": "reference"}
+            ],
+            "props": [
+                {"name": "release-id", "ns": "https://atlas.mitre.org", "value": str(rel.get("id"))},
+                {"name": "prerelease", "ns": "https://atlas.mitre.org",
+                 "value": str(rel.get("prerelease", False)).lower()}
+            ],
+            "remarks": (rel.get("name") or "")
+        }
+        revs.append(rev)
+    return revs
+
+
 def build_oscal_catalog(parsed: dict, source_kind: str, source_bytes: bytes,
                         oscal_version: str = "1.1.3", title: str | None = None,
-                        carry_revisions_from: str | None = None) -> dict:
-    """Construct an OSCAL catalog with groups, controls, back-matter, and ATLAS version in metadata."""
+                        carry_revisions_from: str | None = None,
+                        releases_limit: int | None = 5) -> dict:
+    """Construct an OSCAL catalog with groups, controls, back-matter, and version history."""
     # Timezone-aware UTC (and normalized to trailing Z)
     now = dt.datetime.now(dt.UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     title = title or "MITRE ATLAS Techniques & Mitigations (OSCAL Catalog)"
@@ -422,7 +475,16 @@ def build_oscal_catalog(parsed: dict, source_kind: str, source_bytes: bytes,
     }
     md.setdefault("revisions", [])
     md["revisions"].append(export_rev)
-    # --- end ATLAS version and revisions ---
+
+    # Append latest ATLAS releases from GitHub to revision history (default 5)
+    if releases_limit and int(releases_limit) > 0:
+        fetched_revs = revisions_from_atlas_releases(int(releases_limit))
+        if fetched_revs:
+            existing = {(r.get("title"), r.get("version")) for r in md.get("revisions", [])}
+            for r in fetched_revs:
+                key = (r.get("title"), r.get("version"))
+                if key not in existing:
+                    md["revisions"].append(r)
 
     # Tactic groups
     groups_by_short = {}
@@ -642,7 +704,10 @@ def main():
     ap.add_argument("--input", help="Path or URL to source file. Defaults to MITRE GitHub raw for the chosen source.")
     ap.add_argument("--out", "-o", default="atlas-oscal-catalog.json", help="Output OSCAL catalog JSON file.")
     ap.add_argument("--oscal-version", default="1.1.3", help="OSCAL version to embed in metadata (default: 1.1.3).")
-    ap.add_argument("--carry-revisions-from", help="Path to an existing OSCAL catalog JSON to merge its metadata.revisions into the new output.")
+    ap.add_argument("--revisions-from-releases", type=int, default=5,
+                    help="Fetch the last N ATLAS releases (default: 5). Set to 0 to disable.")
+    ap.add_argument("--carry-revisions-from",
+                    help="Path to an existing OSCAL catalog JSON to merge its metadata.revisions into the new output.")
     args = ap.parse_args()
 
     source_url = args.input or (DEFAULT_STIX_URL if args.source == "stix" else DEFAULT_YAML_URL)
@@ -655,7 +720,9 @@ def main():
 
     catalog = build_oscal_catalog(
         parsed, source_kind=args.source, source_bytes=raw,
-        oscal_version=args.oscal_version, carry_revisions_from=args.carry_revisions_from
+        oscal_version=args.oscal_version,
+        carry_revisions_from=args.carry_revisions_from,
+        releases_limit=args.revisions_from_releases
     )
 
     with open(args.out, "w", encoding="utf-8") as f:
