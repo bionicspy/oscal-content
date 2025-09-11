@@ -17,12 +17,16 @@ Highlights
 - Timezone-aware last-modified (Python 3.12+ friendly)
 
 References:
-- ATLAS STIX & Navigator outputs: https://github.com/mitre-atlas/atlas-navigator-data
-- ATLAS unified YAML:              https://github.com/mitre-atlas/atlas-data
-- OSCAL metadata/roles/parties:    https://pages.nist.gov/OSCAL/learn/tutorials/general/metadata/
-- OSCAL model reference (JSON):    https://pages.nist.gov/OSCAL-Reference/models/develop/complete/json-reference/
-- Back-matter resources/rlinks:    https://pages.nist.gov/OSCAL-Reference/models/v1.0.1/catalog/json-definitions/
-- YAML media type guidance:        https://github.com/usnistgov/OSCAL/issues/1255
+- OSCAL metadata roles/parties/responsible-parties overview:
+  https://pages.nist.gov/OSCAL/learn/tutorials/general/metadata/
+- Responsible-parties JSON shape uses `party-uuids` (plural):
+  https://github.com/usnistgov/OSCAL/discussions/1252
+- OSCAL model reference (JSON):
+  https://pages.nist.gov/OSCAL-Reference/models/develop/complete/json-reference/
+- Back-matter resources/rlinks and hashing guidance:
+  https://pages.nist.gov/OSCAL-Reference/models/v1.0.1/catalog/json-definitions/
+- YAML media type guidance:
+  https://github.com/usnistgov/OSCAL/issues/1255
 """
 from __future__ import annotations
 
@@ -312,10 +316,11 @@ def build_oscal_catalog(parsed: dict, source_kind: str, source_bytes: bytes,
             ]
         }
     ]
+    # IMPORTANT: JSON uses "party-uuids" (plural)
     catalog["catalog"]["metadata"]["responsible-parties"] = [
-        {"role-id": "creator", "party-uuid": ["123e4567-e89b-12d3-a456-426614174000"]},
-        {"role-id": "point-of-contact", "party-uuid": ["123e4567-e89b-12d3-a456-426614174000"]},
-        {"role-id": "oscal-author", "party-uuid": ["7525e825-925e-4075-b812-bb514522fb97"]}
+        {"role-id": "creator",          "party-uuids": ["123e4567-e89b-12d3-a456-426614174000"]},
+        {"role-id": "point-of-contact", "party-uuids": ["123e4567-e89b-12d3-a456-426614174000"]},
+        {"role-id": "oscal-author",     "party-uuids": ["7525e825-925e-4075-b812-bb514522fb97"]}
     ]
     # --- end parties/roles ---
 
