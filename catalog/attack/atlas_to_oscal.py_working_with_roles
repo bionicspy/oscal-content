@@ -15,14 +15,18 @@ Highlights
   * University of Toronto (oscal-author)
 - Back-matter with source citations (resources) and SHA-256 hashes in rlinks
 - Timezone-aware last-modified (Python 3.12+ friendly)
-- NEW: ATLAS dataset version recorded (from ATLAS.yaml) and added to metadata.props and metadata.revisions
-- NEW: --carry-revisions-from to preserve+extend version history across runs
 
 References:
-- ATLAS.yaml top-level exposes the data release version.  # https://github.com/mitre-atlas/atlas-data
-- STIX data in atlas-navigator-data is generated from atlas-data.  # https://github.com/mitre-atlas/atlas-navigator-data
-- OSCAL metadata.revisions[] is the schema place for version history.  # https://pages.nist.gov/OSCAL-Reference/models/develop/complete/json-outline/
-- ATLAS Data releases page (human-readable history).  # https://github.com/mitre-atlas/atlas-data/releases
+- OSCAL metadata roles/parties/responsible-parties overview:
+  https://pages.nist.gov/OSCAL/learn/tutorials/general/metadata/
+- Responsible-parties JSON shape uses `party-uuids` (plural):
+  https://github.com/usnistgov/OSCAL/discussions/1252
+- OSCAL model reference (JSON):
+  https://pages.nist.gov/OSCAL-Reference/models/develop/complete/json-reference/
+- Back-matter resources/rlinks and hashing guidance:
+  https://pages.nist.gov/OSCAL-Reference/models/v1.0.1/catalog/json-definitions/
+- YAML media type guidance:
+  https://github.com/usnistgov/OSCAL/issues/1255
 """
 from __future__ import annotations
 
@@ -36,7 +40,7 @@ import uuid
 import urllib.request
 
 try:
-    import yaml  # Optional, only needed for --source yaml or when parsing alt YAML for version
+    import yaml  # Optional, only needed for --source yaml
 except Exception:
     yaml = None
 
@@ -48,7 +52,6 @@ DEFAULT_YAML_URL = (
     "https://raw.githubusercontent.com/mitre-atlas/atlas-data/main/dist/ATLAS.yaml"
 )
 ATLAS_HOMEPAGE = "https://atlas.mitre.org"
-ATLAS_RELEASES = "https://github.com/mitre-atlas/atlas-data/releases"
 
 
 def fetch_bytes(path_or_url: str) -> bytes:
@@ -169,16 +172,10 @@ def parse_stix_bundle(stix_bytes: bytes, source_url: str | None = None) -> dict:
 
 
 def parse_yaml(atlas_yaml_bytes: bytes, source_url: str | None = None) -> dict:
-    """Parse ATLAS.yaml and return structures plus dataset version."""
+    """Parse ATLAS.yaml (no explicit technique–mitigation mapping)."""
     if yaml is None:
         raise RuntimeError("PyYAML is required for --source yaml. pip install pyyaml")
     data = yaml.safe_load(atlas_yaml_bytes.decode("utf-8"))
-
-    # dataset metadata (present at top level per atlas-data README)
-    atlas_version = data.get("version")
-    atlas_name = data.get("name")
-    atlas_id = data.get("id")
-
     matrices = data.get("matrices", [])
     first = matrices[0] if matrices else {}
     tactics = first.get("tactics", [])
@@ -193,7 +190,6 @@ def parse_yaml(atlas_yaml_bytes: bytes, source_url: str | None = None) -> dict:
         tactics_by_id[sid] = {**t, "id": sid, "shortname": shortname}
         tactic_by_shortname[shortname] = tactics_by_id[sid]
 
-    # Shim to mimic STIX parse return
     tech_map = {}
     parent_to_children = {}
     tech_to_tactics = {}
@@ -203,7 +199,6 @@ def parse_yaml(atlas_yaml_bytes: bytes, source_url: str | None = None) -> dict:
         if te.get("subtechnique-of"):
             parent = te["subtechnique-of"]
             parent_to_children.setdefault(parent, []).append(tid)
-        # Use tactic shortnames if present
         tacts = te.get("tactics") or []
         tacts = [t if isinstance(t, str) else t.get("shortname") for t in tacts]
         tech_to_tactics[tid] = [s for s in tacts if s]
@@ -221,10 +216,6 @@ def parse_yaml(atlas_yaml_bytes: bytes, source_url: str | None = None) -> dict:
         "tech_to_tactics": tech_to_tactics,
         "parent_to_children": parent_to_children,
         "tech_to_mitigations": {},
-        # dataset metadata
-        "atlas_version": atlas_version,
-        "atlas_name": atlas_name,
-        "atlas_id": atlas_id,
     }
 
 
@@ -265,19 +256,9 @@ def resource_with_hash(title: str, href: str, media_type: str, content_bytes: by
     }
 
 
-def extract_atlas_yaml_version(atlas_yaml_bytes: bytes) -> str | None:
-    """Best-effort parse of ATLAS.yaml to read dataset version."""
-    if yaml is None:
-        return None
-    try:
-        data = yaml.safe_load(atlas_yaml_bytes.decode("utf-8"))
-        return data.get("version")
-    except Exception:
-        return None
 def build_oscal_catalog(parsed: dict, source_kind: str, source_bytes: bytes,
-                        oscal_version: str = "1.1.3", title: str | None = None,
-                        carry_revisions_from: str | None = None) -> dict:
-    """Construct an OSCAL catalog with groups, controls, back-matter, and ATLAS version in metadata."""
+                        oscal_version: str = "1.1.3", title: str | None = None) -> dict:
+    """Construct an OSCAL catalog with tactic groups, technique controls, mitigation controls, and back-matter."""
     # Timezone-aware UTC (and normalized to trailing Z)
     now = dt.datetime.now(dt.UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     title = title or "MITRE ATLAS Techniques & Mitigations (OSCAL Catalog)"
@@ -343,90 +324,9 @@ def build_oscal_catalog(parsed: dict, source_kind: str, source_bytes: bytes,
     ]
     # --- end parties/roles ---
 
-    # --- ATLAS dataset version (from YAML), with history ---
-    md = catalog["catalog"]["metadata"]
-    md.setdefault("props", [])
-
-    atlas_version = None
-    atlas_version_source = None
-    atlas_version_media = None
-    atlas_yaml_bytes = None
-
-    if source_kind == "yaml":
-        atlas_version = parsed.get("atlas_version")
-        atlas_version_source = parsed.get("source_url")
-        atlas_version_media = "application/yaml"
-    else:
-        # Attempt to fetch ATLAS.yaml and parse its version (STIX source doesn't advertise a global version)
-        try:
-            atlas_yaml_bytes = fetch_bytes(DEFAULT_YAML_URL)
-            atlas_version = extract_atlas_yaml_version(atlas_yaml_bytes)
-            atlas_version_source = DEFAULT_YAML_URL
-            atlas_version_media = "application/yaml"
-        except Exception:
-            atlas_version = None
-
-    if atlas_version:
-        # Add namespaced prop for quick access
-        md["props"].append({
-            "name": "atlas:data-version", "ns": "https://atlas.mitre.org", "value": str(atlas_version)
-        })
-
-        # Prepare a revision entry for the dataset
-        dataset_rev = {
-            "title": "MITRE ATLAS Data",
-            "version": str(atlas_version),
-            # timestamps optional here (no reliable release timestamp via raw fetch)
-            "props": [
-                {"name": "atlas:source-kind", "ns": "https://atlas.mitre.org", "value": source_kind},
-                {"name": "atlas:source-url", "ns": "https://atlas.mitre.org", "value": str(atlas_version_source)},
-            ],
-            "links": [
-                {"href": str(atlas_version_source), "rel": "source"},
-                {"href": ATLAS_RELEASES, "rel": "reference"}
-            ],
-            "remarks": "ATLAS dataset version as recorded at generation time."
-        }
-
-        # Add source hash if we have the bytes
-        try:
-            if source_kind == "yaml" and isinstance(source_bytes, (bytes, bytearray)):
-                dataset_rev["props"].append({
-                    "name": "atlas:source-hash", "ns": "https://atlas.mitre.org",
-                    "value": sha256_hex(source_bytes)
-                })
-            elif atlas_yaml_bytes:
-                dataset_rev["props"].append({
-                    "name": "atlas:source-hash", "ns": "https://atlas.mitre.org",
-                    "value": sha256_hex(atlas_yaml_bytes)
-                })
-            if atlas_version_media:
-                dataset_rev["props"].append({
-                    "name": "media-type", "ns": "https://atlas.mitre.org",
-                    "value": atlas_version_media
-                })
-        except Exception:
-            pass
-
-        md.setdefault("revisions", [])
-        md["revisions"].append(dataset_rev)
-
-    # Also record this OSCAL export as a revision entry (use metadata.version)
-    export_rev = {
-        "title": "OSCAL Export (atlas_to_oscal)",
-        "version": md["version"],
-        "last-modified": md["last-modified"],
-        "props": [
-            {"name": "generator", "ns": "https://atlas.mitre.org", "value": "atlas_to_oscal.py"},
-        ]
-    }
-    md.setdefault("revisions", [])
-    md["revisions"].append(export_rev)
-    # --- end ATLAS version and revisions ---
-
     # Tactic groups
     groups_by_short = {}
-    for shortname, tac in parsed.get("tactic_by_shortname", {}).items():
+    for shortname, tac in parsed["tactic_by_shortname"].items():
         group = {
             "id": f"atlas-tactic-{safe_slug(shortname)}",
             "title": tac.get("name", shortname),
@@ -614,24 +514,6 @@ def build_oscal_catalog(parsed: dict, source_kind: str, source_bytes: bytes,
     if back_matter["resources"]:
         catalog["catalog"]["back-matter"] = back_matter
 
-    # --- carry revisions from previous catalog if requested (to build true history) ---
-    if carry_revisions_from:
-        try:
-            with open(carry_revisions_from, "r", encoding="utf-8") as prevf:
-                prev = json.load(prevf)
-            prev_revs = prev.get("catalog", {}).get("metadata", {}).get("revisions", [])
-            if prev_revs:
-                # merge unique by (title, version)
-                existing = {(r.get("title"), r.get("version")) for r in md.get("revisions", [])}
-                for r in prev_revs:
-                    key = (r.get("title"), r.get("version"))
-                    if key not in existing:
-                        md["revisions"].append(r)
-                        existing.add(key)
-        except Exception:
-            pass
-    # -------------------------------------------------------------------------------
-
     return catalog
 
 
@@ -642,7 +524,6 @@ def main():
     ap.add_argument("--input", help="Path or URL to source file. Defaults to MITRE GitHub raw for the chosen source.")
     ap.add_argument("--out", "-o", default="atlas-oscal-catalog.json", help="Output OSCAL catalog JSON file.")
     ap.add_argument("--oscal-version", default="1.1.3", help="OSCAL version to embed in metadata (default: 1.1.3).")
-    ap.add_argument("--carry-revisions-from", help="Path to an existing OSCAL catalog JSON to merge its metadata.revisions into the new output.")
     args = ap.parse_args()
 
     source_url = args.input or (DEFAULT_STIX_URL if args.source == "stix" else DEFAULT_YAML_URL)
@@ -653,15 +534,12 @@ def main():
     else:
         parsed = parse_yaml(raw, source_url=source_url)
 
-    catalog = build_oscal_catalog(
-        parsed, source_kind=args.source, source_bytes=raw,
-        oscal_version=args.oscal_version, carry_revisions_from=args.carry_revisions_from
-    )
+    catalog = build_oscal_catalog(parsed, source_kind=args.source, source_bytes=raw, oscal_version=args.oscal_version)
 
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(catalog, f, indent=2, ensure_ascii=False)
 
-    n_tactics = len(parsed.get("tactic_by_shortname", {}))
+    n_tactics = len(parsed["tactic_by_shortname"])
     n_techniques = sum(1 for _, t in parsed["techniques"].items()
                        if not t.get("x_mitre_is_subtechnique") and not t.get("is_subtechnique"))
     n_subtechniques = sum(1 for _, t in parsed["techniques"].items()
