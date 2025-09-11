@@ -1,0 +1,258 @@
+{
+  "component-definition": {
+    "uuid": "7d3c88d2-9e93-4c7f-9b2f-19a3a29f6d17",
+    "metadata": {
+      "title": "Azure Front Door (Standard/Premium) - Component Definition",
+      "last-modified": "2025-09-11T20:38:00-04:00",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "roles": [
+        { "id": "provider", "title": "Service Provider" },
+        { "id": "customer", "title": "Customer / Implementer" }
+      ],
+      "parties": [
+        {
+          "uuid": "a0b79f6a-3f44-4d9f-9984-0b95dfd7f8c2",
+          "type": "organization",
+          "name": "Microsoft",
+          "links": [
+            {
+              "href": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview",
+              "rel": "reference",
+              "text": "What is Azure Front Door?"
+            }
+          ]
+        },
+        {
+          "uuid": "2a1b6a14-9a74-4b5a-a7af-e00f1a3bcb4b",
+          "type": "organization",
+          "name": "<Your Organization Name>"
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "provider",
+          "party-uuids": [ "a0b79f6a-3f44-4d9f-9984-0b95dfd7f8c2" ]
+        },
+        {
+          "role-id": "customer",
+          "party-uuids": [ "2a1b6a14-9a74-4b5a-a7af-e00f1a3bcb4b" ]
+        }
+      ]
+    },
+    "components": [
+      {
+        "uuid": "e1a0a2c7-3b34-4a90-8d60-633f93a6a0a0",
+        "type": "service",
+        "title": "Azure Front Door (Standard/Premium)",
+        "description": "Azure Front Door is Microsoft’s modern CDN and global application entry point providing anycast-based edge termination, advanced routing, optional caching, WAF at the edge, end-to-end TLS, and optional private origin connectivity (Premium).",
+        "props": [
+          { "name": "afd:subscription-id", "value": "<azure-subscription-guid>" },
+          { "name": "afd:resource-group", "value": "<resource-group-name>" },
+          { "name": "afd:profile-name", "value": "<afd-profile-name>" },
+          { "name": "afd:sku", "value": "Premium" },
+          { "name": "afd:waf:policy-resource-id", "value": "<resourceId-of-waf-policy-or-empty>" },
+          { "name": "afd:waf:mode", "value": "Prevention" },
+          { "name": "afd:tls:policy", "value": "<predefined-or-custom-policy-name>" },
+          { "name": "afd:tls:min-version", "value": "TLS1.2" },
+          { "name": "afd:tls:client-tls13", "value": "enabled" },
+          { "name": "afd:origin:private-link", "value": "enabled" },
+          { "name": "afd:origin:fdid-header-enforced", "value": "true" },
+          { "name": "afd:diagnostics:logs", "value": "Access,HealthProbe,WAF" },
+          { "name": "afd:diagnostics:destination", "value": "LogAnalytics;Storage;EventHub" }
+        ],
+        "links": [
+          {
+            "href": "https://learn.microsoft.com/en-us/azure/frontdoor/end-to-end-tls",
+            "rel": "reference",
+            "text": "TLS encryption with Azure Front Door"
+          },
+          {
+            "href": "https://learn.microsoft.com/en-us/azure/frontdoor/private-link",
+            "rel": "reference",
+            "text": "Secure origins with Private Link (Premium)"
+          },
+          {
+            "href": "https://learn.microsoft.com/en-us/azure/frontdoor/web-application-firewall",
+            "rel": "reference",
+            "text": "WAF on Azure Front Door"
+          },
+          {
+            "href": "https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-logs",
+            "rel": "reference",
+            "text": "Configure Azure Front Door logs"
+          },
+          {
+            "href": "https://learn.microsoft.com/en-us/azure/frontdoor/health-probes",
+            "rel": "reference",
+            "text": "Health probes"
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "5b3ac927-506d-44d8-8c9b-3e0a3513e0a1",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "Initial implementation statements for NIST SP 800-53 Rev. 5 relevant to Azure Front Door edge capabilities. Adjust for your overlay/baseline.",
+            "implemented-requirements": [
+              {
+                "uuid": "f90a9b2f-90fa-49d0-9a7a-40b3f67b9a20",
+                "control-id": "sc-8",
+                "description": "Transmission confidentiality and integrity are enforced using end-to-end TLS (edge termination + re-encryption to origin) with Azure Front Door. Minimum TLS version and cipher suites are controlled via the Front Door TLS policy; Standard/Premium support TLS 1.2 and 1.3 for clients and HTTPS forwarding to origins.",
+                "props": [
+                  { "name": "afd:tls:min-version", "value": "TLS1.2" },
+                  { "name": "afd:tls:policy", "value": "<predefined-or-custom-policy-name>" }
+                ],
+                "links": [
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/end-to-end-tls", "rel": "reference" },
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/tls-policy-configure", "rel": "reference" }
+                ],
+                "responsible-roles": [
+                  { "role-id": "provider", "party-uuids": [ "a0b79f6a-3f44-4d9f-9984-0b95dfd7f8c2" ] },
+                  { "role-id": "customer", "party-uuids": [ "2a1b6a14-9a74-4b5a-a7af-e00f1a3bcb4b" ] }
+                ]
+              },
+              {
+                "uuid": "f6fdd5ee-2696-4d8a-8f30-fda1e8e0d4f2",
+                "control-id": "sc-13",
+                "description": "Cryptographic protection is provided by TLS at the edge and to the origin using Azure-managed TLS policies (or custom cipher suites) and certificates for custom domains.",
+                "links": [
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/tls-policy-configure", "rel": "reference" },
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/end-to-end-tls", "rel": "reference" }
+                ],
+                "responsible-roles": [
+                  { "role-id": "provider" },
+                  { "role-id": "customer" }
+                ]
+              },
+              {
+                "uuid": "cdd7cc2f-44da-41f4-8d6b-3e5f6756f92d",
+                "control-id": "sc-7",
+                "description": "Boundary protection and managed ingress are enforced at the Azure Front Door edge using WAF policies (managed and custom rules including rate limiting and geo-filtering) and by restricting direct origin access (Private Link for Premium or origin IP filtering + X-Azure-FDID enforcement for public origins).",
+                "links": [
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/web-application-firewall", "rel": "reference" },
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/origin-security", "rel": "reference" },
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/private-link", "rel": "reference" }
+                ],
+                "responsible-roles": [
+                  { "role-id": "provider" },
+                  { "role-id": "customer" }
+                ],
+                "props": [
+                  { "name": "afd:waf:policy-mode", "value": "Prevention" },
+                  { "name": "afd:origin:access-model", "value": "PrivateLink-or-FilteredPublic+FDID" }
+                ]
+              },
+              {
+                "uuid": "6f5d7193-4681-4c72-9e1c-4b2b348846bd",
+                "control-id": "cm-6",
+                "description": "Configuration settings for the edge are governed through defined TLS policies, WAF policy (rulesets, exclusions, rate limits), health probe settings, and routing rules; changes are applied via Azure RBAC and ARM/Bicep/CLI pipelines.",
+                "links": [
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/health-probes", "rel": "reference" },
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/web-application-firewall", "rel": "reference" }
+                ],
+                "responsible-roles": [
+                  { "role-id": "customer" }
+                ]
+              },
+              {
+                "uuid": "1b2f4c2a-3c13-4a8a-9f5e-0f4e5b0a9aa3",
+                "control-id": "au-2",
+                "description": "Audit event coverage includes access requests, WAF evaluations, and health probe outcomes. Diagnostic settings route FrontDoor Access, Health Probe, and WebApplicationFirewall logs to Log Analytics, Storage, Event Hub, or partner solutions.",
+                "links": [
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-logs", "rel": "reference" },
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/monitor-front-door", "rel": "reference" }
+                ],
+                "responsible-roles": [
+                  { "role-id": "customer" }
+                ],
+                "props": [
+                  { "name": "afd:diagnostics:enabled", "value": "true" },
+                  { "name": "afd:diagnostics:categories", "value": "FrontDoorAccessLog,FrontDoorHealthProbeLog,FrontDoorWebApplicationFirewallLog" }
+                ]
+              },
+              {
+                "uuid": "ac8f41b2-1a72-43e5-bc74-278edb48f5f8",
+                "control-id": "au-12",
+                "description": "Azure Front Door generates audit records at the edge (access, WAF, health). Customers configure retention and export via Azure Monitor diagnostic settings and apply governance for log storage and analysis.",
+                "links": [
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-logs", "rel": "reference" },
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/monitor-front-door-reference", "rel": "reference" }
+                ],
+                "responsible-roles": [
+                  { "role-id": "provider" },
+                  { "role-id": "customer" }
+                ]
+              },
+              {
+                "uuid": "4a9786dd-2a21-4f78-8c35-63b20117b2dd",
+                "control-id": "si-4",
+                "description": "Continuous monitoring and analysis are supported via Azure Monitor metrics (e.g., Backend Health Percentage, Latency, Request counts) and WAF logs; alerts and workbooks can be used for anomaly detection and incident response.",
+                "links": [
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/monitor-front-door", "rel": "reference" },
+                  { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/monitor-front-door-reference", "rel": "reference" }
+                ],
+                "responsible-roles": [
+                  { "role-id": "customer" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "91e2c0ac-4b56-461c-9b87-15a8795d1bfa",
+          "title": "OSCAL 1.1.3 Release",
+          "rlinks": [ { "href": "https://github.com/usnistgov/OSCAL/releases" } ]
+        },
+        {
+          "uuid": "a9d6e41c-25c2-4a1c-b289-b641ae05f9bf",
+          "title": "NIST SP 800-53 Rev.5 Catalog (OSCAL)",
+          "rlinks": [ { "href": "https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json" } ]
+        },
+        {
+          "uuid": "2c50cc19-3ea4-44a5-9010-438c7a4d51e7",
+          "title": "Azure Front Door - Overview",
+          "rlinks": [ { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview" } ]
+        },
+        {
+          "uuid": "b5df7520-2a96-4a9f-9e1e-0b1e0aab7b8f",
+          "title": "TLS encryption with Azure Front Door",
+          "rlinks": [ { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/end-to-end-tls" } ]
+        },
+        {
+          "uuid": "c8f3b93b-b860-4ea3-8f70-7b7f6a6a4db8",
+          "title": "Configure TLS policy on a Front Door custom domain",
+          "rlinks": [ { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/tls-policy-configure" } ]
+        },
+        {
+          "uuid": "e939a8f3-7d14-4cb6-8f7b-30bd1c8cfc9b",
+          "title": "WAF on Azure Front Door",
+          "rlinks": [ { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/web-application-firewall" } ]
+        },
+        {
+          "uuid": "0b4f0f77-2291-4a6c-9d58-4a5c9a70f1f9",
+          "title": "Secure origins with Private Link (Premium)",
+          "rlinks": [ { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/private-link" } ]
+        },
+        {
+          "uuid": "d3a9b564-0bd8-4b3a-a13c-9df8f0f65c53",
+          "title": "Health Probes",
+          "rlinks": [ { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/health-probes" } ]
+        },
+        {
+          "uuid": "b807e8a0-3583-4f4f-9ab2-404f1a1ed7f2",
+          "title": "Configure Azure Front Door logs",
+          "rlinks": [ { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-logs" } ]
+        },
+        {
+          "uuid": "6e16c71d-61d1-4c9a-9f1f-2f11c190e153",
+          "title": "Monitoring data reference for Azure Front Door",
+          "rlinks": [ { "href": "https://learn.microsoft.com/en-us/azure/frontdoor/monitor-front-door-reference" } ]
+        }
+      ]
+    }
+  }
+}
