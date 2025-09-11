@@ -18,12 +18,9 @@ Highlights
 - ATLAS dataset version recorded (from ATLAS.yaml) and added to metadata.props and metadata.revisions
 - Version history: by default the last 5 ATLAS Data releases are fetched from GitHub and merged into metadata.revisions
   (override with --revisions-from-releases N; set 0 to disable)
-- Keywords: default curated set, override with --keywords (repeatable flag and/or comma-separated phrases).
-  Stored as metadata.prop(name='keywords', ns='http://csrc.nist.gov/ns/oscal', value='comma, separated, terms').
+- --carry-revisions-from lets you merge prior metadata.revisions into the new output
 
 References:
-- Keywords in OSCAL are expressed as a metadata property named 'keywords' (OSCAL namespace),
-  with a comma-separated value.  # https://pages.nist.gov/OSCAL-Reference/models/develop/complete/json-reference/
 - ATLAS.yaml top-level exposes the data release version.  # https://github.com/mitre-atlas/atlas-data
 - STIX data in atlas-navigator-data is generated from atlas-data.  # https://github.com/mitre-atlas/atlas-navigator-data
 - OSCAL metadata.revisions[] is the schema place for version history.  # https://pages.nist.gov/OSCAL-Reference/models/develop/complete/json-outline/
@@ -57,24 +54,6 @@ DEFAULT_YAML_URL = (
 ATLAS_HOMEPAGE = "https://atlas.mitre.org"
 ATLAS_RELEASES = "https://github.com/mitre-atlas/atlas-data/releases"
 
-# Sensible defaults if --keywords is omitted
-DEFAULT_KEYWORDS = [
-    "MITRE ATLAS",
-    "ATLAS",
-    "AI security",
-    "AI assurance",
-    "adversarial machine learning",
-    "threats to AI",
-    "tactics",
-    "techniques",
-    "subtechniques",
-    "mitigations",
-    "STIX 2.1",
-    "OSCAL catalog",
-    "machine learning security",
-    "model attacks"
-]
-
 
 def fetch_bytes(path_or_url: str) -> bytes:
     """Fetch bytes from a local path or HTTP(S) URL."""
@@ -101,29 +80,6 @@ def safe_slug(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", (text or "").lower()).strip("-")
 
 
-def build_keywords_value(keywords_args, default_list) -> str:
-    """
-    Normalize keywords from CLI:
-      - Accepts repeated --keywords flags or comma-separated values.
-      - De-duplicates while preserving order.
-      - Returns a single comma-separated string per OSCAL guidance.
-    """
-    if not keywords_args:
-        parts = list(default_list)
-    else:
-        parts = []
-        for item in keywords_args:
-            parts.extend([p.strip() for p in str(item).split(",") if p.strip()])
-    seen = set()
-    ordered = []
-    for p in parts:
-        key = p.lower()
-        if key not in seen:
-            seen.add(key)
-            ordered.append(p)
-    return ", ".join(ordered)
-
-
 def get_external_id(stix_obj: dict) -> str | None:
     """Return first external_id if present (e.g., T####, T####.###, M####)."""
     for ref in stix_obj.get("external_references", []):
@@ -138,6 +94,8 @@ def get_first_url(stix_obj: dict) -> str | None:
         if "url" in ref:
             return ref["url"]
     return None
+
+
 def parse_stix_bundle(stix_bytes: bytes, source_url: str | None = None) -> dict:
     """Parse ATLAS STIX 2.1 bundle and build intermediate structures."""
     bundle = json.loads(stix_bytes.decode("utf-8"))
@@ -183,6 +141,7 @@ def parse_stix_bundle(stix_bytes: bytes, source_url: str | None = None) -> dict:
             for p in phases
             if p.get("kill_chain_name")
         ]
+        # Fallback: x_mitre_tactic_refs -> tactic IDs
         if not tactic_shortnames and tech.get("x_mitre_tactic_refs"):
             for tac_id in tech["x_mitre_tactic_refs"]:
                 tac = tactics_by_id.get(tac_id)
@@ -226,7 +185,7 @@ def parse_yaml(atlas_yaml_bytes: bytes, source_url: str | None = None) -> dict:
         raise RuntimeError("PyYAML is required for --source yaml. pip install pyyaml")
     data = yaml.safe_load(atlas_yaml_bytes.decode("utf-8"))
 
-    # dataset metadata
+    # dataset metadata (present at top level per atlas-data README)
     atlas_version = data.get("version")
     atlas_name = data.get("name")
     atlas_id = data.get("id")
@@ -254,6 +213,7 @@ def parse_yaml(atlas_yaml_bytes: bytes, source_url: str | None = None) -> dict:
         if te.get("subtechnique-of"):
             parent = te["subtechnique-of"]
             parent_to_children.setdefault(parent, []).append(tid)
+        # Use tactic shortnames if present
         tacts = te.get("tactics") or []
         tacts = [t if isinstance(t, str) else t.get("shortname") for t in tacts]
         tech_to_tactics[tid] = [s for s in tacts if s]
@@ -271,6 +231,7 @@ def parse_yaml(atlas_yaml_bytes: bytes, source_url: str | None = None) -> dict:
         "tech_to_tactics": tech_to_tactics,
         "parent_to_children": parent_to_children,
         "tech_to_mitigations": {},
+        # dataset metadata
         "atlas_version": atlas_version,
         "atlas_name": atlas_name,
         "atlas_id": atlas_id,
@@ -349,7 +310,8 @@ def revisions_from_atlas_releases(limit: int = 5) -> list[dict]:
         rev = {
             "title": "MITRE ATLAS Data Release",
             "version": str(version),
-            "published": rel.get("published_at"),  # ISO 8601 with 'Z' is valid in OSCAL
+            # GitHub returns ISO 8601 with 'Z' which is valid for OSCAL
+            "published": rel.get("published_at"),
             "links": [
                 {"href": rel.get("html_url"), "rel": "reference"}
             ],
@@ -367,8 +329,7 @@ def revisions_from_atlas_releases(limit: int = 5) -> list[dict]:
 def build_oscal_catalog(parsed: dict, source_kind: str, source_bytes: bytes,
                         oscal_version: str = "1.1.3", title: str | None = None,
                         carry_revisions_from: str | None = None,
-                        releases_limit: int | None = 5,
-                        keywords_value: str | None = None) -> dict:
+                        releases_limit: int | None = 5) -> dict:
     """Construct an OSCAL catalog with groups, controls, back-matter, and version history."""
     # Timezone-aware UTC (and normalized to trailing Z)
     now = dt.datetime.now(dt.UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
@@ -394,26 +355,13 @@ def build_oscal_catalog(parsed: dict, source_kind: str, source_bytes: bytes,
             {"href": parsed["source_url"], "rel": "source"}
         )
 
-    md = catalog["catalog"]["metadata"]
-    md.setdefault("props", [])
-
-    # --- Keywords (OSCAL metadata prop: name='keywords' in OSCAL namespace) ---
-    # The value is a comma-separated list of keywords.  (See OSCAL reference)
-    if keywords_value:
-        md["props"].append({
-            "name": "keywords",
-            "ns": "http://csrc.nist.gov/ns/oscal",
-            "value": keywords_value
-        })
-    # --- End Keywords ---
-
     # --- Roles, parties, responsible-parties ---
-    md["roles"] = [
+    catalog["catalog"]["metadata"]["roles"] = [
         {"id": "creator", "title": "Content Creator"},
         {"id": "point-of-contact", "title": "Point of Contact"},
         {"id": "oscal-author", "title": "OSCAL Author"}
     ]
-    md["parties"] = [
+    catalog["catalog"]["metadata"]["parties"] = [
         {
             "uuid": "123e4567-e89b-12d3-a456-426614174000",
             "type": "organization",
@@ -440,7 +388,8 @@ def build_oscal_catalog(parsed: dict, source_kind: str, source_bytes: bytes,
             ]
         }
     ]
-    md["responsible-parties"] = [
+    # IMPORTANT: JSON uses "party-uuids" (plural)
+    catalog["catalog"]["metadata"]["responsible-parties"] = [
         {"role-id": "creator",          "party-uuids": ["123e4567-e89b-12d3-a456-426614174000"]},
         {"role-id": "point-of-contact", "party-uuids": ["123e4567-e89b-12d3-a456-426614174000"]},
         {"role-id": "oscal-author",     "party-uuids": ["7525e825-925e-4075-b812-bb514522fb97"]}
@@ -448,6 +397,9 @@ def build_oscal_catalog(parsed: dict, source_kind: str, source_bytes: bytes,
     # --- end parties/roles ---
 
     # --- ATLAS dataset version (from YAML), with history ---
+    md = catalog["catalog"]["metadata"]
+    md.setdefault("props", [])
+
     atlas_version = None
     atlas_version_source = None
     atlas_version_media = None
@@ -477,6 +429,7 @@ def build_oscal_catalog(parsed: dict, source_kind: str, source_bytes: bytes,
         dataset_rev = {
             "title": "MITRE ATLAS Data",
             "version": str(atlas_version),
+            # timestamps optional here (no reliable release timestamp via raw fetch)
             "props": [
                 {"name": "atlas:source-kind", "ns": "https://atlas.mitre.org", "value": source_kind},
                 {"name": "atlas:source-url", "ns": "https://atlas.mitre.org", "value": str(atlas_version_source)},
@@ -753,12 +706,6 @@ def main():
     ap.add_argument("--oscal-version", default="1.1.3", help="OSCAL version to embed in metadata (default: 1.1.3).")
     ap.add_argument("--revisions-from-releases", type=int, default=5,
                     help="Fetch the last N ATLAS releases (default: 5). Set to 0 to disable.")
-    ap.add_argument(
-        "--keywords",
-        action="append",
-        help="Add keywords (repeat the flag or pass comma-separated). "
-             "If omitted, a curated ATLAS/OSCAL default set is used."
-    )
     ap.add_argument("--carry-revisions-from",
                     help="Path to an existing OSCAL catalog JSON to merge its metadata.revisions into the new output.")
     args = ap.parse_args()
@@ -771,15 +718,11 @@ def main():
     else:
         parsed = parse_yaml(raw, source_url=source_url)
 
-    # Build keywords string for metadata.prop('keywords')
-    kw_value = build_keywords_value(args.keywords, DEFAULT_KEYWORDS)
-
     catalog = build_oscal_catalog(
         parsed, source_kind=args.source, source_bytes=raw,
         oscal_version=args.oscal_version,
         carry_revisions_from=args.carry_revisions_from,
-        releases_limit=args.revisions_from_releases,
-        keywords_value=kw_value
+        releases_limit=args.revisions_from_releases
     )
 
     with open(args.out, "w", encoding="utf-8") as f:
