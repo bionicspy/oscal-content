@@ -19,7 +19,6 @@ What this script produces (OSCAL Catalog JSON):
   - A separate "ATLAS Mitigations" group (one control per mitigation)
   - Technique/subtechnique controls include STIX creation/update metadata as props
   - Mitigation controls include a prose summary (statement) from their description
-  - NEW: external_id added as a label prop on techniques, subtechniques, and mitigations
 
 Usage examples:
   # STIX (default), remote:
@@ -32,7 +31,6 @@ Usage examples:
   python atlas_to_oscal.py --source yaml --out atlas-oscal-catalog.json
 """
 from __future__ import annotations
-
 import argparse
 import datetime as dt
 import json
@@ -70,7 +68,7 @@ def safe_slug(text: str) -> str:
 
 
 def get_external_id(stix_obj: dict) -> str | None:
-    """Return first external_id if present (e.g., T####, T####.###, M####)."""
+    """Return first external_id if present (e.g., T#### style)."""
     for ref in stix_obj.get("external_references", []):
         if "external_id" in ref:
             return ref["external_id"]
@@ -247,8 +245,6 @@ def stix_meta_props(o: dict, identities: dict | None = None, ns: str = "https://
     if ver:
         props.append({"name": "atlas:version", "ns": ns, "value": str(ver)})
     return props
-
-
 def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str | None = None) -> dict:
     """Construct an OSCAL catalog with tactic groups, technique controls, and mitigation controls."""
     now = dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
@@ -291,7 +287,7 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
         "controls": []
     }
 
-    # Build mitigation controls (with label + prose)
+    # Build mitigation controls (with prose)
     mit_ctrl_id = {}  # stix or yaml id -> control-id
     for mid, m in parsed["mitigations"].items():
         ext_id = get_external_id(m) if isinstance(m, dict) else None
@@ -311,9 +307,6 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
         # include STIX metadata props when available
         if isinstance(m, dict):
             ctrl["props"].extend(stix_meta_props(m, identities=parsed.get("identities")))
-            # external_id as label
-            if ext_id:
-                ctrl["props"].append({"name": "label", "ns": "https://atlas.mitre.org", "value": ext_id})
             # mitigation summary as prose if description exists
             if m.get("description"):
                 ctrl["parts"].append({
@@ -349,9 +342,6 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
         }
         # inject creation/update metadata props
         control["props"].extend(stix_meta_props(t, identities=parsed.get("identities")))
-        # add external_id as label when available
-        if ext_id:
-            control["props"].append({"name": "label", "ns": "https://atlas.mitre.org", "value": ext_id})
 
         # description
         desc = t.get("description")
@@ -387,8 +377,8 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
             child = parsed["techniques"].get(child_id)
             if not child:
                 continue
-            ext_id_child = get_external_id(child)
-            ext_or_stix = (ext_id_child or str(child_id).split("--")[-1]).lower()
+            ext_id = get_external_id(child)
+            ext_or_stix = (ext_id or str(child_id).split("--")[-1]).lower()
             child_ctrl_id = f"atlas-tech-{safe_slug(ext_or_stix)}"
             c = {
                 "id": child_ctrl_id,
@@ -401,9 +391,6 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
             }
             # creation/update metadata on subtechnique
             c["props"].extend(stix_meta_props(child, identities=parsed.get("identities")))
-            # external_id label for subtechnique
-            if ext_id_child:
-                c["props"].append({"name": "label", "ns": "https://atlas.mitre.org", "value": ext_id_child})
             if child.get("description"):
                 c["parts"].append({"id": f"{child_ctrl_id}-desc", "name": "statement", "prose": child["description"]})
             mit_ids = [mit_ctrl_id[mid] for mid in sorted(parsed["tech_to_mitigations"].get(child_id, []))]
