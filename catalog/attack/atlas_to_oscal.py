@@ -4,29 +4,31 @@
 atlas_to_oscal.py
 Convert MITRE ATLAS techniques & mitigations to an OSCAL Catalog (JSON).
 
-Features
+Highlights
 - Source: ATLAS STIX 2.1 (default) or ATLAS.yaml
 - Groups per tactic; technique controls (with nested subtechniques)
-- Mitigations group with one control per mitigation
+- Mitigations group with one control per mitigation (with prose)
 - Technique/subtechnique controls include STIX creation/update metadata (created, modified, created-by, version)
-- Mitigation prose (description) as control.part (statement)
 - external_id added as a label prop (techniques, subtechniques, mitigations)
-- Metadata includes roles, parties, and responsible-parties:
+- Metadata includes roles/parties/responsible-parties:
   * MITRE (creator, point-of-contact)
   * University of Toronto (oscal-author)
+- Back-matter with source citations (resources) and SHA-256 hashes in rlinks
+- Timezone-aware last-modified (Python 3.12+ friendly)
 
 References:
-- OSCAL metadata (roles / parties / responsible-parties) overview and patterns.  # [1](https://pages.nist.gov/OSCAL/learn/tutorials/general/metadata/)[2](https://github.com/usnistgov/oscal-content/blob/main/examples/ssp/json/ssp-example.json)[3](https://pages.nist.gov/OSCAL-Reference/models/develop/complete/json-reference/)
-- ATLAS STIX data location and model alignment with ATT&CK.                   # [4](https://github.com/mitre-atlas/atlas-navigator-data)
-Usage examples:
-  python atlas_to_oscal.py --out atlas-oscal-catalog.json
-  python atlas_to_oscal.py --input ./stix-atlas.json --out atlas-oscal-catalog.json
-  python atlas_to_oscal.py --source yaml --out atlas-oscal-catalog.json
+- ATLAS STIX & Navigator outputs: https://github.com/mitre-atlas/atlas-navigator-data
+- ATLAS unified YAML:              https://github.com/mitre-atlas/atlas-data
+- OSCAL metadata/roles/parties:    https://pages.nist.gov/OSCAL/learn/tutorials/general/metadata/
+- OSCAL model reference (JSON):    https://pages.nist.gov/OSCAL-Reference/models/develop/complete/json-reference/
+- Back-matter resources/rlinks:    https://pages.nist.gov/OSCAL-Reference/models/v1.0.1/catalog/json-definitions/
+- YAML media type guidance:        https://github.com/usnistgov/OSCAL/issues/1255
 """
 from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import re
 import sys
@@ -45,6 +47,7 @@ DEFAULT_STIX_URL = (
 DEFAULT_YAML_URL = (
     "https://raw.githubusercontent.com/mitre-atlas/atlas-data/main/dist/ATLAS.yaml"
 )
+ATLAS_HOMEPAGE = "https://atlas.mitre.org"
 
 
 def fetch_bytes(path_or_url: str) -> bytes:
@@ -54,6 +57,10 @@ def fetch_bytes(path_or_url: str) -> bytes:
             return r.read()
     with open(path_or_url, "rb") as f:
         return f.read()
+
+
+def sha256_hex(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
 
 
 def safe_slug(text: str) -> str:
@@ -128,7 +135,6 @@ def parse_stix_bundle(stix_bytes: bytes, source_url: str | None = None) -> dict:
                 tac = tactics_by_id.get(tac_id)
                 if tac:
                     tactic_shortnames.append(tac["shortname"])
-        # Deduplicate in order
         tech_to_tactics[tid] = list(dict.fromkeys([s for s in tactic_shortnames if s]))
 
     # Parent technique -> [subtechniques]; technique -> set(mitigation IDs)
@@ -230,9 +236,27 @@ def stix_meta_props(o: dict, identities: dict | None = None, ns: str = "https://
     return props
 
 
-def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str | None = None) -> dict:
-    """Construct an OSCAL catalog with tactic groups, technique controls, and mitigation controls."""
-    now = dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+def resource_with_hash(title: str, href: str, media_type: str, content_bytes: bytes) -> dict:
+    """Build a back-matter resource with rlink and sha-256 hash."""
+    return {
+        "uuid": str(uuid.uuid4()),
+        "title": title,
+        "rlinks": [{
+            "href": href,
+            "media-type": media_type,
+            "hashes": [{
+                "algorithm": "sha-256",
+                "value": sha256_hex(content_bytes)
+            }]
+        }]
+    }
+
+
+def build_oscal_catalog(parsed: dict, source_kind: str, source_bytes: bytes,
+                        oscal_version: str = "1.1.3", title: str | None = None) -> dict:
+    """Construct an OSCAL catalog with tactic groups, technique controls, mitigation controls, and back-matter."""
+    # Timezone-aware UTC (and normalized to trailing Z)
+    now = dt.datetime.now(dt.UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     title = title or "MITRE ATLAS Techniques & Mitigations (OSCAL Catalog)"
 
     catalog = {
@@ -244,7 +268,7 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
                 "version": "atlas-to-oscal-{}".format(now[:10]),
                 "oscal-version": oscal_version,
                 "links": [
-                    {"href": "https://atlas.mitre.org", "rel": "source"},
+                    {"href": ATLAS_HOMEPAGE, "rel": "source"},
                 ]
             },
             "groups": []
@@ -255,7 +279,7 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
             {"href": parsed["source_url"], "rel": "source"}
         )
 
-    # --- Add roles, parties, and responsible-parties ---
+    # --- Roles, parties, responsible-parties ---
     catalog["catalog"]["metadata"]["roles"] = [
         {"id": "creator", "title": "Content Creator"},
         {"id": "point-of-contact", "title": "Point of Contact"},
@@ -268,7 +292,7 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
             "name": "MITRE Corporation",
             "short-name": "MITRE",
             "email-addresses": ["atlas@mitre.org"],
-            "links": [{"href": "https://atlas.mitre.org", "rel": "website"}]
+            "links": [{"href": ATLAS_HOMEPAGE, "rel": "website"}]
         },
         {
             "uuid": "7525e825-925e-4075-b812-bb514522fb97",
@@ -312,7 +336,7 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
         "controls": []
     }
 
-    # Build mitigation controls (with label + prose)
+    # Mitigation controls (with label + prose)
     mit_ctrl_id = {}
     for mid, m in parsed["mitigations"].items():
         ext_id = get_external_id(m) if isinstance(m, dict) else None
@@ -440,6 +464,51 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
     groups = list(groups_by_short.values())
     groups.append(mitig_group)
     catalog["catalog"]["groups"] = groups
+
+    # -------------------------------
+    # Back-matter with source citations
+    # -------------------------------
+    back_matter = {"resources": []}
+
+    # Primary data source (exact file used)
+    if parsed.get("source_url") and source_bytes:
+        media = "application/json" if source_kind == "stix" else "application/yaml"
+        title_src = "MITRE ATLAS STIX 2.1 (stix-atlas.json)" if source_kind == "stix" \
+                    else "MITRE ATLAS Data (ATLAS.yaml)"
+        try:
+            back_matter["resources"].append(
+                resource_with_hash(title_src, parsed["source_url"], media, source_bytes)
+            )
+        except Exception:
+            pass  # skipping citation if hashing fails
+
+    # Alternate format (fetch & hash)
+    try:
+        if source_kind == "stix":
+            alt_bytes = fetch_bytes(DEFAULT_YAML_URL)
+            back_matter["resources"].append(
+                resource_with_hash("MITRE ATLAS Data (ATLAS.yaml)", DEFAULT_YAML_URL, "application/yaml", alt_bytes)
+            )
+        else:
+            alt_bytes = fetch_bytes(DEFAULT_STIX_URL)
+            back_matter["resources"].append(
+                resource_with_hash("MITRE ATLAS STIX 2.1 (stix-atlas.json)", DEFAULT_STIX_URL, "application/json", alt_bytes)
+            )
+    except Exception:
+        pass
+
+    # ATLAS homepage (HTML) as an additional citation
+    try:
+        homepage_bytes = fetch_bytes(ATLAS_HOMEPAGE)
+        back_matter["resources"].append(
+            resource_with_hash("MITRE ATLAS Website", ATLAS_HOMEPAGE, "text/html", homepage_bytes)
+        )
+    except Exception:
+        pass
+
+    if back_matter["resources"]:
+        catalog["catalog"]["back-matter"] = back_matter
+
     return catalog
 
 
@@ -460,7 +529,7 @@ def main():
     else:
         parsed = parse_yaml(raw, source_url=source_url)
 
-    catalog = build_oscal_catalog(parsed, oscal_version=args.oscal_version)
+    catalog = build_oscal_catalog(parsed, source_kind=args.source, source_bytes=raw, oscal_version=args.oscal_version)
 
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(catalog, f, indent=2, ensure_ascii=False)
