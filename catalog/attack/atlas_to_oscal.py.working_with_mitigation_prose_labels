@@ -4,23 +4,31 @@
 atlas_to_oscal.py
 Convert MITRE ATLAS techniques & mitigations to an OSCAL Catalog (JSON).
 
-Features
-- Source: ATLAS STIX 2.1 (default) or ATLAS.yaml
-- Groups per tactic; technique controls (with nested subtechniques)
-- Mitigations group with one control per mitigation
-- Technique/subtechnique controls include STIX creation/update metadata (created, modified, created-by, version)
-- Mitigation prose (description) as control.part (statement)
-- external_id added as a label prop (techniques, subtechniques, mitigations)
-- Metadata includes roles, parties, and responsible-parties:
-  * MITRE (creator, point-of-contact)
-  * University of Toronto (oscal-author)
+Default source: ATLAS STIX 2.1 bundle (follows ATT&CK data model)
+ - techniques      -> attack-pattern SDOs
+ - mitigations     -> course-of-action SDOs
+ - relationships   -> mitigates/subtechnique-of
 
-References:
-- OSCAL metadata (roles / parties / responsible-parties) overview and patterns.  # [1](https://pages.nist.gov/OSCAL/learn/tutorials/general/metadata/)[2](https://github.com/usnistgov/oscal-content/blob/main/examples/ssp/json/ssp-example.json)[3](https://pages.nist.gov/OSCAL-Reference/models/develop/complete/json-reference/)
-- ATLAS STIX data location and model alignment with ATT&CK.                   # [4](https://github.com/mitre-atlas/atlas-navigator-data)
+MITRE ATLAS data:
+  - STIX/Navigator outputs: https://github.com/mitre-atlas/atlas-navigator-data (dist/stix-atlas.json)
+  - Unified YAML:          https://github.com/mitre-atlas/atlas-data (dist/ATLAS.yaml)
+
+What this script produces (OSCAL Catalog JSON):
+  - Groups per ATLAS tactic
+  - Controls for techniques (with nested controls for subtechniques)
+  - A separate "ATLAS Mitigations" group (one control per mitigation)
+  - Technique/subtechnique controls include STIX creation/update metadata as props
+  - Mitigation controls include a prose summary (statement) from their description
+  - NEW: external_id added as a label prop on techniques, subtechniques, and mitigations
+
 Usage examples:
+  # STIX (default), remote:
   python atlas_to_oscal.py --out atlas-oscal-catalog.json
+
+  # STIX from local file:
   python atlas_to_oscal.py --input ./stix-atlas.json --out atlas-oscal-catalog.json
+
+  # YAML (needs PyYAML):
   python atlas_to_oscal.py --source yaml --out atlas-oscal-catalog.json
 """
 from __future__ import annotations
@@ -110,6 +118,7 @@ def parse_stix_bundle(stix_bytes: bytes, source_url: str | None = None) -> dict:
         elif t == "relationship":
             relationships.append(o)
         elif t == "identity":
+            # capture identity name for created_by_ref lookup
             if o.get("id"):
                 identities[o["id"]] = o
 
@@ -139,11 +148,14 @@ def parse_stix_bundle(stix_bytes: bytes, source_url: str | None = None) -> dict:
         src = r.get("source_ref")
         tgt = r.get("target_ref")
         if rtype == "subtechnique-of":
+            # src=subtechnique attack-pattern, tgt=parent attack-pattern
             parent_to_children.setdefault(tgt, []).append(src)
         elif rtype == "mitigates":
+            # src=course-of-action (mitigation), tgt=attack-pattern (tech)
             if tgt in techniques and src in mitigations:
                 tech_to_mitigations.setdefault(tgt, set()).add(src)
 
+    # Sort children for stability
     for k in list(parent_to_children.keys()):
         parent_to_children[k] = sorted(set(parent_to_children[k]))
 
@@ -180,6 +192,7 @@ def parse_yaml(atlas_yaml_bytes: bytes, source_url: str | None = None) -> dict:
         tactics_by_id[sid] = {**t, "id": sid, "shortname": shortname}
         tactic_by_shortname[shortname] = tactics_by_id[sid]
 
+    # Shim to mimic STIX parse return
     tech_map = {}
     parent_to_children = {}
     tech_to_tactics = {}
@@ -189,12 +202,14 @@ def parse_yaml(atlas_yaml_bytes: bytes, source_url: str | None = None) -> dict:
         if te.get("subtechnique-of"):
             parent = te["subtechnique-of"]
             parent_to_children.setdefault(parent, []).append(tid)
+        # Use tactic shortnames if present
         tacts = te.get("tactics") or []
         tacts = [t if isinstance(t, str) else t.get("shortname") for t in tacts]
         tech_to_tactics[tid] = [s for s in tacts if s]
 
     mit_map = {m.get("id") or m.get("name"): m for m in mitigations}
 
+    # No identities or explicit mitigations mapping in YAML
     return {
         "source_url": source_url,
         "bundle": None,
@@ -212,18 +227,22 @@ def parse_yaml(atlas_yaml_bytes: bytes, source_url: str | None = None) -> dict:
 def stix_meta_props(o: dict, identities: dict | None = None, ns: str = "https://atlas.mitre.org") -> list[dict]:
     """Build OSCAL props from common STIX metadata on an SDO."""
     props = []
+    # timestamps
     for fld in ("created", "modified"):
         if o.get(fld):
             props.append({"name": f"atlas:{fld}", "ns": ns, "value": o[fld]})
+    # created by
     cbr = o.get("created_by_ref")
     if cbr:
         props.append({"name": "atlas:created-by-ref", "ns": ns, "value": cbr})
         if identities and identities.get(cbr, {}).get("name"):
             props.append({"name": "atlas:created-by", "ns": ns, "value": identities[cbr]["name"]})
+    # flags
     if o.get("revoked") is True:
         props.append({"name": "atlas:revoked", "ns": ns, "value": "true"})
     if o.get("x_mitre_deprecated") is True or o.get("deprecated") is True:
         props.append({"name": "atlas:deprecated", "ns": ns, "value": "true"})
+    # version (ATT&CK/ATLAS commonly uses x_mitre_version)
     ver = o.get("x_mitre_version") or o.get("version")
     if ver:
         props.append({"name": "atlas:version", "ns": ns, "value": str(ver)})
@@ -255,46 +274,6 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
             {"href": parsed["source_url"], "rel": "source"}
         )
 
-    # --- Add roles, parties, and responsible-parties ---
-    catalog["catalog"]["metadata"]["roles"] = [
-        {"id": "creator", "title": "Content Creator"},
-        {"id": "point-of-contact", "title": "Point of Contact"},
-        {"id": "oscal-author", "title": "OSCAL Author"}
-    ]
-    catalog["catalog"]["metadata"]["parties"] = [
-        {
-            "uuid": "123e4567-e89b-12d3-a456-426614174000",
-            "type": "organization",
-            "name": "MITRE Corporation",
-            "short-name": "MITRE",
-            "email-addresses": ["atlas@mitre.org"],
-            "links": [{"href": "https://atlas.mitre.org", "rel": "website"}]
-        },
-        {
-            "uuid": "7525e825-925e-4075-b812-bb514522fb97",
-            "type": "organization",
-            "name": "University of Toronto",
-            "email-addresses": ["security@utoronto.ca"],
-            "addresses": [
-                {
-                    "addr-lines": [
-                        "University of Toronto",
-                        "27 King's College Circle"
-                    ],
-                    "city": "Toronto",
-                    "state": "ON",
-                    "postal-code": "M5S"
-                }
-            ]
-        }
-    ]
-    catalog["catalog"]["metadata"]["responsible-parties"] = [
-        {"role-id": "creator", "party-uuid": ["123e4567-e89b-12d3-a456-426614174000"]},
-        {"role-id": "point-of-contact", "party-uuid": ["123e4567-e89b-12d3-a456-426614174000"]},
-        {"role-id": "oscal-author", "party-uuid": ["7525e825-925e-4075-b812-bb514522fb97"]}
-    ]
-    # --- end parties/roles ---
-
     # Tactic groups
     groups_by_short = {}
     for shortname, tac in parsed["tactic_by_shortname"].items():
@@ -313,7 +292,7 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
     }
 
     # Build mitigation controls (with label + prose)
-    mit_ctrl_id = {}
+    mit_ctrl_id = {}  # stix or yaml id -> control-id
     for mid, m in parsed["mitigations"].items():
         ext_id = get_external_id(m) if isinstance(m, dict) else None
         ext_or_stix = (ext_id or str(mid).split("--")[-1]).lower()
@@ -329,10 +308,13 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
             "links": [],
             "parts": []
         }
+        # include STIX metadata props when available
         if isinstance(m, dict):
             ctrl["props"].extend(stix_meta_props(m, identities=parsed.get("identities")))
+            # external_id as label
             if ext_id:
                 ctrl["props"].append({"name": "label", "ns": "https://atlas.mitre.org", "value": ext_id})
+            # mitigation summary as prose if description exists
             if m.get("description"):
                 ctrl["parts"].append({
                     "id": f"{ctrl_id}-desc",
@@ -347,6 +329,7 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
     # Technique (top-level) controls
     control_by_tech = {}
     for tid, t in parsed["techniques"].items():
+        # skip subtechniques here; add later under parent
         if t.get("x_mitre_is_subtechnique") or t.get("is_subtechnique"):
             continue
         name = t.get("name", str(tid))
@@ -364,21 +347,27 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
             "links": [],
             "parts": []
         }
+        # inject creation/update metadata props
         control["props"].extend(stix_meta_props(t, identities=parsed.get("identities")))
+        # add external_id as label when available
         if ext_id:
             control["props"].append({"name": "label", "ns": "https://atlas.mitre.org", "value": ext_id})
 
+        # description
         desc = t.get("description")
         if desc:
             control["parts"].append({"id": f"{ctrl_id}-desc", "name": "statement", "prose": desc})
+        # reference link
         url = get_first_url(t)
         if url:
             control["links"].append({"href": url, "rel": "reference"})
+        # tactics
         tacts = parsed["tech_to_tactics"].get(tid, [])
         if tacts:
             control["props"].append({
                 "name": "atlas:tactics", "ns": "https://atlas.mitre.org", "value": ",".join(tacts)
             })
+        # mitigations (as props to keep validation robust)
         mit_ids = [mit_ctrl_id[mid] for mid in sorted(parsed["tech_to_mitigations"].get(tid, []))]
         if mit_ids:
             control["props"].append({
@@ -391,6 +380,7 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
     for parent_id, children in parsed["parent_to_children"].items():
         parent_ctrl = control_by_tech.get(parent_id)
         if not parent_ctrl:
+            # parent might be deprecated or filtered out
             continue
         parent_ctrl.setdefault("controls", [])
         for child_id in children:
@@ -409,7 +399,9 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
                 ],
                 "parts": []
             }
+            # creation/update metadata on subtechnique
             c["props"].extend(stix_meta_props(child, identities=parsed.get("identities")))
+            # external_id label for subtechnique
             if ext_id_child:
                 c["props"].append({"name": "label", "ns": "https://atlas.mitre.org", "value": ext_id_child})
             if child.get("description"):
@@ -421,8 +413,9 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
                 })
             parent_ctrl["controls"].append(c)
 
-    # Place technique controls into tactic groups
+    # Place technique controls into tactic groups (first tactic wins to avoid duplicate control IDs)
     if not groups_by_short:
+        # ensure one group exists even if tactics missing
         groups_by_short["uncategorized"] = {
             "id": "atlas-tactic-uncategorized", "title": "Uncategorized", "controls": []
         }
@@ -431,12 +424,14 @@ def build_oscal_catalog(parsed: dict, oscal_version: str = "1.1.3", title: str |
         tacts = parsed["tech_to_tactics"].get(tid, [])
         target_group = groups_by_short.get(tacts[0]) if tacts else groups_by_short.get("uncategorized")
         if target_group is None:
+            # create uncategorized on the fly if not present
             groups_by_short["uncategorized"] = {
                 "id": "atlas-tactic-uncategorized", "title": "Uncategorized", "controls": []
             }
             target_group = groups_by_short["uncategorized"]
         target_group["controls"].append(ctrl)
 
+    # Assemble groups list
     groups = list(groups_by_short.values())
     groups.append(mitig_group)
     catalog["catalog"]["groups"] = groups
@@ -465,6 +460,7 @@ def main():
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(catalog, f, indent=2, ensure_ascii=False)
 
+    # Basic stats
     n_tactics = len(parsed["tactic_by_shortname"])
     n_techniques = sum(1 for _, t in parsed["techniques"].items()
                        if not t.get("x_mitre_is_subtechnique") and not t.get("is_subtechnique"))
