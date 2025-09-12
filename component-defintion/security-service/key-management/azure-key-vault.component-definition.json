@@ -1,0 +1,269 @@
+{
+  "component-definition": {
+    "uuid": "b6f3a6d9-0b1e-4f5e-9a5b-9a7d8d0f2e10",
+    "metadata": {
+      "title": "Security Service: Azure Key Vault (Vaults & Managed HSM)",
+      "last-modified": "2025-09-12T13:20:00Z",
+      "version": "1.0.0",
+      "oscal-version": "1.0.4",
+      "props": [
+        {"name": "layer", "ns": "edu.tax", "value": "security-service"},
+        {"name": "capability", "ns": "edu.tax", "value": "key-management"},
+        {"name": "deployment", "ns": "edu.tax", "value": "paas"},
+        {"name": "scope", "ns": "edu.tax", "value": "enterprise"},
+        {"name": "residency", "ns": "edu.tax", "value": "canada-central"},
+        {"name": "impact", "ns": "edu.tax", "value": "high"}
+      ],
+      "roles": [
+        {"id": "cloud-provider", "title": "Cloud Provider (Microsoft)"},
+        {"id": "sec-ops", "title": "Security Operations"},
+        {"id": "pki-admin", "title": "PKI/HSM Administrator"},
+        {"id": "idp-admin", "title": "Identity Platform Administrator"}
+      ]
+    },
+
+    "components": [
+      {
+        "uuid": "8c8e0dd3-5b1a-49f5-9f7a-2d3c0a4e9b90",
+        "type": "service",
+        "title": "Azure Key Vault - Vaults (Premium, Secrets, Certificates)",
+        "description": "Multi-tenant Key Vault providing HSM-protected keys (Premium), software-protected secrets, and certificate lifecycle. RBAC data-plane, private endpoints, soft-delete + purge protection, diagnostics to Azure Monitor/Log Analytics.",
+        "responsible-roles": [
+          {"role-id": "cloud-provider", "party-uuids": []},
+          {"role-id": "sec-ops", "party-uuids": []}
+        ],
+        "props": [
+          {"name": "edu.tax:service-tier", "ns": "urn:edu.uoft.tax", "value": "gold"},
+          {"name": "edu.tax:data-class", "ns": "urn:edu.uoft.tax", "value": "protected-b"},
+          {"name": "edu.tax:environment", "ns": "urn:edu.uoft.tax", "value": "prod"},
+          {"name": "edu.tax:responsibility", "ns": "urn:edu.uoft.tax", "value": "shared"}
+        ],
+        "control-implementations": [
+          {
+            "uuid": "b2a3524f-31f1-4e51-8a1a-8e6c8f5f0ce0",
+            "source": "https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+
+              {
+                "uuid": "e0c9d1d2-6d1a-4b4e-bd83-cf0f45f8f1b1",
+                "control-id": "ac-6",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "shared"}],
+                "description": "Enforce least privilege for keys/secrets via Azure RBAC data-plane roles (e.g., Key Vault Secrets User, Key Vault Administrator). Use PIM for time-bound privilege elevation; disable legacy access policies."
+              },
+
+              {
+                "uuid": "88f2a18f-8d59-4f2e-8800-74d7d07af6fb",
+                "control-id": "ia-5",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "customer"}],
+                "description": "Manage application authenticators as secrets (rotation policies per app); prefer managed identities over client secrets; store unavoidable secrets in Key Vault with access limited by RBAC and network isolation."
+              },
+
+              {
+                "uuid": "f0c66e11-1f0c-48ec-95d3-6b9d7b2a2c55",
+                "control-id": "sc-12",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "shared"}],
+                "description": "Cryptographic key establishment and management using HSM-backed keys for Premium vaults; define key rotation policies and use Key Vault-backed CMK for Azure services requiring customer-managed encryption."
+              },
+
+              {
+                "uuid": "4bd91c91-1c6c-4bd6-94f2-58fdb8010a4e",
+                "control-id": "sc-13",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "shared"}],
+                "description": "Use FIPS-validated HSMs (Premium tier) for key protection; restrict key export; enforce algorithm/size policies (RSA/ECC) per application and compliance baseline."
+              },
+
+              {
+                "uuid": "1d8f4a1a-3ee0-4ab4-9d1a-6598f3f2b6c2",
+                "control-id": "sc-28",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "shared"}],
+                "description": "Protect information at rest in dependent services by integrating with Key Vault CMKs where supported; document key custody, rotation, and revocation procedures."
+              },
+
+              {
+                "uuid": "b6ff2e91-7a8c-4c81-8a7a-8f91a5f5f10a",
+                "control-id": "sc-7",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "customer"}],
+                "description": "Restrict data-plane access via private endpoints and Key Vault firewall (selected networks). Allow only required Trusted Microsoft Services when necessary."
+              },
+
+              {
+                "uuid": "3c15c6b0-bb13-42d3-b4e7-1d32792b1c3a",
+                "control-id": "au-2",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "shared"}],
+                "description": "Enable AuditEvent diagnostic logs and metrics; send to Log Analytics; retain logs per institutional policy; alert on anomalous access patterns (Sentinel workbook/analytics)."
+              },
+
+              {
+                "uuid": "0a3a5d1c-4c0a-45d1-9a53-6d94c3ea0d8b",
+                "control-id": "au-12",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "shared"}],
+                "description": "Centralize logging in Azure Monitor; maintain immutable retention; include caller identity, IP, operation, HTTP status, and correlation IDs from Key Vault AuditEvent."
+              },
+
+              {
+                "uuid": "7c7a1349-4bf0-4a86-9c61-1a4b10e3f3fd",
+                "control-id": "cp-9",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "customer"}],
+                "description": "Back up keys/secrets/certificates securely; for vaults, leverage Key Vault backup/restore; document tested recovery procedures for application dependencies."
+              },
+
+              {
+                "uuid": "c9f0b6a3-2d31-4c8b-8b5d-7a2e9c8d1a55",
+                "control-id": "cm-6",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "customer"}],
+                "description": "Standardize configuration: RBAC-only authorization model, private endpoints, soft-delete=enabled (90d) and purge protection=enabled; policy auditing for drift."
+              }
+            ],
+            "remarks": "This component covers Azure Key Vault 'vaults' (multi-tenant). It relies on Azure platform controls for physical security and service availability."
+          }
+        ],
+        "links": [
+          {"href": "https://learn.microsoft.com/azure/key-vault/general/rbac-access-policy", "rel": "reference", "text": "RBAC vs. access policies"},
+          {"href": "https://learn.microsoft.com/azure/key-vault/general/network-security", "rel": "reference", "text": "Networking, firewall, private endpoints"},
+          {"href": "https://learn.microsoft.com/azure/key-vault/general/logging", "rel": "reference", "text": "Key Vault logging"},
+          {"href": "https://learn.microsoft.com/azure/key-vault/general/monitor-key-vault", "rel": "reference", "text": "Monitor Key Vault"},
+          {"href": "https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview", "rel": "reference", "text": "Soft-delete overview"},
+          {"href": "https://learn.microsoft.com/azure/key-vault/general/disaster-recovery-guidance", "rel": "reference", "text": "Availability & redundancy"}
+        ]
+      },
+
+      {
+        "uuid": "0d7f1f7b-9b2e-4c3b-a0a2-0af2f6b2a110",
+        "type": "service",
+        "title": "Azure Key Vault - Managed HSM (Single-tenant HSM as a Service)",
+        "description": "Single-tenant HSM cluster for high-assurance keys (FIPS 140-3 Level 3). Local RBAC model, private endpoints, Azure Monitor integration, BYOK and key generation in-HSM.",
+        "responsible-roles": [
+          {"role-id": "cloud-provider", "party-uuids": []},
+          {"role-id": "pki-admin", "party-uuids": []},
+          {"role-id": "sec-ops", "party-uuids": []}
+        ],
+        "props": [
+          {"name": "edu.tax:service-tier", "ns": "urn:edu.uoft.tax", "value": "gold"},
+          {"name": "edu.tax:data-class", "ns": "urn:edu.uoft.tax", "value": "protected-b"},
+          {"name": "edu.tax:environment", "ns": "urn:edu.uoft.tax", "value": "prod"},
+          {"name": "edu.tax:responsibility", "ns": "urn:edu.uoft.tax", "value": "shared"}
+        ],
+        "control-implementations": [
+          {
+            "uuid": "a130a7f4-2d8e-4d6d-8a64-8f5ef5e7b70b",
+            "source": "https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+
+              {
+                "uuid": "c6c3d14a-24cc-4d89-9a3e-4d5a6b8c7e90",
+                "control-id": "ac-6",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "shared"}],
+                "description": "Enforce local RBAC (Managed HSM 'local RBAC') to segregate HSM administrators/operators from subscription admins; least-privilege per key."
+              },
+
+              {
+                "uuid": "3f5a0b0f-8b9e-4e9f-9b1c-9f3f0f3f2a10",
+                "control-id": "sc-12",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "shared"}],
+                "description": "Generate keys in-HSM; support BYOK (secure import) for RSA/EC/symmetric keys; define rotation policies; disable key export unless required by design."
+              },
+
+              {
+                "uuid": "5a1df4b9-29ec-4a2f-9c3b-1e0cd3f6b7aa",
+                "control-id": "sc-13",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "provider"}],
+                "description": "Protect keys with FIPS 140-3 Level 3 validated HSM modules; single-tenant isolation, security domains, and cluster availability."
+              },
+
+              {
+                "uuid": "b2f5ff47-6b6e-4e5f-a22c-5e2ee71ad111",
+                "control-id": "sc-7",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "customer"}],
+                "description": "Restrict access to Managed HSM via private endpoints and firewall; limit connectivity to approved VNets and on-prem via private connectivity."
+              },
+
+              {
+                "uuid": "a7b3b2e1-9625-4f64-9b07-79dfe1e7760c",
+                "control-id": "au-2",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "shared"}],
+                "description": "Enable diagnostic logs and metrics to Azure Monitor/Log Analytics; alert on unusual key usage patterns and admin operations."
+              },
+
+              {
+                "uuid": "d9f6b1f9-1e07-4c06-8fdf-c0b2bd2ed2a3",
+                "control-id": "cp-9",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "customer"}],
+                "description": "Perform managed HSM backups (full backups and security domain backup) and test restores to a secondary HSM in DR scenarios."
+              },
+
+              {
+                "uuid": "f8e8d3a0-2a35-4a32-9457-3f8c1c5d1b2b",
+                "control-id": "cm-6",
+                "props": [{"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "customer"}],
+                "description": "Baseline configuration for HSM cluster (RBAC model, private endpoints, firmware track per provider guidance); policy enforcement via Azure Policy."
+              }
+            ],
+            "remarks": "This component covers Azure Key Vault Managed HSM (single-tenant)."
+          }
+        ],
+        "links": [
+          {"href": "https://learn.microsoft.com/azure/key-vault/managed-hsm/overview", "rel": "reference", "text": "Managed HSM overview"},
+          {"href": "https://learn.microsoft.com/azure/key-vault/keys/about-keys", "rel": "reference", "text": "About keys (HSM platforms, FIPS)"},
+          {"href": "https://learn.microsoft.com/azure/key-vault/general/network-security", "rel": "reference", "text": "Networking"},
+          {"href": "https://learn.microsoft.com/azure/key-vault/general/monitor-key-vault", "rel": "reference", "text": "Monitoring"}
+        ]
+      }
+    ],
+
+    "leveraged-authorizations": [
+      {
+        "uuid": "4b9b14cc-7f61-4e48-b90b-6b91bdb76f1a",
+        "title": "Azure Platform & Key Vault Services – Provider Controls",
+        "remarks": "Inherits cloud datacenter physical/environmental controls, platform patching, and HSM module validation from Microsoft. Customer is responsible for configuration, access control, and monitoring.",
+        "props": [
+          {"name": "responsibility", "ns": "urn:edu.uoft.tax", "value": "provider"}
+        ]
+      }
+    ],
+
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "res-rbac",
+          "title": "RBAC vs Access Policies (Key Vault)",
+          "rlinks": [{"href": "https://learn.microsoft.com/azure/key-vault/general/rbac-access-policy"}]
+        },
+        {
+          "uuid": "res-network",
+          "title": "Network security for Key Vault",
+          "rlinks": [{"href": "https://learn.microsoft.com/azure/key-vault/general/network-security"}]
+        },
+        {
+          "uuid": "res-logging",
+          "title": "Key Vault logging (AuditEvent)",
+          "rlinks": [{"href": "https://learn.microsoft.com/azure/key-vault/general/logging"}]
+        },
+        {
+          "uuid": "res-monitor",
+          "title": "Monitor Key Vault / Key Vault Insights",
+          "rlinks": [{"href": "https://learn.microsoft.com/azure/key-vault/general/monitor-key-vault"}]
+        },
+        {
+          "uuid": "res-softdelete",
+          "title": "Soft-delete & Purge Protection",
+          "rlinks": [{"href": "https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview"}]
+        },
+        {
+          "uuid": "res-availability",
+          "title": "Availability & Redundancy (Vaults)",
+          "rlinks": [{"href": "https://learn.microsoft.com/azure/key-vault/general/disaster-recovery-guidance"}]
+        },
+        {
+          "uuid": "res-managedhsm",
+          "title": "Managed HSM Overview (FIPS 140-3 L3)",
+          "rlinks": [{"href": "https://learn.microsoft.com/azure/key-vault/managed-hsm/overview"}]
+        },
+        {
+          "uuid": "res-keys",
+          "title": "About Keys (HSM Platform 2, FIPS 140-3 L3)",
+          "rlinks": [{"href": "https://learn.microsoft.com/azure/key-vault/keys/about-keys"}]
+        }
+      ]
+    }
+  }
+}

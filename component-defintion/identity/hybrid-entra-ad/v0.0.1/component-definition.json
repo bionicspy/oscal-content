@@ -1,0 +1,107 @@
+{
+  "component-definition": {
+    "uuid": "8b0f2f8c-5c02-4a3e-9b93-2f5e0a2b7aa1",
+    "metadata": {
+      "title": "Identity: Hybrid Identity (Entra ID + AD)",
+      "version": "1.0.0",
+      "last-modified": "2025-09-12T09:30:00Z",
+      "props": [
+        {"name": "layer", "ns": "edu.tax", "value": "identity"},
+        {"name": "deployment", "ns": "edu.tax", "value": "hybrid"},
+        {"name": "scope", "ns": "edu.tax", "value": "enterprise"},
+        {"name": "data-class", "ns": "edu.tax", "value": "protected-b"},
+        {"name": "environment", "ns": "edu.tax", "value": "prod"},
+        {"name": "residency", "ns": "edu.tax", "value": "canada-central"}
+      ]
+    },
+    "components": [
+      {
+        "uuid": "ad1b7c9a-20ee-4c9a-8c4e-92f5c4d483e7",
+        "type": "service",
+        "title": "Microsoft Entra ID + Active Directory (Hybrid)",
+        "description": "Enterprise identity platform with DUO MFA for privileged users, Entra Password Protection, AD Privacy Sentry, default deny admin network access via PAWs and jump gateways.",
+        "responsible-roles": [
+          {
+            "role-id": "idp-admin",
+            "party-uuids": []
+          },
+          {
+            "role-id": "sec-ops",
+            "party-uuids": []
+          }
+        ],
+        "props": [
+          {"name": "threat-map", "ns": "edu.tax", "value": "attck:T1078"},
+          {"name": "threat-map", "ns": "edu.tax", "value": "d3fend:D3-MFA"},
+          {"name": "service-tier", "ns": "edu.tax", "value": "gold"}
+        ],
+        "control-implementations": [
+          {
+            "uuid": "e7d33d8a-44b0-4dd6-9c6a-22bc0a19d2f2",
+            "source": "https://nvlpubs.nist.gov/oscal/2023-09-oscalschemas/controls/catalog/nist-sp800-53r5.json",
+            "implemented-requirements": [
+              {
+                "uuid": "4f0a7a20-5f6f-4f39-9f3f-6e8df1b7311c",
+                "control-id": "ac-2",
+                "statements": [
+                  {
+                    "uuid": "5c5c6e36-8a53-4a7a-9d6d-8f3f5cc8a1ea",
+                    "statement-id": "ac-2_smt",
+                    "description": "Accounts are provisioned via HR-driven workflows; privileged groups require manager + ISO approval; group membership hidden by default (AD Privacy Sentry)."
+                  }
+                ],
+                "set-parameters": [
+                  {
+                    "param-id": "ac-2_prm_1",
+                    "values": ["30 days"]
+                  }
+                ],
+                "props": [
+                  {"name": "responsibility", "ns": "edu.tax", "value": "customer"}
+                ],
+                "links": [
+                  {"href": "https://runbooks.example.edu/id/provisioning", "rel": "evidence"}
+                ]
+              },
+              {
+                "uuid": "1a3c5b77-ef6e-4a1e-a1b2-8f2c6d5e7a90",
+                "control-id": "ia-5.01",
+                "statements": [
+                  {
+                    "uuid": "c9f9bcb2-4a1d-4a29-8c4d-a3a726ea12b9",
+                    "statement-id": "ia-5.01_smt",
+                    "description": "Password composition enforced by Entra Password Protection and on-prem AD fine-grained policies; banned password list synchronized; DUO MFA enforced for PAW and administrative roles."
+                  }
+                ],
+                "set-parameters": [
+                  {"param-id": "ia-5.01_prm_1", "values": ["min length 14"]},
+                  {"param-id": "ia-5.01_prm_2", "values": ["reject 1000+ common passwords + campus banned list"]}
+                ],
+                "props": [
+                  {"name": "threat-map", "ns": "edu.tax", "value": "attck:T1110"},
+                  {"name": "responsibility", "ns": "edu.tax", "value": "shared"}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "leveraged-authorizations": [
+      {
+        "uuid": "3a2d4b7f-36f5-4d9e-9b13-9c8e6f4e12ab",
+        "title": "Microsoft Entra ID (Canada) - Inherited Controls",
+        "party-uuid": "provider-microsoft-uuid",
+        "remarks": "Inherit identity service platform controls per Microsoft compliance artifacts.",
+        "props": [
+          {"name": "responsibility", "ns": "edu.tax", "value": "provider"}
+        ]
+      }
+    ],
+    "back-matter": {
+      "resources": [
+        {"uuid": "rbk-1", "title": "Privileged Access Workstations SOP", "rlinks": [{"href": "https://runbooks.example.edu/paw"}]}
+      ]
+    }
+  }
+}
