@@ -1,0 +1,2279 @@
+{
+  "catalog": {
+    "uuid": "c0e5c6f8-9328-4f62-9a2a-3e7c7f3c9b11",
+    "metadata": {
+      "title": "Microsoft Windows Defender Firewall with Advanced Security Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2023-11-09T00:00:00Z",
+      "version": "2.2.0",
+      "oscal-version": "1.1.0",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "benchmark-date",
+          "value": "2023-11-09"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "2"
+        },
+        {
+          "name": "version.minor",
+          "value": "2"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "point-of-contact",
+          "title": "Point of Contact"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "disa-publisher",
+          "type": "organization",
+          "org-name": "Defense Information Systems Agency (DISA)",
+          "links": [
+            {
+              "href": "https://public.cyber.mil/stigs/",
+              "rel": "website"
+            }
+          ],
+          "roles": [
+            "publisher",
+            "point-of-contact"
+          ],
+          "email-addresses": [
+            "disa.stig_spt@mail.mil."
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-241989",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-241989r922928_rule",
+            "title": "Windows Defender Firewall with Advanced Security must be enabled when connected to a domain.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-241989",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-241989r922928_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000001"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000001"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922928"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001414",
+                "ns": "https://disa.mil/cci",
+                "text": "Enforce approved authorizations for controlling the flow of information between connected systems based on organization-defined information flow control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AC-4.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-241989r922928_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must be enabled when connected to a domain."
+              },
+              {
+                "id": "SV-241989r922928_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Domain Profile tab >> State, \"Firewall state\" to \"On (recommended)\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set domainprofile state on\".\nor\n\"Netsh advfirewall set allprofiles state on\"."
+              },
+              {
+                "id": "SV-241989r922928_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. This setting enables the firewall when connected to the domain."
+              },
+              {
+                "id": "SV-241989r922928_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-241990",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-241990r922930_rule",
+            "title": "Windows Defender Firewall with Advanced Security must be enabled when connected to a private network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-241990",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-241990r922930_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000002"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000002"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922930"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001414",
+                "ns": "https://disa.mil/cci",
+                "text": "Enforce approved authorizations for controlling the flow of information between connected systems based on organization-defined information flow control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AC-4.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-241990r922930_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must be enabled when connected to a private network."
+              },
+              {
+                "id": "SV-241990r922930_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Private Profile tab >> State, \"Firewall state\" to \"On (recommended)\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set privateprofile state on\".\nor\n\"Netsh advfirewall set allprofiles state on\"."
+              },
+              {
+                "id": "SV-241990r922930_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. This setting enables the firewall when connected to a private network."
+              },
+              {
+                "id": "SV-241990r922930_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-241991",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-241991r922932_rule",
+            "title": "Windows Defender Firewall with Advanced Security must be enabled when connected to a public network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-241991",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-241991r922932_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000003"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000003"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922932"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001414",
+                "ns": "https://disa.mil/cci",
+                "text": "Enforce approved authorizations for controlling the flow of information between connected systems based on organization-defined information flow control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AC-4.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-241991r922932_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must be enabled when connected to a public network."
+              },
+              {
+                "id": "SV-241991r922932_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Public Profile tab >> State, \"Firewall state\" to \"On (recommended)\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set publicprofile state on\".\nor\n\"Netsh advfirewall set allprofiles state on\"."
+              },
+              {
+                "id": "SV-241991r922932_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. This setting enables the firewall when connected to a public network."
+              },
+              {
+                "id": "SV-241991r922932_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-241992",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-241992r922934_rule",
+            "title": "Windows Defender Firewall with Advanced Security must block unsolicited inbound connections when connected to a domain.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-241992",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-241992r922934_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000004"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000004"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922934"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000382",
+                "ns": "https://disa.mil/cci",
+                "text": "Configure the system to prohibit or restrict the use of organization-defined prohibited or restricted functions, system ports, protocols, software, and/or services."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A CM-7.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-241992r922934_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must block unsolicited inbound connections when connected to a domain."
+              },
+              {
+                "id": "SV-241992r922934_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Domain Profile tab >> State, \"Inbound connections\" to \"Block (default)\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set domainprofile firewallpolicy blockinbound,allowoutbound\".\nor\n\"Netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound\".\n\nBoth inbound and outbound parameters must be specified to execute this command."
+              },
+              {
+                "id": "SV-241992r922934_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Unsolicited inbound connections may be malicious attempts to gain access to a system. Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked in the domain."
+              },
+              {
+                "id": "SV-241992r922934_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-241993",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-241993r922936_rule",
+            "title": "Windows Defender Firewall with Advanced Security must allow outbound connections, unless a rule explicitly blocks the connection when connected to a domain.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-241993",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-241993r922936_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000005"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000005"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922936"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001094",
+                "ns": "https://disa.mil/cci",
+                "text": "Restrict the ability of individuals to launch organization-defined denial of service attacks against other systems."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A SC-5 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-241993r922936_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must allow outbound connections, unless a rule explicitly blocks the connection when connected to a domain."
+              },
+              {
+                "id": "SV-241993r922936_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Domain Profile tab >> State, \"Outbound connections\" to \"Allow (default)\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set domainprofile firewallpolicy blockinbound,allowoutbound\".\nor\n\"Netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound\".\n\nBoth inbound and outbound parameters must be specified to execute this command."
+              },
+              {
+                "id": "SV-241993r922936_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Outbound connections are allowed in the domain, unless a rule explicitly blocks the connection. This allows normal outbound communication, which could be restricted as necessary with additional rules."
+              },
+              {
+                "id": "SV-241993r922936_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-241994",
+        "title": "SRG-OS-000327-GPOS-00127",
+        "controls": [
+          {
+            "id": "SV-241994r922938_rule",
+            "title": "Windows Defender Firewall with Advanced Security log size must be configured for domain connections.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-241994",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-241994r922938_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000009"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000009"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922938"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000140",
+                "ns": "https://disa.mil/cci",
+                "text": "Take organization-defined actions upon audit failure include, shutting down the system, overwriting oldest audit records, and stopping the generation of audit records."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AU-5 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AU-5.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-5 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-5 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-241994r922938_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security log size must be configured for domain connections."
+              },
+              {
+                "id": "SV-241994r922938_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Microsoft Defender Firewall with Advanced Security >> Microsoft Defender Firewall with Advanced Security >> Microsoft Defender Firewall Properties (this link will be in the right pane) >> Domain Profile tab >> Logging (select Customize), \"Size limit (KB):\" to \"16,384\" or greater.\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh command may also be used to configure this setting:\n\n\"Netsh advfirewall set domainprofile logging maxfilesize 16384\" or greater."
+              },
+              {
+                "id": "SV-241994r922938_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. The firewall log file size for a domain connection will be set to ensure enough capacity is allocated for audit data."
+              },
+              {
+                "id": "SV-241994r922938_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-241995",
+        "title": "SRG-OS-000327-GPOS-00127",
+        "controls": [
+          {
+            "id": "SV-241995r922940_rule",
+            "title": "Windows Defender Firewall with Advanced Security must log dropped packets when connected to a domain.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-241995",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-241995r922940_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000010"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000010"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922940"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000172",
+                "ns": "https://disa.mil/cci",
+                "text": "Generate audit records for the event types defined in AU-2 c that include the audit record content defined in AU-3."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AU-12.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-241995r922940_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must log dropped packets when connected to a domain."
+              },
+              {
+                "id": "SV-241995r922940_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Domain Profile tab >> Logging (select Customize), \"Log dropped packets\" to \"Yes\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set domainprofile logging droppedconnections enable\".\nor\n\"Netsh advfirewall set allprofiles logging droppedconnections enable\"."
+              },
+              {
+                "id": "SV-241995r922940_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Logging of dropped packets for a domain connection will be enabled to maintain an audit trail of potential issues."
+              },
+              {
+                "id": "SV-241995r922940_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-241996",
+        "title": "SRG-OS-000327-GPOS-00127",
+        "controls": [
+          {
+            "id": "SV-241996r922942_rule",
+            "title": "Windows Defender Firewall with Advanced Security must log successful connections when connected to a domain.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-241996",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-241996r922942_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000011"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000011"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922942"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001462",
+                "ns": "https://disa.mil/cci",
+                "text": "The information system provides the capability for authorized users to capture/record and log content related to a user session."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AU-14 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AU-14.1 (i)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-14 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-241996r922942_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must log successful connections when connected to a domain."
+              },
+              {
+                "id": "SV-241996r922942_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Domain Profile tab >> Logging (select Customize), \"Log successful connections\" to \"Yes\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set domainprofile logging allowedconnections enable\".\nor\n\"Netsh advfirewall set allprofiles logging allowedconnections enable\"."
+              },
+              {
+                "id": "SV-241996r922942_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Logging of successful connections for a domain connection will be enabled to maintain an audit trail if issues are discovered."
+              },
+              {
+                "id": "SV-241996r922942_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-241997",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-241997r922944_rule",
+            "title": "Windows Defender Firewall with Advanced Security must block unsolicited inbound connections when connected to a private network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-241997",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-241997r922944_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000012"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000012"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922944"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000382",
+                "ns": "https://disa.mil/cci",
+                "text": "Configure the system to prohibit or restrict the use of organization-defined prohibited or restricted functions, system ports, protocols, software, and/or services."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A CM-7.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-241997r922944_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must block unsolicited inbound connections when connected to a private network."
+              },
+              {
+                "id": "SV-241997r922944_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Private Profile tab >> State, \"Inbound connections\" to \"Block (default)\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set privateprofile firewallpolicy blockinbound,allowoutbound\".\nor\n\"Netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound\".\n\nBoth inbound and outbound parameters must be specified to execute this command."
+              },
+              {
+                "id": "SV-241997r922944_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Unsolicited inbound connections may be malicious attempts to gain access to a system. Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked on a private network."
+              },
+              {
+                "id": "SV-241997r922944_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-241998",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-241998r922946_rule",
+            "title": "Windows Defender Firewall with Advanced Security must allow outbound connections, unless a rule explicitly blocks the connection when connected to a private network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-241998",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-241998r922946_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000013"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000013"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922946"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001094",
+                "ns": "https://disa.mil/cci",
+                "text": "Restrict the ability of individuals to launch organization-defined denial of service attacks against other systems."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A SC-5 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-241998r922946_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must allow outbound connections, unless a rule explicitly blocks the connection when connected to a private network."
+              },
+              {
+                "id": "SV-241998r922946_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Private Profile tab >> State, \"Outbound connections\" to \"Allow (default)\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set privateprofile firewallpolicy blockinbound,allowoutbound\".\nor\n\"Netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound\".\n\nBoth inbound and outbound parameters must be specified to execute this command."
+              },
+              {
+                "id": "SV-241998r922946_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Outbound connections are allowed on a private network, unless a rule explicitly blocks the connection. This allows normal outbound communication, which could be restricted as necessary with additional rules."
+              },
+              {
+                "id": "SV-241998r922946_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-241999",
+        "title": "SRG-OS-000327-GPOS-00127",
+        "controls": [
+          {
+            "id": "SV-241999r922948_rule",
+            "title": "Windows Defender Firewall with Advanced Security log size must be configured for private network connections.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-241999",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-241999r922948_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000017"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000017"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922948"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000140",
+                "ns": "https://disa.mil/cci",
+                "text": "Take organization-defined actions upon audit failure include, shutting down the system, overwriting oldest audit records, and stopping the generation of audit records."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AU-5 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AU-5.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-5 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-5 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-241999r922948_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security log size must be configured for private network connections."
+              },
+              {
+                "id": "SV-241999r922948_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Private Profile tab >> Logging (select Customize), \"Size limit (KB)\" to \"16,384\" or greater.\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh command may also be used to configure this setting:\n\n\"Netsh advfirewall set privateprofile logging maxfilesize 16384\" or greater."
+              },
+              {
+                "id": "SV-241999r922948_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. The firewall log file size for a private connection will be set to ensure enough capacity is allocated for audit data."
+              },
+              {
+                "id": "SV-241999r922948_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-242000",
+        "title": "SRG-OS-000327-GPOS-00127",
+        "controls": [
+          {
+            "id": "SV-242000r922950_rule",
+            "title": "Windows Defender Firewall with Advanced Security must log dropped packets when connected to a private network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-242000",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-242000r922950_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000018"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000018"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922950"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000172",
+                "ns": "https://disa.mil/cci",
+                "text": "Generate audit records for the event types defined in AU-2 c that include the audit record content defined in AU-3."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AU-12.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-242000r922950_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must log dropped packets when connected to a private network."
+              },
+              {
+                "id": "SV-242000r922950_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Private Profile tab >> Logging (select Customize), \"Log dropped packets\" to \"Yes\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set privateprofile logging droppedconnections enable\".\nor\n\"Netsh advfirewall set allprofiles logging droppedconnections enable\"."
+              },
+              {
+                "id": "SV-242000r922950_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Logging of dropped packets for a private network connection will be enabled to maintain an audit trail of potential issues."
+              },
+              {
+                "id": "SV-242000r922950_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-242001",
+        "title": "SRG-OS-000327-GPOS-00127",
+        "controls": [
+          {
+            "id": "SV-242001r922952_rule",
+            "title": "Windows Defender Firewall with Advanced Security must log successful connections when connected to a private network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-242001",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-242001r922952_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000019"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000019"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922952"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001462",
+                "ns": "https://disa.mil/cci",
+                "text": "The information system provides the capability for authorized users to capture/record and log content related to a user session."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AU-14 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AU-14.1 (i)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-14 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-242001r922952_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must log successful connections when connected to a private network."
+              },
+              {
+                "id": "SV-242001r922952_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Microsoft Defender Firewall with Advanced Security >> Microsoft Defender Firewall with Advanced Security >> Microsoft Defender Firewall Properties (this link will be in the right pane) >> Private Profile tab >> Logging (select Customize), \"Logged successful connections\" to \"Yes\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set privateprofile logging allowedconnections enable\".\nor\n\"Netsh advfirewall set allprofiles logging allowedconnections enable\"."
+              },
+              {
+                "id": "SV-242001r922952_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Logging of successful connections for a private network connection will be enabled to maintain an audit trail if issues are discovered."
+              },
+              {
+                "id": "SV-242001r922952_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-242002",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-242002r922954_rule",
+            "title": "Windows Defender Firewall with Advanced Security must block unsolicited inbound connections when connected to a public network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-242002",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-242002r922954_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000020"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000020"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922954"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000382",
+                "ns": "https://disa.mil/cci",
+                "text": "Configure the system to prohibit or restrict the use of organization-defined prohibited or restricted functions, system ports, protocols, software, and/or services."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A CM-7.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-242002r922954_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must block unsolicited inbound connections when connected to a public network."
+              },
+              {
+                "id": "SV-242002r922954_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Public Profile tab >> State, \"Inbound connections\" to \"Block (default)\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set publicprofile firewallpolicy blockinbound,allowoutbound\".\nor\n\"Netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound\".\n\nBoth inbound and outbound parameters must be specified to execute this command."
+              },
+              {
+                "id": "SV-242002r922954_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Unsolicited inbound connections may be malicious attempts to gain access to a system. Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked on a public network."
+              },
+              {
+                "id": "SV-242002r922954_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-242003",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-242003r922956_rule",
+            "title": "Windows Defender Firewall with Advanced Security must allow outbound connections, unless a rule explicitly blocks the connection when connected to a public network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-242003",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-242003r922956_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000021"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000021"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922956"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001094",
+                "ns": "https://disa.mil/cci",
+                "text": "Restrict the ability of individuals to launch organization-defined denial of service attacks against other systems."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A SC-5 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-242003r922956_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must allow outbound connections, unless a rule explicitly blocks the connection when connected to a public network."
+              },
+              {
+                "id": "SV-242003r922956_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Public Profile tab >> State, \"Outbound connections\" to \"Allow (default)\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set publicprofile firewallpolicy blockinbound,allowoutbound\".\nor\n\"Netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound\".\n\nBoth inbound and outbound parameters must be specified to execute this command."
+              },
+              {
+                "id": "SV-242003r922956_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Outbound connections are allowed on a public network, unless a rule explicitly blocks the connection. This allows normal outbound communication, which could be restricted as necessary with additional rules."
+              },
+              {
+                "id": "SV-242003r922956_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-242004",
+        "title": "SRG-OS-000327-GPOS-00127",
+        "controls": [
+          {
+            "id": "SV-242004r922958_rule",
+            "title": "Windows Defender Firewall with Advanced Security local firewall rules must not be merged with Group Policy settings when connected to a public network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-242004",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-242004r922958_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000024"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000024"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922958"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001190",
+                "ns": "https://disa.mil/cci",
+                "text": "Fail to an organization-defined known-system state for the list of organization-defined types of system failures on organization-defined system components on the indicated components while preserving organization-defined system state information in failure."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 SC-24"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A SC-24.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-24"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-24"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-242004r922958_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security local firewall rules must not be merged with Group Policy settings when connected to a public network."
+              },
+              {
+                "id": "SV-242004r922958_rule_guidance",
+                "name": "guidance",
+                "prose": "If the system is not a member of a domain, this is NA.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Public Profile tab >> Settings (select Customize) >> Rule merging, \"Apply local firewall rules:\" to \"No\"."
+              },
+              {
+                "id": "SV-242004r922958_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Local firewall rules will not be merged with Group Policy settings on a public network to prevent Group Policy settings from being changed."
+              },
+              {
+                "id": "SV-242004r922958_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-242005",
+        "title": "SRG-OS-000327-GPOS-00127",
+        "controls": [
+          {
+            "id": "SV-242005r922960_rule",
+            "title": "Windows Defender Firewall with Advanced Security local connection rules must not be merged with Group Policy settings when connected to a public network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-242005",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-242005r922960_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000025"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000025"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922960"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001190",
+                "ns": "https://disa.mil/cci",
+                "text": "Fail to an organization-defined known-system state for the list of organization-defined types of system failures on organization-defined system components on the indicated components while preserving organization-defined system state information in failure."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 SC-24"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A SC-24.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-24"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-24"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-242005r922960_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security local connection rules must not be merged with Group Policy settings when connected to a public network."
+              },
+              {
+                "id": "SV-242005r922960_rule_guidance",
+                "name": "guidance",
+                "prose": "If the system is not a member of a domain, this is NA.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Public Profile tab >> Settings (select Customize) >> Rule merging, \"Apply local connection security rules:\" to \"No\"."
+              },
+              {
+                "id": "SV-242005r922960_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Local connection rules will not be merged with Group Policy settings on a public network to prevent Group Policy settings from being changed."
+              },
+              {
+                "id": "SV-242005r922960_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-242006",
+        "title": "SRG-OS-000327-GPOS-00127",
+        "controls": [
+          {
+            "id": "SV-242006r922962_rule",
+            "title": "Windows Defender Firewall with Advanced Security log size must be configured for public network connections.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-242006",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-242006r922962_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000027"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000027"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922962"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000140",
+                "ns": "https://disa.mil/cci",
+                "text": "Take organization-defined actions upon audit failure include, shutting down the system, overwriting oldest audit records, and stopping the generation of audit records."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AU-5 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AU-5.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-5 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-5 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-242006r922962_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security log size must be configured for public network connections."
+              },
+              {
+                "id": "SV-242006r922962_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Microsoft Defender Firewall with Advanced Security >> Microsoft Defender Firewall with Advanced Security >> Microsoft Defender Firewall Properties (this link will be in the right pane) >> Public Profile tab >> Logging (select Customize), \"Size limit (KB)\" to \"16,384\" or greater.\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh command may also be used to configure this setting:\n\n\"Netsh advfirewall set publicprofile logging maxfilesize 16384\" or greater."
+              },
+              {
+                "id": "SV-242006r922962_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. The firewall log file size for a public network connection will be set to ensure enough capacity is allocated for audit data."
+              },
+              {
+                "id": "SV-242006r922962_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-242007",
+        "title": "SRG-OS-000327-GPOS-00127",
+        "controls": [
+          {
+            "id": "SV-242007r922964_rule",
+            "title": "Windows Defender Firewall with Advanced Security must log dropped packets when connected to a public network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-242007",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-242007r922964_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000028"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000028"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922964"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000172",
+                "ns": "https://disa.mil/cci",
+                "text": "Generate audit records for the event types defined in AU-2 c that include the audit record content defined in AU-3."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AU-12.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-242007r922964_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must log dropped packets when connected to a public network."
+              },
+              {
+                "id": "SV-242007r922964_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Public Profile tab >> Logging (select Customize), \"Log dropped packets\" to \"Yes\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set publicprofile logging droppedconnections enable\".\nor\n\"Netsh advfirewall set allprofiles logging droppedconnections enable\"."
+              },
+              {
+                "id": "SV-242007r922964_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Logging of dropped packets for a public network connection will be enabled to maintain an audit trail of potential issues."
+              },
+              {
+                "id": "SV-242007r922964_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-242008",
+        "title": "SRG-OS-000327-GPOS-00127",
+        "controls": [
+          {
+            "id": "SV-242008r922966_rule",
+            "title": "Windows Defender Firewall with Advanced Security must log successful connections when connected to a public network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-242008",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-242008r922966_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000029"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000029"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922966"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001462",
+                "ns": "https://disa.mil/cci",
+                "text": "The information system provides the capability for authorized users to capture/record and log content related to a user session."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AU-14 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AU-14.1 (i)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-14 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-242008r922966_rule_statement",
+                "name": "statement",
+                "prose": "Windows Defender Firewall with Advanced Security must log successful connections when connected to a public network."
+              },
+              {
+                "id": "SV-242008r922966_rule_guidance",
+                "name": "guidance",
+                "prose": "The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall with Advanced Security >> Windows Defender Firewall Properties (this link will be in the right pane) >> Public Profile tab >> Logging (select Customize), \"Logged successful connections\" to \"Yes\".\n\nIn addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.\n\nThe configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.\n\nThe following Netsh commands may also be used to configure this setting:\n\n\"Netsh advfirewall set publicprofile logging allowedconnections enable\".\nor\n\"Netsh advfirewall set allprofiles logging allowedconnections enable\"."
+              },
+              {
+                "id": "SV-242008r922966_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Logging of successful connections for a public network connection will be enabled to maintain an audit trail if issues are discovered."
+              },
+              {
+                "id": "SV-242008r922966_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-242009",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-242009r922967_rule",
+            "title": "Inbound exceptions to the firewall on domain workstations must only allow authorized remote management hosts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-242009",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-242009r922967_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WNFWA-000100"
+              },
+              {
+                "name": "label",
+                "value": "WNFWA-000100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "922967"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000067",
+                "ns": "https://disa.mil/cci",
+                "text": "Employ automated mechanisms to monitor remote access methods."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 AC-17 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A AC-17 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-242009r922967_rule_statement",
+                "name": "statement",
+                "prose": "Inbound exceptions to the firewall on domain workstations must only allow authorized remote management hosts."
+              },
+              {
+                "id": "SV-242009r922967_rule_guidance",
+                "name": "guidance",
+                "prose": "Ensure firewall exceptions to inbound connections on domain workstations only allow authorized management systems and remote management hosts.\n\nFirewall rules can be complex and should be thoroughly tested before applying in a production environment.\n\nOne method for restricting inbound connections is to only allow exceptions for a specific scope of remote IP addresses. For any inbound rules that allow connections from other systems, configure the Scope for Remote IP addresses to those of authorized management systems and remote management hosts. This may be defined as an IP address, subnet, or range. Apply the rule to all firewall profiles."
+              },
+              {
+                "id": "SV-242009r922967_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Allowing inbound access to domain workstations from other systems may allow lateral movement across systems if credentials are compromised. Limiting inbound connections only from authorized remote management systems will help limit this exposure."
+              },
+              {
+                "id": "SV-242009r922967_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ],
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "source-xccdf",
+          "title": "Source XCCDF",
+          "rlinks": [
+            {
+              "href": "./U_MS_Windows_Defender_Firewall_STIG_V2R2_Manual-xccdf.xml"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
