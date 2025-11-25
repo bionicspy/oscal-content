@@ -1,0 +1,2696 @@
+{
+  "catalog": {
+    "uuid": "c0e5c6f8-9328-4f62-9a2a-3e7c7f3c9b11",
+    "metadata": {
+      "title": "Forescout Network Access Control Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-11-25T14:21:13Z",
+      "version": "2.4.0",
+      "oscal-version": "1.1.0",
+      "links": []
+    },
+    "groups": [
+      {
+        "id": "V-233309",
+        "title": "SRG-NET-000015-NAC-000020",
+        "controls": [
+          {
+            "id": "SV-233309r811367_rule",
+            "title": "Forescout must enforce approved access by employing admissions assessment filters that include, at a minimum, device attributes such as type, IP address, resource group, and/or mission conditions as defined in Forescout System Security Plan (SSP).  This is required for compliance with C2C Step 4.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233309",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233309r811367_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000010"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000010"
+              },
+              {
+                "name": "sv-revision",
+                "value": "811367"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233309r811367_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must enforce approved access by employing admissions assessment filters that include, at a minimum, device attributes such as type, IP address, resource group, and/or mission conditions as defined in Forescout System Security Plan (SSP).  This is required for compliance with C2C Step 4."
+              },
+              {
+                "id": "SV-233309r811367_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure the endpoint compliance assessment policies per the SSP. Example only:\n\n1. Log on to Forescout UI.\n2. From the Policy tab, select the top most policy.\n3. Select Add >> Classification >> Primary Classification, and then click \"Next\".\n4. Give the policy a name, then click \"Next\".\n5. If applicable, select the IP Address Range the policy will apply to, click \"Ok\", and then click \"Next\". \n6. Select \"Finish, then click \"Apply\"."
+              },
+              {
+                "id": "SV-233309r811367_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Successful authentication must not automatically give an entity access to an asset or security boundary. The lack of authorization-based access control could result in the immediate compromise and unauthorized access to sensitive information.\n\nAuthorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset. Many NACs include the ability to create network access control policies that include identity-based policies, role-based policies, and attribute-based policies. \n\nIt is recommended that Forescout have the capability to expose collected data on the assessed endpoints through an API that can be accessed externally, or the NAC solution must supply an SDK to allow customers to export data. \n\nAdmissions assessment filters should include, at a minimum, device attributes such as type, IP address, resource group, and/or mission conditions as defined in the Forescout SSP. Forescout should also track the following to facilitate security investigations: when each device was last admitted/readmitted to the network; owning organization; owning organization's organizational unit; geographic location or the nearest network switch; motherboard serial number and BIOS; globally unique ID; and which unique network access compliance policies each device passed or failed during the latest network admission/readmission.\n\nThe client may be denied admission based on a returned posture token. In most Forescout implementations, additional network access authorization policies can also be tied to the user's identity, but these features are out of scope for this STIG."
+              },
+              {
+                "id": "SV-233309r811367_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233310",
+        "title": "SRG-NET-000015-NAC-000030",
+        "controls": [
+          {
+            "id": "SV-233310r811369_rule",
+            "title": "Endpoint policy assessment must proceed after the endpoint attempting access has been identified using an approved identification method such as IP address.  This is required for compliance with C2C Step 2.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233310",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233310r811369_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000020"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000020"
+              },
+              {
+                "name": "sv-revision",
+                "value": "811369"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233310r811369_rule_statement",
+                "name": "statement",
+                "prose": "Endpoint policy assessment must proceed after the endpoint attempting access has been identified using an approved identification method such as IP address.  This is required for compliance with C2C Step 2."
+              },
+              {
+                "id": "SV-233310r811369_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure the endpoint compliance assessment policies per the SSP.\n\n1. From the console on the Enterprise Manager console, select the Policy tab.\n2. In accordance with the SSP, ensure that the endpoint compliance assessment policies have been configured and are functioning properly."
+              },
+              {
+                "id": "SV-233310r811369_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Automated policy assessments must reflect the organization's current security policy so entry control decisions will happen only where remote endpoints meet the organization's security requirements. If the remote endpoints are allowed to connect to the organization's network without passing minimum-security controls, they become a threat to the entire network.\n\nOrganizational policy must be established for what Forescout will check on the host for the agent and agentless. The Forescout system security plan (SSP) will be used to assess compliance with the requirement since each SSP item must be configured.\n\nExamples include, but are not limited to:\n- Verification that anti-virus software is authorized, running, and virus signatures are up to date.\n- Host-based firewall installed and configured according to the organization's security policy.\n- Host IDS/IPS is installed, operational, and up to date.\n- Uses the result of malware, anti-virus, and IDS scans and status as part of the assessment decision process.\n- Required BIOS, operating system, browser, and office application patch levels.\n- Performs an assessment of the list of running services.\n- Test for the presence of DoD-required software.\n- Test for presence of peer-to-peer software (not allowed)."
+              },
+              {
+                "id": "SV-233310r811369_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233311",
+        "title": "SRG-NET-000015-NAC-000040",
+        "controls": [
+          {
+            "id": "SV-233311r1018659_rule",
+            "title": "For endpoints that require automated remediation, Forescout must be configured to logically separate endpoints from the trusted network traffic during remediation. This is required for compliance with C2C Step 4.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233311",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233311r1018659_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000030"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000030"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1018659"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233311r1018659_rule_statement",
+                "name": "statement",
+                "prose": "For endpoints that require automated remediation, Forescout must be configured to logically separate endpoints from the trusted network traffic during remediation. This is required for compliance with C2C Step 4."
+              },
+              {
+                "id": "SV-233311r1018659_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure a policy, per the SSP, that isolates endpoints requiring automated remediation from other endpoints on the trusted network. The following is an example only.\n\n1. From the Policy tab, select the top most policy.\n2. Select Add >> Classification >> Primary Classification, and then click Next.\n3. Give the policy a name, then click Next.\n4. Select the IP Address Range the policy will apply to, click \"OK,\" and then click \"Next\". \n5. Select \"Finish\", and then click \"Apply\".\n\nThis collects a series of attributes for each endpoint that can then be used in a policy as the unique identifier. However, by default the IP address is used, for example in the log records."
+              },
+              {
+                "id": "SV-233311r1018659_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Automated and manual procedures for remediation for critical security updates will be managed differently. Continuing to assess and remediate endpoints with risks that could endanger the network could impact network usage for all users. This isolation prevents traffic from flowing with traffic from endpoints that have been fully assessed and authorized.\n\nThis requirement does not mandate a remediation network be used, but rather requires that it be secured where used. For example, unauthenticated devices must not be allowed to connect to remediation networks. \n\nMany sites block unauthorized traffic directly using the Forescout. Forescout accepts only endpoints with IP addresses that are in range. Configure Forescout to identify the endpoint. By default, the IP address is used as the endpoint identifier. The system can be configured to capture the following other endpoint unique identifiers if approved for use by the SSP as the identification method: BIOS Serial number and other hardcoded attributes, OS host name, etc."
+              },
+              {
+                "id": "SV-233311r1018659_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233312",
+        "title": "SRG-NET-000015-NAC-000060",
+        "controls": [
+          {
+            "id": "SV-233312r1113801_rule",
+            "title": "If a device requesting access fails Forescout policy assessment, Forescout must communicate with other components and the switch to either terminate the session or isolate the device from the trusted network for remediation. This is required for compliance with C2C Step 3.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233312",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233312r1113801_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000040"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000040"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1113801"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233312r1113801_rule_statement",
+                "name": "statement",
+                "prose": "If a device requesting access fails Forescout policy assessment, Forescout must communicate with other components and the switch to either terminate the session or isolate the device from the trusted network for remediation. This is required for compliance with C2C Step 3."
+              },
+              {
+                "id": "SV-233312r1113801_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure policies according to the SSP to filter assessed devices based on risk. Ensure the policies remediate or segment the at-risk devices according to the SSP.\n\n1. In the Forescout UI, go to the Policy Tab >> Compliance or Control Policies.\n2. Select a policy, then click \u201cEdit\u201d.\n3. Configure the Compliance Policies to include any of the following actions:\n   - Terminate the connection and place the device on a denylist to prevent future connection attempts until action is taken to remove the device from the denylist.\n   - Redirect traffic from the remote endpoint to the automated remediation subnet for connection to the remediation server or segment the endpoint to a remediation VLAN. Use of ACLs or a VLAN solution is acceptable.\n   - Allow the device access to limited network services such as public web servers in the protected DMZ (must be approved by the AO).\n   - Allow the device and user full entry into the protected networks, but flag it for future remediation. With this option, an automated reminder must be used to inform the user of the remediation status."
+              },
+              {
+                "id": "SV-233312r1113801_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Endpoints with identified security flaws and weaknesses endanger the network and other devices on it. Isolation or termination prevents traffic from flowing with traffic from endpoints that have been fully assessed and authorized."
+              },
+              {
+                "id": "SV-233312r1113801_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233313",
+        "title": "SRG-NET-000015-NAC-000070",
+        "controls": [
+          {
+            "id": "SV-233313r1113802_rule",
+            "title": "Forescout must be configured to notify the user before proceeding with remediation of the user's endpoint device when automated remediation is used. This is required for compliance with C2C Step 3.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233313",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233313r1113802_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000050"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000050"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1113802"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233313r1113802_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must be configured to notify the user before proceeding with remediation of the user's endpoint device when automated remediation is used. This is required for compliance with C2C Step 3."
+              },
+              {
+                "id": "SV-233313r1113802_rule_guidance",
+                "name": "guidance",
+                "prose": "Log on to the Forescout UI.\n\n1. Select the \"Policy\" tab. \n2. Select a compliance policy, then click \"Edit\".\n3. In the Sub-Rules section, select a policy and click \"Edit\". \n4. From the Actions section, click Add >> Notify >> and select a notification method."
+              },
+              {
+                "id": "SV-233313r1113802_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Connections that bypass established security controls should be allowed only in cases of administrative need. These procedures and use cases must be approved by the information system security manager (ISSM).\n\nUnless an exception is approved to not require notification of the user, the following configurations must be implemented:\n- This setting may be sent from the assessment server, a central server, or from the remediation server.\n- Verify the user is notified and accepts (e.g., using an accept button) that remediation is needed and is about to begin."
+              },
+              {
+                "id": "SV-233313r1113802_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233314",
+        "title": "SRG-NET-000015-NAC-000080",
+        "controls": [
+          {
+            "id": "SV-233314r919219_rule",
+            "title": "Forescout must be configured so that all client machines are assessed by Forescout with exceptions that are allowed to bypass Forescout based on account or account type, as approved by the information system security manager (ISSM) and documented in the System Security Plan (SSP). This is required for compliance with C2C Step 1.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233314",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233314r919219_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000060"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000060"
+              },
+              {
+                "name": "sv-revision",
+                "value": "919219"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233314r919219_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must be configured so that all client machines are assessed by Forescout with exceptions that are allowed to bypass Forescout based on account or account type, as approved by the information system security manager (ISSM) and documented in the System Security Plan (SSP). This is required for compliance with C2C Step 1."
+              },
+              {
+                "id": "SV-233314r919219_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure an exception group that is defined in the SSP and ensure policy is applied to the group that allows NAC bypass.\n\nCreate a group based on the exemptions in the SSP.\n\n1. In the filters pane under Groups, right-click the group editor. Pick or create an exemption group.\n2. Add a name and then add the scope based on IP range or Subnet, or based on MAC Address.\n3. Click \"OK\" and then click \"OK\" again. Click \"Yes\" for \"Are you sure?\".\n\nCreate a policy that uses the exemption group.\n\n1. In the Views pane, click \"Authentication & Authorization\".\n2. Select an existing policy and edit the Scope to add the Exemptions Group.\n3. In Exceptions type, select \"Group\".\n4. In the Policy screen, select the exceptions group created in the prior step, click \"OK\" several times, and then click \"Apply\"."
+              },
+              {
+                "id": "SV-233314r919219_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The NAC gateway provides the policy enforcement allowing or denying the endpoint to the network. Unauthorized endpoints that bypass this control present a risk to the organization's data and network.\n\nThe focus of this requirement is on identification, documentation, and approval of devices that will bypass the NAC. This is not a requirement that all traffic flow through the NAC."
+              },
+              {
+                "id": "SV-233314r919219_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233317",
+        "title": "SRG-NET-000015-NAC-000110",
+        "controls": [
+          {
+            "id": "SV-233317r811383_rule",
+            "title": "When devices fail the policy assessment, Forescout must create a record with sufficient detail suitable for forwarding to a remediation server for automated remediation or sending to the user for manual remediation. This is required for compliance with C2C Step 3.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233317",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233317r811383_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000090"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000090"
+              },
+              {
+                "name": "sv-revision",
+                "value": "811383"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233317r811383_rule_statement",
+                "name": "statement",
+                "prose": "When devices fail the policy assessment, Forescout must create a record with sufficient detail suitable for forwarding to a remediation server for automated remediation or sending to the user for manual remediation. This is required for compliance with C2C Step 3."
+              },
+              {
+                "id": "SV-233317r811383_rule_guidance",
+                "name": "guidance",
+                "prose": "Log on to the Forescout UI. \n\n1. Within the Policy tab, locate the Compliance policies. \n2. Within the policy Sub-Rule, ensure all policies that indicate remediation have been configured to notify the user and/or network administrator of required action."
+              },
+              {
+                "id": "SV-233317r811383_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Notifications sent to the user and/or network administrator informing them of remediation requirements will ensure that action is taken."
+              },
+              {
+                "id": "SV-233317r811383_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233318",
+        "title": "SRG-NET-000015-NAC-000120",
+        "controls": [
+          {
+            "id": "SV-233318r811385_rule",
+            "title": "Forescout must place client machines on a blacklist or terminate network communications on devices when critical security issues are found that put the network at risk. This is required for compliance with C2C Step 4.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233318",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233318r811385_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000100"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "811385"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233318r811385_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must place client machines on a blacklist or terminate network communications on devices when critical security issues are found that put the network at risk. This is required for compliance with C2C Step 4."
+              },
+              {
+                "id": "SV-233318r811385_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure compliance policies to ensure any device with critical security issues is added to a blacklist, had its network communication blocked, or isolated from trusted network traffic for remediation. \n \n1. From the Policy tab, identify a Compliance policy.\n2. Within the Compliance policy, under Sub-Rule for a device with critical security issues, ensure that an action that Adds Device to Blacklist and/or Disables Device is enabled.\n\nIf Forescout does not place client machines on a blacklist or terminate network communications on devices when critical security issues are found that put the network at risk, this is a finding."
+              },
+              {
+                "id": "SV-233318r811385_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Devices that are found to have critical security issues place the network at risk if they are allowed to continue communications. Policy actions should be in place to terminate or restrict network communication or place the suspicious machine on a blacklist."
+              },
+              {
+                "id": "SV-233318r811385_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233319",
+        "title": "SRG-NET-000015-NAC-000130",
+        "controls": [
+          {
+            "id": "SV-233319r1111892_rule",
+            "title": "Forescout must be configured so client machines do not communicate with other network devices in the DMZ or subnet except as needed to perform an access client assessment or to identify themselves. This is required for compliance with C2C Step 2.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233319",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233319r1111892_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000110"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000110"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1111892"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233319r1111892_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must be configured so client machines do not communicate with other network devices in the DMZ or subnet except as needed to perform an access client assessment or to identify themselves. This is required for compliance with C2C Step 2."
+              },
+              {
+                "id": "SV-233319r1111892_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure ForeScout so devices being assessed for compliance do not communicate with other devices in the DMZ or other network segments. There are different approaches; however, this typically involves isolating noncompliant devices into a quarantine or assessment zone until they meet compliance requirements.\n\nThe following are examples.\n\nCreate a Quarantine VLAN:\n1. Set up a dedicated VLAN (e.g., \"Quarantine_VLAN\") for devices under assessment.\n2. This VLAN should have restricted access, blocking communication to other devices or production network segments.\n3.  Allow traffic only to specific remediation servers (e.g., patch servers, ForeScout appliance for assessment).\n4. Configure the switches to support dynamic VLAN assignment via CounterACT.\n5. Enforce Network Isolation using a VLAN:\n- Select the \"Quarantine_VLAN\".\n- CounterACT will instruct the switch (via SNMP or CLI) to move the device to this VLAN upon detection.\n\nOr\n\nACL Enforcement Method:\n1.  If VLANs are not feasible, use the **Apply ACL** action.\n2.  Configure an ACL on the switches or routers to block all traffic from the device\u2019s IP or MAC to other network devices, allowing only traffic to remediation servers (e.g., IP of patch server, DNS, or CounterACT appliance).\n - Example ACL (syntax depends on the switch/router):\n       ```\n       deny ip <device_IP> 0.0.0.0 <network_range> <network_mask>\n       permit ip <device_IP> 0.0.0.0 <remediation_server_IP> 0.0.0.0\n       permit ip <device_IP> 0.0.0.0 <forescout_IP> 0.0.0.0\n       deny ip any any\n       ```\n Or \n\nVirtual Firewall Method:\n1. Use CounterACT\u2019s Virtual Firewall action to block all traffic from the device except to specific IPs/ports (e.g., remediation servers, CounterACT).\n2. Configure rules in the action settings to allow only necessary outbound traffic."
+              },
+              {
+                "id": "SV-233319r1111892_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Devices not compliant with DOD secure configuration policies are vulnerable to attack. While endpoints are undergoing NAC authorization assessment, they must communicate only with the NAC. These devices should not communicate with other hosts in the DMZ or other network segments."
+              },
+              {
+                "id": "SV-233319r1111892_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233320",
+        "title": "SRG-NET-000321-NAC-001210",
+        "controls": [
+          {
+            "id": "SV-233320r1001246_rule",
+            "title": "Forescout must enforce the revocation of endpoint access authorizations when devices are removed from an authorization group. This is required for compliance with C2C Step 4.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233320",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233320r1001246_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000120"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000120"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1001246"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233320r1001246_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must enforce the revocation of endpoint access authorizations when devices are removed from an authorization group. This is required for compliance with C2C Step 4."
+              },
+              {
+                "id": "SV-233320r1001246_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure the authorization policy to take a control action on any devices that have not met authorization requirement or are no longer authorized.\n\n1. Log on to the Forescout UI.\n2. From the Policy tab, check that the authorization policy has a Block Action enabled on any devices that have not met or are removed from the authorized group."
+              },
+              {
+                "id": "SV-233320r1001246_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Ensuring the conditions that are configured in policy have proper time limits set to reflect changes will allow for proper access. This will help to validate that authorized individuals have proper access."
+              },
+              {
+                "id": "SV-233320r1001246_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233321",
+        "title": "SRG-NET-000322-NAC-001220",
+        "controls": [
+          {
+            "id": "SV-233321r1001247_rule",
+            "title": "Forescout must enforce the revocation of endpoint access authorizations at the next compliance assessment interval based on changes to the compliance assessment security policy. This is required for compliance with C2C Step 4.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233321",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233321r1001247_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000130"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000130"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1001247"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233321r1001247_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must enforce the revocation of endpoint access authorizations at the next compliance assessment interval based on changes to the compliance assessment security policy. This is required for compliance with C2C Step 4."
+              },
+              {
+                "id": "SV-233321r1001247_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure the authorization policy to configured to perform a control action on any devices that have not met authorization requirement or are no longer authorized.\n\n1. Log on to the Forescout UI.\n2. From the Policy tab, check that the authorization policy has a Block Action enabled on any devices that have not met or are removed from the authorized group."
+              },
+              {
+                "id": "SV-233321r1001247_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "This requirement gives the option to configure for automated remediation and/or manual remediation. A detailed record must be passed to the remediation server for action. Alternatively, the details can be passed in a notice to the user for action. The device status will be updated on the network access server/authentication server so that further access attempts are denied. The NAC must have policy assessment mechanisms with granular control to distinguish between access restrictions based on the criticality of the software or setting failure."
+              },
+              {
+                "id": "SV-233321r1001247_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233322",
+        "title": "SRG-NET-000322-NAC-001230",
+        "controls": [
+          {
+            "id": "SV-233322r1001248_rule",
+            "title": "Forescout must deny or restrict access for endpoints that fail critical endpoint security checks. This is required for compliance with C2C Step 4.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233322",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233322r1001248_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000140"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000140"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1001248"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233322r1001248_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must deny or restrict access for endpoints that fail critical endpoint security checks. This is required for compliance with C2C Step 4."
+              },
+              {
+                "id": "SV-233322r1001248_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure any pre-connect policies to ensure endpoints that fail the baseline security configuration requirements are set to either restrict access or isolate the endpoint.\n\n1. Log on to the Forescout UI.\n2. From the Policy tab, check any Pre-Connect policies to ensure devices that fail the baseline security configuration requirements are set to either restrict access to production network, are granted access to only remediation network, or are granted to a limited access network."
+              },
+              {
+                "id": "SV-233322r1001248_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Devices that do not meet minimum-security configuration requirements pose a risk to the DOD network and information assets.\n\nEndpoint devices must be disconnected or given limited access as designated by the approval authority and system owner if the device fails the authentication or security assessment. The user will be presented with a limited portal, which does not include access options for sensitive resources. Required security checks must implement DOD policy requirements."
+              },
+              {
+                "id": "SV-233322r1001248_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233324",
+        "title": "SRG-NET-000334-NAC-001350",
+        "controls": [
+          {
+            "id": "SV-233324r1113796_rule",
+            "title": "Forescout must off-load log records onto a different system. This is required for compliance with C2C Step 1.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233324",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233324r1113796_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000160"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000160"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1113796"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001851",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Transfer audit logs per organization-defined frequency to a different system, system component, or media than the system or system component conducting the logging."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000172",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate audit records for the event types defined in AU-2 c that include the audit record content defined in AU-3."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233324r1113796_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must off-load log records onto a different system. This is required for compliance with C2C Step 1."
+              },
+              {
+                "id": "SV-233324r1113796_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure Syslog server with TCP, as well as configure Syslog to alert if the communication between the Syslog server and the Forescout appliance loses connectivity.\n\n1. Go to Tools >> Options >> Syslog.\n2. Click \"Add/Edit\".\n3. Configure the Syslog:\n- Navigate to Syslog Server IP address >> Server Port >> Server Protocol set to TCP.\n- Check the Use TLS setting.\n- Configure the Identity, Facility, and Severity.\n4. Click \"Ok\".\n5. Click \"Apply\".\n\nOr\n\nConfigure external module (e.g., Splunk) per instructions to send appliance logs from each Forescout appliance to the separate destination."
+              },
+              {
+                "id": "SV-233324r1113796_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Having a separate, secure location for log records is essential to the preservation of logs as required by policy.\n\nSatisfies: SRG-NET-000492-NAC-002110, SRG-NET-000334-NAC-001350"
+              },
+              {
+                "id": "SV-233324r1113796_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233325",
+        "title": "SRG-NET-000335-NAC-001360",
+        "controls": [
+          {
+            "id": "SV-233325r1113798_rule",
+            "title": "Forescout must generate a critical alert to be sent to the Information System Security Officer (ISSO) and Systems Administrator (SA) (at a minimum) in the event of an audit processing failure. This is required for compliance with C2C Step 1.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233325",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233325r1113798_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000170"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000170"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1113798"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001858",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide an alert in an organization-defined real-time-period to organization-defined personnel, roles, and/or locations when organization-defined audit failure events requiring real-time alerts occur."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-5 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-5 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233325r1113798_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must generate a critical alert to be sent to the Information System Security Officer (ISSO) and Systems Administrator (SA) (at a minimum) in the event of an audit processing failure. This is required for compliance with C2C Step 1."
+              },
+              {
+                "id": "SV-233325r1113798_rule_guidance",
+                "name": "guidance",
+                "prose": "Log on to the Forescout UI.\n\n1. Locate the audit process policies as identified by the site representative.\n2. Configure a policy for audit failure to include the notification of security personnel. This could also include sending a balloon message, notification, or email as follows.\na. Navigate to Options >> General >> Mail and DNS.\nb. Configure the appropriate Operator Email and mail relay information to ensure alerts and notifications are being sent to the appropriate people.\nc. Additionally, ensure that any policies that need notification actions have one of the following actions configured:\n - Send Email.\n - Send Email to User.\n - Send Balloon Notification.\n - HTTP Notification.\n - Splunk: Send Update from CounterACT."
+              },
+              {
+                "id": "SV-233325r1113798_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Ensuring that a security solution alerts in the event of misconfiguration or error is imperative to ensuring that proper auditing is being conducted. Having the ability to immediately notify an administrator when this auditing fails allows for a quick response and real-time remediation."
+              },
+              {
+                "id": "SV-233325r1113798_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233326",
+        "title": "SRG-NET-000343-NAC-001460",
+        "controls": [
+          {
+            "id": "SV-233326r856512_rule",
+            "title": "Forescout must authenticate all endpoint devices before establishing a connection and proceeding with posture assessment. This is required for compliance with C2C Step 4.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233326",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233326r856512_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000180"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000180"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856512"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001958",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Authenticate organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233326r856512_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must authenticate all endpoint devices before establishing a connection and proceeding with posture assessment. This is required for compliance with C2C Step 4."
+              },
+              {
+                "id": "SV-233326r856512_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure the Appliance IP Assignments list with all IP addresses identified within the SSP. \n\n1. Log on to the Forescout UI.\n2. Select Tools >> Option >> Appliance >> IP Assignment.\n3. Configure IP addresses associated with the SSP and label within the IP Assignments list, and then select \"Apply\"."
+              },
+              {
+                "id": "SV-233326r856512_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Authenticating all devices as they connect to the network is the baseline of a good security solution. This is especially important prior to posture assessment to ensure authorized devices are online and have the proper posture prior to accessing the production network.\n\nDevice authentication is a solution enabling an organization to manage devices. It is an additional layer of authentication ensuring that only specific preauthorized devices can access the system. Authentication methods for NAC include, but are not limited to, Kerberos, MAC, or other protocols.\n\nThe IP Assignment Forescout configuration ensures any IP addresses that should be managed by the configured network will go through the policies within Forescout. Forescout policy structure is applied in a \"waterfall\" like way that assures all IP addresses start with the top most policy and flow down the policy tree. This policy flow ensures that all endpoints are properly identified, classified, and authenticated prior to the posture assessment."
+              },
+              {
+                "id": "SV-233326r856512_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233327",
+        "title": "SRG-NET-000343-NAC-001470",
+        "controls": [
+          {
+            "id": "SV-233327r1113800_rule",
+            "title": "Forescout must be configured to apply dynamic ACLs that restrict the use of ports when non-entity endpoints are connected using MAC Authentication Bypass (MAB). This is required for compliance with C2C Step 4.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233327",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233327r1113800_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000190"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000190"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1113800"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001958",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Authenticate organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233327r1113800_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must be configured to apply dynamic ACLs that restrict the use of ports when non-entity endpoints are connected using MAC Authentication Bypass (MAB). This is required for compliance with C2C Step 4."
+              },
+              {
+                "id": "SV-233327r1113800_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure the policy which identifies nonentity endpoints to complete a control action when a device is added to the MAR.\n\n1. Log on to Forescout UI.\n2. In the Policy tab, locate the Authentication and Authorization policy set.\n3. Select a policy that identifies nonentity endpoints. Highlight the policy, then select \"Edit\".\n4. From the Sub-Rules section, ensure that when a device is added to the MAR, the policy also applies one of the following actions:\n-Access Port ACL.\n-Endpoint Address ACL.\n-WLAN Role.\n-VLAN Change."
+              },
+              {
+                "id": "SV-233327r1113800_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "MAB is only one way of connecting non-entity endpoints, and can be defeated by spoofing the MAC address of an assumed authorized device. By adding the device to the MAR, the device can then gain access to the network.\n\nNPE devices that can support PKI or an allowed authentication type must use PKI. MAB may be used for NPE that cannot support an approved device authentication. Non-entity endpoints include Internet of Things (IoT) devices, VoIP phone, and printer."
+              },
+              {
+                "id": "SV-233327r1113800_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233328",
+        "title": "SRG-NET-000273-NAC-000970",
+        "controls": [
+          {
+            "id": "SV-233328r811406_rule",
+            "title": "Forescout must reveal error messages only to the Information System Security Officer (ISSO), Information System Security Manager (ISSM), and System Administrator (SA). This is required for compliance with C2C Step 1.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233328",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233328r811406_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000210"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000210"
+              },
+              {
+                "name": "sv-revision",
+                "value": "811406"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001312",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate error messages that provide information necessary for corrective actions without revealing information that could be exploited."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-11 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-11.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-11 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233328r811406_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must reveal error messages only to the Information System Security Officer (ISSO), Information System Security Manager (ISSM), and System Administrator (SA). This is required for compliance with C2C Step 1."
+              },
+              {
+                "id": "SV-233328r811406_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure the individuals authorized by the SSP to receive error messages.\n\n1. Log on to the Forescout UI.\n2. Within the highlighted policy, under the Actions section, select \"Add\" or \"Edit\".\n3. Find the Notify section and select from any one of the below options for notifying authorized (IAW SSP) personnel:\n- HTTP Notification\n- Send Email\n- Send Notification"
+              },
+              {
+                "id": "SV-233328r811406_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Ensuring the proper amount of information is provided to the Security Management staff is imperative to ensure role based access control. Only those individuals that need to know about a security error of an application need to be notified of the error."
+              },
+              {
+                "id": "SV-233328r811406_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233329",
+        "title": "SRG-NET-000088-NAC-000440",
+        "controls": [
+          {
+            "id": "SV-233329r811408_rule",
+            "title": "Forescout must configure TCP for the syslog protocol to allow for detection by the central event server if communications is lost. This is required for compliance with C2C Step 1.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233329",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233329r811408_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000230"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000230"
+              },
+              {
+                "name": "sv-revision",
+                "value": "811408"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000139",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Alert organization-defined personnel or roles within an organization-defined time period in the event of an audit logging process failure."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-5 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-5.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-5 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-5 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233329r811408_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must configure TCP for the syslog protocol to allow for detection by the central event server if communications is lost. This is required for compliance with C2C Step 1."
+              },
+              {
+                "id": "SV-233329r811408_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure Syslog server with TCP, as well as configure Syslog to alert if the communication between the Syslog server and the Forescout appliance loses connectivity.\n\n1. Go to Tools >> Options >> Syslog.\n2. Click Add/Edit.\n3. Configure the Syslog:\n- Syslog Server IP address\n- Server Port\n- Server Protocol set to TCP\n- Check the Use TLS setting\n- Configure the Identity, Facility, and Severity.\n4. Click \"OK\".\n5. Click \"Apply\"."
+              },
+              {
+                "id": "SV-233329r811408_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "It is critical for the appropriate personnel to be aware if a system is at risk of failing to process audit logs as required. Without this notification, the security personnel may be unaware of an impending failure of the audit capability and system operation may be adversely affected.\n\nNote that this configuration allows for the central log server to be configured with a critical alert to be sent to the System Security Officer (ISSO) and Systems Administrator (SA) (at a minimum) if it is unable to communicate the Forescout or stops receiving log updates. The alert requirement is in the Syslog STIG."
+              },
+              {
+                "id": "SV-233329r811408_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233330",
+        "title": "SRG-NET-000343-NAC-001480",
+        "controls": [
+          {
+            "id": "SV-233330r1113804_rule",
+            "title": "Forescout switch module must only allow a maximum of one registered MAC address per access port. This is required for compliance with C2C Step 4.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233330",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233330r1113804_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000240"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000240"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1113804"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001958",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Authenticate organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233330r1113804_rule_statement",
+                "name": "statement",
+                "prose": "Forescout switch module must only allow a maximum of one registered MAC address per access port. This is required for compliance with C2C Step 4."
+              },
+              {
+                "id": "SV-233330r1113804_rule_guidance",
+                "name": "guidance",
+                "prose": "Forescout has the ability to configure the amount of maximum connected endpoints per port. Allowing only one MAC address per port will break VOIP. Function is handled by the switch. \n\n1. Log on to the Forescout UI.\n2. Go to Tools >> Options >> Switch >> Permissions >> Advanced.\n3. Set the Maximum connected endpoints per port to one."
+              },
+              {
+                "id": "SV-233330r1113804_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Limiting the number of MAC addresses that can access from the same switch access port can help prevent a CAM table overflow attack. This type of attack lets an attacker exploit the hardware and memory limitations of a switch. If there are enough entries stored in a CAM table before the expiration of other entries, no new entries can be accepted into the CAM table. An attacker will be able to flood the switch with mostly invalid MAC addresses until the CAM table\u2019s resources have been depleted. When there are no more resources, the switch has no choice but to flood all ports within the VLAN with all incoming traffic. This happens because the switch cannot find the switch port number for a corresponding MAC address within the CAM table, allowing the switch to become a hub and traffic to be monitored.\n\nSome technologies are exempt from requiring a single MAC address per access port; however, restrictions still apply. VoIP or VTC endpoints may provide a PC port so a PC can be connected. Each of the devices will need to be statically assigned to each access port.\n\nHot-desking is where several people are assigned to work at the same desk at different times, each user with their own PC. In this case, a different MAC address needs to be permitted for each PC that is connecting to the LAN drop in the workspace. Additionally, this workspace could contain a single phone (and possibly desktop VTC endpoint) used by all assignees, and the PC port on it might be the connection for their laptop. In this case, it is best not to use sticky port security but to use a static mapping of authorized devices.\n\nNote: For Forescout, setting the \"Maximum connected endpoints per port\" to \"1\" does not prevent multiple MAC addresses from being connected. This setting will cause Forescout to ignore any switch port that has more than \"1\" MAC address connected. Enable this option to detect endpoints that are connected to the trunk ports of a managed switch. The plugin resolves and displays in the Console the switch properties of these connected endpoints, including the VLAN-related properties Switch Port VLAN, Switch Port VLAN Name, and Switch Port VLAN Change. To use this option, add the uplink port names of the managed switch in the \"Don\u2019t learn on port names\" field. The plugin ignores learn events for those uplink ports. If needed for use of this option, modify the \"Maximum connected endpoints per port\" field to increase its value to allow plugin detection of multiple endpoints concurrently connected to the same switch port. The field\u2019s default value is 10 (endpoints). The updated value must reflect the maximum number of endpoints that can be concurrently connected to the same port. This setting may hinder visibility for larger switches."
+              },
+              {
+                "id": "SV-233330r1113804_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233331",
+        "title": "SRG-NET-000517-NAC-002370",
+        "controls": [
+          {
+            "id": "SV-233331r856515_rule",
+            "title": "For TLS connections, Forescout must automatically terminate the session when a client certificate is requested and the client does not have a suitable certificate. This is required for compliance with C2C Step 1.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233331",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233331r856515_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000260"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000260"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856515"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002361",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically terminate a user session after organization-defined conditions or trigger events requiring session disconnect."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-12"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-12"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233331r856515_rule_statement",
+                "name": "statement",
+                "prose": "For TLS connections, Forescout must automatically terminate the session when a client certificate is requested and the client does not have a suitable certificate. This is required for compliance with C2C Step 1."
+              },
+              {
+                "id": "SV-233331r856515_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure the certificate options to require the Re-verify TLS Sessions is set to every 1 day, or in accordance with the SSP.\n\n1. Log on to the Forescout UI.\n2. Select Tools >> Options >> Certificates.\n3. Check that in the Ongoing TLS Sessions section, view the Re-verify TLS Sessions.\n4. Change the Re-verify TLS Sessions to Every 1 Day or in accordance with the site's SSP, then click \"Apply\".\n5. Next, select the HPS Inspection Engine >> SecureConnector.\n6. In the Client-Server Connection, ensure the Minimum Supported TLS Version is set to TLS version 1.2."
+              },
+              {
+                "id": "SV-233331r856515_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "In accordance with NIST SP 800-52, the TLS server must terminate the connection with a fatal \u201chandshake failure\u201d alert when a client certificate is requested and the client does not have a suitable certificate.\n\nDuring the TLS handshake negotiation, a \"client certificate request\" that includes a list of the types of certificates supported and the Distinguished Names of acceptable Certification Authorities (CAs) is sent to the client.\n\nTLS handshake enables the SSL or TLS client and server to establish the secret keys with which they communicate."
+              },
+              {
+                "id": "SV-233331r856515_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233332",
+        "title": "SRG-NET-000062-NAC-000340",
+        "controls": [
+          {
+            "id": "SV-233332r811414_rule",
+            "title": "Forescout must use TLS 1.2, at a minimum, to protect the confidentiality of information passed between the endpoint agent and Forescout for the purposes of client posture assessment. This is required for compliance with C2C Step 1.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233332",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233332r811414_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000270"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000270"
+              },
+              {
+                "name": "sv-revision",
+                "value": "811414"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000068",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the confidentiality of remote access sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233332r811414_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must use TLS 1.2, at a minimum, to protect the confidentiality of information passed between the endpoint agent and Forescout for the purposes of client posture assessment. This is required for compliance with C2C Step 1."
+              },
+              {
+                "id": "SV-233332r811414_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SecureConnector to ensure the minimum supported TLS version is set to TLS 1.2.\n\nLog on to the Forescout UI.\n\n1. Select Tools >> Options >> Certificates.\n2. Check the Ongoing TLS Sessions section, view the Re-verify TLS Sessions.\n3. Change the Re-verify TLS Sessions to Every 1 Day or in accordance with the site's SSP, then click \"Apply\".\n4. Next, select the HPS Inspection Engine >> SecureConnector.\n5. In the Client-Server Connection, ensure the Minimum Supported TLS Version is set to TLS version 1.2."
+              },
+              {
+                "id": "SV-233332r811414_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Using older unauthorized versions or incorrectly configuring protocol negotiation makes the gateway vulnerable to known and unknown attacks that exploit vulnerabilities in this protocol."
+              },
+              {
+                "id": "SV-233332r811414_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233334",
+        "title": "SRG-NET-000320-NAC-001200",
+        "controls": [
+          {
+            "id": "SV-233334r1001245_rule",
+            "title": "Communications between Forescout endpoint agent and the switch must transmit access authorization information via a protected path using a cryptographic mechanism. This is required for compliance with C2C Step 1.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233334",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233334r1001245_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000290"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000290"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1001245"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000068",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the confidentiality of remote access sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233334r1001245_rule_statement",
+                "name": "statement",
+                "prose": "Communications between Forescout endpoint agent and the switch must transmit access authorization information via a protected path using a cryptographic mechanism. This is required for compliance with C2C Step 1."
+              },
+              {
+                "id": "SV-233334r1001245_rule_guidance",
+                "name": "guidance",
+                "prose": "Log on to the Forescout UI.\n\n1. Select Tools >> Option >> HPS Inspection Engine >> SecureConnector.\n2. In the Client-Server Connection, check the Minimum Supported TLS Version is set to TLS version 1.2."
+              },
+              {
+                "id": "SV-233334r1001245_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Forescout solution assesses the compliance posture of each client and returns an access decision based on configured security policy. The communications associated with this traffic must be protected from alteration and spoofing attacks so unauthorized devices do not gain access to the network."
+              },
+              {
+                "id": "SV-233334r1001245_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233337",
+        "title": "SRG-NET-000512-NAC-002310",
+        "controls": [
+          {
+            "id": "SV-233337r811425_rule",
+            "title": "Forescout must perform continuous detection and tracking of endpoint devices attached to the network. This is required for compliance with C2C Step 1.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233337",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233337r811425_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000440"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000440"
+              },
+              {
+                "name": "sv-revision",
+                "value": "811425"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233337r811425_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must perform continuous detection and tracking of endpoint devices attached to the network. This is required for compliance with C2C Step 1."
+              },
+              {
+                "id": "SV-233337r811425_rule_guidance",
+                "name": "guidance",
+                "prose": "Log on to the Forescout UI.\n\n1. Go to Tools >> Options >> Appliance >> IP Assignment.\n2. Enter all IP addresses to be managed in the IP Assignment to enable the continuous monitoring capabilities of Forescout."
+              },
+              {
+                "id": "SV-233337r811425_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Continuous scanning capabilities on the NAC provide visibility of devices that are connected to the switch ports. The NAC continuously scans networks and monitors the activity of managed and unmanaged devices, which can be personally owned or rogue endpoints. Because many of today's small devices do not include agents, an agentless discovery is often combined to cover more types of equipment."
+              },
+              {
+                "id": "SV-233337r811425_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233338",
+        "title": "SRG-NET-000148-NAC-000620",
+        "controls": [
+          {
+            "id": "SV-233338r811427_rule",
+            "title": "Forescout must deny network connection for endpoints that cannot be authenticated using an approved method. This is required for compliance with C2C Step 4.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233338",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233338r811427_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000450"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000450"
+              },
+              {
+                "name": "sv-revision",
+                "value": "811427"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000778",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Uniquely identify organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-3.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233338r811427_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must deny network connection for endpoints that cannot be authenticated using an approved method. This is required for compliance with C2C Step 4."
+              },
+              {
+                "id": "SV-233338r811427_rule_guidance",
+                "name": "guidance",
+                "prose": "Use the Forescout Administrator UI to configure a policy to deny network access using a control action for any endpoints that cannot be authenticated using an approved method as defined in the SSP.\n\n1. Log on to Forescout UI.\n2. From the Policy tab, select the Authentication and Authorization policy.\n3. Find the 802.1x Authorization policy and click Edit.\n4. From the Sub-Rules section, check that all of the options for authentication are selected including the following:\n-Machine Authenticated\n-User+Machine Authenticated\n-User+Managed Machine \n-User+NotMachine Authenticated\n\nIf these are all configured, check that the final step is not authorized by one of the previous steps, and block traffic in accordance with the SSP by selecting \"Add>\".\n\n1. Give the policy a name like \"Deny Access\".\n2. In the Condition box, click \"Add\" and select \"802.1x RADIUS Authentication State\".\n3. Check the box labeled \"RADIUS-Rejected\", and then click \"OK\".\n4. In the Actions box, click \"Add\" and select a block action in accordance with the SSP."
+              },
+              {
+                "id": "SV-233338r811427_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without identifying devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity. Identification failure does not need to result in connection termination or preclude compliance assessment. This is particularly true for unmanaged systems or when the NAC is performing network discovery."
+              },
+              {
+                "id": "SV-233338r811427_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233339",
+        "title": "SRG-NET-000151-NAC-000630",
+        "controls": [
+          {
+            "id": "SV-233339r971529_rule",
+            "title": "Forescout must use a bidirectional authentication mechanism configured with a FIPS-validated Advanced Encryption Standard (AES) cipher block algorithm to authenticate with the endpoint device. This is required for compliance with C2C Step 1.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233339",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233339r971529_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000460"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000460"
+              },
+              {
+                "name": "sv-revision",
+                "value": "971529"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001967",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Authenticate organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection using bidirectional authentication that is cryptographically based."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233339r971529_rule_statement",
+                "name": "statement",
+                "prose": "Forescout must use a bidirectional authentication mechanism configured with a FIPS-validated Advanced Encryption Standard (AES) cipher block algorithm to authenticate with the endpoint device. This is required for compliance with C2C Step 1."
+              },
+              {
+                "id": "SV-233339r971529_rule_guidance",
+                "name": "guidance",
+                "prose": "To enable FIPS mode, log in to the CLI account a use the \"fstool fips\" command.\n\nNote that use of FIPS mode is not mandatory in DoD. However, it is the primary method for mitigation of this requirement and ensuring FIPS compliance.\n\nLog on using the CLIAdmin credentials established upon initial configuration.\n\nTo enable FIPS mode, type \"fstool fips\". A prompt alerting the user that FIPS 140-2 will be enabled will be displayed. Type \"Yes\" for FIPS to accept this prompt.\n\nNote: Use of FIPS mode is not mandatory in DoD. However, it is the primary method for mitigation of this requirement and ensuring FIPS compliance."
+              },
+              {
+                "id": "SV-233339r971529_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Bidirectional authentication provides stronger safeguards to validate the identity of other devices for connections that are of greater risk. Currently, DoD requires the use of AES for bidirectional authentication since it is the only FIPS-validated AES cipher block algorithm.\n\nBecause of the challenges of applying this requirement on a large scale, organizations are encouraged to apply the requirement only to those limited number (and type) of devices that truly need to support this capability."
+              },
+              {
+                "id": "SV-233339r971529_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-233340",
+        "title": "SRG-NET-000580-NAC-002530",
+        "controls": [
+          {
+            "id": "SV-233340r1018668_rule",
+            "title": "When connecting with endpoints, Forescout must be configured to use FIPS 140-2/3 validated algorithms for encryption processes and communications. This is required for compliance with C2C Step 1.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-233340",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-233340r1018668_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "FORE-NC-000470"
+              },
+              {
+                "name": "label",
+                "value": "FORE-NC-000470"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1018668"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000185",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, validate certificates by constructing and verifying a certification path to an accepted trust anchor including checking certificate status information."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000068",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the confidentiality of remote access sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-233340r1018668_rule_statement",
+                "name": "statement",
+                "prose": "When connecting with endpoints, Forescout must be configured to use FIPS 140-2/3 validated algorithms for encryption processes and communications. This is required for compliance with C2C Step 1."
+              },
+              {
+                "id": "SV-233340r1018668_rule_guidance",
+                "name": "guidance",
+                "prose": "To enable FIPS mode log into the CLI account a use the \"fstool fips\" command. Use the Forescout Administrator UI to set SecureConnector to use TLS version 1.2 or higher for Client-Server Connections. \n\nTo configure FIPS Mode:\n1. Log on using the CLIAdmin credentials established upon initial configuration.\n2. To enable FIPS mode, type \"fstool fips\". A prompt will be generated alerting the user FIPS 140-2 will be enabled. Type \"Yes\" for FIPS to accept this prompt.\n\nTo configure TLS:\n1. Log on to the Forescout management tool.\n2. Select Tools >> Option >> HPS Inspection Engine >> SecureConnector.\n3. In the Client-Server Connection, set the Minimum Supported TLS Version to TLS version 1.3."
+              },
+              {
+                "id": "SV-233340r1018668_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A certificate's certification path is the path from the end entity certificate to a trusted root certification authority (CA). Certification path validation is necessary for a relying party to make an informed decision regarding acceptance of an end entity certificate.\n\nNAC must be configured for only Certificate Signing. The NAC must interact with TLS-compliant lookups and verification in exchange with endpoints in Extensible Authentication Protocol (EAP) transactions where TLS is supported within the EAP type.\n\nCertification path validation includes checks such as certificate issuer trust, time validity, and revocation status for each certificate in the certification path. Revocation status information for CA and subject certificates in a certification path is commonly provided via certificate revocation lists (CRLs) or online certificate status protocol (OCSP) responses."
+              },
+              {
+                "id": "SV-233340r1018668_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "catalog": {
+    "uuid": "c0e5c6f8-9328-4f62-9a2a-3e7c7f3c9b11",
+    "metadata": {
+      "title": "Microsoft Intune MDM Service Desktop & Mobile Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-11-25T14:21:14Z",
+      "version": "2.4.0",
+      "oscal-version": "1.1.0",
+      "links": []
+    },
+    "groups": [
+      {
+        "id": "V-273867",
+        "title": "SRG-APP-000003-UEM-000003",
+        "controls": [
+          {
+            "id": "SV-273867r1101448_rule",
+            "title": "Microsoft Intune service must initiate a session lock after a 15-minute period of inactivity.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-273867",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-273867r1101448_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "MSIN-25-000030"
+              },
+              {
+                "name": "label",
+                "value": "MSIN-25-000030"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1101448"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000057",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent further access to the system by initiating a device lock after organization-defined time period of inactivity; and/or requiring the user to initiate a device lock before leaving the system unattended."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002361",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically terminate a user session after organization-defined conditions or trigger events requiring session disconnect."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-12"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-12"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-273867r1101448_rule_statement",
+                "name": "statement",
+                "prose": "Microsoft Intune service must initiate a session lock after a 15-minute period of inactivity."
+              },
+              {
+                "id": "SV-273867r1101448_rule_guidance",
+                "name": "guidance",
+                "prose": "Sign in to portal.office365.com (or .us if the user is a GCCH or DOD tenant).\n\n1. Navigate to Admin >> Settings >> Org Settings >> Security and Privacy (tab on top of page) >> Idle Session Timeout.\n2. Select the check box to enable \"Turn on to set the period of inactivity\".\n3. Select custom option, then enter \"15\".\n4. Select \"Save\"."
+              },
+              {
+                "id": "SV-273867r1101448_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their application session prior to vacating the vicinity, applications need to be able to identify when a user's application session has idled and take action to initiate the session lock.\n\nThe session lock is implemented at the point where session activity can be determined and/or controlled. This is typically at the operating system level and results in a system lock but may be at the application level where the application interface window is secured instead.\n\nSatisfies: SRG-APP-000003-UEM-000003, SRG-APP-000295-UEM-000169"
+              },
+              {
+                "id": "SV-273867r1101448_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-273868",
+        "title": "SRG-APP-000125-UEM-000074",
+        "controls": [
+          {
+            "id": "SV-273868r1101588_rule",
+            "title": "Microsoft Intune service must be configured to transfer Intune logs to another server for storage, analysis, and reporting at least every seven days.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-273868",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-273868r1101588_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "MSIN-25-000370"
+              },
+              {
+                "name": "label",
+                "value": "MSIN-25-000370"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1101588"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001348",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Store audit records on an organization-defined frequency in a repository that is part of a physically different system or system component than the system or component being audited."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001294",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Alert organization-defined personnel or roles of failed security verification tests."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001851",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Transfer audit logs per organization-defined frequency to a different system, system component, or media than the system or system component conducting the logging."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-4 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-4 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-273868r1101588_rule_statement",
+                "name": "statement",
+                "prose": "Microsoft Intune service must be configured to transfer Intune logs to another server for storage, analysis, and reporting at least every seven days."
+              },
+              {
+                "id": "SV-273868r1101588_rule_guidance",
+                "name": "guidance",
+                "prose": "There are many methods for off-loading Intune logs, including downloading to a third-party log management server and sending logs to Azure Storage, Event Hubs, or Log Analytics, which are all part of Diagnostics Settings in Intune. Procedures will vary depending on which log management process is used at the site.\n\nIf the site is sending logs to Azure Monitor, follow the setup procedures found here: https://learn.microsoft.com/en-us/mem/intune-service/fundamentals/review-logs-using-azure-monitor \n\n1. Sign in to the Microsoft Intune admin center.\n2. Select Reports >> Diagnostics settings. The first time opening it, turn it on. Otherwise, add a setting.\nIf the Azure subscription is not shown, navigate to the top right corner, select the signed in account, and choose \"Switch directory\". Enter the Azure subscription account, if necessary.\n3. Enter the following properties:\n- Name: Enter a name for the diagnostic settings. This setting includes all the properties entered. For example, enter Route audit logs to storage account.\n- Archive to a storage account: Saves the log data to an Azure Storage account. To save or archive the data, choose this option, then select \"Configure\". Choose an existing storage account from the list, then click \"OK\".\n- Stream to an event hub: Streams the logs to Azure Event Hubs. To have analytics on log data using SIEM tools such as Splunk and QRadar, choose this option, then select \"Configure\". Choose an existing Event Hubs namespace and policy from the list, then click \"OK\".\n- Send to Log Analytics: Sends the data to Azure Log Analytics. To use visualizations, monitoring and alerting for logs, choose this option, then select \"Configure\". Create a new workspace and enter the workspace details or choose an existing workspace from the list, then click \"OK\".\n- LOG > AuditLogs: Choose this option to send the Intune audit logs to the storage account, Event Hubs, or Log Analytics. The audit logs show the history of every task that generates a change in Intune, including who did it and when. For more information, go to IntuneAuditLogs.\nNote: If using a storage account, enter how many days to keep the data (retention). To keep data forever, set Retention (days) to \"0\".\n- LOG > OperationalLogs: Operational logs show the success or failure of users and devices that enroll in Intune, and details on noncompliant devices. Choose this option to send the enrollment logs to the storage account, Event Hubs, or Log Analytics. For more information, go to IntuneOperationalLogs.\nTo use a storage account, enter how many days to keep the data (retention). To keep data forever, set Retention (days) to \"0\".\n- LOG > DeviceComplianceOrg: Device compliance organizational logs show the organizational report for Device Compliance in Intune and details of noncompliant devices. Choose this option to send the compliance logs to the storage account, Event Hubs, or Log Analytics. For more information, go to IntuneDeviceComplianceOrg.\nTo use a storage account, enter how many days to keep the data (retention). To keep data forever, set Retention (days) to \"0\".\n- LOG > IntuneDevices: The Intune Device log shows device inventory and status information for Intune enrolled and managed devices. Choose this option to send the IntuneDevices logs to your storage account, Event Hubs, or Log Analytics. For more reference information, go to IntuneDevices.\nNote: To use a storage account, enter how many days to keep the data (retention). To keep data forever, set Retention (days) to \"0\".\n4. Save the changes. The setting is shown in the list. Once the settings are created, settings can be changed by selecting Edit setting >> Save."
+              },
+              {
+                "id": "SV-273868r1101588_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Note: UEM server logs include logs of UEM events and logs transferred to Microsoft Intune service by UEM agents of managed devices.\n\nProtection of log data includes ensuring log data is not accidentally lost or deleted. Backing up audit records to a different system or onto separate media than the system being audited on an organizationally defined frequency helps ensure, in the event of a catastrophic system failure, the audit records will be retained. \n\nThis helps to ensure a compromise of the information system being audited does not also result in a compromise of the audit records.\n\nThis requirement only applies to applications that have a native backup capability for audit records. Operating system backup requirements cover applications that do not provide native backup functions.\n\nSatisfies: SRG-APP-000125-UEM-000074, SRG-APP-000275-UEM-000157, SRG-APP-000358-UEM-000228"
+              },
+              {
+                "id": "SV-273868r1101588_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

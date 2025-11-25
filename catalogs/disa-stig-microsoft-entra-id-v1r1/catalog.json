@@ -1,0 +1,1046 @@
+{
+  "catalog": {
+    "uuid": "c0e5c6f8-9328-4f62-9a2a-3e7c7f3c9b11",
+    "metadata": {
+      "title": "Microsoft Entra ID Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-11-25T14:21:14Z",
+      "version": "2.4.0",
+      "oscal-version": "1.1.0",
+      "links": []
+    },
+    "groups": [
+      {
+        "id": "V-270200",
+        "title": "SRG-APP-000003",
+        "controls": [
+          {
+            "id": "SV-270200r1085610_rule",
+            "title": "Microsoft Entra ID must initiate a session lock after a 15-minute period of inactivity.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-270200",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-270200r1085610_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "ENTR-ID-000030"
+              },
+              {
+                "name": "label",
+                "value": "ENTR-ID-000030"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1085610"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000057",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent further access to the system by initiating a device lock after organization-defined time period of inactivity; and/or requiring the user to initiate a device lock before leaving the system unattended."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002361",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically terminate a user session after organization-defined conditions or trigger events requiring session disconnect."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-12"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-12"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-270200r1085610_rule_statement",
+                "name": "statement",
+                "prose": "Microsoft Entra ID must initiate a session lock after a 15-minute period of inactivity."
+              },
+              {
+                "id": "SV-270200r1085610_rule_guidance",
+                "name": "guidance",
+                "prose": "1. Sign into entra.microsoft.us.\n2. Navigate to the Gear icon (right) and select Settings >> Signing out + notifications. \n3. Check the \"Enable directory level idle timeout\" box.\n4. Populate the \"Hours\" field to \"0\" and the \"Minutes\" field to \"15\".\n5. Click \"Apply\"."
+              },
+              {
+                "id": "SV-270200r1085610_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Session locks are temporary actions taken to prevent logical access to organizational systems when users stop work and move away from the immediate vicinity of those systems but do not want to log out because of the temporary nature of their absences. Session locks can be implemented at the operating system level or at the application level. A proximity lock may be used to initiate the session lock (e.g., via a Bluetooth-enabled session or dongle). User-initiated session locking is behavior or policy-based and, as such, requires users to take physical action to initiate the session lock. Session locks are not an acceptable substitute for logging out of systems, such as when organizations require users to log out at the end of workdays.\n\nSatisfies: SRG-APP-000295"
+              },
+              {
+                "id": "SV-270200r1085610_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-270204",
+        "title": "SRG-APP-000025",
+        "controls": [
+          {
+            "id": "SV-270204r1085660_rule",
+            "title": "Microsoft Entra ID must automatically disable accounts after a 35-day period of account inactivity.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-270204",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-270204r1085660_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "ENTR-ID-000090"
+              },
+              {
+                "name": "label",
+                "value": "ENTR-ID-000090"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1085660"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000017",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Disable accounts when the accounts have been inactive for the organization-defined time-period."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-003627",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Disable accounts when the accounts have expired."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (3) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-270204r1085660_rule_statement",
+                "name": "statement",
+                "prose": "Microsoft Entra ID must automatically disable accounts after a 35-day period of account inactivity."
+              },
+              {
+                "id": "SV-270204r1085660_rule_guidance",
+                "name": "guidance",
+                "prose": "1. Sign in to the Microsoft Entra admin center as at least a Reports Reader.\n2. Browse to Identity >> Users >> All users.\n3. Select a user from the list.\n4. Use the following procedure to disable inactive user accounts in Entra ID via the use of the Graph PowerShell SDK.\n\nInstallation instructions:  \nhttps://learn.microsoft.com/en-us/powershell/microsoftgraph/installation?view=graph-powershell-1.0\n\nRequired roles:\nGlobal Administrator\n\nInstall the Microsoft Graph PowerShell SDK.\n\nInstall-Module Microsoft.Graph -Scope CurrentUser\n\nConnect-MgGraph -Scopes \"User.ReadWrite.All\", \"Directory.ReadWrite.All\", \"SignInActivity.Read.All\"\n\n# Set the inactivity threshold (in days)\n$inactivityThreshold = 35\n\n# Get the current date\n$currentDate = Get-Date\n\n# Get all users and their last sign-in activity\n$users = Get-MgUser -All -Property \"DisplayName\", \"SignInActivity\"\n\n# Filter for inactive users\n$inactiveUsers = $users | Where-Object {\n    $_.SignInActivity.LastSignInDateTime -lt ($currentDate.AddDays(-$inactivityThreshold))\n}\n\n# Disable inactive users\nforeach ($user in $inactiveUsers) {\n    Set-MgUser -UserId $user.Id -AccountEnabled $false\n    Write-Host \"Disabled user: $($user.DisplayName)\"\n}"
+              },
+              {
+                "id": "SV-270204r1085660_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Attackers that are able to exploit an inactive account can potentially obtain and maintain undetected access to an application. Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained. Applications need to track periods of user inactivity and disable accounts after 35 days of inactivity. Such a process greatly reduces the risk that accounts will be hijacked, leading to a data compromise. \n\nTo address access requirements, many application developers choose to integrate their applications with enterprise-level authentication/access mechanisms that meet or exceed access control policy requirements. Such integration allows the application developer to offload those access control functions and focus on core application features and functionality. \n\nThis policy does not apply to either emergency accounts or infrequently used accounts. Infrequently used accounts are local login administrator accounts used by system administrators when network or normal logon/access is not available. Emergency accounts are administrator accounts created in response to crisis situations.\n\nReferences:\nhttps://learn.microsoft.com/en-us/powershell/module/microsoft.graph.users/get-mguser?view=graph-powershell-1.0\nhttps://learn.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0&tabs=http\nhttps://learn.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#properties\nhttps://learn.microsoft.com/en-us/graph/api/resources/signinactivity?view=graph-rest-1.0#properties\n\nFor any PowerShell scripts that are Graph, note that Graph endpoints differ depending on where the tenant is located.\n- For commercial tenants, graph endpoints are graph.microsoft.com.\n- For GCC High tenants (IL4), graph endpoints are graph.microsoft.us.\n- For DOD tenants (IL5), graph endpoints are dod-graph.microsoft.us.\n\nSatisfies: SRG-APP-000025, SRG-APP-000163"
+              },
+              {
+                "id": "SV-270204r1085660_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-270208",
+        "title": "SRG-APP-000065",
+        "controls": [
+          {
+            "id": "SV-270208r1085616_rule",
+            "title": "Microsoft Entra ID must enforce the limit of three consecutive invalid logon attempts by a user during a 15-minute time period.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-270208",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-270208r1085616_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "ENTR-ID-000140"
+              },
+              {
+                "name": "label",
+                "value": "ENTR-ID-000140"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1085616"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000044",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce the organization-defined limit of consecutive invalid logon attempts by a user during the organization-defined time period."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002238",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically lock the account or node for either an organization-defined time period, until the locked account or node is released by an administrator, or delays the next logon prompt according to the organization-defined delay algorithm when the maximum number of unsuccessful logon attempts is exceeded."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-7 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-7 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-270208r1085616_rule_statement",
+                "name": "statement",
+                "prose": "Microsoft Entra ID must enforce the limit of three consecutive invalid logon attempts by a user during a 15-minute time period."
+              },
+              {
+                "id": "SV-270208r1085616_rule_guidance",
+                "name": "guidance",
+                "prose": "To configure account lockout settings, complete these steps: \n\n1. Sign in to the Microsoft Entra admin center as at least an Authentication Administrator.\n2. Browse to Identity >> Protection >> Authentication methods >> Password protection.\n3. Set the Lockout threshold to \"3\".\n4. Set the Lockout duration to \"900\" (15 minutes)."
+              },
+              {
+                "id": "SV-270208r1085616_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "By limiting the number of failed login attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute forcing, is reduced. Limits are imposed by locking the account.\n\nSatisfies: SRG-APP-000345"
+              },
+              {
+                "id": "SV-270208r1085616_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-270209",
+        "title": "SRG-APP-000068",
+        "controls": [
+          {
+            "id": "SV-270209r1085618_rule",
+            "title": "Microsoft Entra ID must display the Standard Mandatory DOD Notice and Consent Banner before granting access to the application.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-270209",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-270209r1085618_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "ENTR-ID-000150"
+              },
+              {
+                "name": "label",
+                "value": "ENTR-ID-000150"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1085618"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000048",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Display an organization-defined system use notification message or banner to users before granting access to the system that provides privacy and security notices consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidelines."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000050",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Retain the notification message or banner on the screen until users acknowledge the usage conditions and take explicit actions to log on to or further access the system."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001384",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For publicly accessible systems, display system use information with organization-defined conditions before granting further access to the publicly accessible system."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001385",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For publicly accessible systems, displays references, if any, to monitoring that are consistent with privacy accommodations for such systems that generally prohibit those activities."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001386",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For publicly accessible systems, displays references, if any, to recording that are consistent with privacy accommodations for such systems that generally prohibit those activities."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001387",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For publicly accessible systems, displays references, if any, to auditing that are consistent with privacy accommodations for such systems that generally prohibit those activities."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001388",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For publicly accessible systems, includes a description of the authorized uses of the system."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-8 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-8.2 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-8 c 3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-8 c 3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-270209r1085618_rule_statement",
+                "name": "statement",
+                "prose": "Microsoft Entra ID must display the Standard Mandatory DOD Notice and Consent Banner before granting access to the application."
+              },
+              {
+                "id": "SV-270209r1085618_rule_guidance",
+                "name": "guidance",
+                "prose": "To create the standard DOD banner in Entra ID:\n\n1. Sign in to the Microsoft Entra admin center as a Global Administrator.\n2. Browse to or search \"Company Branding\".\n3. Select \"Customize\" under \"Default sign-in experience\".\n4. Browse to the \"Sign-in form\" tab and place the required DOD banner text in the \"Sign-in page text\". Note: This field is limited to 1024 characters.\n5. Populate all required fields.\n6. Click \"Review + Create\"."
+              },
+              {
+                "id": "SV-270209r1085618_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Display of the DOD-approved use notification before granting access to the application ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.\n\nSystem use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist.\n\nThe banner must be formatted in accordance with DTM-08-060. Use the following verbiage for applications that can accommodate banners of 1300 characters:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n \nUse the following verbiage for operating systems that have severe limitations on the number of characters that can be displayed in the banner:\n\n\"I've read & consent to terms in IS user agreem't.\"\n\nSatisfies: SRG-APP-000068, SRG-APP-000069, SRG-APP-000070"
+              },
+              {
+                "id": "SV-270209r1085618_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-270227",
+        "title": "SRG-APP-000125",
+        "controls": [
+          {
+            "id": "SV-270227r1085728_rule",
+            "title": "Microsoft Entra ID must be configured to transfer logs to another server for storage, analysis, and reporting.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-270227",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-270227r1085728_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "ENTR-ID-000370"
+              },
+              {
+                "name": "label",
+                "value": "ENTR-ID-000370"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1085728"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001348",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Store audit records on an organization-defined frequency in a repository that is part of a physically different system or system component than the system or component being audited."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001851",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Transfer audit logs per organization-defined frequency to a different system, system component, or media than the system or system component conducting the logging."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-4 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-4 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-270227r1085728_rule_statement",
+                "name": "statement",
+                "prose": "Microsoft Entra ID must be configured to transfer logs to another server for storage, analysis, and reporting."
+              },
+              {
+                "id": "SV-270227r1085728_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Microsoft Entra to transfer Microsoft Entra server logs to another server for storage, analysis, and reporting at least every seven days.\n\n1. Sign in to the Microsoft Entra admin center as a Global Administrator.\n2. Browse to Identity >> Monitoring & health >> Diagnostic settings.\n3. Select \"+ Add diagnostic settings\".\n4. Select at least these required categories:\n- SigninLogs.\n- AuditLogs.\n- ServicePrincipalSignInLogs.\n- ManagedIdentitySignInLogs.\n- UserRiskEvents.\n- RiskyUsers.\n- RiskyServicePrincipals.\n- ServicePrincipalRiskEvents. \n5. Select \"Send to Log Analytics workspace\". For details on establishing a log analytics workspace, reference the DOD365 TCG."
+              },
+              {
+                "id": "SV-270227r1085728_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Protection of log data includes ensuring log data is not accidentally lost or deleted. Backing up audit records to a different system or onto separate media than the system being audited on an organizationally defined frequency helps to ensure the audit records will be retained in the event of a catastrophic system failure. \n\nThis also ensures a compromise of the information system being audited does not result in a compromise of the audit records.\n\nThis requirement only applies to applications that have a native backup capability for audit records. Operating system backup requirements cover applications that do not provide native backup functions.\n\nSatisfies: SRG-APP-000358"
+              },
+              {
+                "id": "SV-270227r1085728_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-270233",
+        "title": "SRG-APP-000149",
+        "controls": [
+          {
+            "id": "SV-270233r1085634_rule",
+            "title": "Microsoft Entra ID must be configured to use multifactor authentication (MFA).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-270233",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-270233r1085634_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "ENTR-ID-000440"
+              },
+              {
+                "name": "label",
+                "value": "ENTR-ID-000440"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1085634"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000765",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement multifactor authentication for access to privileged accounts."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000766",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement multifactor authentication for access to non-privileged accounts."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004046",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement multi-factor authentication for local; network; and/or remote access to privileged accounts; and/or non-privileged accounts such that one of the factors is provided by a device separate from the system gaining access."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-2 (6) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-270233r1085634_rule_statement",
+                "name": "statement",
+                "prose": "Microsoft Entra ID must be configured to use multifactor authentication (MFA)."
+              },
+              {
+                "id": "SV-270233r1085634_rule_guidance",
+                "name": "guidance",
+                "prose": "Account authentication is managed by Entra ID. The following steps will create a Conditional Access policy to require all users to use MFA:\n\n1. Sign in to the Microsoft Entra admin center as at least a Conditional Access Administrator.\n2. In the search bar, search for \"Conditional Access\".\n3. Select \"Create new policy\".\n4. Give the policy a name. It is recommended that organizations create a meaningful standard for the names of policies.\n5. Under \"Assignments\", select \"Users\" or \"workload identities\".\na. Under \"Include\", select \"All users\".\nb. Under \"Exclude\", select \"Users\" and \"groups\", and then choose the organization's emergency access or break-glass accounts.\n6. Navigate to Target resources >> Cloud apps >> Include. Select \"All cloud apps\".\na. Under \"Exclude\", select any applications that do not require MFA.\n7. Navigate to Access controls >> Grant. Select \"Grant access, Require multifactor authentication\", and then click \"Select\".\n8. Confirm the settings and set \"Enable policy\" to \"Report-only\".\n9. Select \"Create\" to enable the policy.\n10. After confirming the policy, deploy the policy by either moving the \"Enable\" policy toggle from \"Report-only\" to \"On\" or alternately, deploying the policy using a Conditional Access template."
+              },
+              {
+                "id": "SV-270233r1085634_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without the use of MFA, the ease of access to privileged functions is greatly increased. \n\nMFA requires the use of two or more factors to achieve authentication. \n\nFactors include: \n(i) Something a user knows (e.g., password/PIN); \n(ii) Something a user has (e.g., cryptographic identification device, token); or \n(iii) Something a user is (e.g., biometric). \n\nA privileged account is defined as an information system account with authorizations of a privileged user. \n\nNetwork access is defined as access to an information system by a user (or a process acting on behalf of a user) communicating through a network (e.g., local area network, wide area network, or the internet).\n\nSatisfies: SRG-APP-000149, SRG-APP-000150, SRG-APP-000154, SRG-APP-000155"
+              },
+              {
+                "id": "SV-270233r1085634_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-270239",
+        "title": "SRG-APP-000174",
+        "controls": [
+          {
+            "id": "SV-270239r1085663_rule",
+            "title": "Microsoft Entra ID must enforce a 60-day maximum password lifetime restriction.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-270239",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-270239r1085663_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "ENTR-ID-000610"
+              },
+              {
+                "name": "label",
+                "value": "ENTR-ID-000610"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1085663"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004066",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, enforce organization-defined composition and complexity rules."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (1) (h)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-270239r1085663_rule_statement",
+                "name": "statement",
+                "prose": "Microsoft Entra ID must enforce a 60-day maximum password lifetime restriction."
+              },
+              {
+                "id": "SV-270239r1085663_rule_guidance",
+                "name": "guidance",
+                "prose": "Change the default Entra ID password expiration time period to 60 days by using the Graph script located here: \nhttps://learn.microsoft.com/en-us/powershell/module/microsoft.graph.users/update-mguser \n\nUse the \"Get-MgDomain\" command, and update it to 60 days using the \"Update-MgDomain -DomainId <DomainName> \n-PasswordValidityPeriodInDays 60\" command.\n\nNote: For any PowerShell scripts that are Graph, note that Graph endpoints differ depending on where the tenant is located.\n- For commercial tenants, graph endpoints are graph.microsoft.com.\n- For GCC High tenants (IL4), graph endpoints are graph.microsoft.us.\n- For DOD tenants (IL5), graph endpoints are dod-graph.microsoft.us."
+              },
+              {
+                "id": "SV-270239r1085663_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Any password, no matter how complex, can eventually be cracked. Therefore, passwords need to be changed at specific intervals.\n\nOne method of minimizing this risk is to use complex passwords and periodically change them. If the application does not limit the lifetime of passwords and force users to change their passwords, there is the risk that the system and/or application passwords could be compromised.\n\nThis requirement does not include emergency administration accounts, which are meant for access to the application in case of failure. These accounts are not required to have maximum password lifetime restrictions."
+              },
+              {
+                "id": "SV-270239r1085663_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-270255",
+        "title": "SRG-APP-000292",
+        "controls": [
+          {
+            "id": "SV-270255r1085626_rule",
+            "title": "Microsoft Entra ID must notify system administrators (SAs) and the information system security officer (ISSO) when privileges are being requested.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-270255",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-270255r1085626_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "ENTR-ID-000835"
+              },
+              {
+                "name": "label",
+                "value": "ENTR-ID-000835"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1085626"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000015",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Support the management of system accounts using organization-defined automated mechanisms."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-270255r1085626_rule_statement",
+                "name": "statement",
+                "prose": "Microsoft Entra ID must notify system administrators (SAs) and the information system security officer (ISSO) when privileges are being requested."
+              },
+              {
+                "id": "SV-270255r1085626_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure PIM to email notifications to the SA and ISSO when privileges are requested.\n\n1. Sign in to the Microsoft Entra admin center as at least an Authentication Policy Administrator.\n2. Search for \"Microsoft Entra Privileged Identity Management\".\n3. Navigate to \"Management\" and select \"Microsoft Entra roles\".\n4. Expand the \"Manage\" menu and select roles.\n5. For each role that is either active or eligible perform the following:\na. Select the role.\nb. Navigate to role settings.\nc. Select \"Edit\".\nd. Navigate to the \"Notification\" tab.\ne. Under \"Send notifications when eligible members activate this role:\" add the SA and ISSO email addresses under \"Additional recipients\".\nf. Select \"Update\"."
+              },
+              {
+                "id": "SV-270255r1085626_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "When application accounts are modified, user accessibility is affected. Accounts are used for identifying individual users or for identifying the application processes themselves. Sending notification of account modification events to the system administrator and ISSO is one method for mitigating this risk. Such a capability greatly reduces the risk that application accessibility will be negatively affected for extended periods of time and also provides logging that can be used for forensic purposes.\n\nTo address access requirements, many operating systems can be integrated with enterprise-level authentication/access/auditing mechanisms that meet or exceed access control policy requirements."
+              },
+              {
+                "id": "SV-270255r1085626_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-270335",
+        "title": "SRG-APP-000234",
+        "controls": [
+          {
+            "id": "SV-270335r1085641_rule",
+            "title": "Microsoft Entra ID must use Privileged Identity Management (PIM).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-270335",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-270335r1085641_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "ENTR-ID-001900"
+              },
+              {
+                "name": "label",
+                "value": "ENTR-ID-001900"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1085641"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001682",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically remove or disable emergency accounts after an organization-defined time period for each type of account."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (2).1 (ii)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-270335r1085641_rule_statement",
+                "name": "statement",
+                "prose": "Microsoft Entra ID must use Privileged Identity Management (PIM)."
+              },
+              {
+                "id": "SV-270335r1085641_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure PIM to just-in-time (JIT) access and employ the principle of least privilege access.\n\nWhen assigning privileged roles to accounts, select the assignment type of \"Eligible\"."
+              },
+              {
+                "id": "SV-270335r1085641_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Emergency accounts are administrator accounts established in response to crisis situations where the need for rapid account activation is required. Therefore, emergency account activation may bypass normal account authorization processes. If these accounts are automatically disabled, system maintenance during emergencies may not be possible, thus adversely affecting system availability.\n\nEmergency accounts are different from infrequently used accounts (i.e., local logon accounts used by system administrators when network or normal logon/access is not available). Infrequently used accounts also remain available and are not subject to automatic termination dates. However, an emergency account is normally a different account created for use by vendors or system maintainers.\n\nTo address access requirements, many application developers choose to integrate their applications with enterprise-level authentication/access mechanisms that meet or exceed access control policy requirements. Such integration allows the application developer to offload those access control functions and focus on core application features and functionality."
+              },
+              {
+                "id": "SV-270335r1085641_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-270475",
+        "title": "SRG-APP-000845",
+        "controls": [
+          {
+            "id": "SV-270475r1085680_rule",
+            "title": "Microsoft Entra ID must, for password-based authentication, verify when users create or update passwords that the passwords are not found on the list of commonly used, expected, or compromised passwords.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-270475",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-270475r1085680_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "ENTR-ID-003350"
+              },
+              {
+                "name": "label",
+                "value": "ENTR-ID-003350"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1085680"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004061",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, verify when users create or update passwords, that the passwords are not found on the list of commonly-used, expected, or compromised passwords in IA-5 (1) (a)."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (1) (b)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-270475r1085680_rule_statement",
+                "name": "statement",
+                "prose": "Microsoft Entra ID must, for password-based authentication, verify when users create or update passwords that the passwords are not found on the list of commonly used, expected, or compromised passwords."
+              },
+              {
+                "id": "SV-270475r1085680_rule_guidance",
+                "name": "guidance",
+                "prose": "As an authorized administrator, browse to https://portal.azure.us/#view/Microsoft_AAD_ConditionalAccess/PasswordProtectionBlade.\n\nEnable the Custom banned password list by selecting \"Yes\" next to the \"Enforce custom list\" option.\n\nPopulate the \"Custom banned password list\".\n\nThe list must be one word per line, with a maximum of 1000 words. The words are case insensitive, and common character substitutions (o for 0, etc) are automatically considered."
+              },
+              {
+                "id": "SV-270475r1085680_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Password-based authentication applies to passwords regardless of whether they are used in single-factor or multifactor authentication. Long passwords or passphrases are preferable over shorter passwords. Enforced composition rules provide marginal security benefits while decreasing usability. However, organizations may choose to establish certain rules for password generation (e.g., minimum character length for long passwords) under certain circumstances and can enforce this requirement in IA-5(1)(h). Account recovery can occur, for example, in situations when a password is forgotten. Cryptographically protected passwords include salted one-way cryptographic hashes of passwords. The list of commonly used, compromised, or expected passwords includes passwords obtained from previous breach corpuses, dictionary words, and repetitive or sequential characters. The list includes context-specific words, such as the name of the service, username, and derivatives thereof."
+              },
+              {
+                "id": "SV-270475r1085680_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}
