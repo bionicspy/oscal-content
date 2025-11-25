@@ -1,0 +1,2753 @@
+{
+  "catalog": {
+    "uuid": "c652208c-2cd7-5a5a-974e-84be5aed8a1f",
+    "metadata": {
+      "title": "SDN Using NV Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2017-02-27T00:00:00Z",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2017-02-27"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "2.0"
+        },
+        {
+          "name": "version.major",
+          "value": "1"
+        },
+        {
+          "name": "version.minor",
+          "value": "1"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-73073",
+        "title": "NET-SDN-001",
+        "controls": [
+          {
+            "id": "SV-87725r1_rule",
+            "title": "Southbound API control plane traffic between the SDN controller and SDN-enabled network elements must be mutually authenticated using a FIPS-approved message authentication code algorithm.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73073",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87725r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-001"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-001"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000803",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement mechanisms for authentication to a cryptographic module that meet the requirements of applicable laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-7.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-7"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87725r1_rule_statement",
+                "name": "statement",
+                "prose": "Southbound API control plane traffic between the SDN controller and SDN-enabled network elements must be mutually authenticated using a FIPS-approved message authentication code algorithm."
+              },
+              {
+                "id": "SV-87725r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Ensure that all components within the SDN framework authenticate southbound API messages using a FIPS-approved message authentication code algorithm. \n\nFIPS-approved algorithms for authentication are the CMAC and the HMAC. \n\nAES and 3DES are NIST-approved CMAC algorithms. The following are NIST-approved HMAC algorithms: SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, and SHA-512/256."
+              },
+              {
+                "id": "SV-87725r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Southbound APIs such as OpenFlow provide the forwarding tables to network devices such as switches and routers, both physical and virtual (hypervisor-based). The SDN controllers use the concept of flows to identify network traffic based on predefined rules that can be statically or dynamically programmed by the SDN control software, thereby determining how traffic should flow through network devices based on usage patterns, applications, and policy that can optimize traffic paths based on business requirements and not network infrastructure design. \n\nIf an SDN-aware router or switch received erroneous forwarding information from a rogue controller, traffic could be black-holed or even forwarded to a malicious user to sniff traffic and perform a man-in-the-middle attack. Hence, it is imperative that mutual authentication is enabled between the SDN controller and the SDN-aware network elements for all southbound API traffic."
+              },
+              {
+                "id": "SV-87725r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73075",
+        "title": "NET-SDN-002",
+        "controls": [
+          {
+            "id": "SV-87727r1_rule",
+            "title": "Northbound API traffic received by the SDN controller must be authenticated using a FIPS-approved message authentication code algorithm.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73075",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87727r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-002"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-002"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000803",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement mechanisms for authentication to a cryptographic module that meet the requirements of applicable laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-7.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-7"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87727r1_rule_statement",
+                "name": "statement",
+                "prose": "Northbound API traffic received by the SDN controller must be authenticated using a FIPS-approved message authentication code algorithm."
+              },
+              {
+                "id": "SV-87727r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure all SDN controllers to authenticate received northbound API messages using a FIPS-approved message authentication code algorithm. \n\nFIPS-approved algorithms for authentication are the CMAC and the HMAC. \n\nAES and 3DES are NIST-approved CMAC algorithms. The following are NIST-approved HMAC algorithms: SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, and SHA-512/256."
+              },
+              {
+                "id": "SV-87727r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The SDN controller determines how traffic should flow through physical and virtual network devices based on application profiles, network infrastructure resources, security policies, and business requirements that it receives via the northbound API. It also receives network service requests from orchestration and management systems to deploy and configure network elements via this API. In turn, the northbound API presents a network abstraction to these orchestration and management systems. \n\nIf attackers could leverage a vulnerable northbound API, they would have control over the SDN infrastructure through the controller by inserting polices. If the SDN controller were to receive fictitious information from a rogue application or orchestration system, non-optimized network paths would be produced that could disrupt network operations, resulting in inefficient application and business processes. Hence, it is imperative that all northbound API traffic received by the SDN controller is authenticated."
+              },
+              {
+                "id": "SV-87727r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73077",
+        "title": "NET-SDN-003",
+        "controls": [
+          {
+            "id": "SV-87729r1_rule",
+            "title": "Access to the SDN management and orchestration systems must be authenticated using a FIPS-approved message authentication code algorithm.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73077",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87729r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-003"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-003"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000186",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, enforce authorized access to the corresponding private key."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (2) (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (2) (a) (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87729r1_rule_statement",
+                "name": "statement",
+                "prose": "Access to the SDN management and orchestration systems must be authenticated using a FIPS-approved message authentication code algorithm."
+              },
+              {
+                "id": "SV-87729r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure all management and orchestration systems within the SDN framework to require DOD PKI certificate-based authentication for access."
+              },
+              {
+                "id": "SV-87729r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The SDN controller receives network service requests from orchestration and management systems to deploy and configure network elements via the northbound API. In turn, the Northbound API presents a network abstraction to these systems. If either the orchestration or management system were breached, a rogue user could make modifications to the business or security policy that could disrupt network operations, resulting in inefficient application and business processes as well as bypassing security controls. \n\nIn addition, invalid network service requests could be processed that could exhaust compute, storage, and network resources, leaving no resources available for legitimate business requirements."
+              },
+              {
+                "id": "SV-87729r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73079",
+        "title": "NET-SDN-004",
+        "controls": [
+          {
+            "id": "SV-87731r1_rule",
+            "title": "Southbound API control plane traffic must traverse an out-of-band path or be encrypted using a FIPS-validated cryptographic module.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73079",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87731r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-004"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-004"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87731r1_rule_statement",
+                "name": "statement",
+                "prose": "Southbound API control plane traffic must traverse an out-of-band path or be encrypted using a FIPS-validated cryptographic module."
+              },
+              {
+                "id": "SV-87731r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Deploy an out-of-band network to provision paths between the SDN controllers and the SDN-enabled network elements for providing transport for southbound API control plane traffic.\n\nAn alternative is to encrypt all southbound API control plane traffic using a FIPS-validated cryptographic module. Implement a cryptographic module which has a validation certification and is listed on the NIST Cryptographic Module Validation Program's (CMVP) validation list."
+              },
+              {
+                "id": "SV-87731r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Southbound APIs such as OpenFlow provide the forwarding tables to network devices such as switches and routers, both physical and virtual (hypervisor-based). The SDN controllers use the concept of flows to identify network traffic based on predefined rules that can be statically or dynamically programmed by the SDN control software, thereby determining how traffic should flow through network devices based on usage patterns, applications, and policy that can optimize traffic paths based on business requirements and not network infrastructure design. \n\nIf an SDN-aware router or switch received erroneous forwarding information from a rogue controller, traffic could be black-holed or even forwarded to a malicious user to sniff traffic and perform a man-in-the-middle attack. Hence, it is imperative to secure flow table updates by encrypting all southbound API traffic or deploying an out-of-band network for this traffic to traverse."
+              },
+              {
+                "id": "SV-87731r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73081",
+        "title": "NET-SDN-005",
+        "controls": [
+          {
+            "id": "SV-87733r1_rule",
+            "title": "Northbound API traffic must traverse an out-of-band path or be encrypted using a FIPS-validated cryptographic module.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73081",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87733r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-005"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-005"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87733r1_rule_statement",
+                "name": "statement",
+                "prose": "Northbound API traffic must traverse an out-of-band path or be encrypted using a FIPS-validated cryptographic module."
+              },
+              {
+                "id": "SV-87733r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Deploy an out-of-band network to provision paths between the SDN controllers and the SDN management/orchestration systems for providing transport for northbound API traffic. \n\nAn alternative is to encrypt all northbound API traffic using a FIPS-validated cryptographic module. Implement a cryptographic module which has a validation certification and is listed on the NIST Cryptographic Module Validation Program's (CMVP) validation list."
+              },
+              {
+                "id": "SV-87733r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The SDN controller receives network service requests from orchestration and management systems to deploy and configure network elements via the northbound API. In turn, the northbound API presents a network abstraction to these systems. If either the orchestration or management system were breached, a rogue user could make modifications to the business or security policy that could disrupt network operations, resulting in inefficient application and business processes and bypassing security controls. \n\nIn addition, invalid network service requests could be processed that could exhaust compute, storage, and network resources, leaving no resources available for legitimate business requirements. Hence, it is imperative that all southbound API traffic is secured by encrypting the traffic or deploying an out-of-band network for this traffic to traverse."
+              },
+              {
+                "id": "SV-87733r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73083",
+        "title": "NET-SDN-006",
+        "controls": [
+          {
+            "id": "SV-87735r1_rule",
+            "title": "Southbound API management plane traffic for provisioning and configuring virtual network elements within the SDN infrastructure must be authenticated using a FIPS-approved message authentication code algorithm.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73083",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87735r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-006"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-006"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000186",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, enforce authorized access to the corresponding private key."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (2) (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (2) (a) (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87735r1_rule_statement",
+                "name": "statement",
+                "prose": "Southbound API management plane traffic for provisioning and configuring virtual network elements within the SDN infrastructure must be authenticated using a FIPS-approved message authentication code algorithm."
+              },
+              {
+                "id": "SV-87735r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure these components to use  a FIPS-approved message authentication code algorithm to authenticate southbound API management messages."
+              },
+              {
+                "id": "SV-87735r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Management and orchestration systems within the SDN framework instantiate, deploy, and configure virtual network elements. These systems also define the virtual network topology by specifying the connectivity between the network elements and the workloads, both virtual and physical.\n\nIf a hypervisor host within the SDN infrastructure were to receive fictitious information from a rogue management or orchestration system as a result of no authentication, the virtual network topology could be altered by deploying rogue network elements to create non-optimized network paths, resulting in inefficient application and business processes. By altering the network topology, the attacker would have the ability force traffic to bypass security controls."
+              },
+              {
+                "id": "SV-87735r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73085",
+        "title": "NET-SDN-007",
+        "controls": [
+          {
+            "id": "SV-87737r1_rule",
+            "title": "Southbound API management plane traffic for provisioning and configuring virtual network elements within the SDN infrastructure must traverse an out-of-band path or be encrypted using a using a FIPS-validated cryptographic module.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73085",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87737r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-007"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-007"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87737r1_rule_statement",
+                "name": "statement",
+                "prose": "Southbound API management plane traffic for provisioning and configuring virtual network elements within the SDN infrastructure must traverse an out-of-band path or be encrypted using a using a FIPS-validated cryptographic module."
+              },
+              {
+                "id": "SV-87737r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Deploy an out-of-band network to provision paths between management systems, orchestrations systems, and all hypervisor hosts that compose the SDN infrastructure to provide transport for southbound API management plane traffic. \n\nAn alternative is to encrypt all southbound API management plane traffic using a FIPS-validated cryptographic module. Implement a cryptographic module that has a validation certification and is listed on the NIST Cryptographic Module Validation Program's (CMVP) validation list."
+              },
+              {
+                "id": "SV-87737r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Management and orchestration systems within the SDN framework instantiate, deploy, and configure network elements within the SDN infrastructure. These systems also define the virtual network topology by specifying the connectivity between the network elements and the workloads, both virtual and physical.\n\nIf a hypervisor host within the SDN infrastructure were to receive fictitious information from a rogue management or orchestration system, the virtual network topology could be altered by deploying rogue network elements to create non-optimized network paths, resulting in inefficient application and business processes. By altering the network topology, the attacker would have the ability to force traffic to bypass security controls. \n\nSpoofed management plane traffic generated by a rogue management system could result in a denial-of-service attack on the hypervisor hosts, exhausting the computing resources and disrupting workload processing or even creating a network outage. Hence, it is imperative that all SDN management plane traffic is secured by encrypting the traffic or deploying an out-of-band network for this traffic to traverse."
+              },
+              {
+                "id": "SV-87737r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73087",
+        "title": "NET-SDN-008",
+        "controls": [
+          {
+            "id": "SV-87739r1_rule",
+            "title": "Southbound API management plane traffic for configuring SDN parameters on physical network elements must be authenticated using DOD PKI certificate-based authentication.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73087",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87739r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-008"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-008"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000186",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, enforce authorized access to the corresponding private key."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (2) (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (2) (a) (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87739r1_rule_statement",
+                "name": "statement",
+                "prose": "Southbound API management plane traffic for configuring SDN parameters on physical network elements must be authenticated using DOD PKI certificate-based authentication."
+              },
+              {
+                "id": "SV-87739r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Deploy DOD PKI certificates to all orchestration systems, management systems, and physical SDN-enabled network elements. \n\nConfigure these components to use the certificates to authenticate southbound API management messages."
+              },
+              {
+                "id": "SV-87739r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Physical SDN-enabled switches are dependent on the SDN controller for their forwarding tables as well as their configuration and service parameters. This information is provided to the switches via SDN management plane protocols such as Network Configuration Protocol (NETCONF) and Open vSwitch Database Management Protocol (OVSDB). The latter provides configuration support for OpenFlow-enabled switches such as Open vSwitch, as well as many vendor switches.\n\nWithout authenticating management packets, physical switches within the SDN infrastructure could receive fictitious information from a rogue management system that could shut down interfaces, thereby altering the physical network topology. By altering the network topology, the attacker would have the ability to force traffic to bypass security controls. Legitimate traffic could be dropped by deploying access control lists to active interfaces. Spoofed management plane traffic generated by a rogue management system could result in a denial-of-service attack on the switches, resulting in a network outage."
+              },
+              {
+                "id": "SV-87739r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73089",
+        "title": "NET-SDN-009",
+        "controls": [
+          {
+            "id": "SV-87741r1_rule",
+            "title": "Southbound API management plane traffic for configuring SDN parameters on physical network elements must be encrypted using a FIPS-validated cryptographic module.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73089",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87741r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-009"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-009"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87741r1_rule_statement",
+                "name": "statement",
+                "prose": "Southbound API management plane traffic for configuring SDN parameters on physical network elements must be encrypted using a FIPS-validated cryptographic module."
+              },
+              {
+                "id": "SV-87741r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Encrypt all southbound API management plane traffic using a using a FIPS-validated cryptographic module. Implement a cryptographic module that has a validation certification and is listed on the NIST Cryptographic Module Validation Program's (CMVP) validation list."
+              },
+              {
+                "id": "SV-87741r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Physical SDN-enabled switches are dependent on the SDN controller for their forwarding tables, as well as their configuration and service parameters. This information is provided to the switches via SDN management plane protocols such as Network Configuration Protocol (NETCONF) and Open vSwitch Database Management Protocol (OVSDB). The latter provides configuration support for OpenFlow-enabled switches such as Open vSwitch, as well as many vendor switches.\n\nIf a switch within the SDN infrastructure were to receive fictitious information from a rogue management system, the physical network topology could be altered by shutting down interfaces. Legitimate traffic could be dropped by deploying access control lists to active interfaces. By altering the network topology, the attacker would have the ability to force traffic to bypass security controls. Spoofed management plane traffic generated by a rogue management system could result in a denial-of-service attack on the switches, resulting in a network outage. Hence, it is imperative that all SDN management plane traffic is secured by encrypting the traffic using a FIPS-validated cryptographic module."
+              },
+              {
+                "id": "SV-87741r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73091",
+        "title": "NET-SDN-010",
+        "controls": [
+          {
+            "id": "SV-87743r1_rule",
+            "title": "Physical SDN controllers and servers hosting SDN applications must reside within the management network with multiple paths that are secured by a firewall to inspect all ingress traffic.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73091",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87743r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-010"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-010"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87743r1_rule_statement",
+                "name": "statement",
+                "prose": "Physical SDN controllers and servers hosting SDN applications must reside within the management network with multiple paths that are secured by a firewall to inspect all ingress traffic."
+              },
+              {
+                "id": "SV-87743r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Deploy all physical controllers, management appliances, and servers hosting SDN applications into the management network with multiple paths that are secured by a firewall inspecting all ingress traffic."
+              },
+              {
+                "id": "SV-87743r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Management and orchestration systems deploy and configure network devices such as switches and routers, both physical and virtual. SDN controllers are made aware of the deployments and are able to define the network topology through abstraction. The controllers are then able to provide forwarding table information to each router or switch instance within the SDN infrastructure. \n\nIf an SDN-aware router or switch received erroneous forwarding information from a rogue controller, traffic could be black-holed or even forwarded to a malicious user to sniff traffic and to perform a man-in-the-middle attack.\n\nIf attackers could leverage a vulnerable northbound API, they would have control over the SDN infrastructure through the controller by creating their own polices. If the SDN controller were to receive fictitious information from a rogue application, non-optimized network paths would be produced that could disrupt network operations, resulting in inefficient application and business processes.\n\nIf either the orchestration or management system were breached, invalid network service requests could be processed that could exhaust compute, storage, and network resources, leaving no resources available for legitimate business requirements."
+              },
+              {
+                "id": "SV-87743r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73093",
+        "title": "NET-SDN-011",
+        "controls": [
+          {
+            "id": "SV-87745r1_rule",
+            "title": "SDN-enabled routers and switches must provide link state information to the SDN controller to create new forwarding decisions for the network elements.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73093",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87745r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-011"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-011"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87745r1_rule_statement",
+                "name": "statement",
+                "prose": "SDN-enabled routers and switches must provide link state information to the SDN controller to create new forwarding decisions for the network elements."
+              },
+              {
+                "id": "SV-87745r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure all SDN-enabled routers and switches to send link state information to the SDN controllers."
+              },
+              {
+                "id": "SV-87745r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Southbound APIs such as OpenFlow provide the forwarding tables to network devices such as switches and routers. SDN controllers have an abstraction of the network topology based on discovery and provisioning information provided by management and orchestration systems. \n\nThe SDN controllers use the concept of flows to identify network traffic based on predefined rules that can be statically or dynamically programmed by the SDN control software. With the network topology abstraction, they are able to determine how traffic should flow through network devices based on application data, business policy, bandwidth, and path availability. If the SDN-enabled network elements do not provide updated link state information, the SDN controller is not able to reconverge the network to verify there is reachability to all destinations."
+              },
+              {
+                "id": "SV-87745r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73095",
+        "title": "NET-SDN-012",
+        "controls": [
+          {
+            "id": "SV-87747r1_rule",
+            "title": "Quality of service (QoS) must be implemented on the underlying IP network to provide preferred treatment for traffic between the SDN controllers and SDN-enabled switches and hypervisors.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73095",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87747r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-012"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-012"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87747r1_rule_statement",
+                "name": "statement",
+                "prose": "Quality of service (QoS) must be implemented on the underlying IP network to provide preferred treatment for traffic between the SDN controllers and SDN-enabled switches and hypervisors."
+              },
+              {
+                "id": "SV-87747r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the paths in which SDN control and management plane traffic will flow between the SDN controllers and SDN-enabled switches and routers. \n\nConfigure each router and multilayer switch to impose preferred treatment for this traffic so it has priority over normal production traffic during periods of congestion."
+              },
+              {
+                "id": "SV-87747r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "With the network topology abstraction, the SDN controllers are able to determine how traffic should flow through network devices based on application data, business policy, bandwidth, and path availability. When updated link state information is provided by the network elements, the SDN controller must recalculate the optimized paths for network reconvergence and provide the new forwarding tables to the network elements. \n\nWhen network congestion occurs, all traffic has an equal chance of being dropped. QoS provisioning categorizes network traffic, prioritizes it according to its relative importance, and provides preferential treatment using various priority queuing techniques. Prioritization of both link state updates and control plane traffic must be implemented to verify that during periods of severe network congestion, the network can converge."
+              },
+              {
+                "id": "SV-87747r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73097",
+        "title": "NET-SDN-013",
+        "controls": [
+          {
+            "id": "SV-87749r1_rule",
+            "title": "SDN controllers must be deployed as clusters and on separate physical hosts to eliminate single point of failure.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73097",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87749r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-013"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-013"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87749r1_rule_statement",
+                "name": "statement",
+                "prose": "SDN controllers must be deployed as clusters and on separate physical hosts to eliminate single point of failure."
+              },
+              {
+                "id": "SV-87749r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Deploy SDN controllers as clusters on separate physical hosts to eliminate single point of failure."
+              },
+              {
+                "id": "SV-87749r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "SDN relies heavily on control messages between a controller and the forwarding devices for network convergence. The controller uses node and link state discovery information to calculate and determine optimum pathing within the SDN network infrastructure based on application, business, and security policies. Operating in the proactive flow instantiation mode, the SDN controller populates forwarding tables to the SDN-aware forwarding devices. At times, the SDN controller must function in reactive flow instantiation mode; that is, when a forwarding device receives a packet for a flow not found in its forwarding table, it must send it to the controller to receive forwarding instructions.\n\nWith total dependence on the SDN controller for determining forwarding decisions and path optimization within the SDN infrastructure for both proactive and reactive flow modes of operation, having a single point of failure is not acceptable. A controller failure with no failover backup leaves the network in an unmanaged state. Hence, it is imperative that the SDN controllers are deployed as clusters on separate physical hosts to guarantee network high availability."
+              },
+              {
+                "id": "SV-87749r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73099",
+        "title": "NET-SDN-014",
+        "controls": [
+          {
+            "id": "SV-87751r1_rule",
+            "title": "Physical devices hosting an SDN controller must be connected to two switches for high-availability.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73099",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87751r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-014"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-014"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87751r1_rule_statement",
+                "name": "statement",
+                "prose": "Physical devices hosting an SDN controller must be connected to two switches for high-availability."
+              },
+              {
+                "id": "SV-87751r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable NIC teaming on the device hosting an SDN controller in either Link Aggregation Control Protocol (LACP) or switch-independent mode. \n\nConnect each interface to a different access switch."
+              },
+              {
+                "id": "SV-87751r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "SDN relies heavily on control messages between a controller and the forwarding devices for network convergence. The controller uses node and link state discovery information to calculate and determine optimum pathing within the SDN network infrastructure based on application, business, and security policies. Operating in the proactive flow instantiation mode, the SDN controller populates forwarding tables to the SDN-aware forwarding devices. At times, the SDN controller must function in reactive flow instantiation mode; that is, when a forwarding device receives a packet for a flow not found in its forwarding table, it must send it to the controller to receive forwarding instructions.\n\nWith total dependence on the SDN controller for determining forwarding decisions and path optimization within the SDN infrastructure for both proactive and reactive flow modes of operation, having a single point of failure is not acceptable. Hence, it is imperative that all physical devices hosting an SDN controller are connected to two switches using NIC teaming to guarantee network high availability."
+              },
+              {
+                "id": "SV-87751r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73101",
+        "title": "NET-SDN-015",
+        "controls": [
+          {
+            "id": "SV-87753r1_rule",
+            "title": "SDN-enabled routers and switches must rate limit the amount of unknown data plane packets that are punted to the SDN controller.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73101",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87753r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-015"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-015"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87753r1_rule_statement",
+                "name": "statement",
+                "prose": "SDN-enabled routers and switches must rate limit the amount of unknown data plane packets that are punted to the SDN controller."
+              },
+              {
+                "id": "SV-87753r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SDN manager or controller to set a threshold on the number of unknown data plane packets that are allowed to be punted by a virtual router or switch to the controller within a specific amount of time. \n\nConfigure all physical SDN-enabled switches and routers to rate limit the amount of packets that are punted to the SDN controller."
+              },
+              {
+                "id": "SV-87753r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "SDN-enabled forwarding devices are dependent on the SDN controller for their forwarding tables as well as their configuration and service parameters. The controller uses node and link state discovery information to calculate and determine optimum pathing within the SDN network infrastructure based on application, business, and security policies. Operating in the proactive flow instantiation mode, the SDN controller pre-populates forwarding tables to the forwarding devices. \n\nAt times, the SDN controller must function in reactive flow instantiation mode; that is, when a forwarding device receives a packet for a flow not found in its forwarding table, it must send or punt it to the controller to receive forwarding instructions. Upon receiving the punted packet, the controller must determine how to forward the packet, create a rule, and populate a new forwarding table to the forwarding device. High rates of punted packets result in excessive controller CPU and memory utilization. Hence, a denial-of-serve attack targeting the SDN controller can be perpetrated either inadvertently or maliciously, involving high rates of packets for new flows that must be punted to the controller."
+              },
+              {
+                "id": "SV-87753r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73103",
+        "title": "NET-SDN-016",
+        "controls": [
+          {
+            "id": "SV-87755r1_rule",
+            "title": "Servers hosting SDN controllers must have logging enabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73103",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87755r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-016"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-016"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001846",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The organization defines information system components that will generate the audit records which are to be captured for centralized management of the content."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87755r1_rule_statement",
+                "name": "statement",
+                "prose": "Servers hosting SDN controllers must have logging enabled."
+              },
+              {
+                "id": "SV-87755r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable logging on all servers hosting an SDN controller."
+              },
+              {
+                "id": "SV-87755r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "It is critical for both network and security personnel to be aware of the state of the SDN infrastructure to maintain network stability. Associating logged events that have occurred within the SDN controller as well as network state information provided by the SDN-enabled components is essential to compile an accurate risk assessment and troubleshoot network outages."
+              },
+              {
+                "id": "SV-87755r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73105",
+        "title": "NET-SDN-018",
+        "controls": [
+          {
+            "id": "SV-87757r1_rule",
+            "title": "Servers hosting SDN controllers must have an HIDS implemented to detect unauthorized changes.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73105",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87757r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-018"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-018"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001255",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Invoke internal monitoring capabilities or deploy monitoring devices strategically within the system to collect organization-determined essential information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-4 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-4.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-4 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-4 c 1"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87757r1_rule_statement",
+                "name": "statement",
+                "prose": "Servers hosting SDN controllers must have an HIDS implemented to detect unauthorized changes."
+              },
+              {
+                "id": "SV-87757r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Install and enable an HIDS on all servers hosting an SDN controller."
+              },
+              {
+                "id": "SV-87757r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The SDN controller is the backbone of the SDN infrastructure. If the server hosting the SDN controller is breached or if unauthorized changes are made to the device, the SDN controller may not have the appropriate resources to function properly or may even be disabled. A host intrusion detection system (HIDS) can monitor and report system configuration changes and prevent malicious or anomalous activity."
+              },
+              {
+                "id": "SV-87757r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73107",
+        "title": "NET-SDN-020",
+        "controls": [
+          {
+            "id": "SV-87759r1_rule",
+            "title": "All Virtual Extensible Local Area Network (VXLAN) enabled switches must be configured with the appropriate VXLAN network identifier (VNI) to ensure VMs can send and receive all associated traffic for their Layer 2 domain.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73107",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87759r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-020"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-020"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87759r1_rule_statement",
+                "name": "statement",
+                "prose": "All Virtual Extensible Local Area Network (VXLAN) enabled switches must be configured with the appropriate VXLAN network identifier (VNI) to ensure VMs can send and receive all associated traffic for their Layer 2 domain."
+              },
+              {
+                "id": "SV-87759r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Define all applicable member VNIs on each VXLAN-enabled switch."
+              },
+              {
+                "id": "SV-87759r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "VXLAN is a Layer 2 network that overlays a Layer 3 network; that is, it creates a Layer 2 adjacency across a routed IP fabric. Each Layer 2 overlay network is known as a VXLAN segment and is identified by a unique segment ID called a VXLAN Network Identifier (VNI). \n\nThe VXLAN network enables virtual machines with the same VNI deployed on different hosts to communicate with each other. Virtual machines are identified uniquely by the combination of the MAC addresses of their virtual network interface card (NIC) and VNI. Hence, it is possible to have duplicate MAC addresses within the SDN infrastructure while in different VXLAN segments. Within the VXLAN architecture, virtual tunnel endpoints (VTEPs) perform the encapsulation and de-encapsulation of the layer-2 traffic. The VXLAN segments are independent of the underlying network topology; conversely, the underlying IP network between VTEPs is independent of the VXLAN overlay. It routes the encapsulated packets based on the outer IP address header, which has the initiating VTEP as the source IP address and the terminating VTEP as the destination IP address. \n\nThe VTEP must be configured with the appropriate VNIs to enable the VTEP to build forwarding tables for active VXLAN segments (Layer 2 domains) by learning MAC addresses per VNI packet flows."
+              },
+              {
+                "id": "SV-87759r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73109",
+        "title": "NET-SDN-021",
+        "controls": [
+          {
+            "id": "SV-87761r1_rule",
+            "title": "Virtual Extensible Local Area Network (VXLAN) identifiers must be mapped to the appropriate VLAN identifiers.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73109",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87761r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-021"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-021"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87761r1_rule_statement",
+                "name": "statement",
+                "prose": "Virtual Extensible Local Area Network (VXLAN) identifiers must be mapped to the appropriate VLAN identifiers."
+              },
+              {
+                "id": "SV-87761r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the appropriate VLAN-to-VNI mapping on all VXLAN-enabled switches."
+              },
+              {
+                "id": "SV-87761r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "VXLAN is a Layer 2 network that overlays a Layer 3 network; that is, it creates a Layer 2 adjacency across a routed IP fabric. Each Layer 2 overlay network is known as a VXLAN segment and is identified by a unique segment ID called a VXLAN Network Identifier (VNI). \n\nThe VXLAN network enables virtual machines with the same VNI deployed on different hosts to communicate with each other. Virtual machines are identified uniquely by the combination of the MAC addresses of their virtual network interface card (NIC) and VNI. Hence, it is possible to have duplicate MAC addresses within the SDN infrastructure while in different VXLAN segments. Within the VXLAN architecture, virtual tunnel endpoints (VTEPs) perform the encapsulation and de-encapsulation of the layer-2 traffic. The VXLAN segments are independent of the underlying network topology; conversely, the underlying IP network between VTEPs is independent of the VXLAN overlay. It routes the encapsulated packets based on the outer IP address header, which has the initiating VTEP as the source IP address and the terminating VTEP as the destination IP address.\n\nVTEP-enabled switches will determine the VNI to insert into the VXLAN header based on the 802.1Q VLAN tag of each frame received from the hypervisor host connected via trunk link or the VLAN assignment of an access switchport. The mapping of VLAN to VNI is configured on the switch. Since the VNI is used to segregate all Layer 2 domains, the correct mapping is critical to ensure all traffic for each Layer 2 domain within the SDN infrastructure is forwarded correctly and that broadcast and multicast traffic does not leak into the wrong domain."
+              },
+              {
+                "id": "SV-87761r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73111",
+        "title": "NET-SDN-022",
+        "controls": [
+          {
+            "id": "SV-87763r1_rule",
+            "title": "The proper multicast group for each Virtual Extensible Local Area Network (VXLAN) identifier must be mapped to the appropriate virtual tunnel endpoint (VTEP) so the VTEP will join the associated multicast groups.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73111",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87763r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-022"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-022"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87763r1_rule_statement",
+                "name": "statement",
+                "prose": "The proper multicast group for each Virtual Extensible Local Area Network (VXLAN) identifier must be mapped to the appropriate virtual tunnel endpoint (VTEP) so the VTEP will join the associated multicast groups."
+              },
+              {
+                "id": "SV-87763r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the appropriate multicast group that is assigned to each VNI on all VXLAN-enabled switches."
+              },
+              {
+                "id": "SV-87763r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "VXLAN is a Layer 2 network that overlays a Layer 3 network; that is, it creates a Layer 2 adjacency across a routed IP fabric. Each Layer 2 overlay network is known as a VXLAN segment and is identified by a unique segment ID called a VXLAN Network Identifier (VNI). \n\nThe VXLAN network enables virtual machines with the same VNI deployed on different hosts to communicate with each other. Virtual machines are identified uniquely by the combination of the MAC addresses of their virtual network interface card (NIC) and VNI. Hence, it is possible to have duplicate MAC addresses within the SDN infrastructure while in different VXLAN segments. Within the VXLAN architecture, VTEPs perform the encapsulation and de-encapsulation of the layer-2 traffic. The VXLAN segments are independent of the underlying network topology; conversely, the underlying IP network between VTEPs is independent of the VXLAN overlay. It routes the encapsulated packets based on the outer IP address header, which has the initiating VTEP as the source IP address and the terminating VTEP as the destination IP address.\n\nEach VXLAN segment is mapped to an IP multicast group in the transport IP network. Hence, VTEPs join IP multicast groups based on VNI membership. This is the method by which VTEPs can discover other VTEPs belonging to the same VXLAN segment. Each VTEP-enabled switch is configured to join the applicable multicast group for each VNI through Internet Group Management Protocol (IGMP). The IGMP joins will trigger Protocol Independent Multicast (PIM) joins, thereby signaling a multicast distribution tree for each group through the transport network based on the locations of participating VTEPs.\nThe multicast group is used to transmit broadcast, unknown unicast, and multicast traffic through the IP network for each VXLAN segment, limiting all Layer 2 flooding to those switches that have end systems participating in the same VXLAN segment.\n\nBecause the VNI is used to segregate all Layer 2 domains via the VXLAN header encapsulation by the VTEPs, and discovery of each VTEP member is dependent on a specific multicast group, it is imperative that the correct mapping of multicast groups to VNI is configured."
+              },
+              {
+                "id": "SV-87763r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73113",
+        "title": "NET-SDN-024",
+        "controls": [
+          {
+            "id": "SV-87765r1_rule",
+            "title": "The virtual tunnel endpoint (VTEP) must be dual-homed to two physical network nodes.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73113",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87765r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-024"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-024"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87765r1_rule_statement",
+                "name": "statement",
+                "prose": "The virtual tunnel endpoint (VTEP) must be dual-homed to two physical network nodes."
+              },
+              {
+                "id": "SV-87765r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure all hypervisor hosts and VXLAN-enabled switches so the VTEP will be dual-homed to two physical network nodes. \n\nIn the case of the VXLAN-enabled switch, the VTEP will be the loopback interface; hence, dual-homing can be achieved by having two links going upstream to two switches or to two routers. \n\nThe hypervisor can use network interface card (NIC) teaming for the VTEP interface, with each link connected to an access switch."
+              },
+              {
+                "id": "SV-87765r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If uplink connectivity for the VTEP to the Virtual Extensible Local Area Network (VXLAN) transport network fails, traffic to and from the VM servers resident on the affected hypervisor host is dropped. Whether it is a hardware (VXLAN-enabled switch) or software (hypervisor resident) VTEP, dedicating a pair of physical uplinks from the VTEP to two separate network nodes adds high availability and resiliency to the VXLAN implementation. If either an uplink or one of the attached network nodes fails, the VTEP would still have connectivity to the underlying IP network for VXLAN traffic."
+              },
+              {
+                "id": "SV-87765r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73115",
+        "title": "NET-SDN-025",
+        "controls": [
+          {
+            "id": "SV-87767r1_rule",
+            "title": "A secondary IP address must be specified for the virtual tunnel endpoint (VTEP) loopback interface when Virtual Extensible Local Area Network (VXLAN) enabled switches are deployed as a multi-chassis configuration.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73115",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87767r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-025"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-025"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87767r1_rule_statement",
+                "name": "statement",
+                "prose": "A secondary IP address must be specified for the virtual tunnel endpoint (VTEP) loopback interface when Virtual Extensible Local Area Network (VXLAN) enabled switches are deployed as a multi-chassis configuration."
+              },
+              {
+                "id": "SV-87767r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure a secondary IP address for all VTEP loopback interfaces for VXLAN-enabled switches deployed as a multi-chassis configuration to function as a single VTEP for dual-homed attached hypervisor hosts."
+              },
+              {
+                "id": "SV-87767r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A multi-chassis configuration (i.e., vPC domain, MLAG, MCLAG, etc.) can be used to attach a hypervisor host to a pair of VXLAN-enabled switches. For example, a vPC consists of two vPC peer switches connected by a vPC peer link. A vPC domain is formed by the two switches; one switch is primary and the other is secondary. A switch can only be part of one vPC domain, and only two switches can make up a vPC domain.\n\nA vPC allows links that are physically connected to two different switches to appear as a single port channel to a third device, which can be another switch or a server that supports Link Aggregation Control Protocol (LACP) as defined in IEEE 802.1AX, 802.1aq, and 802.3ad. With vPC deployment, the loopback interface that is acting as the source-interface for the VTEP will use the secondary IP address to function as the anycast IP address if the hypervisor host is dual-attached through the vPC. When a host is single-attached (orphan port), the VXLAN-encapsulated traffic will be sent using the loopback\u2019s primary address."
+              },
+              {
+                "id": "SV-87767r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73117",
+        "title": "NET-SDN-027",
+        "controls": [
+          {
+            "id": "SV-87769r1_rule",
+            "title": "Two or more edge gateways must be deployed connecting the network virtualization platform (NVP) and the physical network.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73117",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87769r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-027"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-027"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87769r1_rule_statement",
+                "name": "statement",
+                "prose": "Two or more edge gateways must be deployed connecting the network virtualization platform (NVP) and the physical network."
+              },
+              {
+                "id": "SV-87769r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Deploy two or more edge gateways connecting the network virtualization platform and the physical network."
+              },
+              {
+                "id": "SV-87769r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "An edge gateway is deployed to allow north-south traffic to flow between the virtualized network and the physical network, including destinations outside of the data center or enclave boundaries. The gateway establishes routing adjacencies between the virtual routers and physical routers. The gateway can also filter the north-south traffic to enforce security policies for communication between the physical and virtual workloads. Deploying two or more edge gateways eliminates the risk of a single point of failure, thereby ensuring there is always reachability between virtual machines and the physical network infrastructure and reducing the risk of black-holing north-south traffic."
+              },
+              {
+                "id": "SV-87769r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73119",
+        "title": "NET-SDN-028",
+        "controls": [
+          {
+            "id": "SV-87771r1_rule",
+            "title": "Virtual edge gateways must be deployed across multiple hypervisor hosts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73119",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87771r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-028"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-028"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87771r1_rule_statement",
+                "name": "statement",
+                "prose": "Virtual edge gateways must be deployed across multiple hypervisor hosts."
+              },
+              {
+                "id": "SV-87771r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Deploy each virtual edge gateway across multiple hypervisor hosts."
+              },
+              {
+                "id": "SV-87771r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "An edge gateway is deployed to allow north-south traffic to flow between the virtualized network and the physical network, including destinations outside of the data center or enclave boundaries. The gateway can also filter the north-south traffic to enforce security policies for communication between the physical and virtual workloads. If the edge gateways deployed as virtual machines are resident on the same host, the host becomes a single point of failure for all communication between the virtual workload and the physical network infrastructure. Deploying the edge gateways across multiple hypervisor hosts eliminates the risk of a single point of failure, thereby ensuring there is always reachability between virtual machines and the physical network infrastructure and reducing the risk of black-holing north-south traffic."
+              },
+              {
+                "id": "SV-87771r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-73121",
+        "title": "NET-SDN-029",
+        "controls": [
+          {
+            "id": "SV-87773r1_rule",
+            "title": "The virtual edge gateways must be deployed with routing adjacencies established with two or more physical routers.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-73121",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-87773r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "NET-SDN-029"
+              },
+              {
+                "name": "label",
+                "value": "NET-SDN-029"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-87773r1_rule_statement",
+                "name": "statement",
+                "prose": "The virtual edge gateways must be deployed with routing adjacencies established with two or more physical routers."
+              },
+              {
+                "id": "SV-87773r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the virtual edge gateways to have routing adjacencies established with two or more physical routers."
+              },
+              {
+                "id": "SV-87773r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "An edge gateway is deployed to allow north-south traffic to flow between the virtualized network and the physical network, including destinations outside of the data center or enclave boundaries. The gateway establishes routing adjacencies between the virtual routers and physical routers. The gateway can also filter the north-south traffic to enforce security policies for communication between the physical and virtual workloads. \n\nImplementing the edge gateway in either active/standby or equal-cost multipath (ECMP) mode ensures there is always a virtual router to forward north-south traffic, assuming there is always a routing adjacency with a router in the physical network infrastructure. Having an adjacency with only one physical router creates a single point of failure regardless of the number of links deployed, there would be no connectivity between the virtual and physical workloads if a node failure occurred. Hence, it is imperative that each edge gateway is deployed with connectivity to two physical routers."
+              },
+              {
+                "id": "SV-87773r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

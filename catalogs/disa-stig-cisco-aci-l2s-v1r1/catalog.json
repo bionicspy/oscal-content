@@ -1,0 +1,1444 @@
+{
+  "catalog": {
+    "uuid": "4eb87be0-d49d-50c7-8e6d-c43b27095616",
+    "metadata": {
+      "title": "Cisco ACI Layer 2 Switch Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-05-27T00:00:00Z",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2025-05-27"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "1"
+        },
+        {
+          "name": "version.minor",
+          "value": "1"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-272029",
+        "title": "SRG-NET-000148-L2S-000015",
+        "controls": [
+          {
+            "id": "SV-272029r1114259_rule",
+            "title": "The Cisco ACI layer 2 switch must uniquely identify all network-connected endpoint devices before establishing any connection.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272029",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272029r1114259_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000001"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000001"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1114259"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000778",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Uniquely identify organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-3.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272029r1114259_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switch must uniquely identify all network-connected endpoint devices before establishing any connection."
+              },
+              {
+                "id": "SV-272029r1114259_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable 802.1X authentication on host-facing access ports in Cisco APIC and accommodate devices lacking 802.1X support, configure MAB (MAC Authentication Bypass). The following is an example.\n\nEnable 802.1x on Port Profiles:\n1. Navigate to Fabric >> Port Profiles.\n2. Select the port profile that is used for host-facing access ports.\n3. Within the port profile configuration, locate the 802.1x settings and enable it.\n4. Specify the 802.1x authentication parameters are set. \n5. Enable MAB and specify the MAC address range and relevant settings.\n6. For Host Mode, select Single Host.\n7. The MAC Auth should be EAP_FALLBACK_MAB.\n8. In the Failed-auth VLAN field, select the VLAN to deploy to if authentication failed.\n9. In the Failed-auth EPG field, choose the tenant, application profile, or EPG to deploy to if authentication failed.\n10. Go to the Endpoints section.\n11. Choose the leaf nodes that host the host-facing ports.\n12. Apply the configured port profile to the host-facing ports."
+              },
+              {
+                "id": "SV-272029r1114259_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Controlling LAN access via 802.1x authentication can assist in preventing a malicious user from connecting an unauthorized PC to a switch port to inject or receive data from the network without detection.\n\nIn ACI, VLANs are used for traffic segmentation and identification, but their primary function is for identifying traffic, not directly configuring the leaf switch ports."
+              },
+              {
+                "id": "SV-272029r1114259_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-272030",
+        "title": "SRG-NET-000168-L2S-000019",
+        "controls": [
+          {
+            "id": "SV-272030r1114331_rule",
+            "title": "The Cisco ACI layer 2 switches should authenticate all VLAN Trunk Protocol (VTP) messages with a hash function using the most secured cryptographic algorithm available.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272030",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272030r1114331_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000002"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000002"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1114331"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000803",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement mechanisms for authentication to a cryptographic module that meet the requirements of applicable laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-7.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-7"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272030r1114331_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switches should authenticate all VLAN Trunk Protocol (VTP) messages with a hash function using the most secured cryptographic algorithm available."
+              },
+              {
+                "id": "SV-272030r1114331_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure VLANs for VTP authentication by configuring the VLAN pool within the APIC and then associate it with the appropriate Endpoint Groups (EPGs). All switches in the VTP domain must have the same VTP domain name. All switches in the domain must have the same VTP password. \n\n1. Navigate to Fabric >> Fabric Policies >> Policies >> Pod >> VLAN.\n2. Specify the VTP domain name.\n3. Set the VTP password.\n4. Click \"Apply\" to save the changes."
+              },
+              {
+                "id": "SV-272030r1114331_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "VTP provides central management of VLAN domains, thus reducing administration in a switched network. When configuring a new VLAN on a VTP server, the VLAN is distributed through all switches in the domain. This reduces the need to configure the same VLAN everywhere. VTP pruning preserves bandwidth by preventing VLAN traffic (unknown MAC, broadcast, multicast) from being sent down trunk links when not needed, that is, there are no access switch ports in neighboring switches belonging to such VLANs. An attack can force a digest change for the VTP domain enabling a rogue device to become the VTP server, which could allow unauthorized access to previously blocked VLANs or allow the addition of unauthorized switches into the domain. Authenticating VTP messages with a cryptographic hash function can reduce the risk of the VTP domains being compromised."
+              },
+              {
+                "id": "SV-272030r1114331_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-272032",
+        "title": "SRG-NET-000343-L2S-000016",
+        "controls": [
+          {
+            "id": "SV-272032r1114076_rule",
+            "title": "The Cisco ACI layer 2 switch must authenticate all network-connected endpoint devices before establishing any connection.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272032",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272032r1114076_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000004"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000004"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1114076"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001958",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Authenticate organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272032r1114076_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switch must authenticate all network-connected endpoint devices before establishing any connection."
+              },
+              {
+                "id": "SV-272032r1114076_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure 802.1 x authentications on all host-facing access switch ports. To authenticate those devices that do not support 802.1x, MAB must be configured. When configuring the interface for a leaf switch, the port security policy can be chosen from the list of available port security policies.\n\nCreate an 802.1X Port Authentication Policy:\n1. On the menu bar, click Fabric >> External Access Policies >> Policies >> Interface >> 802.1X Port Authentication.\n2. Right-click \"802.1X Port Authentication\" to open Create 802.1X Port Authentication Policy and fill out the form.\n- In the Host Mode field, select \"Single Host\u2014For allowing only one host per port\".\n- In the MAC Auth field, select \"EAP_FALLBACK_MAB\".\n- Click \"Submit\".\n\nConfigure 802.1X Node Authentication.\nAssociate the 802.1X Port Authentication Policy to a Fabric Access Group:\n1. On the menu bar, click Fabric >> External Access Policies >> Policies >> Switch >> 802.1X Node Authentication.\n- Right-click \"802.1X Node Authentication\" to open Create 802.1X Node Authentication Policy.\n- In the Failed-auth EPG field, select the tenant, application profile, and EPG to deploy to in the case of failed authentication.\n- In the Failed-auth VLAN, select the VLAN to deploy to in the case of failed authentication.\n2. To associate the 802.1X Node Authentication Policy to a Leaf Switch Policy Group, navigate to Fabric >> External Access Policies >> Switches >> Leaf Switches >> Policy Groups.\n- Right-click \"Policy Groups\" to open Create Access Switch Policy Group.\n- In the 802.1X Node Authentication Policy field, select the previously created policy.\n- Click \"Submit\".\n3. To associate the 802.1X Node Authentication Policy to a Leaf Interface Profile, navigate to Fabric >> External Access Policies >> Interfaces >> Leaf Interfaces >> Profiles.\n- Right-click \"Profiles\" to open Create Leaf Interface Profile.\n- Expand the Interface Selectors table to open the Create Access Port Selector dialog box and fill out the form.\n- In the Interface Policy Group field, select the previously created policy and click \"OK\".\n- Click \"Submit\"."
+              },
+              {
+                "id": "SV-272032r1114076_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity.\n\nFor distributed architectures (e.g., service-oriented architectures [SOA]), the decisions regarding the validation of authentication claims may be made by services separate from the services acting on those decisions. In such situations, it is necessary to provide authentication decisions (as opposed to the actual authenticators) to the services that need to act on those decisions.\n\nThis requirement applies to applications that connect either locally, remotely, or through a network to an endpoint device (including, but not limited to, workstations, printers, servers (outside a datacenter), VoIP Phones, and VTC CODECs). Gateways and SOA applications are examples of where this requirement would apply.\n\nDevice authentication is a solution enabling an organization to manage devices. It is an additional layer of authentication ensuring only specific pre-authorized devices can access the system."
+              },
+              {
+                "id": "SV-272032r1114076_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-272033",
+        "title": "SRG-NET-000362-L2S-000024",
+        "controls": [
+          {
+            "id": "SV-272033r1114238_rule",
+            "title": "The Cisco ACI layer 2 switch must have Unknown Unicast Flood Blocking (UUFB) set to \"Hardware Proxy\".",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272033",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272033r1114238_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000005"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000005"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1114238"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002385",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect against or limit the effects of organization-defined types of denial-of-service events."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272033r1114238_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switch must have Unknown Unicast Flood Blocking (UUFB) set to \"Hardware Proxy\"."
+              },
+              {
+                "id": "SV-272033r1114238_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure each Bridge Domain to handle unknown unicast flood blocking.\n\n1. Navigate to Tenant >> Networking >> Bridge Domains >> Policy >> General.\n2. Expand Networking and right-click \"Create Bridge Domain\" to open the dialog box and fill out the form.\n- In the L2 Unknown Unicast box, select \"Hardware Proxy\".\n3. Click \"NEXT\".\n4. Complete the Bridge Domain configuration and click \"Finish\"."
+              },
+              {
+                "id": "SV-272033r1114238_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Access layer switches use the Content Addressable Memory (CAM) table to direct traffic to specific ports based on the VLAN number and the destination MAC address of the frame. When a router has an Address Resolution Protocol (ARP) entry for a destination host and forwards it to the access layer switch and there is no entry corresponding to the frame's destination MAC address in the incoming VLAN, the frame will be sent to all forwarding ports within the respective VLAN, which causes flooding. Large amounts of flooded traffic can saturate low bandwidth links, causing network performance issues or complete connectivity outage to the connected devices. Unknown unicast flooding has been a problem in networks that have asymmetric routing and default timers. To mitigate the risk of a connectivity outage, the Unknown Unicast Flood Blocking (UUFB) feature must be implemented on all access layer switches. The UUFB feature will block unknown unicast traffic flooding and only permit egress traffic with MAC addresses that are known to exit on the port.\n\nFor Cisco ACI, L2 Unknown Unicast decides whether the bridge domain should flood packets that are destined to an unknown MAC address (Flood) or should send it to a spine node for COOP database lookup (Hardware Proxy)."
+              },
+              {
+                "id": "SV-272033r1114238_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-272037",
+        "title": "SRG-NET-000362-L2S-000027",
+        "controls": [
+          {
+            "id": "SV-272037r1113943_rule",
+            "title": "The Cisco ACI layer 2 switch must enable port security.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272037",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272037r1113943_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000009"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000009"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1113943"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002385",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect against or limit the effects of organization-defined types of denial-of-service events."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272037r1113943_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switch must enable port security."
+              },
+              {
+                "id": "SV-272037r1113943_rule_guidance",
+                "name": "guidance",
+                "prose": "Create a port security policy. The port security policy can be created new or chosen from the list of available port security policies.\n1. In the GUI menu bar, click Fabric >> Access Policies.\n2. In the Navigation pane, expand Policies >> Interface >> Port Security.\n3. Right-click \"Port Security\" and click \"Create Port Security Policy\".\n4. In the Create Port Security Policy dialog box:\n- In the Port Security Timeout field, enter \"600\" before reenabling MAC learning on an interface.\n- In the Maximum Endpoints field, enter \"1\" for the maximum number of endpoints that can be learned on an interface.\n- In the Violation Action field, select \"Protect\". \n5. Click \"Submit\".\n\nConfigure each host-facing interface for the leaf switches: \n1. In the Navigation pane, click Fabric >> Inventory >> Topology, and navigate to the desired leaf switch. \n2. Choose the appropriate port to configure the interface.\n3. From the port security policy drop-down list, choose the desired port security policy to associate."
+              },
+              {
+                "id": "SV-272037r1113943_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The port security feature protects the ACI fabric from being flooded with unknown MAC addresses by limiting the number of MAC addresses learned per port. The port security feature support is available for physical ports, port channels, and virtual port channels."
+              },
+              {
+                "id": "SV-272037r1113943_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-272038",
+        "title": "SRG-NET-000512-L2S-000001",
+        "controls": [
+          {
+            "id": "SV-272038r1114350_rule",
+            "title": "The Cisco ACI layer 2 switch must have Storm Control configured on all host-facing switch ports.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272038",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272038r1114350_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000010"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000010"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1114350"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272038r1114350_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switch must have Storm Control configured on all host-facing switch ports."
+              },
+              {
+                "id": "SV-272038r1114350_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure one or more storm control policies for all host-facing interfaces and external interfaces and apply the policy to an ESG.\n\n1. Navigate to Fabric >> Access Policies >> Policies >> Interface >> Storm Control.\n2. Click \"Add\" to create a new policy and define the following parameters:\n- Give the policy a descriptive name. \n- Choose \"Broadcast\" as the type of traffic to control and other types as needed (e.g., Multicast, Unknown Unicast). \n- Set the threshold for the traffic type. (Refer to note below.) \n- Specify \"log\" as the action to take when the threshold is exceeded (e.g., drop, log). \n- Enable monitoring to track storm control events. \n\nApply the Storm Control Policy to an EPG:\n1. Navigate to the Application Profile containing the EPGs to be protected.\n2. Select the EPG and navigate to the \"Policies\" tab.\n3. Under \"Interface\", select the newly created \"Storm Control\" policy.\n4. Click \"Apply\". \n\nNote: The acceptable range is 10000000-1000000000 for a gigabit Ethernet interface, and 100000000-10000000000 for a ten gigabit interface. Storm control is not supported on most FastEthernet interfaces."
+              },
+              {
+                "id": "SV-272038r1114350_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A traffic storm occurs when packets flood a LAN, creating excessive traffic and degrading network performance. Traffic storm control prevents network disruption by suppressing ingress traffic when the number of packets reaches configured threshold levels. Traffic storm control monitors ingress traffic levels on a port and drops traffic when the number of packets reaches the configured threshold level during any one-second interval."
+              },
+              {
+                "id": "SV-272038r1114350_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-272039",
+        "title": "SRG-NET-000512-L2S-000002",
+        "controls": [
+          {
+            "id": "SV-272039r1113945_rule",
+            "title": "The Cisco ACI layer 2 switch must have Internet Group Management Protocol (IGMP) or Multicast Listener Discovery (MLD) snooping configured on all VLANs.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272039",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272039r1113945_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000011"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000011"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1113945"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272039r1113945_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switch must have Internet Group Management Protocol (IGMP) or Multicast Listener Discovery (MLD) snooping configured on all VLANs."
+              },
+              {
+                "id": "SV-272039r1113945_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure IGMP or MLD snooping for IPv4 and IPv6 multicast traffic respectively globally.\n\nExample:\napic1(config-tenant)# template ip igmp snooping policy <policy name>"
+              },
+              {
+                "id": "SV-272039r1113945_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "IGMP and MLD snooping provides a way to constrain multicast traffic at layer 2. By monitoring the IGMP or MLD membership reports sent by hosts within a VLAN, the snooping application can set up Layer 2 multicast forwarding tables to deliver specific multicast traffic only to interfaces connected to hosts interested in receiving the traffic, thereby significantly reducing the volume of multicast traffic that would otherwise flood the VLAN."
+              },
+              {
+                "id": "SV-272039r1113945_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-272042",
+        "title": "SRG-NET-000512-L2S-000007",
+        "controls": [
+          {
+            "id": "SV-272042r1114329_rule",
+            "title": "The Cisco ACI layer 2 switch must have all disabled switch ports assigned to an unused VLAN.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272042",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272042r1114329_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000014"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000014"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1114329"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272042r1114329_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switch must have all disabled switch ports assigned to an unused VLAN."
+              },
+              {
+                "id": "SV-272042r1114329_rule_guidance",
+                "name": "guidance",
+                "prose": "Identify ports that are unused. Assign all switch ports not in use to an inactive VLAN. \n\nCreate an Unused VLAN.\n1. In the ACI GUI, Navigate to Fabric >> Inventory >> Pod number.\n2. Click on the \"Topology\" tab to view the fabric topology.\n3. Double-click the leaf switch or spine switch to view port-level connectivity.\n4. Navigate to the VLAN section and create a new VLAN profile but do not assign any applications or endpoints.\n\nAssign Ports to the Unused VLAN.\n1. Navigate to Fabric >> Inventory >> Pod number, then navigate to the desired switch.\n2. Select the specific port you want to disable (or not use) and assign to the unused VLAN.\n3. Navigate to the port profile and select the unused VLAN.\n4. Disable the port as needed."
+              },
+              {
+                "id": "SV-272042r1114329_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "It is possible that a disabled port that is assigned to a user or management VLAN becomes enabled by accident or by an attacker and as a result gains access to that VLAN as a member."
+              },
+              {
+                "id": "SV-272042r1114329_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-272043",
+        "title": "SRG-NET-000512-L2S-000011",
+        "controls": [
+          {
+            "id": "SV-272043r1113949_rule",
+            "title": "The Cisco ACI layer 2 switch must have all user-facing or untrusted ports configured as access switch ports.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272043",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272043r1113949_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000015"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000015"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1113949"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272043r1113949_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switch must have all user-facing or untrusted ports configured as access switch ports."
+              },
+              {
+                "id": "SV-272043r1113949_rule_guidance",
+                "name": "guidance",
+                "prose": "Disable trunking on all user-facing or untrusted switch ports. To disable trunking on all user-facing or untrusted switch ports on a Cisco APIC, use the command \"switchport mode access\" on each relevant interface within the APIC configuration, effectively setting each port to \"access mode\", which only allows traffic for a single VLAN, preventing trunking functionality. Identify which physical ports on the APIC are considered \"user-facing\" or \"untrusted\" as those will need to be configured as access ports. \n\n[apic1] configure terminal\n[apic1(config)#] interface <interface name>\n[apic1(config-if)#] switchport mode access\n[apic1(config-if)#] switchport access vlan <vlan-id>\n\nor \n\nTo prevent any accidental trunking negotiation, use the \"switchport nonegotiate\" command on the interface."
+              },
+              {
+                "id": "SV-272043r1113949_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Double encapsulation can be initiated by an attacker who has access to a switch port belonging to the native VLAN of the trunk port. Knowing the victim's MAC address, and with the victim attached to a different switch belonging to the same trunk group, thereby requiring the trunk link and frame tagging, the malicious user can begin the attack by sending frames with two sets of tags. The outer tag that will have the attacker's VLAN ID (probably the well-known and omnipresent default VLAN) is stripped off by the switch, and the inner tag that will have the victim's VLAN ID is used by the switch as the next hop and sent out the trunk port."
+              },
+              {
+                "id": "SV-272043r1113949_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-272044",
+        "title": "SRG-NET-000512-L2S-000012",
+        "controls": [
+          {
+            "id": "SV-272044r1113950_rule",
+            "title": "The Cisco ACI layer 2 switch, for all 802.1q trunk links, must have the native VLAN assigned to an ID other than the default VLAN.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272044",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272044r1113950_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000016"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000016"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1113950"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272044r1113950_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switch, for all 802.1q trunk links, must have the native VLAN assigned to an ID other than the default VLAN."
+              },
+              {
+                "id": "SV-272044r1113950_rule_guidance",
+                "name": "guidance",
+                "prose": "To ensure the integrity of the trunk link and prevent unauthorized access, the ID of the native VLAN of the trunk port must be changed from the default VLAN (i.e., VLAN 1) to its own unique VLAN ID. \n\n[apic1] configure terminal\n[apic1(config)#] interface <interface name>\n[apic1(config-if)#] vlan dot1q tag native\n\nor \n\n[apic1] configure terminal\n[apic1(config)#] interface {interface name}\n[apic1(config-if)#] switchport trunk native vlan <vlan-id>\n\nNote: An alternative to configuring a dedicated native VLAN is to ensure all native VLAN traffic is tagged. This will mitigate the risk of VLAN hopping because there will always be an outer tag for native traffic as it traverses an 802.1q trunk link.\n\nNote: The native VLAN ID must be the same on both ends of the trunk link; otherwise, traffic could accidentally leak between broadcast domains."
+              },
+              {
+                "id": "SV-272044r1113950_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "VLAN hopping can be initiated by an attacker who has access to a switch port belonging to the same VLAN as the native VLAN of the trunk link connecting to another switch that the victim is connected to. If the attacker knows the victim's MAC address, it can forge a frame with two 802.1q tags and a layer 2 header with the destination address of the victim. Since the frame will ingress the switch from a port belonging to its native VLAN, the trunk port connecting to the victim's switch will simply remove the outer tag because native VLAN traffic is to be untagged. The switch will forward the frame on to the trunk link unaware of the inner tag with a VLAN ID of which the victim's switch port is a member."
+              },
+              {
+                "id": "SV-272044r1113950_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-272045",
+        "title": "SRG-NET-000705-L2S-000110",
+        "controls": [
+          {
+            "id": "SV-272045r1114353_rule",
+            "title": "The Cisco ACI layer 2 switch must employ a first-hop-security (FHS) policy to protect against denial-of-service (DoS) attacks.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272045",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272045r1114353_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000017"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000017"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1114353"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004866",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Employ organization-defined controls by type of denial-of-service to achieve the denial-of-service objective."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002385",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect against or limit the effects of organization-defined types of denial-of-service events."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272045r1114353_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switch must employ a first-hop-security (FHS) policy to protect against denial-of-service (DoS) attacks."
+              },
+              {
+                "id": "SV-272045r1114353_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the FHS policy.\n\nNote: This is an example. The exact configuration may vary with the site's architecture.\n\nExample:\napic1(config)# tenant <tenant name>\napic1(config-tenant)# first-hop-security\napic1(config-tenant-fhs)# security-policy secpol1\napic1(config-tenant-fhs-secpol)#\napic1(config-tenant-fhs-secpol)# ip-inspection-admin-status enabled-both\napic1(config-tenant-fhs-secpol)# source-guard-admin-status enabled-both\napic1(config-tenant-fhs-secpol)# router-advertisement-guard-admin-status enabled\napic1(config-tenant-fhs-secpol)# router-advertisement-guard\napic1(config-tenant-fhs-raguard)#\napic1(config-tenant-fhs-raguard)# managed-config-check\napic1(config-tenant-fhs-raguard)# managed-config-flag\napic1(config-tenant-fhs-raguard)# other-config-check\napic1(config-tenant-fhs-raguard)# other-config-flag\napic1(config-tenant-fhs-raguard)# maximum-router-preference low\napic1(config-tenant-fhs-raguard)# minimum-hop-limit 10\napic1(config-tenant-fhs-raguard)# maximum-hop-limit 100\napic1(config-tenant-fhs-raguard)# exit\napic1(config-tenant-fhs-secpol1)# exit\napic1(config-tenant-fhs)# trust-control tcpol1\napic1(config-tenant-fhs-trustctrl)# arp\napic1(config-tenant-fhs-trustctrl)# dhcpv4-server \napic1(config-tenant-fhs-trustctrl)# dhcpv6-server\napic1(config-tenant-fhs-trustctrl)# ipv6-router\napic1(config-tenant-fhs-trustctrl)#  router-advertisement\napic1(config-tenant-fhs-trustctrl)# neighbor-discovery\napic1(config-tenant-fhs-trustctrl)# exit\napic1(config-tenant-fhs)# exit\napic1(config-tenant)# bridge-domain bd1\napic1(config-tenant-bd)# first-hop-security security-policy pol1\napic1(config-tenant-bd)# exit             \napic1(config-tenant)# application ap1\napic1(config-tenant-app)# epg epg1\napic1(config-tenant-app-epg)# first-hop-security trust-control tcpol1"
+              },
+              {
+                "id": "SV-272045r1114353_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "DoS events may occur due to a variety of internal and external causes, such as an attack by an adversary or a lack of planning to support organizational needs with respect to capacity and bandwidth.\n\nFHS features enable a better IPv4 and IPv6 link security and management over the layer 2 links. In a service provider environment, these features closely control address assignment and derived operations. Setting include the following DOD required configurations:\n- Unknown Unicast Flood Blocking (UUFB) enabled.\n- DHCP snooping enabled for all user VLANs to validate DHCP messages from untrusted sources.\n- IP Source Guard enabled on all user-facing or untrusted access switch ports.\n- Dynamic Address Resolution Protocol (ARP) Inspection enabled on all user VLANs.\n\nSatisfies: SRG-NET-000362-L2S-000025, SRG-NET-000362-L2S-000026, SRG-NET-000362-L2S-000027"
+              },
+              {
+                "id": "SV-272045r1114353_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-272046",
+        "title": "SRG-NET-000715-L2S-000120",
+        "controls": [
+          {
+            "id": "SV-272046r1114355_rule",
+            "title": "The Cisco ACI layer 2 switch must implement physically or logically separate subnetworks to isolate organization-defined critical system components and functions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272046",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272046r1114355_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000018"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000018"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1114355"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004891",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement physically or logically separate subnetworks to isolate organization-defined critical system components and functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-7 (29)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272046r1114355_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switch must implement physically or logically separate subnetworks to isolate organization-defined critical system components and functions."
+              },
+              {
+                "id": "SV-272046r1114355_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure one or more Cisco ACI contracts and/or segmentation capabilities to provide segmentation within the data center for east-west traffic and north-south traffic flows, combined in this former case with other security devices or solutions to implement a defense-in-depth strategy. The following is an example of deploying an EPG through an interface policy group to multiple interfaces in order to provide separation and isolation of traffic.\n\nBefore beginning, ensure the following:\n- The target application EPG is created.\n- The VLAN pools have been created containing the range of VLANs to use for EPG deployment on the AEP.\n- The physical domain has been created and linked to the VLAN Pool and AEP.\n- The target attached entity profile is created and associated with the ports on which the application EPG will be deployed.\n\n1. Associate the target EPG with the interface policy group. The sample command sequence specifies an interface policy group pg3 associated with VLAN domain, domain1, and with VLAN 1261. The application EPG, epg47 is deployed to all interfaces associated with this policy group.\n\napic1# configure terminal\napic1(config)# template policy-group pg3\n\nDeploying an EPG through an Interface Policy Group to Multiple Interfaces\n\napic1(config-pol-grp-if)# vlan-domain member domain1\napic1(config-pol-grp-if)# switchport trunk allowed vlan 1261 tenant tn10 application pod1-AP \n      epg epg47\n\n2. Check the target ports to ensure deployment of the policies of the interface policy group associated with application EPG. The output of the sample \"show command\" sequence indicates that policy group pg3 is deployed on Ethernet port 1/20 on leaf switch 1017.\n\napic1# show run leaf 1017 int eth 1/20\n# Command: show running-config leaf 1017 int eth 1/20\n# Time: Mon Jun 27 22:12:10 2016\n  leaf 1017\n    interface ethernet 1/20\n      policy-group pg3\n      exit\n    exit\nifav28-ifc1#"
+              },
+              {
+                "id": "SV-272046r1114355_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Separating critical system components and functions from other noncritical system components and functions through separate subnetworks may be necessary to reduce susceptibility to a catastrophic or debilitating breach or compromise that results in system failure. For example, physically separating the command and control function from the in-flight entertainment function through separate subnetworks in a commercial aircraft provides an increased level of assurance in the trustworthiness of critical system functions.\n\nCisco ACI provides numerous features to cover different use cases to restrict traffic between EPGs to help organizations in the segmentation and micro-segmentation journey. This includes features such as:\n- Inter-VRF and Intra-VRF Contracts.\n- Policy-based Redirection and layer 4 to layer 7 Services Insertion.\n- Intra-EPG Isolation and Intra-EPG Contracts.\n- vzAny Contracts.\n- Endpoint Security Groups (ESG).\n\nOrganizations must make use of one or more of these Cisco ACI contracts and segmentation capabilities to provide segmentation within the data center for east-west traffic flows, as well as for north-south traffic flows, combined in this former case with other security devices or solutions to implement a defense-in-depth strategy."
+              },
+              {
+                "id": "SV-272046r1114355_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-272047",
+        "title": "SRG-NET-000760-L2S-000160",
+        "controls": [
+          {
+            "id": "SV-272047r1113953_rule",
+            "title": "The Cisco ACI layer 2 switch must establish organization-defined alternate communication paths for system operations organizational command and control.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-272047",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-272047r1113953_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CACI-L2-000019"
+              },
+              {
+                "name": "label",
+                "value": "CACI-L2-000019"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1113953"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004931",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Establish organization-defined alternate communications paths for system operations organizational command and control."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-47"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-272047r1113953_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ACI layer 2 switch must establish organization-defined alternate communication paths for system operations organizational command and control."
+              },
+              {
+                "id": "SV-272047r1113953_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure a multi-pod ACI architecture with separate APIC clusters with redundancy across pods using external IP-routed networks (Interpod Network) to connect them, allowing management access even if one pod experiences a failure.\n\nDeploy at least two separate APIC clusters (pods).\n\napic1# conf t\napic1(config)# pod <pod_name>\napic1(config)# ip address <management_ip> <subnet_mask>\napic1(config)# ip route <destination_network> <next_hop_ip>"
+              },
+              {
+                "id": "SV-272047r1113953_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "An incident, whether adversarial- or nonadversarial-based, can disrupt established communication paths used for system operations and organizational command and control. Alternate communication paths reduce the risk of all communication paths being affected by the same incident. To compound the problem, the inability of organizational officials to obtain timely information about disruptions or to provide timely direction to operational elements after a communication path incident, can impact the ability of the organization to respond to such incidents in a timely manner. Establishing alternate communication paths for command and control purposes, including designating alternative decision makers if primary decision makers are unavailable and establishing the extent and limitations of their actions, can greatly facilitate the organization's ability to continue to operate and take appropriate actions during an incident.\n\nTo establish alternate communication paths for system operations and organizational command and control within a Cisco ACI cluster using the CLI, configure a multi-pod ACI architecture with separate APIC clusters, ensuring redundancy across pods by using external IP-routed networks (Inter-Pod Network) to maintain connectivity even if one pod experiences a failure. This effectively creates diverse communication pathways for management and control functions."
+              },
+              {
+                "id": "SV-272047r1113953_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

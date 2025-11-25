@@ -1,0 +1,2984 @@
+{
+  "catalog": {
+    "uuid": "00ed6465-6ac9-5db3-91e3-caa6ec4cb0e8",
+    "metadata": {
+      "title": "MS SQL Server 2016 Database Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-07-02T00:00:00Z",
+      "version": "3.3.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2025-07-02"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "3"
+        },
+        {
+          "name": "version.minor",
+          "value": "3"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-213900",
+        "title": "SRG-APP-000023-DB-000001",
+        "controls": [
+          {
+            "id": "SV-213900r1043176_rule",
+            "title": "SQL Server databases must integrate with an organization-level authentication/access mechanism providing account management and automation for all users, groups, roles, and any other principals.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213900",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213900r1043176_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-000100"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-000100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043176"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000015",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Support the management of system accounts using organization-defined automated mechanisms."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213900r1043176_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server databases must integrate with an organization-level authentication/access mechanism providing account management and automation for all users, groups, roles, and any other principals."
+              },
+              {
+                "id": "SV-213900r1043176_rule_guidance",
+                "name": "guidance",
+                "prose": "If mixed mode is required, document the need and justification; describe the measures taken to ensure the use of SQL Server authentication is kept to a minimum; describe the measures taken to safeguard passwords; list or describe the SQL Logins used; and obtain official approval.\n\nIf mixed mode is not required, disable it as follows:\u00a0\n\nIn the SSMS Object Explorer, right-click on the server instance, select Properties >> Security page. Click the radio button for \"Windows Authentication Mode\", and then click \"OK\".\n\nRestart the SQL Server instance.\u00a0\n\nOR\n\nRun the statement:\u00a0\n\nUSE [master]\nEXEC xp_instance_regwrite N'HKEY_LOCAL_MACHINE', N'Software\\Microsoft\\MSSQLServer\\MSSQLServer', N'LoginMode', REG_DWORD, 2\nGO\n\nRestart the SQL Server instance.\u00a0\n\nFor each account being managed by SQL Server but not requiring it, drop or disable the SQL Database user. Replace it with an appropriately configured account, as needed.\n\nTo drop a User in the SSMS Object Explorer:\u00a0\n\nNavigate to Databases >> Security Users. Right-click on the User name, and then click \"Delete\".\n\nTo drop a User via a query:\u00a0\nUSE database_name;\nDROP USER <user_name>;"
+              },
+              {
+                "id": "SV-213900r1043176_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Enterprise environments make account management for applications and databases challenging and complex. A manual process for account management functions adds the risk of a potential oversight or other error. Managing accounts for the same person in multiple places is inefficient and prone to problems with consistency and synchronization.\n\nA comprehensive application account management process that includes automation helps to ensure that accounts designated as requiring attention are consistently and promptly addressed. \n\nExamples include, but are not limited to, using automation to take action on multiple accounts designated as inactive, suspended, or terminated, or by disabling accounts located in noncentralized account stores, such as multiple servers. Account management functions can also include: assignment of group or role membership; identifying account type; specifying user access authorizations (i.e., privileges); account removal, update, or termination; and administrative alerts. The use of automated mechanisms can include, for example: using email or text messaging to notify account managers when users are terminated or transferred; using the information system to monitor account usage; and using automated telephone notification to report atypical system account usage.\n\nSQL Server must be configured to automatically utilize organization-level account management functions, and these functions must immediately enforce the organization's current account policy. \n\nAutomation may be comprised of differing technologies that when placed together, contain an overall mechanism supporting an organization's automated account management requirements."
+              },
+              {
+                "id": "SV-213900r1043176_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213901",
+        "title": "SRG-APP-000033-DB-000084",
+        "controls": [
+          {
+            "id": "SV-213901r1112497_rule",
+            "title": "SQL Server must enforce approved authorizations for logical access to database information and system resources in accordance with applicable access control policies.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213901",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213901r1112497_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-000300"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-000300"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1112497"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213901r1112497_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must enforce approved authorizations for logical access to database information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "id": "SV-213901r1112497_rule_guidance",
+                "name": "guidance",
+                "prose": "Use GRANT, REVOKE, DENY, ALTER ROLE \u2026 ADD MEMBER \u2026 and/or ALTER ROLE \u2026. DROP MEMBER statements to add and remove permissions on database-level securables, bringing them into line with the documented requirements."
+              },
+              {
+                "id": "SV-213901r1112497_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Authentication with a DoD-approved PKI certificate does not necessarily imply authorization to access SQL Server. To mitigate the risk of unauthorized access to sensitive information by entities that have been issued certificates by DoD-approved PKIs, all DoD systems, including databases, must be properly configured to implement access control policies. \n\nSuccessful authentication must not automatically give an entity access to an asset or security boundary. Authorization procedures and controls must be implemented to ensure each authenticated entity also has a validated and current authorization. Authorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset. Information systems use access control policies and enforcement mechanisms to implement this requirement. \n\nAccess control policies include identity-based policies, role-based policies, and attribute-based policies. Access enforcement mechanisms include access control lists, access control matrices, and cryptography. These policies and mechanisms must be employed by the application to control access between users (or processes acting on behalf of users) and objects (e.g., devices, files, records, processes, programs, and domains) in the information system. \n\nThis requirement is applicable to access control enforcement applications, a category that includes database management systems.  If SQL Server does not follow applicable policy when approving access, it may be in conflict with networks or other applications in the information system. This may result in users either gaining or being denied access inappropriately and in conflict with applicable policy."
+              },
+              {
+                "id": "SV-213901r1112497_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213902",
+        "title": "SRG-APP-000080-DB-000063",
+        "controls": [
+          {
+            "id": "SV-213902r960864_rule",
+            "title": "SQL Server must protect against a user falsely repudiating by ensuring only clearly unique Active Directory user accounts can connect to the database.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213902",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213902r960864_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-000400"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-000400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960864"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000166",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide irrefutable evidence that an individual (or process acting on behalf of an individual) falsely denying having performed organization-defined actions to be covered by non-repudiation."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-10.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213902r960864_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must protect against a user falsely repudiating by ensuring only clearly unique Active Directory user accounts can connect to the database."
+              },
+              {
+                "id": "SV-213902r960864_rule_guidance",
+                "name": "guidance",
+                "prose": "Remove all users that were returned in the check SQL Statement:\n\nSELECT name\nFROM sys.database_principals\nWHERE type in ('U','G')\nAND name LIKE '%$'\n\nTo remove users:\n\nRun the following command for each user:\n\nDROP USER [ IF EXISTS ] <user_name>;"
+              },
+              {
+                "id": "SV-213902r960864_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Non-repudiation of actions taken is required in order to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message. \n\nNon-repudiation protects against later claims by a user of not having created, modified, or deleted a particular data item or collection of data in the database.\n\nIn designing a database, the organization must define the types of data and the user actions that must be protected from repudiation. The implementation must then include building audit features into the application data tables and configuring the DBMS's audit tools to capture the necessary audit trail. Design and implementation also must ensure that applications pass individual user identification to the DBMS, even where the application connects to the DBMS with a standard, shared account.\n\nIf the computer account of a remote computer is granted access to a SQL Server database, any service or scheduled task running as NT AUTHORITY\\SYSTEM or NT AUTHORITY\\NETWORK SERVICE can log into the instance and perform actions. These actions cannot be traced back to a specific user or process."
+              },
+              {
+                "id": "SV-213902r960864_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213903",
+        "title": "SRG-APP-000080-DB-000063",
+        "controls": [
+          {
+            "id": "SV-213903r960864_rule",
+            "title": "SQL Server must protect against a user falsely repudiating by use of system-versioned tables (Temporal Tables).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213903",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213903r960864_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-000500"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-000500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960864"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000166",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide irrefutable evidence that an individual (or process acting on behalf of an individual) falsely denying having performed organization-defined actions to be covered by non-repudiation."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-10.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213903r960864_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must protect against a user falsely repudiating by use of system-versioned tables (Temporal Tables)."
+              },
+              {
+                "id": "SV-213903r960864_rule_guidance",
+                "name": "guidance",
+                "prose": "Alter sensitive tables to utilize system versioning.\n\nAlter non-temporal table to define periods for system versioning .\n\nALTER TABLE InsurancePolicy \nADD PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime),   \nSysStartTime datetime2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL DEFAULT GETUTCDATE(),  \nSysEndTime datetime2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL DEFAULT CONVERT(DATETIME2, '9999-12-31 23:59:59.99999999');  \n \nALTER TABLE InsurancePolicy SET (SYSTEM_VERSIONING = ON (HISTORY_TABLE=dbo.InsurancePolicyHistory));\n\nhttps://docs.microsoft.com/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-2016#system_versionin"
+              },
+              {
+                "id": "SV-213903r960864_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Non-repudiation of actions taken is required in order to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message.\n\nNon-repudiation protects against later claims by a user of not having created, modified, or deleted a particular data item or collection of data in the database. \n\nIn designing a database, the organization must define the types of data and the user actions that must be protected from repudiation. The implementation must then include building audit features into the application data tables and configuring SQL Server's audit tools to capture the necessary audit trail. Design and implementation also must ensure that applications pass individual user identification to SQL Server, even where the application connects to SQL Server with a standard, shared account. \n\nApplications should use temporal tables to track the changes and history of sensitive data."
+              },
+              {
+                "id": "SV-213903r960864_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213904",
+        "title": "SRG-APP-000080-DB-000063",
+        "controls": [
+          {
+            "id": "SV-213904r960864_rule",
+            "title": "SQL Server must protect against a user falsely repudiating by ensuring databases are not in a trust relationship.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213904",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213904r960864_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-000600"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-000600"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960864"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000166",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide irrefutable evidence that an individual (or process acting on behalf of an individual) falsely denying having performed organization-defined actions to be covered by non-repudiation."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-10.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213904r960864_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must protect against a user falsely repudiating by ensuring databases are not in a trust relationship."
+              },
+              {
+                "id": "SV-213904r960864_rule_guidance",
+                "name": "guidance",
+                "prose": "Disable trustworthy on the database.\n\nALTER DATABASE [<database name>] SET TRUSTWORTHY OFF"
+              },
+              {
+                "id": "SV-213904r960864_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Non-repudiation of actions taken is required in order to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message. \n\nNon-repudiation protects against later claims by a user of not having created, modified, or deleted a particular data item or collection of data in the database.\n\nSQL Server provides the ability for high privileged accounts to impersonate users in a database using the TRUSTWORTHY feature.\u00a0This will allow members of the fixed database role to impersonate any user within the database."
+              },
+              {
+                "id": "SV-213904r960864_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213905",
+        "title": "SRG-APP-000090-DB-000065",
+        "controls": [
+          {
+            "id": "SV-213905r960882_rule",
+            "title": "SQL Server must allow only the ISSM (or individuals or roles appointed by the ISSM) to select which auditable events are to be audited.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213905",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213905r960882_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-000700"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-000700"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960882"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000171",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Allow organization-defined personnel or roles to select the event types that are to be logged by specific components of the system."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213905r960882_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must allow only the ISSM (or individuals or roles appointed by the ISSM) to select which auditable events are to be audited."
+              },
+              {
+                "id": "SV-213905r960882_rule_guidance",
+                "name": "guidance",
+                "prose": "Create a database role specifically for audit maintainers, and give it permission to maintain audits, without granting it unnecessary permissions (The role name used here is an example; other names may be used.):\n\nCREATE ROLE DATABASE_AUDIT_MAINTAINERS;\nGO\n\nGRANT ALTER ANY DATABASE AUDIT TO DATABASE_AUDIT_MAINTAINERS;\nGO\n\nUse REVOKE and/or DENY and/or ALTER ROLE ... DROP MEMBER ... statements to remove the ALTER ANY DATABASE AUDIT permission from all users.  Then, for each authorized database user, run the statement:  \n\nALTER ROLE DATABASE_AUDIT_MAINTAINERS ADD MEMBER;\nGO\n\nUse REVOKE and/or DENY and/or ALTER SERVER ROLE ... DROP MEMBER ... statements to remove CONTROL DATABASE permission from logins that do not need it."
+              },
+              {
+                "id": "SV-213905r960882_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without the capability to restrict which roles and individuals can select which events are audited, unauthorized personnel may be able to prevent or interfere with the auditing of critical events.\n\nSuppression of auditing could permit an adversary to evade detection.\n\nMisconfigured audits can degrade the system's performance by overwhelming the audit log. Misconfigured audits may also make it more difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one."
+              },
+              {
+                "id": "SV-213905r960882_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213906",
+        "title": "SRG-APP-000133-DB-000179",
+        "controls": [
+          {
+            "id": "SV-213906r960960_rule",
+            "title": "SQL Server must limit privileges to change software modules, to include stored procedures, functions, and triggers.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213906",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213906r960960_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-001100"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-001100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960960"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001499",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Limit privileges to change software resident within software libraries."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-5 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-5 (6).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-5 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-5 (6)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213906r960960_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must limit privileges to change software modules, to include stored procedures, functions, and triggers."
+              },
+              {
+                "id": "SV-213906r960960_rule_guidance",
+                "name": "guidance",
+                "prose": "Revoke the ALTER permission from unauthorized users and roles.\n\nREVOKE ALTER ON [<Object Name>] TO [<Principal Name>]"
+              },
+              {
+                "id": "SV-213906r960960_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If the system were to allow any user to make changes to software libraries, then those changes might be implemented without undergoing the appropriate testing and approvals that are part of a robust change management process.\n\nAccordingly, only qualified and authorized individuals shall be allowed to obtain access to information system components for purposes of initiating changes, including upgrades and modifications.\n\nUnmanaged changes that occur to the database software libraries or configuration can lead to unauthorized or compromised installations."
+              },
+              {
+                "id": "SV-213906r960960_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213907",
+        "title": "SRG-APP-000133-DB-000179",
+        "controls": [
+          {
+            "id": "SV-213907r960960_rule",
+            "title": "SQL Server must limit privileges to change software modules, to include stored procedures, functions, and triggers, and links to software external to SQL Server.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213907",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213907r960960_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-001200"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-001200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960960"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001499",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Limit privileges to change software resident within software libraries."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-5 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-5 (6).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-5 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-5 (6)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213907r960960_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must limit privileges to change software modules, to include stored procedures, functions, and triggers, and links to software external to SQL Server."
+              },
+              {
+                "id": "SV-213907r960960_rule_guidance",
+                "name": "guidance",
+                "prose": "Transfer ownership of database schemas to authorized database principals.\n\nALTER AUTHORIZATION ON SCHEMA::[<Schema Name>] TO [<Principal Name>]"
+              },
+              {
+                "id": "SV-213907r960960_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If the system were to allow any user to make changes to software libraries, then those changes might be implemented without undergoing the appropriate testing and approvals that are part of a robust change management process.\n\nAccordingly, only qualified and authorized individuals shall be allowed to obtain access to information system components for purposes of initiating changes, including upgrades and modifications.\n\nUnmanaged changes that occur to the database software libraries or configuration can lead to unauthorized or compromised installations."
+              },
+              {
+                "id": "SV-213907r960960_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213908",
+        "title": "SRG-APP-000133-DB-000200",
+        "controls": [
+          {
+            "id": "SV-213908r960960_rule",
+            "title": "Database objects (including but not limited to tables, indexes, storage, stored procedures, functions, triggers, links to software external to SQL Server, etc.) must be owned by database/DBMS principals authorized for ownership.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213908",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213908r960960_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-001300"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-001300"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960960"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001499",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Limit privileges to change software resident within software libraries."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-5 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-5 (6).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-5 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-5 (6)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213908r960960_rule_statement",
+                "name": "statement",
+                "prose": "Database objects (including but not limited to tables, indexes, storage, stored procedures, functions, triggers, links to software external to SQL Server, etc.) must be owned by database/DBMS principals authorized for ownership."
+              },
+              {
+                "id": "SV-213908r960960_rule_guidance",
+                "name": "guidance",
+                "prose": "Add and/or update system documentation to include any accounts authorized for object ownership and remove any account not authorized. \n\nTo change the schema owning a database object in SQL Server, use this code as an example: \n\nUSE AdventureWorks2012;  \nGO  \nALTER SCHEMA HumanResources TRANSFER Person.Address;  \nGO  \n\nCaution: This can break code. This Fix should be implemented in conjunction with corrections to such code. Test before deploying in production. Deploy during a scheduled maintenance window."
+              },
+              {
+                "id": "SV-213908r960960_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Within the database, object ownership implies full privileges to the owned object, including the privilege to assign access to the owned objects to other subjects. Database functions and procedures can be coded using definer's rights. This allows anyone who utilizes the object to perform the actions if they were the owner. If not properly managed, this can lead to privileged actions being taken by unauthorized individuals.\n\nConversely, if critical tables or other objects in SQL Server rely on unauthorized owner accounts, these objects may be lost when an account is removed."
+              },
+              {
+                "id": "SV-213908r960960_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213909",
+        "title": "SRG-APP-000133-DB-000362",
+        "controls": [
+          {
+            "id": "SV-213909r960960_rule",
+            "title": "The role(s)/group(s) used to modify database structure (including but not necessarily limited to tables, indexes, storage, etc.) and logic modules (stored procedures, functions, triggers, links to software external to SQL Server, etc.) must be restricted to authorized users.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213909",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213909r960960_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-001400"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-001400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960960"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001499",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Limit privileges to change software resident within software libraries."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-5 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-5 (6).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-5 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-5 (6)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213909r960960_rule_statement",
+                "name": "statement",
+                "prose": "The role(s)/group(s) used to modify database structure (including but not necessarily limited to tables, indexes, storage, etc.) and logic modules (stored procedures, functions, triggers, links to software external to SQL Server, etc.) must be restricted to authorized users."
+              },
+              {
+                "id": "SV-213909r960960_rule_guidance",
+                "name": "guidance",
+                "prose": "Document and obtain approval for any non-administrative users who require the ability to modify database structure and logic modules.\n\nREVOKE ALTER ON [<Object Name>] TO [<Principal Name>]"
+              },
+              {
+                "id": "SV-213909r960960_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If SQL Server were to allow any user to make changes to database structure or logic, then those changes might be implemented without undergoing the appropriate testing and approvals that are part of a robust change management process.\n\nAccordingly, only qualified and authorized individuals shall be allowed to obtain access to information system components for purposes of initiating changes, including upgrades and modifications.\n\nUnmanaged changes that occur to the database software libraries or configuration can lead to unauthorized or compromised installations."
+              },
+              {
+                "id": "SV-213909r960960_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213910",
+        "title": "SRG-APP-000226-DB-000147",
+        "controls": [
+          {
+            "id": "SV-213910r961125_rule",
+            "title": "In the event of a system failure, hardware loss or disk failure, SQL Server must be able to restore necessary databases with least disruption to mission processes.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213910",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213910r961125_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-001500"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-001500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961125"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001665",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Preserve organization-defined system state information in the event of a system failure."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-24"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-24.1 (v)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-24"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-24"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213910r961125_rule_statement",
+                "name": "statement",
+                "prose": "In the event of a system failure, hardware loss or disk failure, SQL Server must be able to restore necessary databases with least disruption to mission processes."
+              },
+              {
+                "id": "SV-213910r961125_rule_guidance",
+                "name": "guidance",
+                "prose": "Modify the system security plan, to include whether the database is static, the correct recovery model to be used, the backup schedule, and the plan for testing database restoration. \n\nIn SQL Server Management Studio, Object Explorer, right-click on the name of the database; select Properties. Select the Options page. Set the Recovery Model field, near the top of the page, to the correct value. \n\nIn Object Explorer, expand >> SQL Server Agent >> Jobs. Create, modify, and delete jobs to implement the backup schedule. (Alternatively, this may done using T-SQL code or Third-party Backup software.) \n\nCorrect any issues that have been causing backups to fail. \n\nTest the restoration of the database at least once a year; correct any issues that cause it to fail. Maintain a record of these tests."
+              },
+              {
+                "id": "SV-213910r961125_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Failure to a known state can address safety or security in accordance with the mission/business needs of the organization. Failure to a known secure state helps prevent a loss of confidentiality, integrity, or availability in the event of a failure of the information system or a component of the system. In the event of a system failure, SQL Server must be able to bring the database back to a consistent state."
+              },
+              {
+                "id": "SV-213910r961125_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213911",
+        "title": "SRG-APP-000231-DB-000154",
+        "controls": [
+          {
+            "id": "SV-213911r961128_rule",
+            "title": "The Database Master Key encryption password must meet DOD password complexity requirements.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213911",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213911r961128_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-001600"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-001600"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961128"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001199",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protects the confidentiality and/or integrity of organization-defined information at rest."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-28"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-28.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-28"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-28"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213911r961128_rule_statement",
+                "name": "statement",
+                "prose": "The Database Master Key encryption password must meet DOD password complexity requirements."
+              },
+              {
+                "id": "SV-213911r961128_rule_guidance",
+                "name": "guidance",
+                "prose": "Assign an encryption password to the Database Master Key that is a minimum of 15 characters with at least 1 upper-case character, 1 lower-case character, 1 special character, and 1 numeric character, and at least 8 characters changed from the previous password. \n\nTo change the Database Master Key encryption password: \n\nUSE [database name]; \nALTER MASTER KEY REGENERATE WITH ENCRYPTION BY PASSWORD = '[new password]'; \n\nNote: The Database Master Key encryption method should not be changed until the effects are thoroughly reviewed. Changing the master key encryption causes all encryption using the Database Master Key to be decrypted and re-encrypted. This action should not be taken during a high-demand time. Please see the MS SQL Server documentation prior to re-encrypting the Database Master Key for detailed information."
+              },
+              {
+                "id": "SV-213911r961128_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Weak passwords may be easily guessed. When passwords are used to encrypt keys used for encryption of sensitive data, then the confidentiality of all data encrypted using that key is at risk."
+              },
+              {
+                "id": "SV-213911r961128_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213912",
+        "title": "SRG-APP-000231-DB-000154",
+        "controls": [
+          {
+            "id": "SV-213912r961128_rule",
+            "title": "The Database Master Key must be encrypted by the Service Master Key, where a Database Master Key is required and another encryption method has not been specified.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213912",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213912r961128_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-001700"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-001700"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961128"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001199",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protects the confidentiality and/or integrity of organization-defined information at rest."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-28"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-28.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-28"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-28"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213912r961128_rule_statement",
+                "name": "statement",
+                "prose": "The Database Master Key must be encrypted by the Service Master Key, where a Database Master Key is required and another encryption method has not been specified."
+              },
+              {
+                "id": "SV-213912r961128_rule_guidance",
+                "name": "guidance",
+                "prose": "Where possible, encrypt the Database Master Key with a password known only to the application administrator.\n\nWhere not possible, configure additional audit events or alerts to detect unauthorized access to the Database Master Key by users not authorized to view sensitive data."
+              },
+              {
+                "id": "SV-213912r961128_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "When not encrypted by the Service Master Key, system administrators or application administrators may access and use the Database Master Key to view sensitive data that they are not authorized to view. Where alternate encryption means are not feasible, encryption by the Service Master Key may be necessary. To help protect sensitive data from unauthorized access by DBAs, mitigations may be in order. Mitigations may include automatic alerts or other audit events when the Database Master Key is accessed outside of the application or by a DBA account."
+              },
+              {
+                "id": "SV-213912r961128_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213913",
+        "title": "SRG-APP-000231-DB-000154",
+        "controls": [
+          {
+            "id": "SV-213913r961128_rule",
+            "title": "The Certificate used for encryption must be backed up and stored in a secure location that is not on the SQL Server.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213913",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213913r961128_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-001800"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-001800"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961128"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001199",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protects the confidentiality and/or integrity of organization-defined information at rest."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-28"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-28.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-28"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-28"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213913r961128_rule_statement",
+                "name": "statement",
+                "prose": "The Certificate used for encryption must be backed up and stored in a secure location that is not on the SQL Server."
+              },
+              {
+                "id": "SV-213913r961128_rule_guidance",
+                "name": "guidance",
+                "prose": "Document and implement procedures to safely back up and store the Certificate used for encryption in a secure location that is not on the SQL Server. Include in the procedures to establish evidence of backup and storage as well as careful, restricted access and restoration of the Certificate.\n\nBACKUP CERTIFICATE 'CertificateName' TO FILE = 'path_to_file' \nWITH PRIVATE KEY (FILE = 'path_to_pvk', ENCRYPTION BY PASSWORD = 'password'); \n\nAs this requires a password, ensure it is not exposed to unauthorized persons or stored as plain text."
+              },
+              {
+                "id": "SV-213913r961128_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Backup and recovery of the Certificate used for encryption is critical to the complete recovery of the database. Not having this key can lead to loss of data during recovery."
+              },
+              {
+                "id": "SV-213913r961128_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213914",
+        "title": "SRG-APP-000233-DB-000124",
+        "controls": [
+          {
+            "id": "SV-213914r961131_rule",
+            "title": "SQL Server must isolate security functions from non-security functions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213914",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213914r961131_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-001900"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-001900"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961131"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001084",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Isolate security functions from nonsecurity functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-3.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213914r961131_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must isolate security functions from non-security functions."
+              },
+              {
+                "id": "SV-213914r961131_rule_guidance",
+                "name": "guidance",
+                "prose": "Check the server documentation, locate security-related database objects and code in a separate database, schema, table, or other separate security domain from database objects and code implementing application logic.  \n\nMicrosoft SQL Server 2005 introduced the concept of database object schemas. Schemas are analogous to separate namespaces or containers used to store database objects. Security permissions apply to schemas, making them an important tool for separating and protecting database objects based on access rights. Schemas reduce the work required, and improve the flexibility, for security-related administration of a database.\n\nUser-schema separation allows for more flexibility in managing database object permissions. A schema is a named container for database objects, which allows the user to group objects into separate namespaces.\n\nWhere possible, locate security-related database objects and code in a separate database, schema, or other separate security domain from database objects and code implementing application logic. In all cases, use GRANT, REVOKE, DENY, ALTER ROLE \u2026 ADD MEMBER \u2026 and/or ALTER ROLE \u2026. DROP MEMBER statements to add and remove permissions on server-level and database-level security-related objects to provide effective isolation."
+              },
+              {
+                "id": "SV-213914r961131_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "An isolation boundary provides access control and protects the integrity of the hardware, software, and firmware that perform security functions. \n\nSecurity functions are the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based.\n\nDevelopers and implementers can increase the assurance in security functions by employing well-defined security policy models; structured, disciplined, and rigorous hardware and software development techniques; and sound system/security engineering principles. \n\nDatabase Management Systems typically separate security functionality from non-security functionality via separate databases or schemas. Database objects or code implementing security functionality should not be commingled with objects or code implementing application logic. When security and non-security functionality are commingled, users who have access to non-security functionality may be able to access security functionality."
+              },
+              {
+                "id": "SV-213914r961131_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213915",
+        "title": "SRG-APP-000243-DB-000128",
+        "controls": [
+          {
+            "id": "SV-213915r961149_rule",
+            "title": "Database contents must be protected from unauthorized and unintended information transfer by enforcement of a data-transfer policy.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213915",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213915r961149_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-002000"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-002000"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961149"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001090",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent unauthorized and unintended information transfer via shared system resources."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-4.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213915r961149_rule_statement",
+                "name": "statement",
+                "prose": "Database contents must be protected from unauthorized and unintended information transfer by enforcement of a data-transfer policy."
+              },
+              {
+                "id": "SV-213915r961149_rule_guidance",
+                "name": "guidance",
+                "prose": "Modify any code used for moving data from production to development/test systems to comply with the organization-defined data transfer policy, and to ensure copies of production data are not left in unsecured locations."
+              },
+              {
+                "id": "SV-213915r961149_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Applications, including DBMSs, must prevent unauthorized and unintended information transfer via shared system resources. \n\nData used for the development and testing of applications often involves copying data from production. It is important that specific procedures exist for this process, to include the conditions under which such transfer may take place, where the copies may reside, and the rules for ensuring sensitive data are not exposed.\n\nCopies of sensitive data must not be misplaced or left in a temporary location without the proper controls."
+              },
+              {
+                "id": "SV-213915r961149_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213916",
+        "title": "SRG-APP-000251-DB-000160",
+        "controls": [
+          {
+            "id": "SV-213916r961158_rule",
+            "title": "SQL Server must check the validity of all data inputs except those specifically identified by the organization.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213916",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213916r961158_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-002100"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-002100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961158"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001310",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Checks the validity of organization-defined information inputs to the system."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-10.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213916r961158_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must check the validity of all data inputs except those specifically identified by the organization."
+              },
+              {
+                "id": "SV-213916r961158_rule_guidance",
+                "name": "guidance",
+                "prose": "Use parameterized queries, constraints, foreign keys, etc. to validate data input. \n\nModify SQL Server to properly use the correct column data types as required in the database."
+              },
+              {
+                "id": "SV-213916r961158_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Invalid user input occurs when a user inserts data or characters into an application's data entry fields and the application is unprepared to process that data. This results in unanticipated application behavior, potentially leading to an application or information system compromise. Invalid user input is one of the primary methods employed when attempting to compromise an application.\n\nWith respect to database management systems, one class of threat is known as SQL Injection, or more generally, code injection. It takes advantage of the dynamic execution capabilities of various programming languages, including dialects of SQL. Potentially, the attacker can gain unauthorized access to data, including security settings, and severely corrupt or destroy the database.\n\nEven when no such hijacking takes place, invalid input that gets recorded in the database, whether accidental or malicious, reduces the reliability and usability of the system. Available protections include data types, referential constraints, uniqueness constraints, range checking, and application-specific logic. Application-specific logic can be implemented within the database in stored procedures and triggers, where appropriate.\n\nThis calls for inspection of application source code, which will require collaboration with the application developers. It is recognized that in many cases, the database administrator (DBA) is organizationally separate from the application developers, and may have limited, if any, access to source code. Nevertheless, protections of this type are so important to the secure operation of databases that they must not be ignored. At a minimum, the DBA must attempt to obtain assurances from the development organization that this issue has been addressed, and must document what has been discovered."
+              },
+              {
+                "id": "SV-213916r961158_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213917",
+        "title": "SRG-APP-000266-DB-000162",
+        "controls": [
+          {
+            "id": "SV-213917r961167_rule",
+            "title": "SQL Server must provide non-privileged users with error messages that provide information necessary for corrective actions without revealing information that could be exploited by adversaries.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213917",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213917r961167_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-002400"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-002400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961167"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001312",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate error messages that provide information necessary for corrective actions without revealing information that could be exploited."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-11 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-11.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-11 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213917r961167_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must provide non-privileged users with error messages that provide information necessary for corrective actions without revealing information that could be exploited by adversaries."
+              },
+              {
+                "id": "SV-213917r961167_rule_guidance",
+                "name": "guidance",
+                "prose": "Adjust database code to remove any information not required for explaining the error to an end user.\n\nConsider enabling trace flag 3625 to mask certain system-level error information returned to non-administrative users.\n\nLaunch SQL Server Configuration Manager >> Click SQL Services >> Open the instance properties >> Click the Service Parameters tab >> Enter \"-T3625\" >> Click Add >> Click OK >> Restart SQL instance."
+              },
+              {
+                "id": "SV-213917r961167_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Any DBMS or associated application providing too much information in error messages on the screen or printout risks compromising the data and security of the system. The structure and content of error messages need to be carefully considered by the organization and development team.\n\nDatabases can inadvertently provide a wealth of information to an attacker through improperly handled error messages. In addition to sensitive business or personal information, database errors can provide host names, IP addresses, user names, and other system information not required for troubleshooting but very useful to someone targeting the system.\n\nCarefully consider the structure/content of error messages. The extent to which information systems are able to identify and handle error conditions is guided by organizational policy and operational requirements. Information that could be exploited by adversaries includes, for example, logon attempts with passwords entered by mistake as the username, mission/business information that can be derived from (if not stated explicitly by) information recorded, and personal information, such as account numbers, social security numbers, and credit card numbers."
+              },
+              {
+                "id": "SV-213917r961167_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213918",
+        "title": "SRG-APP-000311-DB-000308",
+        "controls": [
+          {
+            "id": "SV-213918r961269_rule",
+            "title": "SQL Server must associate organization-defined types of security labels having organization-defined security label values with information in storage.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213918",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213918r961269_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-002500"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-002500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961269"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002262",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide the means to associate organization-defined types of security attributes having organization-defined security attribute values with information in storage."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-16 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-16 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213918r961269_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must associate organization-defined types of security labels having organization-defined security label values with information in storage."
+              },
+              {
+                "id": "SV-213918r961269_rule_guidance",
+                "name": "guidance",
+                "prose": "Deploy SQL Server Row-Level Security (see link below) or a third-party software, or add custom data structures, data elements and application code, to provide reliable security labeling of information in storage.\n\nhttps://msdn.microsoft.com/en-us/library/dn765131.aspx"
+              },
+              {
+                "id": "SV-213918r961269_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without the association of security labels to information, there is no basis for\u00a0SQL Server\u00a0to make security-related access-control decisions.\n\nSecurity labels are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.\n\nThese labels are typically associated with internal data structures (e.g., tables, rows) within the database and are used to enable the implementation of access control and flow control policies; reflect special dissemination, handling, or distribution instructions; or support other aspects of the information security policy.\n\nOne example includes marking data as classified or FOUO. These security labels may be assigned manually or during data processing, but, either way, it is imperative these assignments are maintained while the data is in storage. If the security labels are lost when the data is stored, there is the risk of a data compromise.\n\nThe mechanism used to support security labeling may be a feature of SQL Server, a third-party product, or custom application code."
+              },
+              {
+                "id": "SV-213918r961269_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213919",
+        "title": "SRG-APP-000313-DB-000309",
+        "controls": [
+          {
+            "id": "SV-213919r961272_rule",
+            "title": "SQL Server must associate organization-defined types of security labels having organization-defined security label values with information in process.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213919",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213919r961272_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-002600"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-002600"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961272"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002263",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide the means to associate organization-defined types of security attributes having organization-defined security attribute values with information in process."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-16 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-16 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213919r961272_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must associate organization-defined types of security labels having organization-defined security label values with information in process."
+              },
+              {
+                "id": "SV-213919r961272_rule_guidance",
+                "name": "guidance",
+                "prose": "Deploy SQL Server Row-Level Security (see link below) or a third-party software, or add custom data structures, data elements and application code, to provide reliable security labeling of information in process.\n\nhttps://msdn.microsoft.com/en-us/library/dn765131.aspx"
+              },
+              {
+                "id": "SV-213919r961272_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without the association of security labels to information, there is no basis for SQL Server to make security-related access-control decisions.\n\nSecurity labels are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.\n\nThese labels are typically associated with internal data structures (e.g., tables, rows) within the database and are used to enable the implementation of access control and flow control policies; reflect special dissemination, handling, or distribution instructions; or support other aspects of the information security policy.\n\nOne example includes marking data as classified or FOUO. These security labels may be assigned manually or during data processing, but, either way, it is imperative these assignments are maintained while the data is in storage. If the security labels are lost when the data is stored, there is the risk of a data compromise.\n\nThe mechanism used to support security labeling may be a feature of SQL Server, a third-party product, or custom application code."
+              },
+              {
+                "id": "SV-213919r961272_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213920",
+        "title": "SRG-APP-000314-DB-000310",
+        "controls": [
+          {
+            "id": "SV-213920r961275_rule",
+            "title": "SQL Server must associate organization-defined types of security labels having organization-defined security label values with information in transmission.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213920",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213920r961275_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-002700"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-002700"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961275"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002264",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide the means to associate organization-defined types of security attributes having organization-defined security attribute values with information in transmission."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-16 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-16 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213920r961275_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must associate organization-defined types of security labels having organization-defined security label values with information in transmission."
+              },
+              {
+                "id": "SV-213920r961275_rule_guidance",
+                "name": "guidance",
+                "prose": "Deploy SQL Server Row-Level Security (see link below) or a third-party software, or add custom data structures, data elements and application code, to provide reliable security labeling of information in transmission.\n\nhttps://msdn.microsoft.com/en-us/library/dn765131.aspx"
+              },
+              {
+                "id": "SV-213920r961275_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without the association of security labels to information, there is no basis for SQL Server to make security-related access-control decisions.\n\nSecurity labels are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information. These labels are typically associated with internal data structures (e.g., tables, rows) within the database and are used to enable the implementation of access control and flow control policies; reflect special dissemination, handling, or distribution instructions; or support other aspects of the information security policy. One example includes marking data as classified or FOUO. These security labels may be assigned manually or during data processing, but, either way, it is imperative these assignments are maintained while the data is in storage. If the security labels are lost when the data is stored, there is the risk of a data compromise.\n\nThe mechanism used to support security labeling may be a feature of SQL Server, a third-party product, or custom application code."
+              },
+              {
+                "id": "SV-213920r961275_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213921",
+        "title": "SRG-APP-000328-DB-000301",
+        "controls": [
+          {
+            "id": "SV-213921r961317_rule",
+            "title": "SQL Server must enforce discretionary access control policies, as defined by the data owner, over defined subjects and objects.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213921",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213921r961317_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-002800"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-002800"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961317"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002165",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce organization-defined discretionary access control policies over defined subjects and objects."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213921r961317_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must enforce discretionary access control policies, as defined by the data owner, over defined subjects and objects."
+              },
+              {
+                "id": "SV-213921r961317_rule_guidance",
+                "name": "guidance",
+                "prose": "To correct object ownership:\n\nALTER AUTHORIZATION ON <Securable> TO <Principal>\n\nTo revoke any unauthorized permissions:\n\nREVOKE [Permission] ON <Securable> TO <Principal>"
+              },
+              {
+                "id": "SV-213921r961317_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Discretionary Access Control (DAC) is based on the notion that individual users are \"owners\" of objects and therefore have discretion over who should be authorized to access the object and in which mode (e.g., read or write). Ownership is usually acquired as a consequence of creating the object or via specified ownership assignment. DAC allows the owner to determine who will have access to objects they control. An example of DAC includes user-controlled table permissions.\n\nWhen discretionary access control policies are implemented, subjects are not constrained with regard to what actions they can take with information for which they have already been granted access. Thus, subjects that have been granted access to information are not prevented from passing (i.e., the subjects have the discretion to pass) the information to other subjects or objects. \n\nA subject that is constrained in its operation by Mandatory Access Control policies is still able to operate under the less rigorous constraints of this requirement. Thus, while Mandatory Access Control imposes constraints preventing a subject from passing information to another subject operating at a different sensitivity level, this requirement permits the subject to pass the information to any subject at the same sensitivity level. \n\nThe policy is bounded by the information system boundary. Once the information is passed outside of the control of the information system, additional means may be required to ensure the constraints remain in effect. While the older, more traditional definitions of discretionary access control require identity-based access control, that limitation is not required for this use of discretionary access control."
+              },
+              {
+                "id": "SV-213921r961317_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213922",
+        "title": "SRG-APP-000342-DB-000302",
+        "controls": [
+          {
+            "id": "SV-213922r961359_rule",
+            "title": "Execution of stored procedures and functions that utilize execute as must be restricted to necessary cases only.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213922",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213922r961359_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-002900"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-002900"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961359"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002233",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent the organization-defined software from executing at higher privilege levels than users executing the software."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-6 (8)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-6 (8)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213922r961359_rule_statement",
+                "name": "statement",
+                "prose": "Execution of stored procedures and functions that utilize execute as must be restricted to necessary cases only."
+              },
+              {
+                "id": "SV-213922r961359_rule_guidance",
+                "name": "guidance",
+                "prose": "Alter stored procedures and functions to remove the \"EXECUTE AS\" statement."
+              },
+              {
+                "id": "SV-213922r961359_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "In certain situations, to provide required functionality, a DBMS needs to execute internal logic (stored procedures, functions, triggers, etc.) and/or external code modules with elevated privileges. However, if the privileges required for execution are at a higher level than the privileges assigned to organizational users invoking the functionality applications/programs, those users are indirectly provided with greater privileges than assigned by organizations.\n\nPrivilege elevation must be utilized only where necessary and protected from misuse."
+              },
+              {
+                "id": "SV-213922r961359_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213923",
+        "title": "SRG-APP-000378-DB-000365",
+        "controls": [
+          {
+            "id": "SV-213923r1018608_rule",
+            "title": "SQL Server must prohibit user installation of logic modules (stored procedures, functions, triggers, views, etc.) without explicit privileged status.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213923",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213923r1018608_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-003000"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-003000"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1018608"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-003980",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Allow user installation of software only with explicit privileged status."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001812",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system prohibits user installation of software without explicit privileged status."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-11 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213923r1018608_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must prohibit user installation of logic modules (stored procedures, functions, triggers, views, etc.) without explicit privileged status."
+              },
+              {
+                "id": "SV-213923r1018608_rule_guidance",
+                "name": "guidance",
+                "prose": "Document and obtain approval for any nonadministrative users who require the ability to create, alter, or replace logic modules.\n\nRevoke the ALTER permission from unauthorized users and roles:\nREVOKE ALTER ON [<Object Name>] TO [<Principal Name>]"
+              },
+              {
+                "id": "SV-213923r1018608_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Allowing regular users to install software, without explicit privileges, creates the risk that untested or potentially malicious software will be installed on the system. Explicit privileges (escalated or administrative privileges) provide the regular user with explicit capabilities and control that exceed the rights of a regular user.\n\nDBMS functionality and the nature and requirements of databases will vary; so while users are not permitted to install unapproved software, there may be instances where the organization allows the user to install approved software packages such as from an approved software repository. The requirements for production servers will be more restrictive than those used for development and research.\n\nSQL Server must enforce software installation by users based upon what types of software installations are permitted (e.g., updates and security patches to existing software) and what types of installations are prohibited (e.g., software whose pedigree with regard to being potentially malicious is unknown or suspect) by the organization. \n\nIn the case of a database management system, this requirement covers stored procedures, functions, triggers, views, etc."
+              },
+              {
+                "id": "SV-213923r1018608_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213924",
+        "title": "SRG-APP-000380-DB-000360",
+        "controls": [
+          {
+            "id": "SV-213924r961461_rule",
+            "title": "SQL Server must enforce access restrictions associated with changes to the configuration of the database(s).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213924",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213924r961461_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-003100"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-003100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961461"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001813",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce access restrictions using organization-defined mechanisms."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-5 (1) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213924r961461_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must enforce access restrictions associated with changes to the configuration of the database(s)."
+              },
+              {
+                "id": "SV-213924r961461_rule_guidance",
+                "name": "guidance",
+                "prose": "Remove unauthorized users from roles:\n\nALTER ROLE DROP MEMBER user;\n\nhttps://msdn.microsoft.com/en-us/library/ms189775.aspx\n\nSet the owner of the database to an authorized login:\n\nALTER AUTHORIZATION ON database::DatabaseName TO login;\n\nhttps://msdn.microsoft.com/en-us/library/ms187359.aspx"
+              },
+              {
+                "id": "SV-213924r961461_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Failure to provide logical access restrictions associated with changes to configuration may have significant effects on the overall security of the system. \n\nWhen dealing with access restrictions pertaining to change control, it should be noted that any changes to the hardware, software, and/or firmware components of the information system can potentially have significant effects on the overall security of the system. \n\nAccordingly, only qualified and authorized individuals should be allowed to obtain access to system components for the purposes of initiating changes, including upgrades and modifications."
+              },
+              {
+                "id": "SV-213924r961461_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213926",
+        "title": "SRG-APP-000428-DB-000386",
+        "controls": [
+          {
+            "id": "SV-213926r1018576_rule",
+            "title": "SQL Server must implement cryptographic mechanisms to prevent unauthorized modification of organization-defined information at rest (to include, at a minimum, PII and classified information) on organization-defined information system components.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213926",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213926r1018576_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-003300"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-003300"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1018576"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002475",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to prevent unauthorized modification of organization-defined information at rest on organization-defined system components."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-28 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-28 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213926r1018576_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must implement cryptographic mechanisms to prevent unauthorized modification of organization-defined information at rest (to include, at a minimum, PII and classified information) on organization-defined information system components."
+              },
+              {
+                "id": "SV-213926r1018576_rule_guidance",
+                "name": "guidance",
+                "prose": "Where full-disk encryption is required, configure Windows and/or the storage system to provide this. \n\nWhere transparent data encryption (TDE) is required, create a master key, obtain a certificate protected by the master key, create a database encryption key and protect it by the certificate, and then set the database to use encryption. For guidance from MSDN on how to do this: https://msdn.microsoft.com/en-us/library/bb934049.aspx. \n\nWhere table/column encryption is required, enable encryption on the tables/columns in question. For guidance from the Microsoft Developer Network on how to do this with Always Encrypted: https://msdn.microsoft.com/en-us/library/mt163865.aspx."
+              },
+              {
+                "id": "SV-213926r1018576_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "DBMSs handling data requiring \"data at rest\" protections must employ cryptographic mechanisms to prevent unauthorized disclosure and modification of the information at rest. These cryptographic mechanisms may be native to SQL Server or implemented via additional software or operating system/file system settings, as appropriate to the situation.\n\nSelection of a cryptographic mechanism is based on the need to protect the integrity of organizational information. The strength of the mechanism is commensurate with the security category and/or classification of the information. Organizations have the flexibility to either encrypt all information on storage devices (i.e., full disk encryption) or encrypt specific data structures (e.g., files, records, or fields). \n\nThe decision whether and what to encrypt rests with the data owner and is also influenced by the physical measures taken to secure the equipment and media on which the information resides."
+              },
+              {
+                "id": "SV-213926r1018576_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-213927",
+        "title": "SRG-APP-000429-DB-000387",
+        "controls": [
+          {
+            "id": "SV-213927r1018577_rule",
+            "title": "SQL Server must implement cryptographic mechanisms preventing the unauthorized disclosure of organization-defined information at rest on organization-defined information system components.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-213927",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-213927r1018577_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-003400"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-003400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1018577"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002476",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to prevent unauthorized disclosure of organization-defined information at rest on organization-defined system components."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-28 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-28 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-213927r1018577_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must implement cryptographic mechanisms preventing the unauthorized disclosure of organization-defined information at rest on organization-defined information system components."
+              },
+              {
+                "id": "SV-213927r1018577_rule_guidance",
+                "name": "guidance",
+                "prose": "Where full-disk encryption is required, configure Windows and/or the storage system to provide this. \n\nWhere transparent data encryption (TDE) is required, create a master key, obtain a certificate protected by the master key, create a database encryption key and protect it by the certificate, and then set the database to use encryption. For guidance from MSDN on how to do this: https://msdn.microsoft.com/en-us/library/bb934049.aspx. \n\nWhere table/column encryption is required, enable encryption on the table/columns in question. For guidance from the Microsoft Developer Network on how to do this with Always Encrypted: https://msdn.microsoft.com/en-us/library/mt163865.aspx."
+              },
+              {
+                "id": "SV-213927r1018577_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "SQL Server\u2019s handling data requiring \"data at rest\" protections must employ cryptographic mechanisms to prevent unauthorized disclosure and modification of the information at rest. These cryptographic mechanisms may be native to SQL Server or implemented via additional software or operating system/file system settings, as appropriate to the situation.\n\nSelection of a cryptographic mechanism is based on the need to protect the integrity of organizational information. The strength of the mechanism is commensurate with the security category and/or classification of the information. Organizations have the flexibility to either encrypt all information on storage devices (i.e., full disk encryption) or encrypt specific data structures (e.g., files, records, or fields). \n\nThe decision whether and what to encrypt rests with the data owner and is also influenced by the physical measures taken to secure the equipment and media on which the information resides."
+              },
+              {
+                "id": "SV-213927r1018577_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-251040",
+        "title": "SRG-APP-000416-DB-000380",
+        "controls": [
+          {
+            "id": "SV-251040r962034_rule",
+            "title": "SQL Server must use NSA-approved cryptography to protect classified information in accordance with the data owners requirements.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-251040",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-251040r962034_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SQL6-D0-003200"
+              },
+              {
+                "name": "label",
+                "value": "SQL6-D0-003200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "962034"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002450",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement organization-defined types of cryptography for each specified cryptography use."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-13"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-13 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-251040r962034_rule_statement",
+                "name": "statement",
+                "prose": "SQL Server must use NSA-approved cryptography to protect classified information in accordance with the data owners requirements."
+              },
+              {
+                "id": "SV-251040r962034_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure cryptographic functions to use NSA-approved cryptography compliant algorithms.\n\nUse DoD code-signing certificates to create asymmetric keys stored in the database used to encrypt sensitive data stored in the database.\n\nRun the following SQL script to create a certificate:\nUSE \nCREATE CERTIFICATE \n ENCRYPTION BY PASSWORD = <'password'>\n FROM FILE = <'path/file_name'>\n WITH SUBJECT = 'name of person creating key',\n EXPIRY_DATE = '<'expiration date: yyyymmdd'>'\n\nRun the following SQL script to create a symmetric key and assign an existing certificate:\nUSE \nCREATE SYMMETRIC KEY <'key name'>\n WITH ALGORITHM = AES_256 \n ENCRYPTION BY CERTIFICATE\n\nFor Transparent Data Encryption (TDE):\nUSE master;\nCREATE MASTER KEY ENCRYPTION BY PASSWORD = '';\nCREATE CERTIFICATE  . . .;\nUSE ;\nCREATE DATABASE ENCRYPTION KEY\nWITH ALGORITHM = AES_256\nENCRYPTION BY SERVER CERTIFICATE ;\nALTER DATABASE \nSET ENCRYPTION ON;"
+              },
+              {
+                "id": "SV-251040r962034_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated.\n\nIt is the responsibility of the data owner to assess the cryptography requirements in light of applicable federal laws, Executive Orders, directives, policies, regulations, and standards.\n\nNSA-approved cryptography for classified networks is hardware based. This requirement addresses the compatibility of a DBMS with the encryption devices."
+              },
+              {
+                "id": "SV-251040r962034_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

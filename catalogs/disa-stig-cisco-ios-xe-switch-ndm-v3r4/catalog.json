@@ -1,0 +1,4377 @@
+{
+  "catalog": {
+    "uuid": "0d97ec93-6be1-5469-8fb7-5a065ce42dd3",
+    "metadata": {
+      "title": "Cisco IOS XE Switch NDM Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-07-02T00:00:00Z",
+      "version": "3.4.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2025-07-02"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "3"
+        },
+        {
+          "name": "version.minor",
+          "value": "4"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-220518",
+        "title": "SRG-APP-000001-NDM-000200",
+        "controls": [
+          {
+            "id": "SV-220518r960735_rule",
+            "title": "The Cisco switch must be configured to limit the number of concurrent management sessions to an organization-defined number.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220518",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220518r960735_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000010"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000010"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960735"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000054",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Limit the number of concurrent sessions for each organization-defined account and/or account type to an organization-defined number."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-10.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220518r960735_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to limit the number of concurrent management sessions to an organization-defined number."
+              },
+              {
+                "id": "SV-220518r960735_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to limit the number of concurrent management sessions to an organization-defined number as shown in the example below:\n\nSW4(config)#ip http max-connections 2\nSW4(config)#line vty 0 1\nSW4(config)#transport input ssh\nSW4(config)#line vty 2 4\nSW4(config)#transport input none"
+              },
+              {
+                "id": "SV-220518r960735_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Device management includes the ability to control the number of administrators and management sessions that manage a device. Limiting the number of allowed administrators and sessions per administrator based on account type, role, or access type is helpful in limiting risks related to DoS attacks.\n\nThis requirement addresses concurrent sessions for administrative accounts and does not address concurrent sessions by a single administrator via multiple administrative accounts. The maximum number of concurrent sessions should be defined based upon mission needs and the operational environment for each system. At a minimum, limits must be set for SSH, HTTPS, account of last resort, and root account sessions."
+              },
+              {
+                "id": "SV-220518r960735_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220519",
+        "title": "SRG-APP-000026-NDM-000208",
+        "controls": [
+          {
+            "id": "SV-220519r960777_rule",
+            "title": "The Cisco switch must be configured to automatically audit account creation.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220519",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220519r960777_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000090"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000090"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960777"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000018",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically audit account creation actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (4).1 (i and ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220519r960777_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to automatically audit account creation."
+              },
+              {
+                "id": "SV-220519r960777_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to log account creation using the following commands:\n\nSW4(config)#archive\nSW4(config-archive)#log config\nSW4(config-archive-log-cfg)#logging enable\nSW4(config-archive-log-cfg)#end"
+              },
+              {
+                "id": "SV-220519r960777_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Upon gaining access to a network device, an attacker will often first attempt to create a persistent method of reestablishing access. One way to accomplish this is to create a new account. Notification of account creation helps to mitigate this risk. Auditing account creation provides the necessary reconciliation that account management procedures are being followed. Without this audit trail, personnel without the proper authorization may gain access to critical network nodes."
+              },
+              {
+                "id": "SV-220519r960777_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220520",
+        "title": "SRG-APP-000027-NDM-000209",
+        "controls": [
+          {
+            "id": "SV-220520r960780_rule",
+            "title": "The Cisco switch must be configured to automatically audit account modification.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220520",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220520r960780_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000100"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960780"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001403",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically audit account modification actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (4).1 (i and ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220520r960780_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to automatically audit account modification."
+              },
+              {
+                "id": "SV-220520r960780_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to log account modification using the following commands:\n\nSW4(config)#archive\nSW4(config-archive)#log config\nSW4(config-archive-log-cfg)#logging enable\nSW4(config-archive-log-cfg)#end"
+              },
+              {
+                "id": "SV-220520r960780_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Since the accounts in the network device are privileged or system-level accounts, account management is vital to the security of the network device. Account management by a designated authority ensures access to the network device is being controlled in a secure manner by granting access to only authorized personnel with the appropriate and necessary privileges. Auditing account modification along with an automatic notification to appropriate individuals will provide the necessary reconciliation that account management procedures are being followed. If modifications to management accounts are not audited, reconciliation of account management procedures cannot be tracked."
+              },
+              {
+                "id": "SV-220520r960780_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220521",
+        "title": "SRG-APP-000028-NDM-000210",
+        "controls": [
+          {
+            "id": "SV-220521r960783_rule",
+            "title": "The Cisco switch must be configured to automatically audit account disabling actions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220521",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220521r960783_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000110"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000110"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960783"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001404",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically audit account disabling actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (4).1 (i and ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220521r960783_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to automatically audit account disabling actions."
+              },
+              {
+                "id": "SV-220521r960783_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to log account disabling using the following commands:\n\nSW4(config)#archive\nSW4(config-archive)#log config\nSW4(config-archive-log-cfg)#logging enable\nSW4(config-archive-log-cfg)#end"
+              },
+              {
+                "id": "SV-220521r960783_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Account management, as a whole, ensures access to the network device is being controlled in a secure manner by granting access to only authorized personnel. Auditing account disabling actions will support account management procedures. When device management accounts are disabled, user or service accessibility may be affected. Auditing also ensures authorized active accounts remain enabled and available for use when required."
+              },
+              {
+                "id": "SV-220521r960783_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220522",
+        "title": "SRG-APP-000029-NDM-000211",
+        "controls": [
+          {
+            "id": "SV-220522r960786_rule",
+            "title": "The Cisco switch must be configured to automatically audit account removal actions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220522",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220522r960786_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000120"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000120"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960786"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001405",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically audit account removal actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (4).1 (i and ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220522r960786_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to automatically audit account removal actions."
+              },
+              {
+                "id": "SV-220522r960786_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to log account removal using the following commands:\n\nSW4(config)#archive\nSW4(config-archive)#log config\nSW4(config-archive-log-cfg)#logging enable\nSW4(config-archive-log-cfg)#end"
+              },
+              {
+                "id": "SV-220522r960786_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Account management, as a whole, ensures access to the network device is being controlled in a secure manner by granting access to only authorized personnel. Auditing account removal actions will support account management procedures. When device management accounts are terminated, user or service accessibility may be affected. Auditing also ensures authorized active accounts remain enabled and available for use when required."
+              },
+              {
+                "id": "SV-220522r960786_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220523",
+        "title": "SRG-APP-000038-NDM-000213",
+        "controls": [
+          {
+            "id": "SV-220523r991911_rule",
+            "title": "The Cisco switch must be configured to enforce approved authorizations for controlling the flow of management information within the device based on control policies.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220523",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220523r991911_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000140"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000140"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991911"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001368",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for controlling the flow of information within the system based on organization-defined information flow control policies."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004192",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect nonlocal maintenance sessions by separating the maintenance session from other network sessions with the system by logically separated communications paths."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 MA-4 (4) (b) (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220523r991911_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to enforce approved authorizations for controlling the flow of management information within the device based on control policies."
+              },
+              {
+                "id": "SV-220523r991911_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to restrict management access to specific IP addresses via SSH as shown in the example below:\n\nSW2(config)#ip access-list standard MANAGEMENT_NET \nSW2(config-std-nacl)#permit x.x.x.0 0.0.0.255 \nSW2(config-std-nacl)#exit \nSW2(config)#line vty 0 1\nSW2(config-line)#transport input ssh \nSW2(config-line)#access-class MANAGEMENT_NET in \nSW2(config-line)#end"
+              },
+              {
+                "id": "SV-220523r991911_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A mechanism to detect and prevent unauthorized communication flow must be configured or provided as part of the system design. If management information flow is not enforced based on approved authorizations, the network device may become compromised. Information flow control regulates where management information is allowed to travel within a network device. The flow of all management information must be monitored and controlled so it does not introduce any unacceptable risk to the network device or data. \n\nApplication-specific examples of enforcement occur in systems that employ rule sets or establish configuration settings that restrict information system services or message-filtering capability based on message content (e.g., implementing key word searches or using document characteristics).\n\nApplications providing information flow control must be able to enforce approved authorizations for controlling the flow of management information within the system in accordance with applicable policy."
+              },
+              {
+                "id": "SV-220523r991911_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220524",
+        "title": "SRG-APP-000065-NDM-000214",
+        "controls": [
+          {
+            "id": "SV-220524r960840_rule",
+            "title": "The Cisco switch must be configured to enforce the limit of three consecutive invalid logon attempts, after which time it must lock out the user account from accessing the device for 15 minutes.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220524",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220524r960840_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000150"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000150"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960840"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000044",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce the organization-defined limit of consecutive invalid logon attempts by a user during the organization-defined time period."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220524r960840_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to enforce the limit of three consecutive invalid logon attempts, after which time it must lock out the user account from accessing the device for 15 minutes."
+              },
+              {
+                "id": "SV-220524r960840_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to enforce the limit of three consecutive invalid logon attempts as shown in the example below:\n\nSW2(config)#login block-for 900 attempts 3 within 120"
+              },
+              {
+                "id": "SV-220524r960840_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-forcing, is reduced."
+              },
+              {
+                "id": "SV-220524r960840_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220525",
+        "title": "SRG-APP-000068-NDM-000215",
+        "controls": [
+          {
+            "id": "SV-220525r960843_rule",
+            "title": "The Cisco switch must be configured to display the Standard Mandatory DoD Notice and Consent Banner before granting access to the device.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220525",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220525r960843_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000160"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000160"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960843"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000048",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Display an organization-defined system use notification message or banner to users before granting access to the system that provides privacy and security notices consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidelines."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-8 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-8.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-8 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-8 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220525r960843_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to display the Standard Mandatory DoD Notice and Consent Banner before granting access to the device."
+              },
+              {
+                "id": "SV-220525r960843_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to display the Standard Mandatory DoD Notice and Consent Banner before granting access as shown in the following example:\n\nSW1(config)#banner login #\nEnter TEXT message. End with the character '#'.\nYou are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details. #\nSW1(config)#end"
+              },
+              {
+                "id": "SV-220525r960843_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Display of the DoD-approved use notification before granting access to the network device ensures privacy and security notification verbiage used is consistent with applicable federal laws, executive orders, directives, policies, regulations, standards, and guidance.\n\nSystem use notifications are required only for access via logon interfaces with human users."
+              },
+              {
+                "id": "SV-220525r960843_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220526",
+        "title": "SRG-APP-000080-NDM-000220",
+        "controls": [
+          {
+            "id": "SV-220526r960864_rule",
+            "title": "The Cisco device must be configured to audit all administrator activity.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220526",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220526r960864_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000210"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000210"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960864"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000166",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide irrefutable evidence that an individual (or process acting on behalf of an individual) falsely denying having performed organization-defined actions to be covered by non-repudiation."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002234",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Log the execution of privileged functions."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000172",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate audit records for the event types defined in AU-2 c that include the audit record content defined in AU-3."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220526r960864_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco device must be configured to audit all administrator activity."
+              },
+              {
+                "id": "SV-220526r960864_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to log administrator activity as shown in the example below:\n\nSW1(config)#logging userinfo\nSW1(config)#archive\nSW1(config-archive)#log config\nSW1(config-archive-log-cfg)#logging enable\nSW1(config-archive-log-cfg)#end"
+              },
+              {
+                "id": "SV-220526r960864_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "This requirement supports non-repudiation of actions taken by an administrator and is required in order to maintain the integrity of the configuration management process. All configuration changes to the network device are logged, and administrators authenticate with two-factor authentication before gaining administrative access. Together, these processes will ensure the administrators can be held accountable for the configuration changes they implement.\n\nTo meet this requirement, the network device must log administrator access and activity."
+              },
+              {
+                "id": "SV-220526r960864_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220528",
+        "title": "SRG-APP-000096-NDM-000226",
+        "controls": [
+          {
+            "id": "SV-220528r960894_rule",
+            "title": "The Cisco switch must produce audit records containing information to establish when (date and time) the events occurred.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220528",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220528r960894_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000280"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000280"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960894"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000131",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes when the event occurred."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220528r960894_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must produce audit records containing information to establish when (date and time) the events occurred."
+              },
+              {
+                "id": "SV-220528r960894_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to include the date and time on all log records as shown in the example below:\n\nSW1(config)#service timestamps log datetime localtime"
+              },
+              {
+                "id": "SV-220528r960894_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "It is essential for security personnel to know what is being done, what was attempted, where it was done, when it was done, and by whom it was done in order to compile an accurate risk assessment. Logging the date and time of each detected event provides a means of investigating an attack; recognizing resource utilization or capacity thresholds; or identifying an improperly configured network device. In order to establish and correlate the series of events leading up to an outage or attack, it is imperative the date and time are recorded in all log records."
+              },
+              {
+                "id": "SV-220528r960894_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220529",
+        "title": "SRG-APP-000097-NDM-000227",
+        "controls": [
+          {
+            "id": "SV-220529r960897_rule",
+            "title": "The Cisco switch must produce audit records containing information to establish where the events occurred.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220529",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220529r960897_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000290"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000290"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960897"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000132",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes where the event occurred."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220529r960897_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must produce audit records containing information to establish where the events occurred."
+              },
+              {
+                "id": "SV-220529r960897_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the log-input parameter after any deny statements to provide the location as to where packets have been dropped via an ACL.\n\nSW1(config)#ip access-list extended BLOCK_INBOUND\nSW1(config-ext-nacl)#deny icmp any any log-input"
+              },
+              {
+                "id": "SV-220529r960897_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "In order to compile an accurate risk assessment and provide forensic analysis, it is essential for security personnel to know where events occurred, such as device hardware components, device software modules, session identifiers, filenames, host names, and functionality.\n\nAssociating information about where the event occurred within the network device provides a means of investigating an attack; recognizing resource utilization or capacity thresholds; or identifying an improperly configured device."
+              },
+              {
+                "id": "SV-220529r960897_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220530",
+        "title": "SRG-APP-000101-NDM-000231",
+        "controls": [
+          {
+            "id": "SV-220530r960909_rule",
+            "title": "The Cisco switch must be configured to generate audit records containing the full-text recording of privileged commands.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220530",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220530r960909_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000330"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000330"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960909"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000135",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate audit records containing the organization-defined additional information that is to be included in the audit records."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3 (1).1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220530r960909_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to generate audit records containing the full-text recording of privileged commands."
+              },
+              {
+                "id": "SV-220530r960909_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to log all configuration changes as shown in the example below:\n\nSW4(config)#archive\nSW4(config-archive)#log config\nSW4(config-archive-log-cfg)#logging enable\nSW4(config-archive-log-cfg)#end"
+              },
+              {
+                "id": "SV-220530r960909_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information. \n\nOrganizations consider limiting the additional audit information to only that information explicitly needed for specific audit requirements. The additional information required is dependent on the type of information (i.e., sensitivity of the data and the environment within which it resides). At a minimum, the organization must audit full-text recording of privileged commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise."
+              },
+              {
+                "id": "SV-220530r960909_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220531",
+        "title": "SRG-APP-000119-NDM-000236",
+        "controls": [
+          {
+            "id": "SV-220531r960933_rule",
+            "title": "The Cisco switch must be configured to protect audit information from unauthorized modification.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220531",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220531r960933_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000380"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000380"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960933"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000163",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect audit information from unauthorized modification."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-9"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-9.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-9"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-9 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220531r960933_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to protect audit information from unauthorized modification."
+              },
+              {
+                "id": "SV-220531r960933_rule_guidance",
+                "name": "guidance",
+                "prose": "If persistent logging is enabled, configure the switch to only allow administrators with privilege level \"15\" access to the file system as shown in the example below:\n\nSW4(config)#file privilege 15"
+              },
+              {
+                "id": "SV-220531r960933_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Audit information includes all information (e.g., audit records, audit settings, and audit reports) needed to successfully audit network device activity.\n\nIf audit data were to become compromised, then forensic analysis and discovery of the true source of potentially malicious system activity is impossible to achieve. \n\nTo ensure the veracity of audit data, the network device must protect audit information from unauthorized modification. \n\nThis requirement can be achieved through multiple methods, which will depend upon system architecture and design. Some commonly employed methods include ensuring log files receive the proper file system permissions and limiting log data locations. \n\nNetwork devices providing a user interface to audit data will leverage user permissions and roles identifying the user accessing the data and the corresponding rights that the user enjoys in order to make access decisions regarding the modification of audit data."
+              },
+              {
+                "id": "SV-220531r960933_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220532",
+        "title": "SRG-APP-000120-NDM-000237",
+        "controls": [
+          {
+            "id": "SV-220532r960936_rule",
+            "title": "The Cisco switch must be configured to protect audit information from unauthorized deletion.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220532",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220532r960936_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000390"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000390"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960936"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000164",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect audit information from unauthorized deletion."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-9"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-9.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-9"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-9 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220532r960936_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to protect audit information from unauthorized deletion."
+              },
+              {
+                "id": "SV-220532r960936_rule_guidance",
+                "name": "guidance",
+                "prose": "If persistent logging is enabled, configure the switch to only allow administrators with privilege level \"15\" access to the file system as shown in the example below:\n\nSW4(config)#file privilege 15"
+              },
+              {
+                "id": "SV-220532r960936_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Audit information includes all information (e.g., audit records, audit settings, and audit reports) needed to successfully audit information system activity.\n\nIf audit data were to become compromised, then forensic analysis and discovery of the true source of potentially malicious system activity is impossible to achieve. \n\nTo ensure the veracity of audit data, the network device must protect audit information from unauthorized deletion. This requirement can be achieved through multiple methods, which will depend upon system architecture and design. Some commonly employed methods include: ensuring log files receive the proper file system permissions utilizing file system protections, restricting access, and backing up log data to ensure log data is retained. \n\nNetwork devices providing a user interface to audit data will leverage user permissions and roles identifying the user accessing the data and the corresponding rights the user enjoys in order to make access decisions regarding the deletion of audit data."
+              },
+              {
+                "id": "SV-220532r960936_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220533",
+        "title": "SRG-APP-000133-NDM-000244",
+        "controls": [
+          {
+            "id": "SV-220533r960960_rule",
+            "title": "The Cisco switch must be configured to limit privileges to change the software resident within software libraries.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220533",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220533r960960_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000460"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000460"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960960"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001499",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Limit privileges to change software resident within software libraries."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-5 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-5 (6).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-5 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-5 (6)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220533r960960_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to limit privileges to change the software resident within software libraries."
+              },
+              {
+                "id": "SV-220533r960960_rule_guidance",
+                "name": "guidance",
+                "prose": "If persistent logging is enabled, configure the switch to only allow administrators with privilege level \"15\" access to the file system as shown in the example below:\n\nSW4(config)#file privilege 15"
+              },
+              {
+                "id": "SV-220533r960960_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Changes to any software components of the network device can have significant effects on the overall security of the network. Therefore, only qualified and authorized individuals should be allowed administrative access to the network device for implementing any changes or upgrades. If the network device were to enable non-authorized users to make changes to software libraries, those changes could be implemented without undergoing testing, validation, and approval."
+              },
+              {
+                "id": "SV-220533r960960_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220534",
+        "title": "SRG-APP-000142-NDM-000245",
+        "controls": [
+          {
+            "id": "SV-220534r1043177_rule",
+            "title": "The Cisco switch must be configured to prohibit the use of all unnecessary and nonsecure functions and services.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220534",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220534r1043177_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000470"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000470"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043177"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000382",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to prohibit or restrict the use of organization-defined prohibited or restricted functions, system ports, protocols, software, and/or services."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220534r1043177_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to prohibit the use of all unnecessary and nonsecure functions and services."
+              },
+              {
+                "id": "SV-220534r1043177_rule_guidance",
+                "name": "guidance",
+                "prose": "Disable the following services if enabled as shown in the example below:\n\nSW2(config)#no boot network\nSW2(config)#no ip boot server\nSW2(config)#no ip bootp server\nSW2(config)#no ip dns server\nSW2(config)#no ip identd\nSW2(config)#no ip finger\nSW2(config)#no ip http server\nSW2(config)#no ip rcmd rcp-enable\nSW2(config)#no ip rcmd rsh-enable\nSW2(config)#no service config\nSW2(config)#no service finger\nSW2(config)#no service tcp-small-servers\nSW2(config)#no service udp-small-servers\nSW2(config)#no service pad\nSW2(config)#no service call-home\nSW2(config)#end"
+              },
+              {
+                "id": "SV-220534r1043177_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Network devices are capable of providing a wide variety of functions and services. Some of the functions and services provided by default may not be necessary to support essential organizational operations. Additionally, it is sometimes convenient to provide multiple services from a single component (e.g., email and web services); however, doing so increases risk over limiting the services provided by any one component. \n\nTo support the requirements and principles of least functionality, the network device must support the organizational requirements providing only essential capabilities and limiting the use of ports, protocols, and/or services to only those required, authorized, and approved. Some network devices have capabilities enabled by default; if these capabilities are not necessary, they must be disabled. If a particular capability is used, then it must be documented and approved."
+              },
+              {
+                "id": "SV-220534r1043177_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220535",
+        "title": "SRG-APP-000148-NDM-000346",
+        "controls": [
+          {
+            "id": "SV-220535r1051115_rule",
+            "title": "The Cisco switch must be configured with only one local account to be used as the account of last resort in the event the authentication server is unavailable.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220535",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220535r1051115_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000490"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000490"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1051115"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001358",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Establish privileged user accounts in accordance with a role-based access scheme; or an attribute-based access scheme."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002111",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The organization identifies and selects the organization-defined information system account types of information system accounts which support organizational missions/business functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220535r1051115_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured with only one local account to be used as the account of last resort in the event the authentication server is unavailable."
+              },
+              {
+                "id": "SV-220535r1051115_rule_guidance",
+                "name": "guidance",
+                "prose": "Step 1: Configure a local account with the necessary privilege level to troubleshoot network outage and restore operations as shown in the following example: \n\nSW2(config)#username xxxxxxxxxxx privilege 10 common-criteria-policy PASSWORD_POLICY password xxxxxxxxxx\n\nStep 2: Configure the authentication order to use the local account if the authentication server is not reachable as shown in the following example:\n\nSW2(config)#aaa authentication login default group tacacs+ local"
+              },
+              {
+                "id": "SV-220535r1051115_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Authentication for administrative (privileged level) access to the device is required at all times. An account can be created on the device's local database for use when the authentication server is down or connectivity between the device and the authentication server is not operable. This account is referred to as the account of last resort since it is intended to be used as a last resort and when immediate administrative access is absolutely necessary.\n\nThe account of last resort logon credentials must be stored in a sealed envelope and kept in a safe. The safe must be periodically audited to verify the envelope remains sealed. The signature of the auditor and the date of the audit should be added to the envelope as a record.\n\nAn alternative to using a sealed envelope in a safe would be credential files, separated by technology, located in a secured location on a file server, with the files only accessible to administrators authorized to use the accounts of last resort, and access to that location monitored by a central log server. \n\nAdministrators should secure the credentials and disable the root account (if possible) when not needed for system administration functions."
+              },
+              {
+                "id": "SV-220535r1051115_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220537",
+        "title": "SRG-APP-000164-NDM-000252",
+        "controls": [
+          {
+            "id": "SV-220537r991912_rule",
+            "title": "The Cisco switch must be configured to enforce a minimum 15-character password length.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220537",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220537r991912_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000550"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000550"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991912"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004066",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, enforce organization-defined composition and complexity rules."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (1) (h)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220537r991912_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to enforce a minimum 15-character password length."
+              },
+              {
+                "id": "SV-220537r991912_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to enforce a minimum 15-character password length as shown in the example below:\n\nSW1(config)#aaa common-criteria policy PASSWORD_POLICY\nSW1(config-cc-policy)#min-length 15\nSW1(config-cc-policy)#exit"
+              },
+              {
+                "id": "SV-220537r991912_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. Password length is one factor of several that helps to determine strength and how long it takes to crack a password.\n\nThe shorter the password, the lower the number of possible combinations that need to be tested before the password is compromised. Use of more characters in a password helps to exponentially increase the time and/or resources required to compromise the password."
+              },
+              {
+                "id": "SV-220537r991912_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220538",
+        "title": "SRG-APP-000166-NDM-000254",
+        "controls": [
+          {
+            "id": "SV-220538r991915_rule",
+            "title": "The Cisco switch must be configured to enforce password complexity by requiring that at least one uppercase character be used.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220538",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220538r991915_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000570"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000570"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991915"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004066",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, enforce organization-defined composition and complexity rules."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (1) (h)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220538r991915_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to enforce password complexity by requiring that at least one uppercase character be used."
+              },
+              {
+                "id": "SV-220538r991915_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to enforce password complexity by requiring that at least one uppercase character be used as shown in the example below:\n\nSW1(config)#aaa common-criteria policy PASSWORD_POLICY\nSW1(config-cc-policy)#upper-case 1\nSW1(config-cc-policy)#exit"
+              },
+              {
+                "id": "SV-220538r991915_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Use of a complex passwords helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.\n\nPassword complexity is one factor of several that determine how long it takes to crack a password. The more complex the password is, the greater the number of possible combinations that need to be tested before the password is compromised.\n\nMultifactor authentication (MFA) is required for all administrative and user accounts on network devices, except for an account of last resort and (where applicable) a root account. Passwords should only be used when MFA using PKI is not available, and for the account of last resort and root account."
+              },
+              {
+                "id": "SV-220538r991915_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220539",
+        "title": "SRG-APP-000167-NDM-000255",
+        "controls": [
+          {
+            "id": "SV-220539r991918_rule",
+            "title": "The Cisco switch must be configured to enforce password complexity by requiring that at least one lowercase character be used.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220539",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220539r991918_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000580"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000580"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991918"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004066",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, enforce organization-defined composition and complexity rules."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (1) (h)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220539r991918_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to enforce password complexity by requiring that at least one lowercase character be used."
+              },
+              {
+                "id": "SV-220539r991918_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to enforce password complexity by requiring that at least one lowercase character be used as shown in the example below:\n\nSW1(config)#aaa common-criteria policy PASSWORD_POLICY\nSW1(config-cc-policy)#lower-case 1\nSW1(config-cc-policy)#exit"
+              },
+              {
+                "id": "SV-220539r991918_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.\n\nPassword complexity is one factor of several that determine how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.\n\nMultifactor authentication (MFA) is required for all administrative and user accounts on network devices, except for an account of last resort and (where applicable) a root account. Passwords should only be used when MFA using PKI is not available, and for the account of last resort and root account."
+              },
+              {
+                "id": "SV-220539r991918_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220540",
+        "title": "SRG-APP-000168-NDM-000256",
+        "controls": [
+          {
+            "id": "SV-220540r991919_rule",
+            "title": "The Cisco switch must be configured to enforce password complexity by requiring that at least one numeric character be used.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220540",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220540r991919_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000590"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000590"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991919"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004066",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, enforce organization-defined composition and complexity rules."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (1) (h)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220540r991919_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to enforce password complexity by requiring that at least one numeric character be used."
+              },
+              {
+                "id": "SV-220540r991919_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to enforce password complexity by requiring that at least one numeric character be used as shown in the example below:\n\nSW1(config)#aaa common-criteria policy PASSWORD_POLICY\nSW1(config-cc-policy)#numeric-count 1\nSW1(config-cc-policy)#exit"
+              },
+              {
+                "id": "SV-220540r991919_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.\n\nPassword complexity is one factor of several that determine how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.\n\nMultifactor authentication (MFA) is required for all administrative and user accounts on network devices, except for an account of last resort and (where applicable) a root account. Passwords should only be used when MFA using PKI is not available, and for the account of last resort and root account."
+              },
+              {
+                "id": "SV-220540r991919_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220541",
+        "title": "SRG-APP-000169-NDM-000257",
+        "controls": [
+          {
+            "id": "SV-220541r991920_rule",
+            "title": "The Cisco switch must be configured to enforce password complexity by requiring that at least one special character be used.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220541",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220541r991920_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000600"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000600"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991920"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004066",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, enforce organization-defined composition and complexity rules."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (1) (h)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220541r991920_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to enforce password complexity by requiring that at least one special character be used."
+              },
+              {
+                "id": "SV-220541r991920_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to enforce password complexity by requiring that at least one special character be used as shown in the example below:\n\nSW1(config)#aaa common-criteria policy PASSWORD_POLICY\nSW1(config-cc-policy)#special-case 1\nSW1(config-cc-policy)#exit"
+              },
+              {
+                "id": "SV-220541r991920_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.\n\nPassword complexity is one factor of several that determine how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.\n\nMultifactor authentication (MFA) is required for all administrative and user accounts on network devices, except for an account of last resort and (where applicable) a root account. Passwords should only be used when MFA using PKI is not available, and for the account of last resort and root account."
+              },
+              {
+                "id": "SV-220541r991920_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220542",
+        "title": "SRG-APP-000170-NDM-000329",
+        "controls": [
+          {
+            "id": "SV-220542r1043189_rule",
+            "title": "The Cisco switch must be configured to require that when a password is changed, the characters are changed in at least eight of the positions within the password.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220542",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220542r1043189_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000610"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000610"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043189"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004066",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, enforce organization-defined composition and complexity rules."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (1) (h)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220542r1043189_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to require that when a password is changed, the characters are changed in at least eight of the positions within the password."
+              },
+              {
+                "id": "SV-220542r1043189_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to enforce password complexity by requiring that when a password is changed, the characters are changed in at least eight of the positions within the password as shown in the example below:\n\nSW1(config)#aaa common-criteria policy PASSWORD_POLICY\nSW1(config-cc-policy)#char-changes 8\nSW1(config-cc-policy)#exit"
+              },
+              {
+                "id": "SV-220542r1043189_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If the application allows the user to consecutively reuse extensive portions of passwords, this increases the chances of password compromise by increasing the window of opportunity for attempts at guessing and brute-force attacks.\n\nThe number of changed characters refers to the number of changes required with respect to the total number of positions in the current password. In other words, characters may be the same within the two passwords; however, the positions of the like characters must be different.\n\nMultifactor authentication (MFA) is required for all administrative and user accounts on network devices, except for an account of last resort and (where applicable) a root account. Passwords should only be used when MFA using PKI is not available, and for the account of last resort and root account."
+              },
+              {
+                "id": "SV-220542r1043189_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220543",
+        "title": "SRG-APP-000171-NDM-000258",
+        "controls": [
+          {
+            "id": "SV-220543r991922_rule",
+            "title": "The Cisco switch must only store cryptographic representations of passwords.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220543",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220543r991922_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000620"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000620"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991922"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004062",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, store passwords using an approved salted key derivation function, preferably using a keyed hash."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004910",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide protected storage for cryptographic keys with organization-defined safeguards and/or hardware protected key store."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-28 (3)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220543r991922_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must only store cryptographic representations of passwords."
+              },
+              {
+                "id": "SV-220543r991922_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to encrypt all passwords:\n\nSW4(config)#service password-encryption \nSW4(config)#enable secret xxxxxxxxxxxx\nSW4(config)#end"
+              },
+              {
+                "id": "SV-220543r991922_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Passwords need to be protected at all times, and encryption is the standard method for protecting passwords. If passwords are not encrypted, they can be plainly read (i.e., clear text) and easily compromised.\n\nNetwork devices must enforce cryptographic representations of passwords when storing passwords in databases, configuration files, and log files. Passwords must be protected at all times; using a strong one-way hashing encryption algorithm with a salt is the standard method for providing a means to validate a password without having to store the actual password.\n\nPerformance and time required to access are factors that must be considered, and the one way hash is the most feasible means of securing the password and providing an acceptable measure of password security. If passwords are stored in clear text, they can be plainly read and easily compromised.\n\nIn many instances, verifying the user knows a password is performed using a password verifier. In its simplest form, a password verifier is a computational function that is capable of creating a hash of a password and determining if the value provided by the user matches the stored hash."
+              },
+              {
+                "id": "SV-220543r991922_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220544",
+        "title": "SRG-APP-000190-NDM-000267",
+        "controls": [
+          {
+            "id": "SV-220544r961068_rule",
+            "title": "The Cisco switch must be configured to terminate all network connections associated with device management after five minutes of inactivity.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220544",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220544r961068_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000720"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000720"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961068"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001133",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Terminate the network connection associated with a communications session at the end of the session or after an organization-defined time period of inactivity."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-10.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220544r961068_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to terminate all network connections associated with device management after five minutes of inactivity."
+              },
+              {
+                "id": "SV-220544r961068_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the idle timeout value to five minutes or less on all configured login classes as shown in the example below:\n\nSW1(config)#line vty 0 1\nSW1(config-line)#exec-timeout 5 0\nSW1(config-line)#exit\nSW1(config)#line con 0\nSW1(config-line)#exec-timeout 5 0\nSW1(config-line)#exit\nSW2(config)#ip http timeout-policy idle 300 life nnnn requests nn"
+              },
+              {
+                "id": "SV-220544r961068_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. \n\nTerminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level, or de-allocating networking assignments at the application level if multiple application sessions are using a single, operating system-level network connection. This does not mean that the device terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session."
+              },
+              {
+                "id": "SV-220544r961068_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220545",
+        "title": "SRG-APP-000319-NDM-000283",
+        "controls": [
+          {
+            "id": "SV-220545r961290_rule",
+            "title": "The Cisco switch must be configured to automatically audit account enabling actions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220545",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220545r961290_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000880"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000880"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961290"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002130",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically audit account enabling actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220545r961290_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to automatically audit account enabling actions."
+              },
+              {
+                "id": "SV-220545r961290_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to log account enabling using the following commands:\n\nSW4(config)#archive\nSW4(config-archive)#log config\nSW4(config-archive-log-cfg)#logging enable\nSW4(config-archive-log-cfg)#end"
+              },
+              {
+                "id": "SV-220545r961290_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Once an attacker establishes initial access to a system, the attacker often attempts to create a persistent method of reestablishing access. One way to accomplish this is for the attacker to simply enable a new or disabled account. Notification of account enabling is one method for mitigating this risk. A comprehensive account management process will ensure an audit trail which documents the creation of application user accounts and notifies administrators and Information System Security Officers (ISSO). Such a process greatly reduces the risk that accounts will be surreptitiously created and provides logging that can be used for forensic purposes."
+              },
+              {
+                "id": "SV-220545r961290_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220547",
+        "title": "SRG-APP-000357-NDM-000293",
+        "controls": [
+          {
+            "id": "SV-220547r961392_rule",
+            "title": "The Cisco switch must be configured to allocate audit record storage capacity in accordance with organization-defined audit record storage requirements.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220547",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220547r961392_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000980"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000980"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961392"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001849",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Allocate audit log storage capacity to accommodate organization-defined audit log retention requirements."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220547r961392_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to allocate audit record storage capacity in accordance with organization-defined audit record storage requirements."
+              },
+              {
+                "id": "SV-220547r961392_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the buffer size for logging as shown in the example below:\n\nSW2(config)#logging buffered xxxxxxxx informational"
+              },
+              {
+                "id": "SV-220547r961392_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "In order to ensure network devices have a sufficient storage capacity in which to write the audit logs, they need to be able to allocate audit record storage capacity. The task of allocating audit record storage capacity is usually performed during initial device setup if it is modifiable. \n\nThe value for the organization-defined audit record storage requirement will depend on the amount of storage available on the network device, the anticipated volume of logs, the frequency of transfer from the network device to centralized log servers, and other factors."
+              },
+              {
+                "id": "SV-220547r961392_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220548",
+        "title": "SRG-APP-000360-NDM-000295",
+        "controls": [
+          {
+            "id": "SV-220548r991923_rule",
+            "title": "The Cisco switch must be configured to generate an alert for all audit failure events.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220548",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220548r991923_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001000"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001000"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991923"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001858",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide an alert in an organization-defined real-time-period to organization-defined personnel, roles, and/or locations when organization-defined audit failure events requiring real-time alerts occur."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-003831",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Alert organization-defined personnel or roles upon detection of unauthorized access, modification, or deletion of audit information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-9 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220548r991923_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to generate an alert for all audit failure events."
+              },
+              {
+                "id": "SV-220548r991923_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to send critical to emergency log messages to the syslog server as shown in the example below:\n\nSW4(config)#logging trap critical\n\nNote: The parameter \"critical\" can replaced with a lesser severity level (i.e., error, warning, notice, informational)."
+              },
+              {
+                "id": "SV-220548r991923_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "It is critical for the appropriate personnel to be aware if a system is at risk of failing to process audit logs as required. Without a real-time alert, security personnel may be unaware of an impending failure of the audit capability and system operation may be adversely affected. \n\nAlerts provide organizations with urgent messages. Real-time alerts provide these messages immediately (i.e., the time from event detection to alert occurs in seconds or less)."
+              },
+              {
+                "id": "SV-220548r991923_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220549",
+        "title": "SRG-APP-000373-NDM-000298",
+        "controls": [
+          {
+            "id": "SV-220549r991924_rule",
+            "title": "The Cisco switch must be configured to synchronize its clock with the primary and secondary time sources using redundant authoritative time sources.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220549",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220549r991924_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001030"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001030"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991924"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001889",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Record time stamps for audit records that meet organization-defined granularity of time measurement."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001890",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Record time stamps for audit records that use Coordinated Universal Time, have a fixed local time offset from Coordinated Universal Time, or that include the local time offset as part of the time stamp."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004928",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Identify a secondary authoritative time source that is in a different geographic region than the primary authoritative time source."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004922",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Synchronize system clocks within and between systems or system components."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004923",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Compare the internal system clocks on an organization-defined frequency with organization-defined authoritative time source."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-45 (1) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220549r991924_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to synchronize its clock with the primary and secondary time sources using redundant authoritative time sources."
+              },
+              {
+                "id": "SV-220549r991924_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to synchronize its clock with redundant authoritative time sources as shown in the example below:\n\nSW2(config)#ntp server x.x.x.x\nSW2(config)#ntp server y.y.y.y"
+              },
+              {
+                "id": "SV-220549r991924_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The loss of connectivity to a particular authoritative time source will result in the loss of time synchronization (free-run mode) and increasingly inaccurate time stamps on audit events and other functions. \n\nMultiple time sources provide redundancy by including a secondary source. Time synchronization is usually a hierarchy; clients synchronize time to a local source while that source synchronizes its time to a more accurate source. The network device must utilize an authoritative time server and/or be configured to use redundant authoritative time sources. This requirement is related to the comparison done in CCI-001891.\n\nDOD-approved solutions consist of a combination of a primary and secondary time source using a combination or multiple instances of the following: a time server designated for the appropriate DOD network (NIPRNet/SIPRNet); United States Naval Observatory (USNO) time servers; and/or the Global Positioning System (GPS). The secondary time source must be located in a different geographic region than the primary time source."
+              },
+              {
+                "id": "SV-220549r991924_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220552",
+        "title": "SRG-APP-000395-NDM-000310",
+        "controls": [
+          {
+            "id": "SV-220552r1107175_rule",
+            "title": "The Cisco switch must be configured to authenticate SNMP messages using a FIPS-validated Keyed-Hash Message Authentication Code (HMAC).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220552",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220552r1107175_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001130"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001130"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1107175"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001967",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Authenticate organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection using bidirectional authentication that is cryptographically based."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220552r1107175_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to authenticate SNMP messages using a FIPS-validated Keyed-Hash Message Authentication Code (HMAC)."
+              },
+              {
+                "id": "SV-220552r1107175_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to authenticate SNMP messages as shown in the example below:\n\nSW4(config)#snmp-server group V3GROUP v3 auth read V3READ write V3WRITE\nSW4(config)#snmp-server user V3USER V3GROUP v3 auth sha xxxxxxx\nSW4(config)#snmp-server host x.x.x.x version 3 auth V3USER"
+              },
+              {
+                "id": "SV-220552r1107175_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity. Bidirectional authentication provides stronger safeguards to validate the identity of other devices for connections that are of greater risk.\n\nA local connection is any connection with a device communicating without the use of a network. A network connection is any connection with a device that communicates through a network (e.g., local area or wide area network, Internet). A remote connection is any connection with a device communicating through an external network (e.g., the Internet).\n\nBecause of the challenges of applying this requirement on a large scale, organizations are encouraged to only apply the requirement to those limited number (and type) of devices that truly need to support this capability."
+              },
+              {
+                "id": "SV-220552r1107175_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220553",
+        "title": "SRG-APP-000395-NDM-000310",
+        "controls": [
+          {
+            "id": "SV-220553r961506_rule",
+            "title": "The Cisco switch must be configured to encrypt SNMP messages using a FIPS 140-2 approved algorithm.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220553",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220553r961506_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001140"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001140"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961506"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000068",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the confidentiality of remote access sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220553r961506_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to encrypt SNMP messages using a FIPS 140-2 approved algorithm."
+              },
+              {
+                "id": "SV-220553r961506_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to encrypt SNMP messages using a FIPS 140-2 approved algorithm as shown in the example below:\n\nSW4(config)#snmp-server group V3GROUP v3 priv read V3READ write V3WRITE\nSW4(config)#snmp-server user V3USER V3GROUP v3 auth sha xxxxxx priv aes 256 xxxxxx"
+              },
+              {
+                "id": "SV-220553r961506_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without the strong encryption that is provided by the SNMP Version 3 User-based Security Model (USM), an unauthorized user can gain access to network management information that can be used to create a network outage."
+              },
+              {
+                "id": "SV-220553r961506_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220554",
+        "title": "SRG-APP-000395-NDM-000347",
+        "controls": [
+          {
+            "id": "SV-220554r1107160_rule",
+            "title": "The Cisco switch must be configured to authenticate Network Time Protocol (NTP) sources using authentication that is cryptographically based.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220554",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220554r1107160_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001150"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001150"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1107160"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001967",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Authenticate organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection using bidirectional authentication that is cryptographically based."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220554r1107160_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to authenticate Network Time Protocol (NTP) sources using authentication that is cryptographically based."
+              },
+              {
+                "id": "SV-220554r1107160_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to authenticate NTP sources using authentication that is cryptographically based as shown in the example below:\n\nSW2(config)#ntp authenticate\nSW2(config)#ntp authentication-key 1 hmac-sha2-256 xxxxxx\nSW2(config)#ntp trusted-key 1\nSW2(config)#ntp server x.x.x.x key 1\nSW2(config)#ntp server y.y.y.y key 1"
+              },
+              {
+                "id": "SV-220554r1107160_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If Network Time Protocol is not authenticated, an attacker can introduce a rogue NTP server. This rogue server can then be used to send incorrect time information to network devices, which will make log timestamps inaccurate and affect scheduled actions. NTP authentication is used to prevent this tampering by authenticating the time source."
+              },
+              {
+                "id": "SV-220554r1107160_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220555",
+        "title": "SRG-APP-000411-NDM-000330",
+        "controls": [
+          {
+            "id": "SV-220555r961554_rule",
+            "title": "The Cisco switch must be configured to use FIPS-validated Keyed-Hash Message Authentication Code (HMAC) to protect the integrity of remote maintenance sessions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220555",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220555r961554_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001200"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961554"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002890",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement organization-defined cryptographic mechanisms to protect the integrity of nonlocal maintenance and diagnostic communications."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001941",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement replay-resistant authentication mechanisms for access to privileged accounts and/or non-privileged accounts."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-2 (8)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-2 (8)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220555r961554_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to use FIPS-validated Keyed-Hash Message Authentication Code (HMAC) to protect the integrity of remote maintenance sessions."
+              },
+              {
+                "id": "SV-220555r961554_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure SSH to use FIPS-validated HMAC for remote maintenance sessions as shown in the following example:\n\nSSH Example\n\nSW1(config)#ip ssh version 2\nSW1(config)#iip ssh server algorithm mac hmac-sha2-512 hmac-sha2-256"
+              },
+              {
+                "id": "SV-220555r961554_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore cannot be relied upon to provide confidentiality or integrity, and DoD data may be compromised.\n\nNonlocal maintenance and diagnostic activities are those activities conducted by individuals communicating through a network, either an external network (e.g., the Internet) or an internal network. \n\nCurrently, HMAC is the only FIPS-approved algorithm for generating and verifying message/data authentication codes in accordance with FIPS 198-1. Products that are FIPS 140-2 validated will have an HMAC that meets specification; however, the option must be configured for use as the only message authentication code used for authentication to cryptographic modules.\n\nSeparate requirements for configuring applications and protocols used by each application (e.g., SNMPv3, SSHv2, NTP, HTTPS, and other protocols and applications that require server/client authentication) are required to implement this requirement. Where SSH is used, the SSHv2 protocol suite is required because it includes Layer 7 protocols such as SCP and SFTP, which can be used for secure file transfers."
+              },
+              {
+                "id": "SV-220555r961554_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220556",
+        "title": "SRG-APP-000412-NDM-000331",
+        "controls": [
+          {
+            "id": "SV-220556r961557_rule",
+            "title": "The Cisco switch must be configured to implement cryptographic mechanisms to protect the confidentiality of remote maintenance sessions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220556",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220556r961557_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001210"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001210"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961557"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-003123",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement organization-defined cryptographic mechanisms to protect the confidentiality of nonlocal maintenance and diagnostic communications."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 MA-4 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 MA-4 (6)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220556r961557_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to implement cryptographic mechanisms to protect the confidentiality of remote maintenance sessions."
+              },
+              {
+                "id": "SV-220556r961557_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to implement cryptographic mechanisms to protect the confidentiality of remote maintenance sessions using a FIPS 140-2 approved algorithm as shown in the example below:\n\nSW1(config)#iip ssh server algorithm encryption aes256-ctr aes192-ctr aes128-ctr"
+              },
+              {
+                "id": "SV-220556r961557_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "This requires the use of secure protocols instead of their unsecured counterparts, such as SSH instead of telnet, SCP instead of FTP, and HTTPS instead of HTTP. If unsecured protocols (lacking cryptographic mechanisms) are used for sessions, the contents of those sessions will be susceptible to eavesdropping, potentially putting sensitive data (including administrator passwords) at risk of compromise and potentially allowing hijacking of maintenance sessions."
+              },
+              {
+                "id": "SV-220556r961557_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220559",
+        "title": "SRG-APP-000499-NDM-000319",
+        "controls": [
+          {
+            "id": "SV-220559r961812_rule",
+            "title": "The Cisco switch must be configured to generate log records when administrator privileges are deleted.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220559",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220559r961812_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001250"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001250"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961812"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000172",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate audit records for the event types defined in AU-2 c that include the audit record content defined in AU-3."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220559r961812_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to generate log records when administrator privileges are deleted."
+              },
+              {
+                "id": "SV-220559r961812_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to generate log records when administrator privileges are deleted as shown in the example below:\n\nSW4(config)#archive\nSW4(config-archive)#log config\nSW4(config-archive-log-cfg)#logging enable\nSW4(config-archive-log-cfg)#end"
+              },
+              {
+                "id": "SV-220559r961812_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.\n\nAudit records can be generated from various components within the network device (e.g., module or policy filter)."
+              },
+              {
+                "id": "SV-220559r961812_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220560",
+        "title": "SRG-APP-000503-NDM-000320",
+        "controls": [
+          {
+            "id": "SV-220560r961824_rule",
+            "title": "The Cisco switch must be configured to generate audit records when successful/unsuccessful logon attempts occur.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220560",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220560r961824_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001260"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001260"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961824"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000172",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate audit records for the event types defined in AU-2 c that include the audit record content defined in AU-3."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220560r961824_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to generate audit records when successful/unsuccessful logon attempts occur."
+              },
+              {
+                "id": "SV-220560r961824_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to generate audit records when successful/unsuccessful logon attempts occur as shown in the example below:\n\nR5(config)#login on-failure log\nR5(config)#login on-success log"
+              },
+              {
+                "id": "SV-220560r961824_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.\n\nAudit records can be generated from various components within the network device (e.g., module or policy filter)."
+              },
+              {
+                "id": "SV-220560r961824_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220561",
+        "title": "SRG-APP-000504-NDM-000321",
+        "controls": [
+          {
+            "id": "SV-220561r961827_rule",
+            "title": "The Cisco switch must be configured to generate log records for privileged activities.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220561",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220561r961827_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001270"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001270"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961827"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000172",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate audit records for the event types defined in AU-2 c that include the audit record content defined in AU-3."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220561r961827_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to generate log records for privileged activities."
+              },
+              {
+                "id": "SV-220561r961827_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to generate log records for privileged activities as shown in the example below:\n\nSW4(config)#archive\nSW4(config-archive)#log config\nSW4(config-archive-log-cfg)#logging enable\nSW4(config-archive-log-cfg)#end"
+              },
+              {
+                "id": "SV-220561r961827_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.\n\nAudit records can be generated from various components within the network device (e.g., module or policy filter)."
+              },
+              {
+                "id": "SV-220561r961827_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220565",
+        "title": "SRG-APP-000516-NDM-000336",
+        "controls": [
+          {
+            "id": "SV-220565r961863_rule",
+            "title": "The Cisco switch must be configured to use at least two authentication servers for the purpose of authenticating users prior to granting administrative access.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220565",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220565r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001370"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001370"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000370",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Manage configuration settings for organization-defined system components using organization-defined automated mechanisms."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220565r961863_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to use at least two authentication servers for the purpose of authenticating users prior to granting administrative access."
+              },
+              {
+                "id": "SV-220565r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Step 1: Configure the Cisco switch to use at least two authentication servers as shown in the following example:\n\nR4(config)#radius host 10.1.48.2 key xxxxxx\nR4(config)#radius host 10.1.48.3 key xxxxxx\n\nStep 2: Configure the authentication order to use the authentication servers as primary source for authentication as shown in the following example:\n\nR4(config)#aaa authentication CONSOLE local\n\nR4(config)#aaa authentication login\nLOGIN_AUTHENTICATION group radius local\n\nStep 3: Configure all network connections associated with a device management to use the authentication servers for the purpose of login authentication.\n\nR4(config)#line vty 0 1\nR4(config-line)#login authentication LOGIN_AUTHENTICATION\nR4(config-line)#exit\nR4(config)#line con 0\nR4(config-line)#login authentication CONSOLE\nR4(config-line)#exit \nR4(config)#ip http authentication aaa login-authentication LOGIN_AUTHENTICATION"
+              },
+              {
+                "id": "SV-220565r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Centralized management of user accounts and authentication increases the administrative access to the switch. This control is a particularly important protection against the insider threat. With robust centralized management, audit records for administrator account access to the organization's network devices can be more readily analyzed for trends and anomalies. The alternative method of defining administrator accounts on each device exposes the device configuration to remote access authentication attacks and system administrators with multiple authenticators for each network device."
+              },
+              {
+                "id": "SV-220565r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220566",
+        "title": "SRG-APP-000516-NDM-000340",
+        "controls": [
+          {
+            "id": "SV-220566r1069528_rule",
+            "title": "The Cisco switch must be configured to support organizational requirements to conduct backups of the configuration when changes occur.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220566",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220566r1069528_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001410"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001410"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1069528"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000537",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Conduct backups of system-level information contained in the system per organization-defined frequency that is consistent with recovery time and recovery point objectives."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CP-9 (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CP-9.1 (v)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CP-9 (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CP-9 (b)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220566r1069528_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to support organizational requirements to conduct backups of the configuration when changes occur."
+              },
+              {
+                "id": "SV-220566r1069528_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco switch to send the configuration to a SCP server when a configuration change occurs as shown in the example below:\n\nSW4(config)#event manager applet BACKUP_CONFIG\nSW4(config-applet)#event syslog pattern \"%SYS-5-CONFIG_I\"\nSW4(config-applet)#action 1 cli command \"enable\"\nSW4(config-applet)#action 2 info type switchname\nSW4(config-applet)#action 3 cli command \"copy run scp\" pattern \"remote host\"\nSW4(config-applet)#action 4 cli command \"x.x.x.x\" pattern \"filename\"\nSW4(config-applet)#action 5 cli command \"$_info_switchname-config\"\nSW4(config-applet)#action 6 syslog priority informational msg \"Configuration backup was executed\"\nSW4(config-applet)#end"
+              },
+              {
+                "id": "SV-220566r1069528_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "System-level information includes default and customized settings and security attributes, including ACLs that relate to the network device configuration, as well as software required for the execution and operation of the device. Information system backup is a critical step in ensuring system integrity and availability. If the system fails and there is no backup of the system-level information, a denial of service condition is possible for all who utilize this critical network component.\n\nThis control requires the network device to support the organizational central backup process for system-level information associated with the network device. This function may be provided by the network device itself; however, the preferred best practice is a centralized backup rather than each network device performing discrete backups."
+              },
+              {
+                "id": "SV-220566r1069528_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220567",
+        "title": "SRG-APP-000516-NDM-000344",
+        "controls": [
+          {
+            "id": "SV-220567r991926_rule",
+            "title": "The Cisco switch must be configured to obtain its public key certificates from an appropriate certificate policy through an approved service provider.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220567",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220567r991926_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001440"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001440"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991926"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001159",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Issue public key certificates under an organization-defined certificate policy or obtain public key certificates from an approved service provider."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004909",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Include only approved trust anchors in trust stores or certificate stores managed by the organization."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-17 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220567r991926_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to obtain its public key certificates from an appropriate certificate policy through an approved service provider."
+              },
+              {
+                "id": "SV-220567r991926_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to obtain its public key certificates from an appropriate certificate policy through an approved service provider as show in the example below:\n\nSW2(ca-trustpoint)#enrollment url http://trustpoint1.example.com"
+              },
+              {
+                "id": "SV-220567r991926_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "For user certificates, each organization obtains certificates from an approved, shared service provider, as required by OMB policy. For federal agencies operating a legacy public key infrastructure cross-certified with the Federal Bridge Certification Authority at medium assurance or higher, this Certification Authority (CA) will suffice."
+              },
+              {
+                "id": "SV-220567r991926_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220568",
+        "title": "SRG-APP-000516-NDM-000350",
+        "controls": [
+          {
+            "id": "SV-220568r961863_rule",
+            "title": "The Cisco switch must be configured to send log data to at least two central log servers for the purpose of forwarding alerts to the administrators and the information system security officer (ISSO).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220568",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220568r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001450"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001450"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001851",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Transfer audit logs per organization-defined frequency to a different system, system component, or media than the system or system component conducting the logging."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-4 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-4 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220568r961863_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured to send log data to at least two central log servers for the purpose of forwarding alerts to the administrators and the information system security officer (ISSO)."
+              },
+              {
+                "id": "SV-220568r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to send log messages to the syslog servers as shown in the example below:\n\nSW4(config)#logging host x.x.x.x\nSW4(config)#logging host x.x.x.x"
+              },
+              {
+                "id": "SV-220568r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The aggregation of log data kept on a syslog server can be used to detect attacks and trigger an alert to the appropriate security personnel. The stored log data can used to detect weaknesses in security that enable the network IA team to find and address these weaknesses before breaches can occur. Reviewing these logs, whether before or after a security breach, are important in showing whether someone is an internal employee or an outside threat."
+              },
+              {
+                "id": "SV-220568r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220569",
+        "title": "SRG-APP-000516-NDM-000351",
+        "controls": [
+          {
+            "id": "SV-220569r961863_rule",
+            "title": "The Cisco switch must be running an IOS release that is currently supported by Cisco Systems.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220569",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220569r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001470"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001470"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002605",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Install security-relevant software updates within an organization-defined time period of the release of the updates."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-2 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-2 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220569r961863_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be running an IOS release that is currently supported by Cisco Systems."
+              },
+              {
+                "id": "SV-220569r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Upgrade the switch to a supported release."
+              },
+              {
+                "id": "SV-220569r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Network devices running an unsupported operating system lack current security fixes required to mitigate the risks associated with recent vulnerabilities. Running a supported release also enables operations to maintain a stable and reliable network provided by improved quality of service and security features."
+              },
+              {
+                "id": "SV-220569r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

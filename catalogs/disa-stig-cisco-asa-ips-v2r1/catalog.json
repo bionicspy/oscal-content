@@ -1,0 +1,2487 @@
+{
+  "catalog": {
+    "uuid": "6a3ca915-26ac-5e35-8d24-ec3ab590bef0",
+    "metadata": {
+      "title": "Cisco ASA IPS Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2024-07-24T00:00:00Z",
+      "version": "2.1.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2024-07-24"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "2"
+        },
+        {
+          "name": "version.minor",
+          "value": "1"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-239873",
+        "title": "SRG-NET-000074-IDPS-00059",
+        "controls": [
+          {
+            "id": "SV-239873r665932_rule",
+            "title": "The Cisco ASA must be configured to produce audit records containing sufficient information to establish what type of event occurred.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239873",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239873r665932_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000040"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000040"
+              },
+              {
+                "name": "sv-revision",
+                "value": "665932"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000130",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records contain information that establishes what type of event occurred."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239873r665932_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to produce audit records containing sufficient information to establish what type of event occurred."
+              },
+              {
+                "id": "SV-239873r665932_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable logging for connection events.\n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy you want to configure. The access control policy editor appears.\n\nStep 3: Click the edit icon next to a rule to edit. Select a logging option either log at Beginning and End of Connection or log at End of Connection. Select the Syslog check box.\n\nStep 4: Click Save.\n---------------------------------------------------\nEnable logging for Intrusion events.\n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Intrusion Policy >> Intrusion Policy. The Intrusion Policy page appears.\n\nStep 2: Click Advanced Setting. The Advanced Settings page appears.\n\nStep 3: If Syslog Alerting under External Responses is enabled, click Edit. If the configuration is disabled, click Enabled, then click Edit. The Syslog Alerting page appears.\n\nStep 4: In the Logging Hosts field, enter the remote access IP address you want to specify as logging host.\n\nStep 5: Click Save."
+              },
+              {
+                "id": "SV-239873r665932_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without establishing what type of event occurred, it would be difficult to establish, correlate, and investigate the events leading up to an outage or attack. Associating an event type with each event log entry provides a means of investigating an attack or identifying an improperly configured IDPS.\n\nWhile auditing and logging are closely related, they are not the same. Logging is recording data about events that take place in a system, while auditing is the use of log records to identify security-relevant information such as system or user accesses. In short, log records are audited to establish an accurate history. Without logging, it would be impossible to establish an audit trail."
+              },
+              {
+                "id": "SV-239873r665932_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239874",
+        "title": "SRG-NET-000075-IDPS-00060",
+        "controls": [
+          {
+            "id": "SV-239874r682908_rule",
+            "title": "The Cisco ASA must be configured to produce audit records containing information to establish when the events occurred.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239874",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239874r682908_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000050"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000050"
+              },
+              {
+                "name": "sv-revision",
+                "value": "682908"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000131",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes when the event occurred."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239874r682908_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to produce audit records containing information to establish when the events occurred."
+              },
+              {
+                "id": "SV-239874r682908_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable logging for connection events.\n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy you want to configure. The access control policy editor appears.\n\nStep 3: Click the edit icon next to a rule to edit. Select a logging option either log at Beginning and End of Connection or log at End of Connection. Select the Syslog check box. \n\nStep 4: Click Save.\n---------------------------------------------------\nEnable logging for Intrusion events.\n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Intrusion Policy >> Intrusion Policy. The Intrusion Policy page appears.\n\nStep 2: Click Advanced Setting. The Advanced Settings page appears.\n\nStep 3: If Syslog Alerting under External Responses is enabled, click Edit. If the configuration is disabled, click Enabled, then click Edit. The Syslog Alerting page appears.\n\nStep 4: In the Logging Hosts field, enter the remote access IP address you want to specify as logging host.\n\nStep 5: Click Save."
+              },
+              {
+                "id": "SV-239874r682908_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without establishing the time (date/time) an event occurred, it would be difficult to establish, correlate, and investigate the events leading up to an outage or attack. Associating the date and time the event occurred with each event log entry provides a means of investigating an attack or identifying an improperly configured IDPS. \n\nWhile auditing and logging are closely related, they are not the same. Logging is recording data about events that take place in a system, while auditing is the use of log records to identify security-relevant information such as system or user accesses. In short, log records are audited to establish an accurate history. Without logging, it would be impossible to establish an audit trail."
+              },
+              {
+                "id": "SV-239874r682908_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239875",
+        "title": "SRG-NET-000076-IDPS-00061",
+        "controls": [
+          {
+            "id": "SV-239875r665938_rule",
+            "title": "The Cisco ASA must be configured to produce audit records containing information to establish where the event was detected.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239875",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239875r665938_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000060"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000060"
+              },
+              {
+                "name": "sv-revision",
+                "value": "665938"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000132",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes where the event occurred."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239875r665938_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to produce audit records containing information to establish where the event was detected."
+              },
+              {
+                "id": "SV-239875r665938_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable logging for connection events. \n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy you want to configure. The access control policy editor appears.\n\nStep 3: Click the edit icon next to a rule to edit. Select a logging option either log at Beginning and End of Connection or log at End of Connection. Select the Syslog check box. \n\nStep 4: Click Save.\n---------------------------------------------------\nEnable logging for Intrusion events. \n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Intrusion Policy >> Intrusion Policy. The Intrusion Policy page appears.\n\nStep 2: Click Advanced Setting. The Advanced Settings page appears.\n\nStep 3: If Syslog Alerting under External Responses is enabled, click Edit. If the configuration is disabled, click Enabled, then click Edit. The Syslog Alerting page appears.\n\nStep 4: In the Logging Hosts field, enter the remote access IP address you want to specify as logging host.\n\nStep 5: Click Save."
+              },
+              {
+                "id": "SV-239875r665938_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Associating where the event was detected with the event log entries provides a means of investigating an attack or identifying an improperly configured IDPS. This information can be used to determine what systems may have been affected.\n\nWhile auditing and logging are closely related, they are not the same. Logging is recording data about events that take place in a system, while auditing is the use of log records to identify security-relevant information such as system or user accesses. In short, log records are audited to establish an accurate history. Without logging, it would be impossible to establish an audit trail."
+              },
+              {
+                "id": "SV-239875r665938_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239876",
+        "title": "SRG-NET-000077-IDPS-00062",
+        "controls": [
+          {
+            "id": "SV-239876r665941_rule",
+            "title": "The Cisco ASA must be configured to produce audit records containing information to establish the source of the event.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239876",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239876r665941_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000070"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000070"
+              },
+              {
+                "name": "sv-revision",
+                "value": "665941"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000133",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes the source of the event."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 d"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239876r665941_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to produce audit records containing information to establish the source of the event."
+              },
+              {
+                "id": "SV-239876r665941_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable logging for connection events.\n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy you want to configure. The access control policy editor appears.\n\nStep 3: Click the edit icon next to a rule to edit. Select a logging option either log at Beginning and End of Connection or log at End of Connection. Select the Syslog check box.\n\nStep 4: Click Save.\n---------------------------------------------------\nEnable logging for Intrusion events.\n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Intrusion Policy >> Intrusion Policy. The Intrusion Policy page appears.\n\nStep 2: Click Advanced Setting. The Advanced Settings page appears.\n\nStep 3: If Syslog Alerting under External Responses is enabled, click Edit. If the configuration is disabled, click Enabled, then click Edit. The Syslog Alerting page appears.\n\nStep 4: in the Logging Hosts field, enter the remote access IP address you want to specify as logging host.\n\nStep 5: Click Save."
+              },
+              {
+                "id": "SV-239876r665941_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Associating the source of the event with detected events in the logs provides a means of investigating an attack or suspected attack.\n\nWhile auditing and logging are closely related, they are not the same. Logging is recording data about events that take place in a system, while auditing is the use of log records to identify security-relevant information such as system or user accesses. In short, log records are audited to establish an accurate history. Without logging, it would be impossible to establish an audit trail."
+              },
+              {
+                "id": "SV-239876r665941_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239877",
+        "title": "SRG-NET-000078-IDPS-00063",
+        "controls": [
+          {
+            "id": "SV-239877r665944_rule",
+            "title": "The Cisco ASA must be configured to produce audit records containing information to establish the outcome of events associated with detected harmful or potentially harmful traffic.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239877",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239877r665944_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000080"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000080"
+              },
+              {
+                "name": "sv-revision",
+                "value": "665944"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000134",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes the outcome of the event."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 e"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239877r665944_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to produce audit records containing information to establish the outcome of events associated with detected harmful or potentially harmful traffic."
+              },
+              {
+                "id": "SV-239877r665944_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable logging for connection events. \n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy you want to configure. The access control policy editor appears.\n\nStep 3: Click the edit icon next to a rule to edit. Select a logging option either log at Beginning and End of Connection or log at End of Connection. Select the Syslog check box.\n\nStep 4: Click Save.\n---------------------------------------------------\nEnable logging for Intrusion events.\n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Intrusion Policy >> Intrusion Policy. The Intrusion Policy page appears.\n\nStep 2: Click Advanced Setting. The Advanced Settings page appears.\n\nStep 3: If Syslog Alerting under External Responses is enabled, click Edit. If the configuration is disabled, click Enabled, then click Edit. The Syslog Alerting page appears. \n\nStep 4: In the Logging Hosts field, enter the remote access IP address you want to specify as logging host. \n\nStep 5: Click Save."
+              },
+              {
+                "id": "SV-239877r665944_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Associating event outcome with detected events in the log provides a means of investigating an attack or suspected attack.\n\nWhile auditing and logging are closely related, they are not the same. Logging is recording data about events that take place in a system, while auditing is the use of log records to identify security-relevant information such as system or user accesses. In short, log records are audited to establish an accurate history. Without logging, it would be impossible to establish an audit trail.\n\nThe logs should identify what servers, destination addresses, applications, or databases were potentially attacked by logging communications traffic between the target and the attacker. All commands that were entered by the attacker (such as account creations, changes in permissions, files accessed, etc.) during the session should also be logged."
+              },
+              {
+                "id": "SV-239877r665944_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239878",
+        "title": "SRG-NET-000113-IDPS-00013",
+        "controls": [
+          {
+            "id": "SV-239878r665947_rule",
+            "title": "The Cisco ASA must be configured to log events based on policy access control rules, signatures, and anomaly analysis.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239878",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239878r665947_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000090"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000090"
+              },
+              {
+                "name": "sv-revision",
+                "value": "665947"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000169",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide audit record generation capability for the event types the system is capable of auditing as defined in AU-2 a on organization-defined information system components."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239878r665947_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to log events based on policy access control rules, signatures, and anomaly analysis."
+              },
+              {
+                "id": "SV-239878r665947_rule_guidance",
+                "name": "guidance",
+                "prose": "Deploy a Network Analysis policy. \n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy you want to edit. The access control policy editor appears.\n\nStep 3: Click Advanced Settings. The access control policy advanced settings page appears.\n\nStep 4: Click the edit icon next to Network Analysis and Intrusion Policies. The Network Analysis and Intrusion Policies pop-up window appears.\n\nStep 5: Enable the Balanced Security and Connectivity or a site-customized policy.\n-------------------------------------------------\nEnable logging for connection events.\n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy you want to configure. The access control policy editor appears.\n\nStep 3: Click the edit icon next to a rule to edit. Select a logging option either log at Beginning and End of Connection or log at End of Connection. Select the Syslog check box.\n\nStep 4: Click Save.\n---------------------------------------\nEnable logging for Intrusion events. \n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Intrusion Policy >> Intrusion Policy. The Intrusion Policy page appears.\n\nStep 2: Click Advanced Settings. The Advanced Settings page appears.\n\nStep 3: If Syslog Alerting under External Responses is enabled, click Edit. If the configuration is disabled, click Enabled, then click Edit. The Syslog Alerting page appears.\n\nStep 4: in the Logging Hosts field, enter the remote access IP address you want to specify as logging host.\n\nStep 5: Click Save."
+              },
+              {
+                "id": "SV-239878r665947_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident, or identify those responsible for one.\n\nWhile auditing and logging are closely related, they are not the same. Logging is recording data about events that take place in a system, while auditing is the use of log records to identify security-relevant information such as system or user accesses. In short, log records are audited to establish an accurate history. Without logging, it would be impossible to establish an audit trail.\n\nThe IDPS must have the capability to capture and log detected security violations and potential security violations."
+              },
+              {
+                "id": "SV-239878r665947_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239879",
+        "title": "SRG-NET-000334-IDPS-00191",
+        "controls": [
+          {
+            "id": "SV-239879r856155_rule",
+            "title": "The Cisco ASA must be configured to off-load log records to a centralized log server.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239879",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239879r856155_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000110"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000110"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856155"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001851",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Transfer audit logs per organization-defined frequency to a different system, system component, or media than the system or system component conducting the logging."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-4 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-4 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239879r856155_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to off-load log records to a centralized log server."
+              },
+              {
+                "id": "SV-239879r856155_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure Firepower to send log records to a syslog server as shown in the following steps:\n\nStep 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Actions Alerts.\n\nStep 2: Click the Create Alert drop-down menu and choose option Create Syslog Alert. \n\nStep 3: Enter the following values for the Syslog server:\n   Host:  Specify the IP address/hostname of Syslog server.\n   Port:  Specify the port number of Syslog server.\n\nStep 4: Click Store ASA FirePOWER Changes."
+              },
+              {
+                "id": "SV-239879r856155_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Information stored in one location is vulnerable to accidental or incidental deletion or alteration. Off-loading ensures audit information does not get overwritten if the limited audit storage capacity is reached and also protects the audit record in case the system/component being audited is compromised.\n\nThis also prevents the log records from being lost if the logs stored locally are accidentally or intentionally deleted, altered, or corrupted."
+              },
+              {
+                "id": "SV-239879r856155_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239880",
+        "title": "SRG-NET-000113-IDPS-00189",
+        "controls": [
+          {
+            "id": "SV-239880r665953_rule",
+            "title": "The Cisco ASA must be configured to send log records to the syslog server for specific facility and severity level.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239880",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239880r665953_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000120"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000120"
+              },
+              {
+                "name": "sv-revision",
+                "value": "665953"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000169",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide audit record generation capability for the event types the system is capable of auditing as defined in AU-2 a on organization-defined information system components."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239880r665953_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to send log records to the syslog server for specific facility and severity level."
+              },
+              {
+                "id": "SV-239880r665953_rule_guidance",
+                "name": "guidance",
+                "prose": "Step 1: Navigate to Configuration >> ASA Firepower Configuration >> Policies >> Actions Alerts. \n\nStep 2: Click the Create Alert drop-down menu and choose option Create Syslog Alert.\n\nStep 3: Enter the following values for the Syslog server:\n   Facility:  Select any facility that is configured on your Syslog server.\n   Severity:  Select any severity that is configured on your Syslog server.\n\nStep 4: Click Store ASA FirePOWER Changes."
+              },
+              {
+                "id": "SV-239880r665953_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without the capability to generate audit records with a severity code it is difficult to track and handle detection events.\n\nWhile auditing and logging are closely related, they are not the same. Logging is recording data about events that take place in a system, while auditing is the use of log records to identify security-relevant information such as system or user accesses. In short, log records are audited to establish an accurate history. Without logging, it would be impossible to establish an audit trail.\n\nThe IDPS must have the capability to collect and log the severity associated with the policy, rule, or signature. IDPS products often have either pre-configured and/or a configurable method for associating an impact indicator or severity code with signatures and rules, at a minimum."
+              },
+              {
+                "id": "SV-239880r665953_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239881",
+        "title": "SRG-NET-000089-IDPS-00010",
+        "controls": [
+          {
+            "id": "SV-239881r665956_rule",
+            "title": "The Cisco ASA must be configured to queue log records locally In the event that the central audit server is down or not reachable.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239881",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239881r665956_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000130"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000130"
+              },
+              {
+                "name": "sv-revision",
+                "value": "665956"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000140",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Take organization-defined actions upon audit failure include, shutting down the system, overwriting oldest audit records, and stopping the generation of audit records."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-5 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-5.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-5 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-5 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239881r665956_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to queue log records locally In the event that the central audit server is down or not reachable."
+              },
+              {
+                "id": "SV-239881r665956_rule_guidance",
+                "name": "guidance",
+                "prose": "Step 1: Navigate to Devices >> Platform Settings >> Syslog Servers.\n\nStep 2: Click on the pencil icon to edit the applicable server.\n\nStep 3: Select the TCP option.\n\nStep 4: Click OK and Save."
+              },
+              {
+                "id": "SV-239881r665956_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "It is critical that when the IDPS is at risk of failing to process audit logs as required, it take action to mitigate the failure.\n\nAudit processing failures include: software/hardware errors; failures in the audit capturing mechanisms; and audit storage capacity being reached or exceeded. Responses to audit failure depend upon the nature of the failure.\n\nThe IDPS performs a critical security function, so its continued operation is imperative. Since availability of the IDPS is an overriding concern, shutting down the system in the event of an audit failure should be avoided, except as a last resort. The SYSLOG protocol does not support automated synchronization, however this functionality may be provided by Network Management Systems (NMSs) which are not within the scope of this SRG."
+              },
+              {
+                "id": "SV-239881r665956_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239882",
+        "title": "SRG-NET-000192-IDPS-00140",
+        "controls": [
+          {
+            "id": "SV-239882r991802_rule",
+            "title": "The Cisco ASA must be configured to block outbound traffic containing denial-of-service (DoS) attacks by ensuring an intrusion prevention policy has been applied to outbound communications traffic.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239882",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239882r991802_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000180"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000180"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991802"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001095",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Manage capacity, bandwidth, or other redundancy to limit the effects of information flooding types of denial-of-service attacks."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004866",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Employ organization-defined controls by type of denial-of-service to achieve the denial-of-service objective."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239882r991802_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to block outbound traffic containing denial-of-service (DoS) attacks by ensuring an intrusion prevention policy has been applied to outbound communications traffic."
+              },
+              {
+                "id": "SV-239882r991802_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure access control rules to block noncompliant traffic.\n\nStep 1: Navigate to  Configuration >> ASA FirePOWER Configuration >> Policies >> Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy configured for intrusion inspection using access control rules.\n\nStep 3: Click the edit icon next to the rule you want to edit. The access control rule editor appears.\n\nStep 4: Set the rule action Interactive Block or Interactive Block with reset.\n\nStep 5: Select the Inspection tab. The Inspection tab appears.\n\nStep 6: Select a system-provided or custom intrusion policy.\n\nStep 7: Click Save to save the rule.\n---------------------------------------------------\nConfigure the ASA to redirect all traffic to the FirePOWER module in inline mode as shown in the example below.\n\nStep 1: Configure access list for all traffic.\n\nASA1(config)# access-list FIREPOWER_REDIRECT extended permit ip any any\n\nStep 2: Create a class-map in order to match the traffic on an access list.\n\nASA1(config)# class-map FIREPOWER_SFR \nASA1(config-cmap)# match access-list FIREPOWER_REDIRECT\n\nStep 3: Configure deployment mode as inline.\n\nASA1(config)# policy-map global_policy \nASA1(config-pmap)# class FIREPOWER_SFR\nASA1(config-pmap-c)# sfr fail-open"
+              },
+              {
+                "id": "SV-239882r991802_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The IDPS must include protection against DoS attacks that originate from inside the enclave which can affect either internal or external systems. These attacks may use legitimate or rogue endpoints from inside the enclave.\n\nInstallation of IDPS detection and prevention components (i.e., sensors) at key boundaries in the architecture mitigates the risk of DoS attacks. These attacks can be detected by matching observed communications traffic with patterns of known attacks and monitoring for anomalies in traffic volume/type.\n\nTo comply with this requirement, the IDPS must inspect outbound traffic for indications of known and unknown DoS attacks. Sensor log capacity management, along with techniques that prevent the logging of redundant information during an attack, also guards against DoS attacks. This requirement is used in conjunction with other requirements which require configuration of security policies, signatures, rules, and anomaly detection techniques and are applicable to both inbound and outbound traffic."
+              },
+              {
+                "id": "SV-239882r991802_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239883",
+        "title": "SRG-NET-000228-IDPS-00196",
+        "controls": [
+          {
+            "id": "SV-239883r665962_rule",
+            "title": "The Cisco ASA must be configured to use Advanced Malware Protection (AMP) features to detect and block the transmission of malicious software and malware.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239883",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239883r665962_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000190"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000190"
+              },
+              {
+                "name": "sv-revision",
+                "value": "665962"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001166",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Identify organization-defined unacceptable mobile code."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (1).1 (i)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239883r665962_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to use Advanced Malware Protection (AMP) features to detect and block the transmission of malicious software and malware."
+              },
+              {
+                "id": "SV-239883r665962_rule_guidance",
+                "name": "guidance",
+                "prose": "Step 1: Select Configuration >> ASA FirePOWER Configuration >> Policies >> Files. The File Policies page appears.\n\nStep 2: Enter a Name and optional Description for your new policy, then click Save. The File Policy Rules tab appears.\n\nStep 3: Click Add File Rule. The Add File Rule dialog box appears.\n\nStep 4: Select an Application Protocol from the drop-down list.\n\nNote: Any detects files in HTTP, SMTP, IMAP, POP3, FTP, and NetBIOS-ssn (SMB) traffic.\n\nStep 5: Select rule action Block Malware.\n\nStep 6: Select one or more File Types.\n\nStep 7: Add the selected file types (i.e. multimedia, executables, etc.) to the Selected Files Categories and Types list by clicking Add to add selected file types to the rule, then drag-and-drop one or more file types into the Selected Files Categories and Types list.\n\nStep 8: Click Store ASA FirePOWER Changes.\n---------------------------------------------------------------\nApply the file policy to an access control policy.\n\nStep 1: Navigate to Configuration >> ASA FirePOWER Configuration >> Policies >> Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy where you want to configure AMP or file control using access control rules.\n\nStep 3: Create or the edit icon next to the rule you want to edit. The access control rule editor appears.\n\nStep 4: Set the rule action Interactive Block or Interactive Block with reset.\n\nStep 5: Select the Inspection tab. The Inspection tab appears.\n\nStep 6: Select the configured file policy to inspect traffic. \n\nStep 7: Click Add to save the rule."
+              },
+              {
+                "id": "SV-239883r665962_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Mobile code is defined as software modules obtained from remote systems, transferred across a network, and then downloaded and executed on a local system without explicit installation or execution by the recipient. Examples of mobile code include JavaScript, VBScript, Java applets, ActiveX controls, Flash animations, Shockwave videos, and macros embedded within Microsoft Office documents. Mobile code can be exploited to attack a host. It can be sent as an e-mail attachment or embedded in other file formats not traditionally associated with executable code. \n\nWhile the IDPS cannot replace the anti-virus and host-based IDS (HIDS) protection installed on the network's endpoints, vendor or locally created sensor rules can be implemented, which provide preemptive defense against both known and zero-day vulnerabilities. Many of the protections may provide defenses before vulnerabilities are discovered and rules or blacklist updates are distributed by anti-virus or malicious code solution vendors.\n\nTo monitor for and detect known prohibited mobile code or approved mobile code that violates permitted usage requirements, the IDPS must implement policy filters, rules, signatures, and anomaly analysis."
+              },
+              {
+                "id": "SV-239883r665962_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239884",
+        "title": "SRG-NET-000229-IDPS-00163",
+        "controls": [
+          {
+            "id": "SV-239884r665965_rule",
+            "title": "The Cisco ASA must block any prohibited mobile code at the enclave boundary when it is detected.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239884",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239884r665965_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000200"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "665965"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001662",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Take organization-defined corrective action when organization-defined unacceptable mobile code is identified."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (1).1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239884r665965_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must block any prohibited mobile code at the enclave boundary when it is detected."
+              },
+              {
+                "id": "SV-239884r665965_rule_guidance",
+                "name": "guidance",
+                "prose": "Create a file policy.\n\nStep 1: Select Configuration >> ASA FirePOWER Configuration> > Policies >> Files. The File Policies page appears.\n\nStep 2: Enter a Name and optional Description for your new policy, then click Save. The File Policy Rules tab appears.\n\nStep 3: Click Add File Rule. The Add File Rule dialog box appears.\n\nStep 4: Select an Application Protocol from the drop-down list.\n\nNote: Any detects files in HTTP, SMTP, IMAP, POP3, FTP, and NetBIOS-ssn (SMB) traffic.\n\nStep 5: Select rule action Block Malware.\n\nStep 6: Select one or more File Types.\n\nStep 7: Add the selected file types (e.g., multimedia, executables, etc.) to the Selected Files Categories and Types list by clicking Add to add selected file types to the rule. Drag and drop one or more file types into the Selected Files Categories and Types list.\n\nStep 8: Click Store ASA FirePOWER Changes.\n---------------------------------------------------------------\nApply the file policy to an access control policy.\n\nStep 1: Navigate to  Configuration >> ASA FirePOWER Configuration >> Policies >> Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy where you want to configure AMP or file control using access control rules.\n\nStep 3: Create or the edit icon next to the rule you want to edit. The access control rule editor appears.\n\nStep 4: Set the rule action Interactive Block or Interactive Block with reset.\n\nStep 5: Select the Inspection tab. The Inspection tab appears.\n\nStep 6: Select the configured file policy to inspect traffic.\n\nStep 7: Click Add to save the rule."
+              },
+              {
+                "id": "SV-239884r665965_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Mobile code is defined as software modules obtained from remote systems, transferred across a network, and then downloaded and executed on a local system without explicit installation or execution by the recipient. Examples of mobile code include JavaScript, VBScript, Java applets, ActiveX controls, Flash animations, Shockwave videos, and macros embedded within Microsoft Office documents. Mobile code can be exploited to attack a host. It can be sent as an e-mail attachment or embedded in other file formats not traditionally associated with executable code. \n\nWhile the IDPS cannot replace the anti-virus and host-based IDS (HIDS) protection installed on the network's endpoints, vendor or locally created sensor rules can be implemented, which provide preemptive defense against both known and zero-day vulnerabilities. Many of the protections may provide defenses before vulnerabilities are discovered and rules or blacklist updates are distributed by anti-virus or malicious code solution vendors.\n\nTo block known prohibited mobile code or approved mobile code that violates permitted usage requirements, the IDPS must implement policy filters, rules, signatures, and anomaly analysis."
+              },
+              {
+                "id": "SV-239884r665965_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239885",
+        "title": "SRG-NET-000246-IDPS-00205",
+        "controls": [
+          {
+            "id": "SV-239885r1016324_rule",
+            "title": "The Cisco ASA must be configured to install updates for signature definitions and vendor-provided rules.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239885",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239885r1016324_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000240"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000240"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1016324"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004964",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically update malicious code protection mechanisms as new releases are available in accordance with organizational configuration management policy."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004965",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically update malicious code protection mechanisms as new releases are available in accordance with organizational configuration management procedures."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001240",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The organization updates malicious code protection mechanisms whenever new releases are available in accordance with organizational configuration management policy and procedures."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-3 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-3.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-3 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239885r1016324_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to install updates for signature definitions and vendor-provided rules."
+              },
+              {
+                "id": "SV-239885r1016324_rule_guidance",
+                "name": "guidance",
+                "prose": "Apply Cisco Vulnerability Database (VDB) updates.\n\nStep 1: Select Configuration >> ASA FirePOWER Configuration >> Updates. The Product Updates page appears.\n\nStep 2: Click Download Updates to check for the latest updates on either of the following Support Sites:\n- Sourcefire: https://support.sourcefire.com/\n- Cisco: http://www.cisco.com/cisco/web/support/index.html\n\nStep 3: Click the install icon next to the VDB update. The Install Update page appears.\n\nStep 4: Click Install.\n----------------------------------------------\nInstall Rule Updates Automatically.\n\nStep 1: Select Configuration >> ASA FirePOWER Configuration >> Updates.\n\nStep 2: Select the Rule Updates tab. The Rule Updates page appears.\n\nStep 3: Select Enable Recurring Rule Update Imports.\n\nStep 4: In the Import Frequency field, select Daily, Weekly, or Monthly from the drop-down list.\n\nStep 5: Reapply policies after the update completes. Select Reapply intrusion policies after the rule update import completes. Select Reapply access control policies after the rule update import completes.\n \nStep 6: Click Save."
+              },
+              {
+                "id": "SV-239885r1016324_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Failing to update malicious code protection mechanisms, including application software files, signature definitions, and vendor-provided rules, leaves the system vulnerable to exploitation by recently developed attack methods and programs. \n\nThe IDPS is a key malicious code protection mechanism in the enclave infrastructure. To ensure this protection is responsive to changes in malicious code threats, IDPS components must be updated, including application software files, anti-virus signatures, detection heuristics, vendor-provided rules, and vendor-provided signatures.\n\nUpdates must be installed in accordance with the CCB procedures for the local organization. However, at a minimum: \n\n1. Updates designated as critical security updates by the vendor must be installed immediately.\n\n2. Updates for signature definitions, detection heuristics, and vendor-provided rules must be installed immediately.\n\n3. Updates for application software are installed in accordance with the CCB procedures.\n\n4. Prior to automatically installing updates, either manual or automated integrity and authentication checking is required, at a minimum, for application software updates."
+              },
+              {
+                "id": "SV-239885r1016324_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239886",
+        "title": "SRG-NET-000249-IDPS-00176",
+        "controls": [
+          {
+            "id": "SV-239886r665971_rule",
+            "title": "The Cisco ASA must be configured to block malicious code.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239886",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239886r665971_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000260"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000260"
+              },
+              {
+                "name": "sv-revision",
+                "value": "665971"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001243",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure malicious code protection mechanisms to block malicious code; quarantine malicious code; and/or take organization-defined action(s) in response to malicious code detection."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-3 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-3.1 (vi)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-3 c 2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-3 c 2"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239886r665971_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to block malicious code."
+              },
+              {
+                "id": "SV-239886r665971_rule_guidance",
+                "name": "guidance",
+                "prose": "Create a file policy.\n\nStep 1: Navigate to Configuration >> ASA FirePOWER Configuration >> Policies >> Files. The File Policies page appears.\n\nStep 2: Enter a Name and optional Description for your new policy, then click Save. The File Policy Rules tab appears.\n\nStep 3: Click Add File Rule. The Add File Rule dialog box appears.\n\nStep 4: Select an Application Protocol from the drop-down list. \n\nNote: Any detects files in HTTP, SMTP, IMAP, POP3, FTP, and NetBIOS-ssn (SMB) traffic.\n\nStep 5: Select rule action Block Malware.\n\nStep 6: Select one or more File Types.\n\nStep 7: Add the selected file types (e.g., multimedia, executables, etc.) to the Selected Files Categories and Types list by clicking Add to add selected file types to the rule. Drag and drop one or more file types into the Selected Files Categories and Types list.\n\nStep 8: Click Store ASA FirePOWER Changes.\n---------------------------------------------------------------\nApply the file policy to an access control policy.\n\nStep 1: Navigate to Configuration >> ASA FirePOWER Configuration >> Policies > Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy where you want to configure AMP or file control using access control rules.\n\nStep 3: Create or the edit icon next to the rule you want to edit. The access control rule editor appears.\n\nStep 4: Set the rule action Interactive Block or Interactive Block with reset.\n\nStep 5: Select the Inspection tab. The Inspection tab appears.\n\nStep 6: Select the configured file policy to inspect traffic.\n\nStep 7: Click Add to save the rule."
+              },
+              {
+                "id": "SV-239886r665971_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Configuring the IDPS to delete and/or quarantine based on local organizational incident handling procedures minimizes the impact of this code on the network."
+              },
+              {
+                "id": "SV-239886r665971_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239887",
+        "title": "SRG-NET-000249-IDPS-00221",
+        "controls": [
+          {
+            "id": "SV-239887r665974_rule",
+            "title": "The Cisco ASA must be configured to block traffic from IP addresses that have a known bad reputation based on the latest reputation intelligence.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239887",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239887r665974_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000270"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000270"
+              },
+              {
+                "name": "sv-revision",
+                "value": "665974"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001243",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure malicious code protection mechanisms to block malicious code; quarantine malicious code; and/or take organization-defined action(s) in response to malicious code detection."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-3 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-3.1 (vi)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-3 c 2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-3 c 2"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239887r665974_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to block traffic from IP addresses that have a known bad reputation based on the latest reputation intelligence."
+              },
+              {
+                "id": "SV-239887r665974_rule_guidance",
+                "name": "guidance",
+                "prose": "Step 1: Navigate to Configuration >> ASA FirePOWER Configuration >> Object Management.\n\nStep 2: Click the Security Intelligence tab.\n\nStep 3: Next to the Intelligence Feed, click the edit icon.\n\nStep 4: Edit the Update Frequency. Choose various intervals from two hours to one week. The user can also disable feed updates.\n\nStep 5: Click Store ASA FirePOWER Changes."
+              },
+              {
+                "id": "SV-239887r665974_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Configuring the network element to delete and/or quarantine based on local organizational incident handling procedures minimizes the impact of this code on the network.\n\nMalicious code includes, but is not limited to, viruses, worms, trojan horses, and spyware. The code provides the ability for a malicious user to read from and write to files and folders on a computer's hard drive. Malicious code may also be able to run and attach programs, which may allow the unauthorized distribution of malicious mobile code.\n\nSometimes it is necessary to generate a log event and then automatically delete the malicious code; however, for critical attacks or where forensic evidence is deemed necessary, the preferred action is for the file to be quarantined for further investigation.\n\nThis requirement is limited to network elements that perform security functions, such as ALG and IDPS."
+              },
+              {
+                "id": "SV-239887r665974_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239888",
+        "title": "SRG-NET-000249-IDPS-00222",
+        "controls": [
+          {
+            "id": "SV-239888r665977_rule",
+            "title": "The Cisco ASA must be configured to send an alert to organization-defined personnel and/or the firewall administrator when malicious code is detected.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239888",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239888r665977_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000280"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000280"
+              },
+              {
+                "name": "sv-revision",
+                "value": "665977"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001243",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure malicious code protection mechanisms to block malicious code; quarantine malicious code; and/or take organization-defined action(s) in response to malicious code detection."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-3 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-3.1 (vi)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-3 c 2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-3 c 2"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239888r665977_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to send an alert to organization-defined personnel and/or the firewall administrator when malicious code is detected."
+              },
+              {
+                "id": "SV-239888r665977_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure email server and email addresses to send alerts to organization-defined personnel and/or the firewall administrator.\n\nStep 1: Navigate to Policies >> Actions >> Alerts.\n\nStep 2: From the Create Alert drop-down menu, choose Create Email Alert.\n\nStep 3: Enter a Name for the alert response. In the To field, enter the email addresses where you want to send alerts, separated by commas. In the From field, enter the email address that you want to appear as the sender of the alert. Next to Relay Host, click edit to enter mail server.\n\nStep 4: Click Save.\n----------------------------------------------\nConfigure Advanced Malware Protection to send alerts when malware is detected.\n\nStep 1: Navigate to Policies >> Actions >> Alerts.\n\nStep 2: Click the Advanced Malware Protections Alerts tab.\n\nStep 3: In the Alerts section, choose the alert response for an email alert.\n\nStep 4: Click Save."
+              },
+              {
+                "id": "SV-239888r665977_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without an alert, security personnel may be unaware of an impending failure of the audit capability, and the ability to perform forensic analysis and detect rate-based and other anomalies will be impeded.\n\nThe IDPS generates an immediate (within seconds) alert which notifies designated personnel of the incident. Sending a message to an unattended log or console does not meet this requirement since that will not be seen immediately. These messages should include a severity level indicator or code as an indicator of the criticality of the incident. The ISSM or ISSO may designate the firewall administrator and/or other authorized personnel to receive the alert within the specified time, validate the alert, and then forward only validated alerts to the ISSM and ISSO."
+              },
+              {
+                "id": "SV-239888r665977_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239889",
+        "title": "SRG-NET-000251-IDPS-00178",
+        "controls": [
+          {
+            "id": "SV-239889r1016325_rule",
+            "title": "The Cisco ASA must be configured to automatically install updates to signature definitions and vendor-provided rules.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239889",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239889r1016325_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000290"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000290"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1016325"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004964",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically update malicious code protection mechanisms as new releases are available in accordance with organizational configuration management policy."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001247",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system automatically updates malicious code protection mechanisms."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-3 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-3 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-3 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239889r1016325_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to automatically install updates to signature definitions and vendor-provided rules."
+              },
+              {
+                "id": "SV-239889r1016325_rule_guidance",
+                "name": "guidance",
+                "prose": "Apply Cisco Vulnerability Database (VDB) updates.\n\nStep 1: Select Configuration >> ASA FirePOWER Configuration >> Updates. The Product Updates page appears.\n\nStep 2: Click Download Updates to check for the latest updates on either of the following Support Sites:\n- Sourcefire: https://support.sourcefire.com/\n- Cisco: http://www.cisco.com/cisco/web/support/index.html\n\nStep 3: Click the install icon next to the VDB update. The Install Update page appears.\n\nStep 4: Click Install.\n----------------------------------------------\nInstall Rule Updates Automatically.\n\nStep 1: Select Configuration >> ASA FirePOWER Configuration >> Updates.\n\nStep 2: Select the Rule Updates tab. The Rule Updates page appears.\n\nStep 3: Select Enable Recurring Rule Update Imports.\n\nStep 4: In the Import Frequency field, select Daily, Weekly, or Monthly from the drop-down list.\n\nStep 5: Reapply policies after the update completes. Select Reapply intrusion policies after the rule update import completes. Select Reapply access control policies after the rule update import completes.\n \nStep 6: Click Save."
+              },
+              {
+                "id": "SV-239889r1016325_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Failing to automatically update malicious code protection mechanisms, including application software files, signature definitions, and vendor-provided rules, leaves the system vulnerable to exploitation by recently developed attack methods and programs. An automatic update process ensures this important task is performed without the need for system administrator intervention.\n\nThe IDPS is a key malicious code protection mechanism in the enclave infrastructure. To ensure this protection is responsive to changes in malicious code threats, IDPS components must be automatically updated, including anti-virus signatures, detection heuristics, vendor-provided rules, and vendor-provided signatures.\n\nIf a DOD patch management server or update repository having the tested/verified updates is available for the IDPS component, the components must be configured to automatically check this server/site for updates and install new updates. \n\nIf a DOD server/site is not available, the component must be configured to automatically check a trusted vendor site for updates. A trusted vendor is either commonly used by DOD, specifically approved by DOD, the vendor from which the equipment was purchased, or approved by the local program's CCB."
+              },
+              {
+                "id": "SV-239889r1016325_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239890",
+        "title": "SRG-NET-000390-IDPS-00212",
+        "controls": [
+          {
+            "id": "SV-239890r856156_rule",
+            "title": "The Cisco ASA must be configured to block inbound traffic containing unauthorized activities or conditions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239890",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239890r856156_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000500"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856156"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002661",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Monitor inbound communications traffic per organization-defined frequency for organization-defined unusual or unauthorized activities or conditions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-4 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-4 (4) (b)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239890r856156_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to block inbound traffic containing unauthorized activities or conditions."
+              },
+              {
+                "id": "SV-239890r856156_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure access control rules to block non-compliant traffic.\n\nStep 1: Navigate to  Configuration >> ASA FirePOWER Configuration >> Policies >> Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy configured for intrusion inspection using access control rules.\n\nStep 3: Click the edit icon next to the rule you want to edit. The access control rule editor appears.\n\nStep 4: Set the rule action to Interactive Block or Interactive Block with reset.\n\nStep 5: Select the Inspection tab. The Inspection tab appears.\n\nStep 6: Select a system-provided or custom intrusion policy.\n\nStep 7: Click Save to save the rule.\n---------------------------------------------------\nConfigure the ASA to redirect all traffic to the FirePOWER module in inline mode as shown in the example below.\n\nStep 1: Configure access list for all traffic.\n\nASA1(config)# access-list FIREPOWER_REDIRECT extended permit ip any any\n\nStep 2: Create a class-map in order to match the traffic on an access list.\n\nASA1(config)# class-map FIREPOWER_SFR \nASA1(config-cmap)# match access-list FIREPOWER_REDIRECT\n\nStep 3: Configure deployment mode as inline.\n\nASA1(config)# policy-map global_policy \nASA1(config-pmap)# class FIREPOWER_SFR\nASA1(config-pmap-c)# sfr fail-open"
+              },
+              {
+                "id": "SV-239890r856156_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If inbound communications traffic is not continuously monitored for unusual/unauthorized activities or conditions, there will be times when hostile activity may not be noticed and defended against. \n\nAlthough some of the components in the site's content scanning solution may be used for periodic scanning assessment, the IDPS sensors and other components must provide continuous, 24 hours a day, 7 days a week monitoring. \n\nUnusual/unauthorized activities or conditions related to information system inbound communications traffic include, for example, internal traffic that indicates the presence of malicious code within organizational information systems or propagating among system components, the unauthorized exporting of information, or signaling to external information systems. Anomalies within organizational information systems include, for example, large file transfers, long-time persistent connections, use of unusual protocols and ports, and communications with suspected or known malicious external entities."
+              },
+              {
+                "id": "SV-239890r856156_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239891",
+        "title": "SRG-NET-000391-IDPS-00213",
+        "controls": [
+          {
+            "id": "SV-239891r856157_rule",
+            "title": "The Cisco ASA must be configured to block outbound traffic containing unauthorized activities or conditions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239891",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239891r856157_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000510"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000510"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856157"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002662",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Monitor outbound communications traffic per organization-defined frequency for organization-defined unusual or unauthorized activities or conditions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-4 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-4 (4) (b)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239891r856157_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to block outbound traffic containing unauthorized activities or conditions."
+              },
+              {
+                "id": "SV-239891r856157_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure access control rules to block non-compliant traffic.\n\nStep 1: Navigate to Configuration >> ASA FirePOWER Configuration >> Policies >> Access Control Policy. The Access Control Policy page appears.\n\nStep 2: Click the edit icon next to the access control policy configured for intrusion inspection using access control rules.\n\nStep 3: Click the edit icon next to the rule you want to edit. The access control rule editor appears.\n\nStep 4: Set the rule action to Interactive Block or Interactive Block with reset.\n\nStep 5: Select the Inspection tab. The Inspection tab appears.\n\nStep 6: Select a system-provided or custom intrusion policy.\n\nStep 7: Click Save to save the rule.\n---------------------------------------------------\nConfigure the ASA to redirect all traffic to the FirePOWER module in inline mode as shown in the example below.\n\nStep 1: Configure access list for all traffic.\n\nASA1(config)# access-list FIREPOWER_REDIRECT extended permit ip any any\n\nStep 2: Create a class-map in order to match the traffic on an access list.\n\nASA1(config)# class-map FIREPOWER_SFR \nASA1(config-cmap)# match access-list FIREPOWER_REDIRECT\n\nStep 3: Configure deployment mode as inline.\n\nASA1(config)# policy-map global_policy \nASA1(config-pmap)# class FIREPOWER_SFR\nASA1(config-pmap-c)# sfr fail-open"
+              },
+              {
+                "id": "SV-239891r856157_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If outbound communications traffic is not continuously monitored for unusual/unauthorized activities or conditions, there will be times when hostile activity may not be noticed and defended against. \n\nAlthough some of the components in the site's content scanning solution may be used for periodic scanning assessment, the IDPS sensors and other components must provide continuous, 24 hours a day, 7 days a week monitoring.\n\nUnusual/unauthorized activities or conditions related to information system outbound communications traffic include, for example, internal traffic that indicates the presence of malicious code within organizational information systems or propagating among system components, the unauthorized exporting of information, or signaling to external information systems. Anomalies within organizational information systems include, for example, large file transfers, long-time persistent connections, use of unusual protocols and ports, and communications with suspected or known malicious external entities."
+              },
+              {
+                "id": "SV-239891r856157_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239892",
+        "title": "SRG-NET-000392-IDPS-00214",
+        "controls": [
+          {
+            "id": "SV-239892r971533_rule",
+            "title": "The Cisco ASA must be configured to send an alert to organization-defined personnel and/or the firewall administrator when intrusion events are detected.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239892",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239892r971533_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000520"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000520"
+              },
+              {
+                "name": "sv-revision",
+                "value": "971533"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002664",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Alert organization-defined personnel or roles when organization-defined compromise indicators generate the occurrence of a compromise or a potential compromise."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-4 (5)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-4 (5)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239892r971533_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to send an alert to organization-defined personnel and/or the firewall administrator when intrusion events are detected."
+              },
+              {
+                "id": "SV-239892r971533_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure email server and email addresses to send alerts to organization-defined personnel and/or the firewall administrator.\n\nStep 1: Navigate to Policies >> Actions >> Alerts.\n\nStep 2: From the Create Alert drop-down menu, choose Create Email Alert.\n\nStep 3: Enter a Name for the alert response. In the To field, enter the email addresses where you want to send alerts, separated by commas. In the From field, enter the email address that you want to appear as the sender of the alert. Next to Relay Host, click Edit to enter mail server.\n\nStep 4: Click Save."
+              },
+              {
+                "id": "SV-239892r971533_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without an alert, security personnel may be unaware of intrusion detection incidents that require immediate action and this delay may result in the loss or compromise of information.\n\nIn accordance with CCI-001242, the IDPS is a real-time intrusion detection system. These systems must generate an alert when detection events from real-time monitoring occur. Alerts may be transmitted, for example, telephonically, by electronic mail messages, or by text messaging. The IDPS must either send the alert to a management console that is actively monitored by authorized personnel or use a messaging capability to send the alert directly to designated personnel. The ISSM or ISSO may designate the firewall administrator and/or other authorized personnel to receive the alert within the specified time, validate the alert, and then forward only validated alerts to the ISSM and ISSO."
+              },
+              {
+                "id": "SV-239892r971533_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239893",
+        "title": "SRG-NET-000392-IDPS-00215",
+        "controls": [
+          {
+            "id": "SV-239893r971533_rule",
+            "title": "The Cisco ASA must be configured to send an alert to organization-defined personnel and/or the firewall administrator when threats are detected.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239893",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239893r971533_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000530"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000530"
+              },
+              {
+                "name": "sv-revision",
+                "value": "971533"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002664",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Alert organization-defined personnel or roles when organization-defined compromise indicators generate the occurrence of a compromise or a potential compromise."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-4 (5)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-4 (5)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239893r971533_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to send an alert to organization-defined personnel and/or the firewall administrator when threats are detected."
+              },
+              {
+                "id": "SV-239893r971533_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure email server and email addresses to send alerts to organization-defined personnel and/or the firewall administrator.\n\nStep 1: Navigate to Policies >> Actions >> Alerts.\n\nStep 2: From the Create Alert drop-down menu, choose Create Email Alert.\n\nStep 3: Enter a Name for the alert response. In the To field, enter the email addresses where you want to send alerts, separated by commas. In the From field, enter the email address that you want to appear as the sender of the alert. Next to Relay Host, click edit to enter mail server.\n\nStep 4: Click Save."
+              },
+              {
+                "id": "SV-239893r971533_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without an alert, security personnel may be unaware of an impending failure of the audit capability, and the ability to perform forensic analysis and detect rate-based and other anomalies will be impeded.\n\nAlerts may be transmitted, for example, telephonically, by electronic mail messages, or by text messaging. The IDPS must either send the alert to a management console that is actively monitored by authorized personnel or use a messaging capability to send the alert directly to designated personnel. The ISSM or ISSO may designate the firewall administrator and/or other authorized personnel to receive the alert within the specified time, validate the alert, and then forward only validated alerts to the ISSM and ISSO."
+              },
+              {
+                "id": "SV-239893r971533_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239894",
+        "title": "SRG-NET-000392-IDPS-00218",
+        "controls": [
+          {
+            "id": "SV-239894r971533_rule",
+            "title": "The Cisco ASA must be configured to send an alert to organization-defined personnel and/or the firewall administrator when DoS incidents are detected.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239894",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239894r971533_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000560"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000560"
+              },
+              {
+                "name": "sv-revision",
+                "value": "971533"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002664",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Alert organization-defined personnel or roles when organization-defined compromise indicators generate the occurrence of a compromise or a potential compromise."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-4 (5)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-4 (5)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239894r971533_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must be configured to send an alert to organization-defined personnel and/or the firewall administrator when DoS incidents are detected."
+              },
+              {
+                "id": "SV-239894r971533_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure email server and email addresses to send alerts to organization-defined personnel and/or the firewall administrator.\n\nStep 1: Navigate to Policies >> Actions >> Alerts.\n\nStep 2: From the Create Alert drop-down menu, choose Create Email Alert.\n\nStep 3: Enter a Name for the alert response. In the To field, enter the email addresses where you want to send alerts, separated by commas. In the From field, enter the email address that you want to appear as the sender of the alert. Next to Relay Host, click edit to enter mail server.\n\nStep 4: Click Save."
+              },
+              {
+                "id": "SV-239894r971533_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without an alert, security personnel may be unaware of major detection incidents that require immediate action and this delay may result in the loss or compromise of information.\n\nCJCSM 6510.01B, \"Cyber Incident Handling Program\", lists nine Cyber Incident and Reportable Event Categories. DoD has determined that categories identified by CJCSM 6510.01B Major Indicators (category I, II, IV, and VII detection events) will require an alert when an event is detected.\n\nAlerts messages must include a severity level indicator or code as an indicator of the criticality of the incident. Since these incidents require immediate action, these messages are assigned a critical or level 1 priority/severity, depending on the system's priority schema.\n\nAlerts may be transmitted, for example, telephonically, by electronic mail messages, or by text messaging. The IDPS must either send the alert to a management console that is actively monitored by authorized personnel or use a messaging capability to send the alert directly to designated personnel. The ISSM or ISSO may designate the firewall administrator and/or other authorized personnel to receive the alert within the specified time, validate the alert, and then forward only validated alerts to the ISSM and ISSO."
+              },
+              {
+                "id": "SV-239894r971533_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-239895",
+        "title": "SRG-NET-000392-IDPS-00219",
+        "controls": [
+          {
+            "id": "SV-239895r971533_rule",
+            "title": "The Cisco ASA must generate an alert to organization-defined personnel and/or the firewall administrator when active propagation of malware or malicious code is detected.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-239895",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-239895r971533_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CASA-IP-000570"
+              },
+              {
+                "name": "label",
+                "value": "CASA-IP-000570"
+              },
+              {
+                "name": "sv-revision",
+                "value": "971533"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002664",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Alert organization-defined personnel or roles when organization-defined compromise indicators generate the occurrence of a compromise or a potential compromise."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-4 (5)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-4 (5)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-239895r971533_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco ASA must generate an alert to organization-defined personnel and/or the firewall administrator when active propagation of malware or malicious code is detected."
+              },
+              {
+                "id": "SV-239895r971533_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure email server and email addresses to send alerts to organization-defined personnel and/or the firewall administrator.\n\nStep 1: Navigate to Policies >> Actions >> Alerts.\n\nStep 2: From the Create Alert drop-down menu, choose Create Email Alert.\n\nStep 3: Enter a Name for the alert response. In the To field, enter the email addresses where you want to send alerts, separated by commas. In the From field, enter the email address that you want to appear as the sender of the alert. Next to Relay Host, click edit to enter mail server.\n\nStep 4: Click Save."
+              },
+              {
+                "id": "SV-239895r971533_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without an alert, security personnel may be unaware of major detection incidents that require immediate action and this delay may result in the loss or compromise of information.\n\nCJCSM 6510.01B, \"Cyber Incident Handling Program\", lists nine Cyber Incident and Reportable Event Categories. DoD has determined that categories identified by CJCSM 6510.01B Major Indicators (category I, II, IV, and VII detection events) will require an alert when an event is detected.\n\nAlerts messages must include a severity level indicator or code as an indicator of the criticality of the incident. Since these incidents require immediate action, these messages are assigned a critical or level 1 priority/severity, depending on the system's priority schema.\n\nAlerts may be transmitted, for example, telephonically, by electronic mail messages, or by text messaging. The IDPS must either send the alert to a management console that is actively monitored by authorized personnel or use a messaging capability to send the alert directly to designated personnel. The ISSM or ISSO may designate the firewall/system administrator or other authorized personnel to receive the alert within the specified time, validate the alert, and then forward only validated alerts to the ISSM and ISSO."
+              },
+              {
+                "id": "SV-239895r971533_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

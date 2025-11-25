@@ -1,0 +1,4576 @@
+{
+  "catalog": {
+    "uuid": "4a5c5f88-fd9d-5395-94ea-1d99084ac5fe",
+    "metadata": {
+      "title": "Microsoft IIS 10.0 Site Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-07-02T00:00:00Z",
+      "version": "2.12.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2025-07-02"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "2"
+        },
+        {
+          "name": "version.minor",
+          "value": "12"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-218735",
+        "title": "SRG-APP-000001-WSR-000002",
+        "controls": [
+          {
+            "id": "SV-218735r1022667_rule",
+            "title": "The IIS 10.0 website session state must be enabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218735",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218735r1022667_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000201"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000201"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1022667"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000054",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Limit the number of concurrent sessions for each organization-defined account and/or account type to an organization-defined number."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-10.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218735r1022667_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website session state must be enabled."
+              },
+              {
+                "id": "SV-218735r1022667_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name.\n\nUnder the \"ASP.NET\" section, select \"Session State\".\n\nUnder \"Session State Mode Settings\", verify the \"In Process\" mode is selected.\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218735r1022667_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "When the session information is stored on the client, the session ID, along with the user authorization and identity information, is sent along with each client request and is either stored in a cookie, embedded in the uniform resource locator (URL), or placed in a hidden field on the displayed form. Each of these offers advantages and disadvantages. The biggest disadvantage to all three is the hijacking of a session along with all of the user's credentials.\n\nWhen the user authorization and identity information is stored on the server in a protected and encrypted database, the communication between the client and web server will only send the session identifier, and the server can then retrieve user credentials for the session when needed. If, during transmission, the session were to be hijacked, the user's credentials would not be compromised.\n\nASP.NET provides a session state, which is available as the HttpSessionState class, as a method of storing session-specific information that is visible only within the session. ASP.NET session state identifies requests from the same browser during a limited time window as a session, and provides the ability to persist variable values for the duration of that session."
+              },
+              {
+                "id": "SV-218735r1022667_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218736",
+        "title": "SRG-APP-000001-WSR-000002",
+        "controls": [
+          {
+            "id": "SV-218736r1022669_rule",
+            "title": "The IIS 10.0 website session state cookie settings must be configured to Use Cookies mode.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218736",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218736r1022669_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000202"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000202"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1022669"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000054",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Limit the number of concurrent sessions for each organization-defined account and/or account type to an organization-defined number."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-10.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218736r1022669_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website session state cookie settings must be configured to Use Cookies mode."
+              },
+              {
+                "id": "SV-218736r1022669_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server: \n\nOpen the IIS 10.0 Manager.\n\nClick the site name.\n\nUnder the ASP.NET section, select \"Session State\".\n\nUnder \"Cookie Settings\", select the \"Use Cookies\" from the \"Mode:\" drop-down list.\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218736r1022669_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "When the session information is stored on the client, the session ID, along with the user authorization and identity information, is sent along with each client request and is stored in either a cookie, embedded in the uniform resource locator (URL), or placed in a hidden field on the displayed form. Each of these offers advantages and disadvantages. The biggest disadvantage to all three is the hijacking of a session along with all of the user's credentials.\n\nWhen the user authorization and identity information is stored on the server in a protected and encrypted database, the communication between the client and website will only send the session identifier, and the server can then retrieve user credentials for the session when needed. If, during transmission, the session were to be hijacked, the user's credentials would not be compromised.\n\nASP.NET provides a session state, which is available as the HttpSessionState class, as a method of storing session-specific information visible only within the session. ASP.NET session state identifies requests from the same browser during a limited time window as a session and provides the ability to persist variable values for the duration of that session.\n\nWhen using the URI mode for cookie settings under session state, IIS will reject and reissue session IDs that do not have active sessions. Configuring IIS to expire session IDs and regenerate tokens gives a potential attacker less time to capture a cookie and gain access to server content."
+              },
+              {
+                "id": "SV-218736r1022669_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218737",
+        "title": "SRG-APP-000014-WSR-000006",
+        "controls": [
+          {
+            "id": "SV-218737r1022671_rule",
+            "title": "A private IIS 10.0 website must only accept Secure Socket Layer (SSL) connections.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218737",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218737r1022671_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000203"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000203"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1022671"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000068",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the confidentiality of remote access sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218737r1022671_rule_statement",
+                "name": "statement",
+                "prose": "A private IIS 10.0 website must only accept Secure Socket Layer (SSL) connections."
+              },
+              {
+                "id": "SV-218737r1022671_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name.\n\nDouble-click the \"SSL Settings\" icon.\n\nSelect \"Require SSL\" check box.\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218737r1022671_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.\n\nNIST SP 800-52 specifies the preferred configurations for government systems."
+              },
+              {
+                "id": "SV-218737r1022671_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218738",
+        "title": "SRG-APP-000014-WSR-000006",
+        "controls": [
+          {
+            "id": "SV-218738r1022673_rule",
+            "title": "A public IIS 10.0 website must only accept Secure Socket Layer (SSL) connections when authentication is required.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218738",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218738r1022673_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000204"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000204"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1022673"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000068",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the confidentiality of remote access sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218738r1022673_rule_statement",
+                "name": "statement",
+                "prose": "A public IIS 10.0 website must only accept Secure Socket Layer (SSL) connections when authentication is required."
+              },
+              {
+                "id": "SV-218738r1022673_rule_guidance",
+                "name": "guidance",
+                "prose": "Note: If the server being reviewed is a private IIS 10.0 web server, this is Not Applicable.\n\nFollow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name.\n\nDouble-click the \"SSL Settings\" icon.\n\nSelect \"Require SSL\" check box.\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218738r1022673_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.\n\nNIST SP 800-52 specifies the preferred configurations for government systems."
+              },
+              {
+                "id": "SV-218738r1022673_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218739",
+        "title": "SRG-APP-000092-WSR-000055",
+        "controls": [
+          {
+            "id": "SV-218739r1022675_rule",
+            "title": "Both the log file and Event Tracing for Windows (ETW) for each IIS 10.0 website must be enabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218739",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218739r1022675_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000206"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000206"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1022675"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000139",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Alert organization-defined personnel or roles within an organization-defined time period in the event of an audit logging process failure."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001464",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Initiates session audits automatically at system start-up."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-14 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-14 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-14 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-14 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218739r1022675_rule_statement",
+                "name": "statement",
+                "prose": "Both the log file and Event Tracing for Windows (ETW) for each IIS 10.0 website must be enabled."
+              },
+              {
+                "id": "SV-218739r1022675_rule_guidance",
+                "name": "guidance",
+                "prose": "Note: \"Microsoft-IIS-Logging/logs\" must be enabled prior to configuring this setting.\n\nFollow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name.\n\nClick the \"Logging\" icon.\n\nUnder Log Event Destination, select the \"Both log file and ETW event\" radio button.\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218739r1022675_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Internet Information Services (IIS) on Windows Server 2012 provides basic logging capabilities. However, because IIS takes some time to flush logs to disk, administrators do not have access to logging information in real-time. In addition, text-based log files can be difficult and time-consuming to process.\n\nIn IIS 10.0, the administrator has the option of sending logging information to Event Tracing for Windows (ETW). This option gives the administrator the ability to use standard query tools, or create custom tools, for viewing real-time logging information in ETW. This provides a significant advantage over parsing text-based log files that are not updated in real time.\n\nSatisfies: SRG-APP-000092-WSR-000055, SRG-APP-000108-WSR-000166"
+              },
+              {
+                "id": "SV-218739r1022675_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218740",
+        "title": "SRG-APP-000098-WSR-000060",
+        "controls": [
+          {
+            "id": "SV-218740r960900_rule",
+            "title": "An IIS 10.0 website behind a load balancer or proxy server must produce log records containing the source client IP, and destination information.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218740",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218740r960900_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000208"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000208"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960900"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000133",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes the source of the event."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 d"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218740r960900_rule_statement",
+                "name": "statement",
+                "prose": "An IIS 10.0 website behind a load balancer or proxy server must produce log records containing the source client IP, and destination information."
+              },
+              {
+                "id": "SV-218740r960900_rule_guidance",
+                "name": "guidance",
+                "prose": "Access the proxy server through which inbound web traffic is passed and configure settings to pass web traffic to the IIS 10.0 web server transparently."
+              },
+              {
+                "id": "SV-218740r960900_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Web server logging capability is critical for accurate forensic analysis. Without sufficient and accurate information, a correct replay of the events cannot be determined. \n\nAscertaining the correct source (e.g., source IP), of the events is important during forensic analysis. Correctly determining the source of events will add information to the overall reconstruction of the loggable event. By determining the source of the event correctly, analysis of the enterprise can be undertaken to determine if events tied to the source occurred in other areas within the enterprise.\n\nA web server behind a load balancer or proxy server, when not configured correctly, will record the load balancer or proxy server as the source of every loggable event. When looking at the information forensically, this information is not helpful in the investigation of events. The web server must record with each event the client source of the event."
+              },
+              {
+                "id": "SV-218740r960900_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218741",
+        "title": "SRG-APP-000099-WSR-000061",
+        "controls": [
+          {
+            "id": "SV-218741r1022677_rule",
+            "title": "The IIS 10.0 website must produce log records that contain sufficient information to establish the outcome (success or failure) of IIS 10.0 website events.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218741",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218741r1022677_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000209"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000209"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1022677"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000134",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes the outcome of the event."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 e"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218741r1022677_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website must produce log records that contain sufficient information to establish the outcome (success or failure) of IIS 10.0 website events."
+              },
+              {
+                "id": "SV-218741r1022677_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nSelect the website being reviewed.\n\nUnder \"IIS\", double-click the \"Logging\" icon.\n\nConfigure the \"Format:\" under \"Log File\" to \"W3C\".\n\nSelect \"Fields\".\n\nUnder \"Custom Fields\", select the following fields:\n\nRequest Header >> Connection\n\nRequest Header >> Warning\n\nClick \"OK\".\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218741r1022677_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Web server logging capability is critical for accurate forensic analysis. Without sufficient and accurate information, a correct replay of the events cannot be determined.\n\nAscertaining the success or failure of an event is important during forensic analysis. Correctly determining the outcome will add information to the overall reconstruction of the loggable event. By determining the success or failure of the event correctly, analysis of the enterprise can be undertaken to determine if events tied to the event occurred in other areas within the enterprise.\n\nWithout sufficient information establishing the success or failure of the logged event, investigation into the cause of event is severely hindered. The success or failure also provides a means to measure the impact of an event and help authorized personnel to determine the appropriate response. Log record content that may be necessary to satisfy the requirement of this control includes, but is not limited to, time stamps, source and destination IP addresses, user/process identifiers, event descriptions, application-specific events, success/fail indications, file names involved, access control, or flow control rules invoked."
+              },
+              {
+                "id": "SV-218741r1022677_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218742",
+        "title": "SRG-APP-000100-WSR-000064",
+        "controls": [
+          {
+            "id": "SV-218742r1022679_rule",
+            "title": "The IIS 10.0 website must produce log records containing sufficient information to establish the identity of any user/subject or process associated with an event.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218742",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218742r1022679_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000210"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000210"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1022679"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001487",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes the identity of any individuals, subjects, or objects/entities associated with the event."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 f"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218742r1022679_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website must produce log records containing sufficient information to establish the identity of any user/subject or process associated with an event."
+              },
+              {
+                "id": "SV-218742r1022679_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nAccess the IIS 10.0 web server IIS 10.0 Manager.\n\nSelect the website being reviewed.\n\nUnder \"IIS\", double-click the \"Logging\" icon.\n\nConfigure the \"Format:\" under \"Log File\" to \"W3C\".\n\nSelect \"Fields\".\n\nUnder \"Standard Fields\", select \"User Agent\", \"User Name\", and \"Referrer\".\n\nUnder \"Custom Fields\", select the following fields:\n\nRequest Header >> Authorization\n\nResponse Header >> Content-Type\n\nClick \"OK\".\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218742r1022679_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Web server logging capability is critical for accurate forensic analysis. Without sufficient and accurate information, a correct replay of the events cannot be determined.\n\nDetermining user accounts, processes running on behalf of the user, and running process identifiers also enable a better understanding of the overall event. User tool identification is also helpful to determine if events are related to overall user access or specific client tools.\n\nLog record content that may be necessary to satisfy the requirement of this control includes: time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked."
+              },
+              {
+                "id": "SV-218742r1022679_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218743",
+        "title": "SRG-APP-000141-WSR-000081",
+        "controls": [
+          {
+            "id": "SV-218743r1111802_rule",
+            "title": "The IIS 10.0 website must have Multipurpose Internet Mail Extensions (MIME) that invoke OS shell programs disabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218743",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218743r1111802_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000214"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000214"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1111802"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218743r1111802_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website must have Multipurpose Internet Mail Extensions (MIME) that invoke OS shell programs disabled."
+              },
+              {
+                "id": "SV-218743r1111802_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick on the IIS 10.0 site.\n\nUnder IIS, double-click the \u201cMIME Types\u201d icon.\n\nFrom the \"Group by:\" drop-down list, select \"Content Type\".\n\nFrom the list of extensions under \"Application\", remove MIME types for OS shell program extensions, to include at a minimum, the following extensions:\n\n.exe\n.dll\n.com\n.bat\n.csh\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218743r1111802_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Controlling what a user of a hosted application can access is part of the security posture of the web server. Any time a user can access more functionality than is needed for the operation of the hosted application poses a security issue. A user with too much access can view information that is not needed for the user's job role, or could use the function in an unintentional manner.\n\nA MIME tells the web server what type of program various file types and extensions are and what external utilities or programs are needed to execute the file type.\n\nA shell is a program that serves as the basic interface between the user and the operating system, so hosted application users must not have access to these programs. Shell programs may execute shell escapes and can then perform unauthorized activities that could damage the security posture of the web server."
+              },
+              {
+                "id": "SV-218743r1111802_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218744",
+        "title": "SRG-APP-000141-WSR-000082",
+        "controls": [
+          {
+            "id": "SV-218744r960963_rule",
+            "title": "Mappings to unused and vulnerable scripts on the IIS 10.0 website must be removed.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218744",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218744r960963_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000215"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000215"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960963"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218744r960963_rule_statement",
+                "name": "statement",
+                "prose": "Mappings to unused and vulnerable scripts on the IIS 10.0 website must be removed."
+              },
+              {
+                "id": "SV-218744r960963_rule_guidance",
+                "name": "guidance",
+                "prose": "Open the IIS 10.0 Manager.\n\nClick the site name under review.\n\nDouble-click \"Handler Mappings\".\n\nRemove any script file extensions listed on the black list that are enabled.\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218744r960963_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.\n\nFor Handler Mappings, the ISSO must document and approve all allowable file extensions the website allows (white list) and denies (black list). The white list and black list will be compared to the Handler Mappings in IIS 8. Handler Mappings at the site level take precedence over Handler Mappings at the server level."
+              },
+              {
+                "id": "SV-218744r960963_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218745",
+        "title": "SRG-APP-000141-WSR-000083",
+        "controls": [
+          {
+            "id": "SV-218745r960963_rule",
+            "title": "The IIS 10.0 website must have resource mappings set to disable the serving of certain file types.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218745",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218745r960963_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000216"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000216"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960963"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218745r960963_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website must have resource mappings set to disable the serving of certain file types."
+              },
+              {
+                "id": "SV-218745r960963_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server: \n\nOpen the IIS 10.0 Manager.\n\nClick the site name to review.\n\nDouble-click Request Filtering->File Name Extensions Tab->Deny File Name Extension.\n\nAdd any script file extensions listed on the black list that are not listed.\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218745r960963_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.\n\nFor Request Filtering, the ISSO must document and approve all allowable file extensions the website allows (white list) and denies (black list) by the website. The white list and black list will be compared to the Request Filtering in IIS 10.0. Request Filtering at the site level take precedence over Request Filtering at the server level."
+              },
+              {
+                "id": "SV-218745r960963_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218748",
+        "title": "SRG-APP-000142-WSR-000089",
+        "controls": [
+          {
+            "id": "SV-218748r1043177_rule",
+            "title": "Each IIS 10.0 website must be assigned a default host header.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218748",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218748r1043177_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000219"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000219"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043177"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000382",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to prohibit or restrict the use of organization-defined prohibited or restricted functions, system ports, protocols, software, and/or services."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218748r1043177_rule_statement",
+                "name": "statement",
+                "prose": "Each IIS 10.0 website must be assigned a default host header."
+              },
+              {
+                "id": "SV-218748r1043177_rule_guidance",
+                "name": "guidance",
+                "prose": "Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.\n\nFollow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nRight-click on the site name under review.\n\nSelect \"Edit Bindings\".\n\nAssign hostname entries and unique IP addresses to port 80 for HTTP and port 443 for HTTPS. Other approved and documented ports may be used.\n\nClick \"OK\".\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218748r1043177_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The web server must be configured to listen on a specified IP address and port. Without specifying an IP address and port for the web server to use, the web server will listen on all IP addresses available to the hosting server. If the web server has multiple IP addresses, i.e., a management IP address, the web server will also accept connections on the management IP address.\n\nAccessing the hosted application through an IP address normally used for non-application functions opens the possibility of user access to resources, utilities, files, ports, and protocols that are protected on the desired application IP address."
+              },
+              {
+                "id": "SV-218748r1043177_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218749",
+        "title": "SRG-APP-000172-WSR-000104",
+        "controls": [
+          {
+            "id": "SV-218749r1111805_rule",
+            "title": "A private IIS 10.0 website authentication mechanism must use client certificates to transmit session identifier to assure integrity.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218749",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218749r1111805_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000220"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000220"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1111805"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000197",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, transmit passwords only over cryptographically-protected channels."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001188",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate a unique session identifier for each session with organization-defined randomness requirements."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002470",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Only allow the use of organization-defined certificate authorities for verification of the establishment of protected sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-23 (5)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-23 (5)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218749r1111805_rule_statement",
+                "name": "statement",
+                "prose": "A private IIS 10.0 website authentication mechanism must use client certificates to transmit session identifier to assure integrity."
+              },
+              {
+                "id": "SV-218749r1111805_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nDouble-click the \"SSL Settings\" icon.\n\nVerify the \"Clients Certificate Required\" check box is selected.\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218749r1111805_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A DoD private website must use PKI as an authentication mechanism for web users. Information systems residing behind web servers requiring authorization based on individual identity must use the identity provided by certificate-based authentication to support access control decisions. Not using client certificates allows an attacker unauthenticated access to private websites.\n\nSatisfies: SRG-APP-000172-WSR-000104, SRG-APP-000224-WSR-000135, SRG-APP-000427-WSR-000186"
+              },
+              {
+                "id": "SV-218749r1111805_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218750",
+        "title": "SRG-APP-000211-WSR-000031",
+        "controls": [
+          {
+            "id": "SV-218750r961095_rule",
+            "title": "Anonymous IIS 10.0 website access accounts must be restricted.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218750",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218750r961095_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000221"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000221"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961095"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001082",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Separate user functionality, including user interface services, from system management functionality."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-2.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-2"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218750r961095_rule_statement",
+                "name": "statement",
+                "prose": "Anonymous IIS 10.0 website access accounts must be restricted."
+              },
+              {
+                "id": "SV-218750r961095_rule_guidance",
+                "name": "guidance",
+                "prose": "Remove the Anonymous access account from all privileged accounts and all privileged groups."
+              },
+              {
+                "id": "SV-218750r961095_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Many of the security problems that occur are not the result of a user gaining access to files or data for which the user does not have permissions, but rather users are assigned incorrect permissions to unauthorized data. The files, directories, and data stored on the web server must be evaluated and a determination made concerning authorized access to information and programs on the server. Only authorized users and administrative accounts will be allowed on the host server in order to maintain the web server, applications, and review the server operations."
+              },
+              {
+                "id": "SV-218750r961095_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218751",
+        "title": "SRG-APP-000224-WSR-000136",
+        "controls": [
+          {
+            "id": "SV-218751r1043181_rule",
+            "title": "The IIS 10.0 website must generate unique session identifiers that cannot be reliably reproduced.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218751",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218751r1043181_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000223"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000223"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043181"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001188",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate a unique session identifier for each session with organization-defined randomness requirements."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-23 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-23 (4).1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-23 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-23 (3)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218751r1043181_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website must generate unique session identifiers that cannot be reliably reproduced."
+              },
+              {
+                "id": "SV-218751r1043181_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name.\n\nUnder the ASP.NET section, select \"Session State\".\n\nUnder \"Session State\" Mode Settings, select the \"In Process\" mode."
+              },
+              {
+                "id": "SV-218751r1043181_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Communication between a client and the web server is done using the HTTP protocol, but HTTP is a stateless protocol. To maintain a connection or session, a web server will generate a session identifier (ID) for each client session when the session is initiated. The session ID allows the web server to track a user session and, in many cases, the user, if the user previously logged into a hosted application.\n\nBy being able to guess session IDs, an attacker can easily perform a man-in-the-middle attack. To truly generate random session identifiers that cannot be reproduced, the web server session ID generator, when used twice with the same input criteria, must generate an unrelated random ID.\n\nThe session ID generator must be a FIPS 140-2-approved generator."
+              },
+              {
+                "id": "SV-218751r1043181_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218752",
+        "title": "SRG-APP-000233-WSR-000146",
+        "controls": [
+          {
+            "id": "SV-218752r1111807_rule",
+            "title": "The IIS 10.0 website document directory must be in a separate partition from the IIS 10.0 websites system files.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218752",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218752r1111807_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000224"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000224"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1111807"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001084",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Isolate security functions from nonsecurity functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-3.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218752r1111807_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website document directory must be in a separate partition from the IIS 10.0 websites system files."
+              },
+              {
+                "id": "SV-218752r1111807_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name under review.\n\nClick the \"Advanced Settings\" from the \"Actions\" pane.\n\nChange the Physical Path to the new partition and directory location."
+              },
+              {
+                "id": "SV-218752r1111807_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The content database is accessed by multiple anonymous users when the web server is in production. By locating the content database on the same partition as the web server system file, the risk for unauthorized access to these protected files is increased. Additionally, having the content database path on the same drive as the system folders also increases the potential for a drive space exhaustion attack."
+              },
+              {
+                "id": "SV-218752r1111807_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218753",
+        "title": "SRG-APP-000246-WSR-000149",
+        "controls": [
+          {
+            "id": "SV-218753r961152_rule",
+            "title": "The IIS 10.0 website must be configured to limit the maxURL.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218753",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218753r961152_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000225"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000225"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961152"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001094",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Restrict the ability of individuals to launch organization-defined denial of service attacks against other systems."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-5 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218753r961152_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website must be configured to limit the maxURL."
+              },
+              {
+                "id": "SV-218753r961152_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nClick the site name under review.\n\nDouble-click the \"Request Filtering\" icon.\n\nClick \"Edit Feature Settings\" in the \"Actions\" pane.\n\nSet the \"maxURL\" value to \"4096\" or less."
+              },
+              {
+                "id": "SV-218753r961152_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Request filtering replaces URLScan in IIS, enabling administrators to create a more granular rule set with which to allow or reject inbound web content. By setting limits on web requests, it helps to ensure availability of web services and may also help mitigate the risk of buffer overflow type attacks. The MaxURL Request Filter limits the number of bytes the server will accept in a URL."
+              },
+              {
+                "id": "SV-218753r961152_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218754",
+        "title": "SRG-APP-000246-WSR-000149",
+        "controls": [
+          {
+            "id": "SV-218754r961152_rule",
+            "title": "The IIS 10.0 website must be configured to limit the size of web requests.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218754",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218754r961152_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000226"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000226"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961152"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001094",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Restrict the ability of individuals to launch organization-defined denial of service attacks against other systems."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-5 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218754r961152_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website must be configured to limit the size of web requests."
+              },
+              {
+                "id": "SV-218754r961152_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name under review.\n\nDouble-click the \"Request Filtering\" icon.\n\nClick \"Edit Feature Settings\" in the \"Actions\" pane.\n\nSet the \"maxAllowedContentLength\" value to \"30000000\" or less."
+              },
+              {
+                "id": "SV-218754r961152_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "By setting limits on web requests, it ensures availability of web services and mitigates the risk of buffer overflow type attacks. The maxAllowedContentLength Request Filter limits the number of bytes the server will accept in a request."
+              },
+              {
+                "id": "SV-218754r961152_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218755",
+        "title": "SRG-APP-000246-WSR-000149",
+        "controls": [
+          {
+            "id": "SV-218755r961152_rule",
+            "title": "The IIS 10.0 websites Maximum Query String limit must be configured.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218755",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218755r961152_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000227"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000227"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961152"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001094",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Restrict the ability of individuals to launch organization-defined denial of service attacks against other systems."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-5 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218755r961152_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 websites Maximum Query String limit must be configured."
+              },
+              {
+                "id": "SV-218755r961152_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name under review.\n\nDouble-click the \"Request Filtering\" icon.\n\nClick \"Edit Feature Settings\" in the \"Actions\" pane.\n\nSet the \"Maximum Query String\" value to \"2048\" or less."
+              },
+              {
+                "id": "SV-218755r961152_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Setting limits on web requests helps to ensure availability of web services and may also help mitigate the risk of buffer overflow type attacks. The Maximum Query String Request Filter describes the upper limit on allowable query string lengths. Upon exceeding the configured value, IIS will generate a Status Code 404.15."
+              },
+              {
+                "id": "SV-218755r961152_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218756",
+        "title": "SRG-APP-000246-WSR-000149",
+        "controls": [
+          {
+            "id": "SV-218756r961152_rule",
+            "title": "Non-ASCII characters in URLs must be prohibited by any IIS 10.0 website.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218756",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218756r961152_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000228"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000228"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961152"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001094",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Restrict the ability of individuals to launch organization-defined denial of service attacks against other systems."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-5 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218756r961152_rule_statement",
+                "name": "statement",
+                "prose": "Non-ASCII characters in URLs must be prohibited by any IIS 10.0 website."
+              },
+              {
+                "id": "SV-218756r961152_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name under review.\n\nDouble-click the \"Request Filtering\" icon.\n\nClick \"Edit Feature Settings\" in the \"Actions\" pane.\n\nUncheck the \"Allow high-bit characters\" check box."
+              },
+              {
+                "id": "SV-218756r961152_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Setting limits on web requests ensures availability of web services and mitigates the risk of buffer overflow type attacks. The allow high-bit characters Request Filter enables rejection of requests containing non-ASCII characters."
+              },
+              {
+                "id": "SV-218756r961152_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218757",
+        "title": "SRG-APP-000246-WSR-000149",
+        "controls": [
+          {
+            "id": "SV-218757r961152_rule",
+            "title": "Double encoded URL requests must be prohibited by any IIS 10.0 website.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218757",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218757r961152_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000229"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000229"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961152"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001094",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Restrict the ability of individuals to launch organization-defined denial of service attacks against other systems."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-5 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218757r961152_rule_statement",
+                "name": "statement",
+                "prose": "Double encoded URL requests must be prohibited by any IIS 10.0 website."
+              },
+              {
+                "id": "SV-218757r961152_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name under review.\n\nDouble-click the \"Request Filtering\" icon.\n\nClick \"Edit Feature Settings\" in the \"Actions\" pane.\n\nUncheck the \"Allow double escaping\" check box."
+              },
+              {
+                "id": "SV-218757r961152_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Request filtering enables administrators to create a more granular rule set with which to allow or reject inbound web content. Setting limits on web requests ensures availability of web services and mitigates the risk of buffer overflow type attacks. When the \"Allow double escaping\" option is disabled, it prevents attacks that rely on double-encoded requests."
+              },
+              {
+                "id": "SV-218757r961152_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218758",
+        "title": "SRG-APP-000246-WSR-000149",
+        "controls": [
+          {
+            "id": "SV-218758r1067598_rule",
+            "title": "Unlisted file extensions in URL requests must be filtered by any IIS 10.0 website.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218758",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218758r1067598_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000230"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000230"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1067598"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001094",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Restrict the ability of individuals to launch organization-defined denial of service attacks against other systems."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-5 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218758r1067598_rule_statement",
+                "name": "statement",
+                "prose": "Unlisted file extensions in URL requests must be filtered by any IIS 10.0 website."
+              },
+              {
+                "id": "SV-218758r1067598_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name under review.\n\nDouble-click the \"Request Filtering\" icon.\n\nClick \"Edit Feature Settings\" in the \"Actions\" pane.\n\nUncheck the \"Allow unlisted file extensions\" check box."
+              },
+              {
+                "id": "SV-218758r1067598_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Request filtering enables administrators to create a more granular rule set to allow or reject inbound web content. Setting limits on web requests helps to ensure availability of web services and may also help mitigate the risk of buffer overflow type attacks. The allow unlisted property of the \"File Extensions Request\" filter enables rejection of requests containing specific file extensions not defined in the \"File Extensions\" filter. Tripping this filter will cause IIS to generate a Status Code 404.7."
+              },
+              {
+                "id": "SV-218758r1067598_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218759",
+        "title": "SRG-APP-000251-WSR-000157",
+        "controls": [
+          {
+            "id": "SV-218759r961158_rule",
+            "title": "Directory Browsing on the IIS 10.0 website must be disabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218759",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218759r961158_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000231"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000231"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961158"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001310",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Checks the validity of organization-defined information inputs to the system."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-10.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218759r961158_rule_statement",
+                "name": "statement",
+                "prose": "Directory Browsing on the IIS 10.0 website must be disabled."
+              },
+              {
+                "id": "SV-218759r961158_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the Site.\n\nDouble-click the \"Directory Browsing\" icon.\n\nUnder the \"Actions\" pane, click \"Disabled\"."
+              },
+              {
+                "id": "SV-218759r961158_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Directory browsing allows the contents of a directory to be displayed upon request from a web client. If directory browsing is enabled for a directory in IIS, users could receive a web page listing the contents of the directory. If directory browsing is enabled the risk of inadvertently disclosing sensitive content is increased."
+              },
+              {
+                "id": "SV-218759r961158_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218760",
+        "title": "SRG-APP-000266-WSR-000159",
+        "controls": [
+          {
+            "id": "SV-218760r1022690_rule",
+            "title": "Warning and error messages displayed to clients must be modified to minimize the identity of the IIS 10.0 website, patches, loaded modules, and directory paths.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218760",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218760r1022690_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000233"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000233"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1022690"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001312",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate error messages that provide information necessary for corrective actions without revealing information that could be exploited."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-11 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-11.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-11 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218760r1022690_rule_statement",
+                "name": "statement",
+                "prose": "Warning and error messages displayed to clients must be modified to minimize the identity of the IIS 10.0 website, patches, loaded modules, and directory paths."
+              },
+              {
+                "id": "SV-218760r1022690_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name under review.\n\nDouble-click the \"Error Pages\" icon.\n\nClick each error message and click \"Edit Feature\" Setting from the \"Actions\" pane; set each error message to \"Detailed errors for local requests and custom error pages for remote requests\" or \"Custom error pages\"."
+              },
+              {
+                "id": "SV-218760r1022690_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "HTTP error pages contain information that could enable an attacker to gain access to an information system. Failure to prevent the sending of HTTP error pages with full information to remote requesters exposes internal configuration information to potential attackers."
+              },
+              {
+                "id": "SV-218760r1022690_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218761",
+        "title": "SRG-APP-000266-WSR-000160",
+        "controls": [
+          {
+            "id": "SV-218761r961167_rule",
+            "title": "Debugging and trace information used to diagnose the IIS 10.0 website must be disabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218761",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218761r961167_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000234"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000234"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961167"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001312",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate error messages that provide information necessary for corrective actions without revealing information that could be exploited."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-11 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-11.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-11 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218761r961167_rule_statement",
+                "name": "statement",
+                "prose": "Debugging and trace information used to diagnose the IIS 10.0 website must be disabled."
+              },
+              {
+                "id": "SV-218761r961167_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name under review.\n\nDouble-click \".NET Compilation\".\n\nScroll down to the \"Behavior\" section and set the value for \"Debug\" to \"False\"."
+              },
+              {
+                "id": "SV-218761r961167_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Setting compilation debug to false ensures detailed error information does not inadvertently display during live application usage, mitigating the risk of application information being displayed to users."
+              },
+              {
+                "id": "SV-218761r961167_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218762",
+        "title": "SRG-APP-000295-WSR-000012",
+        "controls": [
+          {
+            "id": "SV-218762r1043182_rule",
+            "title": "The Idle Time-out monitor for each IIS 10.0 website must be enabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218762",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218762r1043182_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000235"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000235"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043182"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002361",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically terminate a user session after organization-defined conditions or trigger events requiring session disconnect."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-12"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-12"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218762r1043182_rule_statement",
+                "name": "statement",
+                "prose": "The Idle Time-out monitor for each IIS 10.0 website must be enabled."
+              },
+              {
+                "id": "SV-218762r1043182_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the Application Pools.\n\nHighlight an Application Pool to review and click \"Advanced Settings\" in the \"Actions\" pane.\n\nScroll down to the \"Process Model\" section and set the value for \"Idle Time-out\" to something other than \"0\". \"20\" or less is recommended if the amount of RAM on the system is limited."
+              },
+              {
+                "id": "SV-218762r1043182_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The idle time-out attribute controls the amount of time a worker process will remain idle before it shuts down. A worker process is idle if it is not processing requests and no new requests are received.\n\nThe purpose of this attribute is to conserve system resources; the default value for idle time-out is 20 minutes.\n\nBy default, the World Wide Web (WWW) service establishes an overlapped recycle, in which the worker process to be shut down is kept running until after a new worker process is started."
+              },
+              {
+                "id": "SV-218762r1043182_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218763",
+        "title": "SRG-APP-000295-WSR-000134",
+        "controls": [
+          {
+            "id": "SV-218763r1043182_rule",
+            "title": "The IIS 10.0 websites connectionTimeout setting must be explicitly configured to disconnect an idle session.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218763",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218763r1043182_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000236"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000236"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043182"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002361",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically terminate a user session after organization-defined conditions or trigger events requiring session disconnect."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-12"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-12"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218763r1043182_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 websites connectionTimeout setting must be explicitly configured to disconnect an idle session."
+              },
+              {
+                "id": "SV-218763r1043182_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name.\n\nSelect \"Configuration Editor\" under the \"Management\" section.\n\nFrom the \"Section:\" drop-down list at the top of the configuration editor, locate \"system.web/sessionState\". \n\nSet the \"timeout\" to \"00:15:00 or less\u201d.\n\nIn the \"Actions\" pane, click \"Apply\"."
+              },
+              {
+                "id": "SV-218763r1043182_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Leaving sessions open indefinitely is a major security risk. An attacker can easily use an already authenticated session to access the hosted application as the previously authenticated user. By closing sessions after a set period of inactivity, the web server can make certain that those sessions that are not closed through the user logging out of an application are eventually closed.\n\nAcceptable values are 5 minutes for high-value applications, 10 minutes for medium-value applications, and 15 minutes for low-value applications."
+              },
+              {
+                "id": "SV-218763r1043182_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218764",
+        "title": "SRG-APP-000316-WSR-000170",
+        "controls": [
+          {
+            "id": "SV-218764r961281_rule",
+            "title": "The IIS 10.0 website must provide the capability to immediately disconnect or disable remote access to the hosted applications.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218764",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218764r961281_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000237"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000237"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961281"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002322",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide the capability to disconnect or disable remote access to the system within the organization-defined time period."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (9)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (9)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218764r961281_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website must provide the capability to immediately disconnect or disable remote access to the hosted applications."
+              },
+              {
+                "id": "SV-218764r961281_rule_guidance",
+                "name": "guidance",
+                "prose": "Prepare documented procedures for shutting down an IIS 10.0 website in the event of an attack. The procedure should, at a minimum, provide the following steps:\n\nDetermine the respective website for the application at risk of an attack.\n\nAccess the IIS 10.0 web server IIS 10.0 Manager.\n\nSelect the respective website.\n\nIn the \"Actions\" pane, under \"Manage Website\", click \"Stop\".\n\nIf necessary, stop all websites.\n\nIf necessary, stop the IIS 10.0 web server by selecting the web server in the IIS 10.0 Manager.\n\nIn the \"Actions\" pane, under \"Manage Server\", click \"Stop\"."
+              },
+              {
+                "id": "SV-218764r961281_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "During an attack on the web server or any of the hosted applications, the system administrator may need to disconnect or disable access by users to stop the attack.\n\nThe web server must provide a capability to disconnect users to a hosted application without compromising other hosted applications unless deemed necessary to stop the attack. Methods to disconnect or disable connections are to stop the application service for a specified hosted application, stop the web server, or block all connections through web server access list.\n\nThe web server capabilities used to disconnect or disable users from connecting to hosted applications and the web server must be documented to make certain that during an attack, the proper action is taken to conserve connectivity to any other hosted application if possible and to make certain log data is conserved for later forensic analysis."
+              },
+              {
+                "id": "SV-218764r961281_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218765",
+        "title": "SRG-APP-000357-WSR-000150",
+        "controls": [
+          {
+            "id": "SV-218765r961392_rule",
+            "title": "The IIS 10.0 website must use a logging mechanism configured to allocate log record storage capacity large enough to accommodate the logging requirements of the IIS 10.0 website.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218765",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218765r961392_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000238"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000238"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961392"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001849",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Allocate audit log storage capacity to accommodate organization-defined audit log retention requirements."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218765r961392_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website must use a logging mechanism configured to allocate log record storage capacity large enough to accommodate the logging requirements of the IIS 10.0 website."
+              },
+              {
+                "id": "SV-218765r961392_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nUnder \"IIS\" double-click on the \"Logging\" icon.\n\nIf necessary, in the \"Logging\" configuration box, redesignate a log path to a location able to house the logs.\n\nUnder \"Log File Rollover\", deselect the \"Do not create new log files\" setting.\n\nConfigure a schedule to rollover log files on a regular basis."
+              },
+              {
+                "id": "SV-218765r961392_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "To make certain the logging mechanism used by the web server has sufficient storage capacity in which to write the logs, the logging mechanism must be able to allocate log record storage capacity.\n\nThe task of allocating log record storage capacity is usually performed during initial installation of the logging mechanism. The system administrator will usually coordinate the allocation of physical drive space with the web server administrator along with the physical location of the partition and disk. Refer to NIST SP 800-92 for specific requirements on log rotation and storage dependent on the impact of the web server."
+              },
+              {
+                "id": "SV-218765r961392_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218766",
+        "title": "SRG-APP-000383-WSR-000175",
+        "controls": [
+          {
+            "id": "SV-218766r1111809_rule",
+            "title": "The IIS 10.0 websites must use ports, protocols, and services according to Ports, Protocols, and Services Management (PPSM) guidelines.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218766",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218766r1111809_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000239"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000239"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1111809"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001762",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Disable or remove organization-defined functions, ports, protocols, software, and services within the system deemed to be unnecessary and/or nonsecure."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 (1) (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 (1) (b)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218766r1111809_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 websites must use ports, protocols, and services according to Ports, Protocols, and Services Management (PPSM) guidelines."
+              },
+              {
+                "id": "SV-218766r1111809_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nClick the site name under review.\n\nIn the \"Action\" Pane, click \"Bindings\".\n\nEdit to change an existing binding and set the correct ports and protocol."
+              },
+              {
+                "id": "SV-218766r1111809_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Web servers provide numerous processes, features, and functionalities that use TCP/IP ports. Some of these processes may be deemed unnecessary or too unsecure to run on a production system.\n\nThe web server must provide the capability to disable or deactivate network-related services deemed to be non-essential to the server mission, too unsecure, or prohibited by the PPSM CAL and vulnerability assessments.\n\nFailure to comply with DoD ports, protocols, and services (PPS) requirements can result in compromise of enclave boundary protections and/or functionality of the AIS.\n\nThe ISSM will ensure web servers are configured to use only authorized PPS in accordance with the Network Infrastructure STIG, DoD Instruction 8551.1, PPSM, and the associated PPS Assurance Category Assignments List."
+              },
+              {
+                "id": "SV-218766r1111809_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218767",
+        "title": "SRG-APP-000427-WSR-000186",
+        "controls": [
+          {
+            "id": "SV-218767r1111811_rule",
+            "title": "The IIS 10.0 website must only accept client certificates issued by DOD PKI or DOD-approved PKI Certification Authorities (CAs).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218767",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218767r1111811_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000241"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000241"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1111811"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002470",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Only allow the use of organization-defined certificate authorities for verification of the establishment of protected sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-23 (5)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-23 (5)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218767r1111811_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website must only accept client certificates issued by DOD PKI or DOD-approved PKI Certification Authorities (CAs)."
+              },
+              {
+                "id": "SV-218767r1111811_rule_guidance",
+                "name": "guidance",
+                "prose": "To add DOD Certificates to the Server, if not already present:\n\nOpen the IIS 10.0 Manager.\n\nClick the Server name.\n\nDouble-click \"Server Certificates\".\n\nClick \"Import\" under the \"Actions\" pane.\n\nBrowse to the DOD certificate location, select it, and click \"OK\".\n\nRemove any non-DOD certificates if present.\n\nFollow the procedures below for each site hosted on the IIS 10.0 web server to bind the certificates to the site:\n\nClick on the site needing the certificate.\n\nSelect \"Bindings\" under the \"Actions\" pane.\n\nClick on the binding needing a certificate and select \"Edit\", or add a site binding for HTTPS.\n\nAssign the certificate to the website by choosing it under the \"SSL Certificate\" drop-down and clicking \"OK\"."
+              },
+              {
+                "id": "SV-218767r1111811_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The use of a DOD PKI certificate ensures clients the private website they are connecting to is legitimate, and is an essential part of the DOD defense-in-depth strategy."
+              },
+              {
+                "id": "SV-218767r1111811_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218768",
+        "title": "SRG-APP-000429-WSR-000113",
+        "controls": [
+          {
+            "id": "SV-218768r1111814_rule",
+            "title": "The IIS 10.0 private website must employ cryptographic mechanisms (TLS) and require client certificates.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218768",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218768r1111814_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000242"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000242"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1111814"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002476",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to prevent unauthorized disclosure of organization-defined information at rest on organization-defined system components."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-28 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-28 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218768r1111814_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 private website must employ cryptographic mechanisms (TLS) and require client certificates."
+              },
+              {
+                "id": "SV-218768r1111814_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nOpen the IIS 10.0 Manager.\n\nDouble-click the \"SSL Settings\" icon under the \"IIS\" section.\n\nSelect the \"Require SSL\" setting.\n\nSelect the \"Client Certificates Required\" setting.\n\nClick \"Apply\" in the \"Actions\" pane.\n\nClick the site under review.\n\nSelect \"Configuration Editor\" under the \"Management\" section.\n\nFrom the \"Section:\" drop-down list at the top of the configuration editor, locate \"system.webServer/security/access\".\n\nClick on the drop-down list for \"sslFlags\".\n\nSelect the \"Ssl128\" check box.\n\nClick \"Apply\" in the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218768r1111814_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "TLS encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.\n\nNIST SP 800-52 specifies the preferred configurations for government systems."
+              },
+              {
+                "id": "SV-218768r1111814_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218769",
+        "title": "SRG-APP-000439-WSR-000152",
+        "controls": [
+          {
+            "id": "SV-218769r961632_rule",
+            "title": "IIS 10.0 website session IDs must be sent to the client using TLS.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218769",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218769r961632_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000244"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000244"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961632"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002418",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect the confidentiality and/or integrity of transmitted information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-8"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-8"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218769r961632_rule_statement",
+                "name": "statement",
+                "prose": "IIS 10.0 website session IDs must be sent to the client using TLS."
+              },
+              {
+                "id": "SV-218769r961632_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nAccess the IIS 10.0 Manager.\n\nSelect the website being reviewed.\n\nUnder \"Management\" section, double-click the \"Configuration Editor\" icon.\n\nFrom the \"Section:\" drop-down list, select \"system.webServer/asp\".\n\nExpand the \"session\" section.\n\nSelect \"True\" for the \"keepSessionIdSecure\" setting.\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218769r961632_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The HTTP protocol is a stateless protocol. To maintain a session, a session identifier is used. The session identifier is a piece of data used to identify a session and a user. If the session identifier is compromised by an attacker, the session can be hijacked. By encrypting the session identifier, the identifier becomes more difficult for an attacker to hijack, decrypt, and use before the session has expired."
+              },
+              {
+                "id": "SV-218769r961632_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218770",
+        "title": "SRG-APP-000439-WSR-000154",
+        "controls": [
+          {
+            "id": "SV-218770r1111816_rule",
+            "title": "Cookies exchanged between the IIS 10.0 website and the client must have cookie properties set to prohibit client-side scripts from reading the cookie data.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218770",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218770r1111816_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000246"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000246"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1111816"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002418",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect the confidentiality and/or integrity of transmitted information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-8"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-8"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218770r1111816_rule_statement",
+                "name": "statement",
+                "prose": "Cookies exchanged between the IIS 10.0 website and the client must have cookie properties set to prohibit client-side scripts from reading the cookie data."
+              },
+              {
+                "id": "SV-218770r1111816_rule_guidance",
+                "name": "guidance",
+                "prose": "Follow the procedures below for each site hosted on the IIS 10.0 web server:\n\nAccess the IIS 10.0 Manager.\nUnder \"Management\" section, double-click the \"Configuration Editor\" icon.\nFrom the \"Section:\" drop-down list, select \"system.web/httpCookies\".\nSet the \"require SSL\" to \"True\".\n\nFrom the \"Section:\" drop-down list, select \"system.web/sessionState\".\nSet the \"compressionEnabled\" to \"False\".\n\nSelect \"Apply\" from the \"Actions\" pane."
+              },
+              {
+                "id": "SV-218770r1111816_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A cookie can be read by client-side scripts easily if cookie properties are not set properly. By allowing cookies to be read by the client-side scripts, information such as session identifiers could be compromised and used by an attacker who intercepts the cookie. Setting cookie properties (i.e., HttpOnly property) to disallow client-side scripts from reading cookies better protects the information inside the cookie.\n\nSatisfies: SRG-APP-000439-WSR-000154, SRG-APP-000439-SSR-000155, SRG-APP-000439-WSR-000153"
+              },
+              {
+                "id": "SV-218770r1111816_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218771",
+        "title": "SRG-APP-000516-WSR-000174",
+        "controls": [
+          {
+            "id": "SV-218771r961863_rule",
+            "title": "The IIS 10.0 website must have a unique application pool.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218771",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218771r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000251"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000251"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218771r961863_rule_statement",
+                "name": "statement",
+                "prose": "The IIS 10.0 website must have a unique application pool."
+              },
+              {
+                "id": "SV-218771r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Open the IIS 10.0 Manager.\n\nClick the site name under review.\n\nAssign a unique application pool to each website."
+              },
+              {
+                "id": "SV-218771r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Application pools isolate sites and applications to address reliability, availability, and security issues. Sites and applications may be grouped according to configurations, although each site will be associated with a unique application pool."
+              },
+              {
+                "id": "SV-218771r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218772",
+        "title": "SRG-APP-000516-WSR-000174",
+        "controls": [
+          {
+            "id": "SV-218772r1022694_rule",
+            "title": "The maximum number of requests an application pool can process for each IIS 10.0 website must be explicitly set.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218772",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218772r1022694_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000252"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000252"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1022694"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218772r1022694_rule_statement",
+                "name": "statement",
+                "prose": "The maximum number of requests an application pool can process for each IIS 10.0 website must be explicitly set."
+              },
+              {
+                "id": "SV-218772r1022694_rule_guidance",
+                "name": "guidance",
+                "prose": "Open the IIS 10.0 Manager.\n\nClick \"Application Pools\".\n\nHighlight an Application Pool and click \"Advanced Settings\" in the \"Action\" Pane.\n\nScroll down to the \"Recycling section\" and set the value for \"Request Limit\" to greater than \"0\".\n\nClick \"OK\"."
+              },
+              {
+                "id": "SV-218772r1022694_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "IIS application pools can be periodically recycled to avoid unstable states possibly leading to application crashes, hangs, or memory leaks. By default, application pool recycling is overlapped, which means the worker process to be shut down is kept running until after a new worker process is started. After a new worker process starts, new requests are passed to it. The old worker process shuts down after it finishes processing its existing requests, or after a configured time-out, whichever comes first. This way of recycling ensures uninterrupted service to clients."
+              },
+              {
+                "id": "SV-218772r1022694_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218775",
+        "title": "SRG-APP-000516-WSR-000174",
+        "controls": [
+          {
+            "id": "SV-218775r1022696_rule",
+            "title": "The application pool for each IIS 10.0 website must have a recycle time explicitly set.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218775",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218775r1022696_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000255"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000255"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1022696"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218775r1022696_rule_statement",
+                "name": "statement",
+                "prose": "The application pool for each IIS 10.0 website must have a recycle time explicitly set."
+              },
+              {
+                "id": "SV-218775r1022696_rule_guidance",
+                "name": "guidance",
+                "prose": "Open the IIS 10.0 Manager.\n\nClick the \"Application Pools\".\n\nPerform the following for each Application Pool:\n\nHighlight an Application Pool and click \"Recycling\" in the \"Actions\" pane.\n\nIn the Recycling Conditions window, select at least one means to recycle the Application Pool (e.g., Regular Time Intervals, Scheduled Time).\n\nClick \"Next\".\n\nIn the Recycling Events to Log window, select at minimum both the events that match the conditions from the previous step (e.g., Regular Time Intervals, Scheduled Time).\n\nClick \"Finish\"."
+              },
+              {
+                "id": "SV-218775r1022696_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Application pools can be periodically recycled to avoid unstable states possibly leading to application crashes, hangs, or memory leaks."
+              },
+              {
+                "id": "SV-218775r1022696_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218777",
+        "title": "SRG-APP-000516-WSR-000174",
+        "controls": [
+          {
+            "id": "SV-218777r961863_rule",
+            "title": "The application pools rapid fail protection for each IIS 10.0 website must be enabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218777",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218777r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000258"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000258"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218777r961863_rule_statement",
+                "name": "statement",
+                "prose": "The application pools rapid fail protection for each IIS 10.0 website must be enabled."
+              },
+              {
+                "id": "SV-218777r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Open the IIS 10.0 Manager.\n\nClick \"Application Pools\".\n\nPerform the following for each Application Pool:\n\nHighlight an Application Pool to review and click \"Advanced Settings\" in the \"Actions\" pane.\n\nScroll down to the \"Rapid Fail Protection\" section and set the value for \"Enabled\" to \"True\".\n\nClick \"OK\"."
+              },
+              {
+                "id": "SV-218777r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Rapid fail protection is a feature that interrogates the health of worker processes associated with websites and web applications. It can be configured to perform a number of actions such as shutting down and restarting worker processes that have reached failure thresholds. By not setting rapid fail protection, the web server could become unstable in the event of a worker process crash potentially leaving the web server unusable."
+              },
+              {
+                "id": "SV-218777r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218778",
+        "title": "SRG-APP-000516-WSR-000174",
+        "controls": [
+          {
+            "id": "SV-218778r961863_rule",
+            "title": "The application pools rapid fail protection settings for each IIS 10.0 website must be managed.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218778",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218778r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000259"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000259"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218778r961863_rule_statement",
+                "name": "statement",
+                "prose": "The application pools rapid fail protection settings for each IIS 10.0 website must be managed."
+              },
+              {
+                "id": "SV-218778r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Open the IIS 10.0 Manager.\n\nClick \"Application Pools\".\n\nPerform the following for each Application Pool:\n\nHighlight an Application Pool to review and click \"Advanced Settings\" in the \"Actions\" pane.\n\nScroll down to the \"Rapid Fail Protection\" section and set the value for \"Failure Interval\" to \"5\" or less.\n\nClick \"OK\"."
+              },
+              {
+                "id": "SV-218778r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Windows Process Activation Service (WAS) manages application pool configuration and may flag a worker process as unhealthy and shut it down. The rapid fail protection must be set to a suitable value. A lack of response from the worker process might mean the worker process does not have a thread to respond to the ping request, or that it is hanging for some other reason. The ping interval and ping response time may need adjustment to gain access to timely information about application pool health without triggering false, unhealthy conditions."
+              },
+              {
+                "id": "SV-218778r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218779",
+        "title": "SRG-APP-000141-WSR-000087",
+        "controls": [
+          {
+            "id": "SV-218779r1022698_rule",
+            "title": "Interactive scripts on the IIS 10.0 web server must be located in unique and designated folders.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218779",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218779r1022698_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000261"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000261"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1022698"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218779r1022698_rule_statement",
+                "name": "statement",
+                "prose": "Interactive scripts on the IIS 10.0 web server must be located in unique and designated folders."
+              },
+              {
+                "id": "SV-218779r1022698_rule_guidance",
+                "name": "guidance",
+                "prose": "All interactive programs must be placed in unique designated folders based on CGI or ASP script type.\n\nOpen the IIS 10.0 Manager.\n\nRight-click the IIS 10.0 web server name and select \"Explore\".\n\nSearch for the listed script extensions.\n\nMove each script type to its unique designated folder.\n\nSet the permissions to the scripts folders as follows:\n\nAdministrators: FULL\nTrustedInstaller: FULL\nSYSTEM: FULL\nApplicationPoolId:READ\nCustom Service Account: READ\nUsers: READ \nALL APPLICATION PACKAGES: READ"
+              },
+              {
+                "id": "SV-218779r1022698_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "CGI and ASP scripts represent one of the most common and exploitable means of compromising a web server. All CGI and ASP program files must be segregated into their own unique folder to simplify the protection of these files. ASP scripts must be placed into a unique folder only containing other ASP scripts. JAVA and other technology-specific scripts must also be placed into their own unique folders. The placement of CGI, ASP, or equivalent scripts to special folders gives the Web Manager or the System Administrator (SA) control over what goes into those folders and to facilitate access control at the folder level."
+              },
+              {
+                "id": "SV-218779r1022698_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218780",
+        "title": "SRG-APP-000141-WSR-000087",
+        "controls": [
+          {
+            "id": "SV-218780r960963_rule",
+            "title": "Interactive scripts on the IIS 10.0 web server must have restrictive access controls.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218780",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218780r960963_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000262"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000262"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960963"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218780r960963_rule_statement",
+                "name": "statement",
+                "prose": "Interactive scripts on the IIS 10.0 web server must have restrictive access controls."
+              },
+              {
+                "id": "SV-218780r960963_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine whether scripts are used on the web server for the subject website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, and .asp.\n\nIf the website does not utilize CGI, this finding is NA.\n\nAll interactive programs must have restrictive permissions.\n\nOpen the IIS 10.0 Manager.\n\nRight-click the IIS 10.0 web server name and select \"Explore\".\n\nSearch for the listed script extensions.\n\nSet the permissions to the CGI scripts as follows:\n\nAdministrators: FULL\nWeb Administrators: FULL\nTrustedInstaller: FULL\nALL APPLICATION PACKAGES: Read\nALL RESTRICTED APPLICATION PACKAGES: Read\nSYSTEM: FULL\nApplicationPoolId: READ\nCustom Service Account: READ\nUsers: READ"
+              },
+              {
+                "id": "SV-218780r960963_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "CGI is a programming standard for interfacing external applications with information servers, such as HTTP or web servers. CGI, represented by all upper case letters, should not be confused with the .cgi file extension. The .cgi file extension does represent a CGI script, but CGI scripts may be written in a number of programming languages (e.g., PERL, C, PHP, and JavaScript), each having their own unique file extension.\n\nThe use of CGI scripts represent one of the most common and exploitable means of compromising a web server. By definition, CGI scripts are executable by the operating system of the host server. While access control is provided via the web service, the execution of CGI programs is not limited unless the System Administrator (SA) or the Web Manager takes specific measures. CGI programs can access and alter data files, launch other programs, and use the network."
+              },
+              {
+                "id": "SV-218780r960963_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218781",
+        "title": "SRG-APP-000141-WSR-000087",
+        "controls": [
+          {
+            "id": "SV-218781r1022700_rule",
+            "title": "Backup interactive scripts on the IIS 10.0 server must be removed.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218781",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218781r1022700_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000263"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000263"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1022700"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218781r1022700_rule_statement",
+                "name": "statement",
+                "prose": "Backup interactive scripts on the IIS 10.0 server must be removed."
+              },
+              {
+                "id": "SV-218781r1022700_rule_guidance",
+                "name": "guidance",
+                "prose": "Remove the backup files from the production web server."
+              },
+              {
+                "id": "SV-218781r1022700_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Copies of backup files will not execute on the server, but they can be read by the anonymous user if special precautions are not taken. Such backup copies contain the same sensitive information as the actual script being executed and, as such, are useful to malicious users. Techniques and systems exist today to search web servers for such files and are able to exploit the information contained in them."
+              },
+              {
+                "id": "SV-218781r1022700_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-218782",
+        "title": "SRG-APP-000516-WSR-000174",
+        "controls": [
+          {
+            "id": "SV-218782r1111818_rule",
+            "title": "The required DoD banner page must be displayed to authenticated users accessing a DoD private website.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-218782",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-218782r1111818_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IIST-SI-000264"
+              },
+              {
+                "name": "label",
+                "value": "IIST-SI-000264"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1111818"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-218782r1111818_rule_statement",
+                "name": "statement",
+                "prose": "The required DoD banner page must be displayed to authenticated users accessing a DoD private website."
+              },
+              {
+                "id": "SV-218782r1111818_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure a DoD private website to display the required DoD banner page when authentication is required for user access."
+              },
+              {
+                "id": "SV-218782r1111818_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A consent banner will be in place to inform prospective entrants the website they are about to enter is a DoD website and their activity is subject to monitoring. The document, DoDI 8500.01, establishes the policy on the use of DoD information systems. It requires the use of a standard Notice and Consent Banner and standard text to be included in user agreements. The requirement for the banner is for websites with security and access controls. These are restricted and not publicly accessible. If the website does not require authentication/authorization for use, then the banner does not need to be present. A manual check of the document root directory for a banner page file (such as banner.html) or navigation to the website via a browser can be used to confirm the information provided from interviewing the web staff."
+              },
+              {
+                "id": "SV-218782r1111818_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

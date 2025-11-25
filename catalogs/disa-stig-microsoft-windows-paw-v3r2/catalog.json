@@ -1,0 +1,2660 @@
+{
+  "catalog": {
+    "uuid": "3a2e0373-6a5a-56df-8f7a-b48aaa7954bf",
+    "metadata": {
+      "title": "Microsoft Windows PAW Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-07-02T00:00:00Z",
+      "version": "3.2.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2025-07-02"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "3"
+        },
+        {
+          "name": "version.minor",
+          "value": "2"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-243442",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243442r991589_rule",
+            "title": "Administrators of high-value IT resources must complete required training.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243442",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243442r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-000100"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-000100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000101",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Disseminate an organization level, mission/business process-level, or system-level awareness and training policy to organization-defined personnel or roles."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243442r991589_rule_statement",
+                "name": "statement",
+                "prose": "Administrators of high-value IT resources must complete required training."
+              },
+              {
+                "id": "SV-243442r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Add the following topics to initial and annual update training modules for system administrators of high-value IT resources:\n\n- Remotely manage high-value IT resources only via a PAW.\n- Administrative accounts will not be used for non-administrative functions (for example, read email, browse Internet)."
+              },
+              {
+                "id": "SV-243442r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Required training helps to mitigate the risk of administrators not following required procedures. High-value IT resources are the most important and critical IT resources within an organization. They contain the most sensitive data in an organization, perform the most critical tasks of an organization, or have access to and can control all or nearly all IT resources within an organization. Requiring a PAW used exclusively for remote administrative management of designated high-value IT resources, including servers, workstations, directory services, applications, databases, and network components, will provide a separate \"channel\" for the performance of administrative tasks on high-value IT resources and isolate these functions from the majority of threats and attack vectors found on higher-risk standard client systems. A main security architectural construct of a PAW is to remove non-administrative applications and functions from the PAW. Technical controls for securing high-value IT resources will be ineffective if administrators are not aware of key security requirements."
+              },
+              {
+                "id": "SV-243442r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243443",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243443r991589_rule",
+            "title": "Site IT resources designated as high value by the Authorizing Official (AO) must be remotely managed only via a Windows privileged access workstation (PAW).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243443",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243443r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-000200"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-000200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243443r991589_rule_statement",
+                "name": "statement",
+                "prose": "Site IT resources designated as high value by the Authorizing Official (AO) must be remotely managed only via a Windows privileged access workstation (PAW)."
+              },
+              {
+                "id": "SV-243443r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "The Information System Security Manager (ISSM) or other site personnel will assist the Authorizing Official (AO) in designating and documenting which IT resources in the organization are high value. The organization's list of high-value IT resources will include the following:\n\n- Active Directory\n- Cloud service\n- Identity management service\n- Privileged access management service\n- Credential management service\n- Security management service (anti-virus, network monitoring/scanning, IDS/IPS, etc.)\n- Any sensitive business service\n- Any other IT resource designated as high value by the AO\n\nSet up procedures to ensure a Windows PAW is used to remotely manage each of these types of IT resources."
+              },
+              {
+                "id": "SV-243443r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The AO must designate which IT resources are high value. The list must include the following IT resources:\n\n- Directory service (including Active Directory)\n- Cloud service\n- Identity management service\n- Privileged access management service\n- Credential management service\n- Security management service (anti-virus, network monitoring/scanning, IDS/IPS, etc.)\n- Any sensitive business/mission service\n- Any other IT resource designated as high value by the AO\n\nNote: A high-value IT resource is defined as any IT resource whose purpose is considered critical to the organization or whose loss or compromise would cause a significant impact on the organization.\n\nNote: Sensitive business/mission service is any business or mission service that needs additional protection from higher-risk IT services based on the nature of the function it provides; sensitivity of the data it consumes, processes, or stores; or criticality to the operation of the organization.\n\nHigh-value IT resources are the most important and critical IT resources within an organization. They contain the most sensitive data in an organization, perform the most critical tasks of an organization, or have access to and can control all or nearly all IT resources within an organization. Administrator accounts for high-value IT resources must be protected against various threats and attacks because threats to sensitive privileged accounts are high and risk of compromise is increasing. Requiring a PAW used exclusively for remote administrative management of designated high-value IT resources, including servers, workstations, directory services, applications, databases, and network components, will provide a separate \"channel\" for the performance of administrative tasks on high-value IT resources and isolate these functions from the majority of threats and attack vectors found on higher-risk standard client systems.\n\nSome IT resources, by the nature of the function they perform, should always be considered high value and should be remotely administered only via a PAW. The IT resources listed above are in this category.\n\nNote: The term \"manage\" in the Requirement statement includes any remote connection to a high-value IT resource (for example, to view resource status and current configuration or to make changes to any resource configuration)."
+              },
+              {
+                "id": "SV-243443r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243444",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243444r991589_rule",
+            "title": "Administrative accounts of all high-value IT resources must be assigned to a specific administrative tier in Active Directory to separate highly privileged administrative accounts from less privileged administrative accounts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243444",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243444r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-000400"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-000400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002227",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Restrict privileged accounts on the system to organization-defined personnel or roles."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-6 (5)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-6 (5)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243444r991589_rule_statement",
+                "name": "statement",
+                "prose": "Administrative accounts of all high-value IT resources must be assigned to a specific administrative tier in Active Directory to separate highly privileged administrative accounts from less privileged administrative accounts."
+              },
+              {
+                "id": "SV-243444r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Set up an administrative tier model for the domain (for example, the Microsoft recommended Tier 0-2 AD administrative tier model).\n\nNote: Details of the Tier model are found at https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material#ADATM_BM.\n\nSet up an Admin Organizational Unit (OU) Framework to host site PAWs. (Recommend the Microsoft PAW scripts be used to set up the PAW OU and group framework. They can be downloaded at http://aka.ms/PAWmedia.)\n\nFor example:\n\n- Admin\\Tier 0\\Accounts\n- Admin\\Tier 1\\Accounts\n- Admin\\Tier 2\\Accounts\n- Admin\\Tier 0\\Groups\n- Admin\\Tier 1\\Groups\n- Admin\\Tier 2\\Groups\n- Admin\\Tier 0\\Devices\n- Admin\\Tier 1\\Devices\n- Admin\\Tier 2\\Devices\n\nNote: If using the Microsoft scripts, after running the scripts, PAW Users Tier 0, PAW Users Tier 1, and PAW Users Tier 2 groups may need to be created under Admin/Tier 0/Groups, Admin/Tier 1/Groups, and Admin/Tier 2/Groups, respectively. \n\nSet up administrative accounts for each assigned administrator for high-value IT resources.\n\nBased on the list of high-value IT resources with assigned administrative tier level, move Tier 0-2 administrative accounts to the appropriate Organizational Units and add the appropriate members to the relevant groups. Make sure each account and group has been assigned to one and only one tier.\n\n(Reference-defined groups in the Active Directory Domain STIG)"
+              },
+              {
+                "id": "SV-243444r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Note: The Microsoft Tier 0-2 AD administrative tier model (https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material#ADATM_BM) is an example.\n\nA key security construct of a PAW is to separate administrative accounts into specific trust levels so that an administrator account used to manage an IT resource at one trust level cannot be used to manage IT resources at another trust level. This architecture protects IT resources in a tier from threats from higher-risk tiers. Isolating administrative accounts by forcing them to operate only within their assigned trust zone implements the concept of containment of security risks and adversaries within a specific zone. The Tier model prevents escalation of privilege by restricting what administrators can control and where they can log on."
+              },
+              {
+                "id": "SV-243444r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243445",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243445r991589_rule",
+            "title": "A Windows PAW must only be used to manage high-value IT resources assigned to the same tier.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243445",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243445r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-000500"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-000500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243445r991589_rule_statement",
+                "name": "statement",
+                "prose": "A Windows PAW must only be used to manage high-value IT resources assigned to the same tier."
+              },
+              {
+                "id": "SV-243445r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Set aside one or more PAWs for remote management of high-value IT resources assigned to a specific tier. For example, using the Microsoft Tier 0-2 model, each PAW would be assigned to manage either Tier 0, Tier 1, or Tier 2 high-value IT resources."
+              },
+              {
+                "id": "SV-243445r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Note: Allowed exception - For sites that are constrained in the number of available workstations, an acceptable approach is to install lower-tier administrative accounts on a separate virtual machine (VM) on the PAW workstation where higher-tier administrative accounts are installed on the host OS and lower-tier administrative accounts are installed in a VM. The VM will provide acceptable isolation between administrative accounts of different tiers.\n\nNote: Relationship between the exception in WPAW-00-000500 and WPAW-00-001000 and requirement WPAW-00-001800: WPAW-00-000500 and WPAW-00-001000 allow an exception to the requirement for sites constrained in the number of available workstations. Lower-tier, high-value admin accounts can operate in a VM if the higher-tier, high-value admin accounts operate in the VM host-OS, but WPAW-00-001800 is more appropriate for a multiple PAW VM environment.\n\nIf administrative accounts assigned to different tiers were installed on the same PAW, it would be impossible to isolate administrative accounts to specific trust zones and protect IT resources from one trust zone (tier) from threats from high-risk trust zones."
+              },
+              {
+                "id": "SV-243445r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243446",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243446r991589_rule",
+            "title": "All high-value IT resources must be assigned to a specific administrative tier to separate highly sensitive resources from less sensitive resources.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243446",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243446r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-000600"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-000600"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243446r991589_rule_statement",
+                "name": "statement",
+                "prose": "All high-value IT resources must be assigned to a specific administrative tier to separate highly sensitive resources from less sensitive resources."
+              },
+              {
+                "id": "SV-243446r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Set up an administrative tier model for the domain (for example, the Microsoft-recommended Tier 0-2 AD administrative tier model). (Details of the Tier model are found at https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material#ADATM_BM.)\n\nUsing the list of site designated high-value IT resources (see check WPAW-00-000200), indicate on the list the administrative Tier level the resource is assigned to. (Note: The updated list will be used in check WPAW-00-000400.)\n\nIn Active Directory, assign all high-value IT resources to the appropriate Organizational Units (for example):\n\n- Admin\\Tier 0\\Devices\n- Admin\\Tier 1\\Devices\n- Admin\\Tier 2\\Devices"
+              },
+              {
+                "id": "SV-243446r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Note: The Microsoft Tier 0-2 AD administrative tier model (https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material#ADATM_BM) is an example.\n\nA key security construct of a PAW is to separate high-value IT resources into specific trust levels so that if a device at one trust level is compromised the risk of compromise of more critical IT resources at a different tier is reduced. This architecture protects IT resources in a tier from threats from higher-risk tiers. Isolating administrative accounts by forcing them to operate only within their assigned trust zone implements the concept of containment of security risks and adversaries within a specific zone."
+              },
+              {
+                "id": "SV-243446r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243447",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243447r991589_rule",
+            "title": "The Windows PAW must be configured with a vendor-supported version of Windows 11 and applicable security patches that are DOD approved.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243447",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243447r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-000700"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-000700"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243447r991589_rule_statement",
+                "name": "statement",
+                "prose": "The Windows PAW must be configured with a vendor-supported version of Windows 11 and applicable security patches that are DOD approved."
+              },
+              {
+                "id": "SV-243447r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Install one of the current vendor-supported versions of Windows 11 on site PAWs, including the most recently released patches.\n\nNote: There is no central list in the DOD of \"approved\" operating system versions. The Microsoft website will list supported versions of Windows 11 and patches. If a STIG is available for one or more of the vendor-supported versions of Windows 11, the version can be considered to be DOD approved. Local AOs usually have implemented a procedure for testing Windows updates before they are deployed. Check with the local AO's staff to determine the latest approved version of Windows 11."
+              },
+              {
+                "id": "SV-243447r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Older versions of operating systems usually contain vulnerabilities that have been fixed in later released versions. In addition, most operating system patches contain fixes for recently discovered security vulnerabilities. Due to the highly privileged activities of a PAW, it must be maintained at the highest security posture possible and therefore must have one of the current vendor-supported operating system versions installed."
+              },
+              {
+                "id": "SV-243447r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243448",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243448r991589_rule",
+            "title": "A Windows update service must be available to provide software updates for the PAW platform.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243448",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243448r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-000800"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-000800"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243448r991589_rule_statement",
+                "name": "statement",
+                "prose": "A Windows update service must be available to provide software updates for the PAW platform."
+              },
+              {
+                "id": "SV-243448r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Install a Windows update service (for example, Microsoft WSUS or System Center Configuration Manager [SCCM]) to provide software updates to all Windows-based PAWs in the organization.\n\nConfigure the Windows update service to download available operating system updates and install them when approved.\n\nBased on site policy, configure the Windows update service to either automatically approve new updates for installation or to not install updates until installation is initiated by an authorized PAW maintenance administrator.\n\nIf WSUS is being used, configure Windows Update for WSUS on each PAW (use appropriate configuration procedures if an alternate Windows update service is used).\n\nGo to Computer Configuration\\Administrative Templates\\Windows Components\\Windows Updates and follow the steps below:\n\n1. Enable the Configure Automatic Updates policy.\n2. Select option 4 - Auto download and schedule the install.\n3. Change the option \"Scheduled install day\" to \"0 - Every Day\" and the option \"Scheduled install time\" to your organizational preference.\n4. Enable option \"Specify intranet Microsoft update service location\" policy, and specify in both options the URL of the WSUS server."
+              },
+              {
+                "id": "SV-243448r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Older versions of operating systems usually contain vulnerabilities that have been fixed in later versions. In addition, most operating system patches contain fixes for recently discovered security vulnerabilities. Due to the highly privileged activities of a PAW, it must be maintained at the highest security posture possible and therefore must have the latest operating system updates installed.\n\nBecause a PAW is isolated from online operating system update services, a software update service must be available on the intranet to manage operating system and other software updates for site PAWs. A separate software update service is not required at each tier."
+              },
+              {
+                "id": "SV-243448r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243449",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243449r991589_rule",
+            "title": "The Windows PAW must be configured so that all non-administrative-related applications and functions are blocked or removed from the PAW platform, including but not limited to email, Internet browsing, and line-of-business applications.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243449",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243449r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-001000"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-001000"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243449r991589_rule_statement",
+                "name": "statement",
+                "prose": "The Windows PAW must be configured so that all non-administrative-related applications and functions are blocked or removed from the PAW platform, including but not limited to email, Internet browsing, and line-of-business applications."
+              },
+              {
+                "id": "SV-243449r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Remove email applications and all line-of business applications from the PAW.\n\nNote: Internet browsing is blocked using the PAW host-based firewall or by configuring a proxy address with a loopback address on the PAW. (See STIG check WPAW-00-002200.)"
+              },
+              {
+                "id": "SV-243449r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Note: The intent of this requirement is that a PAW must not be used for any function not related to the management of high-value IT resources.\n\nNote: Authorized exception - It is noted that administrators will need access to non-administrative functions, such as email and the Internet, but a PAW must not be used for these activities. For sites that are constrained in the number of available workstations, an acceptable approach is to install the non-administrative services on a separate virtual machine (VM) on the workstation where the PAW service is installed. The VM will provide acceptable isolation between high-value administrative management accounts and non-administrative services.\n\nNote: Relationship between the exception in WPAW-00-000500 and WPAW-00-001000 and requirement WPAW-00-001800: WPAW-00-000500 and WPAW-00-001000 allow an exception to the requirement for sites constrained in the number of available workstations. Lower-tier, high-value admin accounts can operate in a VM if the higher-tier, high-value admin accounts operate in the VM host-OS, but WPAW-00-001800 is more appropriate for a multiple PAW VM environment.\n\nA main security architectural construct of a PAW is to remove non-administrative applications and functions from the PAW workstation. Many standard user applications and functions, including email processing, Internet browsing, and using business applications, can increase the security risk to the workstation. These apps and functions are susceptible to many security vulnerabilities, including phishing attacks and embedded malware. This increased risk is not acceptable for the highly privileged activities of a PAW."
+              },
+              {
+                "id": "SV-243449r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243450",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243450r991589_rule",
+            "title": "Device Guard Code Integrity Policy must be used on the Windows PAW to restrict applications that can run on the system (Device Guard Code Integrity Policy).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243450",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243450r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-001050"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-001050"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243450r991589_rule_statement",
+                "name": "statement",
+                "prose": "Device Guard Code Integrity Policy must be used on the Windows PAW to restrict applications that can run on the system (Device Guard Code Integrity Policy)."
+              },
+              {
+                "id": "SV-243450r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Implement a whitelist of authorized PAW applications using Device Guard. See the Device Guard Deployment Guide (https://docs.microsoft.com/en-us/windows/device-security/device-guard/device-guard-deployment-guide) for deployment information and hardware requirements and the IAD Device Guard document \"Implementing a Secure Administrative Workstation using Device Guard\" at https://github.com/iadgov/Secure-Host-Baseline/tree/master/Device%20Guard."
+              },
+              {
+                "id": "SV-243450r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A main security architectural construct of a PAW is to restrict non-administrative applications and functions from the PAW workstation. Many standard user applications and functions, including email processing, Internet browsing, and using business applications, can increase the security risk to the workstation. These apps and functions are susceptible to many security vulnerabilities, including phishing attacks and embedded malware. This increased risk is not acceptable for the highly privileged activities of a PAW."
+              },
+              {
+                "id": "SV-243450r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243451",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243451r991589_rule",
+            "title": "Device Guard Code Integrity Policy must be used on the Windows PAW to restrict applications that can run on the system (Device Guard User Mode Code Integrity).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243451",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243451r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-001060"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-001060"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243451r991589_rule_statement",
+                "name": "statement",
+                "prose": "Device Guard Code Integrity Policy must be used on the Windows PAW to restrict applications that can run on the system (Device Guard User Mode Code Integrity)."
+              },
+              {
+                "id": "SV-243451r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Implement a whitelist of authorized PAW applications using Device Guard. See the Device Guard Deployment Guide (https://docs.microsoft.com/en-us/windows/device-security/device-guard/device-guard-deployment-guide) for deployment information and hardware requirements and the IAD Device Guard document \"Implementing a Secure Administrative Workstation using Device Guard\" at https://github.com/iadgov/Secure-Host-Baseline/tree/master/Device%20Guard."
+              },
+              {
+                "id": "SV-243451r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A main security architectural construct of a PAW is to restrict non-administrative applications and functions from the PAW workstation. Many standard user applications and functions, including email processing, Internet browsing, and using business applications, can increase the security risk to the workstation. These apps and functions are susceptible to many security vulnerabilities, including phishing attacks and embedded malware. This increased risk is not acceptable for the highly privileged activities of a PAW."
+              },
+              {
+                "id": "SV-243451r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243452",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243452r991589_rule",
+            "title": "Windows PAWs must be restricted to only allow groups used to manage high-value IT resources and members of the local Administrators group to log on locally.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243452",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243452r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-001100"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-001100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243452r991589_rule_statement",
+                "name": "statement",
+                "prose": "Windows PAWs must be restricted to only allow groups used to manage high-value IT resources and members of the local Administrators group to log on locally."
+              },
+              {
+                "id": "SV-243452r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment >> \"Allow log on locally\" to only include the following groups or accounts:\n\n- Administrators\n- Groups specifically designated to manage high-value IT resources"
+              },
+              {
+                "id": "SV-243452r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A main security architectural construct of a PAW is to limit users of the PAW to only administrators of high-value IT resources. This will mitigate some of the risk of attack on administrators of high-value IT resources."
+              },
+              {
+                "id": "SV-243452r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243453",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243453r991589_rule",
+            "title": "The domain must be configured to restrict privileged administrator accounts from logging on to lower-tier hosts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243453",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243453r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-001200"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-001200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243453r991589_rule_statement",
+                "name": "statement",
+                "prose": "The domain must be configured to restrict privileged administrator accounts from logging on to lower-tier hosts."
+              },
+              {
+                "id": "SV-243453r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure domain systems to prevent higher-tier administrative accounts from logging on to lower-tier hosts.\n\nAssign higher-tier administrative groups to the Deny log on user rights of lower-tier hosts. This includes the following user rights:\n\nDeny log on as a batch job\nDeny log on as a service\nDeny log on locally\n\nDomain and Enterprise Admins are currently required to be included in the appropriate deny user rights in the Windows STIGs for member servers and workstations."
+              },
+              {
+                "id": "SV-243453r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If the domain is not configured to restrict privileged administrator accounts from logging on to lower-tier hosts, it would be impossible to isolate administrative accounts to specific trust zones and protect IT resources from threats from high-risk trust zones. Blocking logon to lower-tier assets helps protect IT resources in a tier from being attacked from a lower tier."
+              },
+              {
+                "id": "SV-243453r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243454",
+        "title": "SRG-OS-000132-GPOS-00067",
+        "controls": [
+          {
+            "id": "SV-243454r958514_rule",
+            "title": "A Windows PAW used to manage domain controllers and directory services must not be used to manage any other type of high-value IT resource.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243454",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243454r958514_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-001300"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-001300"
+              },
+              {
+                "name": "sv-revision",
+                "value": "958514"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001082",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Separate user functionality, including user interface services, from system management functionality."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-2.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-2"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243454r958514_rule_statement",
+                "name": "statement",
+                "prose": "A Windows PAW used to manage domain controllers and directory services must not be used to manage any other type of high-value IT resource."
+              },
+              {
+                "id": "SV-243454r958514_rule_guidance",
+                "name": "guidance",
+                "prose": "Set aside one or more PAWs for remote management of Active Directory.\n\nEnsure they are used only for the purpose of managing directory services. Otherwise, use the local domain controller console to manage Active Directory."
+              },
+              {
+                "id": "SV-243454r958514_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Domain controllers (DC) are usually the most sensitive, high-value IT resources in a domain. Dedicating a PAW to be used solely for managing domain controllers will aid in protecting privileged domain accounts from being compromised.\n\nFor Windows, this includes the management of Active Directory itself and the DCs that run Active Directory, including such activities as domain-level user and computer management, administering trusts, replication, schema changes, site topology, domain-wide group policy, the addition of new DCs, DC software installation, and DC backup and restore operations."
+              },
+              {
+                "id": "SV-243454r958514_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243455",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243455r991589_rule",
+            "title": "PAWs used to manage Active Directory must only allow groups specifically designated to manage Active Directory, such as Enterprise and Domain Admins and members of the local Administrators group, to log on locally.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243455",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243455r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-001400"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-001400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243455r991589_rule_statement",
+                "name": "statement",
+                "prose": "PAWs used to manage Active Directory must only allow groups specifically designated to manage Active Directory, such as Enterprise and Domain Admins and members of the local Administrators group, to log on locally."
+              },
+              {
+                "id": "SV-243455r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the group policy that applies to the PAW.\n\nInstall only administrative accounts designated to be used to manage domain controllers and Active Directory remotely in the PAW User group on PAWs designated for the management of domain controllers and Active Directory.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment >> \"Allow log on locally\" to only include the following groups or accounts:\n\n- Administrators\n- Groups specifically designated to manage domain controllers and Active Directory"
+              },
+              {
+                "id": "SV-243455r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "PAW platforms are used for highly privileged activities. The accounts that have administrative privileges on domain-level PAW platforms must not be used on or used to manage any non-domain-level PAW platforms. Otherwise, there would be a clear path for privilege escalation to Enterprise Admin (EA)/Domain Admin (DA) privileges."
+              },
+              {
+                "id": "SV-243455r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243456",
+        "title": "SRG-OS-000132-GPOS-00067",
+        "controls": [
+          {
+            "id": "SV-243456r958514_rule",
+            "title": "In a Windows PAW, administrator accounts used for maintaining the PAW must be separate from administrative accounts used to manage high-value IT resources.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243456",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243456r958514_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-001500"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-001500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "958514"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001082",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Separate user functionality, including user interface services, from system management functionality."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-2.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-2"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243456r958514_rule_statement",
+                "name": "statement",
+                "prose": "In a Windows PAW, administrator accounts used for maintaining the PAW must be separate from administrative accounts used to manage high-value IT resources."
+              },
+              {
+                "id": "SV-243456r958514_rule_guidance",
+                "name": "guidance",
+                "prose": "Set up separate domain administrative accounts to manage PAWs from domain administrative accounts used to manage high-value IT resources. Each of these accounts is not to be used for any other purpose. \n\nNote: Personnel assigned as PAW administrators should be the most trusted and experienced administrators within an organization."
+              },
+              {
+                "id": "SV-243456r958514_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Note: PAW accounts used to manage high-value IT resources have privileged rights on managed systems but no administrative or maintenance rights on the PAW. They only have user rights on the PAW. PAW administrative/maintenance accounts only have administrative rights on a PAW and are used only to perform administrative functions on the PAW.  PAW administrative/maintenance accounts are the only admin accounts that have admin rights on a PAW.  It is not required that PAW administrative/maintenance accounts be organized by tier.\n\nThe PAW platform should be protected from high-value IT resource administrators accidently or deliberately modifying the security settings of the PAW. Therefore, high-value IT resource administrators must not have the ability to perform maintenance functions on the PAW platform. Separate PAW admin accounts must be set up that only have rights to manage PAW platforms.\n\nPAW administrators have the capability to compromise Domain Admin accounts; therefore, personnel assigned as PAW administrators must be the most trusted and experienced administrators within an organization, at least equal to personnel assigned as domain administrators."
+              },
+              {
+                "id": "SV-243456r958514_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243457",
+        "title": "SRG-OS-000107-GPOS-00054",
+        "controls": [
+          {
+            "id": "SV-243457r1015765_rule",
+            "title": "The Windows PAW must be configured to enforce two-factor authentication and use Active Directory for authentication management.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243457",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243457r1015765_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-001600"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-001600"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1015765"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000765",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement multifactor authentication for access to privileged accounts."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000767",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system implements multifactor authentication for local access to privileged accounts."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-2 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-2 (3).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-2 (3)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243457r1015765_rule_statement",
+                "name": "statement",
+                "prose": "The Windows PAW must be configured to enforce two-factor authentication and use Active Directory for authentication management."
+              },
+              {
+                "id": "SV-243457r1015765_rule_guidance",
+                "name": "guidance",
+                "prose": "In Active Directory, configure group policy to enable either smart card or another DOD-approved two-factor authentication method for all PAWs.\n\n- Go to Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options.\n- Set \"Interactive logon: Require Windows Hello for Business or smart card\" to \"Enabled\"."
+              },
+              {
+                "id": "SV-243457r1015765_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Due to the highly privileged functions of a PAW, a high level of trust must be implemented for access to the PAW, including nonrepudiation of the user session. One-factor authentication, including username and password and shared administrator accounts, does not provide adequate assurance."
+              },
+              {
+                "id": "SV-243457r1015765_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243458",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243458r991589_rule",
+            "title": "The Windows PAW must use a trusted channel for all connections between a PAW and IT resources managed from the PAW.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243458",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243458r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-001700"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-001700"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001135",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide a physically or logically isolated trusted communication path for communication between the user and the trusted components of the system."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002426",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide a trusted communications path that is irrefutably distinguishable from other communications paths."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-11 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-11 (1) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243458r991589_rule_statement",
+                "name": "statement",
+                "prose": "The Windows PAW must use a trusted channel for all connections between a PAW and IT resources managed from the PAW."
+              },
+              {
+                "id": "SV-243458r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the PAWs to use IPsec, SSH, TLS, or TLS/HTTPS for all connections between the PAW and managed IT resources on the intranet.\n\nConfigure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> \"System cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing\" to \"Enabled\"."
+              },
+              {
+                "id": "SV-243458r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Note: The Common Criteria Security Functional Requirement (SFR) FTP_ITC.1.1(1) defines \"trusted channel\" as \"a channel that uses IPsec, SSH, TLS, or TLS/HTTPS to provide a trusted communications channel between itself and authorized IT entity that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from modification or disclosure.\" The trusted channel uses IPsec, TLS, DTLS, or HTTPS as the protocol that preserves the confidentiality and integrity of PAW communications.\n\nThe confidentiality and integrity of the communications between the PAW and high-value IT resources being managed from the PAW must be protected due to the highly sensitive nature of the administrative functions being performed. A trusted channel provides the requisite assured identification of its end points and protection of the channel data from modification or disclosure."
+              },
+              {
+                "id": "SV-243458r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243459",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243459r1107644_rule",
+            "title": "If several Windows PAWs are set up in virtual machines (VMs) on a host server, the host server must only contain PAW VMs. If the PAW is hosted, the hosting system must be separated either physically or logically from other servers. The server is restricted to only PAW hosting functions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243459",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243459r1107644_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-001800"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-001800"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1107644"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243459r1107644_rule_statement",
+                "name": "statement",
+                "prose": "If several Windows PAWs are set up in virtual machines (VMs) on a host server, the host server must only contain PAW VMs. If the PAW is hosted, the hosting system must be separated either physically or logically from other servers. The server is restricted to only PAW hosting functions."
+              },
+              {
+                "id": "SV-243459r1107644_rule_guidance",
+                "name": "guidance",
+                "prose": "Install only PAW VMs on a host server designated for PAWs."
+              },
+              {
+                "id": "SV-243459r1107644_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A main security architectural construct of a PAW is to remove nonadministrative functions from the PAW. Many standard user functions, including email processing, internet browsing, and using business applications, can increase the security risk of the workstation. These apps and functions are susceptible to many security vulnerabilities, including phishing attacks and embedded malware. This increased risk is not acceptable for the highly privileged activities of a PAW. This requirement enforces this security concept in an environment where multiple PAW VMs are installed on a host server.\n\nNote: Relationship between the exception in WPAW-00-000500 and WPAW-00-001000 and requirement WPAW-00-001800: WPAW-00-000500 and WPAW-00-001000 allow an exception to the requirement for sites constrained in the number of available workstations. Lower-tier, high-value admin accounts can operate in a VM if the higher-tier, high-value admin accounts operate in the VM host-OS, but WPAW-00-001800 is more appropriate for a multiple PAW VM environment."
+              },
+              {
+                "id": "SV-243459r1107644_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243460",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243460r991589_rule",
+            "title": "The Windows PAW must be configured so that all inbound ports and services to a PAW are blocked except as needed for monitoring, scanning, and management tools or when the inbound communication is a response to an outbound connection request.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243460",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243460r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-002100"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-002100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002403",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Only allow incoming communications from organization-defined authorized sources routed to organization-defined authorized destinations."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-7 (11)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-7 (11)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243460r991589_rule_statement",
+                "name": "statement",
+                "prose": "The Windows PAW must be configured so that all inbound ports and services to a PAW are blocked except as needed for monitoring, scanning, and management tools or when the inbound communication is a response to an outbound connection request."
+              },
+              {
+                "id": "SV-243460r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine which inbound ports, services, addresses, or subnets are needed on the PAW for the organization's monitoring, scanning, and management tools.\n\nConfigure the host-based firewall on the PAW to block all inbound connection requests except for organizational monitoring, scanning, and management tools or for inbound connections that are responses to outbound connection requests.\n\nConfigure the host-based firewall on the PAW to block users with local administrative access from creating or modifying local firewall rules.\n\nNote: The exact configuration procedure will depend on which host-based firewall (for example, ESS) is used on the PAW. DoD sites should refer to DoD policies and firewall STIGs to determine acceptable firewalls products."
+              },
+              {
+                "id": "SV-243460r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A main security architectural construct of a PAW is that the workstation is isolated from most Internet threats, including phishing, impersonation, and credential theft attacks. This isolation is partially implemented by blocking unsolicited inbound traffic to the PAW."
+              },
+              {
+                "id": "SV-243460r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243461",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243461r991589_rule",
+            "title": "The Windows PAW must be configured so that all outbound connections to the Internet from a PAW are blocked.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243461",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243461r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-002200"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-002200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002399",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Deny outgoing communications traffic posing a threat to external systems."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-7 (9) (a)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-7 (9) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243461r991589_rule_statement",
+                "name": "statement",
+                "prose": "The Windows PAW must be configured so that all outbound connections to the Internet from a PAW are blocked."
+              },
+              {
+                "id": "SV-243461r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the PAW host-based firewall to block outbound connection requests to the internet gateway or configure the PAW with an internet proxy address with a loopback address. Allowed exceptions include connections to communicate with IT resources being managed via the PAW, including the management console of authorized public cloud services, with domain controllers, or with a digital credential verification service (for example, OCSP).\n\nIf the PAW host-based firewall method is used, configure the firewall to block outbound connection requests to the internet gateway. The exact configuration procedure will depend on which host-based firewall (for example, Endpoint Security Solution [ESS]) is used on the PAW. DoD sites should refer to DoD policies and firewall STIGs to determine acceptable firewalls products.\n\nIf the internet proxy address with a loopback address method is used, consider using the configuration instructions listed in the Microsoft Privileged Access Workstation paper.\n\nIn addition, disable the capability of the administrator to manually override the proxy settings on each PAW."
+              },
+              {
+                "id": "SV-243461r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Note: Internal domain connections from a PAW to communicate with IT resources being managed via the PAW with domain controllers or with a digital credential verification service (for example, Online Certificate Status Protocol [OCSP]) are allowed.\n\nA main security architectural construct of a PAW is that the workstation is isolated from most internet threats, including phishing, impersonation, and credential theft attacks. This isolation is partially implemented by blocking all outbound connections to the internet."
+              },
+              {
+                "id": "SV-243461r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243462",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243462r991589_rule",
+            "title": "The local Administrators group on the Windows PAW must only include groups with accounts specifically designated to administer the PAW.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243462",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243462r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-002300"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-002300"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243462r991589_rule_statement",
+                "name": "statement",
+                "prose": "The local Administrators group on the Windows PAW must only include groups with accounts specifically designated to administer the PAW."
+              },
+              {
+                "id": "SV-243462r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Restrict membership of the local Administrators group to only include members of the group specifically designated to manage the PAW and local administrator(s).\n\nSee the Microsoft PAW paper (https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/privileged-access-workstations) for more information (go to PAW Installation instructions)."
+              },
+              {
+                "id": "SV-243462r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A main security architectural construct of a PAW is to restrict access to the PAW from only specific privileged accounts designated for managing the high-value IT resources the PAW has been designated to manage. If unauthorized standard user accounts or unauthorized high-value administrative accounts are able to access a specific PAW, high-value IT resources and critical DoD information could be compromised."
+              },
+              {
+                "id": "SV-243462r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243463",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243463r991589_rule",
+            "title": "Local privileged groups (excluding Administrators) on the Windows PAW must be restricted to include no members.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243463",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243463r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-002400"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-002400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243463r991589_rule_statement",
+                "name": "statement",
+                "prose": "Local privileged groups (excluding Administrators) on the Windows PAW must be restricted to include no members."
+              },
+              {
+                "id": "SV-243463r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Complete the following configuration procedures to restrict access to privileged accounts on the PAW (see the instructions for use of group policy to define membership, PAW Installation instructions in the Microsoft PAW paper).\n\nConfigure membership of all local privileged groups (except for \"Administrators (built-in)\" group) so it is empty*. This procedure applies to the following local privileged groups:\n\n- Backup Operators (built-in)\n- Hyper-V Administrators\n- Network Configuration Operators\n- Power Users\n- Remote Desktop Users\n- Replicator\n\nLink the PAW group policy object (GPO) to the appropriate Tier devices Organizational Unit (OU).\n\n*Allowed exception: If a Hyper-V environment is used, the Hyper-V Administrators group may include members."
+              },
+              {
+                "id": "SV-243463r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A main security architectural construct of a PAW is to restrict access to the PAW from only specific privileged accounts designated for managing the high-value IT resources the PAW has been designated to manage. If unauthorized standard user accounts or unauthorized high-value administrative accounts are able to access a specific PAW, high-value IT resources and critical DoD information could be compromised."
+              },
+              {
+                "id": "SV-243463r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243464",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243464r991589_rule",
+            "title": "Restricted remote administration must be enabled for high-value systems.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243464",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243464r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-002500"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-002500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243464r991589_rule_statement",
+                "name": "statement",
+                "prose": "Restricted remote administration must be enabled for high-value systems."
+              },
+              {
+                "id": "SV-243464r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable RestrictedAdmin mode or Remote Credential Guard on high-value systems.\n\nOn target systems (high-value assets), configure the following registry value:\n\n- HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Lsa\n- Name: DisableRestrictedAdmin\n- Type: REG_DWORD \n- Value: 0\n\nOn PAW systems:\n\nConfigure the policy value for Computer Configuration >> Administrative Templates >> System >> Credentials Delegation \"Restrict delegation of credentials to remote servers\" to \"Enabled\".\n\nRequire Remote Credential Guard\nRequire Restricted Admin\nRestrict Credential Delegation"
+              },
+              {
+                "id": "SV-243464r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Restricted remote administration features, RestrictedAdmin mode, and Remote Credential Guard for Remote Desktop Protocol (RDP), are an additional safeguard against \"pass the hash\" attacks, where hackers attempt to gain higher administrative privileges from a single compromised machine. Restricted remote administration protects administrator accounts by ensuring that reusable credentials are not stored in memory on remote devices that could potentially be compromised. When restricted remote administration is implemented, the local RDP service tries to log on to the remote device using a network logon, so the user's credentials are not sent across the network. Therefore, if the high-value IT resource is compromised, the credentials of the administrator connecting to the IT resource from the PAW are not compromised."
+              },
+              {
+                "id": "SV-243464r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243465",
+        "title": "SRG-OS-000480-GPOS-00227",
+        "controls": [
+          {
+            "id": "SV-243465r991589_rule",
+            "title": "If several PAWs are set up in virtual machines (VMs) on a host server, domain administrative accounts used to manage high-value IT resources must not have access to the VM host operating system (OS) (only domain administrative accounts designated to manage PAWs should be able to access the VM host OS).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243465",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243465r991589_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WPAW-00-002600"
+              },
+              {
+                "name": "label",
+                "value": "WPAW-00-002600"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991589"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243465r991589_rule_statement",
+                "name": "statement",
+                "prose": "If several PAWs are set up in virtual machines (VMs) on a host server, domain administrative accounts used to manage high-value IT resources must not have access to the VM host operating system (OS) (only domain administrative accounts designated to manage PAWs should be able to access the VM host OS)."
+              },
+              {
+                "id": "SV-243465r991589_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the VM host OS so only domain administrative accounts designated to manage PAWs have administrative rights on the VM host OS."
+              },
+              {
+                "id": "SV-243465r991589_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The VM host OS should be protected from high-value IT resource administrators accidently or deliberately modifying the security settings of the host OS. Therefore, high-value IT resource administrators must not have the ability to perform maintenance functions on the VM host OS platform."
+              },
+              {
+                "id": "SV-243465r991589_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,2602 @@
+{
+  "catalog": {
+    "uuid": "676c3f15-52fe-56c2-adab-618e330210e2",
+    "metadata": {
+      "title": "Akamai KSD Service Impact Level 2 NDM Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2017-09-12T00:00:00Z",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2017-09-12"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "2.0"
+        },
+        {
+          "name": "version.major",
+          "value": "1"
+        },
+        {
+          "name": "version.minor",
+          "value": "1"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-76457",
+        "title": "SRG-APP-000075-NDM-000217",
+        "controls": [
+          {
+            "id": "SV-91153r1_rule",
+            "title": "Upon successful login, the Akamai Luna Portal must notify the administrator of the date and time of the last login.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76457",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91153r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000005"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000005"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000052",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Notify the user, upon successful logon (access) to the system, of the date and time of the last logon (access)."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91153r1_rule_statement",
+                "name": "statement",
+                "prose": "Upon successful login, the Akamai Luna Portal must notify the administrator of the date and time of the last login."
+              },
+              {
+                "id": "SV-91153r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the activity log to appear in the \"My Akamai\" section.\n\n1. Select the gear icon on one of the four widgets.\n2. Select the activity log in the left column.\n3. Check the box for \"All Logins\"."
+              },
+              {
+                "id": "SV-91153r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Administrators need to be aware of activity that occurs regarding their network device management account. Providing administrators with information regarding the date and time of their last successful login allows them to determine if any unauthorized activity has occurred. This incorporates all methods of login, including but not limited to SSH, HTTP, HTTPS, and physical connectivity."
+              },
+              {
+                "id": "SV-91153r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76459",
+        "title": "SRG-APP-000516-NDM-000332",
+        "controls": [
+          {
+            "id": "SV-91155r1_rule",
+            "title": "The Akamai Luna Portal must notify the administrator of the number of successful login attempts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76459",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91155r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000006"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000006"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001391",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Notify the user, upon successful logon, of the number of successful logons/accesses during the organization-defined time period."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-9 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-9 (2).1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-9 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-9 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91155r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must notify the administrator of the number of successful login attempts."
+              },
+              {
+                "id": "SV-91155r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the activity log to appear in the \"My Akamai\" section.\n\n1. Select the gear icon on one of the four widgets.\n2. Select the activity log in the left column.\n3. Check the box for \"All Logins\"."
+              },
+              {
+                "id": "SV-91155r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Administrators need to be aware of activity that occurs regarding their network device management account. Providing administrators with information regarding the date and time of their last successful login allows the administrator to determine if any unauthorized activity has occurred. This incorporates all methods of login, including but not limited to SSH, HTTP, HTTPS, and physical connectivity. The organization-defined time period is dependent on the frequency with which administrators typically log in to the network device."
+              },
+              {
+                "id": "SV-91155r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76461",
+        "title": "SRG-APP-000003-NDM-000202",
+        "controls": [
+          {
+            "id": "SV-91157r1_rule",
+            "title": "The Akamai Luna Portal must initiate a session logoff after a 15-minute period of inactivity.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76461",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91157r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000007"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000007"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000057",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent further access to the system by initiating a device lock after organization-defined time period of inactivity; and/or requiring the user to initiate a device lock before leaving the system unattended."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-11.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-11 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91157r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must initiate a session logoff after a 15-minute period of inactivity."
+              },
+              {
+                "id": "SV-91157r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the session timeout duration to 15 minutes:\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Manage Users & Groups.\n3. Select each user and set the \"Timeout\" value to \"After 15 Minutes\"."
+              },
+              {
+                "id": "SV-91157r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A session lock is a temporary network device or administrator-initiated action taken when the administrator stops work but does not log out of the network device. Rather than relying on the user to manually lock their management session prior to vacating the vicinity, network devices need to be able to identify when a management session has idled and take action to initiate the session lock. Once invoked, the session lock must remain in place until the administrator reauthenticates. No other system activity aside from reauthentication must unlock the management session.\n\nWhen the network device is remotely administered, a session logoff may be the only practical option in lieu of a session lock. For a web portal, a session logoff must be invoked when idle time is exceeded for an administrator.\n\nNote that CCI-001133 requires that administrative network sessions be disconnected after 10 minutes of idle time."
+              },
+              {
+                "id": "SV-91157r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76463",
+        "title": "SRG-APP-000026-NDM-000208",
+        "controls": [
+          {
+            "id": "SV-91159r1_rule",
+            "title": "The Akamai Luna Portal must automatically audit account creation.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76463",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91159r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000008"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000008"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000018",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically audit account creation actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (4).1 (i and ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91159r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must automatically audit account creation."
+              },
+              {
+                "id": "SV-91159r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable account creation alerting:\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Alerts.\n3. Search/filter for \"Luna Control Center Event\".\n4. Click the \"Settings\" button and click on \"Properties\" tab.\n5. Select \"Manage - Manage Users\"."
+              },
+              {
+                "id": "SV-91159r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Upon gaining access to a network device, an attacker will often first attempt to create a persistent method of reestablishing access. One way to accomplish this is to create a new account. Notification of account creation helps to mitigate this risk. Auditing account creation provides the necessary reconciliation that account management procedures are being followed. Without this audit trail, personnel without the proper authorization may gain access to critical network nodes."
+              },
+              {
+                "id": "SV-91159r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76465",
+        "title": "SRG-APP-000027-NDM-000209",
+        "controls": [
+          {
+            "id": "SV-91161r1_rule",
+            "title": "The Akamai Luna Portal must automatically audit account modification.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76465",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91161r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000009"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000009"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001403",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically audit account modification actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (4).1 (i and ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91161r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must automatically audit account modification."
+              },
+              {
+                "id": "SV-91161r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable account modification alerting:\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Alerts.\n3. Search/filter for \"Luna Control Center Event\".\n4. Click the \"Settings\" button and click on \"Properties\" tab.\n5. Select \"Manage - Manage Users\"."
+              },
+              {
+                "id": "SV-91161r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Since the accounts in the network device are privileged or system-level accounts, account management is vital to the security of the network device. Account management by a designated authority ensures access to the network device is being controlled in a secure manner by granting access to only authorized personnel with the appropriate and necessary privileges. Auditing account modification along with an automatic notification to appropriate individuals will provide the necessary reconciliation that account management procedures are being followed. If modifications to management accounts are not audited, reconciliation of account management procedures cannot be tracked."
+              },
+              {
+                "id": "SV-91161r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76467",
+        "title": "SRG-APP-000029-NDM-000211",
+        "controls": [
+          {
+            "id": "SV-91163r1_rule",
+            "title": "The Akamai Luna Portal must automatically audit account removal actions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76467",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91163r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000011"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000011"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001405",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically audit account removal actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (4).1 (i and ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91163r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must automatically audit account removal actions."
+              },
+              {
+                "id": "SV-91163r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable account removal alerting:\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Alerts.\n3. Search/filter for \"Luna Control Center Event\".\n4. Click the \"Settings\" button and click on \"Properties\" tab.\n5. Select \"Manage - Manage Users\"."
+              },
+              {
+                "id": "SV-91163r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Account management, as a whole, ensures access to the network device is being controlled in a secure manner by granting access to only authorized personnel. Auditing account removal actions will support account management procedures. When device management accounts are terminated, user or service accessibility may be affected. Auditing also ensures authorized active accounts remain enabled and available for use when required."
+              },
+              {
+                "id": "SV-91163r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76469",
+        "title": "SRG-APP-000291-NDM-000275",
+        "controls": [
+          {
+            "id": "SV-91165r1_rule",
+            "title": "The Akamai Luna Portal must generate alerts that can be forwarded to the SAs and ISSO when accounts are created.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76469",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91165r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000012"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000012"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001683",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system notifies organization-defined personnel or roles for account creation actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (4).1 (i and ii)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91165r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must generate alerts that can be forwarded to the SAs and ISSO when accounts are created."
+              },
+              {
+                "id": "SV-91165r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable Luna Event notifications:\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Alerts.\n3. Click the \"Create New Alert\" button.\n4. Select \"Luna Control Center Event\" and press the \"Next\" button.\n5. Check the box that reads \"Manage - Manage Users\".\n6. Proceed through the alert creation wizard, filling out the appropriate fields, and then click \"Submit\".\n\nAlternatively, custom notifications can be created by using the event manager API at https://developer.akamai.com/api/luna/events/overview.html."
+              },
+              {
+                "id": "SV-91165r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Once an attacker establishes initial access to a system, the attacker often attempts to create a persistent method of reestablishing access. One way to accomplish this is for the attacker to simply create a new account. Notification of account creation is one method for mitigating this risk. A comprehensive account management process will ensure an audit trail that documents the creation of accounts and notifies the SAs and ISSO. Such a process greatly reduces the risk that accounts will be surreptitiously created and provides logging that can be used for forensic purposes."
+              },
+              {
+                "id": "SV-91165r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76471",
+        "title": "SRG-APP-000292-NDM-000276",
+        "controls": [
+          {
+            "id": "SV-91167r1_rule",
+            "title": "The Akamai Luna Portal must generate alerts that can be forwarded to the SAs and ISSO when accounts are modified.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76471",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91167r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000013"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000013"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001684",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system notifies organization-defined personnel or roles for account modification actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (4).1 (i and ii)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91167r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must generate alerts that can be forwarded to the SAs and ISSO when accounts are modified."
+              },
+              {
+                "id": "SV-91167r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable Luna Event notifications:\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Alerts.\n3. Click the \"Create New Alert\" button.\n4. Select \"Luna Control Center Event\" and press the \"Next\" button.\n5. Check the box that reads \"Manage - Manage Users\".\n6. Proceed through the alert creation wizard, filling out the appropriate fields, and then click \"Submit\".\n\nAlternatively, custom notifications can be created by using the event manager API at https://developer.akamai.com/api/luna/events/overview.html."
+              },
+              {
+                "id": "SV-91167r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Once an attacker establishes initial access to a system, the attacker often attempts to create a persistent method of reestablishing access. One way to accomplish this is for the attacker to simply modify an existing account. Notification of account modification is one method for mitigating this risk. A comprehensive account management process will ensure an audit trail that documents the modification of device administrator accounts and notifies the SAs and ISSO. Such a process greatly reduces the risk that accounts will be surreptitiously modified and provides logging that can be used for forensic purposes.\n\nThe network device must generate the alert. Notification may be done by a management server."
+              },
+              {
+                "id": "SV-91167r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76473",
+        "title": "SRG-APP-000294-NDM-000278",
+        "controls": [
+          {
+            "id": "SV-91169r1_rule",
+            "title": "The Akamai Luna Portal must generate alerts that can be forwarded to the SAs and ISSO when accounts are removed.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76473",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91169r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000015"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000015"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001686",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system notifies organization-defined personnel or roles for account removal actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-2 (4).1 (i and ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91169r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must generate alerts that can be forwarded to the SAs and ISSO when accounts are removed."
+              },
+              {
+                "id": "SV-91169r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable Luna Event notifications:\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Alerts.\n3. Click the \"Create New Alert\" button.\n4. Select \"Luna Control Center Event\" and press the \"Next\" button.\n5. Check the box that reads \"Manage - Manage Users\".\n6. Proceed through the alert creation wizard, filling out the appropriate fields, and then click \"Submit\".\n\nAlternatively, custom notifications can be created by using the event manager API at https://developer.akamai.com/api/luna/events/overview.html."
+              },
+              {
+                "id": "SV-91169r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "When application accounts are removed, administrator accessibility is affected. Accounts are used for identifying individual device administrators or for identifying the device processes themselves. \n\nIn order to detect and respond to events that affect administrator accessibility and device processing, devices must audit account removal actions and, as required, notify the appropriate individuals so they can investigate the event. Such a capability greatly reduces the risk that device accessibility will be negatively affected for extended periods of time and also provides logging that can be used for forensic purposes."
+              },
+              {
+                "id": "SV-91169r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76475",
+        "title": "SRG-APP-000319-NDM-000283",
+        "controls": [
+          {
+            "id": "SV-91171r1_rule",
+            "title": "The Akamai Luna Portal must automatically audit account enabling actions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76475",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91171r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000016"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000016"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002130",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically audit account enabling actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-2 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91171r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must automatically audit account enabling actions."
+              },
+              {
+                "id": "SV-91171r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable Luna Event notifications.\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Alerts.\n3. Click the \"Create New Alert\" button.\n4. Select \"Luna Control Center Event\" and press the \"Next\" button.\n5. Check the box that reads \"Manage - Manage Users\".\n6. Proceed through the alert creation wizard, filling out the appropriate fields, and then click \"Submit\"."
+              },
+              {
+                "id": "SV-91171r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Once an attacker establishes initial access to a system, the attacker often attempts to create a persistent method of reestablishing access. One way to accomplish this is for the attacker to enable a new or disabled account.\n\nNotification of account enabling is one method for mitigating this risk. A comprehensive account management process will ensure an audit trail that documents the creation of application user accounts and notifies administrators and ISSOs. Such a process greatly reduces the risk that accounts will be surreptitiously created and provides logging that can be used for forensic purposes."
+              },
+              {
+                "id": "SV-91171r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76477",
+        "title": "SRG-APP-000320-NDM-000284",
+        "controls": [
+          {
+            "id": "SV-91173r1_rule",
+            "title": "The Akamai Luna Portal must notify the SAs and ISSO when accounts are created, or enabled when previously disabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76477",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91173r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000017"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000017"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002132",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system notifies organization-defined personnel or roles for account enabling actions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91173r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must notify the SAs and ISSO when accounts are created, or enabled when previously disabled."
+              },
+              {
+                "id": "SV-91173r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable Luna Event notifications:\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Alerts.\n3. Click the \"Create New Alert\" button.\n4. Select \"Luna Control Center Event\" and press the \"Next\" button.\n5. Check the boxes for applicable alerts.\n6. Proceed through the alert creation wizard, filling out the appropriate fields, and then click \"Submit\"."
+              },
+              {
+                "id": "SV-91173r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Once an attacker establishes initial access to a system, the attacker often attempts to create a persistent method of reestablishing access. One way to accomplish this is for the attacker to simply enable a new or disabled account. Notification of account enabling is one method for mitigating this risk. A comprehensive account management process will ensure an audit trail which documents the creation of application user accounts and notifies the SAs and ISSO. Such a process greatly reduces the risk that accounts will be surreptitiously enabled and provides logging that can be used for forensic purposes.\n\nIn order to detect and respond to events that affect network administrator accessibility and device processing, network devices must audit account enabling actions and, as required, notify the appropriate individuals so they can investigate the event."
+              },
+              {
+                "id": "SV-91173r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76479",
+        "title": "SRG-APP-000343-NDM-000289",
+        "controls": [
+          {
+            "id": "SV-91175r1_rule",
+            "title": "The Akamai Luna Portal must audit the execution of privileged functions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76479",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91175r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000018"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000018"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002234",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Log the execution of privileged functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-6 (9)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-6 (9)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91175r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must audit the execution of privileged functions."
+              },
+              {
+                "id": "SV-91175r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable Luna Event notifications:\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Alerts.\n3. Click the \"Create New Alert\" button.\n4. Select \"Luna Control Center Event\" and press the \"Next\" button.\n5. Check the boxes for applicable alerts.\n6. Proceed through the alert creation wizard, filling out the appropriate fields, and then click \"Submit\"."
+              },
+              {
+                "id": "SV-91175r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Misuse of privileged functions, either intentionally or unintentionally by authorized users or by unauthorized external entities that have compromised information system accounts, is a serious and ongoing concern and can have significant adverse impacts on organizations. Auditing the use of privileged functions is one way to detect such misuse and identify the risk from insider threats and the advanced persistent threat."
+              },
+              {
+                "id": "SV-91175r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76481",
+        "title": "SRG-APP-000089-NDM-000221",
+        "controls": [
+          {
+            "id": "SV-91177r1_rule",
+            "title": "The Akamai Luna Portal must provide audit record generation capability for DoD-defined auditable events within the network device.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76481",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91177r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000020"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000020"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000169",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide audit record generation capability for the event types the system is capable of auditing as defined in AU-2 a on organization-defined information system components."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91177r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must provide audit record generation capability for DoD-defined auditable events within the network device."
+              },
+              {
+                "id": "SV-91177r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable Luna Event notifications.\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Alerts.\n3. Click the \"Create New Alert\" button.\n4. Select \"Luna Control Center Event\" and press the \"Next\" button.\n5. Check each of the applicable boxes for the DoD-defined auditable events.\n6. Proceed through the alert creation wizard, filling out the appropriate fields, and then click \"Submit\"."
+              },
+              {
+                "id": "SV-91177r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.\n\nAudit records can be generated from various components within the network device (e.g., process, module). Certain specific device functionalities may be audited as well. The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records.\n\nDoD has defined the list of events for which the device will provide an audit record generation capability as the following:\n\n(i) Successful and unsuccessful attempts to access, modify, or delete privileges, security objects, security levels, or categories of information (e.g., classification levels);\n(ii) Access actions, such as successful and unsuccessful login attempts, privileged activities or other system-level access, starting and ending time for user access to the system, concurrent logins from different workstations, successful and unsuccessful accesses to objects, all program initiations, and all direct access to the information system; and\n(iii) All account creation, modification, disabling, and termination actions."
+              },
+              {
+                "id": "SV-91177r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76483",
+        "title": "SRG-APP-000091-NDM-000223",
+        "controls": [
+          {
+            "id": "SV-91179r1_rule",
+            "title": "The Akamai Luna Portal must generate audit records when successful/unsuccessful attempts to access privileges occur.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76483",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91179r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000022"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000022"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000172",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate audit records for the event types defined in AU-2 c that include the audit record content defined in AU-3."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91179r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must generate audit records when successful/unsuccessful attempts to access privileges occur."
+              },
+              {
+                "id": "SV-91179r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable Luna Event notifications:\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Alerts.\n3. Click the \"Create New Alert\" button.\n4. Select \"Luna Control Center Event\" and press the \"Next\" button.\n5. Check the applicable boxes.\n6. Proceed through the alert creation wizard, filling out the appropriate fields, and then click \"Submit\"."
+              },
+              {
+                "id": "SV-91179r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.\n\nAudit records can be generated from various components within the information system (e.g., module or policy filter)."
+              },
+              {
+                "id": "SV-91179r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76485",
+        "title": "SRG-APP-000164-NDM-000252",
+        "controls": [
+          {
+            "id": "SV-91181r1_rule",
+            "title": "The Akamai Luna Portal must enforce a minimum 15-character password length.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76485",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91181r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000028"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000028"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000205",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system enforces minimum password length."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (1) (a)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (1).1 (i)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (1) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91181r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must enforce a minimum 15-character password length."
+              },
+              {
+                "id": "SV-91181r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Open a ticket through the Akamai Customer Portal (Luna), https://control.akamai.com\n \nSelect the \u201cSupport\u201d link, under the \u201cOPEN A CASE\u201d section, select \"Business Support Issue or Question\".\nThe \"Area\" field should be \"General Account Management\".\nService should be \"Product Support\".\nOnce selected a form will load where the subject should be \"Password Security Policy Exception Request\"\nThe description should contain the following information with all fields completed.  (Please note that if the character limit is exceeded then the following may be submitted as an attachment.)\n \n-------------\nRequester's name:\n \nRequester's title:\n \nRequester's organization/command:\n \nWe request the following exception(s) to the standard Akamai Luna password management policy to be applied to all accounts.\n \n    - Force password rotations to occur at least every 60 days.\n    - Disable any inactive accounts if they have not been used for 90 consecutive days.\n    - Limit the number of consecutive invalid login attempts to 3.\n    - Enforce a minimum length of 15 characters.\n    - Require that at least one upper-case character be used.\n    - Require that at least one lower-case character be used.\n    - Require that at least one numeric character be used.\n    - Require that at least one special character be used.\n    - Prevent password reuse for at least 5 generations.\n \nWe understand this is a divergence from the standard, recommended Luna security policy.\n \nPlease submit this password policy exception request to the Akamai InfoSec team for review.  It has been approved by the security officer or administrator for the organization.  The following is the approver's information:\n \nApprover's Name: \n \nApprover's Title:\n(must security personnel for the organization)\n \nApprover's Contact Information (necessary to validate this request):\n \n      Phone: \n \n      E-mail:\n-------------\n \nComplete the contact information fields if they haven't been prepopulated, and then click \"Create Case\""
+              },
+              {
+                "id": "SV-91181r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. Password length is one factor of several that helps to determine strength and how long it takes to crack a password.\n\nThe shorter the password, the lower the number of possible combinations that need to be tested before the password is compromised. Use of more characters in a password helps to exponentially increase the time and/or resources required to compromise the password."
+              },
+              {
+                "id": "SV-91181r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76487",
+        "title": "SRG-APP-000166-NDM-000254",
+        "controls": [
+          {
+            "id": "SV-91183r1_rule",
+            "title": "If multifactor authentication is not supported and passwords must be used, the Akamai Luna Portal must enforce password complexity by requiring that at least one upper-case character be used.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76487",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91183r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000029"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000029"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000192",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system enforces password complexity by the minimum number of upper case characters used."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (1) (a)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (1).1 (v)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (1) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91183r1_rule_statement",
+                "name": "statement",
+                "prose": "If multifactor authentication is not supported and passwords must be used, the Akamai Luna Portal must enforce password complexity by requiring that at least one upper-case character be used."
+              },
+              {
+                "id": "SV-91183r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Open a ticket through the Akamai Customer Portal (Luna), https://control.akamai.com\n \nSelect the \u201cSupport\u201d link, under the \u201cOPEN A CASE\u201d section, select \"Business Support Issue or Question\".\nThe \"Area\" field should be \"General Account Management\".\nService should be \"Product Support\".\nOnce selected a form will load where the subject should be \"Password Security Policy Exception Request\"\nThe description should contain the following information with all fields completed.  (Please note that if the character limit is exceeded then the following may be submitted as an attachment.)\n \n-------------\nRequester's name:\n \nRequester's title:\n \nRequester's organization/command:\n \nWe request the following exception(s) to the standard Akamai Luna password management policy to be applied to all accounts.\n \n    - Force password rotations to occur at least every 60 days.\n    - Disable any inactive accounts if they have not been used for 90 consecutive days.\n    - Limit the number of consecutive invalid login attempts to 3.\n    - Enforce a minimum length of 15 characters.\n    - Require that at least one upper-case character be used.\n    - Require that at least one lower-case character be used.\n    - Require that at least one numeric character be used.\n    - Require that at least one special character be used.\n    - Prevent password reuse for at least 5 generations.\n  \nWe understand this is a divergence from the standard, recommended Luna security policy.\n \nPlease submit this password policy exception request to the Akamai InfoSec team for review.  It has been approved by the security officer or administrator for the organization.  The following is the approver's information:\n \nApprover's Name: \n \nApprover's Title:\n(must security personnel for the organization)\n \nApprover's Contact Information (necessary to validate this request):\n \n      Phone: \n \n      E-mail:\n-------------\n \nComplete the contact information fields if they haven't been prepopulated, and then click \"Create Case\""
+              },
+              {
+                "id": "SV-91183r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.\n\nPassword complexity is one factor of several that determine how long it takes to crack a password. The more complex the password is, the greater the number of possible combinations that need to be tested before the password is compromised."
+              },
+              {
+                "id": "SV-91183r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76489",
+        "title": "SRG-APP-000167-NDM-000255",
+        "controls": [
+          {
+            "id": "SV-91185r1_rule",
+            "title": "If multifactor authentication is not supported and passwords must be used, the Akamai Luna Portal must enforce password complexity by requiring that at least one lower-case character be used.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76489",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91185r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000030"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000030"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000193",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system enforces password complexity by the minimum number of lower case characters used."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (1) (a)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (1).1 (v)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (1) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91185r1_rule_statement",
+                "name": "statement",
+                "prose": "If multifactor authentication is not supported and passwords must be used, the Akamai Luna Portal must enforce password complexity by requiring that at least one lower-case character be used."
+              },
+              {
+                "id": "SV-91185r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Open a ticket through the Akamai Customer Portal (Luna), https://control.akamai.com\n \nSelect the \u201cSupport\u201d link, under the \u201cOPEN A CASE\u201d section, select \"Business Support Issue or Question\".\nThe \"Area\" field should be \"General Account Management\".\nService should be \"Product Support\".\nOnce selected a form will load where the subject should be \"Password Security Policy Exception Request\"\nThe description should contain the following information with all fields completed.  (Please note that if the character limit is exceeded then the following may be submitted as an attachment.)\n \n-------------\nRequester's name:\n \nRequester's title:\n \nRequester's organization/command:\n \nWe request the following exception(s) to the standard Akamai Luna password management policy to be applied to all accounts.\n \n    - Force password rotations to occur at least every 60 days.\n    - Disable any inactive accounts if they have not been used for 90 consecutive days.\n    - Limit the number of consecutive invalid login attempts to 3.\n    - Enforce a minimum length of 15 characters.\n    - Require that at least one upper-case character be used.\n    - Require that at least one lower-case character be used.\n    - Require that at least one numeric character be used.\n    - Require that at least one special character be used.\n    - Prevent password reuse for at least 5 generations.\n \n \nWe understand this is a divergence from the standard, recommended Luna security policy.\n \nPlease submit this password policy exception request to the Akamai InfoSec team for review.  It has been approved by the security officer or administrator for the organization.  The following is the approver's information:\n \nApprover's Name: \n \nApprover's Title:\n(must security personnel for the organization)\n \nApprover's Contact Information (necessary to validate this request):\n \n      Phone: \n \n      E-mail:\n-------------\n \nComplete the contact information fields if they haven't been prepopulated, and then click \"Create Case\""
+              },
+              {
+                "id": "SV-91185r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.\n\nPassword complexity is one factor of several that determine how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised."
+              },
+              {
+                "id": "SV-91185r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76491",
+        "title": "SRG-APP-000168-NDM-000256",
+        "controls": [
+          {
+            "id": "SV-91187r1_rule",
+            "title": "If multifactor authentication is not supported and passwords must be used, the Akamai Luna Portal must enforce password complexity by requiring that at least one numeric character be used.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76491",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91187r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000031"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000031"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000194",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system enforces password complexity by the minimum number of numeric characters used."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (1) (a)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (1).1 (v)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (1) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91187r1_rule_statement",
+                "name": "statement",
+                "prose": "If multifactor authentication is not supported and passwords must be used, the Akamai Luna Portal must enforce password complexity by requiring that at least one numeric character be used."
+              },
+              {
+                "id": "SV-91187r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Open a ticket through the Akamai Customer Portal (Luna), https://control.akamai.com\n \nSelect the \u201cSupport\u201d link, under the \u201cOPEN A CASE\u201d section, select \"Business Support Issue or Question\".\nThe \"Area\" field should be \"General Account Management\".\nService should be \"Product Support\".\nOnce selected a form will load where the subject should be \"Password Security Policy Exception Request\"\nThe description should contain the following information with all fields completed.  (Please note that if the character limit is exceeded then the following may be submitted as an attachment.)\n \n-------------\nRequester's name:\n \nRequester's title:\n \nRequester's organization/command:\n \nWe request the following exception(s) to the standard Akamai Luna password management policy to be applied to all accounts.\n \n    - Force password rotations to occur at least every 60 days.\n    - Disable any inactive accounts if they have not been used for 90 consecutive days.\n    - Limit the number of consecutive invalid login attempts to 3.\n    - Enforce a minimum length of 15 characters.\n    - Require that at least one upper-case character be used.\n    - Require that at least one lower-case character be used.\n    - Require that at least one numeric character be used.\n    - Require that at least one special character be used.\n    - Prevent password reuse for at least 5 generations.\n \n \nWe understand this is a divergence from the standard, recommended Luna security policy.\n \nPlease submit this password policy exception request to the Akamai InfoSec team for review.  It has been approved by the security officer or administrator for the organization.  The following is the approver's information:\n \nApprover's Name: \n \nApprover's Title:\n(must security personnel for the organization)\n \nApprover's Contact Information (necessary to validate this request):\n \n      Phone: \n \n      E-mail:\n-------------\n \nComplete the contact information fields if they haven't been prepopulated, and then click \"Create Case\""
+              },
+              {
+                "id": "SV-91187r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. \n\nPassword complexity is one factor of several that determine how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised."
+              },
+              {
+                "id": "SV-91187r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76493",
+        "title": "SRG-APP-000169-NDM-000257",
+        "controls": [
+          {
+            "id": "SV-91189r1_rule",
+            "title": "If multifactor authentication is not supported and passwords must be used, the Akamai Luna Portal must enforce password complexity by requiring that at least one special character be used.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76493",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91189r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000032"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000032"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001619",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system enforces password complexity by the minimum number of special characters used."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (1) (a)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (1).1 (v)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (1) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91189r1_rule_statement",
+                "name": "statement",
+                "prose": "If multifactor authentication is not supported and passwords must be used, the Akamai Luna Portal must enforce password complexity by requiring that at least one special character be used."
+              },
+              {
+                "id": "SV-91189r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Open a ticket through the Akamai Customer Portal (Luna), https://control.akamai.com\n \nSelect the \u201cSupport\u201d link, under the \u201cOPEN A CASE\u201d section, select \"Business Support Issue or Question\".\nThe \"Area\" field should be \"General Account Management\".\nService should be \"Product Support\".\nOnce selected a form will load where the subject should be \"Password Security Policy Exception Request\"\nThe description should contain the following information with all fields completed.  (Please note that if the character limit is exceeded then the following may be submitted as an attachment.)\n \n-------------\nRequester's name:\n \nRequester's title:\n \nRequester's organization/command:\n \nWe request the following exception(s) to the standard Akamai Luna password management policy to be applied to all accounts.\n \n    - Force password rotations to occur at least every 60 days.\n    - Disable any inactive accounts if they have not been used for 90 consecutive days.\n    - Limit the number of consecutive invalid login attempts to 3.\n    - Enforce a minimum length of 15 characters.\n    - Require that at least one upper-case character be used.\n    - Require that at least one lower-case character be used.\n    - Require that at least one numeric character be used.\n    - Require that at least one special character be used.\n    - Prevent password reuse for at least 5 generations.\n \n \nWe understand this is a divergence from the standard, recommended Luna security policy.\n \nPlease submit this password policy exception request to the Akamai InfoSec team for review.  It has been approved by the security officer or administrator for the organization.  The following is the approver's information:\n \nApprover's Name: \n \nApprover's Title:\n(must security personnel for the organization)\n \nApprover's Contact Information (necessary to validate this request):\n \n      Phone: \n \n      E-mail:\n-------------\n \nComplete the contact information fields if they haven't been prepopulated, and then click \"Create Case\""
+              },
+              {
+                "id": "SV-91189r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.\n\nPassword complexity is one factor of several that determine how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised."
+              },
+              {
+                "id": "SV-91189r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76495",
+        "title": "SRG-APP-000174-NDM-000261",
+        "controls": [
+          {
+            "id": "SV-91191r1_rule",
+            "title": "The Akamai Luna Portal must enforce a 60-day maximum password lifetime restriction.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76495",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91191r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000035"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000035"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000199",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system enforces maximum password lifetime restrictions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (1) (d)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (1).1 (v)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (1) (d)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91191r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must enforce a 60-day maximum password lifetime restriction."
+              },
+              {
+                "id": "SV-91191r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Open a ticket through the Akamai Customer Portal (Luna), https://control.akamai.com\n \nSelect the \u201cSupport\u201d link, under the \u201cOPEN A CASE\u201d section, select \"Business Support Issue or Question\".\nThe \"Area\" field should be \"General Account Management\".\nService should be \"Product Support\".\nOnce selected a form will load where the subject should be \"Password Security Policy Exception Request\"\nThe description should contain the following information with all fields completed.  (Please note that if the character limit is exceeded then the following may be submitted as an attachment.)\n \n-------------\nRequester's name:\n \nRequester's title:\n \nRequester's organization/command:\n \nWe request the following exception(s) to the standard Akamai Luna password management policy to be applied to all accounts.\n \n    - Force password rotations to occur at least every 60 days.\n    - Disable any inactive accounts if they have not been used for 90 consecutive days.\n    - Limit the number of consecutive invalid login attempts to 3.\n    - Enforce a minimum length of 15 characters.\n    - Require that at least one upper-case character be used.\n    - Require that at least one lower-case character be used.\n    - Require that at least one numeric character be used.\n    - Require that at least one special character be used.\n    - Prevent password reuse for at least 5 generations.\n \n \nWe understand this is a divergence from the standard, recommended Luna security policy.\n \nPlease submit this password policy exception request to the Akamai InfoSec team for review.  It has been approved by the security officer or administrator for the organization.  The following is the approver's information:\n \nApprover's Name: \n \nApprover's Title:\n(must security personnel for the organization)\n \nApprover's Contact Information (necessary to validate this request):\n \n      Phone: \n \n      E-mail:\n-------------\n \nComplete the contact information fields if they haven't been prepopulated, and then click \"Create Case\""
+              },
+              {
+                "id": "SV-91191r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Any password, no matter how complex, can eventually be cracked. Therefore, passwords need to be changed at specific intervals.\n\nOne method of minimizing this risk is to use complex passwords and periodically change them. If the network device does not limit the lifetime of passwords and force users to change their passwords, there is the risk that the passwords could be compromised.\n\nThis requirement does not include emergency administration accounts, which are meant for access to the network device in case of failure. These accounts are not required to have maximum password lifetime restrictions."
+              },
+              {
+                "id": "SV-91191r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76497",
+        "title": "SRG-APP-000165-NDM-000253",
+        "controls": [
+          {
+            "id": "SV-91193r1_rule",
+            "title": "The Akamai Luna Portal must prohibit password reuse for a minimum of five generations.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76497",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91193r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000036"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000036"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000200",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system prohibits password reuse for the organization-defined number of generations."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (1) (e)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (1).1 (v)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (1) (e)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91193r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must prohibit password reuse for a minimum of five generations."
+              },
+              {
+                "id": "SV-91193r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Open a ticket through the Akamai Customer Portal (Luna), https://control.akamai.com\n \nSelect the \u201cSupport\u201d link, under the \u201cOPEN A CASE\u201d section, select \"Business Support Issue or Question\".\nThe \"Area\" field should be \"General Account Management\".\nService should be \"Product Support\".\nOnce selected a form will load where the subject should be \"Password Security Policy Exception Request\"\nThe description should contain the following information with all fields completed.  (Please note that if the character limit is exceeded then the following may be submitted as an attachment.)\n \n-------------\nRequester's name:\n \nRequester's title:\n \nRequester's organization/command:\n \nWe request the following exception(s) to the standard Akamai Luna password management policy to be applied to all accounts.\n \n    - Force password rotations to occur at least every 60 days.\n    - Disable any inactive accounts if they have not been used for 90 consecutive days.\n    - Limit the number of consecutive invalid login attempts to 3.\n    - Enforce a minimum length of 15 characters.\n    - Require that at least one upper-case character be used.\n    - Require that at least one lower-case character be used.\n    - Require that at least one numeric character be used.\n    - Require that at least one special character be used.\n    - Prevent password reuse for at least 5 generations.\n \n \nWe understand this is a divergence from the standard, recommended Luna security policy.\n \nPlease submit this password policy exception request to the Akamai InfoSec team for review.  It has been approved by the security officer or administrator for the organization.  The following is the approver's information:\n \nApprover's Name: \n \nApprover's Title:\n(must security personnel for the organization)\n \nApprover's Contact Information (necessary to validate this request):\n \n      Phone: \n \n      E-mail:\n-------------\n \nComplete the contact information fields if they haven't been prepopulated, and then click \"Create Case\""
+              },
+              {
+                "id": "SV-91193r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. \n\nTo meet password policy requirements, passwords need to be changed at specific policy-based intervals. \n\nIf the network device allows the user to consecutively reuse their password when that password has exceeded its defined lifetime, the end result is a password that is not changed as per policy requirements."
+              },
+              {
+                "id": "SV-91193r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76499",
+        "title": "SRG-APP-000190-NDM-000267",
+        "controls": [
+          {
+            "id": "SV-91195r1_rule",
+            "title": "The Akamai Luna Portal must terminate all network connections associated with a device management session at the end of the session, or the session must be terminated after 15 minutes of inactivity except to fulfill documented and validated mission requirements.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76499",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91195r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000038"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000038"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001133",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Terminate the network connection associated with a communications session at the end of the session or after an organization-defined time period of inactivity."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-10.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91195r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must terminate all network connections associated with a device management session at the end of the session, or the session must be terminated after 15 minutes of inactivity except to fulfill documented and validated mission requirements."
+              },
+              {
+                "id": "SV-91195r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the session timeout duration to 15 minutes:\n\n1. Log in to the Luna Portal as an administrator.\n2. Select Configure >> Manage Users & Groups.\n3. Select each user and adjust the \"Timeout\" setting to \"After 15 Minutes\"."
+              },
+              {
+                "id": "SV-91195r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.\n\nTerminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level, or de-allocating networking assignments at the application level if multiple application sessions are using a single, operating system-level network connection. This does not mean that the device terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session."
+              },
+              {
+                "id": "SV-91195r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76501",
+        "title": "SRG-APP-000516-NDM-000337",
+        "controls": [
+          {
+            "id": "SV-91197r1_rule",
+            "title": "The Akamai Luna Portal must employ Security Assertion Markup Language (SAML) to automate central management of administrators.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76501",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91197r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000117"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000117"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000371",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Apply configuration settings for organization-defined system components using organization-defined automated mechanisms."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91197r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must employ Security Assertion Markup Language (SAML) to automate central management of administrators."
+              },
+              {
+                "id": "SV-91197r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure logins to require SAML integration.\n\n1. Log in to the Akamai Luna Portal (Caution-https://control.akamai.com).\n2. Click \"Configure\" >> \"Manage SSO with SAML\"\n3. Click the \"Enable\" button next to the \"SAML-only login:\" label.\n4. Click \"Yes\" when asked if you want to enable SAML-only login."
+              },
+              {
+                "id": "SV-91197r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The use of authentication servers or other centralized management servers for providing centralized authentication services is required for network device management. Maintaining local administrator accounts for daily usage on each network device without centralized management is not scalable or feasible. Without centralized management, it is likely that credentials for some network devices will be forgotten, leading to delays in administration, which itself leads to delays in remediating production problems and in addressing compromises in a timely fashion."
+              },
+              {
+                "id": "SV-91197r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-76503",
+        "title": "SRG-APP-000516-NDM-000338",
+        "controls": [
+          {
+            "id": "SV-91199r1_rule",
+            "title": "The Akamai Luna Portal must employ Single Sign On (SSO) with Security Assertion Markup Language (SAML) integration to verify authentication settings.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-76503",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-91199r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "AKSD-DM-000118"
+              },
+              {
+                "name": "label",
+                "value": "AKSD-DM-000118"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000372",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Verify configuration settings for organization-defined system components using organization-defined automated mechanisms."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-91199r1_rule_statement",
+                "name": "statement",
+                "prose": "The Akamai Luna Portal must employ Single Sign On (SSO) with Security Assertion Markup Language (SAML) integration to verify authentication settings."
+              },
+              {
+                "id": "SV-91199r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Luna portal to use single sign-on with SAML.\n\n1. Log in to the Akamai Luna Portal (Caution-https://control.akamai.com).\n2. Click \"Configure\" >> \"Manage SSO with SAML\"\n3. Configure the identity Provider's SSO settings as follows:\n  a. The strings in some fields\u2014such as the local user attribute name (\u201cuserid\u201d) and the last part of the service provider endpoint address (\u201c.luna-sp.com\u201d)\u2014are pre-specified by Luna  Control Center. Using the information about your identity provider (IDP). Fill in the first three fields:\n   - Service Provider End-point\n   - Entity ID\n   - Single Sign-On URL\n  b. The next field, \"Single Logout URL\", is optional. If your SAML metadata includes this information and you wish to configure for a Single Logout, you may enter it here.\n  c. Enter an email address that should receive notifications from Luna Control Center.\n  d. Enter thex509c Certificate key.\n  e. The next field, Alternate x509c Certificate Key, is optional. If you have an alternate x509c Certificate key, you may enter it here. Having a second key can be convenient if your current key is nearing expiration and your IDP supports key rotation.\n  f. When the required information has been entered, click \"Save\" or click \"Save & Activate\".\n   - Click Save if you want to keep a draft of your configuration without activating it yet. In the Manage Single Sign-On with SAML application\u2019s main panel, \u201cInactive\u201d then appears in the Status column of the new configuration. This means it has been saved but is not yet activated.\n   - You may repeat all steps to this point, to create as many additional inactive SSO configurations as desired. They\u2019ll all be listed and accessible from the main panel. (A filter is provided for convenience when dealing with long lists.)\n   - When you want to activate one of your saved but inactive configurations, simply select \"Activate\" from its gear icon. This action results in a progression of status messages\u2014which may take up to 48 hours\u2014starting with \"Pending activation\" then \"Pending activation (DNS)\" and finally \"Active.\"\n   - Click \"Save & Activate\" if you want to immediately request activation of the new configuration. In the \"Manage Single Sign-On with SAML\" application\u2019s main panel, \"Pending activation\" then appears in the \"Status\" column of the new configuration, indicating that it has been saved and is awaiting activation.\n   - This action results in a progression of status messages, starting with \"Pending activation (DNS)\" and ending with \"Active.\"\n   - You may repeat all steps to this point, to create as many additional active configurations as desired."
+              },
+              {
+                "id": "SV-91199r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The use of authentication servers or other centralized management servers for providing centralized authentication services is required for network device management. Maintaining local administrator accounts for daily usage on each network device without centralized management is not scalable or feasible. Without centralized management, it is likely that credentials for some network devices will be forgotten, leading to delays in administration, which itself leads to delays in remediating production problems and in addressing compromises in a timely fashion."
+              },
+              {
+                "id": "SV-91199r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

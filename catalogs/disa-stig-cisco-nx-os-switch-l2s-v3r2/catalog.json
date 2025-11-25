@@ -1,0 +1,2248 @@
+{
+  "catalog": {
+    "uuid": "01735820-61ff-50a1-892e-aefe6b4f096e",
+    "metadata": {
+      "title": "Cisco NX OS Switch L2S Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2024-10-24T00:00:00Z",
+      "version": "3.2.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2024-10-24"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "3"
+        },
+        {
+          "name": "version.minor",
+          "value": "2"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-220675",
+        "title": "SRG-NET-000148-L2S-000015",
+        "controls": [
+          {
+            "id": "SV-220675r539671_rule",
+            "title": "The Cisco switch must uniquely identify all network-connected endpoint devices before establishing any connection.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220675",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220675r539671_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000020"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000020"
+              },
+              {
+                "name": "sv-revision",
+                "value": "539671"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000778",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Uniquely identify organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-3.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220675r539671_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must uniquely identify all network-connected endpoint devices before establishing any connection."
+              },
+              {
+                "id": "SV-220675r539671_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure 802.1 x authentications on all host-facing access switch ports. To authenticate those devices that do not support 802.1x, MAC Authentication Bypass must be configured.\n\nStep 1: Configure the radius servers as shown in the example below:\n\nSW1(config)# radius-server host 10.1.1.1 key xxxx\nSW1(config)# radius-server host 10.2.1.1 key xxxx\n\nStep 2: Enable 802.1x authentication on the switch.\n\nSW1(config)# aaa group server radius RADIUS_GROUP\nSW1(config-radius)# server 10.1.1.1\nSW1(config-radius)# server 10.2.1.1\nSW1(config-radius)# exit\nSW1(config)# aaa authentication dot1x default group RADIUS_GROUP\nSW1(config)# exit\n\nStep 3: Enable 802.1x on all host-facing interfaces as shown in the example below:\n\nSW1(config)# int e1/1 - 80\nSW1(config-if-range)# dot1x port-control auto\nSW1(config-if-range)# dot1x host-mode single-host \nSW1(config-if-range)# end\n\nNote: Host-mode must be set to single-host, multi-domain (for VoIP phone + PC), or multi-auth (multiple PCs connected to a hub). Host-mode multi-host is not compliant with this requirement."
+              },
+              {
+                "id": "SV-220675r539671_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Controlling LAN access via 802.1x authentication can assist in preventing a malicious user from connecting an unauthorized PC to a switch port to inject or receive data from the network without detection."
+              },
+              {
+                "id": "SV-220675r539671_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220676",
+        "title": "SRG-NET-000168-L2S-000019",
+        "controls": [
+          {
+            "id": "SV-220676r539671_rule",
+            "title": "The Cisco switch must authenticate all VLAN Trunk Protocol (VTP) messages with a hash function using the most secured cryptographic algorithm available.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220676",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220676r539671_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000030"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000030"
+              },
+              {
+                "name": "sv-revision",
+                "value": "539671"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000803",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement mechanisms for authentication to a cryptographic module that meet the requirements of applicable laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-7.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-7"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220676r539671_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must authenticate all VLAN Trunk Protocol (VTP) messages with a hash function using the most secured cryptographic algorithm available."
+              },
+              {
+                "id": "SV-220676r539671_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to authenticate all VLAN Trunk Protocol (VTP) messages with a hash function using a configured password as shown in the example below:\n\nSW1(config)# vtp password xxxxxxxxx"
+              },
+              {
+                "id": "SV-220676r539671_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "VLAN Trunk Protocol (VTP) provides central management of VLAN domains, thus reducing administration in a switched network. When configuring a new VLAN on a VTP server, the VLAN is distributed through all switches in the domain. This reduces the need to configure the same VLAN everywhere. VTP pruning preserves bandwidth by preventing VLAN traffic (unknown MAC, broadcast, multicast) from being sent down trunk links when not needed, that is, there are no access switch ports in neighboring switches belonging to such VLANs. An attack can force a digest change for the VTP domain enabling a rogue device to become the VTP server, which could allow unauthorized access to previously blocked VLANs or allow the addition of unauthorized switches into the domain. Authenticating VTP messages with a cryptographic hash function can reduce the risk of the VTP domain's being compromised."
+              },
+              {
+                "id": "SV-220676r539671_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220677",
+        "title": "SRG-NET-000331-L2S-000001",
+        "controls": [
+          {
+            "id": "SV-220677r1015266_rule",
+            "title": "The Cisco switch must be configured for authorized users to select a user session to capture.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220677",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220677r1015266_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000060"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000060"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1015266"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001919",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide the capability for organization-defined users or roles to select a user session to record; view; hear; or log the content of a user session under organization-defined circumstances."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-14"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-14 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220677r1015266_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured for authorized users to select a user session to capture."
+              },
+              {
+                "id": "SV-220677r1015266_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable the feature or configure the switch so that it is capable of capturing ingress and egress packets from any designated switch port for the purpose of monitoring a specific user session. The example configuration below will capture packets from interface Ethernet1/66 and replicate the packets to Ethernet1/68.\n\nSW1(config)# monitor session 1\nSW1(config-monitor)# source interface ethernet 1/66\nSW1(config-monitor)# destination interface ethernet 1/68\nSW1(config-monitor)# end"
+              },
+              {
+                "id": "SV-220677r1015266_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without the capability to select a user session to capture/record or view/hear, investigations into suspicious or harmful events would be hampered by the volume of information captured. The volume of information captured may also adversely impact the operation for the network. Session audits may include port mirroring, tracking websites visited, and recording information and/or file transfers."
+              },
+              {
+                "id": "SV-220677r1015266_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220678",
+        "title": "SRG-NET-000332-L2S-000002",
+        "controls": [
+          {
+            "id": "SV-220678r856487_rule",
+            "title": "The Cisco switch must be configured for authorized users to remotely view, in real time, all content related to an established user session from a component separate from The Cisco switch.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220678",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220678r856487_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000070"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000070"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856487"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001920",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide the capability for authorized users to remotely view and hear content related to an established user session in real time."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-14 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-14 (3)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220678r856487_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must be configured for authorized users to remotely view, in real time, all content related to an established user session from a component separate from The Cisco switch."
+              },
+              {
+                "id": "SV-220678r856487_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable the feature or configure the switch so that it is capable of capturing ingress and egress packets from any designated switch port for the purpose of monitoring a specific user session. The example configuration below will capture packets from interface Ethernet1/66 and replicate the packets to Ethernet1/68.\n\nSW1(config)# monitor session 1\nSW1(config-monitor)# source interface ethernet 1/66\nSW1(config-monitor)# destination interface ethernet 1/68\nSW1(config-monitor)# end"
+              },
+              {
+                "id": "SV-220678r856487_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without the capability to remotely view/hear all content related to a user session, investigations into suspicious user activity would be hampered. Real-time monitoring allows authorized personnel to take action before additional damage is done. The ability to observe user sessions as they are happening allows for interceding in ongoing events that after-the-fact review of captured content would not allow."
+              },
+              {
+                "id": "SV-220678r856487_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220679",
+        "title": "SRG-NET-000343-L2S-000016",
+        "controls": [
+          {
+            "id": "SV-220679r856488_rule",
+            "title": "The Cisco switch must authenticate all endpoint devices before establishing any connection.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220679",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220679r856488_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000080"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000080"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856488"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001958",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Authenticate organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220679r856488_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must authenticate all endpoint devices before establishing any connection."
+              },
+              {
+                "id": "SV-220679r856488_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure 802.1 x authentications on all host-facing access switch ports. To authenticate those devices that do not support 802.1x, MAC Authentication Bypass must be configured.\n\nStep 1: Configure the radius servers as shown in the example below:\n\nSW1(config)# radius-server host 10.1.1.1 key xxxx\nSW1(config)# radius-server host 10.2.1.1 key xxxx\n\nStep 2: Enable 802.1x authentication on the switch.\n\nSW1(config)# aaa group server radius RADIUS_GROUP\nSW1(config-radius)# server 10.1.1.1\nSW1(config-radius)# server 10.2.1.1\nSW1(config-radius)# exit\nSW1(config)# aaa authentication dot1x default group RADIUS_GROUP\nSW1(config)# exit\n\nStep 3: Enable 802.1x on all host-facing interfaces as shown in the example below:\n\nSW1(config)# int e1/1 - 80\nSW1(config-if-range)# dot1x port-control auto\nSW1(config-if-range)# dot1x host-mode single-host \nSW1(config-if-range)# end\n\nNote: Host-mode must be set to single-host, multi-domain (for VoIP phone + PC), or multi-auth (multiple PCs connected to a hub). Host-mode multi-host is not compliant with this requirement."
+              },
+              {
+                "id": "SV-220679r856488_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity.\n\nFor distributed architectures (e.g., service-oriented architectures), the decisions regarding the validation of authentication claims may be made by services separate from the services acting on those decisions. In such situations, it is necessary to provide authentication decisions (as opposed to the actual authenticators) to the services that need to act on those decisions.\n\nThis requirement applies to applications that connect either locally, remotely, or through a network to an endpoint device (including, but not limited to, workstations, printers, servers (outside a datacenter), VoIP Phones, and VTC CODECs). Gateways and SOA applications are examples of where this requirement would apply.\n\nDevice authentication is a solution enabling an organization to manage devices. It is an additional layer of authentication ensuring only specific pre-authorized devices can access the system."
+              },
+              {
+                "id": "SV-220679r856488_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220680",
+        "title": "SRG-NET-000362-L2S-000021",
+        "controls": [
+          {
+            "id": "SV-220680r940009_rule",
+            "title": "The Cisco switch must have Root Guard enabled on all switch ports connecting to access layer switches and hosts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220680",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220680r940009_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000090"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000090"
+              },
+              {
+                "name": "sv-revision",
+                "value": "940009"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002385",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect against or limit the effects of organization-defined types of denial-of-service events."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220680r940009_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have Root Guard enabled on all switch ports connecting to access layer switches and hosts."
+              },
+              {
+                "id": "SV-220680r940009_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to have Root Guard enabled on all ports connecting to access layer switches.\n\nSW1(config)# int e1/1 \u2013 44\nSW1(config-if-range)# spanning-tree guard root\nSW1(config-if-range)# end"
+              },
+              {
+                "id": "SV-220680r940009_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Spanning Tree Protocol (STP) does not provide any means for the network administrator to securely enforce the topology of the switched network. Any switch can be the root bridge in a network. However, a more optimal forwarding topology places the root bridge at a specific predetermined location. With the standard STP, any bridge in the network with a lower bridge ID takes the role of the root bridge. The administrator cannot enforce the position of the root bridge but can set the root bridge priority to 0 in an effort to secure the root bridge position.\n\nThe root guard feature provides a way to enforce the root bridge placement in the network. If the bridge receives superior STP Bridge Protocol Data Units (BPDUs) on a root guard-enabled port, root guard moves this port to a root-inconsistent STP state and no traffic can be forwarded across this port while it is in this state. To enforce the position of the root bridge it is imperative that root guard is enabled on all ports where the root bridge should never appear."
+              },
+              {
+                "id": "SV-220680r940009_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220681",
+        "title": "SRG-NET-000362-L2S-000022",
+        "controls": [
+          {
+            "id": "SV-220681r856490_rule",
+            "title": "The Cisco switch must have BPDU Guard enabled on all user-facing or untrusted access switch ports.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220681",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220681r856490_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000100"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856490"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002385",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect against or limit the effects of organization-defined types of denial-of-service events."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220681r856490_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have BPDU Guard enabled on all user-facing or untrusted access switch ports."
+              },
+              {
+                "id": "SV-220681r856490_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to have BPDU Guard enabled on all user-facing or untrusted access switch ports as shown in the configuration example below:\n\nSW1(config)# int e1/1 -44\nSW1(config-if-range)# spanning-tree bpduguard enable\n\nNote: BPDU guard can also be enabled globally on all edge ports via the following command: \n\nspanning-tree port type edge bpduguard default"
+              },
+              {
+                "id": "SV-220681r856490_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If a rogue switch is introduced into the topology and transmits a Bridge Protocol Data Unit (BPDU) with a lower bridge priority than the existing root bridge, it will become the new root bridge and cause a topology change, rendering the network in a suboptimal state. The STP PortFast BPDU guard enhancement allows network designers to enforce the STP domain borders and keep the active topology predictable. The devices behind the ports that have STP PortFast enabled are not able to influence the STP topology. At the reception of BPDUs, the BPDU guard operation disables the port that has PortFast configured. The BPDU guard transitions the port into errdisable state and sends a log message."
+              },
+              {
+                "id": "SV-220681r856490_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220682",
+        "title": "SRG-NET-000362-L2S-000023",
+        "controls": [
+          {
+            "id": "SV-220682r856491_rule",
+            "title": "The Cisco switch must have STP Loop Guard enabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220682",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220682r856491_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000110"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000110"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856491"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002385",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect against or limit the effects of organization-defined types of denial-of-service events."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220682r856491_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have STP Loop Guard enabled."
+              },
+              {
+                "id": "SV-220682r856491_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to have STP Loop Guard enabled via the spanning-tree loopguard default global command."
+              },
+              {
+                "id": "SV-220682r856491_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The Spanning Tree Protocol (STP) loop guard feature provides additional protection against STP loops. An STP loop is created when an STP blocking port in a redundant topology erroneously transitions to the forwarding state. In its operation, STP relies on continuous reception and transmission of BPDUs based on the port role. The designated port transmits BPDUs, and the non-designated port receives BPDUs. When one of the ports in a physically redundant topology no longer receives BPDUs, the STP conceives that the topology is loop free. Eventually, the blocking port from the alternate or backup port becomes a designated port and moves to a forwarding state. This situation creates a loop. The loop guard feature makes additional checks. If BPDUs are not received on a non-designated port and loop guard is enabled, that port is moved into the STP loop-inconsistent blocking state."
+              },
+              {
+                "id": "SV-220682r856491_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220683",
+        "title": "SRG-NET-000362-L2S-000024",
+        "controls": [
+          {
+            "id": "SV-220683r856492_rule",
+            "title": "The Cisco switch must have Unknown Unicast Flood Blocking (UUFB) enabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220683",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220683r856492_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000120"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000120"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856492"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002385",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect against or limit the effects of organization-defined types of denial-of-service events."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220683r856492_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have Unknown Unicast Flood Blocking (UUFB) enabled."
+              },
+              {
+                "id": "SV-220683r856492_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to have Unknown Unicast Flood Blocking (UUFB) enabled as shown in the configuration example below:\n\nSW1(config)# int e1/1-32\nSW1(config-if-range)# switchport block unicast \nSW1(config-if-range)# end"
+              },
+              {
+                "id": "SV-220683r856492_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Access layer switches use the Content Addressable Memory (CAM) table to direct traffic to specific ports based on the VLAN number and the destination MAC address of the frame. When a router has an Address Resolution Protocol (ARP) entry for a destination host and forwards it to the access layer switch and there is no entry corresponding to the frame's destination MAC address in the incoming VLAN, the frame will be sent to all forwarding ports within the respective VLAN, which causes flooding. Large amounts of flooded traffic can saturate low-bandwidth links, causing network performance issues or complete connectivity outage to the connected devices. Unknown unicast flooding has been a nagging problem in networks that have asymmetric routing and default timers. To mitigate the risk of a connectivity outage, the Unknown Unicast Flood Blocking (UUFB) feature must be implemented on all access layer switches. The UUFB feature will block unknown unicast traffic flooding and only permit egress traffic with MAC addresses that are known to exit on the port."
+              },
+              {
+                "id": "SV-220683r856492_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220684",
+        "title": "SRG-NET-000362-L2S-000025",
+        "controls": [
+          {
+            "id": "SV-220684r856493_rule",
+            "title": "The Cisco switch must have DHCP snooping for all user VLANs to validate DHCP messages from untrusted sources.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220684",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220684r856493_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000130"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000130"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856493"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002385",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect against or limit the effects of organization-defined types of denial-of-service events."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220684r856493_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have DHCP snooping for all user VLANs to validate DHCP messages from untrusted sources."
+              },
+              {
+                "id": "SV-220684r856493_rule_guidance",
+                "name": "guidance",
+                "prose": "Step 1: Enable the DHCP feature.\n\nSW1(config)# feature dhcp\n\nStep 2: Configure the switch to have DHCP snooping for all user VLANs to validate DHCP messages from untrusted sources as shown in the example below: \n\nSW1(config)# ip dhcp snooping\nSW1(config)# ip dhcp snooping vlan 4,6-10"
+              },
+              {
+                "id": "SV-220684r856493_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "In an enterprise network, devices under administrative control are trusted sources. These devices include the switches, routers, and servers in the network. Host ports and unknown DHCP servers are considered untrusted sources. An unknown DHCP server on the network on an untrusted port is called a spurious DHCP server, any device (PC, Wireless Access Point) that is loaded with DHCP server enabled. The DHCP snooping feature determines whether traffic sources are trusted or untrusted. The potential exists for a spurious DHCP server to respond to DHCPDISCOVER messages before the real server has time to respond. DHCP snooping allows switches on the network to trust the port a DHCP server is connected to and not trust the other ports.\n\nThe DHCP snooping feature validates DHCP messages received from untrusted sources and filters out invalid messages as well as rate-limits DHCP traffic from trusted and untrusted sources. DHCP snooping feature builds and maintains a binding database, which contains information about untrusted hosts with leased IP addresses, and it utilizes the database to validate subsequent requests from untrusted hosts. Other security features, such as IP Source Guard and Dynamic Address Resolution Protocol (ARP) Inspection (DAI), also use information stored in the DHCP snooping binding database. Hence, it is imperative that the DHCP snooping feature is enabled on all VLANs."
+              },
+              {
+                "id": "SV-220684r856493_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220685",
+        "title": "SRG-NET-000362-L2S-000026",
+        "controls": [
+          {
+            "id": "SV-220685r856494_rule",
+            "title": "The Cisco switch must have IP Source Guard enabled on all user-facing or untrusted access switch ports.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220685",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220685r856494_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000140"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000140"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856494"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002385",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect against or limit the effects of organization-defined types of denial-of-service events."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220685r856494_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have IP Source Guard enabled on all user-facing or untrusted access switch ports."
+              },
+              {
+                "id": "SV-220685r856494_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to have IP Source Guard enabled on all user-facing or untrusted access switch ports.\n\nSW1(config)# int e1/1-32\nSW1(config-if-range)# ip verify source dhcp-snooping-vlan"
+              },
+              {
+                "id": "SV-220685r856494_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "IP Source Guard provides source IP address filtering on a Layer 2 port to prevent a malicious host from impersonating a legitimate host by assuming the legitimate host's IP address. The feature uses dynamic DHCP snooping and static IP source binding to match IP addresses to hosts on untrusted Layer 2 access ports. Initially, all IP traffic on the protected port is blocked except for DHCP packets. After a client receives an IP address from the DHCP server, or after static IP source binding is configured by the administrator, all traffic with that IP source address is permitted from that client. Traffic from other hosts is denied. This filtering limits a host's ability to attack the network by claiming a neighbor host's IP address."
+              },
+              {
+                "id": "SV-220685r856494_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220686",
+        "title": "SRG-NET-000362-L2S-000027",
+        "controls": [
+          {
+            "id": "SV-220686r856495_rule",
+            "title": "The Cisco switch must have Dynamic Address Resolution Protocol (ARP) Inspection (DAI) enabled on all user VLANs.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220686",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220686r856495_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000150"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000150"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856495"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002385",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect against or limit the effects of organization-defined types of denial-of-service events."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220686r856495_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have Dynamic Address Resolution Protocol (ARP) Inspection (DAI) enabled on all user VLANs."
+              },
+              {
+                "id": "SV-220686r856495_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to have Dynamic Address Resolution Protocol (ARP) Inspection (DAI) enabled on all user VLANs as shown in the example below:\n\nSW1(config)# ip arp inspection vlan 2,4-8,11"
+              },
+              {
+                "id": "SV-220686r856495_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "DAI intercepts Address Resolution Protocol (ARP) requests and verifies that each of these packets has a valid IP-to-MAC address binding before updating the local ARP cache and before forwarding the packet to the appropriate destination. Invalid ARP packets are dropped and logged. DAI determines the validity of an ARP packet based on valid IP-to-MAC address bindings stored in the DHCP snooping binding database. If the ARP packet is received on a trusted interface, the switch forwards the packet without any checks. On untrusted interfaces, the switch forwards the packet only if it is valid."
+              },
+              {
+                "id": "SV-220686r856495_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220687",
+        "title": "SRG-NET-000512-L2S-000001",
+        "controls": [
+          {
+            "id": "SV-220687r539671_rule",
+            "title": "The Cisco switch must have Storm Control configured on all host-facing switchports.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220687",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220687r539671_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000160"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000160"
+              },
+              {
+                "name": "sv-revision",
+                "value": "539671"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220687r539671_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have Storm Control configured on all host-facing switchports."
+              },
+              {
+                "id": "SV-220687r539671_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure storm control for each host-facing interface as shown in the example below:\n\nSW1(config)#int range e0/2 \u2013 8\nSW1(config-if-range)# storm-control unicast level 50\nSW1(config-if-range)# storm-control broadcast level 40"
+              },
+              {
+                "id": "SV-220687r539671_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A traffic storm occurs when packets flood a LAN, creating excessive traffic and degrading network performance. Traffic storm control prevents network disruption by suppressing ingress traffic when the number of packets reaches a configured threshold levels. Traffic storm control monitors ingress traffic levels on a port and drops traffic when the number of packets reaches the configured threshold level during any one-second interval."
+              },
+              {
+                "id": "SV-220687r539671_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220688",
+        "title": "SRG-NET-000512-L2S-000002",
+        "controls": [
+          {
+            "id": "SV-220688r539671_rule",
+            "title": "The Cisco switch must have IGMP or MLD Snooping configured on all VLANs.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220688",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220688r539671_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000170"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000170"
+              },
+              {
+                "name": "sv-revision",
+                "value": "539671"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220688r539671_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have IGMP or MLD Snooping configured on all VLANs."
+              },
+              {
+                "id": "SV-220688r539671_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure IGMP or MLD snooping for IPv4 and IPv6 multicast traffic respectively globally.\n\nSW1(config)# ip igmp snooping"
+              },
+              {
+                "id": "SV-220688r539671_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "IGMP and MLD snooping provides a way to constrain multicast traffic at Layer 2. By monitoring the IGMP or MLD membership reports sent by hosts within a VLAN, the snooping application can set up Layer 2 multicast forwarding tables to deliver specific multicast traffic only to interfaces connected to hosts interested in receiving the traffic, thereby significantly reducing the volume of multicast traffic that would otherwise flood the VLAN."
+              },
+              {
+                "id": "SV-220688r539671_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220689",
+        "title": "SRG-NET-000512-L2S-000004",
+        "controls": [
+          {
+            "id": "SV-220689r917685_rule",
+            "title": "The Cisco switch must enable Unidirectional Link Detection (UDLD) to protect against one-way connections.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220689",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220689r917685_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000190"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000190"
+              },
+              {
+                "name": "sv-revision",
+                "value": "917685"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220689r917685_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must enable Unidirectional Link Detection (UDLD) to protect against one-way connections."
+              },
+              {
+                "id": "SV-220689r917685_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch to enable Unidirectional Link Detection (UDLD) to protect against one-way connections.\n\nSW1(config)# feature udld"
+              },
+              {
+                "id": "SV-220689r917685_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "In topologies where fiber optic interconnections are used, physical misconnections can occur that allow a link to appear to be up when there is a mismatched set of transmit/receive pairs. When such a physical misconfiguration occurs, protocols such as STP can cause network instability. UDLD is a layer 2 protocol that can detect these physical misconfigurations by verifying that traffic is flowing bidirectionally between neighbors. Ports with UDLD enabled periodically transmit packets to neighbor devices. If the packets are not echoed back within a specific time frame, the link is flagged as unidirectional and the interface is shut down."
+              },
+              {
+                "id": "SV-220689r917685_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220690",
+        "title": "SRG-NET-000512-L2S-000007",
+        "controls": [
+          {
+            "id": "SV-220690r991946_rule",
+            "title": "The Cisco switch must have all disabled switch ports assigned to an unused VLAN.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220690",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220690r991946_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000210"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000210"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991946"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004891",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement physically or logically separate subnetworks to isolate organization-defined critical system components and functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-7 (29)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220690r991946_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have all disabled switch ports assigned to an unused VLAN."
+              },
+              {
+                "id": "SV-220690r991946_rule_guidance",
+                "name": "guidance",
+                "prose": "Assign all switch ports not in use to an inactive VLAN.\n\nStep 1: Assign the disabled interfaces to an inactive VLAN.\n\nSW1(config)# int e1/81-128\nSW1(config-if-range)# switchport access vlan 999\nSW1(config-if-range)# end\n\nStep 2: Configure trunk links to not allow traffic from the inactive VLAN.\n\nSW1(config-if)# switchport trunk allowed vlan except 999\nSW1(config-if)# end"
+              },
+              {
+                "id": "SV-220690r991946_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "It is possible that a disabled port that is assigned to a user or management VLAN becomes enabled by accident or by an attacker and as a result gains access to that VLAN as a member."
+              },
+              {
+                "id": "SV-220690r991946_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220691",
+        "title": "SRG-NET-000512-L2S-000008",
+        "controls": [
+          {
+            "id": "SV-220691r991947_rule",
+            "title": "The Cisco switch must not have the default VLAN assigned to any host-facing switch ports.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220691",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220691r991947_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000220"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000220"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991947"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004891",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement physically or logically separate subnetworks to isolate organization-defined critical system components and functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-7 (29)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220691r991947_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must not have the default VLAN assigned to any host-facing switch ports."
+              },
+              {
+                "id": "SV-220691r991947_rule_guidance",
+                "name": "guidance",
+                "prose": "Remove the assignment of the default VLAN from all access switch ports."
+              },
+              {
+                "id": "SV-220691r991947_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "In a VLAN-based network, switches use the default VLAN (i.e., VLAN 1) for in-band management and to communicate with other networking devices using Spanning-Tree Protocol (STP), Dynamic Trunking Protocol (DTP), VLAN Trunking Protocol (VTP), and Port Aggregation Protocol (PAgP)\u2014all untagged traffic. As a consequence, the default VLAN may unwisely span the entire network if not appropriately pruned. If its scope is large enough, the risk of compromise can increase significantly."
+              },
+              {
+                "id": "SV-220691r991947_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220692",
+        "title": "SRG-NET-000512-L2S-000009",
+        "controls": [
+          {
+            "id": "SV-220692r991948_rule",
+            "title": "The Cisco switch must have the default VLAN pruned from all trunk ports that do not require it.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220692",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220692r991948_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000230"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000230"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991948"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004891",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement physically or logically separate subnetworks to isolate organization-defined critical system components and functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-7 (29)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220692r991948_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have the default VLAN pruned from all trunk ports that do not require it."
+              },
+              {
+                "id": "SV-220692r991948_rule_guidance",
+                "name": "guidance",
+                "prose": "Step 1: Prune VLAN 1 from any trunk links as necessary.\n\nSW1(config)# int e1/2\nSW1(config-if)# switchport trunk allowed vlan except 1, 999\nSW1(config-if)# end\n\nStep 2: Verify VLAN 1 is not allowed on the trunk link.\n\nSW1# show interface trunk\n\n--------------------------------------------------------------------------------\nPort Native Status Port\n Vlan Channel\n--------------------------------------------------------------------------------\nEth1/1 1 trunking --\nEth1/2 1 trunking --\n\n--------------------------------------------------------------------------------\nPort Vlans Allowed on Trunk\n--------------------------------------------------------------------------------\nEth1/1 1-998,1000-4094\nEth1/2 2-998,1000-4094"
+              },
+              {
+                "id": "SV-220692r991948_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The default VLAN (i.e., VLAN 1) is a special VLAN used for control plane traffic such as Spanning-Tree Protocol (STP), Dynamic Trunking Protocol (DTP), VLAN Trunking Protocol (VTP), and Port Aggregation Protocol (PAgP). VLAN 1 is enabled on all trunks and ports by default. With larger campus networks, care needs to be taken about the diameter of the STP domain for the default VLAN. Instability in one part of the network could affect the default VLAN, thereby influencing control-plane stability and therefore STP stability for all other VLANs."
+              },
+              {
+                "id": "SV-220692r991948_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220693",
+        "title": "SRG-NET-000512-L2S-000010",
+        "controls": [
+          {
+            "id": "SV-220693r991949_rule",
+            "title": "The Cisco switch must not use the default VLAN for management traffic.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220693",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220693r991949_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000240"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000240"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991949"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004931",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Establish organization-defined alternate communications paths for system operations organizational command and control."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-47"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220693r991949_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must not use the default VLAN for management traffic."
+              },
+              {
+                "id": "SV-220693r991949_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the switch for management access to use a VLAN other than the default VLAN.\n\nSW1(config)# interface vlan 44\nSW1(config-if)# ip add 10.1.12.1/24\nSW1(config-if)# end"
+              },
+              {
+                "id": "SV-220693r991949_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Switches use the default VLAN (i.e., VLAN 1) for in-band management and to communicate with directly connected switches using Spanning-Tree Protocol (STP), Dynamic Trunking Protocol (DTP), VLAN Trunking Protocol (VTP), and Port Aggregation Protocol (PAgP)\u2014all untagged traffic. As a consequence, the default VLAN may unwisely span the entire network if not appropriately pruned. If its scope is large enough, the risk of compromise can increase significantly."
+              },
+              {
+                "id": "SV-220693r991949_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220694",
+        "title": "SRG-NET-000512-L2S-000011",
+        "controls": [
+          {
+            "id": "SV-220694r991951_rule",
+            "title": "The Cisco switch must have all user-facing or untrusted ports configured as access switch ports.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220694",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220694r991951_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000250"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000250"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991951"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004891",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement physically or logically separate subnetworks to isolate organization-defined critical system components and functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-7 (29)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220694r991951_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have all user-facing or untrusted ports configured as access switch ports."
+              },
+              {
+                "id": "SV-220694r991951_rule_guidance",
+                "name": "guidance",
+                "prose": "Disable trunking on all user-facing or untrusted switch ports.\n\nSW1(config)# int e1/3-128\nSW1(config-if)# switchport mode access\nSW1(config-if)# end"
+              },
+              {
+                "id": "SV-220694r991951_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Double encapsulation can be initiated by an attacker who has access to a switch port belonging to the native VLAN of the trunk port. Knowing the victim's MAC address and with the victim attached to a different switch belonging to the same trunk group, thereby requiring the trunk link and frame tagging, the malicious user can begin the attack by sending frames with two sets of tags. The outer tag that will have the attacker's VLAN ID (probably the well-known and omnipresent default VLAN) is stripped off by the switch, and the inner tag that will have the victim's VLAN ID is used by the switch as the next hop and sent out the trunk port."
+              },
+              {
+                "id": "SV-220694r991951_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220695",
+        "title": "SRG-NET-000512-L2S-000012",
+        "controls": [
+          {
+            "id": "SV-220695r991952_rule",
+            "title": "The Cisco switch must have the native VLAN assigned to an ID other than the default VLAN for all 802.1q trunk links.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220695",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220695r991952_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000260"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000260"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991952"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004891",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement physically or logically separate subnetworks to isolate organization-defined critical system components and functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-7 (29)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220695r991952_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must have the native VLAN assigned to an ID other than the default VLAN for all 802.1q trunk links."
+              },
+              {
+                "id": "SV-220695r991952_rule_guidance",
+                "name": "guidance",
+                "prose": "To ensure the integrity of the trunk link and prevent unauthorized access, the ID of the native VLAN of the trunk port must be changed from the default VLAN (i.e., VLAN 1) to its own unique VLAN ID. \n\nSW1(config)#int e0/1\nSW1(config-if)#switchport trunk native vlan 44\n\nNote: The native VLAN ID must be the same on both ends of the trunk link; otherwise, traffic could accidentally leak between broadcast domains."
+              },
+              {
+                "id": "SV-220695r991952_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "VLAN hopping can be initiated by an attacker who has access to a switch port belonging to the same VLAN as the native VLAN of the trunk link connecting to another switch that the victim is connected to. If the attacker knows the victim\u2019s MAC address, it can forge a frame with two 802.1q tags and a layer 2 header with the destination address of the victim. Since the frame will ingress the switch from a port belonging to its native VLAN, the trunk port connecting to the victim\u2019s switch will simply remove the outer tag because native VLAN traffic is to be untagged. The switch will forward the frame on to the trunk link unaware of the inner tag with a VLAN ID of which the victim\u2019s switch port is a member."
+              },
+              {
+                "id": "SV-220695r991952_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-220696",
+        "title": "SRG-NET-000512-L2S-000013",
+        "controls": [
+          {
+            "id": "SV-220696r991953_rule",
+            "title": "The Cisco switch must not have any switchports assigned to the native VLAN.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-220696",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-220696r991953_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "CISC-L2-000270"
+              },
+              {
+                "name": "label",
+                "value": "CISC-L2-000270"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991953"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004891",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement physically or logically separate subnetworks to isolate organization-defined critical system components and functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-7 (29)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-220696r991953_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco switch must not have any switchports assigned to the native VLAN."
+              },
+              {
+                "id": "SV-220696r991953_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure all access switch ports to a VLAN other than the native VLAN."
+              },
+              {
+                "id": "SV-220696r991953_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Double encapsulation can be initiated by an attacker who has access to a switch port belonging to the native VLAN of the trunk port. Knowing the victim\u2019s MAC address and with the victim attached to a different switch belonging to the same trunk group, thereby requiring the trunk link and frame tagging, the malicious user can begin the attack by sending frames with two sets of tags. The outer tag that will have the attacker\u2019s VLAN ID (probably the well-known and omnipresent default VLAN) is stripped off by the switch, and the inner tag that will have the victim\u2019s VLAN ID is used by the switch as the next hop and sent out the trunk port."
+              },
+              {
+                "id": "SV-220696r991953_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

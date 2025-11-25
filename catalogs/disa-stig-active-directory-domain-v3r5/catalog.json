@@ -1,0 +1,3903 @@
+{
+  "catalog": {
+    "uuid": "2a58e25c-fed4-5d0b-a9c9-5de052e77795",
+    "metadata": {
+      "title": "Active Directory Domain Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2024-09-13T00:00:00Z",
+      "version": "3.5.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2024-09-13"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "3"
+        },
+        {
+          "name": "version.minor",
+          "value": "5"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-243466",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243466r959010_rule",
+            "title": "Membership to the Enterprise Admins group must be restricted to accounts used only to manage the Active Directory Forest.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243466",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243466r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "AD.0001"
+              },
+              {
+                "name": "label",
+                "value": "AD.0001"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243466r959010_rule_statement",
+                "name": "statement",
+                "prose": "Membership to the Enterprise Admins group must be restricted to accounts used only to manage the Active Directory Forest."
+              },
+              {
+                "id": "SV-243466r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Create the necessary documentation that identifies the members of the Enterprise Admins group.  Ensure that each member has a separate unique account that can only be used to manage the Active Directory Forest.  Remove any Enterprise Admin accounts from other administrator groups."
+              },
+              {
+                "id": "SV-243466r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The Enterprise Admins group is a highly privileged group.  Personnel who are system administrators must log on to Active Directory systems only using accounts with the level of authority necessary. Only system administrator accounts used exclusively to manage the Active Directory Forest may be members of the Enterprise Admins group. A separation of administrator responsibilities helps mitigate the risk of privilege escalation resulting from credential theft attacks."
+              },
+              {
+                "id": "SV-243466r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243467",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243467r959010_rule",
+            "title": "Membership to the Domain Admins group must be restricted to accounts used only to manage the Active Directory domain and domain controllers.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243467",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243467r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "AD.0002"
+              },
+              {
+                "name": "label",
+                "value": "AD.0002"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243467r959010_rule_statement",
+                "name": "statement",
+                "prose": "Membership to the Domain Admins group must be restricted to accounts used only to manage the Active Directory domain and domain controllers."
+              },
+              {
+                "id": "SV-243467r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Create the necessary documentation that identifies the members of the Domain Admins group.  Ensure that each member has a separate unique account that can only be used to manage the Active Directory domain and domain controllers.  Remove any Domain Admin accounts from other administrator groups."
+              },
+              {
+                "id": "SV-243467r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The Domain Admins group is a highly privileged group.  Personnel who are system administrators must log on to Active Directory systems only using accounts with the level of authority necessary. Only system administrator accounts used exclusively to manage an Active Directory domain and domain controllers may be members of the Domain Admins group. A separation of administrator responsibilities helps mitigate the risk of privilege escalation resulting from credential theft attacks."
+              },
+              {
+                "id": "SV-243467r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243468",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243468r959010_rule",
+            "title": "Administrators must have separate accounts specifically for managing domain member servers.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243468",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243468r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0003"
+              },
+              {
+                "name": "label",
+                "value": "AD.0003"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243468r959010_rule_statement",
+                "name": "statement",
+                "prose": "Administrators must have separate accounts specifically for managing domain member servers."
+              },
+              {
+                "id": "SV-243468r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Create the necessary documentation that identifies the members of domain member server administrator groups.  Ensure that each member has a separate unique account that can only be used to manage domain member servers.  Remove any domain member server accounts from other administrator groups."
+              },
+              {
+                "id": "SV-243468r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Personnel who are system administrators must log on to domain systems only using accounts with the minimum level of authority necessary. Only system administrator accounts used exclusively to manage domain member servers may be members of an administrator group for domain member servers. A separation of administrator responsibilities helps mitigate the risk of privilege escalation resulting from credential theft attacks."
+              },
+              {
+                "id": "SV-243468r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243469",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243469r959010_rule",
+            "title": "Administrators must have separate accounts specifically for managing domain workstations.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243469",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243469r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0004"
+              },
+              {
+                "name": "label",
+                "value": "AD.0004"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243469r959010_rule_statement",
+                "name": "statement",
+                "prose": "Administrators must have separate accounts specifically for managing domain workstations."
+              },
+              {
+                "id": "SV-243469r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Create the necessary documentation that identifies the members of domain workstation administrator groups.  Ensure that each member has a separate unique account that can only be used to manage domain workstations.  Remove any domain workstation administrator accounts from other administrator groups."
+              },
+              {
+                "id": "SV-243469r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Personnel who are system administrators must log on to domain systems only using accounts with the minimum level of authority necessary. Only system administrator accounts used exclusively to manage domain workstations may be members of an administrators group for domain workstations. A separation of administrator responsibilities helps mitigate the risk of privilege escalation resulting from credential theft attacks."
+              },
+              {
+                "id": "SV-243469r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243470",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243470r959010_rule",
+            "title": "Delegation of privileged accounts must be prohibited.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243470",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243470r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "AD.0005"
+              },
+              {
+                "name": "label",
+                "value": "AD.0005"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243470r959010_rule_statement",
+                "name": "statement",
+                "prose": "Delegation of privileged accounts must be prohibited."
+              },
+              {
+                "id": "SV-243470r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Open Active Directory Users and Computers. View the properties of all privileged accounts. Under the Account tab, select \"Account is sensitive and cannot be delegated\" in the Account Options section."
+              },
+              {
+                "id": "SV-243470r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Privileged accounts such as those belonging to any of the administrator groups must not be trusted for delegation. Allowing privileged accounts to be trusted for delegation provides a means for privilege escalation from a compromised system."
+              },
+              {
+                "id": "SV-243470r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243471",
+        "title": "SRG-OS-000112",
+        "controls": [
+          {
+            "id": "SV-243471r958494_rule",
+            "title": "Local administrator accounts on domain systems must not share the same password.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243471",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243471r958494_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0008"
+              },
+              {
+                "name": "label",
+                "value": "AD.0008"
+              },
+              {
+                "name": "sv-revision",
+                "value": "958494"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001941",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement replay-resistant authentication mechanisms for access to privileged accounts and/or non-privileged accounts."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-2 (8)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-2 (8)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243471r958494_rule_statement",
+                "name": "statement",
+                "prose": "Local administrator accounts on domain systems must not share the same password."
+              },
+              {
+                "id": "SV-243471r958494_rule_guidance",
+                "name": "guidance",
+                "prose": "Set unique passwords for all local administrator accounts on domain systems. \n\nIt is highly recommended to use Microsoft's LAPS, which provides an automated solution for maintaining and regularly changing a local administrator password for domain-joined systems. If additional local administrator accounts exist across systems, the organization must have a process to require unique passwords on each system for the additional accounts.\n\nThe AO may approve other automated solutions that provide this capability.\n\nSee Microsoft Security Advisory 3062591 for additional information and download of LAPS.\nhttps://www.microsoft.com/en-us/download/details.aspx?id=46899"
+              },
+              {
+                "id": "SV-243471r958494_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Local administrator accounts on domain systems must use unique passwords. In the event a domain system is compromised, sharing the same password for local administrator accounts on domain systems will allow an attacker to move laterally and compromise multiple domain systems."
+              },
+              {
+                "id": "SV-243471r958494_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243472",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243472r959010_rule",
+            "title": "Separate smart cards must be used for Enterprise Admin (EA) and Domain Admin (DA) accounts from smart cards used for other accounts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243472",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243472r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0009"
+              },
+              {
+                "name": "label",
+                "value": "AD.0009"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243472r959010_rule_statement",
+                "name": "statement",
+                "prose": "Separate smart cards must be used for Enterprise Admin (EA) and Domain Admin (DA) accounts from smart cards used for other accounts."
+              },
+              {
+                "id": "SV-243472r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Use separate smart cards for EA and DA accounts from smart cards used for other accounts.  EA and DA accounts may be on the same smart card but must be separate from any other accounts."
+              },
+              {
+                "id": "SV-243472r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A separate smart card for Enterprise Admin and Domain Admin accounts eliminates the automatic exposure of the private keys for the EA/DA accounts to less secure user platforms when the other accounts are used.  Having different certificates on one card does not provide the necessary separation.  The same smart card may be used by an administrator for both EA and DA accounts."
+              },
+              {
+                "id": "SV-243472r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243473",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243473r959010_rule",
+            "title": "Separate domain accounts must be used to manage public facing servers from any domain accounts used to manage internal servers.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243473",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243473r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0013"
+              },
+              {
+                "name": "label",
+                "value": "AD.0013"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243473r959010_rule_statement",
+                "name": "statement",
+                "prose": "Separate domain accounts must be used to manage public facing servers from any domain accounts used to manage internal servers."
+              },
+              {
+                "id": "SV-243473r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "If the domain does not have any public facing servers, this is NA.\n\nConfigure the system to include only administrator groups or accounts that are responsible for the system in the local Administrators group.\n\nFor public facing servers, replace the Domain Admins group with a domain member server administrator group whose members are different from any used to manage internal servers."
+              },
+              {
+                "id": "SV-243473r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Public facing servers should be in DMZs with separate Active Directory forests.  If, because of operational necessity, this is not possible, lateral movement from these servers must be mitigated within the forest.  Having different domain accounts for administering domain joined public facing servers, from domain accounts used on internal servers, protects against an attacker's lateral movement from a compromised public facing server."
+              },
+              {
+                "id": "SV-243473r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243475",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243475r959010_rule",
+            "title": "Domain controllers must be blocked from Internet access.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243475",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243475r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0015"
+              },
+              {
+                "name": "label",
+                "value": "AD.0015"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243475r959010_rule_statement",
+                "name": "statement",
+                "prose": "Domain controllers must be blocked from Internet access."
+              },
+              {
+                "id": "SV-243475r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Block domain controllers from internet access.  This can be accomplished with various methods, such as restrictions at boundary firewalls, proxy services, host based firewalls, or IPsec.   \n\nIf a critical function requires Internet access, this must be documented and approved by the organization."
+              },
+              {
+                "id": "SV-243475r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Domain controllers provide access to highly privileged areas of a domain.  Such systems with Internet access may be exposed to numerous attacks and compromise the domain.  Restricting Internet access for domain controllers will aid in protecting these privileged areas from being compromised."
+              },
+              {
+                "id": "SV-243475r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243476",
+        "title": "SRG-OS-000076",
+        "controls": [
+          {
+            "id": "SV-243476r1026173_rule",
+            "title": "All accounts, privileged and unprivileged, that require smart cards must have the underlying NT hash rotated at least every 60 days.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243476",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243476r1026173_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0016"
+              },
+              {
+                "name": "label",
+                "value": "AD.0016"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1026173"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243476r1026173_rule_statement",
+                "name": "statement",
+                "prose": "All accounts, privileged and unprivileged, that require smart cards must have the underlying NT hash rotated at least every 60 days."
+              },
+              {
+                "id": "SV-243476r1026173_rule_guidance",
+                "name": "guidance",
+                "prose": "Windows Server 2016 with domain functional levels of Windows Server 2016:\n\nOpen \"Active Directory Administrative Center\".\n\nRight-click on the domain name and select \"Properties\".\n\nSelect \"Enable rolling of expiring NTLM secrets during sign on, for users who are required to use Microsoft Passport or smart card for interactive sign on\".\n\nActive Directory domains not at a Windows Server 2016 domain functional level:\n\nRotate the NT hash for smart card-enforced accounts every 60 days.\n\nThis can be accomplished with the use of scripts.\n\nDOD PKI-PKE has provided a script under PKI and PKE Tools at https://cyber.mil/pki-pke/tools-configuration-files/. Refer to the User Guide for additional information.\n\nNSA has also provided a PowerShell script with Pass-the-Hash guidance at https://github.com/nsacyber/Pass-the-Hash-Guidance. Running the \"Invoke-SmartcardHashRefresh\" cmdlet in the \"PtHTools\" module will trigger a change of the underlying NT hash. Refer to the site for additional information.\n\nManually rolling the NT hash requires disabling and reenabling the \"Smart Card required for interactive logon\" option for each smart card-enforced account, which is not practical for large groups of users."
+              },
+              {
+                "id": "SV-243476r1026173_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "When a smart card is required for a domain account, a long password, unknown to the user, is generated. This password and associated NT hash are not changed as are accounts with passwords controlled by the maximum password age. Disabling and reenabling the \"Smart card is required for interactive logon\" (SCRIL) replaces the NT hash of the account with a newly randomized hash. Otherwise, the existing NT hash could be reused for Pass-the-Hash in the future.\n\nWindows Server 2016 includes a built-in feature for SCRIL hash rolling that will automatically reset NT hashes in accordance with the existing maximum password age policy. This requires the domain functional level to be Windows Server 2016.\n\nIn Active Directory with a domain functional level below Windows Server 2016, scripts can be used to reset the NT hashes of all domain accounts. Associated documentation should be reviewed for potential issues."
+              },
+              {
+                "id": "SV-243476r1026173_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243477",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243477r959010_rule",
+            "title": "User accounts with domain level administrative privileges must be members of the Protected Users group in domains with a domain functional level of Windows 2012 R2 or higher.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243477",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243477r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0017"
+              },
+              {
+                "name": "label",
+                "value": "AD.0017"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243477r959010_rule_statement",
+                "name": "statement",
+                "prose": "User accounts with domain level administrative privileges must be members of the Protected Users group in domains with a domain functional level of Windows 2012 R2 or higher."
+              },
+              {
+                "id": "SV-243477r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Add user accounts from the local domain that are members of the domain level administrative groups listed below to the Protected Users group. One account may excluded to ensure availability if there are issues with Kerberos.\n\nEnterprise Admins (Users node)\nDomain Admins (Users node)\nSchema Admins (Users node)\nAdministrators (Builtin node)\nAccount Operators (Builtin node)\nBackup Operators (Builtin node)\n\nThe use of the Protected Users group should be thoroughly tested before fully implementing."
+              },
+              {
+                "id": "SV-243477r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "User accounts with domain level administrative privileges are highly prized in Pass-the-Hash/credential theft attacks.  The Protected Users group provides extra protections to accounts such as preventing authentication using NTLM.\n\nThese accounts include Enterprise and Domain Admins as well as other accounts that may have domain level privileges.\n\nThe Protected Users group requires a domain functional level of at least Windows 2012 R2 to provide domain level protections."
+              },
+              {
+                "id": "SV-243477r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243478",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243478r959010_rule",
+            "title": "Domain-joined systems (excluding domain controllers) must not be configured for unconstrained delegation.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243478",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243478r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0018"
+              },
+              {
+                "name": "label",
+                "value": "AD.0018"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243478r959010_rule_statement",
+                "name": "statement",
+                "prose": "Domain-joined systems (excluding domain controllers) must not be configured for unconstrained delegation."
+              },
+              {
+                "id": "SV-243478r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Remove unconstrained delegation from computers in the domain. \n\nSelect \"Properties\" for the computer object.\n\nSelect the \"Delegation\" tab.\n\nDe-select \"Trust this computer for delegation to any service (Kerberos only)\"\n\nConfigured constrained delegation for specific services where required."
+              },
+              {
+                "id": "SV-243478r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Unconstrained delegation enabled on a computer can allow the computer account to be impersonated without limitation. If delegation is required, it must be limited/constrained to the specific services and accounts required."
+              },
+              {
+                "id": "SV-243478r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243479",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243479r959010_rule",
+            "title": "The Directory Service Restore Mode (DSRM) password must be changed at least annually.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243479",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243479r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0151"
+              },
+              {
+                "name": "label",
+                "value": "AD.0151"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243479r959010_rule_statement",
+                "name": "statement",
+                "prose": "The Directory Service Restore Mode (DSRM) password must be changed at least annually."
+              },
+              {
+                "id": "SV-243479r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Change the DSRM password at least annually."
+              },
+              {
+                "id": "SV-243479r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The Directory Service Restore Mode (DSRM) password, used to log on to a domain controller (DC) when rebooting into the server recovery mode, is very powerful.  With a weak or known password, someone with local access to the DC can reboot the server and copy or modify the Active Directory database without leaving any trace of the activity.\n\nFailure to change the DSRM password periodically could allow compromised of the Active Directory.  It could also allow an unknown (lost) password to go undetected. If not corrected during a periodic review, the problem might surface during an actual recovery operation and delay or prevent the recovery."
+              },
+              {
+                "id": "SV-243479r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243480",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243480r959010_rule",
+            "title": "The domain functional level must be at a Windows Server version still supported by Microsoft.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243480",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243480r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0160"
+              },
+              {
+                "name": "label",
+                "value": "AD.0160"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243480r959010_rule_statement",
+                "name": "statement",
+                "prose": "The domain functional level must be at a Windows Server version still supported by Microsoft."
+              },
+              {
+                "id": "SV-243480r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Raise the domain functional level to Windows Server 2016.  Using the highest domain functional level supported by the domain controllers is recommended.\n\nRaising the domain functional level needs to be carefully planned and implemented.  This prevents the addition of domain controllers to the domain using Windows versions prior to the current domain functional level. \n\nRefer to Microsoft documentation for the process and requirements of raising the domain functional level."
+              },
+              {
+                "id": "SV-243480r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Domains operating at functional levels below Windows Server versions no longer supported by Microsoft reduce the level of security in the domain and forest as advanced features of the directory are not available.  This also prevents the addition of domain controllers to the domain using Windows Server versions prior to the current domain functional level."
+              },
+              {
+                "id": "SV-243480r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243481",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243481r959010_rule",
+            "title": "Access to need-to-know information must be restricted to an authorized community of interest.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243481",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243481r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0170"
+              },
+              {
+                "name": "label",
+                "value": "AD.0170"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243481r959010_rule_statement",
+                "name": "statement",
+                "prose": "Access to need-to-know information must be restricted to an authorized community of interest."
+              },
+              {
+                "id": "SV-243481r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Delete the unneeded trust relationship or document the access requirement or mission need for the trust."
+              },
+              {
+                "id": "SV-243481r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Because trust relationships effectively eliminate a level of authentication in the trusting domain or forest, they represent less stringent access control at the domain or forest level in which the resource resides. To mitigate this risk, trust relationships must be documented so that they can be readily verified during periodic inspections designed to validate only approved trusts are configured in AD."
+              },
+              {
+                "id": "SV-243481r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243482",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243482r959010_rule",
+            "title": "Interconnections between DoD directory services of different classification levels must use a cross-domain solution that is approved for use with inter-classification trusts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243482",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243482r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "AD.0180"
+              },
+              {
+                "name": "label",
+                "value": "AD.0180"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243482r959010_rule_statement",
+                "name": "statement",
+                "prose": "Interconnections between DoD directory services of different classification levels must use a cross-domain solution that is approved for use with inter-classification trusts."
+              },
+              {
+                "id": "SV-243482r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Delete the trust relationship that is defined between entities with resources at different DoD classification levels."
+              },
+              {
+                "id": "SV-243482r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If a robust cross-domain solution is not used, then it could permit unauthorized access to classified data. To support secure access between resources of different classification levels, the solution must meet discretionary access control requirements. There are currently, no DOD- approved solutions. \n\nFurther Policy Details: Do not define trust relationships between domains, forests, or realms with resources at different classification levels. The configuration of a trust relationship is one of the steps used to allow users in one AD domain to access resources in another domain, forest, or Kerberos realm. (This check does not apply to trusts with non-DoD organizations since these trusts are examined in a previous check.)"
+              },
+              {
+                "id": "SV-243482r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243483",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243483r959010_rule",
+            "title": "A controlled interface must have interconnections among DoD information systems operating between DoD and non-DoD systems or networks.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243483",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243483r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "AD.0181"
+              },
+              {
+                "name": "label",
+                "value": "AD.0181"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243483r959010_rule_statement",
+                "name": "statement",
+                "prose": "A controlled interface must have interconnections among DoD information systems operating between DoD and non-DoD systems or networks."
+              },
+              {
+                "id": "SV-243483r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Obtain DAA approval and document external, forest, or realm trust relationship. Or obtain documentation of the network connection approval and explicit trust approval by the DAA."
+              },
+              {
+                "id": "SV-243483r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The configuration of an AD trust relationship is one of the steps used to allow users in one domain to access resources in another domain, forest, or Kerberos realm. When a trust is defined between a DoD organization and a non-DoD organization, the security posture of the two organizations might be significantly different. If the non-DoD organization maintained a less secure environment and that environment were compromised, the presence of the AD trust might allow the DoD environment to be compromised also."
+              },
+              {
+                "id": "SV-243483r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243484",
+        "title": "SRG-OS-000104",
+        "controls": [
+          {
+            "id": "SV-243484r958482_rule",
+            "title": "Security identifiers (SIDs) must be configured to use only authentication data of directly trusted external or forest trust.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243484",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243484r958482_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0190"
+              },
+              {
+                "name": "label",
+                "value": "AD.0190"
+              },
+              {
+                "name": "sv-revision",
+                "value": "958482"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000764",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Uniquely identify and authenticate organizational users and associate that unique identification with processes acting on behalf of those users."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-2.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-2"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243484r958482_rule_statement",
+                "name": "statement",
+                "prose": "Security identifiers (SIDs) must be configured to use only authentication data of directly trusted external or forest trust."
+              },
+              {
+                "id": "SV-243484r958482_rule_guidance",
+                "name": "guidance",
+                "prose": "Ensure SID filtering is enabled on all external trusts.  You can enable SID filtering only from the trusting side of the trust.  Enter the following line from a command line:\n\nnetdom trust <TrustingDomainName> /d:<TrustedDomainName> /quarantine:Yes\n/usero:<DomainAdministratorAcct> /passwordo:<DomainAdminPwd>\n\nEnsure SID history is disabled for all forest trusts.  You can disable SID history only from the trusting side of the trust.  Enter the following line from a command line:\n\nnetdom trust <TrustingDomainName> /d:<TrustedDomainName> /enablesidhistory:No\n/usero:<DomainAdministratorAcct> /passwordo:<DomainAdminPwd>"
+              },
+              {
+                "id": "SV-243484r958482_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Under some circumstances it is possible for attackers or rogue administrators that have compromised a domain controller in a trusted domain to use the SID history attribute (sIDHistory) to associate SIDs with new user accounts, granting themselves unauthorized rights. To help prevent this type of attack, SID filter quarantining is enabled by default on all external trusts. However, it is possible for an administrator to change this setting or the trust may have been created in an older version of AD. \n\nSID filtering causes SID references that do not refer to the directly trusted domain or forest to be removed from inbound access requests in the trusting domain. Without SID filtering, access requests could contain spoofed SIDs, permitting unauthorized access.  \n\nIn cases where access depends on SID history or Universal Groups, failure to enable SID filtering could result in operational problems, including denial of access to authorized users.\n\nWhen the quarantine switch is applied to external or forest trusts, only those SIDs from the single, directly trusted domain are valid. In effect, enabling /quarantine on a trust relationship will break the transitivity of that trust so that only the specific domains on either side of the trust are considered participants in the trust."
+              },
+              {
+                "id": "SV-243484r958482_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243485",
+        "title": "SRG-OS-000080",
+        "controls": [
+          {
+            "id": "SV-243485r958472_rule",
+            "title": "Selective Authentication must be enabled on outgoing forest trusts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243485",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243485r958472_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0200"
+              },
+              {
+                "name": "label",
+                "value": "AD.0200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "958472"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243485r958472_rule_statement",
+                "name": "statement",
+                "prose": "Selective Authentication must be enabled on outgoing forest trusts."
+              },
+              {
+                "id": "SV-243485r958472_rule_guidance",
+                "name": "guidance",
+                "prose": "Enable Selective Authentication on outgoing forest trust.   \nOpen \"Active Directory Domains and Trusts\".  (Available from various menus or run \"domain.msc\".)\nRight click the domain name in the left pane and select \"Properties\".\nSelect the \"Trusts\" tab.\nFor each outgoing forest trust, right-click the trust item and select \"Properties\". \nSelect the \"Authentication\" tab.  \nSelect the \"Selective Authentication\" option.\n(It may be necessary to configure the \"Allowed to Authenticate\" permission on resources in the trusting domain.)"
+              },
+              {
+                "id": "SV-243485r958472_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Enabling Selective Authentication on outbound Active Directory (AD) forest trusts significantly strengthens access control by requiring explicit authorization (through the Allowed to Authenticate permission) on resources in the trusting forest.  When Selective Authentication is not enabled, less secure resource access permissions (such as those that specify Authenticated Users) might permit unauthorized access."
+              },
+              {
+                "id": "SV-243485r958472_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243486",
+        "title": "SRG-OS-000121",
+        "controls": [
+          {
+            "id": "SV-243486r958504_rule",
+            "title": "The Anonymous Logon and Everyone groups must not be members of the Pre-Windows 2000 Compatible Access group.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243486",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243486r958504_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0220"
+              },
+              {
+                "name": "label",
+                "value": "AD.0220"
+              },
+              {
+                "name": "sv-revision",
+                "value": "958504"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000804",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Uniquely identify and authenticate non-organizational users or processes acting on behalf of non-organizational users."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-8"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-8.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-8"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-8"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243486r958504_rule_statement",
+                "name": "statement",
+                "prose": "The Anonymous Logon and Everyone groups must not be members of the Pre-Windows 2000 Compatible Access group."
+              },
+              {
+                "id": "SV-243486r958504_rule_guidance",
+                "name": "guidance",
+                "prose": "Ensure the \"Anonymous Logon\" and \"Everyone\" groups are not members of the \"Pre-Windows 2000 Compatible Access group\". (By default, these groups are not included in current Windows versions.)\n\nOpen \"Active Directory Users and Computers\" (available from various menus or run \"dsa.msc\").\nExpand the domain being reviewed in the left pane and select the \"Builtin\" container.\nDouble-click on the \"Pre-Windows 2000 Compatible Access\" group in the right pane.\nSelect the \"Members\" tab.\nIf the \"Anonymous Logon\" or \"Everyone\" groups are members, select each and click \"Remove\"."
+              },
+              {
+                "id": "SV-243486r958504_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The Pre-Windows 2000 Compatible Access group was created to allow Windows NT domains to interoperate with AD domains by allowing unauthenticated access to certain AD data. The default permissions on many AD objects are set to allow access to the Pre-Windows 2000 Compatible Access group.\n\nWhen the Anonymous Logon or Everyone groups are members of the Pre-Windows 2000 Compatible Access group, anonymous access to many AD objects is enabled.\n\nAnonymous access to AD data could provide valuable account or configuration information to an intruder trying to determine the most effective attack strategies."
+              },
+              {
+                "id": "SV-243486r958504_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243487",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243487r959010_rule",
+            "title": "Membership in the Group Policy Creator Owners and Incoming Forest Trust Builders groups must be limited.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243487",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243487r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0240"
+              },
+              {
+                "name": "label",
+                "value": "AD.0240"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243487r959010_rule_statement",
+                "name": "statement",
+                "prose": "Membership in the Group Policy Creator Owners and Incoming Forest Trust Builders groups must be limited."
+              },
+              {
+                "id": "SV-243487r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Document membership of the Group Policy Creator Owners and Incoming Forest Trust Builders groups.  Remove any accounts that do not require the privileges these groups assign."
+              },
+              {
+                "id": "SV-243487r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Membership in the Group Policy Creator Owners and Incoming Forest Trust Builders groups assigns a high privilege level for AD functions.  Unnecessary membership increases the risk from compromise or unintended updates.  Members of these groups must specifically require those privileges and be documented."
+              },
+              {
+                "id": "SV-243487r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243488",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243488r959010_rule",
+            "title": "User accounts with delegated authority must be removed from Windows built-in administrative groups or remove the delegated authority from the accounts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243488",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243488r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "AD.0260"
+              },
+              {
+                "name": "label",
+                "value": "AD.0260"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243488r959010_rule_statement",
+                "name": "statement",
+                "prose": "User accounts with delegated authority must be removed from Windows built-in administrative groups or remove the delegated authority from the accounts."
+              },
+              {
+                "id": "SV-243488r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "1. Remove user accounts with delegated authority from Windows built-in administrative groups or remove the delegated authority from the accounts. \n\n2. Document all user accounts with delegated AD object ownership or update authority. \n\n3. Annotate the account list with a statement such as, \"The high number of privileged accounts is required to address site operational requirements.\"\n\n4. Reduce the number of user accounts with delegated AD object ownership or update authority."
+              },
+              {
+                "id": "SV-243488r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "In AD it is possible to delegate account and other AD object ownership and administration tasks. (This is commonly done for help desk or other user support staff.) This is done to avoid the need to assign users to Windows groups with more widely ranging privileges. If a user with delegated authority to user accounts in a specific OU is also a member of the Administrators group, that user has the ability to reconfigure a wide range of domain security settings and change user accounts outside of the OU to which s/he is a delegated authority. A lack of specific baseline documentation of accounts with delegated privileges makes it impossible to determine if the configured privileges are consistent with the intended security policy."
+              },
+              {
+                "id": "SV-243488r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243489",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243489r959010_rule",
+            "title": "Read-only Domain Controller (RODC) architecture and configuration must comply with directory services requirements.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243489",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243489r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0270"
+              },
+              {
+                "name": "label",
+                "value": "AD.0270"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243489r959010_rule_statement",
+                "name": "statement",
+                "prose": "Read-only Domain Controller (RODC) architecture and configuration must comply with directory services requirements."
+              },
+              {
+                "id": "SV-243489r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "1. Ensure compliance with VPN and IPSec requirements in the Network Insfrastucture STIG. \n\n2. Ensure IPSec and other communications and security configurations for the management and replication of the RODC uses the minimum required Group Policy Objects (GPOs) to provide the required functionality.\n\n3. Replicate only the information needed to provide the functionality required. If full replication of all directory data is not needed, then replicated selective ID and authentication information as needed to the RODC.\n\n4. Include an inspection of the RODC server in the DMZ when inspection for least privilege."
+              },
+              {
+                "id": "SV-243489r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The RODC role provides a unidirectional replication method for selected information from your internal network to the DMZ. If not properly configured so that the risk footprint is minimized, the interal domain controller or forest can be compromised.\n\nRODC is considered part of the site's Forest or Domain installation since it is not a standalone product, but rather a role of the the Windows AD DS full installation or Server Core installation. It is possible to have Windows 2003 clients authenticated using RODC, however, compatibility packs are needed. \n\nNote that RODC is not authorized for use across the site's perimeter firewall."
+              },
+              {
+                "id": "SV-243489r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243490",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243490r959010_rule",
+            "title": "Usage of administrative accounts must be monitored for suspicious and anomalous activity.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243490",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243490r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.AU.0001"
+              },
+              {
+                "name": "label",
+                "value": "AD.AU.0001"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243490r959010_rule_statement",
+                "name": "statement",
+                "prose": "Usage of administrative accounts must be monitored for suspicious and anomalous activity."
+              },
+              {
+                "id": "SV-243490r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Monitor account usage events for administrative accounts.  This includes events related to approved administrative accounts as well as accounts being added to privileged groups such as Administrators, Domain and Enterprise Admins and other organization defined administrative groups.  Event monitoring may be implemented through various methods including log aggregation and the use of monitoring tools.\n\nMonitor for the events listed below, at minimum.\n\nAccount Lockouts (Subcategory: User Account Management)\n4740 - A user account is locked out.\nUser Added to Privileged Group (Subcategory: Security Group Management)\n4728 - A member was added to a security-enabled global group.\n4732 - A member was added to a security-enabled local group.\n4756 - A member was added to a security-enabled universal group.\nSuccessful User Account Login (Subcategory: Logon)\n4624 - An account was successfully logged on.\nFailed User Account Login (Subcategory: Logon)\n4625 - An account failed to log on.\nAccount Login with Explicit Credentials (Subcategory: Logon)\n4648 - A logon was attempted using explicit credentials.\n\nThe \"Account Usage\" section of NSA's \"Spotting the Adversary with Windows Event Log Monitoring\" provides additional information.\nhttps://www.iad.gov/iad/library/reports/spotting-the-adversary-with-windows-event-log-monitoring.cfm."
+              },
+              {
+                "id": "SV-243490r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Monitoring the usage of administrative accounts can alert on suspicious behavior and anomalous account usage that would be indicative of potential malicious credential reuse."
+              },
+              {
+                "id": "SV-243490r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243491",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243491r959010_rule",
+            "title": "Systems must be monitored for attempts to use local accounts to log on remotely from other systems.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243491",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243491r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.AU.0002"
+              },
+              {
+                "name": "label",
+                "value": "AD.AU.0002"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243491r959010_rule_statement",
+                "name": "statement",
+                "prose": "Systems must be monitored for attempts to use local accounts to log on remotely from other systems."
+              },
+              {
+                "id": "SV-243491r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Monitor for attempts to use local accounts to log on remotely from other systems.  Event monitoring may be implemented through various methods including log aggregation and the use of monitoring tools.\n\nMonitor for the events listed below.\n\nMore advanced filtering is necessary to obtain the pertinent information than just looking for event IDs.\nSearch for the event IDs listed with the following additional attributes:\nLogon Type = 3 (Network)\nAuthentication Package Name = NTLM\nNot a domain logon and not the ANONYMOUS LOGON account\n\nSuccessful User Account Login (Subcategory: Logon)\n4624 - An account was successfully logged on.\nFailed User Account Login (Subcategory: Logon)\n4625 - An account failed to log on.\n\nThe \"Pass the Hash Detection\" section of NSA's \"Spotting the Adversary with Windows Event Log Monitoring\" provides a sample query for filtering.\nhttps://www.iad.gov/iad/library/reports/spotting-the-adversary-with-windows-event-log-monitoring.cfm."
+              },
+              {
+                "id": "SV-243491r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Monitoring for the use of local accounts to log on remotely from other systems may indicate attempted lateral movement in a Pass-the-Hash attack."
+              },
+              {
+                "id": "SV-243491r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243492",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243492r959010_rule",
+            "title": "Systems must be monitored for remote desktop logons.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243492",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243492r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.AU.0003"
+              },
+              {
+                "name": "label",
+                "value": "AD.AU.0003"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243492r959010_rule_statement",
+                "name": "statement",
+                "prose": "Systems must be monitored for remote desktop logons."
+              },
+              {
+                "id": "SV-243492r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "More advanced filtering is necessary to obtain the pertinent information than just looking for event IDs.\nSearch for the event IDs listed with the following additional attributes:\nLogon Type = 10 (RemoteInteractive)\nAuthentication Package Name = Negotiate\n\nSuccessful User Account Login (Subcategory: Logon)\n4624 - An account was successfully logged on.\n\nThe \"Remote Desktop Logon Detection\" section of NSA's \"Spotting the Adversary with Windows Event Log Monitoring\" provides a sample query for filtering.\nhttps://www.iad.gov/iad/library/reports/spotting-the-adversary-with-windows-event-log-monitoring.cfm."
+              },
+              {
+                "id": "SV-243492r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Remote Desktop activity for administration should be limited to specific administrators, and from limited management workstations.  Monitoring for any Remote Desktop logins outside of expected activity can alert on suspicious behavior and anomalous account usage that could be indicative of potential malicious credential reuse."
+              },
+              {
+                "id": "SV-243492r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243493",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243493r959010_rule",
+            "title": "Active Directory data must be backed up daily for systems with a Risk Management Framework categorization for Availability of moderate or high.  Systems with a categorization of low must be backed up weekly.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243493",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243493r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DS00.0160_AD"
+              },
+              {
+                "name": "label",
+                "value": "DS00.0160_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243493r959010_rule_statement",
+                "name": "statement",
+                "prose": "Active Directory data must be backed up daily for systems with a Risk Management Framework categorization for Availability of moderate or high.  Systems with a categorization of low must be backed up weekly."
+              },
+              {
+                "id": "SV-243493r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Update the organization's procedures for the backing up active directory data.\nEnsure the frequency at which active directory data is backed up is as follows:\nIf the Availability categorization of the domain is low, this must be at least weekly.\nIf the Availability categorization of the domain is moderate or high, this must be at least daily.\nEnsure the type of backup is appropriate to capturing the directory data.  For AD domain controllers, this must include a System State data backup."
+              },
+              {
+                "id": "SV-243493r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Failure to maintain a current backup of directory data could make it difficult or impossible to recover from incidents including hardware failure or malicious corruption.  A failure to recover from the loss of directory data used in identification and authentication services (i.e., Active Directory) could result in an extended loss of availability."
+              },
+              {
+                "id": "SV-243493r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243494",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243494r959010_rule",
+            "title": "Each cross-directory authentication configuration must be documented.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243494",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243494r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "DS00.1120_AD"
+              },
+              {
+                "name": "label",
+                "value": "DS00.1120_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243494r959010_rule_statement",
+                "name": "statement",
+                "prose": "Each cross-directory authentication configuration must be documented."
+              },
+              {
+                "id": "SV-243494r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Develop documentation for each AD external, forest, and realm trust configuration. At a minimum this must include:\nType (external, forest, or realm)\nName of the other party\nConfidentiality, Availability, and Integrity categorization\nClassification level of the other party\nTrust direction (inbound and/or outbound)\nTransitivity\nStatus of the Selective Authentication option\nStatus of the SID filtering option"
+              },
+              {
+                "id": "SV-243494r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Active Directory (AD) external, forest, and realm trust configurations are designed to extend resource access to a wider range of users (those in other directories).  If specific baseline documentation of authorized AD external, forest, and realm trust configurations is not maintained, it is impossible to determine if the configurations are consistent with the intended security policy."
+              },
+              {
+                "id": "SV-243494r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243495",
+        "title": "SRG-OS-000423",
+        "controls": [
+          {
+            "id": "SV-243495r958908_rule",
+            "title": "A VPN must be used to protect directory network traffic for directory service implementation spanning enclave boundaries.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243495",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243495r958908_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DS00.1140_AD"
+              },
+              {
+                "name": "label",
+                "value": "DS00.1140_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "958908"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002418",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect the confidentiality and/or integrity of transmitted information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-8"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-8"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243495r958908_rule_statement",
+                "name": "statement",
+                "prose": "A VPN must be used to protect directory network traffic for directory service implementation spanning enclave boundaries."
+              },
+              {
+                "id": "SV-243495r958908_rule_guidance",
+                "name": "guidance",
+                "prose": "Implement a VPN or other network protection solution in accordance with the Network Infrastructure STIG that protects AD data in transit across DoD enclave boundaries."
+              },
+              {
+                "id": "SV-243495r958908_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The normal operation of AD requires the use of IP network ports and protocols to support queries, replication, user authentication, and resource authorization services. At a minimum, LDAP or LDAPS is usually required for communication with every domain controller. DoD Ports, Protocols, and Services Management (PPSM) policy restricts the use of LDAP, LDAPS, and many of the AD-related protocols across enclave boundaries because vulnerabilities exist in the protocols or service implementations. To comply with the restrictions and address the vulnerabilities, a VPN implementation may be used. If AD data traverses enclave network boundaries using a vulnerable protocol or service without the protection provided by a VPN, that data might be subject to tampering or interception.\n\nFurther Policy Details: Implement a VPN or other network protection solution in accordance with the Network Infrastructure STIG that protects AD data in transit across DoD enclave boundaries. VPN requirements will include registering the VPN and connection points with the PPSM. Current guidance is available in the Network Infrastructure STIG and from the PPSM."
+              },
+              {
+                "id": "SV-243495r958908_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243496",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243496r959010_rule",
+            "title": "Accounts from outside directories that are not part of the same organization or are not subject to the same security policies must be removed from all highly privileged groups.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243496",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243496r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DS00.3200_AD"
+              },
+              {
+                "name": "label",
+                "value": "DS00.3200_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243496r959010_rule_statement",
+                "name": "statement",
+                "prose": "Accounts from outside directories that are not part of the same organization or are not subject to the same security policies must be removed from all highly privileged groups."
+              },
+              {
+                "id": "SV-243496r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Remove accounts from outside directories that are not part of the same organization or are not subject to the same security policies from the highly privileged groups."
+              },
+              {
+                "id": "SV-243496r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Membership in certain default directory groups assigns a high privilege level for access to the directory. In AD, membership in the following groups enables high privileges relative to AD and the Windows OS: Domain Admins, Enterprise Admins, Schema Admins, Group Policy Creator Owners, and Incoming Forest Trust Builders. \n\nWhen accounts from an outside directory are members of highly privileged groups in the directory being reviewed, less rigorous security policies or compromises of accounts in the outside directory could increase the risk to the directory where the privileged groups are defined. A compromise to the outside directory would allow unauthorized, privileged access."
+              },
+              {
+                "id": "SV-243496r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243497",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243497r959010_rule",
+            "title": "Inter-site replication must be enabled and configured to occur at least daily.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243497",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243497r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DS00.3230_AD"
+              },
+              {
+                "name": "label",
+                "value": "DS00.3230_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243497r959010_rule_statement",
+                "name": "statement",
+                "prose": "Inter-site replication must be enabled and configured to occur at least daily."
+              },
+              {
+                "id": "SV-243497r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Maintain an Active Directory replication schedule that allows inter-site replication to occur at least on a daily basis.\nOpen \"Active Directory Sites and Services\". (Available from various menus or run \"dssite.msc\".)\nExpand \"Sites\" in the left pane.\nExpand \"Inter-Site Transports\" and select \"IP\".\nFor each site link that is defined in the right pane perform the following:\nRight click the site link item and select \"Properties\".\t\nSelect an interval in the \"Replicate every\" field less than \"1440\".  (By default this is 180.)\nClick the Change Schedule button.\nSelect time frames for \"Replication Available\" to allow for replication to occur at least daily."
+              },
+              {
+                "id": "SV-243497r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Timely replication makes certain that directory service data is consistent across all servers that support the same scope of data for their clients. In AD implementation using AD Sites, domain controllers defined to be in different AD Sites require Site links to specify properties for replication scheduling.\n\nIf AD Site link schedule and replication interval properties are configured improperly, AD data replication may not occur frequently enough and updates to identification, authentication, or authorization data may not be current on all domain controllers. If this data is not current, access to resources may be incorrectly granted or denied. The default for inter-site replication is to occur every 180 minutes, 24 hours a day."
+              },
+              {
+                "id": "SV-243497r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243498",
+        "title": "SRG-OS-000032",
+        "controls": [
+          {
+            "id": "SV-243498r958406_rule",
+            "title": "If a VPN is used in the AD implementation, the traffic must be inspected by the network Intrusion detection system (IDS).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243498",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243498r958406_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DS00.4140_AD"
+              },
+              {
+                "name": "label",
+                "value": "DS00.4140_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "958406"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000067",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Employ automated mechanisms to monitor remote access methods."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243498r958406_rule_statement",
+                "name": "statement",
+                "prose": "If a VPN is used in the AD implementation, the traffic must be inspected by the network Intrusion detection system (IDS)."
+              },
+              {
+                "id": "SV-243498r958406_rule_guidance",
+                "name": "guidance",
+                "prose": "Replace the VPN solution or reconfigure it so that directory data is inspected by a network or host-based IDS."
+              },
+              {
+                "id": "SV-243498r958406_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "To provide data confidentiality, a VPN is configured to encrypt the data being transported. While this protects the data, some implementations do not allow that data to be processed through an intrusion detection system (IDS) that could detect data from a compromised system or malicious client.\n\nFurther policy details:Replace the VPN solution or reconfigure it so that directory data is processed by a network or host-based intrusion detection system (IDS)."
+              },
+              {
+                "id": "SV-243498r958406_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243499",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243499r959010_rule",
+            "title": "Active Directory implementation information must be added to the organization contingency plan where the Risk Management Framework categorization for Availability is moderate or high.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243499",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243499r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "DS00.6120_AD"
+              },
+              {
+                "name": "label",
+                "value": "DS00.6120_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243499r959010_rule_statement",
+                "name": "statement",
+                "prose": "Active Directory implementation information must be added to the organization contingency plan where the Risk Management Framework categorization for Availability is moderate or high."
+              },
+              {
+                "id": "SV-243499r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Update the disaster recovery plans to include the AD hierarchy structure for domains with an Availability categorization of moderate or high."
+              },
+              {
+                "id": "SV-243499r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "When an incident occurs that requires multiple Active Directory (AD) domain controllers to be rebuilt, it is critical to understand the AD hierarchy and replication flow so that the correct recovery sequence and configuration values can be selected.  Without appropriate AD forest, tree and domain structural documentation, it may be impossible or very time consuming to reconstruct the original configuration."
+              },
+              {
+                "id": "SV-243499r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243500",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243500r959010_rule",
+            "title": "Active Directory must be supported by multiple domain controllers where the Risk Management Framework categorization for Availability is moderate or high.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243500",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243500r959010_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DS00.6140_AD"
+              },
+              {
+                "name": "label",
+                "value": "DS00.6140_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "959010"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243500r959010_rule_statement",
+                "name": "statement",
+                "prose": "Active Directory must be supported by multiple domain controllers where the Risk Management Framework categorization for Availability is moderate or high."
+              },
+              {
+                "id": "SV-243500r959010_rule_guidance",
+                "name": "guidance",
+                "prose": "Implement multiple domain controllers in domains with an Availability categorization of moderate or high."
+              },
+              {
+                "id": "SV-243500r959010_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "In Active Directory (AD) architecture, multiple domain controllers provide availability through redundancy.  If an AD domain or servers within it have an Availability categorization of medium or high and the domain is supported by only a single domain controller, an outage of that machine can prevent users from accessing resources on servers in that domain and in other AD domains."
+              },
+              {
+                "id": "SV-243500r959010_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243501",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243501r1016334_rule",
+            "title": "The impact of CPCON changes on the cross-directory authentication configuration must be considered and procedures documented.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243501",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243501r1016334_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "DS00.7100_AD"
+              },
+              {
+                "name": "label",
+                "value": "DS00.7100_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1016334"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243501r1016334_rule_statement",
+                "name": "statement",
+                "prose": "The impact of CPCON changes on the cross-directory authentication configuration must be considered and procedures documented."
+              },
+              {
+                "id": "SV-243501r1016334_rule_guidance",
+                "name": "guidance",
+                "prose": "Evaluate cross-directory configurations (such as trusts and pass-through authentication) and provide documentation that indicates: \n1. An evaluation was performed. \n2. The specific AD trust configurations, if any, that must be disabled during changes in CPCON status because they could represent increased risk."
+              },
+              {
+                "id": "SV-243501r1016334_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "When incidents occur that require a change in the Cyber Protection Conditions (CPCON) with the release of USSCI 5200-13 status, it may be necessary to take action to restrict or disable certain types of access based on a directory outside the Component's control. Cross-directory configurations (such as trusts and pass-through authentication) are specifically designed to enable resource access across directories. If conditions indicate an outside directory is at increased risk of compromise in the immediate or near future, actions to avoid a spread of the effects of the compromise must be taken. A trusted outside directory that is compromised could allow an unauthorized user to access resources in the trusting directory."
+              },
+              {
+                "id": "SV-243501r1016334_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-269097",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-269097r1026170_rule",
+            "title": "Windows Server domain controllers must have Kerberos logging enabled with servers hosting Active Directory Certificate Services (AD CS).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-269097",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-269097r1026170_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0205"
+              },
+              {
+                "name": "label",
+                "value": "AD.0205"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1026170"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-269097r1026170_rule_statement",
+                "name": "statement",
+                "prose": "Windows Server domain controllers must have Kerberos logging enabled with servers hosting Active Directory Certificate Services (AD CS)."
+              },
+              {
+                "id": "SV-269097r1026170_rule_guidance",
+                "name": "guidance",
+                "prose": "Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Advanced Audit Policy Configuration >> System Audit Policies >> Account Logon.\n\nConfigure \"Audit Kerberos Authentication Service\" and the \"Audit Kerberos Service Ticket Operations\" to be set to \"Success and Failure\"."
+              },
+              {
+                "id": "SV-269097r1026170_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Although Kerberos logging can be used for troubleshooting, it can also provide security information for successful and failed login attempts. If a malicious actor uses a forged or unauthorized certificate to complete Kerberos PKINIT authentication, the Kerberos Authentication Service success audit in event 4768 can be used to detect the specific fraudulent certificate that was used to authenticate to then revoke the certificate. Kerberos Service Ticket operation events can be used in an investigation to discover which services were accessed by a malicious actor or to detect if an SCHANNEL-based authentication was abused by a malicious actor."
+              },
+              {
+                "id": "SV-269097r1026170_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

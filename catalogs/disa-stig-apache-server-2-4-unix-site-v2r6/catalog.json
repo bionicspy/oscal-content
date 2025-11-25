@@ -1,0 +1,2938 @@
+{
+  "catalog": {
+    "uuid": "b606a5cf-a566-56fe-bad6-f9d5181008d9",
+    "metadata": {
+      "title": "Apache Server 2.4 UNIX Site Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-04-02T00:00:00Z",
+      "version": "2.6.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2025-04-02"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "2"
+        },
+        {
+          "name": "version.minor",
+          "value": "6"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-214277",
+        "title": "SRG-APP-000001-WSR-000002",
+        "controls": [
+          {
+            "id": "SV-214277r960735_rule",
+            "title": "The Apache web server must perform server-side session management.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214277",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214277r960735_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000020"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000020"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960735"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000054",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Limit the number of concurrent sessions for each organization-defined account and/or account type to an organization-defined number."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-10.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214277r960735_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must perform server-side session management."
+              },
+              {
+                "id": "SV-214277r960735_rule_guidance",
+                "name": "guidance",
+                "prose": "If the modules are not installed, install any missing packages. \n \nAdd the following lines to the \"httpd.conf\" file: \n \nLoadModule usertrack_module modules/mod_usertrack.so \n \nLoadModule session_module modules/mod_session.so \n \nAdditional documentation can be found at: \n \nhttps://httpd.apache.org/docs/2.4/mod/mod_usertrack.html \n \nhttps://httpd.apache.org/docs/2.4/mod/mod_session.html \n \nRestart Apache: apachectl restart"
+              },
+              {
+                "id": "SV-214277r960735_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Session management is the practice of protecting the bulk of the user authorization and identity information. This data can be stored on the client system or on the server. \n \nWhen the session information is stored on the client, the session ID, along with the user authorization and identity information, is sent along with each client request and is stored in a cookie, embedded in the uniform resource locator (URL), or placed in a hidden field on the displayed form. Each of these offers advantages and disadvantages. The biggest disadvantage to all three is the possibility of the hijacking of a session along with all of the user's credentials. \n \nWhen the user authorization and identity information is stored on the server in a protected and encrypted database, the communication between the client and Apache web server will only send the session identifier, and the server can then retrieve user credentials for the session when needed. If, during transmission, the session were to be hijacked, the user's credentials would not be compromised."
+              },
+              {
+                "id": "SV-214277r960735_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214278",
+        "title": "SRG-APP-000014-WSR-000006",
+        "controls": [
+          {
+            "id": "SV-214278r960759_rule",
+            "title": "The Apache web server must use encryption strength in accordance with the categorization of data hosted by the Apache web server when remote connections are provided.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214278",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214278r960759_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000030"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000030"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960759"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000068",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the confidentiality of remote access sessions."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000197",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, transmit passwords only over cryptographically-protected channels."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000803",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement mechanisms for authentication to a cryptographic module that meet the requirements of applicable laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001166",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Identify organization-defined unacceptable mobile code."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001453",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the integrity of remote access sessions."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002448",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Distribute asymmetric cryptographic keys using: NSA-approved key management technology and processes; prepositioned keying material; DoD-approved or DoD-issued Medium Assurance PKI certificates; DoD-approved or DoD-issued Medium Hardware Assurance PKI certificates and hardware security tokens that protect the user's private key; or certificates issued in accordance with organization-defined requirements."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002450",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement organization-defined types of cryptography for each specified cryptography use."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002452",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Defines the online meetings and teleconferences for which the system provides an explicit indication of current participants."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002506",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Partition the system into organization-defined system components residing in separate physical or logical domains or environments based on organization-defined circumstances for physical or logical separation of components."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-32"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-32"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214278r960759_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must use encryption strength in accordance with the categorization of data hosted by the Apache web server when remote connections are provided."
+              },
+              {
+                "id": "SV-214278r960759_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the ssl.conf file:\n# find / -name ssl.conf\nOutput: /etc/httpd/conf.d/ssl.conf\n \nEnsure the \"SSLProtocol\" is added to ssl.conf and looks like the following: \n \nSSLProtocol -ALL +TLSv1.2 \n \nRestart Apache: apachectl restart"
+              },
+              {
+                "id": "SV-214278r960759_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The Apache web server has several remote communications channels. Examples are user requests via http/https, communication to a backend database, and communication to authenticate users. The encryption used to communicate must match the data that is being retrieved or presented. \n \nMethods of communication are \"http\" for publicly displayed information, \"https\" to encrypt when user data is being transmitted, VPN tunneling, or other encryption methods to a database.\n\nSatisfies: SRG-APP-000014-WSR-000006, SRG-APP-000015-WSR-000014, SRG-APP-000033-WSR-000169, SRG-APP-000172-WSR-000104, SRG-APP-000179-WSR-000110, SRG-APP-000179-WSR-000111, SRG-APP-000206-WSR-000128, SRG-APP-000429-WSR-000113, SRG-APP-000439-WSR-000151, SRG-APP-000439-WSR-000152, SRG-APP-000439-WSR-000156, SRG-APP-000441-WSR-000181, SRG-APP-000442-WSR-000182"
+              },
+              {
+                "id": "SV-214278r960759_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214279",
+        "title": "SRG-APP-000095-WSR-000056",
+        "controls": [
+          {
+            "id": "SV-214279r962395_rule",
+            "title": "The Apache web server must produce log records containing sufficient information to establish what type of events occurred.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214279",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214279r962395_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000090"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000090"
+              },
+              {
+                "name": "sv-revision",
+                "value": "962395"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000130",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records contain information that establishes what type of event occurred."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214279r962395_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must produce log records containing sufficient information to establish what type of events occurred."
+              },
+              {
+                "id": "SV-214279r962395_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nUncomment the \"log_config_module\" module line. \n \nConfigure the \"LogFormat\" in the \"httpd.conf\" file to look like the following: \n \nLogFormat \"%a %A %h %H %l %m %s %t %u %U \\\"%{Referer}i\\\" \" common \n \nRestart Apache: apachectl restart\n\nNote: The log format may be using different variables based on the environment; however, it should be verified to ensure it is producing the same end result of logged elements."
+              },
+              {
+                "id": "SV-214279r962395_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Apache web server logging capability is critical for accurate forensic analysis. Without sufficient and accurate information, a correct replay of the events cannot be determined. \n \nAscertaining the correct type of event that occurred is important during forensic analysis. The correct determination of the event and when it occurred is important in relation to other events that happened at that same time. \n \nWithout sufficient information establishing what type of log event occurred, investigation into the cause of event is severely hindered. Log record content that may be necessary to satisfy the requirement of this control includes but is not limited to time stamps, source and destination IP addresses, user/process identifiers, event descriptions, application-specific events, success/fail indications, file names involved, access control, and flow control rules invoked."
+              },
+              {
+                "id": "SV-214279r962395_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214280",
+        "title": "SRG-APP-000141-WSR-000015",
+        "controls": [
+          {
+            "id": "SV-214280r960963_rule",
+            "title": "The Apache web server must not perform user management for hosted applications.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214280",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214280r960963_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000240"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000240"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960963"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214280r960963_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must not perform user management for hosted applications."
+              },
+              {
+                "id": "SV-214280r960963_rule_guidance",
+                "name": "guidance",
+                "prose": "Reconfigure any hosted applications on the Apache web server to perform user management outside the web server. \n \nDocument how the hosted application user management is accomplished."
+              },
+              {
+                "id": "SV-214280r960963_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "User management and authentication can be an essential part of any application hosted by the web server. Along with authenticating users, the user management function must perform several other tasks such as password complexity, locking users after a configurable number of failed logons, and management of temporary and emergency accounts. All of this must be done enterprise-wide. \n \nThe web server contains a minimal user management function, but the web server user management function does not offer enterprise-wide user management, and user management is not the primary function of the web server. User management for the hosted applications should be done through a facility that is built for enterprise-wide user management, like LDAP and Active Directory."
+              },
+              {
+                "id": "SV-214280r960963_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214281",
+        "title": "SRG-APP-000141-WSR-000081",
+        "controls": [
+          {
+            "id": "SV-214281r960963_rule",
+            "title": "The Apache web server must have Multipurpose Internet Mail Extensions (MIME) that invoke operating system shell programs disabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214281",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214281r960963_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000300"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000300"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960963"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214281r960963_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must have Multipurpose Internet Mail Extensions (MIME) that invoke operating system shell programs disabled."
+              },
+              {
+                "id": "SV-214281r960963_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nDisable MIME types for .exe, .dll, .com, .bat, and .csh programs. \n \nIf \"Action\" or \"AddHandler\" exist and they configure any of the following (.exe, .dll, .com, .bat, or .csh), remove those references. \n \nRestart Apache: apachectl restart \n \nEnsure this process is documented and approved by the ISSO."
+              },
+              {
+                "id": "SV-214281r960963_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Controlling what a user of a hosted application can access is part of the security posture of the web server. Any time a user can access more functionality than is needed for the operation of the hosted application poses a security issue. A user with too much access can view information that is not needed for the user's job role, or the user could use the function in an unintentional manner. \n \nA MIME tells the web server what type of program various file types and extensions are and what external utilities or programs are needed to execute the file type. \n \nA shell is a program that serves as the basic interface between the user and the operating system, so hosted application users must not have access to these programs. Shell programs may execute shell escapes and can then perform unauthorized activities that could damage the security posture of the web server."
+              },
+              {
+                "id": "SV-214281r960963_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214282",
+        "title": "SRG-APP-000141-WSR-000082",
+        "controls": [
+          {
+            "id": "SV-214282r960963_rule",
+            "title": "The Apache web server must allow mappings to unused and vulnerable scripts to be removed.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214282",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214282r960963_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000310"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000310"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960963"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214282r960963_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must allow mappings to unused and vulnerable scripts to be removed."
+              },
+              {
+                "id": "SV-214282r960963_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nRemove any scripts in \"cgi-bin\" directory if they are not needed for application operation. \n \nEnsure this process is documented and approved by the ISSO."
+              },
+              {
+                "id": "SV-214282r960963_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Scripts allow server-side processing on behalf of the hosted application user or as processes needed in the implementation of hosted applications. Removing scripts not needed for application operation or deemed vulnerable helps to secure the web server. \n \nTo ensure scripts are not added to the web server and run maliciously, script mappings that are not needed or used by the web server for hosted application operation must be removed."
+              },
+              {
+                "id": "SV-214282r960963_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214283",
+        "title": "SRG-APP-000141-WSR-000083",
+        "controls": [
+          {
+            "id": "SV-214283r960963_rule",
+            "title": "The Apache web server must have resource mappings set to disable the serving of certain file types.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214283",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214283r960963_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000320"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000320"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960963"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214283r960963_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must have resource mappings set to disable the serving of certain file types."
+              },
+              {
+                "id": "SV-214283r960963_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nDisable MIME types for .exe, .dll, .com, .bat, and .csh programs. \n \nIf \"Action\" or \"AddHandler\" exist and they configure .exe, .dll, .com, .bat, or .csh, remove those references. \n \nRestart Apache: apachectl restart \n \nEnsure this process is documented and approved by the ISSO."
+              },
+              {
+                "id": "SV-214283r960963_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Resource mapping is the process of tying a particular file type to a process in the web server that can serve that type of file to a requesting client and to identify which file types are not to be delivered to a client. \n \nBy not specifying which files can and cannot be served to a user, the web server could deliver to a user web server configuration files, log files, password files, etc. \n \nThe web server must only allow hosted application file types to be served to a user, and all other types must be disabled."
+              },
+              {
+                "id": "SV-214283r960963_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214284",
+        "title": "SRG-APP-000141-WSR-000087",
+        "controls": [
+          {
+            "id": "SV-214284r960963_rule",
+            "title": "Users and scripts running on behalf of users must be contained to the document root or home directory tree of the Apache web server.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214284",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214284r960963_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000350"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000350"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960963"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214284r960963_rule_statement",
+                "name": "statement",
+                "prose": "Users and scripts running on behalf of users must be contained to the document root or home directory tree of the Apache web server."
+              },
+              {
+                "id": "SV-214284r960963_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nSet the root directory directive as follows: \n \n<Directory> \n... \nRequire all denied \n... \n</Directory> \n \nRemove any \"Deny\" and \"Allow\" directives from the root <Directory> element. \n \nRestart Apache: apachectl restart"
+              },
+              {
+                "id": "SV-214284r960963_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A web server is designed to deliver content and execute scripts or applications on the request of a client or user. Containing user requests to files in the directory tree of the hosted web application and limiting the execution of scripts and applications guarantees that the user is not accessing information protected outside the application's realm. \n \nThe web server must also prohibit users from jumping outside the hosted application directory tree through access to the user's home directory, symbolic links or shortcuts, or through search paths for missing files."
+              },
+              {
+                "id": "SV-214284r960963_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214285",
+        "title": "SRG-APP-000142-WSR-000089",
+        "controls": [
+          {
+            "id": "SV-214285r1043177_rule",
+            "title": "The Apache web server must be configured to use a specified IP address and port.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214285",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214285r1043177_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000360"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000360"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043177"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000382",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to prohibit or restrict the use of organization-defined prohibited or restricted functions, system ports, protocols, software, and/or services."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214285r1043177_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must be configured to use a specified IP address and port."
+              },
+              {
+                "id": "SV-214285r1043177_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nSet each \"VirtualHost\" directive to listen to on a specific IP address and port."
+              },
+              {
+                "id": "SV-214285r1043177_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The web server must be configured to listen on a specified IP address and port. Without specifying an IP address and port for the web server to use, the web server will listen on all IP addresses available to the hosting server. If the web server has multiple IP addresses, i.e., a management IP address, the web server will also accept connections on the management IP address. \n \nAccessing the hosted application through an IP address normally used for non-application functions opens the possibility of user access to resources, utilities, files, ports, and protocols that are protected on the desired application IP address."
+              },
+              {
+                "id": "SV-214285r1043177_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214286",
+        "title": "SRG-APP-000175-WSR-000095",
+        "controls": [
+          {
+            "id": "SV-214286r1051289_rule",
+            "title": "The Apache web server must perform RFC 5280-compliant certification path validation.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214286",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214286r1051289_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000380"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000380"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1051289"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000185",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, validate certificates by constructing and verifying a certification path to an accepted trust anchor including checking certificate status information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (2) (a)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (2) (b) (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214286r1051289_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must perform RFC 5280-compliant certification path validation."
+              },
+              {
+                "id": "SV-214286r1051289_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Apache server to validate certificates in accordance with RFC 5280."
+              },
+              {
+                "id": "SV-214286r1051289_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A certificate's certification path is the path from the end entity certificate to a trusted root certification authority (CA). Certification path validation is necessary for a relying party to make an informed decision regarding acceptance of an end entity certificate. Certification path validation includes checks such as certificate issuer trust, time validity, and revocation status for each certificate in the certification path. Revocation status information for CA and subject certificates in a certification path is commonly provided via certificate revocation lists (CRLs) or online certificate status protocol (OCSP) responses."
+              },
+              {
+                "id": "SV-214286r1051289_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214287",
+        "title": "SRG-APP-000176-WSR-000096",
+        "controls": [
+          {
+            "id": "SV-214287r961041_rule",
+            "title": "Only authenticated system administrators or the designated PKI Sponsor for the Apache web server must have access to the Apache web servers private key.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214287",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214287r961041_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000390"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000390"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961041"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000186",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, enforce authorized access to the corresponding private key."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (2) (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (2) (a) (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214287r961041_rule_statement",
+                "name": "statement",
+                "prose": "Only authenticated system administrators or the designated PKI Sponsor for the Apache web server must have access to the Apache web servers private key."
+              },
+              {
+                "id": "SV-214287r961041_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the ssl.conf file:\n# find / -name ssl.conf\nOutput: /etc/httpd/conf.d/ssl.conf\n\nSearch the ssl.conf file for the SSLCertificateKeyFile location.\n# cat <path to file>/ssl.conf | grep -i SSLCertificateKeyFile\nOutput: SSLCertificateKeyFile /etc/pki/tls/private/localhost.key\n\nBased on the \" SSLCertificateKeyFile\" directive path, configure the Apache web server to ensure only authenticated and authorized users can access the web server's private key.  \n\nPermissions must be 600 or more restrictive."
+              },
+              {
+                "id": "SV-214287r961041_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The web server's private key is used to prove the identity of the server to clients and securely exchange the shared secret key used to encrypt communications between the web server and clients. \n \nBy gaining access to the private key, an attacker can pretend to be an authorized server and decrypt the SSL traffic between a client and the web server."
+              },
+              {
+                "id": "SV-214287r961041_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214288",
+        "title": "SRG-APP-000223-WSR-000011",
+        "controls": [
+          {
+            "id": "SV-214288r1043180_rule",
+            "title": "Cookies exchanged between the Apache web server and client, such as session cookies, must have security settings that disallow cookie access outside the originating Apache web server and hosted application.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214288",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214288r1043180_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000470"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000470"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043180"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001664",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Recognize only session identifiers that are system-generated."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-23 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-23 (3).1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-23 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-23 (3)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214288r1043180_rule_statement",
+                "name": "statement",
+                "prose": "Cookies exchanged between the Apache web server and client, such as session cookies, must have security settings that disallow cookie access outside the originating Apache web server and hosted application."
+              },
+              {
+                "id": "SV-214288r1043180_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nAdd or configure the following line: \n \n\"Header always edit Set-Cookie ^(.*)$ $1;HttpOnly;secure\" \n \nAdd the \"secure\" attribute to the JavaScript set cookie in any application code: \n \nfunction setCookie() { document.cookie = \"ALEPH_SESSION_ID = $SESS; path = /; secure\"; }  \n\nHttpOnly cannot be used since by definition this is a cookie set by JavaScript. \n \nRestart www_server and Apache."
+              },
+              {
+                "id": "SV-214288r1043180_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Cookies are used to exchange data between the web server and the client. Cookies, such as a session cookie, may contain session information and user credentials used to maintain a persistent connection between the user and the hosted application since HTTP/HTTPS is a stateless protocol. \n \nWhen the cookie parameters are not set properly (i.e., domain and path parameters), cookies can be shared within hosted applications residing on the same web server or to applications hosted on different web servers residing on the same domain."
+              },
+              {
+                "id": "SV-214288r1043180_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214289",
+        "title": "SRG-APP-000225-WSR-000074",
+        "controls": [
+          {
+            "id": "SV-214289r961122_rule",
+            "title": "The Apache web server must augment re-creation to a stable and known baseline.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214289",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214289r961122_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000540"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000540"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961122"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001190",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Fail to an organization-defined known-system state for the list of organization-defined types of system failures on organization-defined system components on the indicated components while preserving organization-defined system state information in failure."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-24"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-24.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-24"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-24"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214289r961122_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must augment re-creation to a stable and known baseline."
+              },
+              {
+                "id": "SV-214289r961122_rule_guidance",
+                "name": "guidance",
+                "prose": "Prepare documentation for disaster recovery methods for the Apache web server in the event of the necessity for rollback. \n \nDocument and test the disaster recovery methods designed."
+              },
+              {
+                "id": "SV-214289r961122_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Making certain that the web server has not been updated by an unauthorized user is always a concern. Adding patches, functions, and modules that are untested and not part of the baseline opens the possibility for security risks. The web server must offer, and not hinder, a method that allows for the quick and easy reinstallation of a verified and patched baseline to guarantee the production web server is up-to-date and has not been modified to add functionality or expose security risks. \n \nWhen the web server does not offer a method to roll back to a clean baseline, external methods, such as a baseline snapshot or virtualizing the web server, can be used."
+              },
+              {
+                "id": "SV-214289r961122_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214290",
+        "title": "SRG-APP-000233-WSR-000146",
+        "controls": [
+          {
+            "id": "SV-214290r961131_rule",
+            "title": "The Apache web server document directory must be in a separate partition from the Apache web servers system files.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214290",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214290r961131_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000580"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000580"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961131"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001084",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Isolate security functions from nonsecurity functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-3.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214290r961131_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server document directory must be in a separate partition from the Apache web servers system files."
+              },
+              {
+                "id": "SV-214290r961131_rule_guidance",
+                "name": "guidance",
+                "prose": "Move the web document (normally \"htdocs\") directory to a separate partition other than the operating system root partition and the web server\u2019s system files."
+              },
+              {
+                "id": "SV-214290r961131_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A web server is used to deliver content on the request of a client. The content delivered to a client must be controlled, allowing only hosted application files to be accessed and delivered. To allow a client access to system files of any type is a major security risk that is entirely avoidable. Obtaining such access is the goal of directory traversal and URL manipulation vulnerabilities. To facilitate such access by misconfiguring the web document (home) directory is a serious error. In addition, having the path on the same drive as the system folder compounds potential attacks such as drive space exhaustion."
+              },
+              {
+                "id": "SV-214290r961131_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214291",
+        "title": "SRG-APP-000246-WSR-000149",
+        "controls": [
+          {
+            "id": "SV-214291r1067787_rule",
+            "title": "The Apache web server must be tuned to handle the operational requirements of the hosted application.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214291",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214291r1067787_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000590"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000590"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1067787"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001094",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Restrict the ability of individuals to launch organization-defined denial of service attacks against other systems."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002415",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Employ boundary protection mechanisms to isolate organization-defined system components supporting organization-defined missions and/or business functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-7 (21)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-7 (21)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214291r1067787_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must be tuned to handle the operational requirements of the hosted application."
+              },
+              {
+                "id": "SV-214291r1067787_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nAdd or modify the \"Timeout\" directive in the Apache configuration to have a value of \"60\" seconds or less. \n \n\"Timeout 60\""
+              },
+              {
+                "id": "SV-214291r1067787_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A denial of service (DoS) can occur when the Apache web server is so overwhelmed that it can no longer respond to additional requests. A web server not properly tuned may become overwhelmed and cause a DoS condition even with expected traffic from users. To avoid a DoS, the Apache web server must be tuned to handle the expected traffic for the hosted applications.\n\nSatisfies: SRG-APP-000246-WSR-000149, SRG-APP-000435-WSR-000148"
+              },
+              {
+                "id": "SV-214291r1067787_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214292",
+        "title": "SRG-APP-000266-WSR-000142",
+        "controls": [
+          {
+            "id": "SV-214292r961167_rule",
+            "title": "The Apache web server must display a default hosted application web page, not a directory listing, when a requested web page cannot be found.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214292",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214292r961167_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000620"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000620"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961167"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001312",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate error messages that provide information necessary for corrective actions without revealing information that could be exploited."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-11 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-11.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-11 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214292r961167_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must display a default hosted application web page, not a directory listing, when a requested web page cannot be found."
+              },
+              {
+                "id": "SV-214292r961167_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nAdd a default document to the applicable directories."
+              },
+              {
+                "id": "SV-214292r961167_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The goal is to completely control the web user's experience in navigating any portion of the web document root directories. Ensuring all web content directories have at least the equivalent of an index.html file is a significant factor to accomplish this end. \n \nEnumeration techniques, such as URL parameter manipulation, rely upon being able to obtain information about the Apache web server's directory structure by locating directories without default pages. In the scenario, the Apache web server will display to the user a listing of the files in the directory being accessed. By having a default hosted application web page, the anonymous web user will not obtain directory browsing information or an error message that reveals the server type and version."
+              },
+              {
+                "id": "SV-214292r961167_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214293",
+        "title": "SRG-APP-000266-WSR-000159",
+        "controls": [
+          {
+            "id": "SV-214293r961167_rule",
+            "title": "Warning and error messages displayed to clients must be modified to minimize the identity of the Apache web server, patches, loaded modules, and directory paths.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214293",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214293r961167_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000630"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000630"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961167"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001312",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate error messages that provide information necessary for corrective actions without revealing information that could be exploited."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-11 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-11.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-11 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214293r961167_rule_statement",
+                "name": "statement",
+                "prose": "Warning and error messages displayed to clients must be modified to minimize the identity of the Apache web server, patches, loaded modules, and directory paths."
+              },
+              {
+                "id": "SV-214293r961167_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nUse the \"ErrorDocument\" directive to enable custom error pages. \n \nErrorDocument 500 \"Sorry, our script crashed. Oh dear\" \nErrorDocument 500 /cgi-bin/crash-recover \nErrorDocument 500 http://error.example.com/server_error.html \nErrorDocument 404 /errors/not_found.html \nErrorDocument 401 /subscription/how_to_subscribe.html \n \nThe syntax of the ErrorDocument directive is: \n \nErrorDocument <3-digit-code> <action> \n \nAdditional Information: \n\nhttps://httpd.apache.org/docs/2.4/custom-error.html"
+              },
+              {
+                "id": "SV-214293r961167_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Information needed by an attacker to begin looking for possible vulnerabilities in an Apache web server includes any information about the Apache web server, backend systems being accessed, and plug-ins or modules being used. \n \nApache web servers will often display error messages to client users, displaying enough information to aid in the debugging of the error. The information given back in error messages may display the Apache web server type, version, patches installed, plug-ins and modules installed, type of code being used by the hosted application, and any backends being used for data storage. \n \nThis information could be used by an attacker to blueprint what type of attacks might be successful. The information given to users must be minimized to not aid in the blueprinting of the Apache web server."
+              },
+              {
+                "id": "SV-214293r961167_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214294",
+        "title": "SRG-APP-000266-WSR-000160",
+        "controls": [
+          {
+            "id": "SV-214294r961167_rule",
+            "title": "Debugging and trace information used to diagnose the Apache web server must be disabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214294",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214294r961167_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000640"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000640"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961167"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001312",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate error messages that provide information necessary for corrective actions without revealing information that could be exploited."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SI-11 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SI-11.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-11 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214294r961167_rule_statement",
+                "name": "statement",
+                "prose": "Debugging and trace information used to diagnose the Apache web server must be disabled."
+              },
+              {
+                "id": "SV-214294r961167_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nAdd or set the value of \"TraceEnable\" to \"Off\"."
+              },
+              {
+                "id": "SV-214294r961167_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Information needed by an attacker to begin looking for possible vulnerabilities in a web server includes any information about the Apache web server and plug-ins or modules being used. When debugging or trace information is enabled in a production web server, information about the web server, such as web server type, version, patches installed, plug-ins and modules installed, type of code being used by the hosted application, and any backends being used for data storage, may be displayed. Since this information may be placed in logs and general messages during normal operation of the Apache web server, an attacker does not need to cause an error condition to gain access to this information."
+              },
+              {
+                "id": "SV-214294r961167_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214295",
+        "title": "SRG-APP-000295-WSR-000012",
+        "controls": [
+          {
+            "id": "SV-214295r1043182_rule",
+            "title": "The Apache web server must set an absolute timeout for sessions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214295",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214295r1043182_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000650"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000650"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043182"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002391",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Monitor organization-defined system resources to determine if sufficient resources exist to prevent effective denial-of-service attacks."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5 (3) (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 (3) (b)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214295r1043182_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must set an absolute timeout for sessions."
+              },
+              {
+                "id": "SV-214295r1043182_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nAdd or set the \"SessionMaxAge\" directive to \"600\"."
+              },
+              {
+                "id": "SV-214295r1043182_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Leaving sessions open indefinitely is a major security risk. An attacker can easily use an already authenticated session to access the hosted application as the previously authenticated user. By closing sessions after an absolute period of time, the user is forced to reauthenticate, guaranteeing the session is still in use. Enabling an absolute timeout for sessions closes sessions that are still active. Examples would be a runaway process accessing the Apache web server or an attacker using a hijacked session to slowly probe the Apache web server."
+              },
+              {
+                "id": "SV-214295r1043182_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214296",
+        "title": "SRG-APP-000295-WSR-000134",
+        "controls": [
+          {
+            "id": "SV-214296r1043182_rule",
+            "title": "The Apache web server must set an inactive timeout for sessions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214296",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214296r1043182_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000660"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000660"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043182"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002391",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Monitor organization-defined system resources to determine if sufficient resources exist to prevent effective denial-of-service attacks."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-5 (3) (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-5 (3) (b)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214296r1043182_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must set an inactive timeout for sessions."
+              },
+              {
+                "id": "SV-214296r1043182_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nLoad the \"Reqtimeout_module\". \n \nSet the \"RequestReadTimeout\" directive."
+              },
+              {
+                "id": "SV-214296r1043182_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Leaving sessions open indefinitely is a major security risk. An attacker can easily use an already authenticated session to access the hosted application as the previously authenticated user. By closing sessions after a set period of inactivity, the Apache web server can make certain that those sessions that are not closed through the user logging out of an application are eventually closed. \n \nAcceptable values are 5 minutes for high-value applications, 10 minutes for medium-value applications, and 20 minutes for low-value applications."
+              },
+              {
+                "id": "SV-214296r1043182_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214297",
+        "title": "SRG-APP-000315-WSR-000004",
+        "controls": [
+          {
+            "id": "SV-214297r961278_rule",
+            "title": "The Apache web server must restrict inbound connections from nonsecure zones.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214297",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214297r961278_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000680"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000680"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961278"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002344",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Defines the data mining detection techniques to be employed to detect data mining attempts against organization-defined data storage objects."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-23"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-23"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214297r961278_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must restrict inbound connections from nonsecure zones."
+              },
+              {
+                "id": "SV-214297r961278_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the \"http.conf\" file to include restrictions.\n\nExample:\n\n<RequireAll>\nRequire not ip 192.168.205\nRequire not host phishers.example.com\n</RequireAll>"
+              },
+              {
+                "id": "SV-214297r961278_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Remote access to the Apache web server is any access that communicates through an external, non-organization-controlled network. Remote access can be used to access hosted applications or to perform management functions. \n \nA web server can be accessed remotely and must be capable of restricting access from what the DoD defines as nonsecure zones. Nonsecure zones are defined as any IP, subnet, or region that is defined as a threat to the organization. The nonsecure zones must be defined for public web servers logically located in a DMZ, as well as private web servers with perimeter protection devices. By restricting access from nonsecure zones, through the internal web server access list, the Apache web server can stop or slow denial-of-service (DoS) attacks on the web server."
+              },
+              {
+                "id": "SV-214297r961278_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214298",
+        "title": "SRG-APP-000340-WSR-000029",
+        "controls": [
+          {
+            "id": "SV-214298r961353_rule",
+            "title": "Non-privileged accounts on the hosting system must only access Apache web server security-relevant information and functions through a distinct administrative account.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214298",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214298r961353_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000700"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000700"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961353"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002265",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that the attribute associations are made and retained with the information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-16 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-16 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214298r961353_rule_statement",
+                "name": "statement",
+                "prose": "Non-privileged accounts on the hosting system must only access Apache web server security-relevant information and functions through a distinct administrative account."
+              },
+              {
+                "id": "SV-214298r961353_rule_guidance",
+                "name": "guidance",
+                "prose": "Restrict access to the web administration tool to only the System Administrator, Web Manager, or the Web Manager designees."
+              },
+              {
+                "id": "SV-214298r961353_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "By separating Apache web server security functions from non-privileged users, roles can be developed that can then be used to administer the Apache web server. Forcing users to change from a non-privileged account to a privileged account when operating on the Apache web server or on security-relevant information forces users to only operate as a Web Server Administrator when necessary. Operating in this manner allows for better logging of changes and better forensic information and limits accidental changes to the Apache web server."
+              },
+              {
+                "id": "SV-214298r961353_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214299",
+        "title": "SRG-APP-000380-WSR-000072",
+        "controls": [
+          {
+            "id": "SV-214299r1051292_rule",
+            "title": "The Apache web server application, libraries, and configuration files must only be accessible to privileged users.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214299",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214299r1051292_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000780"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000780"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1051292"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001813",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce access restrictions using organization-defined mechanisms."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-5 (1) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214299r1051292_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server application, libraries, and configuration files must only be accessible to privileged users."
+              },
+              {
+                "id": "SV-214299r1051292_rule_guidance",
+                "name": "guidance",
+                "prose": "Ensure nonadministrators are not allowed access to the directory tree, the shell, or other operating system functions and utilities."
+              },
+              {
+                "id": "SV-214299r1051292_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The Apache web server can be modified through parameter modification, patch installation, upgrades to the Apache web server or modules, and security parameter changes. With each of these changes, there is the potential for an adverse effect such as a denial of service (DoS), Apache web server instability, or hosted application instability. \n \nTo limit changes to the Apache web server and limit exposure to any adverse effects from the changes, files such as the Apache web server application files, libraries, and configuration files must have permissions and ownership set properly to only allow privileged users access."
+              },
+              {
+                "id": "SV-214299r1051292_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214300",
+        "title": "SRG-APP-000427-WSR-000186",
+        "controls": [
+          {
+            "id": "SV-214300r1051295_rule",
+            "title": "The Apache web server must only accept client certificates issued by DOD PKI or DoD-approved PKI Certification Authorities (CAs).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214300",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214300r1051295_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000810"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000810"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1051295"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002470",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Only allow the use of organization-defined certificate authorities for verification of the establishment of protected sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-23 (5)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-23 (5)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214300r1051295_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must only accept client certificates issued by DOD PKI or DoD-approved PKI Certification Authorities (CAs)."
+              },
+              {
+                "id": "SV-214300r1051295_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the web server's trust store to trust only DOD-approved PKIs (e.g., DOD PKI, DOD ECA, and DOD-approved external partners)."
+              },
+              {
+                "id": "SV-214300r1051295_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Non-DOD approved PKIs have not been evaluated to ensure that they have security controls and identity vetting procedures in place that are sufficient for DOD systems to rely on the identity asserted in the certificate. PKIs lacking sufficient security controls and identity vetting procedures risk being compromised and issuing certificates that enable adversaries to impersonate legitimate users."
+              },
+              {
+                "id": "SV-214300r1051295_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214301",
+        "title": "SRG-APP-000439-WSR-000153",
+        "controls": [
+          {
+            "id": "SV-214301r961632_rule",
+            "title": "The Apache web server cookies, such as session cookies, sent to the client using SSL/TLS must not be compressed.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214301",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214301r961632_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000870"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000870"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961632"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002448",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Distribute asymmetric cryptographic keys using: NSA-approved key management technology and processes; prepositioned keying material; DoD-approved or DoD-issued Medium Assurance PKI certificates; DoD-approved or DoD-issued Medium Hardware Assurance PKI certificates and hardware security tokens that protect the user's private key; or certificates issued in accordance with organization-defined requirements."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-12 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-12 (3)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214301r961632_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server cookies, such as session cookies, sent to the client using SSL/TLS must not be compressed."
+              },
+              {
+                "id": "SV-214301r961632_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nEnsure the \"SSLCompression\" is added and looks like the following: \n \nSSLCompression off \n \nRestart Apache: apachectl restart"
+              },
+              {
+                "id": "SV-214301r961632_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A cookie is used when a web server needs to share data with the client's browser. The data is often used to remember the client when the client returns to the hosted application at a later date. A session cookie is a special type of cookie used to remember the client during the session. The cookie will contain the session identifier (ID) and may contain authentication data to the hosted application. To protect this data from easily being compromised, the cookie can be encrypted. \n \nWhen a cookie is sent encrypted via SSL/TLS, an attacker must spend a great deal of time and resources to decrypt the cookie. If, along with encryption, the cookie is compressed, the attacker can now use a combination of plaintext injection and inadvertent information leakage through data compression to reduce the time needed to decrypt the cookie. This attack is called Compression Ratio Info-leak Made Easy (CRIME). \n \nCookies shared between the Apache web server and the client when encrypted should not also be compressed."
+              },
+              {
+                "id": "SV-214301r961632_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214303",
+        "title": "SRG-APP-000439-WSR-000155",
+        "controls": [
+          {
+            "id": "SV-214303r961632_rule",
+            "title": "Cookies exchanged between the Apache web server and the client, such as session cookies, must have cookie properties set to force the encryption of cookies.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214303",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214303r961632_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000890"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000890"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961632"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002448",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Distribute asymmetric cryptographic keys using: NSA-approved key management technology and processes; prepositioned keying material; DoD-approved or DoD-issued Medium Assurance PKI certificates; DoD-approved or DoD-issued Medium Hardware Assurance PKI certificates and hardware security tokens that protect the user's private key; or certificates issued in accordance with organization-defined requirements."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-12 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-12 (3)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214303r961632_rule_statement",
+                "name": "statement",
+                "prose": "Cookies exchanged between the Apache web server and the client, such as session cookies, must have cookie properties set to force the encryption of cookies."
+              },
+              {
+                "id": "SV-214303r961632_rule_guidance",
+                "name": "guidance",
+                "prose": "Determine the location of the \"HTTPD_ROOT\" directory and the \"httpd.conf\" file: \n \n# apachectl -V | egrep -i 'httpd_root|server_config_file' \n-D HTTPD_ROOT=\"/etc/httpd\" \n-D SERVER_CONFIG_FILE=\"conf/httpd.conf\" \n \nSet \"Session\" to \"on\". \n \nEnsure the \"SessionCookieName\" directive includes \"httpOnly\" and \"secure\"."
+              },
+              {
+                "id": "SV-214303r961632_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Cookies can be sent to a client using TLS/SSL to encrypt the cookies, but TLS/SSL is not used by every hosted application since the data being displayed does not require the encryption of the transmission. To safeguard against cookies, especially session cookies, being sent in plaintext, a cookie can be encrypted before transmission. To force a cookie to be encrypted before transmission, the cookie \"Secure\" property can be set."
+              },
+              {
+                "id": "SV-214303r961632_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-214304",
+        "title": "SRG-APP-000516-WSR-000174",
+        "controls": [
+          {
+            "id": "SV-214304r961863_rule",
+            "title": "The Apache web server must be configured in accordance with the security configuration settings based on DoD security configuration or implementation guidance, including STIGs, NSA configuration guides, CTOs, and DTMs.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-214304",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-214304r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "AS24-U2-000960"
+              },
+              {
+                "name": "label",
+                "value": "AS24-U2-000960"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-214304r961863_rule_statement",
+                "name": "statement",
+                "prose": "The Apache web server must be configured in accordance with the security configuration settings based on DoD security configuration or implementation guidance, including STIGs, NSA configuration guides, CTOs, and DTMs."
+              },
+              {
+                "id": "SV-214304r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Ensure the website enforces the use of IANA well-known ports for HTTP and HTTPS."
+              },
+              {
+                "id": "SV-214304r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Configuring the Apache web server to implement organization-wide security implementation guides and security checklists guarantees compliance with federal standards and establishes a common security baseline across the DoD that reflects the most restrictive security posture consistent with operational requirements. \n \nConfiguration settings are the set of parameters that can be changed that affect the security posture and/or functionality of the system. Security-related parameters are parameters impacting the security state of the Apache web server, including the parameters required to satisfy other security control requirements."
+              },
+              {
+                "id": "SV-214304r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

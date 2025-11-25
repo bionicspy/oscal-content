@@ -1,0 +1,3226 @@
+{
+  "catalog": {
+    "uuid": "5c8172d0-0ab9-508a-aef5-9d0f51e9c077",
+    "metadata": {
+      "title": "IBM WebSphere Liberty Server Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-04-02T00:00:00Z",
+      "version": "2.2.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2025-04-02"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "2"
+        },
+        {
+          "name": "version.minor",
+          "value": "2"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-250322",
+        "title": "SRG-APP-000001-AS-000001",
+        "controls": [
+          {
+            "id": "SV-250322r960735_rule",
+            "title": "Maximum in-memory session count must be set according to application requirements.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250322",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250322r960735_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000010"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000010"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960735"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000054",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Limit the number of concurrent sessions for each organization-defined account and/or account type to an organization-defined number."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-10.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250322r960735_rule_statement",
+                "name": "statement",
+                "prose": "Maximum in-memory session count must be set according to application requirements."
+              },
+              {
+                "id": "SV-250322r960735_rule_guidance",
+                "name": "guidance",
+                "prose": "To limit the max number of concurrent sessions available, the ${server.config.dir}/server.xml must be configured with maxInMemorySessionCount set according to system security plan and allowOverflow=\"false\".\n\nEXAMPLE:\n<httpSession maxInMemorySessionCount=\"5\" allowOverflow=\"false\" />"
+              },
+              {
+                "id": "SV-250322r960735_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Application management includes the ability to control the number of sessions that use an application by all accounts and/or account types. Limiting the number of allowed sessions is helpful in limiting risks related to Denial of Service attacks.\n\nApplication servers host and expose business logic and application processes. The application server must possess the capability to limit the maximum number of concurrent sessions in a manner that affects the entire application server or on an individual application basis. Although there is some latitude concerning the settings themselves, the settings should follow DoD-recommended values, but the settings should be configurable to allow for future DoD direction. While the DoD will specify recommended values, the values can be adjusted to accommodate the operational requirement of a given system.\n\nThe System Security Plan should be reviewed and the maximum number of concurrent sessions allowable and defined within that plan should be used in the httpSession element. For example, if the maximum number of concurrent sessions is defined in the System Security Plan as 5000, then the httpSession element in ${server.config.dir}/server.xml should be configured as: \n<httpSession maxInMemorySessionCount=\"5000\" allowOverflow=\"false\" />\n\nFor http session security settings to apply, the security feature (appSecurity-2.0) must be defined in order to configure a user registry for the servlet to authenticate against. The servlet feature (servlet-3.1) must be defined in order to use a web application, and the ldap feature (ldapRegistry-3.0) must be defined in order to configure an enterprise-level user registry for authentication of the servlet users."
+              },
+              {
+                "id": "SV-250322r960735_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250323",
+        "title": "SRG-APP-000014-AS-000009",
+        "controls": [
+          {
+            "id": "SV-250323r960759_rule",
+            "title": "The WebSphere Liberty Server Quality of Protection (QoP) must be set to use TLSv1.2 or higher.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250323",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250323r960759_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000020"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000020"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960759"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000068",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the confidentiality of remote access sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250323r960759_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server Quality of Protection (QoP) must be set to use TLSv1.2 or higher."
+              },
+              {
+                "id": "SV-250323r960759_rule_guidance",
+                "name": "guidance",
+                "prose": "To ensure the QoP is set to TLS v1.2 or higher, the ${server.config.dir}/server.xml file must be configured as follows: \n\n<featureManager><feature>appSecurity-2.0</feature><feature>ssl-1.0</feature></featureManager>\n\nFor every SSL configuration, the sslProtocol field must be set to TLS v1.2 or higher.\n\n <ssl id=\"TLSSettings\" keyStoreRef=\"TLSKeyStore\" trustStoreRef=\"TLSTrustStore\"  sslProtocol=\"TLSv1.2\" />"
+              },
+              {
+                "id": "SV-250323r960759_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Quality of Protection in WebSphere Liberty specifies the security level, ciphers, and mutual authentication settings for the Secure Socket Layer (SSL/TLS) configuration. For Quality of Protection settings to apply, the security feature (appSecurity-2.0) must be defined in order to configure a user registry for the servlet to authenticate against. The SSL feature (ssl-1.0) must be defined in order to configure ssl settings, and the ldap feature (ldapRegistry-3.0) must be defined in order to configure an enterprise-level user registry for authentication of users."
+              },
+              {
+                "id": "SV-250323r960759_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250324",
+        "title": "SRG-APP-000015-AS-000010",
+        "controls": [
+          {
+            "id": "SV-250324r960762_rule",
+            "title": "Security cookies must be set to HTTPOnly.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250324",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250324r960762_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000030"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000030"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960762"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001453",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the integrity of remote access sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250324r960762_rule_statement",
+                "name": "statement",
+                "prose": "Security cookies must be set to HTTPOnly."
+              },
+              {
+                "id": "SV-250324r960762_rule_guidance",
+                "name": "guidance",
+                "prose": "To ensure security cookies use httpOnly, the ${server.config.dir)/server.xml must be configured as follows: \n\n<featureManager><feature>appSecurity-2.0</feature></featureManager>\n\n <webAppSecurity  ssoCookieName=\"LtpaToken2\"  ssoRequiresSSL=\"true\"    httpOnlyCookies=\"true\"   logoutOnHttpSessionExpire=\"true\"/>  \n\n<httpSession    cookieName=\"JSESSIONID\"    cookieSecure=\"true\"    cookieHttpOnly=\"true\"    cookiePath=\"/\"/>"
+              },
+              {
+                "id": "SV-250324r960762_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Web applications use cookies to track users across requests. These cookies, while typically not sensitive in themselves, connect to the existing state on the back-end system. If an intruder were to capture one of these cookies, they could potentially use the cookie to act as the user. Important web traffic should be encrypted using SSL. This includes important cookies.\n\nIn the case of WebSphere Liberty Server, the most important cookies are the LTPA cookie and session cookie; therefore, both should be configured to be only sent over SSL. To set httpOnly on the application server\u2019s cookies, the security feature (appSecurity-2.0) must be defined in order to configure a user registry for the servlet to authenticate against. The servlet (servlet-3.1) feature must be defined in order to deploy web applications, the ssl (ssl-1.0) feature must be defined in order to do SSL communications, and the ldap feature (ldapRegistry-3.0) must be defined in order to configure an enterprise-level user registry for authentication of users. \n\nFor the LTPA cookie,  the httpOnlyCookies element must be set to true: \n<webAppSecurity  ssoCookieName=\"LtpaToken2\"  ssoRequiresSSL=\"true\"    httpOnlyCookies=\"true\"   logoutOnHttpSessionExpire=\"true\"/>   \n\nFor the JSESSIONID cookie, the cookieHttpOnly element must be set to true: \n<httpSession    cookieName=\"JSESSIONID\"    cookieSecure=\"true\"    cookieHttpOnly=\"true\"    cookiePath=\"/\"/>"
+              },
+              {
+                "id": "SV-250324r960762_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250325",
+        "title": "SRG-APP-000016-AS-000013",
+        "controls": [
+          {
+            "id": "SV-250325r1015250_rule",
+            "title": "The WebSphere Liberty Server must log remote session and security activity.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250325",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250325r1015250_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000040"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000040"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1015250"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000067",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Employ automated mechanisms to monitor remote access methods."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000130",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records contain information that establishes what type of event occurred."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000131",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes when the event occurred."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000132",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes where the event occurred."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000133",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes the source of the event."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000134",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes the outcome of the event."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000135",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate audit records containing the organization-defined additional information that is to be included in the audit records."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000162",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect audit information from unauthorized access."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000166",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide irrefutable evidence that an individual (or process acting on behalf of an individual) falsely denying having performed organization-defined actions to be covered by non-repudiation."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000169",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide audit record generation capability for the event types the system is capable of auditing as defined in AU-2 a on organization-defined information system components."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000172",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate audit records for the event types defined in AU-2 c that include the audit record content defined in AU-3."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001312",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate error messages that provide information necessary for corrective actions without revealing information that could be exploited."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001487",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes the identity of any individuals, subjects, or objects/entities associated with the event."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002234",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Log the execution of privileged functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-6 (9)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-6 (9)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250325r1015250_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must log remote session and security activity."
+              },
+              {
+                "id": "SV-250325r1015250_rule_guidance",
+                "name": "guidance",
+                "prose": "To log remote access events, the featureManager setting in the ${server.config.dir}/server.xml must contain the audit and appSecurity features. \n\n<featureManager>\n<feature>audit-1.0</feature>\n<feature>appSecurity-2.0</feature>\n</featureManager>"
+              },
+              {
+                "id": "SV-250325r1015250_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Security auditing must be configured in order to log remote session activity. Security auditing will not be performed unless the audit feature (audit-1.0) has been enabled. The security feature (appSecurity-2.0) must be enabled for the security auditing to capture security transactions. Remote session activity will then be logged, regardless of the user attempting that activity.\n\nSatisfies: SRG-APP-000016-AS-000013, SRG-APP-000080-AS-000045, SRG-APP-000089-AS-000050, SRG-APP-000091-AS-000052, SRG-APP-000095-AS-000056, SRG-APP-000096-AS-000059, SRG-APP-000097-AS-000060, SRG-APP-000098-AS-000061, SRG-APP-000099-AS-000062, SRG-APP-000100-AS-000063, SRG-APP-000101-AS-000072, SRG-APP-000266-AS-000168, SRG-APP-000343-AS-000030, SRG-APP-000172-AS-000121"
+              },
+              {
+                "id": "SV-250325r1015250_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250326",
+        "title": "SRG-APP-000033-AS-000024",
+        "controls": [
+          {
+            "id": "SV-250326r960792_rule",
+            "title": "Users in the REST API admin role must be authorized.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250326",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250326r960792_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000050"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000050"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960792"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000213",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-3"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250326r960792_rule_statement",
+                "name": "statement",
+                "prose": "Users in the REST API admin role must be authorized."
+              },
+              {
+                "id": "SV-250326r960792_rule_guidance",
+                "name": "guidance",
+                "prose": "If an admin user exists in either a basic user registry or a quickstartsecurity registry, edit the ${server.config.dir}/server.xml file and remove the basic registry and/or quickstartsecurity registry settings.\n\nIf an admin user exists via an LDAP user registry setting, document and approve the user(s) or group that have been assigned to the admin role and ensure anyone granted REST API admin rights is authorized.\n\nLDAP EXAMPLE:\n<administrator-role>\n     <user>cn=bob,o=ibm,c=us</user>\n </administrator-role>\n\nBASIC REGISTRY EXAMPLE:\n<basicRegistry>\n     <user name=\"bob\" password=\"bobpassword\"/>\n     <user name=\"joe\" password=\"joepassword\"/>\n     <group name=\"group1\" ...>\n     </group>\n </basicRegistry>\n\n<administrator-role>\n     <user>bob</user>\n     <group>group1</group>\n </administrator-role>\n\nQUICKSTARTSECURITY EXAMPLE:\n<featureManager>\n     <feature>restConnector-2.0</feature>\n </featureManager>\n <quickStartSecurity userName=\"bob\" userPassword=\"bobpassword\" />\n <keyStore id=\"defaultKeyStore\" password=\"keystorePassword\"/>"
+              },
+              {
+                "id": "SV-250326r960792_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Users with console access and OS permissions to the folders where the Liberty Server is installed can make changes to the server. In addition, REST API calls that execute server management tasks are available and can be executed remotely. Adding a user to the admin role will allow that user to make changes to the server via the REST API calls.\n\nThe admin role must be controlled and users who are in that role must be authorized."
+              },
+              {
+                "id": "SV-250326r960792_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250327",
+        "title": "SRG-APP-000109-AS-000070",
+        "controls": [
+          {
+            "id": "SV-250327r1043188_rule",
+            "title": "The WebSphere Liberty Server must be configured to offload logs to a centralized system.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250327",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250327r1043188_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000230"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000230"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043188"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000140",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Take organization-defined actions upon audit failure include, shutting down the system, overwriting oldest audit records, and stopping the generation of audit records."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001851",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Transfer audit logs per organization-defined frequency to a different system, system component, or media than the system or system component conducting the logging."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-4 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-4 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250327r1043188_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must be configured to offload logs to a centralized system."
+              },
+              {
+                "id": "SV-250327r1043188_rule_guidance",
+                "name": "guidance",
+                "prose": "To send Liberty logs to a centralized syslog system, the Elastic environment must be set up as per the ELK stack/Elasticsearch directions. Once that is completed, configure the server.xml. The following is a sample configuration. Individual keystore, truststore, and authentication settings will vary. The SME must substitute their own values as needed. \n\nThe message, audit, and accessLog sources must be included at a minimum.\n\nFor additional information refer to the IBM website:\nhttps://www.ibm.com/support/knowledgecenter/SSEQTP_liberty/com.ibm.WebSphere.wlp.doc/ae/twlp_analytics_logstash.html\n\nEXAMPLE:\n\n<featureManager>\n    <feature>logstashCollector-1.0</feature>\n</featureManager>\n\n<keyStore id=\"defaultKeyStore\" password=\"xxxxxxx\" />\n<keyStore id=\"defaultTrustStore\" location=\"trust.jks\" password=\"xxxxxxx\" />\n<ssl id=\"myTLSConfig\" trustStoreRef=\"defaultTrustStore\" keyStoreRef=\"defaultKeyStore\" />\n\n<logstashCollector \nsource=\"message,accessLog,audit\" \nhostName=\"your ELK stack server\" \nport=\"Your ELK stack port\" \nsslRef=\"myTLSConfig\">\n</logstashCollector>"
+              },
+              {
+                "id": "SV-250327r1043188_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Log processing failures include, but are not limited to, failures in the application server log capturing mechanisms or log storage capacity being reached or exceeded. In some instances, it is preferred to send alarms to individuals rather than to an entire group. Application servers must be able to trigger an alarm and send an alert to, at a minimum, the SA and ISSO in the event there is an application server log processing failure.\n\nSatisfies: SRG-APP-000109-AS-000070, SRG-APP-000358-AS-000064"
+              },
+              {
+                "id": "SV-250327r1043188_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250328",
+        "title": "SRG-APP-000119-AS-000079",
+        "controls": [
+          {
+            "id": "SV-250328r960933_rule",
+            "title": "The WebSphere Liberty Server must protect log information from unauthorized access or changes.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250328",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250328r960933_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000260"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000260"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960933"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000163",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect audit information from unauthorized modification."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000164",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect audit information from unauthorized deletion."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-9"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-9.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-9"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-9 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250328r960933_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must protect log information from unauthorized access or changes."
+              },
+              {
+                "id": "SV-250328r960933_rule_guidance",
+                "name": "guidance",
+                "prose": "As a user with local file access to ${server.config.dir}/logs, use the chmod command to configure the following log files to have the correct file permissions of 660.\n\nchmod 660 <filename.log>\n\naudit.log\nmessages.log\nconsole.log\ntrace.log (if it exists)"
+              },
+              {
+                "id": "SV-250328r960933_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "WebSphere Liberty provides the capability to encrypt and sign the log data to prevent unauthorized modification. \n\n- The security feature (appSecurity-2.0) must be defined in order to configure a user registry for the servlet to authenticate against.  \n- The audit feature (audit-1.0) must be defined in order to generate audit records.\n- The servlet feature (servlet-3.1) must be defined to be able to deploy a web application. \n- The ejb feature (ejbLite-3.1) must be defined to be able to deploy an ejb application.\n- The ssl feature (ssl-1.0) must be defined to be able to generate and use certificates to sign and encrypt logs.\n- The ldap feature (ldapRegistry-3.0) must be defined in order to configure an enterprise-level user registry to authenticate users against.\n\nWhen the audit-1.0 feature is defined, all supported audit events will be captured and logged to an audit.log located under ${server.config.dir}/logs.\n\nThe audit log that is currently being logged to is called audit.log. When an audit log fills to a configured maximum capacity, it is archived with a timestamp with the naming convention audit_<timestamp>.log and new records are written to audit.log. \n\nThe audit logs are found under the ${server.config.dir}/logs directory and are named audit.log for the most recent, and audit_<timestamp>.log for any archived logs. \n\nTwo keystores need to be created (ikeyman as part of the JDK may be used) and a personal certificate created in each. One keystore will contain the certificate used to encrypt the logs; the other keystore will contain the certificate used to sign the logs. The audit configuration needs to define the location of these two keystores, their passwords, and the alias of each certificate used to encrypt and sign the logs. As an example:        \n <keyStore\n         id=\"auditEncKeyStore\"\n         password=\"Liberty\"\n         location=\"${server.config.dir}/resources/security/AuditEncryptionKeyStore.jks\"\n         type=\"JKS\" />\n\n      <keyStore\n         id=\"auditSignKeyStore\"\n         password=\"{xor}EzY9Oi0rJg==\"\n         location=\"${server.config.dir}/resources/security/AuditSigningKeyStore2.jks\"\n         type=\"JKS\" />\n\n<auditFileHandler \nencrypt=\"true\"\n        encryptAlias=\"auditencryption\"\n        encryptKeyStoreRef=\"auditEncKeyStore\"\n    sign=\"true\"\n        signingAlias=\"auditsigning2\"\n        signingKeyStoreRef=\"auditSignKeyStore\">\n</auditFileHandler>\n\nSatisfies: SRG-APP-000119-AS-000079, SRG-APP-000120-AS-000080"
+              },
+              {
+                "id": "SV-250328r960933_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250329",
+        "title": "SRG-APP-000121-AS-000081",
+        "controls": [
+          {
+            "id": "SV-250329r960939_rule",
+            "title": "The WebSphere Liberty Server must protect log tools from unauthorized access.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250329",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250329r960939_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000280"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000280"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960939"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001493",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect audit tools from unauthorized access."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-9"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-9.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-9"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-9 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250329r960939_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must protect log tools from unauthorized access."
+              },
+              {
+                "id": "SV-250329r960939_rule_guidance",
+                "name": "guidance",
+                "prose": "As a user with local file access to the /opt/IBM/WebSphere/Liberty/bin/ folder, use the chmod command to configure the correct file permissions of 755 for the following files.\n\nbinaryLog\nauditUtility"
+              },
+              {
+                "id": "SV-250329r960939_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Protecting log data also includes identifying and protecting the tools used to view and manipulate log data. Depending on the log format and application, system and application log tools may provide the only means to manipulate and manage application and system log data. Therefore, it is imperative that access to log tools be controlled and protected from unauthorized access. \n\nApplication servers provide a web- and/or a command line-based management functionality for managing the application server log capabilities. In addition, subsets of log tool components may be stored on the file system as jar or xml configuration files. The application server must ensure that in addition to protecting any web-based log tools, any file system-based tools are protected as well."
+              },
+              {
+                "id": "SV-250329r960939_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250330",
+        "title": "SRG-APP-000126-AS-000085",
+        "controls": [
+          {
+            "id": "SV-250330r960951_rule",
+            "title": "The WebSphere Liberty Server must be configured to encrypt log information.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250330",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250330r960951_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000320"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000320"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960951"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000162",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect audit information from unauthorized access."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001314",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Reveal error messages only to organization-defined personnel or roles."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001350",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the integrity of audit information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-9 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-9 (3).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-9 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-9 (3)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250330r960951_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must be configured to encrypt log information."
+              },
+              {
+                "id": "SV-250330r960951_rule_guidance",
+                "name": "guidance",
+                "prose": "If the system is configured to send logs to a remote ELK stack log server, (or other remote logging solution) as per requirement IBMW-LS-000230, this requirement is Not Applicable.\n\nSigning is optional. The encrypted and/or signed audit logs are found under the ${server.config.dir}/logs directory and are named audit.log for the most recent, and audit_<timestamp>.log for any archived logs. Two keystores are recommended but not required when doing both encryption and signing (ikeyman as part of the JDK may be used) and a certificate imported into each. One keystore will contain the certificate used to encrypt the logs; the other keystore will contain the certificate used to sign the logs. The audit configuration must define the location of every keystore, their passwords, and the alias of each certificate used to encrypt and sign the logs.\n\n1. Enable the following features:\n\n<featureManager>\n<feature>appSecurity-2.0</feature>\n<feature>audit-1.0</feature>\n<feature>ssl-1.0</feature>\n<feature>\n</featureManager>\n\n2. Verify a keystore is configured. The following is a JKS keystore example. PKCS12 is also a viable keystore:\n\n <keyStore\n         id=\"auditEncKeyStore\"\n         password=\"ENTER THE ENCRYPTION KEYSTORE PASSWORD\"\n         location=\"${server.config.dir}/resources/security/AuditEncryptionKeyStore.jks\"\n         type=\"JKS\" />\n\n      <keyStore\n         id=\"auditSignKeyStore\"\n         password=\"ENTER THE SIGNING KEYSTORE PASSWORD\"\n         location=\"${server.config.dir}/resources/security/AuditSigningKeyStore2.jks\"\n         type=\"JKS\" />\n\n3. Enable auditFileHandler encryption. Signing the logs is optional.\n\n<auditFileHandler \nencrypt=\"true\"\n        encryptAlias=\"auditencryption\"\n        encryptKeyStoreRef=\"auditEncKeyStore\"\n    sign=\"true\"\n        signingAlias=\"auditsigning2\"\n        signingKeyStoreRef=\"auditSignKeyStore\">\n</auditFileHandler>"
+              },
+              {
+                "id": "SV-250330r960951_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Protection of log records is of critical importance. Encrypting log records provides a level of protection that does not rely on host-based protections that can be accidentally misconfigured, such as file system permissions. Cryptographic mechanisms are the industry-established standard used to protect the integrity of log data. An example of a cryptographic mechanism is the computation and application of a cryptographic-signed hash using asymmetric cryptography. \n\n- The security feature (appSecurity-2.0) must be defined in order to configure a user registry for the servlet to authenticate against.  \n- The audit feature (audit-1.0) must be defined in order to generate audit records.\n- The servlet feature (servlet-3.1) must be defined to be able to deploy a web application. \n- The ejb feature (ejbLite-3.1) must be defined to be able to deploy an ejb application.\n- The ssl feature (ssl-1.0) must be defined to be able to generate and use certificates to sign and encrypt logs.\n- The ldap feature (ldapRegistry-3.0) must be defined in order to configure an enterprise-level user registry to authenticate users against.\n\nWhen the audit-1.0 feature is defined, all supported audit events will be captured and logged to an audit.log located under ${server.config.dir}/logs.\n\nThe audit log that is currently being logged to is called audit.log. When an audit log fills to a configured maximum capacity, it is archived with a timestamp with the naming convention audit_<timestamp>.log and new records are written to audit.log. \n\nThe audit logs are found under the ${server.config.dir}/logs directory and are named audit.log for the most recent, and audit_<timestamp>.log for any archived logs. \n\nOne keystore needs to be created (ikeyman as part of the JDK may be used) and a personal certificate created. This certificate is used to encrypt the logs. The audit configuration needs to define the location of this keystore, its password, and the alias of the certificate used to encrypt the logs. As an example:        \n <keyStore\n         id=\"auditEncKeyStore\"\n         password=\"Liberty\"\n         location=\"${server.config.dir}/resources/security/AuditEncryptionKeyStore.jks\"\n         type=\"JKS\" />\n\n      <keyStore\n         id=\"auditSignKeyStore\"\n         password=\"{xor}EzY9Oi0rJg==\"\n         location=\"${server.config.dir}/resources/security/AuditSigningKeyStore2.jks\"\n         type=\"JKS\" />\n\n<auditFileHandler \nencrypt=\"true\"\n        encryptAlias=\"auditencryption\"\n        encryptKeyStoreRef=\"auditEncKeyStore\"\n</auditFileHandler>\n\nSatisfies: SRG-APP-000126-AS-000085, SRG-APP-000118-AS-000078, SRG-APP-000267-AS-000170"
+              },
+              {
+                "id": "SV-250330r960951_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250331",
+        "title": "SRG-APP-000133-AS-000092",
+        "controls": [
+          {
+            "id": "SV-250331r960960_rule",
+            "title": "The WebSphere Liberty Server must protect software libraries from unauthorized access.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250331",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250331r960960_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000340"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000340"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960960"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001499",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Limit privileges to change software resident within software libraries."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-5 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-5 (6).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-5 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-5 (6)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250331r960960_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must protect software libraries from unauthorized access."
+              },
+              {
+                "id": "SV-250331r960960_rule_guidance",
+                "name": "guidance",
+                "prose": "As a privileged user with local file access to the /opt/IBM/WebSphere/Liberty/lib/ folder, verify all of the jar files in the lib folder have the correct file permissions of 664.\n\nIf the file permissions for all jar files in the lib folder are not set to 664, use the chmod command to change the file permissions.\n\nchmod 664 *.jar"
+              },
+              {
+                "id": "SV-250331r960960_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Application servers have the ability to specify that the hosted applications use shared libraries. The application server must have a capability to divide roles based upon duties wherein one project user (such as a developer) cannot modify the shared library code of another project user. The application server must also be able to specify that non-privileged users cannot modify any shared library code at all."
+              },
+              {
+                "id": "SV-250331r960960_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250332",
+        "title": "SRG-APP-000142-AS-000014",
+        "controls": [
+          {
+            "id": "SV-250332r1043177_rule",
+            "title": "The WebSphere Liberty Server must prohibit or restrict the use of nonsecure ports, protocols, modules, and/or services as defined in the PPSM CAL and vulnerability assessments.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250332",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250332r1043177_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000370"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000370"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043177"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000382",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to prohibit or restrict the use of organization-defined prohibited or restricted functions, system ports, protocols, software, and/or services."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250332r1043177_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must prohibit or restrict the use of nonsecure ports, protocols, modules, and/or services as defined in the PPSM CAL and vulnerability assessments."
+              },
+              {
+                "id": "SV-250332r1043177_rule_guidance",
+                "name": "guidance",
+                "prose": "Every port listed in ${server.config.dir}/server.xml must be registered with PPSM. \n\nRefer to the PPSM website on https://cyber.mil/ppsm for information."
+              },
+              {
+                "id": "SV-250332r1043177_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Some networking protocols may not meet organizational security requirements to protect data and components.\n\nApplication servers natively host a number of various features, such as management interfaces, httpd servers, and message queues. These features all run on TCPIP ports. This creates the potential that the vendor may choose to use port numbers or network services that have been deemed unusable by the organization. The application server must have the capability to both reconfigure and disable the assigned ports without adversely impacting application server operation capabilities. For a list of approved ports and protocols, reference the DoD ports and protocols website at https://powhatan.iiie.disa.mil/ports/cal.html."
+              },
+              {
+                "id": "SV-250332r1043177_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250333",
+        "title": "SRG-APP-000148-AS-000101",
+        "controls": [
+          {
+            "id": "SV-250333r1051118_rule",
+            "title": "The WebSphere Liberty Server must use an LDAP user registry.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250333",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250333r1051118_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000380"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000380"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1051118"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000764",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Uniquely identify and authenticate organizational users and associate that unique identification with processes acting on behalf of those users."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-2.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-2"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250333r1051118_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must use an LDAP user registry."
+              },
+              {
+                "id": "SV-250333r1051118_rule_guidance",
+                "name": "guidance",
+                "prose": "To ensure an enterprise user management system is configured to uniquely identify and authenticate users and processes acting on behalf of org users, the server.xml must be configured to use an ldap configuration as follows:\n\n<featureManager>\n<feature>appSecurity-2.0</feature>\n<feature>ldapRegistry-3.0</feature>\n</featureManager>\n\n<ldapRegistry id=\"ldap\" realm=\"SampleLdapRealm\" host=\"${ldap.server.name}\" port=\"${ldap.server.port}\" ignoreCase=\"true\"\nbaseDN=\"${ldap.server.base.dn}\"\nldapType=\"${ldap.vendor.type}\"\nsearchTimeout=\"8m\">\n</ldapRegistry>"
+              },
+              {
+                "id": "SV-250333r1051118_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "To ensure accountability and prevent unauthorized access, application server users must be uniquely identified and authenticated. This is typically accomplished via the use of a user store which is either local (OS-based) or centralized (LDAP) in nature. Best practice guideline to is to use a centralized enterprise LDAP server.\n\nTo ensure support to the enterprise, the authentication must use an enterprise solution."
+              },
+              {
+                "id": "SV-250333r1051118_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250334",
+        "title": "SRG-APP-000148-AS-000101",
+        "controls": [
+          {
+            "id": "SV-250334r1051118_rule",
+            "title": "Basic Authentication must be disabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250334",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250334r1051118_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000381"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000381"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1051118"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000764",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Uniquely identify and authenticate organizational users and associate that unique identification with processes acting on behalf of those users."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-2.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-2"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-2"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250334r1051118_rule_statement",
+                "name": "statement",
+                "prose": "Basic Authentication must be disabled."
+              },
+              {
+                "id": "SV-250334r1051118_rule_guidance",
+                "name": "guidance",
+                "prose": "Delete basicRegistry settings and re-configure the server.xml file to use a centralized LDAP user store. \n\nSAMPLE:\n\n<featureManager>\n<feature>appSecurity-2.0</feature>\n<feature>ldapRegistry-3.0</feature>\n</featureManager>\n\n<ldapRegistry id=\"ldap\" realm=\"SampleLdapRealm\" host=\"${ldap.server.name}\" port=\"${ldap.server.port}\" ignoreCase=\"true\"\nbaseDN=\"${ldap.server.base.dn}\"\nldapType=\"${ldap.vendor.type}\"\nsearchTimeout=\"8m\">\n</ldapRegistry>"
+              },
+              {
+                "id": "SV-250334r1051118_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Basic authentication does not use a centralized user store like LDAP. Not using a centralized user store complicates user management tasks and increases the risk that user accounts could remain on the system long after users have moved to their next deployment. Basic Auth also stores user credentials and passwords on the system and creates the potential for an attacker to circumvent strong authentication requirements like multi-factor or certificate based authentication.\n\nAllowing failover to Basic Auth allows the Liberty Server to fall back to basic authentication in the event certificate based authentication methods fail. Configuring the Liberty Server to fall back to basic authentication creates the potential for an attacker to circumvent strong authentication requirements and must be avoided."
+              },
+              {
+                "id": "SV-250334r1051118_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250335",
+        "title": "SRG-APP-000149-AS-000102",
+        "controls": [
+          {
+            "id": "SV-250335r1015469_rule",
+            "title": "Multifactor authentication for network access to privileged accounts must be used.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250335",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250335r1015469_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000390"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000390"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1015469"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000187",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, map the authenticated identity to the account of the individual or group."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000765",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement multifactor authentication for access to privileged accounts."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002009",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Accept Personal Identity Verification-compliant credentials from other federal agencies."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002010",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Electronically verify Personal Identity Verification-compliant credentials from other federal agencies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-8 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-8 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250335r1015469_rule_statement",
+                "name": "statement",
+                "prose": "Multifactor authentication for network access to privileged accounts must be used."
+              },
+              {
+                "id": "SV-250335r1015469_rule_guidance",
+                "name": "guidance",
+                "prose": "Refer to IBM documentation on how to configure TLS and client based certificate authentication for additional configuration details. The following is a summary list of items needed to configure the system for certificate based authentication. Production systems and installations will vary. \n\nThe application\u2019s web.xml file must be configured to use client certs.\n\nEXAMPLE:\n<login-config>\n    <auth-method>CLIENT-CERT</auth-method>\n</login-config>\n\nThe server.xml features must be configured to use transportSecurity and an ldap configuration. \n\n<featureManager>\n<feature>appSecurity-2.0</feature>\n<feature>ldapRegistry-3.0</feature>\n<feature>transportSecurity-1.0</feature>\n</featureManager>\n\nThe server.xml TLS and LDAP settings must be configured. The following is an EXAMPLE only. \"Default\" verbiage and keystore information in the below SSL configuration will be different in production systems.\n\n <!-- default SSL configuration is defaultSSLSettings -->      \n    <sslDefault sslRef=\"defaultSSLSettings\" />\n    <ssl id=\"defaultSSLSettings\" keyStoreRef=\"defaultKeyStore\" sslProtocol=\"SSL_TLSv2\" trustStoreRef=\"defaultTrustStore\"\nclientAuthentication=\"true\"/>\n\n <keyStore id=\"defaultKeyStore\" location=\"key.jks\" type=\"JKS\" password=\"defaultPWD\" />\n <keyStore id=\"defaultTrustStore\" location=\"key.jks\" type=\"JKS\" password=\"defaultPWD\" />\n\nConfigure LDAP certificate filter settings according the certificates being used.\n\n<ldapRegistry id=\"ldap\" realm=\"SampleLdapRealm\" host=\"${ldap.server.name}\" port=\"${ldap.server.port}\" ignoreCase=\"true\"\nbaseDN=\"${ldap.server.base.dn}\"\nldapType=\"${ldap.vendor.type}\"\ncertificateMapMode=\"Certificate_Filter\" or \"Exact_DN\"\ncertificateFilter=\"${your certificate mapping}\"\nsearchTimeout=\"8m\"\nsslEnabled=\"true\">\n</ldapRegistry>"
+              },
+              {
+                "id": "SV-250335r1015469_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Multifactor authentication creates a layered defense and makes it more difficult for an unauthorized person to access the application server. If one factor is compromised or broken, the attacker still has at least one more barrier to breach before successfully breaking into the target. Unlike a simple username/password scenario where the attacker could gain access by knowing both the username and password without the user knowing his account was compromised, multifactor authentication adds the requirement that the attacker must have something from the user, such as a token, or to biometrically be the user.\n\nWhen accessing the application server via a network connection, administrative access to the application server must be PKI Hardware Token enabled.\n\nThe high level steps required for configuring Liberty Server to use certificate based authentication include the following:\n\n1. Configure Web Application with client certificate authentication.\n2. Configure Liberty SSL configuration with client authentication.\n3. Configure Liberty LDAP Security Configuration with certificate filter.\n\nSatisfies: SRG-APP-000149-AS-000102, SRG-APP-000151-AS-000103, SRG-APP-000402-AS-000247, SRG-APP-000403-AS-000248, SRG-APP-000177-AS-000126"
+              },
+              {
+                "id": "SV-250335r1015469_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250336",
+        "title": "SRG-APP-000171-AS-000119",
+        "controls": [
+          {
+            "id": "SV-250336r1015470_rule",
+            "title": "The WebSphere Liberty Server must store only encrypted representations of user passwords.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250336",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250336r1015470_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000440"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000440"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1015470"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000196",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system, for password-based authentication, stores only cryptographically-protected passwords."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004062",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, store passwords using an approved salted key derivation function, preferably using a keyed hash."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002475",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to prevent unauthorized modification of organization-defined information at rest on organization-defined system components."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002476",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to prevent unauthorized disclosure of organization-defined information at rest on organization-defined system components."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-28 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-28 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250336r1015470_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must store only encrypted representations of user passwords."
+              },
+              {
+                "id": "SV-250336r1015470_rule_guidance",
+                "name": "guidance",
+                "prose": "For additional information regarding the use of the SecurityUtility command, refer to IBM\u2019s website: \nhttps://www.ibm.com/docs/en/was-liberty/base?topic=applications-securityutility-command\n\nCreate a new xml file with file permissions of 660.\n\nFile owner and group membership is the same as the WebSphere Liberty server user.\n\nAdd the following line to the new xml file:\n\n<variable name=\"wlp.password.encryption.key\" value=\"mysecret\"/>\n\nIn the above, \"mysecret\" is the passphrase selected to create a cryptographic hash that represents the password.\n\nSave the file to a secured location. Note the path and name, as it will be needed when updating server.xml.\n\nEdit the server.xml file and add the following line:\n\n<include location=\"/path/<xml file created>\" />\n\nFor every unencrypted password in server.xml, run the following SecurityUtility command, which can be found in the Liberty Server install path:\n\nSecurityUtility encode --encoding=aes \n\nThis will prompt the user to enter the plain-text password stored within the server.xml file.\n\nThe SecurityUtility tool will generate an AES cryptographic hash of the password.\n\nCopy and replace the plain-text password with the hashed value.\n\nThis must be done for every plain-text password in server.xml.\n\nRestart the server by entering: \nserver stop <server name>\nserver start <server name>"
+              },
+              {
+                "id": "SV-250336r1015470_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "WebSphere Liberty can either provide a local account store or integrate with enterprise account stores such as LDAP directories. If the application server stores application passwords in the server.xml configuration files, the application server must store encrypted representations of passwords rather than unencrypted, clear-text passwords.\n\nThe Liberty Application Server provides a SecurityUtility tool that can take a plain-text or encoded password and convert it to an encrypted password. This tool does not update the ${server.config.dir/server.xml file directly; a manual update of the server.xml is needed once the utility is run. \n\nIt is imperative that administrators understand that the SecurityUtility tool must be run for each application password that is stored within the server.xml file.\n\nSatisfies: SRG-APP-000171-AS-000119, SRG-APP-000428-AS-000265, SRG-APP-000429-AS-000157"
+              },
+              {
+                "id": "SV-250336r1015470_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250337",
+        "title": "SRG-APP-000172-AS-000120",
+        "controls": [
+          {
+            "id": "SV-250337r961029_rule",
+            "title": "The WebSphere Liberty Server must use TLS-enabled LDAP.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250337",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250337r961029_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000450"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000450"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961029"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000197",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, transmit passwords only over cryptographically-protected channels."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (1) (c)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (1).1 (v)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (1) (c)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (1) (c)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250337r961029_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must use TLS-enabled LDAP."
+              },
+              {
+                "id": "SV-250337r961029_rule_guidance",
+                "name": "guidance",
+                "prose": "To ensure the Liberty Server transmits only encrypted passwords, the ${server.config.dir}/server.xml must be configured as follows:\n\n<featureManager>\n<feature>appSecurity-2.0</feature>\n<feature>ssl-1.0</feature>\n<feature>ldapRegistry-3.0</feature>\n</featureManager>\n\n<ldapRegistry id=\"ldap\" realm=\"SampleLdapRealm\" host=\"${ldap.server.name}\" port=\"${ldap.server.port}\" ignoreCase=\"true\"\nbaseDN=\"${ldap.server.base.dn}\"\nbindDN=\"${ldap.server.bind.dn}\u2019\nbindPassword=\"${ldap.server.bind.password}\"\nsslEnabled=\"true\"\nsslRef=\"LDAPTLSSettings\"\nldapType=\"${ldap.vendor.type}\"\nsearchTimeout=\"8m\">\n</ldapRegistry> \n\n<sslDefault sslRef=\"LDAPTLSSettings\" />\n<ssl id=\"LDAPTLSSettings\" keyStoreRef=\"LDAPKeyStore\" trustStoreRef=\"LDAPTrustStore\"\nsslProtocol=\"TLSv1.2\"\n />\n<keyStore id=\"LDAPKeyStore\" location=\"${server.config.dir}/LdapSSLKeyStore.jks\" type=\"JKS\" password=\"{xor}CDo9Hgw=\" />\n<keyStore id=\"LDAPTrustStore\" location=\"${server.config.dir}/LdapTLSTrustStore.jks\" type=\"JKS\" password=\"{xor}CDo9Hgw=\" />"
+              },
+              {
+                "id": "SV-250337r961029_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Passwords need to be protected at all times, and encryption is the standard method for protecting passwords during transmission. If passwords are not encrypted, they can be plainly read (i.e., clear text) and easily compromised.\n\nApplication servers have the capability to use either certificates (tokens) or user IDs and passwords in order to authenticate. When the application server transmits or receives passwords, the passwords must be encrypted. The certificate used by LDAP to establish trust with incoming client requests must be imported into a trust keystore created on the Liberty Server (JDK ikeyman may be used to do this). The LDAP configuration must indicate it is using SSL, provide the BindDN and BindPassword and point to the trust keystore containing the LDAP certificate."
+              },
+              {
+                "id": "SV-250337r961029_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250338",
+        "title": "SRG-APP-000177-AS-000126",
+        "controls": [
+          {
+            "id": "SV-250338r961044_rule",
+            "title": "The WebSphere Liberty Server must use DoD-issued/signed certificates.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250338",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250338r961044_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000500"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961044"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000187",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, map the authenticated identity to the account of the individual or group."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002450",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement organization-defined types of cryptography for each specified cryptography use."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002470",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Only allow the use of organization-defined certificate authorities for verification of the establishment of protected sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-23 (5)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-23 (5)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250338r961044_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must use DoD-issued/signed certificates."
+              },
+              {
+                "id": "SV-250338r961044_rule_guidance",
+                "name": "guidance",
+                "prose": "Do not use self-signed certificates in a production environment. Only import certificates signed by an authorized DoD CA or authorized for DoD use. \n\nObtain the signer certificate either as a Base 64-encoded ASCII file or as binary DER data. \n\nUsing the JDK\u2019s ikeyman or keytool utility, open the default trusted keystore specified in the ${server.config.dir}/server.xml. \n\nClick on signer certificates and import the file that contains the DoD signed certificate."
+              },
+              {
+                "id": "SV-250338r961044_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The cornerstone of PKI is the private key used to encrypt or digitally sign information. The key by itself is a cryptographic value that does not contain specific user information, but the key can be mapped to a user. Without mapping the certificate used to authenticate to the user account, the ability to determine the identity of the individual user or group will not be available for forensic analysis.\n\nSatisfies: SRG-APP-000177-AS-000126, SRG-APP-000427-AS-000264, SRG-APP-000514-AS-000137"
+              },
+              {
+                "id": "SV-250338r961044_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250339",
+        "title": "SRG-APP-000179-AS-000129",
+        "controls": [
+          {
+            "id": "SV-250339r1067571_rule",
+            "title": "The WebSphere Liberty Server must use FIPS 140-2 approved encryption modules when authenticating users and processes.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250339",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250339r1067571_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000520"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000520"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1067571"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000803",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement mechanisms for authentication to a cryptographic module that meet the requirements of applicable laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001188",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate a unique session identifier for each session with organization-defined randomness requirements."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002418",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect the confidentiality and/or integrity of transmitted information."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002422",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Maintain the confidentiality and/or integrity of information during reception."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002450",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement organization-defined types of cryptography for each specified cryptography use."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-13"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-13 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250339r1067571_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must use FIPS 140-2 approved encryption modules when authenticating users and processes."
+              },
+              {
+                "id": "SV-250339r1067571_rule_guidance",
+                "name": "guidance",
+                "prose": "There are two ways to meet this requirement. Only one method is required.\n\nIf IBM JDK 8 is installed and configured to run with WebSphere Liberty, proceed with method (I).\n\nIf IBM Semeru Runtimes version 11 and above is installed and configured with WebSphere Liberty, proceed with method (II). Currently IBM Semeru supports FIPS on RedHat Enterprise Linux.\n\nMethod (I) IBM JDK 8 is configured to run with WebSphere Liberty:\n\n1. Edit/Create the ${server.config.dir}/jvm.options file. \nEdit/Add the following two properties:\nDcom.ibm.jsse2.usefipsprovider=true \nDcom.ibm.jsse2.usefipsProviderName=IBMJCEPlusFIPS \n\n2. Edit ${JAVA_HOME}/jre/lib/security/java.security file and locate the list of cryptographic providers. Edit/add the following four providers: \n\nsecurity.provider.1=com.ibm.jsse2.IBMJSSEProvider2\nsecurity.provider.2=com.ibm.crypto.plus.provider.IBMJCEPlusFIPS \nsecurity.provider.3=com.ibm.crypto.provider.IBMJCE\nsecurity.provider.4=com.ibm.crypto.plus.provider.IBMJCEPlus\n\nMethod (II) Semeru Runtimes version 11 and above is installed and configured with WebSphere Liberty. Requires RedHat Enterprise Linux as the Host Operating System.\n\n1. Log in as root or super user.\n\n2. Enable FIPS on the RedHat Enterprise Linux. \n$ fips-mode-setup --enable\n$ fips-mode-setup --check\n \n3. Update/create the ${server.config.dir}/jvm.options.\nEdit/Add the following property:\nDsemeru.fips=true \n\n4. Install NSS packages. Run \"$ dnf install nss\".\n\n5. Import keystores to NSS Database by using \"pk12util\" command. Replace \"changeit\" for -W option to the desired password. \n\n$ pk12util -i resources/security/key.p12 -W changeit -d /etc/pki/nssdb\npk12util: PKCS12 IMPORT SUCCESSFUL\n\n6. Mark the imported certificates as a trusted certificate authority (CA).\n\n$ certutil -M -n default -t \"CT,CT,CT\" -d /etc/pki/nssdb\n\n7. List the contents of the NSS Database to confirm the alias name and the Trust Attributes.\n\n$ certutil -L -d /etc/pki/nssdb\nCertificate Nickname                                         Trust Attributes\n                                                                       SSL,S/MIME,JAR/XPI\ndefault                                                        CTu,Cu,Cu\n\n8. Create a config file (pkcs11cfg.cfg) with the contents below. It will be used by ${server.config.dir}/server.xml. \n\nname = NSS-FIPS\nlibrary = /usr/lib64/libsoftokn3.so\nslot = 3\nshowInfo = true\n\n9. Update the ${server.config.dir}/server.xml file to use the configuration file in its SSL configuration. \n\n<ssl id=\"defaultSSLConfig\"\n         keyStoreRef=\"defaultKeyStore\"\n         sslProtocol=\"TLSv1.2\" />    \n<keyStore id=\"defaultKeyStore\" password=\"password used in -W parameter earlier here\"\n         location=\"${server.config.dir}/pkcs11cfg.cfg\" type=\"PKCS11\"\n         fileBased=\"false\" provider=\"SunPKCS11-NSS-FIPS\"/>\n\n9.1 Find the <keyStore/> configuration referenced in the ssl configuration as \"keyStoreRef\". \n9.2 Set \"provider\" attribute to either \"SunPKCS11-NSS-FIPS\" or \"PKCS11-NSS-FIPS\".\n9.3 Set the \"type\" attribute to \"PKCS11\"\n9.4 Set the \"fileBased\" attribute to \"false\"\n9.5 Set the \"location\" attribute to point to the NSS keystore configuration created in step 8 (pkcs11.cfg.cfg).\n9.6 Verify the file is in a location that is accessible to Liberty."
+              },
+              {
+                "id": "SV-250339r1067571_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Application servers must use and meet requirements of the DOD Enterprise PKI infrastructure for application authentication. Encryption is only as good as the encryption modules used. Unapproved cryptographic module algorithms cannot be verified and cannot be relied upon to provide confidentiality or integrity, and DOD data may be compromised due to weak algorithms. The use of TLS provides confidentiality of data in transit between the application server and client. \n\nTLS must be enabled and non-FIPS-approved SSL versions must be disabled. NIST SP 800-52 specifies the preferred configurations for government systems.\n\nSatisfies: SRG-APP-000179-AS-000129, SRG-APP-000224-AS-000152, SRG-APP-000416-AS-000140, SRG-APP-000439-AS-000155, SRG-APP-000442-AS-000259, SRG-APP-000514-AS-000136"
+              },
+              {
+                "id": "SV-250339r1067571_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250340",
+        "title": "SRG-APP-000295-AS-000263",
+        "controls": [
+          {
+            "id": "SV-250340r1043182_rule",
+            "title": "HTTP session timeout must be configured.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250340",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250340r1043182_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000720"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000720"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043182"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002038",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The organization requires users to reauthenticate upon organization-defined circumstances or situations requiring reauthentication."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004895",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Permit users to invoke the trusted communications path for communications between the user and the organization-defined security functions, including at a minimum, authentication and re-authentication."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002361",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Automatically terminate a user session after organization-defined conditions or trigger events requiring session disconnect."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-12"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-12"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250340r1043182_rule_statement",
+                "name": "statement",
+                "prose": "HTTP session timeout must be configured."
+              },
+              {
+                "id": "SV-250340r1043182_rule_guidance",
+                "name": "guidance",
+                "prose": "The ${server.config.dir}/server.xml file must be configured to update the invalidationTimeout attribute on the httpSession element to set the session timeout value in hours (h) or minutes (m). The server.xml file must define the following: \n\n<httpSession invalidationTimeout=\"10m\"/>  \n\nBy default, httpSession invalidationTimeout is set to 30m."
+              },
+              {
+                "id": "SV-250340r1043182_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "An attacker can take advantage of user sessions that are left open, thus bypassing the user authentication process.\n\nTo thwart the vulnerability of open and unused user sessions, the application server must be configured to close the sessions when a configured condition or trigger event is met.\n\nSession termination terminates all processes associated with a user\u2019s logical session except those processes that are specifically created by the user (i.e., session owner) to continue after the session is terminated.\n\nConditions or trigger events requiring automatic session termination can include, for example, periods of user inactivity, targeted responses to certain types of incidents, and time-of-day restrictions on information system use.\n\nSatisfies: SRG-APP-000295-AS-000263, SRG-APP-000389-AS-000253"
+              },
+              {
+                "id": "SV-250340r1043182_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250341",
+        "title": "SRG-APP-000315-AS-000094",
+        "controls": [
+          {
+            "id": "SV-250341r1015252_rule",
+            "title": "Application security must be enabled on the WebSphere Liberty Server.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250341",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250341r1015252_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000770"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000770"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1015252"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000068",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the confidentiality of remote access sessions."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002314",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Employ automated mechanisms to control remote access methods."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250341r1015252_rule_statement",
+                "name": "statement",
+                "prose": "Application security must be enabled on the WebSphere Liberty Server."
+              },
+              {
+                "id": "SV-250341r1015252_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the ${server.config.dir}/server.xml file and add the appSecurity-2.0 feature. \n\n<featureManager>\n<feature>appSecurity-2.0</feature>\n</featureManager>\n\nReview ${server.config.dir}/logs/messages.log\n\nValidate log entry that indicates \"Security service is ready\"."
+              },
+              {
+                "id": "SV-250341r1015252_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Application security enables security for the applications in the environment. This type of security provides application isolation and requirements for authenticating application users. When a user enables security, both administrative and application security is enabled. \n\nApplication security is in effect only when administrative security is enabled via the security feature. If the application server is to be used for only web applications, only the servlet-3.1 feature needs to be defined. If the application server is to be used for only ejb applications, only the ejbLite-3.1 feature needs to be defined. If both web and ejb applications are to be deployed on the application server, then both the servlet-3.1 and ejbLite-3.1 features need to be defined. The check and fix assumes that the application server will have both web and ejb applications deployed.\n\nSatisfies: SRG-APP-000315-AS-000094, SRG-APP-000014-AS-000009"
+              },
+              {
+                "id": "SV-250341r1015252_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250342",
+        "title": "SRG-APP-000340-AS-000185",
+        "controls": [
+          {
+            "id": "SV-250342r961353_rule",
+            "title": "Users in a reader-role must be authorized.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250342",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250342r961353_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000790"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000790"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961353"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002235",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent non-privileged users from executing privileged functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-6 (10)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-6 (10)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250342r961353_rule_statement",
+                "name": "statement",
+                "prose": "Users in a reader-role must be authorized."
+              },
+              {
+                "id": "SV-250342r961353_rule_guidance",
+                "name": "guidance",
+                "prose": "Edit the ${server.config.dir}/server.xml file. If unauthorized users have been added to the reader-role, remove those users. \n\nOtherwise, document the users who are granted the reader-role access.\n\nTo allow read-only access to select administrative REST APIs, the ${server.config.dir}/server.xml must be configured as follows. Additionally, the users and groups they are a part of must be defined within LDAP.\n\nEXAMPLE:\n<featureManager>\n<feature>appSecurity-2.0</feature>\n</featureManager>\n\n<reader-role>\n<group>group</group><group-access-id> group:realmName/groupUniqueId</group-access-id><user>user</user><user-access-id>user:realmName/userUniqueId</user-access-id>\n</reader-role>\n\n<ldapRegistry id=\"ldap\" realm=\"SampleLdapRealm\" host=\"${ldap.server.name}\" port=\"${ldap.server.port}\" ignoreCase=\"true\"\nbaseDN=\"${ldap.server.base.dn}\"\nldapType=\"${ldap.vendor.type}\"\nsearchTimeout=\"8m\">\n</ldapRegistry>"
+              },
+              {
+                "id": "SV-250342r961353_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The reader role is a management role that allows read-only access to select administrative REST APIs as well as the Admin Center UI (adminCenter-1.0). Preventing non-privileged users from viewing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.\n\nUsers granted reader role access must be authorized."
+              },
+              {
+                "id": "SV-250342r961353_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250343",
+        "title": "SRG-APP-000357-AS-000038",
+        "controls": [
+          {
+            "id": "SV-250343r961392_rule",
+            "title": "The WebSphere Liberty Server must allocate JVM log record storage capacity in accordance with organization-defined log record storage requirements.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250343",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250343r961392_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000830"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000830"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961392"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001849",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Allocate audit log storage capacity to accommodate organization-defined audit log retention requirements."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250343r961392_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must allocate JVM log record storage capacity in accordance with organization-defined log record storage requirements."
+              },
+              {
+                "id": "SV-250343r961392_rule_guidance",
+                "name": "guidance",
+                "prose": "Edit the bootstrap.properties file and configure the  com.ibm.ws.logging.console.log.level=ON. \n\nEdit the ${server.config.dir}/server.xml file. Configure <logging traceSpecification> in accordance with local policy and system storage limits.\n\nEXAMPLE:\n<logging traceSpecification=\"*=info=enabled:my.package.*=all\" maxFileSize=\"40\" maxFiles=\"20\"/>, \n\nwhere maxFileSize is set to the maximum file size defined in local policy and maxFiles is set to the maximum number of historical files defined in local policy and in accordance with system storage limits."
+              },
+              {
+                "id": "SV-250343r961392_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "JVM logs are logs used to store application and runtime related events, rather than audit related events. They are mainly used to diagnose application or runtime bugs. However, they are useful for providing more context when correlated with audit related events. \n\nBy default, Liberty automatically logs the console.log, messages.log, and trace.log but these default settings must be validated."
+              },
+              {
+                "id": "SV-250343r961392_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250344",
+        "title": "SRG-APP-000380-AS-000088",
+        "controls": [
+          {
+            "id": "SV-250344r961461_rule",
+            "title": "The server.xml file must be protected from unauthorized modification.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250344",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250344r961461_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000910"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000910"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961461"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001813",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce access restrictions using organization-defined mechanisms."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-5 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-5 (1) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250344r961461_rule_statement",
+                "name": "statement",
+                "prose": "The server.xml file must be protected from unauthorized modification."
+              },
+              {
+                "id": "SV-250344r961461_rule_guidance",
+                "name": "guidance",
+                "prose": "As a privileged user with local file access to ${server.config.dir}/server.xml.\n\nUse the chmod command to configure the correct file permissions of 660.\n\nchmod 660 server.xml"
+              },
+              {
+                "id": "SV-250344r961461_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "When dealing with access restrictions pertaining to change control, it should be noted that any changes to the software, and/or application server configuration could potentially have significant adverse effects on the overall security of the system.\n\nProtect the server.xml file from unauthorized modification by applying file permission restrictions."
+              },
+              {
+                "id": "SV-250344r961461_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250345",
+        "title": "SRG-APP-000400-AS-000246",
+        "controls": [
+          {
+            "id": "SV-250345r961521_rule",
+            "title": "The WebSphere Liberty Server must prohibit the use of cached authenticators after an organization-defined time period.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250345",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250345r961521_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-000970"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-000970"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961521"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002007",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prohibit the use of cached authenticators after an organization-defined time period."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (13)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (13)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250345r961521_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must prohibit the use of cached authenticators after an organization-defined time period."
+              },
+              {
+                "id": "SV-250345r961521_rule_guidance",
+                "name": "guidance",
+                "prose": "Edit the server.xml file and define the authCache timeout value as 10 minutes or AO approved value. Also ensure the appSecurity-2.0 feature is enabled.\n\nEXAMPLE:\n\n<featureManager> \n<feature>appSecurity-2.0</feature>\n</featureManager> \n\n<authCache initialSize=\"100\" maxSize=\"50000\" timeout=\"10m\"/>"
+              },
+              {
+                "id": "SV-250345r961521_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Larger authentication cache timeout values can increase security risks. For example, a user who is revoked can still log in by using a credential that is cached in the authentication cache until the cache is refreshed.\n\nSmaller authentication cache timeout values can affect performance. When this value is smaller, the Liberty Server accesses the user registry or repository more frequently.\n\nLarger numbers of entries in the authentication cache, which is caused by an increased number of users, increases the memory usage of the authentication cache. Thus, the application server might slow down and affect performance.\n\nIf cached authentication information is out of date, the validity of the authentication information may be questionable."
+              },
+              {
+                "id": "SV-250345r961521_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250346",
+        "title": "SRG-APP-000428-AS-000265",
+        "controls": [
+          {
+            "id": "SV-250346r1067567_rule",
+            "title": "The WebSphere Liberty Server LTPA keys password must be changed.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250346",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250346r1067567_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-001050"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-001050"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1067567"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002475",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to prevent unauthorized modification of organization-defined information at rest on organization-defined system components."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-28 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-28 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250346r1067567_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server LTPA keys password must be changed."
+              },
+              {
+                "id": "SV-250346r1067567_rule_guidance",
+                "name": "guidance",
+                "prose": "To update key password and force a regeneration of keys follow these steps. To obtain encoded values, use the Liberty \"securityUtility encode\" command.\n\n1. Shut down the server.\n\n2. Configure the <ltpa> element in the server.xml file as follows, replacing the sample values in the example with local values. The password may be encoded or encrypted.\n\n<ltpa keysFileName=\"yourLTPAKeysFileName.keys\" keysPassword=\"yourkeysPassword\" expiration=\"120\" />\n\n3. Delete the existing ${wlp.server.dir}/resources/security/ltpa.keys file.\n\n4. Sync changes with all servers in the cell.\n\n5. Start the servers."
+              },
+              {
+                "id": "SV-250346r1067567_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The default location of the automatically generated Lightweight Third Party Authentication (LTPA) keys file is ${server.output.dir}/resources/security/ltpa.keys. \n\nThe LTPA keys are encrypted with a randomly generated key and a default password of WebAS is initially used to protect the keys. The password is required when importing the LTPA keys into another server. To protect the security of the LTPA keys, change the password. \n\nWhen the LTPA keys are exchanged between servers, this password must match across the servers for Single Sign On (SSO) to work.\n\nAutomated LTPA key generation can create unplanned outages. Plan to change the LTPA keys during a scheduled outage and do not use automated key changes. Distribute the new keys to all nodes in the cell and to all external systems/cells during this outage window."
+              },
+              {
+                "id": "SV-250346r1067567_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250347",
+        "title": "SRG-APP-000439-AS-000274",
+        "controls": [
+          {
+            "id": "SV-250347r961632_rule",
+            "title": "The WebSphere Liberty Server must remove all export ciphers to protect the confidentiality and integrity of transmitted information.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250347",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250347r961632_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-001110"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-001110"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961632"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002418",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect the confidentiality and/or integrity of transmitted information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-8"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-8"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250347r961632_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must remove all export ciphers to protect the confidentiality and integrity of transmitted information."
+              },
+              {
+                "id": "SV-250347r961632_rule_guidance",
+                "name": "guidance",
+                "prose": "Review the ${server.config.dir}/server.xml file and if needed, modify the \"enabledCiphers\" setting for each affected SSL configuration.\n\n<ssl id=\"myDefaultSSLConfig\"\n       keyStoreRef=\"defaultKeyStore\"\n       trustStoreRef=\"defaultTrustStore\"\n       clientAuthentication=\"true\"\n       sslProtocol=\"TLS\" \n       enabledCiphers=\"SSL_xxx_yyy_zzz\"/> \n\nwhere xxx, yyy, and zzz do not contain \"EXPORT\"."
+              },
+              {
+                "id": "SV-250347r961632_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Export grade encryption suites are not strong and do not meet DoD requirements. The encryption for the session becomes easy for the attacker to break. Do not use export grade encryption."
+              },
+              {
+                "id": "SV-250347r961632_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250348",
+        "title": "SRG-APP-000440-AS-000167",
+        "controls": [
+          {
+            "id": "SV-250348r961635_rule",
+            "title": "The WebSphere Liberty Server must be configured to use HTTPS only.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250348",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250348r961635_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-001120"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-001120"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961635"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002421",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to prevent unauthorized disclosure of information and/or detect changes to information during transmission."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-8 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-8 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250348r961635_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must be configured to use HTTPS only."
+              },
+              {
+                "id": "SV-250348r961635_rule_guidance",
+                "name": "guidance",
+                "prose": "Modify the server.xml file. Enable the ssl-1.0 feature and configure the httpEndpoint settings. The keystores and truststores must also be configured.\n\n<featureManager>\n<feature>servlet-3.0</feature>\n<feature>ssl-1.0</feature>\n<feature>appSecurity-2.0</feature>\n</featureManager>\n    \n    <httpEndpoint id=\"defaultHttpEndpoint\"\n          host=\"localhost\"\n          httpPort=\"${bvt.prop.HTTP_default}\"\n          httpsPort=\"${bvt.prop.HTTP_default.secure}\" >\n          <tcpOptions soReuseAddr=\"true\" />\n          <sslOptions sslRef=\"testSSLConfig\" />\n</httpEndpoint> \n\n     <ssl id=\"defaultSSLConfig\"\n      keyStoreRef=\"defaultKeyStore\"\n      trustStoreRef=\"defaultKeyStore\"\n      serverKeyAlias=\"default\" />\n\n     <ssl id=\"testSSLConfig\"\n      keyStoreRef=\"defaultKeyStore\"\n      trustStoreRef=\"alternateTrustStore\"\n      serverKeyAlias=\"alternateCert\"\n      enabledCiphers=\"AES256-SHA AES128-SHA\" />\n\n<!-- inbound (HTTPS) keystore -->\n<keyStore id=\"defaultKeyStore\" password=\"Liberty\"\n           location=\"${server.config.dir}/resources/security/sslOptions.jks\" />\n\n<keyStore id=\"defaultTrustStore\" password=\"Liberty\"\n           location=\"${server.config.dir}/resources/security/trust.jks\" />\n           \n<keyStore id=\"alternateTrustStore\" password=\"Liberty\"\n           location=\"${server.config.dir}/resources/security/optionsTrust.jks\" />\n\n    <application type=\"war\" id=\"basicauth\" name=\"basicauth\"\n             location=\"${server.config.dir}/apps/basicauth.war\" />"
+              },
+              {
+                "id": "SV-250348r961635_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Transmission of data can take place between the application server and a large number of devices/applications external to the application server. Examples are a web client used by a user, a backend database, a log server, or other application servers in an application server cluster."
+              },
+              {
+                "id": "SV-250348r961635_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250349",
+        "title": "SRG-APP-000456-AS-000266",
+        "controls": [
+          {
+            "id": "SV-250349r961683_rule",
+            "title": "The WebSphere Liberty Server must install security-relevant software updates within the time period directed by an authoritative source.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250349",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250349r961683_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-001170"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-001170"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961683"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002605",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Install security-relevant software updates within an organization-defined time period of the release of the updates."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SI-2 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SI-2 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250349r961683_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must install security-relevant software updates within the time period directed by an authoritative source."
+              },
+              {
+                "id": "SV-250349r961683_rule_guidance",
+                "name": "guidance",
+                "prose": "Obtain WebSphere Liberty product security and patch support at http://www-01.ibm.com/support/docview.wss?uid=swg27009661. \n\nRun the productInfo validate command to validate the MD5 checksum file for server installation and each feature.\n\nIf a feature is not valid, the command outputs an error and lists the manifest file for the affected feature. The following example validates the features for the current installation and outputs the results to the validate.txt file:\n\nproductInfo validate --output=/tmp/validate.txt"
+              },
+              {
+                "id": "SV-250349r961683_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Security vulnerabilities are often addressed by testing and applying the latest security patches and fix packs. The latest fixpacks can be found at: http://www-01.ibm.com/support/docview.wss?uid=swg27009661"
+              },
+              {
+                "id": "SV-250349r961683_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-250350",
+        "title": "SRG-APP-000499-AS-000224",
+        "controls": [
+          {
+            "id": "SV-250350r961812_rule",
+            "title": "The WebSphere Liberty Server must generate log records for authentication and authorization events.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-250350",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-250350r961812_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "IBMW-LS-001190"
+              },
+              {
+                "name": "label",
+                "value": "IBMW-LS-001190"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961812"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000172",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate audit records for the event types defined in AU-2 c that include the audit record content defined in AU-3."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001464",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Initiates session audits automatically at system start-up."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-14 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-14 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-14 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-14 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-250350r961812_rule_statement",
+                "name": "statement",
+                "prose": "The WebSphere Liberty Server must generate log records for authentication and authorization events."
+              },
+              {
+                "id": "SV-250350r961812_rule_guidance",
+                "name": "guidance",
+                "prose": "Modify the ${server.config.dir}/server.xml file and configure the audit-1.0 feature.\n\n<featureManager>\n<feature>audit-1.0</feature>\n</featureManager>\n\nConfigure the auditFileHandler setting to record SECURITY_AUTHN and SECURITY_AUTHZ events. \n\n<auditFileHandler>\n      <events name=\"AllAuthn\" eventName=\"SECURITY_AUTHN\"/>\n<events name=\"AllAuthz\" eventName=\"SECURITY_AUTHZ\" />\n    </auditFileHandler>    \n\nReview audit logs located under the ${server.config.dir}/logs directory and ensure AUTHN and AUTHZ events are logged."
+              },
+              {
+                "id": "SV-250350r961812_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Enabling authentication (SECURITY_AUTHN) and authorization (SECURITY_AUTHZ) event handlers configures the server to record security authorization and authentication events. By logging these events, the logs can be analyzed to identify activity that could be related to security events and to aid post mortem forensic analysis.\n\nSatisfies: SRG-APP-000499-AS-000224, SRG-APP-000495-AS-000220, SRG-APP-000503-AS-000228, SRG-APP-000504-AS-000229, SRG-APP-000505-AS-000230, SRG-APP-000506-AS-000231, SRG-APP-000509-AS-000234, SRG-APP-000092-AS-000053"
+              },
+              {
+                "id": "SV-250350r961812_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,753 @@
+{
+  "catalog": {
+    "uuid": "a44cdbb8-ebac-5ea5-bb08-80ac59473155",
+    "metadata": {
+      "title": "Network WLAN Controller Platform Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2023-04-27T00:00:00Z",
+      "version": "7.3.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2023-04-27"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "7"
+        },
+        {
+          "name": "version.minor",
+          "value": "3"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-243233",
+        "title": "SRG-NET-000514",
+        "controls": [
+          {
+            "id": "SV-243233r817090_rule",
+            "title": "The WLAN inactive/idle session timeout must be set for 30 minutes or less.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243233",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243233r817090_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WLAN-NW-000300"
+              },
+              {
+                "name": "label",
+                "value": "WLAN-NW-000300"
+              },
+              {
+                "name": "sv-revision",
+                "value": "817090"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000057",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent further access to the system by initiating a device lock after organization-defined time period of inactivity; and/or requiring the user to initiate a device lock before leaving the system unattended."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-11.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-11 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243233r817090_rule_statement",
+                "name": "statement",
+                "prose": "The WLAN inactive/idle session timeout must be set for 30 minutes or less."
+              },
+              {
+                "id": "SV-243233r817090_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the WLAN inactive/idle session timeout to 30 minutes or less."
+              },
+              {
+                "id": "SV-243233r817090_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A WLAN session that never terminates due to inactivity may allow an opening for an adversary to highjack the session to obtain access to the network."
+              },
+              {
+                "id": "SV-243233r817090_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243234",
+        "title": "SRG-NET-000070",
+        "controls": [
+          {
+            "id": "SV-243234r720157_rule",
+            "title": "WLAN must use EAP-TLS.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243234",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243234r720157_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WLAN-NW-000500"
+              },
+              {
+                "name": "label",
+                "value": "WLAN-NW-000500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "720157"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001444",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect wireless access to the system using encryption."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-18 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-18 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-18 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-18 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243234r720157_rule_statement",
+                "name": "statement",
+                "prose": "WLAN must use EAP-TLS."
+              },
+              {
+                "id": "SV-243234r720157_rule_guidance",
+                "name": "guidance",
+                "prose": "Change the WLAN configuration so it supports EAP-TLS, implementing supporting PKI and AAA infrastructure as necessary. If the WLAN equipment is not capable of supporting EAP-TLS, procure new equipment capable of such support."
+              },
+              {
+                "id": "SV-243234r720157_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "EAP-TLS provides strong cryptographic mutual authentication and key distribution services not found in other EAP methods, and thus provides significantly more protection against attacks than other methods. \n\nAdditionally, EAP-TLS supports two-factor user authentication on the WLAN client, which provides significantly more protection than methods that rely on a password or certificate alone. EAP-TLS also can leverage the DoD Common Access Card (CAC) in its authentication services, providing additional security and convenience."
+              },
+              {
+                "id": "SV-243234r720157_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243235",
+        "title": "SRG-NET-000151",
+        "controls": [
+          {
+            "id": "SV-243235r891326_rule",
+            "title": "WLAN components must be FIPS 140-2 or FIPS 140-3 certified and configured to operate in FIPS mode.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243235",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243235r891326_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WLAN-NW-000600"
+              },
+              {
+                "name": "label",
+                "value": "WLAN-NW-000600"
+              },
+              {
+                "name": "sv-revision",
+                "value": "891326"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001967",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Authenticate organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection using bidirectional authentication that is cryptographically based."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243235r891326_rule_statement",
+                "name": "statement",
+                "prose": "WLAN components must be FIPS 140-2 or FIPS 140-3 certified and configured to operate in FIPS mode."
+              },
+              {
+                "id": "SV-243235r891326_rule_guidance",
+                "name": "guidance",
+                "prose": "Use WLAN equipment that is FIPS 140-2/3 (CMVP) certified. Configure the component to operate in FIPS mode."
+              },
+              {
+                "id": "SV-243235r891326_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If the DoD WLAN components (WLAN AP, controller, or client) are not NIST FIPS 140-2/FIPS 140-3 (Cryptographic Module Validation Program, CMVP) certified, the WLAN system may not adequately protect sensitive unclassified DoD data from compromise during transmission."
+              },
+              {
+                "id": "SV-243235r891326_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243236",
+        "title": "SRG-NET-000070",
+        "controls": [
+          {
+            "id": "SV-243236r720163_rule",
+            "title": "WLAN EAP-TLS implementation must use certificate-based PKI authentication to connect to DoD networks.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243236",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243236r720163_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WLAN-NW-000700"
+              },
+              {
+                "name": "label",
+                "value": "WLAN-NW-000700"
+              },
+              {
+                "name": "sv-revision",
+                "value": "720163"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001444",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect wireless access to the system using encryption."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-18 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-18 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-18 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-18 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243236r720163_rule_statement",
+                "name": "statement",
+                "prose": "WLAN EAP-TLS implementation must use certificate-based PKI authentication to connect to DoD networks."
+              },
+              {
+                "id": "SV-243236r720163_rule_guidance",
+                "name": "guidance",
+                "prose": "Integrate certificate-based PKI authentication into the WLAN authentication process."
+              },
+              {
+                "id": "SV-243236r720163_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "DoD certificate-based PKI authentication is strong, two-factor authentication that relies on carefully evaluated cryptographic modules. Implementations of EAP-TLS that are not integrated with certificate-based PKI could have security vulnerabilities. \n\nFor example, an implementation that uses a client certificate on laptop without a second factor could enable an adversary with access to the laptop to connect to the WLAN without a PIN or password. Systems that do not use the certificate-based PKI are also much more likely to be vulnerable to weaknesses in the underlying public key infrastructure (PKI) that supports EAP-TLS.\n\nCertificate-based PKI authentication must be used to connect WLAN client devices to DoD networks. The certificate-based PKI authentication should directly support the WLAN EAP-TLS implementation. \n\nAt least one layer of user authentication must enforce network authentication requirements (e.g., CAC authentication) before the user is able to access DoD information resources."
+              },
+              {
+                "id": "SV-243236r720163_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243237",
+        "title": "SRG-NET-000205",
+        "controls": [
+          {
+            "id": "SV-243237r720166_rule",
+            "title": "The network device must be configured to only permit management traffic that ingresses and egresses the out-of-band management (OOBM) interface.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243237",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243237r720166_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WLAN-NW-001200"
+              },
+              {
+                "name": "label",
+                "value": "WLAN-NW-001200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "720166"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001097",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Monitor and control communications at the external managed interfaces to the system and at key managed interfaces within the system."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-7.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243237r720166_rule_statement",
+                "name": "statement",
+                "prose": "The network device must be configured to only permit management traffic that ingresses and egresses the out-of-band management (OOBM) interface."
+              },
+              {
+                "id": "SV-243237r720166_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the network device so that only management traffic that ingresses and egresses the OOBM interface is permitted."
+              },
+              {
+                "id": "SV-243237r720166_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The OOBM access switch will connect to the management interface of the managed network elements. The management interface can be a true OOBM interface or a standard interface functioning as the management interface. In either case, the management interface of the managed network element will be directly connected to the OOBM network. (See SRG-NET-000205-RTR-000012.)\n\nNetwork boundaries, also known as managed interfaces, include, for example, gateways, routers, firewalls, guards, network-based malicious code analysis, and virtualization systems, or encrypted tunnels implemented within a security architecture (e.g., routers protecting firewalls or application gateways residing on protected subnetworks). Subnetworks that are physically or logically separated from internal networks are referred to as demilitarized zones (DMZs). Methods used for prohibiting interfaces within organizational information systems include, for example, restricting external web traffic to designated web servers within managed interfaces and prohibiting external traffic that appears to be spoofing internal addresses."
+              },
+              {
+                "id": "SV-243237r720166_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243238",
+        "title": "SRG-NET-000131",
+        "controls": [
+          {
+            "id": "SV-243238r856613_rule",
+            "title": "The network device must not be configured to have any feature enabled that calls home to the vendor.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243238",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243238r856613_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "WLAN-NW-001300"
+              },
+              {
+                "name": "label",
+                "value": "WLAN-NW-001300"
+              },
+              {
+                "name": "sv-revision",
+                "value": "856613"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002403",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Only allow incoming communications from organization-defined authorized sources routed to organization-defined authorized destinations."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-7 (11)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-7 (11)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243238r856613_rule_statement",
+                "name": "statement",
+                "prose": "The network device must not be configured to have any feature enabled that calls home to the vendor."
+              },
+              {
+                "id": "SV-243238r856613_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the network device to disable the call home service or feature.\n\nNote: This feature can be enabled if the communication is only to a server residing in the local area network or enclave."
+              },
+              {
+                "id": "SV-243238r856613_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Call-home services will routinely send data such as configuration and diagnostic information to the vendor for routine or emergency analysis and troubleshooting. There is a risk that transmission of sensitive data sent to unauthorized persons could result in data loss or downtime due to an attack. (See SRG-NET-000131-RTR-000083.)"
+              },
+              {
+                "id": "SV-243238r856613_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

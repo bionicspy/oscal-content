@@ -1,0 +1,2866 @@
+{
+  "catalog": {
+    "uuid": "bd37df9f-a3fe-500f-a88a-b735c48f918e",
+    "metadata": {
+      "title": "Cisco IOS XR Router NDM Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-07-02T00:00:00Z",
+      "version": "3.4.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2025-07-02"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "3"
+        },
+        {
+          "name": "version.minor",
+          "value": "4"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-216522",
+        "title": "SRG-APP-000001-NDM-000200",
+        "controls": [
+          {
+            "id": "SV-216522r960735_rule",
+            "title": "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216522",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216522r960735_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000010"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000010"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960735"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000054",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Limit the number of concurrent sessions for each organization-defined account and/or account type to an organization-defined number."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-10.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216522r960735_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number."
+              },
+              {
+                "id": "SV-216522r960735_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the router to limit the number of concurrent management sessions to an organization-defined number as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#ssh server session-limit 2"
+              },
+              {
+                "id": "SV-216522r960735_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Device management includes the ability to control the number of administrators and management sessions that manage a device. Limiting the number of allowed administrators and sessions per administrator based on account type, role, or access type is helpful in limiting risks related to DoS attacks.\n\nThis requirement addresses concurrent sessions for administrative accounts and does not address concurrent sessions by a single administrator via multiple administrative accounts. The maximum number of concurrent sessions should be defined based upon mission needs and the operational environment for each system. At a minimum, limits must be set for SSH, HTTPS, account of last resort, and root account sessions."
+              },
+              {
+                "id": "SV-216522r960735_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216523",
+        "title": "SRG-APP-000038-NDM-000213",
+        "controls": [
+          {
+            "id": "SV-216523r991929_rule",
+            "title": "The Cisco router must be configured to enforce approved authorizations for controlling the flow of management information within the device based on control policies.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216523",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216523r991929_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000140"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000140"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991929"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001368",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for controlling the flow of information within the system based on organization-defined information flow control policies."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004192",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect nonlocal maintenance sessions by separating the maintenance session from other network sessions with the system by logically separated communications paths."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 MA-4 (4) (b) (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216523r991929_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to enforce approved authorizations for controlling the flow of management information within the device based on control policies."
+              },
+              {
+                "id": "SV-216523r991929_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco router to restrict management access to specific IP addresses via SSH as shown in the example below.\n\nRP/0/0/CPU0:ios(config)#ipv4 access-list MANAGEMENT_NET\nRP/0/0/CPU0:ios(config-ipv4-acl)#permit ipv4 10.1.1.0 255.255.255.0 any\nRP/0/0/CPU0:ios(config-ipv4-acl)#deny ipv4 any any log-input \nRP/0/0/CPU0:ios(config-ipv4-acl)#exit\nRP/0/0/CPU0:R3(config)#vty default 0 4 \nRP/0/0/CPU0:R3(config)#line default \nRP/0/0/CPU0:R3(config-line)#transport input ssh \nRP/0/0/CPU0:R3(config-line)#access-class MANAGEMENT_NET in \nRP/0/0/CPU0:R3(config-line)#end"
+              },
+              {
+                "id": "SV-216523r991929_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A mechanism to detect and prevent unauthorized communication flow must be configured or provided as part of the system design. If management information flow is not enforced based on approved authorizations, the network device may become compromised. Information flow control regulates where management information is allowed to travel within a network device. The flow of all management information must be monitored and controlled so it does not introduce any unacceptable risk to the network device or data. \n\nApplication-specific examples of enforcement occur in systems that employ rule sets or establish configuration settings that restrict information system services or message-filtering capability based on message content (e.g., implementing key word searches or using document characteristics).\n\nApplications providing information flow control must be able to enforce approved authorizations for controlling the flow of management information within the system in accordance with applicable policy."
+              },
+              {
+                "id": "SV-216523r991929_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216524",
+        "title": "SRG-APP-000065-NDM-000214",
+        "controls": [
+          {
+            "id": "SV-216524r960840_rule",
+            "title": "The Cisco router must be configured to enforce the limit of three consecutive invalid logon attempts after which time lock out the user account from accessing the device for 15 minutes.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216524",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216524r960840_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000150"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000150"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960840"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000044",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce the organization-defined limit of consecutive invalid logon attempts by a user during the organization-defined time period."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216524r960840_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to enforce the limit of three consecutive invalid logon attempts after which time lock out the user account from accessing the device for 15 minutes."
+              },
+              {
+                "id": "SV-216524r960840_rule_guidance",
+                "name": "guidance",
+                "prose": "Step 1: Configure the router to use an authentication server as shown in the following example:\n\nRP/0/0/CPU0:R3(config)#radius-server host 10.1.3.16 key xxxxxxxx\n\nStep 2: Configure the authentication order to use the authentication server as primary source for authentication as shown in the following example:\n\nRP/0/0/CPU0:R3(config)#aaa authentication login LOGIN_AUTHENTICATION  group radius local\n\nStep 3: Configure all network connections associated with a device management to use an authentication server for the purpose of login authentication as shown in the following example:\n\nRP/0/0/CPU0:R3(config)#line default\nRP/0/0/CPU0:R3(config-line)#login authentication LOGIN_AUTHENTICATION\nRP/0/0/CPU0:R3(config-line)#exit\nRP/0/0/CPU0:R3(config)#line console \nRP/0/0/CPU0:R3(config-line)#login authentication LOGIN_AUTHENTICATION"
+              },
+              {
+                "id": "SV-216524r960840_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "By limiting the number of failed login attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-forcing, is reduced."
+              },
+              {
+                "id": "SV-216524r960840_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216525",
+        "title": "SRG-APP-000068-NDM-000215",
+        "controls": [
+          {
+            "id": "SV-216525r960843_rule",
+            "title": "The Cisco router must be configured to display the Standard Mandatory DoD Notice and Consent Banner before granting access to the device.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216525",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216525r960843_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000160"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000160"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960843"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000048",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Display an organization-defined system use notification message or banner to users before granting access to the system that provides privacy and security notices consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidelines."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-8 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-8.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-8 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-8 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216525r960843_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to display the Standard Mandatory DoD Notice and Consent Banner before granting access to the device."
+              },
+              {
+                "id": "SV-216525r960843_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco router to display the Standard Mandatory DoD Notice and Consent Banner before granting access as shown in the following example:\n\nRP/0/0/CPU0:R3(config)#banner login #\nEnter TEXT message. End with the character '#'.\nYou are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details. #\nRP/0/0/CPU0:R3(config)#end"
+              },
+              {
+                "id": "SV-216525r960843_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Display of the DoD-approved use notification before granting access to the network device ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.\n\nSystem use notifications are required only for access via logon interfaces with human users."
+              },
+              {
+                "id": "SV-216525r960843_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216526",
+        "title": "SRG-APP-000091-NDM-000223",
+        "controls": [
+          {
+            "id": "SV-216526r960885_rule",
+            "title": "The Cisco router must be configured to generate audit records when successful/unsuccessful attempts to logon with access privileges occur.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216526",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216526r960885_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000250"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000250"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960885"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000172",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Generate audit records for the event types defined in AU-2 c that include the audit record content defined in AU-3."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 c"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216526r960885_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to generate audit records when successful/unsuccessful attempts to logon with access privileges occur."
+              },
+              {
+                "id": "SV-216526r960885_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco router to log all logon attempts as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#logging buffered informational \nRP/0/0/CPU0:R3(config)#logging 10.1.22.2 severity info"
+              },
+              {
+                "id": "SV-216526r960885_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. \n\nAudit records can be generated from various components within the information system (e.g., module or policy filter)."
+              },
+              {
+                "id": "SV-216526r960885_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216527",
+        "title": "SRG-APP-000096-NDM-000226",
+        "controls": [
+          {
+            "id": "SV-216527r960894_rule",
+            "title": "The Cisco router must produce audit records containing information to establish when (date and time) the events occurred.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216527",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216527r960894_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000280"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000280"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960894"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000131",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes when the event occurred."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216527r960894_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must produce audit records containing information to establish when (date and time) the events occurred."
+              },
+              {
+                "id": "SV-216527r960894_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the router to include the date and time on all log records as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#service timestamps log datetime localtime"
+              },
+              {
+                "id": "SV-216527r960894_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "It is essential for security personnel to know what is being done, what was attempted, where it was done, when it was done, and by whom it was done in order to compile an accurate risk assessment. Logging the date and time of each detected event provides a means of investigating an attack; recognizing resource utilization or capacity thresholds; or identifying an improperly configured network device. In order to establish and correlate the series of events leading up to an outage or attack, it is imperative the date and time are recorded in all log records."
+              },
+              {
+                "id": "SV-216527r960894_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216528",
+        "title": "SRG-APP-000097-NDM-000227",
+        "controls": [
+          {
+            "id": "SV-216528r960897_rule",
+            "title": "The Cisco router must produce audit records containing information to establish where the events occurred.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216528",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216528r960897_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000290"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000290"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960897"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000132",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records containing information that establishes where the event occurred."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 c"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216528r960897_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must produce audit records containing information to establish where the events occurred."
+              },
+              {
+                "id": "SV-216528r960897_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the log-input parameter after any deny statements to provide the location as to where packets have been dropped via an ACL.\n\nRP/0/0/CPU0:R3(config)#ipv4 access-list BLOCK_INBOUND\nRP/0/0/CPU0:R3(config-ipv4-acl)#deny icmp any any  log-input"
+              },
+              {
+                "id": "SV-216528r960897_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "In order to compile an accurate risk assessment and provide forensic analysis, it is essential for security personnel to know where events occurred, such as device hardware components, device software modules, session identifiers, filenames, host names, and functionality.\n\nAssociating information about where the event occurred within the network device provides a means of investigating an attack; recognizing resource utilization or capacity thresholds; or identifying an improperly configured device."
+              },
+              {
+                "id": "SV-216528r960897_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216529",
+        "title": "SRG-APP-000142-NDM-000245",
+        "controls": [
+          {
+            "id": "SV-216529r1043177_rule",
+            "title": "The Cisco router must be configured to be configured to prohibit the use of all unnecessary and nonsecure functions and services.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216529",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216529r1043177_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000470"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000470"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043177"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000382",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to prohibit or restrict the use of organization-defined prohibited or restricted functions, system ports, protocols, software, and/or services."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216529r1043177_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to be configured to prohibit the use of all unnecessary and nonsecure functions and services."
+              },
+              {
+                "id": "SV-216529r1043177_rule_guidance",
+                "name": "guidance",
+                "prose": "Disable the following services if enabled as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#no service ipv4 tcp-small-servers\nRP/0/0/CPU0:R3(config)#no service ipv4 udp-small-servers\nRP/0/0/CPU0:R3(config)#no http client vrf xxxxx\nRP/0/0/CPU0:R3(config)#no telnet ipv4 server\nRP/0/0/CPU0:R3(config)#no service call-home"
+              },
+              {
+                "id": "SV-216529r1043177_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Network devices are capable of providing a wide variety of functions and services. Some of the functions and services provided by default may not be necessary to support essential organizational operations. Additionally, it is sometimes convenient to provide multiple services from a single component (e.g., email and web services); however, doing so increases risk over limiting the services provided by any one component. \n\nTo support the requirements and principles of least functionality, the network device must support the organizational requirements providing only essential capabilities and limiting the use of ports, protocols, and/or services to only those required, authorized, and approved. Some network devices have capabilities enabled by default; if these capabilities are not necessary, they must be disabled. If a particular capability is used, then it must be documented and approved."
+              },
+              {
+                "id": "SV-216529r1043177_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216530",
+        "title": "SRG-APP-000148-NDM-000346",
+        "controls": [
+          {
+            "id": "SV-216530r1051115_rule",
+            "title": "The Cisco router must be configured with only one local account to be used as the account of last resort in the event the authentication server is unavailable.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216530",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216530r1051115_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000490"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000490"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1051115"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001358",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Establish privileged user accounts in accordance with a role-based access scheme; or an attribute-based access scheme."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002111",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The organization identifies and selects the organization-defined information system account types of information system accounts which support organizational missions/business functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216530r1051115_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured with only one local account to be used as the account of last resort in the event the authentication server is unavailable."
+              },
+              {
+                "id": "SV-216530r1051115_rule_guidance",
+                "name": "guidance",
+                "prose": "Step 1: Configure a local account with the necessary privilege level to troubleshoot network outage and restore operations as shown in the following example: \n\nRP/0/0/CPU0:R3(config)#username xxxxxxxxx group netadmin \nRP/0/0/CPU0:R3(config)#username xxxxxxxxx secret xxxxxx\n\nStep 2: Configure the authentication order to use the local account if the authentication server is not reachable as shown in the following example:\n\nRP/0/0/CPU0:R3(config)#aaa authentication login default group tacacs+ local"
+              },
+              {
+                "id": "SV-216530r1051115_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Authentication for administrative (privileged level) access to the device is required at all times. An account can be created on the device's local database for use when the authentication server is down or connectivity between the device and the authentication server is not operable. This account is referred to as the account of last resort since it is intended to be used as a last resort and when immediate administrative access is absolutely necessary.\n\nThe account of last resort logon credentials must be stored in a sealed envelope and kept in a safe. The safe must be periodically audited to verify the envelope remains sealed. The signature of the auditor and the date of the audit should be added to the envelope as a record.\nAn alternative to using a sealed envelope in a safe would be credential files, separated by technology, located in a secured location on a file server, with the files only accessible to those administrators authorized to use the accounts of last resort, and access to that location monitored by a central log server. \nAdministrators should secure the credentials and disable the root account (if possible) when not needed for system administration functions."
+              },
+              {
+                "id": "SV-216530r1051115_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216531",
+        "title": "SRG-APP-000156-NDM-000250",
+        "controls": [
+          {
+            "id": "SV-216531r960993_rule",
+            "title": "The Cisco router must be configured to implement replay-resistant authentication mechanisms for network access to privileged accounts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216531",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216531r960993_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000530"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000530"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960993"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001941",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement replay-resistant authentication mechanisms for access to privileged accounts and/or non-privileged accounts."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-2 (8)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-2 (8)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216531r960993_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to implement replay-resistant authentication mechanisms for network access to privileged accounts."
+              },
+              {
+                "id": "SV-216531r960993_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the router to use SSH version 2 as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#ssh server v2"
+              },
+              {
+                "id": "SV-216531r960993_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A replay attack may enable an unauthorized user to gain access to the application. Authentication sessions between the authenticator and the application validating the user credentials must not be vulnerable to a replay attack.\n\nAn authentication process resists replay attacks if it is impractical to achieve a successful authentication by recording and replaying a previous authentication message. \n\nTechniques used to address this include protocols using nonces (e.g., numbers generated for a specific one-time use) or challenges (e.g., TLS, WS_Security). Additional techniques include time-synchronous or challenge-response one-time authenticators."
+              },
+              {
+                "id": "SV-216531r960993_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216532",
+        "title": "SRG-APP-000190-NDM-000267",
+        "controls": [
+          {
+            "id": "SV-216532r961068_rule",
+            "title": "The Cisco router must be configured to terminate all network connections associated with device management after five minutes of inactivity.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216532",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216532r961068_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000720"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000720"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961068"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001133",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Terminate the network connection associated with a communications session at the end of the session or after an organization-defined time period of inactivity."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-10.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-10"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-10"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216532r961068_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to terminate all network connections associated with device management after five minutes of inactivity."
+              },
+              {
+                "id": "SV-216532r961068_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the idle timeout value to five minutes or less on all configured login classes as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#line con \nRP/0/0/CPU0:R3(config-line)#exec-timeout\nRP/0/0/CPU0:R3(config)#line default \nRP/0/0/CPU0:R3(config-line)#exec-timeout 5 0"
+              },
+              {
+                "id": "SV-216532r961068_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. \n\nTerminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level, or de-allocating networking assignments at the application level if multiple application sessions are using a single, operating system-level network connection. This does not mean that the device terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session."
+              },
+              {
+                "id": "SV-216532r961068_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216533",
+        "title": "SRG-APP-000357-NDM-000293",
+        "controls": [
+          {
+            "id": "SV-216533r961392_rule",
+            "title": "The Cisco router must be configured to allocate audit record storage capacity in accordance with organization-defined audit record storage requirements.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216533",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216533r961392_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-000980"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-000980"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961392"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001849",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Allocate audit log storage capacity to accommodate organization-defined audit log retention requirements."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216533r961392_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to allocate audit record storage capacity in accordance with organization-defined audit record storage requirements."
+              },
+              {
+                "id": "SV-216533r961392_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the logging buffer size as well as the active log file size and the amount of storage to be reserved for archive log files as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#logging buffered 8888888\nRP/0/0/CPU0:R3(config)#logging archive\nRP/0/0/CPU0:R3(config-logging-arch)#severity notifications\nRP/0/0/CPU0:R3(config-logging-arch)#device harddisk\nRP/0/0/CPU0:R3(config-logging-arch)#archive-size 100 \nRP/0/0/CPU0:R3(config-logging-arch)#file-size 10\nRP/0/0/CPU0:R3(config-logging-arch)#end"
+              },
+              {
+                "id": "SV-216533r961392_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "In order to ensure network devices have a sufficient storage capacity in which to write the audit logs, they need to be able to allocate audit record storage capacity. The task of allocating audit record storage capacity is usually performed during initial device setup if it is modifiable. \n\nThe value for the organization-defined audit record storage requirement will depend on the amount of storage available on the network device, the anticipated volume of logs, the frequency of transfer from the network device to centralized log servers, and other factors."
+              },
+              {
+                "id": "SV-216533r961392_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216534",
+        "title": "SRG-APP-000360-NDM-000295",
+        "controls": [
+          {
+            "id": "SV-216534r991930_rule",
+            "title": "The Cisco router must be configured to generate an alert for all audit failure events.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216534",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216534r991930_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001000"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001000"
+              },
+              {
+                "name": "sv-revision",
+                "value": "991930"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001858",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide an alert in an organization-defined real-time-period to organization-defined personnel, roles, and/or locations when organization-defined audit failure events requiring real-time alerts occur."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-003831",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Alert organization-defined personnel or roles upon detection of unauthorized access, modification, or deletion of audit information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-9 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216534r991930_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to generate an alert for all audit failure events."
+              },
+              {
+                "id": "SV-216534r991930_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco router to send critical to emergency log messages to the syslog server as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#logging 10.1.12.7 severity critical\n\nNote: The parameter \"critical\" can replaced with a lesser severity level (i.e., error, warning, notice, informational)."
+              },
+              {
+                "id": "SV-216534r991930_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "It is critical for the appropriate personnel to be aware if a system is at risk of failing to process audit logs as required. Without a real-time alert, security personnel may be unaware of an impending failure of the audit capability and system operation may be adversely affected. \n\nAlerts provide organizations with urgent messages. Real-time alerts provide these messages immediately (i.e., the time from event detection to alert occurs in seconds or less)."
+              },
+              {
+                "id": "SV-216534r991930_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216535",
+        "title": "SRG-APP-000373-NDM-000298",
+        "controls": [
+          {
+            "id": "SV-216535r1015296_rule",
+            "title": "The Cisco router must be configured to synchronize its clock with the primary and secondary time sources using redundant authoritative time sources.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216535",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216535r1015296_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001030"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001030"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1015296"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004928",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Identify a secondary authoritative time source that is in a different geographic region than the primary authoritative time source."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004922",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Synchronize system clocks within and between systems or system components."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004923",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Compare the internal system clocks on an organization-defined frequency with organization-defined authoritative time source."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001893",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system identifies a secondary authoritative time source that is located in a different geographic region than the primary authoritative time source."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-8 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216535r1015296_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to synchronize its clock with the primary and secondary time sources using redundant authoritative time sources."
+              },
+              {
+                "id": "SV-216535r1015296_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco router to synchronize its clock with redundant authoritative time sources as shown in the example below.\n\nRP/0/0/CPU0:R3 (config)#ntp server x.x.x.x\nRP/0/0/CPU0:R3 (config)#ntp server y.y.y.y"
+              },
+              {
+                "id": "SV-216535r1015296_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The loss of connectivity to a particular authoritative time source will result in the loss of time synchronization (free-run mode) and increasingly inaccurate time stamps on audit events and other functions. \n\nMultiple time sources provide redundancy by including a secondary source. Time synchronization is usually a hierarchy; clients synchronize time to a local source while that source synchronizes its time to a more accurate source. The network device must utilize an authoritative time server and/or be configured to use redundant authoritative time sources. This requirement is related to the comparison done in CCI-001891.\n\nDOD-approved solutions consist of a combination of a primary and secondary time source using a combination or multiple instances of the following: a time server designated for the appropriate DOD network (NIPRNet/SIPRNet); United States Naval Observatory (USNO) time servers; and/or the Global Positioning System (GPS). The secondary time source must be located in a different geographic region than the primary time source."
+              },
+              {
+                "id": "SV-216535r1015296_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216536",
+        "title": "SRG-APP-000375-NDM-000300",
+        "controls": [
+          {
+            "id": "SV-216536r961446_rule",
+            "title": "The Cisco router must record time stamps for audit records that meet a granularity of one second for a minimum degree of precision.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216536",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216536r961446_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001040"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001040"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961446"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001889",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Record time stamps for audit records that meet organization-defined granularity of time measurement."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-8 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-8 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216536r961446_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must record time stamps for audit records that meet a granularity of one second for a minimum degree of precision."
+              },
+              {
+                "id": "SV-216536r961446_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco router to record time stamps that meet a granularity of one second as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#service timestamps log datetime localtime"
+              },
+              {
+                "id": "SV-216536r961446_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without sufficient granularity of time stamps, it is not possible to adequately determine the chronological order of records. Time stamps generated by the application include date and time. Granularity of time measurements refers to the degree of synchronization between information system clocks and reference clocks."
+              },
+              {
+                "id": "SV-216536r961446_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216537",
+        "title": "SRG-APP-000374-NDM-000299",
+        "controls": [
+          {
+            "id": "SV-216537r961443_rule",
+            "title": "The Cisco router must be configured to record time stamps for log records that can be mapped to Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216537",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216537r961443_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001050"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001050"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961443"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001890",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Record time stamps for audit records that use Coordinated Universal Time, have a fixed local time offset from Coordinated Universal Time, or that include the local time offset as part of the time stamp."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-8 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-8 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216537r961443_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to record time stamps for log records that can be mapped to Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT)."
+              },
+              {
+                "id": "SV-216537r961443_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco router to record time stamps for audit records that can be mapped to UTC or GMT as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#clock timezone EST -5\nRP/0/0/CPU0:R3(config)#service timestamps log datetime localtime"
+              },
+              {
+                "id": "SV-216537r961443_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If time stamps are not consistently applied and there is no common time reference, it is difficult to perform forensic analysis.\n\nTime stamps generated by the application include date and time. Time is commonly expressed in UTC, a modern continuation of GMT, or local time with an offset from UTC."
+              },
+              {
+                "id": "SV-216537r961443_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216538",
+        "title": "SRG-APP-000395-NDM-000310",
+        "controls": [
+          {
+            "id": "SV-216538r961506_rule",
+            "title": "The Cisco router must be configured to authenticate SNMP messages using a FIPS-validated Keyed-Hash Message Authentication Code (HMAC).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216538",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216538r961506_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001130"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001130"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961506"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001967",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Authenticate organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection using bidirectional authentication that is cryptographically based."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216538r961506_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to authenticate SNMP messages using a FIPS-validated Keyed-Hash Message Authentication Code (HMAC)."
+              },
+              {
+                "id": "SV-216538r961506_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco router to authenticate SNMP messages as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#snmp-server group V3GROUP v3 auth read V3READ write V3WRITE\nRP/0/0/CPU0:R3(config)#snmp-server user V3USER V3GROUP v3 auth sha xxxxxx \nRP/0/0/CPU0:R3(config)#snmp-server view V3READ iso included\nRP/0/0/CPU0:R3(config)#snmp-server view V3WRITE iso included\nRP/0/0/CPU0:R3(config)#snmp-server host x.x.x.x version 3 auth V3USER"
+              },
+              {
+                "id": "SV-216538r961506_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity. Bidirectional authentication provides stronger safeguards to validate the identity of other devices for connections that are of greater risk.\n\nA local connection is any connection with a device communicating without the use of a network. A network connection is any connection with a device that communicates through a network (e.g., local area or wide area network, Internet). A remote connection is any connection with a device communicating through an external network (e.g., the Internet).\n\nBecause of the challenges of applying this requirement on a large scale, organizations are encouraged to only apply the requirement to those limited number (and type) of devices that truly need to support this capability."
+              },
+              {
+                "id": "SV-216538r961506_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216539",
+        "title": "SRG-APP-000395-NDM-000310",
+        "controls": [
+          {
+            "id": "SV-216539r961506_rule",
+            "title": "The Cisco router must be configured to encrypt SNMP messages using a FIPS 140-2 approved algorithm.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216539",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216539r961506_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001140"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001140"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961506"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000068",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the confidentiality of remote access sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216539r961506_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to encrypt SNMP messages using a FIPS 140-2 approved algorithm."
+              },
+              {
+                "id": "SV-216539r961506_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco router to encrypt SNMP messages using a FIPS 140-2 approved algorithm as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#snmp-server group V3GROUP v3 auth read V3READ write V3WRITE\nRP/0/0/CPU0:R3(config)#snmp-server user V3USER V3GROUP v3 auth sha xxxxxx priv aes 256 xxxxxx\nRP/0/0/CPU0:R3(config)#snmp-server view V3READ iso included\nRP/0/0/CPU0:R3(config)#snmp-server view V3WRITE iso included\nRP/0/0/CPU0:R3(config)#snmp-server host x.x.x.x version 3 auth V3USER"
+              },
+              {
+                "id": "SV-216539r961506_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Without the strong encryption that is provided by the SNMP Version 3 User-based Security Model (USM), an unauthorized user can gain access to network management information that can be used to create a network outage."
+              },
+              {
+                "id": "SV-216539r961506_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216540",
+        "title": "SRG-APP-000395-NDM-000347",
+        "controls": [
+          {
+            "id": "SV-216540r1107163_rule",
+            "title": "The Cisco router must be configured to authenticate NTP sources using authentication that is cryptographically based.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216540",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216540r1107163_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001150"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001150"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1107163"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001967",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Authenticate organization-defined devices and/or types of devices before establishing a local, remote, and/or network connection using bidirectional authentication that is cryptographically based."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-3 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-3 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216540r1107163_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to authenticate NTP sources using authentication that is cryptographically based."
+              },
+              {
+                "id": "SV-216540r1107163_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco router to authenticate NTP sources using authentication that is cryptographically based as shown in the example below.\n\nRP/0/0/CPU0:R4#ntp authenticate\nRP/0/0/CPU0:R4#ntp authentication-key 1 hmac-sha2-256 xxxxxx\nRP/0/0/CPU0:R4#ntp trusted-key\nRP/0/0/CPU0:R4#ntp server x.x.x.x key 1\nRP/0/0/CPU0:R4#ntp server y.y.y.y key 1"
+              },
+              {
+                "id": "SV-216540r1107163_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If Network Time Protocol is not authenticated, an attacker can introduce a rogue NTP server. This rogue server can then be used to send incorrect time information to network devices, which will make log timestamps inaccurate and affect scheduled actions. NTP authentication is used to prevent this tampering by authenticating the time source."
+              },
+              {
+                "id": "SV-216540r1107163_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216541",
+        "title": "SRG-APP-000411-NDM-000330",
+        "controls": [
+          {
+            "id": "SV-216541r961554_rule",
+            "title": "The Cisco router must be configured to use FIPS-validated Keyed-Hash Message Authentication Code (HMAC) to protect the integrity of remote maintenance sessions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216541",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216541r961554_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001200"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961554"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002890",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement organization-defined cryptographic mechanisms to protect the integrity of nonlocal maintenance and diagnostic communications."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 MA-4 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 MA-4 (6)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216541r961554_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to use FIPS-validated Keyed-Hash Message Authentication Code (HMAC) to protect the integrity of remote maintenance sessions."
+              },
+              {
+                "id": "SV-216541r961554_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the router to use SSH version 2 as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#ssh server v2"
+              },
+              {
+                "id": "SV-216541r961554_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore cannot be relied upon to provide confidentiality or integrity, and DoD data may be compromised.\n\nNonlocal maintenance and diagnostic activities are those activities conducted by individuals communicating through a network, either an external network (e.g., the Internet) or an internal network. \n\nCurrently, HMAC is the only FIPS-approved algorithm for generating and verifying message/data authentication codes in accordance with FIPS 198-1. Products that are FIPS 140-2 validated will have an HMAC that meets specification; however, the option must be configured for use as the only message authentication code use d for authentication to cryptographic modules."
+              },
+              {
+                "id": "SV-216541r961554_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216542",
+        "title": "SRG-APP-000412-NDM-000331",
+        "controls": [
+          {
+            "id": "SV-216542r961557_rule",
+            "title": "The Cisco router must be configured to implement cryptographic mechanisms to protect the confidentiality of remote maintenance sessions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216542",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216542r961557_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001210"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001210"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961557"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-003123",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement organization-defined cryptographic mechanisms to protect the confidentiality of nonlocal maintenance and diagnostic communications."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 MA-4 (6)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 MA-4 (6)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216542r961557_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to implement cryptographic mechanisms to protect the confidentiality of remote maintenance sessions."
+              },
+              {
+                "id": "SV-216542r961557_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the router to use SSH version 2 as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#ssh server v2"
+              },
+              {
+                "id": "SV-216542r961557_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "This requires the use of secure protocols instead of their unsecured counterparts, such as SSH instead of telnet, SCP instead of FTP, and HTTPS instead of HTTP. If unsecured protocols (lacking cryptographic mechanisms) are used for sessions, the contents of those sessions will be susceptible to eavesdropping, potentially putting sensitive data (including administrator passwords) at risk of compromise and potentially allowing hijacking of maintenance sessions."
+              },
+              {
+                "id": "SV-216542r961557_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216543",
+        "title": "SRG-APP-000515-NDM-000325",
+        "controls": [
+          {
+            "id": "SV-216543r961860_rule",
+            "title": "The Cisco router must be configured to off-load log records onto a different system than the system being audited.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216543",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216543r961860_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001310"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001310"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961860"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001851",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Transfer audit logs per organization-defined frequency to a different system, system component, or media than the system or system component conducting the logging."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-4 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-4 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216543r961860_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to off-load log records onto a different system than the system being audited."
+              },
+              {
+                "id": "SV-216543r961860_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco router to send log records to a syslog server as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#logging 10.1.12.7 severity info"
+              },
+              {
+                "id": "SV-216543r961860_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Information stored in one location is vulnerable to accidental or incidental deletion or alteration.\n\nOff-loading is a common process in information systems with limited audit storage capacity."
+              },
+              {
+                "id": "SV-216543r961860_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216544",
+        "title": "SRG-APP-000516-NDM-000336",
+        "controls": [
+          {
+            "id": "SV-216544r961863_rule",
+            "title": "The Cisco router must be configured to use at least two authentication servers for the purpose of authenticating users prior to granting administrative access.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216544",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216544r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001370"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001370"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000370",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Manage configuration settings for organization-defined system components using organization-defined automated mechanisms."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216544r961863_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to use at least two authentication servers for the purpose of authenticating users prior to granting administrative access."
+              },
+              {
+                "id": "SV-216544r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Step 1: Configure the router to use at least two authentication servers as shown in the following example:\n\nRP/0/0/CPU0:R3(config)#radius-server host 10.1.3.16 key xxxxxxxx\nRP/0/0/CPU0:R3(config)#radius-server host 10.1.3.17 key xxxxxxxx\n\nStep 2: Configure the authentication order to use the authentication servers as primary source for authentication as shown in the following example:\n\nRP/0/0/CPU0:R3(config)#aaa authentication login LOGIN_AUTHENTICATION  group radius local\n\nStep 3: Configure all network connections associated with a device management to use the authentication servers for the purpose of login authentication as shown in the following example:\n\nRP/0/0/CPU0:R3(config)#line default\nRP/0/0/CPU0:R3(config-line)#login authentication LOGIN_AUTHENTICATION\nRP/0/0/CPU0:R3(config-line)#exit\nRP/0/0/CPU0:R3(config)#line console \nRP/0/0/CPU0:R3(config-line)#login authentication LOGIN_AUTHENTICATION"
+              },
+              {
+                "id": "SV-216544r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Centralized management of user accounts and authentication increases the administrative access to the router. This control is particularly important protection against the insider threat. With robust centralized management, audit records for administrator account access to the organization's network devices can be more readily analyzed for trends and anomalies. The alternative method of defining administrator accounts on each device exposes the device configuration to remote access authentication attacks and system administrators with multiple authenticators for each network device."
+              },
+              {
+                "id": "SV-216544r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216545",
+        "title": "SRG-APP-000516-NDM-000340",
+        "controls": [
+          {
+            "id": "SV-216545r1069525_rule",
+            "title": "The Cisco router must be configured to back up the configuration when changes occur.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216545",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216545r1069525_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001410"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001410"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1069525"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000537",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Conduct backups of system-level information contained in the system per organization-defined frequency that is consistent with recovery time and recovery point objectives."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CP-9 (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CP-9.1 (v)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CP-9 (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CP-9 (b)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216545r1069525_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to back up the configuration when changes occur."
+              },
+              {
+                "id": "SV-216545r1069525_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Cisco router to send the configuration to an SCP server when a configuration change occurs as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#configuration commit auto-save filename scp://user1@server1://test-folder/test_123"
+              },
+              {
+                "id": "SV-216545r1069525_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "System-level information includes default and customized settings and security attributes, including ACLs that relate to the network device configuration, as well as software required for the execution and operation of the device. Information system backup is a critical step in ensuring system integrity and availability. If the system fails and there is no backup of the system-level information, a denial of service condition is possible for all who utilize this critical network component.\n\nThis control requires the network device to support the organizational central backup process for system-level information associated with the network device. This function may be provided by the network device itself; however, the preferred best practice is a centralized backup rather than each network device performing discrete backups."
+              },
+              {
+                "id": "SV-216545r1069525_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216546",
+        "title": "SRG-APP-000516-NDM-000344",
+        "controls": [
+          {
+            "id": "SV-216546r961863_rule",
+            "title": "The Cisco router must be configured to obtain its public key certificates from an appropriate certificate policy through an approved service provider.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216546",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216546r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001440"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001440"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001159",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Issue public key certificates under an organization-defined certificate policy or obtain public key certificates from an approved service provider."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-17"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-17.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-17"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-17 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216546r961863_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to obtain its public key certificates from an appropriate certificate policy through an approved service provider."
+              },
+              {
+                "id": "SV-216546r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the router to obtain its public key certificates from an appropriate certificate policy through an approved service provider as show in the example below.\n\nRP/0/0/CPU0:R3(config)#crypto ca trustpoint CA_X\nRP/0/0/CPU0:R3(config-trustp)#enrollment url http://trustpoint1.example.com"
+              },
+              {
+                "id": "SV-216546r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "For user certificates, each organization obtains certificates from an approved, shared service provider, as required by OMB policy. For federal agencies operating a legacy public key infrastructure cross-certified with the Federal Bridge Certification Authority (CA) at medium assurance or higher, this Certification Authority will suffice."
+              },
+              {
+                "id": "SV-216546r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216547",
+        "title": "SRG-APP-000516-NDM-000317",
+        "controls": [
+          {
+            "id": "SV-216547r961863_rule",
+            "title": "The Cisco router must be configured to send log data to at least two syslog servers for the purpose of forwarding alerts to the administrators and the information system security officer (ISSO).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216547",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216547r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001450"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001450"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001851",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Transfer audit logs per organization-defined frequency to a different system, system component, or media than the system or system component conducting the logging."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-4 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-4 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216547r961863_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be configured to send log data to at least two syslog servers for the purpose of forwarding alerts to the administrators and the information system security officer (ISSO)."
+              },
+              {
+                "id": "SV-216547r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the router to send log messages to the syslog servers as shown in the example below.\n\nRP/0/0/CPU0:R3(config)#logging 10.1.3.22 severity info\nRP/0/0/CPU0:R3(config)#logging 10.1.3.23 severity info"
+              },
+              {
+                "id": "SV-216547r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The aggregation of log data kept on a syslog server can be used to detect attacks and trigger an alert to the appropriate security personnel. The stored log data can used to detect weaknesses in security that enable the network IA team to find and address these weaknesses before breaches can occur. Reviewing these logs, whether before or after a security breach, are important in showing whether someone is an internal employee or an outside threat."
+              },
+              {
+                "id": "SV-216547r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-216549",
+        "title": "SRG-APP-000516-NDM-000317",
+        "controls": [
+          {
+            "id": "SV-216549r961863_rule",
+            "title": "The Cisco router must be running an IOS release that is currently supported by Cisco Systems.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-216549",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-216549r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "CISC-ND-001470"
+              },
+              {
+                "name": "label",
+                "value": "CISC-ND-001470"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-216549r961863_rule_statement",
+                "name": "statement",
+                "prose": "The Cisco router must be running an IOS release that is currently supported by Cisco Systems."
+              },
+              {
+                "id": "SV-216549r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Upgrade the router to a supported release."
+              },
+              {
+                "id": "SV-216549r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Network devices running an unsupported operating system lack current security fixes required to mitigate the risks associated with recent vulnerabilities. Running a supported release also enables operations to maintain a stable and reliable network provided by improved quality of service and security features."
+              },
+              {
+                "id": "SV-216549r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

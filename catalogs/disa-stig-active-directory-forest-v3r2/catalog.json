@@ -1,0 +1,859 @@
+{
+  "catalog": {
+    "uuid": "14b7322e-9d6d-54fd-9b3d-16abf048b0e5",
+    "metadata": {
+      "title": "Active Directory Forest Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-07-02T00:00:00Z",
+      "version": "3.2.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2025-07-02"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "3"
+        },
+        {
+          "name": "version.minor",
+          "value": "2"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-243502",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243502r1026198_rule",
+            "title": "Membership to the Schema Admins group must be limited.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243502",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243502r1026198_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0017"
+              },
+              {
+                "name": "label",
+                "value": "AD.0017"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1026198"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243502r1026198_rule_statement",
+                "name": "statement",
+                "prose": "Membership to the Schema Admins group must be limited."
+              },
+              {
+                "id": "SV-243502r1026198_rule_guidance",
+                "name": "guidance",
+                "prose": "Limit membership in the Schema Admins group to only those accounts necessary during a schema update. Remove accounts when the updates are complete. Document accounts necessary during schema updates with the ISSO."
+              },
+              {
+                "id": "SV-243502r1026198_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The Schema Admins group is a privileged group in a forest root domain. Members of the Schema Admins group can make changes to the schema, which is the framework for the Active Directory forest. Changes to the schema are not frequently required. This group only contains the Built-in Administrator account by default. Additional accounts must only be added when changes to the schema are necessary and then must be removed."
+              },
+              {
+                "id": "SV-243502r1026198_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243503",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243503r1026201_rule",
+            "title": "Anonymous Access to AD forest data above the rootDSE level must be disabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243503",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243503r1026201_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0230"
+              },
+              {
+                "name": "label",
+                "value": "AD.0230"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1026201"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243503r1026201_rule_statement",
+                "name": "statement",
+                "prose": "Anonymous Access to AD forest data above the rootDSE level must be disabled."
+              },
+              {
+                "id": "SV-243503r1026201_rule_guidance",
+                "name": "guidance",
+                "prose": "Disable anonymous access to AD forest data above the rootDSE level."
+              },
+              {
+                "id": "SV-243503r1026201_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "For Windows Server 2003 or above, the dsHeuristics option can be configured to override the default restriction on anonymous access to AD data above the rootDSE level. Anonymous access to AD data could provide valuable account or configuration information to an intruder trying to determine the most effective attack strategies."
+              },
+              {
+                "id": "SV-243503r1026201_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243504",
+        "title": "SRG-OS-000355",
+        "controls": [
+          {
+            "id": "SV-243504r1026204_rule",
+            "title": "The Windows Time Service on the forest root PDC Emulator must be configured to acquire its time from an external time source.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243504",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243504r1026204_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "AD.0295"
+              },
+              {
+                "name": "label",
+                "value": "AD.0295"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1026204"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001891",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system compares internal information system clocks on an organization-defined frequency with an organization-defined authoritative time source."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004923",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Compare the internal system clocks on an organization-defined frequency with organization-defined authoritative time source."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-45 (1) (a)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243504r1026204_rule_statement",
+                "name": "statement",
+                "prose": "The Windows Time Service on the forest root PDC Emulator must be configured to acquire its time from an external time source."
+              },
+              {
+                "id": "SV-243504r1026204_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the forest root PDC Emulator to acquire its time from an external time source.\n\nThe Windows Time Service can be configured by setting the policy value for Computer Configuration >> Administrative Templates >> System >> Windows Time Service >> Time Providers >> \"Configure Windows NTP Client\" to \"Enabled\", and configuring the \"NtpServer\" field to point to an authorized time server."
+              },
+              {
+                "id": "SV-243504r1026204_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "When the Windows Time service is used to synchronize time on client computers (workstations and servers) throughout an AD forest, the forest root domain PDC Emulator is the normal default to provide the authoritative time source for the entire forest. To obtain an accurate time for itself, the forest root domain PDC Emulator acts as a client to an external time source.\n\nIf the Windows Time service on the forest root domain PDC Emulator is not configured to acquire the time from a proper source, it may cause time service clients throughout the forest to operate with the inaccurate time setting.\n\nWhen a Windows computer operates with an inaccurate time setting, access to resources on computers with the accurate time might be denied. This is notably true when Kerberos authentication is utilized. Operation with an inaccurate time setting can reduce the value of audit data and invalidate it as a source of forensic evidence in an incident investigation."
+              },
+              {
+                "id": "SV-243504r1026204_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243505",
+        "title": "SRG-OS-000480",
+        "controls": [
+          {
+            "id": "SV-243505r1026206_rule",
+            "title": "Changes to the AD schema must be subject to a documented configuration management process.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243505",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243505r1026206_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "DS00.0100_AD"
+              },
+              {
+                "name": "label",
+                "value": "DS00.0100_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1026206"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243505r1026206_rule_statement",
+                "name": "statement",
+                "prose": "Changes to the AD schema must be subject to a documented configuration management process."
+              },
+              {
+                "id": "SV-243505r1026206_rule_guidance",
+                "name": "guidance",
+                "prose": "Document and implement a policy to ensure that changes to the AD schema are subject to a configuration management process."
+              },
+              {
+                "id": "SV-243505r1026206_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Poorly planned or implemented changes to the AD schema could cause the applications that rely on AD (such as web and database servers) to operate incorrectly or not all.\n\nImproper changes to the schema could result in changes to AD objects that are incompatible with correct operation of the Windows domain controller and the domain clients. This could cause outages that prevent users from logging on or accessing Windows server resources across multiple hosts."
+              },
+              {
+                "id": "SV-243505r1026206_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-243506",
+        "title": "SRG-OS-000324",
+        "controls": [
+          {
+            "id": "SV-243506r1026208_rule",
+            "title": "Update access to the directory schema must be restricted to appropriate accounts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-243506",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-243506r1026208_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "DS00.3140_AD"
+              },
+              {
+                "name": "label",
+                "value": "DS00.3140_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1026208"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002235",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent non-privileged users from executing privileged functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-6 (10)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-6 (10)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-243506r1026208_rule_statement",
+                "name": "statement",
+                "prose": "Update access to the directory schema must be restricted to appropriate accounts."
+              },
+              {
+                "id": "SV-243506r1026208_rule_guidance",
+                "name": "guidance",
+                "prose": "Ensure the access control permissions for the AD Schema object conform to the required permissions as shown below.\n\nAuthenticated Users:\nRead\nSpecial Permissions\nThe Special permissions for Authenticated Users are List and Read type.  If detailed permissions include any additional Permissions or Properties this is a finding.\n\nSystem:\nFull Control\n\nEnterprise Read-only Domain Controllers:\nReplicating Directory Changes\nReplicating Directory Changes All\nReplicating Directory Changes In Filtered Set\n\nSchema Admins:\nRead\nWrite\nCreate all child objects\nChange schema master\nManage replication topology\nMonitor active directory replication\nRead only replication secret synchronization\nReanimate tombstones\nReplicating Directory Changes\nReplicating Directory Changes All\nReplicating Directory Changes In Filtered Set\nReplication synchronization\nUpdate schema cache\nSpecial permissions\n(Special permissions = all except Full, Delete, and Delete subtree when detailed permissions viewed.)\n\nAdministrators:\nManage replication topology\nReplicating Directory Changes\nReplicating Directory Changes All\nReplicating Directory Changes In Filtered Set\nReplication Synchronization\n\nEnterprise Domain Controllers:\nManage replication topology\nReplicating Directory Changes\nReplicating Directory Changes All\nReplicating Directory Changes In Filtered Set\nReplication Synchronization"
+              },
+              {
+                "id": "SV-243506r1026208_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A failure to control update access to the AD Schema object could result in the creation of invalid directory objects and attributes. Applications that rely on AD could fail as a result of invalid formats and values. The presence of invalid directory objects and attributes could cause failures in Windows AD client functions and improper resource access decisions."
+              },
+              {
+                "id": "SV-243506r1026208_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-269098",
+        "title": "SRG-OS-000324",
+        "controls": [
+          {
+            "id": "SV-269098r1106505_rule",
+            "title": "Windows Server hosting Active Directory Certificate Services (AD CS) must enforce Certificate Authority (CA) certificate management approval for certificate requests.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-269098",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-269098r1106505_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "AD.3145_AD"
+              },
+              {
+                "name": "label",
+                "value": "AD.3145_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1106505"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-269098r1106505_rule_statement",
+                "name": "statement",
+                "prose": "Windows Server hosting Active Directory Certificate Services (AD CS) must enforce Certificate Authority (CA) certificate management approval for certificate requests."
+              },
+              {
+                "id": "SV-269098r1106505_rule_guidance",
+                "name": "guidance",
+                "prose": "In the AD CS web server properties, select \"VulnerableCertTemplate\" properties and then select \"Subject Name\" and \"Supply in the request\".\n\nCertificate templates with the following extended key usages must require manual approval in all cases:\n  i. Smart Card Logon (1.3.6.1.4.1.311.20.2.2).\n ii. Any Purpose EKU (2.5.29.37.0).\niii. No EKU set. i.e., this is a (subordinate) CA certificate.\n\nCertificate templates with the following extended key usages AND that allow a requestor to supply the subject name in the request must require manual approval:\n  i. Client Authentication (1.3.6.1.5.5.7.3.2).\n ii. PKINIT Client Authentication (1.3.6.1.5.2.3.4).\niii. Supply in request\" setting:  VulnerableCertTemplate Properties."
+              },
+              {
+                "id": "SV-269098r1106505_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "When users are requesting new certificates through AD CS, there must be management approval and awareness for these requests. Without this, a user or bad actor could request certificates they should not have or should not have access to."
+              },
+              {
+                "id": "SV-269098r1106505_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-269099",
+        "title": "SRG-OS-000324",
+        "controls": [
+          {
+            "id": "SV-269099r1026184_rule",
+            "title": "Windows Server running Active Directory Certificate Services (AD CS) must be managed by a PAW tier 0.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-269099",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-269099r1026184_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "AD.3150_AD"
+              },
+              {
+                "name": "label",
+                "value": "AD.3150_AD"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1026184"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-269099r1026184_rule_statement",
+                "name": "statement",
+                "prose": "Windows Server running Active Directory Certificate Services (AD CS) must be managed by a PAW tier 0."
+              },
+              {
+                "id": "SV-269099r1026184_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure and set aside one or more PAWs for configuration and management of AD CS. \n\nFor AD, multiple configuration items could enable anonymous access.\n\nSet aside one or more PAWs for remote management of high-value IT resources assigned to a specific tier. For example, using the Microsoft Tier 0-2 model, each PAW would be assigned to manage Tier 0, Tier 1, or Tier 2 high-value IT resources."
+              },
+              {
+                "id": "SV-269099r1026184_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Verify that a site has set aside one or more PAWs for remote management of AD CS."
+              },
+              {
+                "id": "SV-269099r1026184_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

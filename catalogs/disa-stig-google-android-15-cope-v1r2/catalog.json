@@ -1,0 +1,4136 @@
+{
+  "catalog": {
+    "uuid": "da9eff4d-c591-51f9-a1a0-cf80ee06403b",
+    "metadata": {
+      "title": "Google Android 15 COPE Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-01-30T00:00:00Z",
+      "version": "1.2.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2025-01-30"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "1"
+        },
+        {
+          "name": "version.minor",
+          "value": "2"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-267525",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267525r1031760_rule",
+            "title": "Google Android 15 must be configured to enable audit logging.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267525",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267525r1031760_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-002800"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-002800"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031760"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000154",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide the capability to centrally review and analyze audit records from multiple components within the system."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-6 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-6 (4).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-6 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-6 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267525r1031760_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to enable audit logging."
+              },
+              {
+                "id": "SV-267525r1031760_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to enable audit logging.\n\nOn the EMM console:\n\nCOBO and COPE:\n\n1. Open \"Device owner management\" section.\n2. Toggle \"Enable security logging\" to \"ON\"."
+              },
+              {
+                "id": "SV-267525r1031760_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Audit logs enable monitoring of security-relevant events and subsequent forensics when breaches occur. To be useful, administrators must have the ability to view the audit logs.\n\nSFRID: FMT_SMF.1.1 #32"
+              },
+              {
+                "id": "SV-267525r1031760_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267526",
+        "title": "PP-MDF-333024",
+        "controls": [
+          {
+            "id": "SV-267526r1031763_rule",
+            "title": "Google Android 15 must be configured to enforce a minimum password length of six characters.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267526",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267526r1031763_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-006000"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-006000"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031763"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004066",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, enforce organization-defined composition and complexity rules."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (1) (h)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267526r1031763_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to enforce a minimum password length of six characters."
+              },
+              {
+                "id": "SV-267526r1031763_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to enforce a minimum password length of six characters.\n\nOn the EMM console:\n\nCOBO:\n\n1. Open \"Lock screen\" settings.\n2. Open \"Password constraints\".\n3. Open \"Minimum password quality\".\n4. Choose Numeric Complex, Alphabetic, Alphanumeric, or Complex.\n5. Open \"Minimum password length\".\n6. Enter in the number of characters as \"6\".\n\nCOPE:\n\n1. Open \"Lock screen\" settings.\n2. Open \"Password constraints\".\n3. Select \"Personal Profile\".\n4. Open \"Minimum password quality\".\n5. Choose Numeric Complex, Alphabetic, Alphanumeric, or Complex.\n6. Open \"Minimum password length\".\n7. Enter in the number of characters as \"6\"."
+              },
+              {
+                "id": "SV-267526r1031763_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Password strength is a measure of the effectiveness of a password in resisting guessing and brute force attacks. The ability to crack a password is a function of how many attempts an adversary is permitted, how quickly an adversary can perform each attempt, and the size of the password space. The longer the minimum length of the password, the larger the password space. Having a too-short minimum password length significantly reduces password strength, increasing the chance of password compromise and resulting in device and data compromise.\n\nSFRID: FMT_SMF.1.1 #1"
+              },
+              {
+                "id": "SV-267526r1031763_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267527",
+        "title": "PP-MDF-333025",
+        "controls": [
+          {
+            "id": "SV-267527r1031766_rule",
+            "title": "Google Android 15 must be configured to not allow passwords that include more than four repeating or sequential characters.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267527",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267527r1031766_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-006100"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-006100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031766"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-004066",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For password-based authentication, enforce organization-defined composition and complexity rules."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (1) (h)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267527r1031766_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to not allow passwords that include more than four repeating or sequential characters."
+              },
+              {
+                "id": "SV-267527r1031766_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to prevent passwords from containing more than four repeating or sequential characters.\n\nOn the EMM console:\n\nCOBO:\n\n1. Open \"Lock screen\" settings.\n2. Open \"Password constraints\".\n3. Set password quality to \"Numeric (Complex)\".\n\nCOPE:\n\n1. Open \"Password constraints\".\n2. Select \"Personal Profile\".\n3. Set password quality to \"Numeric (Complex)\".\n\nNote: Alphabetic, Alphanumeric, and Complex are also acceptable selections, but these selections will cause the user to select a complex password, which is not required by the STIG."
+              },
+              {
+                "id": "SV-267527r1031766_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Password strength is a measure of the effectiveness of a password in resisting guessing and brute force attacks. Passwords that contain repeating or sequential characters are significantly easier to guess than those that do not contain repeating or sequential characters. Therefore, disallowing repeating or sequential characters increases password strength and decreases risk.\n\nSFRID: FMT_SMF.1.1 #1"
+              },
+              {
+                "id": "SV-267527r1031766_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267528",
+        "title": "PP-MDF-333030",
+        "controls": [
+          {
+            "id": "SV-267528r1031769_rule",
+            "title": "Google Android 15 must be configured to lock the display after 15 minutes (or less) of inactivity.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267528",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267528r1031769_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-006300"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-006300"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031769"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000057",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent further access to the system by initiating a device lock after organization-defined time period of inactivity; and/or requiring the user to initiate a device lock before leaving the system unattended."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-11.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-11 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267528r1031769_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to lock the display after 15 minutes (or less) of inactivity."
+              },
+              {
+                "id": "SV-267528r1031769_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to enable a screen-lock policy of 15 minutes for the max period of inactivity. \n\nNote: Google Android 15 Settings User Interface (UI) does not support the 15 minute increment but this value can be set by the MDM. \n\nOn the EMM console:\n\nCOBO:\n\n1. Open \"Lock screen restrictions\".\n2. Set \"Max time to screen lock\" to \"900\".\nNote: The units are in seconds.\n\nCOPE:\n\n1. Open \"Lock screen restrictions\".\n2. Select \"Personal Profile\".\n3. Set \"Max time to screen lock\" to 900\".\nNote: The units are in seconds."
+              },
+              {
+                "id": "SV-267528r1031769_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The screen lock timeout must be set to a value that helps protect the device from unauthorized access. Having a too-long timeout would increase the window of opportunity for adversaries who gain physical access to the mobile device through loss, theft, etc. Such devices are much more likely to be in an unlocked state when acquired by an adversary, thus granting immediate access to the data on the mobile device. The maximum timeout period of 15 minutes has been selected to balance functionality and security; shorter timeout periods may be appropriate depending on the risks posed to the mobile device.\n\nSFRID: FMT_SMF.1.1 #2"
+              },
+              {
+                "id": "SV-267528r1031769_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267529",
+        "title": "PP-MDF-333040",
+        "controls": [
+          {
+            "id": "SV-267529r1033058_rule",
+            "title": "Google Android 15 must be configured to not allow more than 10 consecutive failed authentication attempts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267529",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267529r1033058_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-006400"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-006400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033058"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000044",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce the organization-defined limit of consecutive invalid logon attempts by a user during the organization-defined time period."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267529r1033058_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to not allow more than 10 consecutive failed authentication attempts."
+              },
+              {
+                "id": "SV-267529r1033058_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to allow only 10 or fewer consecutive failed authentication attempts.\n\nOn the EMM console:\n\nCOBO:\n\n1. Open \"Lock screen\" settings.\n2. Open \"Lock screen restrictions\".\n3. Set \"Max password failures for local wipe\" to a number between 1 and 10.\n\nCOPE:\n\n1. Open \"Lock screen\" settings.\n2. Open \"Lock screen restrictions\".\n3. Select \"Personal Profile\".\n4. Set \"Max password failures for local wipe\" to a number between 1 and 10."
+              },
+              {
+                "id": "SV-267529r1033058_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The more attempts an adversary has to guess a password, the more likely the adversary will enter the correct password and gain access to resources on the device. Setting a limit on the number of attempts mitigates this risk. Setting the limit at 10 or less gives authorized users the ability to make a few mistakes when entering the password but still provides adequate protection against dictionary or brute force attacks on the password.\n\nSFRID: FMT_SMF.1.1 #2, FIA_AFL_EXT.1.5"
+              },
+              {
+                "id": "SV-267529r1033058_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267530",
+        "title": "PP-MDF-333050",
+        "controls": [
+          {
+            "id": "SV-267530r1031775_rule",
+            "title": "Google Android 15 must be configured to enforce an application installation policy by specifying one or more authorized application repositories, including [selection: DOD-approved commercial app repository, MDM server, mobile application store].",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267530",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267530r1031775_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-006500"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-006500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031775"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267530r1031775_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to enforce an application installation policy by specifying one or more authorized application repositories, including [selection: DOD-approved commercial app repository, MDM server, mobile application store]."
+              },
+              {
+                "id": "SV-267530r1031775_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to disable unauthorized application repositories.\n\nOn the EMM console:\n\nCOBO and COPE:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disallow install unknown sources\" to \"ON\".\n3. Toggle \"Disallow installs from unknown sources globally\" to \"ON\"."
+              },
+              {
+                "id": "SV-267530r1031775_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Forcing all applications to be installed from authorized application repositories can prevent unauthorized and malicious applications from being installed and executed on mobile devices. Allowing such installations and executions could cause a compromise of DOD data accessible by these unauthorized/malicious applications.\n\nSFRID: FMT_SMF.1.1 #8"
+              },
+              {
+                "id": "SV-267530r1031775_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267531",
+        "title": "PP-MDF-333060",
+        "controls": [
+          {
+            "id": "SV-267531r1033118_rule",
+            "title": "Google Android 15 must be configured to enforce an application installation policy by specifying an application allow list that restricts applications by the following characteristics: [selection: list of digital signatures, cryptographic hash values, names, application version].",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267531",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267531r1033118_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-006600"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-006600"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033118"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001764",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent program execution in accordance with organization-defined policies, rules of behavior, and/or access agreements regarding software program usage and restrictions; rules authorizing the terms and conditions of software program usage."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267531r1033118_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to enforce an application installation policy by specifying an application allow list that restricts applications by the following characteristics: [selection: list of digital signatures, cryptographic hash values, names, application version]."
+              },
+              {
+                "id": "SV-267531r1033118_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to use an application allow list.\n\nOn the EMM console:\n\nCOBO and COPE:\n\n1. Go to the Android app catalog for managed Google Play.\n2. Select apps to be available (only approved apps).\n3. Push updated policy to the device.\n\nNote: Managed Google Play is an allowed App Store."
+              },
+              {
+                "id": "SV-267531r1033118_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The application allow list, in addition to controlling the installation of applications on the MD, must control user access/execution of all core and preinstalled applications, or the MD must provide an alternate method of restricting user access/execution to core and preinstalled applications. \n\nCore application: Any application integrated into the OS by the OS or MD vendors.\n\nPreinstalled application: Additional noncore applications included in the OS build by the OS vendor, MD vendor, or wireless carrier.\n\nRequiring all authorized applications to be in an application allow list prevents the execution of any applications (e.g., unauthorized, malicious) that are not part of the allow list. Failure to configure an application allow list properly could allow unauthorized and malicious applications to be downloaded, installed, and executed on the mobile device, causing a compromise of DOD data accessible by these applications.\n\nThe application allow list, in addition to controlling the installation of applications on the MD, must control user access/execution of all core applications (included in the OS by the OS vendor) and preinstalled applications (provided by the MD vendor and wireless carrier), or the MD must provide an alternate method of restricting user access/execution to core and preinstalled applications.\n\nSFRID: FMT_SMF.1.1 #8"
+              },
+              {
+                "id": "SV-267531r1033118_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267532",
+        "title": "PP-MDF-333070",
+        "controls": [
+          {
+            "id": "SV-267532r1033064_rule",
+            "title": "Google Android 15 allow list must be configured to not include applications with the following characteristics: \n- Backs up MD data to non-DOD cloud servers (including user and application access to cloud backup services);\n- Transmits MD diagnostic data to non-DOD servers;\n- Voice assistant application if available when MD is locked;\n- Voice dialing application if available when MD is locked;\n- Allows synchronization of data or applications between devices associated with user;\n- Payment processing;\n- Allows unencrypted (or encrypted but not FIPS 140-2/140-3 validated) data sharing with other MDs or printers; and\n- Backs up its own data to a remote system.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267532",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267532r1033064_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-006700"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-006700"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033064"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000803",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement mechanisms for authentication to a cryptographic module that meet the requirements of applicable laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-7.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-7"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267532r1033064_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 allow list must be configured to not include applications with the following characteristics: \n- Backs up MD data to non-DOD cloud servers (including user and application access to cloud backup services);\n- Transmits MD diagnostic data to non-DOD servers;\n- Voice assistant application if available when MD is locked;\n- Voice dialing application if available when MD is locked;\n- Allows synchronization of data or applications between devices associated with user;\n- Payment processing;\n- Allows unencrypted (or encrypted but not FIPS 140-2/140-3 validated) data sharing with other MDs or printers; and\n- Backs up its own data to a remote system."
+              },
+              {
+                "id": "SV-267532r1033064_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device application allow list to exclude applications with the following characteristics:\n- Backs up MD data to non-DOD cloud servers (including user and application access to cloud backup services);\n- Transmits MD diagnostic data to non-DOD servers;\n- Voice assistant application if available when MD is locked;\n- Voice dialing application if available when MD is locked;\n- Allows synchronization of data or applications between devices associated with user;\n- Payment processing;\n- Allows unencrypted (or encrypted but not FIPS 140-2/140-3 validated) data sharing with other MDs or printers; and\n- Backs up its own data to a remote system.\n\nOn the EMM console:\n\n1. Go to the Android app catalog for managed Google Play.\n2. Before selecting an app, review the app details and privacy policy to ensure the app does not include prohibited characteristics."
+              },
+              {
+                "id": "SV-267532r1033064_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Requiring all authorized applications to be in an application allow list prevents the execution of any applications (e.g., unauthorized, malicious) that are not part of the allow list. Failure to configure an application allow list properly could allow unauthorized and malicious applications to be downloaded, installed, and executed on the mobile device, causing a compromise of DOD data accessible by these applications. Applications with the listed characteristics have features that can cause the compromise of sensitive DOD data or have features with no known application in the DOD environment.\n\nApplication note: The application allow list, in addition to controlling the installation of applications on the MD, must control user access/execution of all core and preinstalled applications, or the MD must provide an alternate method of restricting user access/execution to core and preinstalled applications.\n\nCore application: Any application integrated into the OS by the OS or MD vendors.\n\nPreinstalled application: Additional noncore applications included in the OS build by the OS vendor, MD vendor, or wireless carrier.\n\nSFRID: FMT_SMF.1.1 #8"
+              },
+              {
+                "id": "SV-267532r1033064_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267533",
+        "title": "PP-MDF-333070",
+        "controls": [
+          {
+            "id": "SV-267533r1042526_rule",
+            "title": "Google Android 15 allow list must be configured to not include artificial intelligence (AI) applications that process device data in the cloud, including Google Gemini.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267533",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267533r1042526_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-006750"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-006750"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1042526"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000803",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement mechanisms for authentication to a cryptographic module that meet the requirements of applicable laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-7.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-7"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267533r1042526_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 allow list must be configured to not include artificial intelligence (AI) applications that process device data in the cloud, including Google Gemini."
+              },
+              {
+                "id": "SV-267533r1042526_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device application allow list to exclude AI applications that process device data in the cloud, including Google Gemini.\n\nNote: This restriction does not include Gemini Nano. Gemini Nano is a built-in capability of Android 15 and processes device data on the device. Refer to Section 2, Artificial Intelligence Restrictions, of the STIG Supplemental document for more information."
+              },
+              {
+                "id": "SV-267533r1042526_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Sensitive DOD data could be exposed when an AI app processes device data in the cloud.\n\nSFRID: FMT_SMF.1.1 #8"
+              },
+              {
+                "id": "SV-267533r1042526_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267534",
+        "title": "PP-MDF-333080",
+        "controls": [
+          {
+            "id": "SV-267534r1031787_rule",
+            "title": "Google Android 15 must be configured to not display the following (work profile) notifications when the device is locked: [selection:\na. email notifications \nb. calendar appointments \nc. contact associated with phone call notification \nd. text message notification\ne. other application-based notifications\nf. all notifications].",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267534",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267534r1031787_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-006800"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-006800"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031787"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000060",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Conceal, via the device lock, information previously visible on the display with a publicly viewable image."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-11 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-11 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-11 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-11 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267534r1031787_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to not display the following (work profile) notifications when the device is locked: [selection:\na. email notifications \nb. calendar appointments \nc. contact associated with phone call notification \nd. text message notification\ne. other application-based notifications\nf. all notifications]."
+              },
+              {
+                "id": "SV-267534r1031787_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to not display (work profile) notifications when the device is locked.\n\nOn the EMM console:\n\nCOBO:\n\n1. Open \"Lock screen\" settings.\n2. Open \"Lock screen restrictions\".\n3. Toggle \"Disable unredacted notifications\".\n\nCOPE:\n\n1. Open \"Lock screen\" settings.\n2. Open \"Lock screen restrictions\".\n3. Select \"Work Profile\".\n4. Toggle \"Disable unredacted notifications\"."
+              },
+              {
+                "id": "SV-267534r1031787_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Many mobile devices display notifications on the lock screen so that users can obtain relevant information in a timely manner without having to frequently unlock the phone to determine if there are new notifications. However, in many cases, these notifications can contain sensitive information. When they are available on the lock screen, an adversary can see them merely by being in close physical proximity to the device. Configuring the mobile operating system (MOS) to not send notifications to the lock screen mitigates this risk.\n\nSFRID: FMT_SMF.1.1 #18"
+              },
+              {
+                "id": "SV-267534r1031787_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267535",
+        "title": "PP-MDF-333110",
+        "controls": [
+          {
+            "id": "SV-267535r1031790_rule",
+            "title": "Google Android 15 must be configured to disable trust agents.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267535",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267535r1031790_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-007200"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-007200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031790"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000767",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The information system implements multifactor authentication for local access to privileged accounts."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-2 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-2 (3).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-2 (3)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267535r1031790_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to disable trust agents."
+              },
+              {
+                "id": "SV-267535r1031790_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to disable trust agents. \n \nOn the EMM console:\n\nCOBO:\n\n1. Open \"Lock screen restrictions\".\n2. Toggle \"Disable trust agents\" to \"ON\".\n\nCOPE:\n\n1. Open \"Lock screen restrictions\".\n2. Select \"Personal Profile\".\n3. Toggle \"Disable trust agents\" to \"ON\".\n4. Select \"Work Profile\".\n5. Toggle \"Disable trust agents\" to \"ON\"."
+              },
+              {
+                "id": "SV-267535r1031790_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Trust agents allow a user to unlock a mobile device without entering a passcode when the mobile device is, for example, connected to a user-selected Bluetooth device or in a user-selected location. This technology would allow unauthorized users to have access to DOD sensitive data if compromised. By not permitting the use of nonpassword authentication mechanisms, users are forced to use passcodes that meet DOD passcode requirements.\n\nSFRID: FMT_SMF.1.1 #22, FIA_UAU.5.1"
+              },
+              {
+                "id": "SV-267535r1031790_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267536",
+        "title": "PP-MDF-333130",
+        "controls": [
+          {
+            "id": "SV-267536r1033068_rule",
+            "title": "Google Android 15 must be configured to disable developer modes.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267536",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267536r1033068_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-007400"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-007400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033068"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267536r1033068_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to disable developer modes."
+              },
+              {
+                "id": "SV-267536r1033068_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to disable developer modes.\n\nOn the EMM console:\n\nCOBO:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disallow debugging features\" to \"ON\".\n\nCOPE:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disallow debugging features\" to \"ON\".\n3. Open \"Set user restrictions on parent\".\n4. Toggle \"Disallow debugging features\" to \"ON\"."
+              },
+              {
+                "id": "SV-267536r1033068_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Developer modes expose features of the mobile operating system (MOS) that are not available during standard operation. An adversary may leverage a vulnerability inherent in a developer mode to compromise the confidentiality, integrity, and availability of DOD sensitive information. Disabling developer modes mitigates this risk.\n\nSFRID: FMT_SMF.1.1 #26"
+              },
+              {
+                "id": "SV-267536r1033068_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267537",
+        "title": "PP-MDF-333160",
+        "controls": [
+          {
+            "id": "SV-267537r1031796_rule",
+            "title": "Google Android 15 must be configured to display the DOD advisory warning message at startup or each time the user unlocks the device.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267537",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267537r1031796_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-007700"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-007700"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031796"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000048",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Display an organization-defined system use notification message or banner to users before granting access to the system that provides privacy and security notices consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidelines."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-8 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-8.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-8 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-8 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267537r1031796_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to display the DOD advisory warning message at startup or each time the user unlocks the device."
+              },
+              {
+                "id": "SV-267537r1031796_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the DOD warning banner by either of the following methods (required text is found in the Vulnerability Discussion):\n\n1. By placing the DOD warning banner text in the user agreement signed by each Google Android 15 device user (preferred method).\n2. By configuring the warning banner text on the EMM console and installing the banner on each Google Android 15 mobile device.\n\nOn the EMM console:\n\nCOBO:\n\n1. Open \"Lock screen restrictions\".\n2. Select \"Lock screen message\".\n3. Enter in message.\n\nCOPE:\n\n1. Open \"Lock screen restrictions\".\n2. Select \"Personal Profile\".\n3. Select \"Lock screen message\".\n4. Enter in message."
+              },
+              {
+                "id": "SV-267537r1031796_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Before granting access to the system, the mobile operating system is required to display the DOD-approved system use notification message or banner that provides privacy and security notices consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance. Required banners help ensure that DOD can audit and monitor the activities of mobile device users without legal restriction.\n\nSystem use notification messages can be displayed when individuals first access or unlock the mobile device. The banner must be implemented as a \"click-through\" banner at device unlock (to the extent permitted by the operating system). A \"click-through\" banner prevents further activity on the information system unless and until the user executes a positive action to manifest agreement by clicking on a box indicating \"OK.\"\n\nThe approved DOD text must be used exactly as required in the Knowledge Service referenced in DODI 8500.01. For devices accommodating banners of 1300 characters, the banner text is: \n\nYou are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. \nBy using this IS (which includes any device attached to this IS), you consent to the following conditions: \n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n-At any time, the USG may inspect and seize data stored on this IS.\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\n\nFor devices with severe character limitations, the banner text is:\n\nI've read & consent to terms in IS user agreem't.\n\nThe administrator must configure the banner text exactly as written without any changes.\n\nSFRID: FMT_SMF.1.1 #36"
+              },
+              {
+                "id": "SV-267537r1031796_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267538",
+        "title": "PP-MDF-333170",
+        "controls": [
+          {
+            "id": "SV-267538r1031799_rule",
+            "title": "Google Android 15 must be configured to generate audit records for the following auditable events: Detected integrity violations.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267538",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267538r1031799_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-007800"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-007800"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031799"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000169",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Provide audit record generation capability for the event types the system is capable of auditing as defined in AU-2 a on organization-defined information system components."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267538r1031799_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to generate audit records for the following auditable events: Detected integrity violations."
+              },
+              {
+                "id": "SV-267538r1031799_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to generate audit records for the following auditable events: Detected integrity violations.\n\nOn the EMM console:\n\nCOBO and COPE:\n\n1. Open \"Device owner management\" section.\n2. Toggle \"Enable security logging\" to \"ON\"."
+              },
+              {
+                "id": "SV-267538r1031799_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Audit logs enable monitoring of security-relevant events and subsequent forensics when breaches occur. They help identify attacks so that breaches can be prevented or limited in their scope. They facilitate analysis to improve performance and security. The Requirement Statement lists key events for which the system must generate an audit record.\n\nNote: This requirement applies only to integrity violation detections that can be logged by the audit logging component.\n\nSFRID: FMT_SMF.1.1 #37"
+              },
+              {
+                "id": "SV-267538r1031799_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267539",
+        "title": "PP-MDF-333230",
+        "controls": [
+          {
+            "id": "SV-267539r1031802_rule",
+            "title": "Google Android 15 must be configured to disable USB mass storage mode.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267539",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267539r1031802_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-008400"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-008400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031802"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002546",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Physically or logically disable or remove organization-defined connection ports or input/output devices on organization-defined systems or system components."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-41"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-41"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267539r1031802_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to disable USB mass storage mode."
+              },
+              {
+                "id": "SV-267539r1031802_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to disable USB mass storage mode.\n\nOn the EMM console:\n\nCOBO:\n\n1. Open \"User restrictions\".\n2. Open \"Set user restrictions\".\n3. Toggle \"Disallow USB file transfer\" to \"ON\".\n\nCOPE:\n\n1. Open \"User restrictions\".\n2. Open \"Set user restrictions on parent\".\n3. Toggle \"Disallow USB file transfer\" to \"ON\"."
+              },
+              {
+                "id": "SV-267539r1031802_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "USB mass storage mode enables the transfer of data and software from one device to another. This software can include malware. When USB mass storage is enabled on a mobile device, it becomes a potential vector for malware and unauthorized data exfiltration. Prohibiting USB mass storage mode mitigates this risk.\n\nSFRID: FMT_SMF.1.1 #39"
+              },
+              {
+                "id": "SV-267539r1031802_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267540",
+        "title": "PP-MDF-333240",
+        "controls": [
+          {
+            "id": "SV-267540r1031805_rule",
+            "title": "Google Android 15 must be configured to not allow backup of [all applications, configuration data] to locally connected systems.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267540",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267540r1031805_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-008500"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-008500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031805"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001090",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent unauthorized and unintended information transfer via shared system resources."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-4.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267540r1031805_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to not allow backup of [all applications, configuration data] to locally connected systems."
+              },
+              {
+                "id": "SV-267540r1031805_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to disable backup to locally connected systems.\n\nOn the EMM console:\n\nCOBO and COPE:\n\n1. Open \"Device owner management\".\n2. Toggle \"Enable backup service\" to \"OFF\"."
+              },
+              {
+                "id": "SV-267540r1031805_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Data on mobile devices is protected by numerous mechanisms, including user authentication, access control, and cryptography. When the data is backed up to an external system (either locally connected or cloud based), many if not all of these mechanisms are no longer present. This leaves the backed-up data vulnerable to attack. Disabling backup to external systems mitigates this risk.\n\nSFRID: FMT_SMF.1.1 #40"
+              },
+              {
+                "id": "SV-267540r1031805_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267541",
+        "title": "PP-MDF-333250",
+        "controls": [
+          {
+            "id": "SV-267541r1031808_rule",
+            "title": "Google Android 15 must be configured to not allow backup of [all applications, configuration data] to remote systems.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267541",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267541r1031808_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-008600"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-008600"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031808"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001090",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent unauthorized and unintended information transfer via shared system resources."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-4.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267541r1031808_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to not allow backup of [all applications, configuration data] to remote systems."
+              },
+              {
+                "id": "SV-267541r1031808_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to disable backup to remote systems (including commercial clouds).\n\nOn the EMM console:\n\nCOBO and COPE:\n\n1. Open \"Device owner management\".\n2. Toggle \"Enable backup service\" to \"OFF\".\n\nNote: Since personal accounts cannot be added to the work profile (GOOG-15-009800), this control only impacts personal profile accounts. Site can allow backup based on local policy."
+              },
+              {
+                "id": "SV-267541r1031808_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Backups to remote systems (including cloud backup) can leave data vulnerable to breach on the external systems, which often offer less protection than the mobile operating system (MOS). Where the remote backup involves a cloud-based solution, the backup capability is often used to synchronize data across multiple devices. In this case, DOD devices may synchronize DOD sensitive information to a user's personal device or other unauthorized computers that are vulnerable to breach. Disallowing remote backup mitigates this risk.\n\nSFRID: FMT_SMF.1.1 #40"
+              },
+              {
+                "id": "SV-267541r1031808_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267542",
+        "title": "PP-MDF-333260",
+        "controls": [
+          {
+            "id": "SV-267542r1031811_rule",
+            "title": "Google Android 15 must be configured to enable authentication of personal hotspot connections to the device using a preshared key.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267542",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267542r1031811_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-008700"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-008700"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031811"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001443",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect wireless access to the system using authentication of users and/or devices."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002314",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Employ automated mechanisms to control remote access methods."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267542r1031811_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to enable authentication of personal hotspot connections to the device using a preshared key."
+              },
+              {
+                "id": "SV-267542r1031811_rule_guidance",
+                "name": "guidance",
+                "prose": "This is a User-Based Enforcement (UBE) control.\n\nTrain users to not change the default Wi-Fi hotspot security setting: 15-character complex Wi-Fi hotspot preshared key (password) (\"WPA2/WPA3-Personal\" or WPA3-Personal\"). (GOOG-15-009800)\n\nIf the required preshared key is not set up, train users to use the following procedure to set up the required setting:\n\n1. Go to Settings >> Network & Internet >> Hotspot & tethering.\n2. Enable \"Wi-Fi hotspot\".\n3. On the left of the slide, tap on \"Wi-Fi Hotspot\" to bring up the configuration options.\n4. Click on the \"Security\" link and select either \"WPA2/WPA3-Personal\" or \"WPA3-Personal\"."
+              },
+              {
+                "id": "SV-267542r1031811_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If no authentication is required to establish personal hotspot connections (Wi-Fi and Bluetooth), an adversary may be able to use that device to perform attacks on other devices or networks without detection. A sophisticated adversary may also be able to exploit unknown system vulnerabilities to access information and computing resources on the device. Requiring authentication to establish personal hotspot connections mitigates this risk.\n\nApplication note: If hotspot functionality is permitted, it must be authenticated via a preshared key. There is no requirement to enable hotspot functionality, and it is recommended this functionality be disabled by default.\n\nSFRID: FMT_SMF.1.1 #41"
+              },
+              {
+                "id": "SV-267542r1031811_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267543",
+        "title": "PP-MDF-333280",
+        "controls": [
+          {
+            "id": "SV-267543r1031814_rule",
+            "title": "Google Android 15 must be configured to disable exceptions to the access control policy that prevent [selection: application processes, groups of application processes] from accessing [selection: all, private] data stored by other [selection: application processes, groups of application processes].",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267543",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267543r1031814_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-008900"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-008900"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031814"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002530",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Maintain a separate execution domain for each executing system process."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002233",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent the organization-defined software from executing at higher privilege levels than users executing the software."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-6 (8)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-6 (8)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267543r1031814_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to disable exceptions to the access control policy that prevent [selection: application processes, groups of application processes] from accessing [selection: all, private] data stored by other [selection: application processes, groups of application processes]."
+              },
+              {
+                "id": "SV-267543r1031814_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to enable the access control policy that prevents [selection: application processes, groups of application processes] from accessing [selection: all, private] data stored by other [selection: application processes, groups of application processes].\n\nNote: All application data is inherently sandboxed and isolated from other applications. To disable copy/paste on the EMM console:\n\nCOPE:\n\n1. Open \"User restrictions\".\n2. Open \"Set user restrictions\".\n3. Toggle \"Disallow cross profile copy/paste\" to \"ON\"."
+              },
+              {
+                "id": "SV-267543r1031814_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "App data sharing gives apps the ability to access the data of other apps for enhanced user functionality. However, sharing also poses a significant risk that unauthorized users or apps will obtain access to DOD sensitive information. To mitigate this risk, there are data sharing restrictions, primarily from sharing data from personal (unmanaged) apps and work (managed) apps. If a user is allowed to make exceptions to the data sharing restriction policy, the user could enable unauthorized sharing of data, leaving it vulnerable to breach. Limiting the granting of exceptions to either the Administrator or common application developer mitigates this risk.\n\nCopy/paste of data between applications in different application processes or groups of application processes is considered an exception to the access control policy and therefore, the Administrator must be able to enable/disable the feature. Other exceptions include allowing any data or application sharing between process groups.\n\nSFRID: FMT_SMF.1.1 #42, FDP_ACF_EXT.1.2"
+              },
+              {
+                "id": "SV-267543r1031814_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267544",
+        "title": "PP-MDF-333290",
+        "controls": [
+          {
+            "id": "SV-267544r1033070_rule",
+            "title": "Google Android 15 must be configured to disable multiuser modes.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267544",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267544r1033070_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-009000"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-009000"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033070"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002110",
+                "ns": "https://disa.mil/cci",
+                "remarks": "The organization defines the information system account types that support the organizational missions/business functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-2 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267544r1033070_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to disable multiuser modes."
+              },
+              {
+                "id": "SV-267544r1033070_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to disable multi-user modes.\n\nOn the EMM console:\n\nCOBO and COPE:\n\n1. Open \"User restrictions\".\n2. Open \"Set user restrictions\".\n3. Toggle \"Disallow modify accounts\" to \"ON\"."
+              },
+              {
+                "id": "SV-267544r1033070_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Multiuser mode allows multiple users to share a mobile device by providing a degree of separation between user data. To date, no mobile device with multiuser mode features meets DOD requirements for access control, data separation, and nonrepudiation for user accounts. In addition, the MDFPP does not include design requirements for multiuser account services. Disabling multiuser mode mitigates the risk of not meeting DOD multiuser account security policies.\n\nSFRID: FMT_SMF.1.1 #47a"
+              },
+              {
+                "id": "SV-267544r1033070_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267545",
+        "title": "PP-MDF-333320",
+        "controls": [
+          {
+            "id": "SV-267545r1031820_rule",
+            "title": "Google Android 15 must be configured to disable all Bluetooth profiles except for HSP (Headset Profile), HFP (Hands-Free Profile), SPP (Serial Port Profile), A2DP (Advanced Audio Distribution Profile), AVRCP (Audio/Video Remote Control Profile), and PBAP (Phone Book Access Profile).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267545",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267545r1031820_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-009400"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-009400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031820"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000381",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to provide only organization-defined mission essential capabilities."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001761",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Defines the functions, ports, protocols, software, and services within the information system that are to be disabled or removed when deemed unnecessary and/or nonsecure."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 (1) (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 (1) (b)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267545r1031820_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to disable all Bluetooth profiles except for HSP (Headset Profile), HFP (Hands-Free Profile), SPP (Serial Port Profile), A2DP (Advanced Audio Distribution Profile), AVRCP (Audio/Video Remote Control Profile), and PBAP (Phone Book Access Profile)."
+              },
+              {
+                "id": "SV-267545r1031820_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to disable Bluetooth, or if the AO has approved the use of Bluetooth (for example, for car hands-free use), train the user to connect to only authorized Bluetooth devices using only HSP, HFP, or SPP Bluetooth capable devices (UBE).\n\nTo disable Bluetooth, use the following procedure:\n\nOn the EMM console:\n\nCOBO:\n\n1. Open \"User restrictions\" section.\n2. Toggle \"Disallow Bluetooth\" to \"ON\".\n\nCOPE:\n\n1. Open \"User restrictions on parent\" section.\n2. Toggle \"Disallow Bluetooth\" to \"ON\".\n\nThe user training requirement is satisfied in requirement GOOG-15-009800."
+              },
+              {
+                "id": "SV-267545r1031820_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Some Bluetooth profiles provide the capability for remote transfer of sensitive DOD data without encryption or otherwise do not meet DOD IT security policies and therefore must be disabled.\n\nSFRID: FMT_SMF_EXT.1.1/BLUETOOTH BT-8"
+              },
+              {
+                "id": "SV-267545r1031820_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267546",
+        "title": "PP-MDF-333330",
+        "controls": [
+          {
+            "id": "SV-267546r1042529_rule",
+            "title": "Google Android 15 must be configured to disable ad hoc wireless client-to-client connection capability.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267546",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267546r1042529_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-009500"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-009500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1042529"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002536",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect organization-defined external and internal wireless links from organization-defined types of signal parameter attacks or references to sources for such attacks."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-40"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-40"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267546r1042529_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to disable ad hoc wireless client-to-client connection capability."
+              },
+              {
+                "id": "SV-267546r1042529_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android devices to disallow Wi-Fi Direct. On the management tool, do the following:\n\nCOBO:\n1. Find \"User Restrictions\" and select \"Set User Restrictions\".\n2. Scroll down to \"Disallow Wi-Fi Direct\" and toggle that to \"ON\".\n\nCOPE:\n1. Find \"User Restrictions on Parent\" and select \"Set User Restrictions\".\n2. Scroll down to \"Disallow Wi-Fi Direct\" and toggle that to \"ON\"."
+              },
+              {
+                "id": "SV-267546r1042529_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Ad hoc wireless client-to-client connections allow mobile devices to communicate with each other directly, circumventing network security policies and making the traffic invisible. This could allow the exposure of sensitive DOD data and increase the risk of downloading and installing malware of the DOD mobile device.\n\nSFRID: FMT_SMF_EXT.1.1/WLAN"
+              },
+              {
+                "id": "SV-267546r1042529_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267547",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267547r1033072_rule",
+            "title": "Google Android 15 users must complete required training.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267547",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267547r1033072_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-009800"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-009800"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033072"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267547r1033072_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 users must complete required training."
+              },
+              {
+                "id": "SV-267547r1033072_rule_guidance",
+                "name": "guidance",
+                "prose": "All Google Android 15 device users must complete training on the following training topics (users must acknowledge that they have reviewed training via a signed User Agreement or similar written record): \n- Operational security concerns introduced by unmanaged applications/unmanaged personal space, including applications using global positioning system (GPS) tracking.\n- Need to ensure no DOD data is saved to the personal space or transmitted from a personal app (for example, from personal email). \n- If the Purebred key management app is used, users are responsible for maintaining positive control of their credentialed device at all times. The DOD PKI certificate policy requires subscribers to maintain positive control of the devices that contain private keys and to report any loss of control so the credentials can be revoked. Upon device retirement, turn-in, or reassignment, ensure that a factory data reset is performed prior to device hand off. Follow mobility service provider decommissioning procedures as applicable.\n\n- How to configure the following UBE controls (users must configure the control) on the Google device: \n**Secure use of Calendar Alarm.\n**Local screen mirroring and mirroring procedures (authorized/not authorized for use). \n**Do not upload DOD contacts via smart call and caller ID services.\n**Do not configure a DOD network (work) VPN profile on any third-party VPN client installed in the personal space. \n**If Bluetooth connections are approved for mobile device, types of allowed connections (for example car hands-free, but not Bluetooth wireless keyboard).\n**How to perform a full device wipe.\n**Use default Wi-Fi hotspot password: 15-character complex Wi-Fi hotspot preshared password enabled (\"WPA2/WPA3-personal\").\n\n- AO guidance on acceptable use and restrictions, if any, on downloading and installing personal apps and data (music, photos, etc.) in the Google device personal space."
+              },
+              {
+                "id": "SV-267547r1033072_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The security posture of Google devices requires the device user to configure several required policy rules on their device. User-Based Enforcement (UBE) is required for these controls. In addition, if the authorizing official (AO) has approved the use of an unmanaged personal space, the user must receive training on risks. If a user is not aware of their responsibilities and does not comply with UBE requirements, the security posture of the Google mobile device may become compromised and DOD sensitive data may become compromised.\n\nSFRID: NA"
+              },
+              {
+                "id": "SV-267547r1033072_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267548",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267548r1031829_rule",
+            "title": "Google Android 15 must be configured to disable Wi-Fi Sharing.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267548",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267548r1031829_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-009900"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-009900"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031829"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267548r1031829_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to disable Wi-Fi Sharing."
+              },
+              {
+                "id": "SV-267548r1031829_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to disable Wi-Fi Sharing.\n \nMobile Hotspot must be enabled to enable Wi-Fi Sharing. If the AO has not approved Mobile Hotspot, and it has been disabled on the EMM console, no further action is needed. \n\nIf Mobile Hotspot is being used, use the following procedure to disable Wi-Fi Sharing: \n\nOn the EMM console:\n\nCOBO:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disallow sharing admin configured Wi-Fi\" to \"ON\".\n\nCOPE:\n\n1. Open \"Set user restrictions on parent\".\n2. Toggle \"Disallow sharing admin configured Wi-Fi\" to \"ON\"."
+              },
+              {
+                "id": "SV-267548r1031829_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Wi-Fi Sharing is an optional configuration of Wi-Fi Tethering/Mobile Hotspot, which allows the device to share its Wi-Fi connection with other wirelessly connected devices instead of its mobile (cellular) connection. \n \nWi-Fi Sharing grants the other device access to a corporate Wi-Fi network and may possibly bypass the network access control mechanisms. This risk can be partially mitigated by requiring the use of a preshared key for personal hotspots.\n\nSFRID: FMT_SMF_EXT.1.1 / WLAN #3"
+              },
+              {
+                "id": "SV-267548r1031829_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267549",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267549r1031832_rule",
+            "title": "Google Android 15 must be configured to enforce a password for Wi-Fi and Bluetooth hotspot, if approved for use by the authorizing official (AO). If not approved for use, Wi-Fi and Bluetooth hotspot must be disabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267549",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267549r1031832_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-009950"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-009950"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031832"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267549r1031832_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to enforce a password for Wi-Fi and Bluetooth hotspot, if approved for use by the authorizing official (AO). If not approved for use, Wi-Fi and Bluetooth hotspot must be disabled."
+              },
+              {
+                "id": "SV-267549r1031832_rule_guidance",
+                "name": "guidance",
+                "prose": "Disable hotspot functions on the DOD phone if not approved by the AO. \n\nOn the EMM console:\n\nCOBO:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disallow config tethering\" to \"ON\".\n\nCOPE:\n\n1. Open \"Set user restrictions on parent\".\n2. Toggle \"Disallow config tethering\" to \"ON\".\n\nIf the use of Wi-Fi and Bluetooth hotspots has been approved by the AO, train the user to not change the default hotspot password (see GOOG-15-009800). By default, when Wi-Fi Hotspot is enabled, a 15-character complex password is automatically configured for the hotspot."
+              },
+              {
+                "id": "SV-267549r1031832_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Wi-Fi and Bluetooth hotspot use may increase the risk for exposing sensitive DOD data for some use cases, therefore it should be disabled unless approved by the AO. When a DOD mobile phone is used as a Wi-Fi or Bluetooth hotspot, a hotspot password must be enabled, otherwise unauthorized devices could connect to the DOD hotspot which may increase the risk of exposure of sensitive DOD data and/or a performance degradation of the DOD mobile phone.\n\nSFRID: FMT_SMF_EXT.1.1 / WLAN #3"
+              },
+              {
+                "id": "SV-267549r1031832_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267550",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267550r1031835_rule",
+            "title": "Google Android 15 must have the DOD root and intermediate PKI certificates installed.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267550",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267550r1031835_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-010000"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-010000"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031835"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267550r1031835_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must have the DOD root and intermediate PKI certificates installed."
+              },
+              {
+                "id": "SV-267550r1031835_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to install DOD root and intermediate certificates. \n \nOn the EMM console, upload DOD root and intermediate certificates as part of a device and/or work profile.\n \nThe current DOD root and intermediate PKI certificates may be obtained in self-extracting zip files at http://cyber.mil/pki-pke (for NIPRNet)."
+              },
+              {
+                "id": "SV-267550r1031835_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "DOD root and intermediate PKI certificates are used to verify the authenticity of PKI certificates of users and web services. If the root and intermediate certificates are not available, an adversary could falsely sign a certificate in such a way that it could not be detected. Providing access to the DOD root and intermediate PKI certificates greatly diminishes the risk of this attack.\n\nSFRID: FMT_SMF.1.1 #11"
+              },
+              {
+                "id": "SV-267550r1031835_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267551",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267551r1033120_rule",
+            "title": "The Google Android 15 work profile must be configured to prevent users from adding personal email accounts to the work email app.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267551",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267551r1033120_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-010100"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-010100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033120"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267551r1033120_rule_statement",
+                "name": "statement",
+                "prose": "The Google Android 15 work profile must be configured to prevent users from adding personal email accounts to the work email app."
+              },
+              {
+                "id": "SV-267551r1033120_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to prevent users from adding personal email accounts to the work email app. \n \nOn the EMM console: \n\nCOPE:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disallow modify accounts\" to \"ON\".\n\nRefer to the EMM documentation to determine how to provision users' work email accounts for the work email app."
+              },
+              {
+                "id": "SV-267551r1033120_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If the user is able to add a personal email account (POP3, IMAP, EAS) to the work email app, it could be used to forward sensitive DOD data to unauthorized recipients. Restricting email account addition to the administrator or restricting email account addition to allow listed accounts mitigates this vulnerability.\n\nSFRID: FMT_SMF.1.1 #47"
+              },
+              {
+                "id": "SV-267551r1033120_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267552",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267552r1033075_rule",
+            "title": "The Google Android 15 work profile must be configured to enforce the system application disable list.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267552",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267552r1033075_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-010200"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-010200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033075"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267552r1033075_rule_statement",
+                "name": "statement",
+                "prose": "The Google Android 15 work profile must be configured to enforce the system application disable list."
+              },
+              {
+                "id": "SV-267552r1033075_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to enforce the system application disable list.\n\nThe required configuration is the default configuration when the device is enrolled. If the device configuration is changed, use the following procedure to bring the device back into compliance:\n\nOn the EMM console:\n\nCOBO:\n\n1. Open \"Apps management\" section.\n2. Select \"Hide apps\".\n3. Enter package names of apps to hide.\n\nCOPE:\n\n1. Open \"Apps management\" section.\n2. Select \"Hide apps on parent\".\n3. Enter package names of apps to hide.\n\nConfigure a list of approved Google core and preinstalled apps in the core app allow list."
+              },
+              {
+                "id": "SV-267552r1033075_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The system application disable list controls user access to/execution of all core and preinstalled applications. \n \nCore application: Any application integrated into Google Android 15 by Google. \n \nPreinstalled application: Additional noncore applications included in the Google Android 15 build by Google or the wireless carrier. \n \nSome system applications can compromise DOD data or upload users' information to non-DOD-approved servers. A user must be blocked from using such applications that exhibit behavior that can result in compromise of DOD data or DOD user information. \n \nThe site administrator must analyze all preinstalled applications on the device and disable all applications not approved for DOD use by configuring the system application disable list.\n\nSFRID: FMT_SMF.1.1 #47"
+              },
+              {
+                "id": "SV-267552r1033075_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267553",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267553r1031844_rule",
+            "title": "Google Android 15 must be provisioned as a fully managed device and configured to create a work profile.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267553",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267553r1031844_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-010300"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-010300"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031844"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267553r1031844_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be provisioned as a fully managed device and configured to create a work profile."
+              },
+              {
+                "id": "SV-267553r1031844_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device as corporate owned with a work profile.\n\nOn the EMM console, configure the default enrollment as Corporate Owned, and select \"Use for Work & Personal\".\n\nRefer to the EMM documentation to determine how to configure the device."
+              },
+              {
+                "id": "SV-267553r1031844_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The Android Enterprise work profile is the designated application group for the COPE use case.\n\nSFRID: FMT_SMF.1.1 #47"
+              },
+              {
+                "id": "SV-267553r1031844_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267554",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267554r1031847_rule",
+            "title": "The Google Android 15 work profile must be configured to disable automatic completion of workspace internet browser text input.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267554",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267554r1031847_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-010400"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-010400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031847"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267554r1031847_rule_statement",
+                "name": "statement",
+                "prose": "The Google Android 15 work profile must be configured to disable automatic completion of workspace internet browser text input."
+              },
+              {
+                "id": "SV-267554r1031847_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Chrome browser on the Google Android 15 device work profile to disable autofill.\n \nOn the EMM console:\n\nCOBO:\n\n1. Open \"Managed Configurations\" section.\n2. Select the Chrome Browser version from the work profile.\n3. Ensure \"PasswordManagerEnabled\" is turned \"OFF\".\n4. Ensure \"AutofillAddressEnabled\" is turned \"OFF\".\n5. Ensure \"AutofillCreditCardEnabled\" is turned \"OFF\".\n\nCOPE:\n\n1. Open \"Managed Configurations\" section.\n2. Select the Chrome Browser version from the work profile.\n3. Ensure \"PasswordManagerEnabled\" is turned \"OFF\".\n4. Ensure \"AutofillAddressEnabled\" is turned \"OFF\".\n5. Ensure \"AutofillCreditCardEnabled\" is turned \"OFF\".\n\nRefer to the EMM documentation to determine how to configure Chrome Browser Settings."
+              },
+              {
+                "id": "SV-267554r1031847_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The autofill functionality in the web browser allows the user to complete a form that contains sensitive information, such as personally identifiable information (PII), without previous knowledge of the information. By allowing the use of autofill functionality, an adversary who learns a user's Android 15 device password, or who otherwise is able to unlock the device, may be able to further breach other systems by relying on the autofill feature to provide information unknown to the adversary. By disabling the autofill functionality, the risk of an adversary gaining further information about the device's user or compromising other systems is significantly mitigated.\n\nSFRID: FMT_SMF.1.1 #47"
+              },
+              {
+                "id": "SV-267554r1031847_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267555",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267555r1031850_rule",
+            "title": "The Google Android 15 work profile must be configured to disable the autofill services.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267555",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267555r1031850_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-010500"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-010500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031850"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267555r1031850_rule_statement",
+                "name": "statement",
+                "prose": "The Google Android 15 work profile must be configured to disable the autofill services."
+              },
+              {
+                "id": "SV-267555r1031850_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device work profile to disable the autofill services. \n \nOn the EMM console:\n\nCOBO:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disable autofill\" to \"ON\".\n\nCOPE:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disable autofill\" to \"ON\"."
+              },
+              {
+                "id": "SV-267555r1031850_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The autofill services allow the user to complete text inputs that could contain sensitive information, such as personally identifiable information (PII), without previous knowledge of the information. By allowing the use of autofill services, an adversary who learns a user's Android 15 device password, or who otherwise is able to unlock the device, may be able to further breach other systems by relying on the autofill services to provide information unknown to the adversary. By disabling the autofill services, the risk of an adversary gaining further information about the device's user or compromising other systems is significantly mitigated. \n \nExamples of apps that offer autofill services include Samsung Pass, Google, Dashlane, LastPass, and 1Password.\n\nSFRID: FMT_SMF.1.1 #47"
+              },
+              {
+                "id": "SV-267555r1031850_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267556",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267556r1031853_rule",
+            "title": "Google Android 15 must be configured to disallow configuration of date and time.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267556",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267556r1031853_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-010600"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-010600"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031853"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267556r1031853_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to disallow configuration of date and time."
+              },
+              {
+                "id": "SV-267556r1031853_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to set auto network time.\n \nOn the EMM console:\n\nCOBO:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disallow config date time\" to \"ON\".\n\nCOPE:\n\n1. Open \"Set user restrictions on parent\".\n2. Toggle \"Disallow config date time\" to \"ON\"."
+              },
+              {
+                "id": "SV-267556r1031853_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Determining the correct time a particular application event occurred on a system is critical when conducting forensic analysis and investigating system events. \n \nPeriodically synchronizing internal clocks with an authoritative time source is necessary to correctly correlate the timing of events that occur across the enterprise. The three authoritative time sources for Google Android 15 are an authoritative time server that is synchronized with redundant United States Naval Observatory (USNO) time servers as designated for the appropriate DOD network (NIPRNet or SIPRNet), or the Global Positioning System (GPS), or the wireless carrier. \n \nTime stamps generated by the audit system in Google Android 15 must include both date and time. The time may be expressed in Coordinated Universal Time (UTC), a modern continuation of Greenwich Mean Time (GMT), or local time with an offset from UTC.\n\nSFRID: FMT_SMF.1.1 #47"
+              },
+              {
+                "id": "SV-267556r1031853_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267557",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267557r1031856_rule",
+            "title": "Android 15 devices must have the latest available Google Android 15 operating system installed.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267557",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267557r1031856_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-010800"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-010800"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031856"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267557r1031856_rule_statement",
+                "name": "statement",
+                "prose": "Android 15 devices must have the latest available Google Android 15 operating system installed."
+              },
+              {
+                "id": "SV-267557r1031856_rule_guidance",
+                "name": "guidance",
+                "prose": "Install the latest released version of the Google Android 15 operating system on all managed Google devices.\n \nNote: Google Android device operating system updates are released directly by Google or can be distributed via the EMM. Check each device manufacturer and/or carriers for current updates."
+              },
+              {
+                "id": "SV-267557r1031856_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Required security features are not available in earlier operating system versions. In addition, there may be known vulnerabilities in earlier versions.\n\nSFRID: FMT_SMF.1.1 #47"
+              },
+              {
+                "id": "SV-267557r1031856_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267558",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267558r1033077_rule",
+            "title": "Android 15 devices must be configured to disable the use of third-party keyboards.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267558",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267558r1033077_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-010900"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-010900"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033077"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267558r1033077_rule_statement",
+                "name": "statement",
+                "prose": "Android 15 devices must be configured to disable the use of third-party keyboards."
+              },
+              {
+                "id": "SV-267558r1033077_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to disallow the use of third-party keyboards. \n \nOn the EMM console:\n\nCOBO and COPE:\n\n1. Open \"Input methods\".\n2. Tap \"Set input methods\".\n3. Select only the approved keyboard.\n\nAdditionally, admins can configure application allow lists for Google Play that do not have any third-party keyboards for user installation."
+              },
+              {
+                "id": "SV-267558r1033077_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Many third-party keyboard applications are known to contain malware.\n\nSFRID: FMT_SMF.1.1 #47"
+              },
+              {
+                "id": "SV-267558r1033077_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267559",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267559r1031862_rule",
+            "title": "Android 15 devices must be configured to enable Common Criteria (CC) Mode.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267559",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267559r1031862_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-011000"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-011000"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1031862"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267559r1031862_rule_statement",
+                "name": "statement",
+                "prose": "Android 15 devices must be configured to enable Common Criteria (CC) Mode."
+              },
+              {
+                "id": "SV-267559r1031862_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to implement CC Mode. \n \nOn the EMM console:\n\nCOBO and COPE:\n\n1. Open Device owner management.\n2. Toggle \"Enable Common Criteria mode\" to \"ON\"."
+              },
+              {
+                "id": "SV-267559r1031862_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The CC Mode feature is a superset of other features and behavioral changes that are mandatory MDFPP requirements. If CC mode is not implemented, the device will not be operating in the NIAP-certified compliant CC Mode of operation.\n\nCC Mode implements the following behavioral/functional changes: How the Bluetooth and Wi-Fi keys are stored using different types of encryption.\n\nSFRID: FMT_SMF.1.1 #47"
+              },
+              {
+                "id": "SV-267559r1031862_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267560",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267560r1033080_rule",
+            "title": "Google Android 15 must be configured to disable all data signaling over [assignment: list of externally accessible hardware ports (for example, USB)].",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267560",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267560r1033080_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-012200"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-012200"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033080"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002235",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent non-privileged users from executing privileged functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-6 (10)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-6 (10)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267560r1033080_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to disable all data signaling over [assignment: list of externally accessible hardware ports (for example, USB)]."
+              },
+              {
+                "id": "SV-267560r1033080_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure Google Android 15 device to disable the USB port (except for charging the device).\n\nCOPE and COBO:\n\nOn the EMM console:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disallow USB file transfer\" to \"ON\"."
+              },
+              {
+                "id": "SV-267560r1033080_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If a user is able to configure the security setting, the user could inadvertently or maliciously set it to a value that poses unacceptable risk to DOD information systems. An adversary could exploit vulnerabilities created by the weaker configuration to compromise DOD sensitive information.\n\nSFRID: FMT_MOF_EXT.1.2 #24"
+              },
+              {
+                "id": "SV-267560r1033080_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267561",
+        "title": "PP-MDF-333350",
+        "controls": [
+          {
+            "id": "SV-267561r1033083_rule",
+            "title": "The Google Android 15 must allow only the administrator (EMM) to install/remove DOD root and intermediate PKI certificates.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267561",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267561r1033083_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-012300"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-012300"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033083"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000370",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Manage configuration settings for organization-defined system components using organization-defined automated mechanisms."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267561r1033083_rule_statement",
+                "name": "statement",
+                "prose": "The Google Android 15 must allow only the administrator (EMM) to install/remove DOD root and intermediate PKI certificates."
+              },
+              {
+                "id": "SV-267561r1033083_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure Google Android 15 device to prevent a user from removing DOD root and intermediate PKI certificates.\n\nOn the EMM console:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disallow config credentials\" to \"ON\"."
+              },
+              {
+                "id": "SV-267561r1033083_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "DOD root and intermediate PKI certificates are used to verify the authenticity of PKI certificates of users and web services. If the user is allowed to remove root and intermediate certificates, the user could allow an adversary to falsely sign a certificate in such a way that it could not be detected. Restricting the ability to remove DOD root and intermediate PKI certificates to the administrator mitigates this risk.\n\nSFRID: FMT_MOF_EXT.1.2 #47"
+              },
+              {
+                "id": "SV-267561r1033083_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-267562",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-267562r1033086_rule",
+            "title": "Google Android 15 must allow only the administrator (MDM) to perform the following management function: Disable Phone Hub.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-267562",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-267562r1033086_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-012400"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-012400"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033086"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001090",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent unauthorized and unintended information transfer via shared system resources."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-4.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-267562r1033086_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must allow only the administrator (MDM) to perform the following management function: Disable Phone Hub."
+              },
+              {
+                "id": "SV-267562r1033086_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure Google Android 15 device to disable the nearby notification streaming policy to disable Phone Hub.\n\nCOPE and COBO:\n\nOn the EMM console:\n\n1. Open \"Nearby notification streaming policy\".\n2. Set \"Nearby notification streaming policy\" to \"Disabled\".\n3. Open \"Nearby app streaming policy\".\n4. Set \"Nearby app streaming policy\" to \"Disabled\"."
+              },
+              {
+                "id": "SV-267562r1033086_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "It may be possible to transfer work profile data on a DOD Android device to an unauthorized Chromebook if the user has the same Google Account set up on the Chromebook and in the work profile on the Android device. This may result in the exposure of sensitive DOD data.\n\nSFRID: FMT_MOF_EXT.1.2 #47"
+              },
+              {
+                "id": "SV-267562r1033086_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-269101",
+        "title": "PP-MDF-993300",
+        "controls": [
+          {
+            "id": "SV-269101r1033119_rule",
+            "title": "Google Android 15 must be configured to disable \"Private Space\" use.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-269101",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-269101r1033119_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "GOOG-15-012500"
+              },
+              {
+                "name": "label",
+                "value": "GOOG-15-012500"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1033119"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000370",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Manage configuration settings for organization-defined system components using organization-defined automated mechanisms."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-269101r1033119_rule_statement",
+                "name": "statement",
+                "prose": "Google Android 15 must be configured to disable \"Private Space\" use."
+              },
+              {
+                "id": "SV-269101r1033119_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the Google Android 15 device to disable \"Private Space\". \n \nOn the EMM console:\n\nCOBO:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disallow add private profile\" to \"ON\".\n\nCOPE:\n\n1. Open \"Set user restrictions\".\n2. Toggle \"Disallow add private profile\" to \"ON\"."
+              },
+              {
+                "id": "SV-269101r1033119_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Private Space is an Android feature that provides a separate encrypted container on the mobile device. Apps in Private Space show up in a separate container in the launcher and are hidden from the \"Recents\" view, notifications, settings, and other apps when the Private Space is locked. In addition, MDM server allow list or blocklist cannot control the installation of apps into Private Space. Malware and other unauthorized apps could be installed on a DOD mobile device, which could lead to the compromise of DOD sensitive information or to an attack on the DOD network.\n\nSFRID: FMT_MOF_EXT.1.2 #47"
+              },
+              {
+                "id": "SV-269101r1033119_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,1223 @@
+{
+  "catalog": {
+    "uuid": "73b800e5-0342-577e-9389-2de40ca19d72",
+    "metadata": {
+      "title": "MS SharePoint Designer 2013 Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2018-04-27T00:00:00Z",
+      "version": "1.3.0",
+      "oscal-version": "1.1.3",
+      "remarks": "The Microsoft SharePointDesigner 2013 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2018-04-27"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "2.0"
+        },
+        {
+          "name": "version.major",
+          "value": "1"
+        },
+        {
+          "name": "version.minor",
+          "value": "3"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-40744",
+        "title": "DTOO104 - Disable user name and password",
+        "controls": [
+          {
+            "id": "SV-52802r1_rule",
+            "title": "Disabling of user name and password syntax from being used in URLs must be enforced.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-40744",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-52802r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DTOO104"
+              },
+              {
+                "name": "label",
+                "value": "DTOO104"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001170",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevents the automatic execution of mobile code in organization-defined software applications."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              },
+              {
+                "name": "responsibility",
+                "value": "System Administrator"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (4).1 (iii) (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-52802r1_rule_statement",
+                "name": "statement",
+                "prose": "Disabling of user name and password syntax from being used in URLs must be enforced."
+              },
+              {
+                "id": "SV-52802r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the policy value for Computer Configuration -> Administrative Templates -> Microsoft Office 2013 (Machine) -> Security Settings -> IE Security \"Disable user name and password\" to \"Enabled\" and place a check in the 'spdesign.exe' check box."
+              },
+              {
+                "id": "SV-52802r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The Uniform Resource Locator (URL) standard allows user authentication to be included in URL strings in the form http://username:password@example.com. A malicious user might use this URL syntax to create a hyperlink that appears to open a legitimate website but actually opens a deceptive (spoofed) website. For example, the URL http://www.wingtiptoys.com@example.com appears to open http://www.wingtiptoys.com but actually opens http://example.com. To protect users from such attacks, Internet Explorer usually blocks any URLs using this syntax.\n\nThis functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). If user names and passwords in URLs are allowed, users could be diverted to dangerous web pages, which could pose a security risk."
+              },
+              {
+                "id": "SV-52802r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-40745",
+        "title": "DTOO111 - IE Bind to Object",
+        "controls": [
+          {
+            "id": "SV-52803r1_rule",
+            "title": "The Internet Explorer Bind to Object functionality must be enabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-40745",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-52803r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DTOO111"
+              },
+              {
+                "name": "label",
+                "value": "DTOO111"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001695",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent the execution of organization-defined unacceptable mobile code."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              },
+              {
+                "name": "responsibility",
+                "value": "System Administrator"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (3).1"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-52803r1_rule_statement",
+                "name": "statement",
+                "prose": "The Internet Explorer Bind to Object functionality must be enabled."
+              },
+              {
+                "id": "SV-52803r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the policy value for Computer Configuration -> Administrative Templates -> Microsoft Office 2013 (Machine) -> Security Settings -> IE Security \"Bind to Object\" to \"Enabled\" and place a check in the 'spdesign.exe' check box."
+              },
+              {
+                "id": "SV-52803r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Internet Explorer performs a number of safety checks before initializing an ActiveX control. It will not initialize a control if the kill bit for the control is set in the registry, or if the security settings for the zone in which the control is located do not allow it to be initialized.\nThis functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). A security risk could occur if potentially dangerous controls are allowed to load."
+              },
+              {
+                "id": "SV-52803r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-40746",
+        "title": "DTOO117 - Saved from URL",
+        "controls": [
+          {
+            "id": "SV-52804r1_rule",
+            "title": "The Saved from URL mark must be selected to enforce Internet zone processing",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-40746",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-52804r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DTOO117"
+              },
+              {
+                "name": "label",
+                "value": "DTOO117"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001170",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevents the automatic execution of mobile code in organization-defined software applications."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              },
+              {
+                "name": "responsibility",
+                "value": "System Administrator"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (4).1 (iii) (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-52804r1_rule_statement",
+                "name": "statement",
+                "prose": "The Saved from URL mark must be selected to enforce Internet zone processing"
+              },
+              {
+                "id": "SV-52804r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the policy value for Computer Configuration -> Administrative Templates -> Microsoft Office 2013 (Machine) -> Security Settings -> IE Security \"Saved from URL\" to \"Enabled\" and place a check in the 'spdesign.exe' check box."
+              },
+              {
+                "id": "SV-52804r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Typically, when Internet Explorer loads a web page from a Universal Naming Convention (UNC) share that contains a Mark of the Web (MOTW) comment, indicating the page was saved from a site on the Internet, Internet Explorer runs the page in the Internet security zone instead of the less restrictive Local Intranet security zone. This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). If Internet Explorer does not evaluate the page for a MOTW, potentially dangerous code could be allowed to run."
+              },
+              {
+                "id": "SV-52804r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-40747",
+        "title": "DTOO123 - Block Navigation to URL from Office",
+        "controls": [
+          {
+            "id": "SV-52805r1_rule",
+            "title": "Navigation to URLs embedded in Office products must be blocked.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-40747",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-52805r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DTOO123"
+              },
+              {
+                "name": "label",
+                "value": "DTOO123"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001170",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevents the automatic execution of mobile code in organization-defined software applications."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              },
+              {
+                "name": "responsibility",
+                "value": "System Administrator"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (4).1 (iii) (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-52805r1_rule_statement",
+                "name": "statement",
+                "prose": "Navigation to URLs embedded in Office products must be blocked."
+              },
+              {
+                "id": "SV-52805r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the policy value for Computer Configuration -> Administrative Templates -> Microsoft Office 2013 (Machine) -> Security Settings -> IE Security \"Navigate URL\" to \"Enabled\" and place a check in the 'spdesign.exe' check box."
+              },
+              {
+                "id": "SV-52805r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "To protect users from attacks, Internet Explorer usually does not attempt to load malformed URLs. This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). If Internet Explorer attempts to load a malformed URL, a security risk could occur."
+              },
+              {
+                "id": "SV-52805r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-40748",
+        "title": "DTOO124 - Scripted Window Security",
+        "controls": [
+          {
+            "id": "SV-52806r1_rule",
+            "title": "Scripted Window Security must be enforced.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-40748",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-52806r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DTOO124"
+              },
+              {
+                "name": "label",
+                "value": "DTOO124"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001695",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent the execution of organization-defined unacceptable mobile code."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              },
+              {
+                "name": "responsibility",
+                "value": "Information Assurance Officer"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (3).1"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-52806r1_rule_statement",
+                "name": "statement",
+                "prose": "Scripted Window Security must be enforced."
+              },
+              {
+                "id": "SV-52806r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the policy value for Computer Configuration -> Administrative Templates -> Microsoft Office 2013 (Machine) -> Security Settings -> IE Security \"Scripted Window Security Restrictions\" to \"Enabled\" and 'spdesign.exe' is checked."
+              },
+              {
+                "id": "SV-52806r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Malicious websites often try to confuse or trick users into giving a site permission to perform an action allowing the site to take control of the users' computers in some manner. Disabling or not configuring this setting allows unknown websites to:\n-Create browser windows appearing to be from the local operating system.\n-Draw active windows displaying outside of the viewable areas of the screen capturing keyboard input.\n-Overlay parent windows with their own browser windows to hide important system information, choices or prompts."
+              },
+              {
+                "id": "SV-52806r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-40749",
+        "title": "DTOO126 - Add-on Management",
+        "controls": [
+          {
+            "id": "SV-52807r1_rule",
+            "title": "Add-on Management functionality must be allowed.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-40749",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-52807r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DTOO126"
+              },
+              {
+                "name": "label",
+                "value": "DTOO126"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001662",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Take organization-defined corrective action when organization-defined unacceptable mobile code is identified."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              },
+              {
+                "name": "responsibility",
+                "value": "Information Assurance Officer"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (1).1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-52807r1_rule_statement",
+                "name": "statement",
+                "prose": "Add-on Management functionality must be allowed."
+              },
+              {
+                "id": "SV-52807r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the policy value for Computer Configuration -> Administrative Templates -> Microsoft Office 2013 (Machine) -> Security Settings -> IE Security \"Add-on Management\" to \"Enabled\" and  'spdesign.exe' is checked."
+              },
+              {
+                "id": "SV-52807r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Internet Explorer add-ons are pieces of code, run in Internet Explorer, to provide additional functionality. Rogue add-ons may contain viruses or other malicious code. Disabling or not configuring this setting could allow malicious code or users to become active on user computers or the network. For example, a malicious user can monitor and then use keystrokes users type into Internet Explorer. Even legitimate add-ons may demand resources, compromising the performance of Internet Explorer, and the operating systems for user computers."
+              },
+              {
+                "id": "SV-52807r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-40750",
+        "title": "DTOO129 - Block Pop-Ups",
+        "controls": [
+          {
+            "id": "SV-52808r1_rule",
+            "title": "Links that invoke instances of IE from within an Office product must be blocked.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-40750",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-52808r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DTOO129"
+              },
+              {
+                "name": "label",
+                "value": "DTOO129"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001662",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Take organization-defined corrective action when organization-defined unacceptable mobile code is identified."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              },
+              {
+                "name": "responsibility",
+                "value": "Information Assurance Officer"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (1).1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-52808r1_rule_statement",
+                "name": "statement",
+                "prose": "Links that invoke instances of IE from within an Office product must be blocked."
+              },
+              {
+                "id": "SV-52808r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the policy value for Computer Configuration -> Administrative Templates -> Microsoft Office 2013 (Machine) -> Security Settings -> IE Security \"Block popups\" to \"Enabled\" and select 'spdesign.exe'."
+              },
+              {
+                "id": "SV-52808r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The Pop-up Blocker feature in Internet Explorer can be used to block most unwanted pop-up and pop-under windows from appearing. This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). If the Pop-up Blocker is disabled, disruptive and potentially dangerous pop-up windows could load and present a security risk."
+              },
+              {
+                "id": "SV-52808r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-40751",
+        "title": "DTOO132 - Restrict File Download",
+        "controls": [
+          {
+            "id": "SV-52809r1_rule",
+            "title": "File downloads must be configured for proper restrictions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-40751",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-52809r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DTOO132"
+              },
+              {
+                "name": "label",
+                "value": "DTOO132"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001169",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent the download of organization-defined unacceptable mobile code."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              },
+              {
+                "name": "responsibility",
+                "value": "Information Assurance Officer"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (3).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (3)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-52809r1_rule_statement",
+                "name": "statement",
+                "prose": "File downloads must be configured for proper restrictions."
+              },
+              {
+                "id": "SV-52809r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the policy value for Computer Configuration -> Administrative Templates -> Microsoft Office 2013 (Machine) -> Security Settings -> IE Security \"Restrict File Download\" to \"Enabled\" and 'spdesign.exe' is checked."
+              },
+              {
+                "id": "SV-52809r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Disabling this setting allows websites to present file download prompts via code without the user specifically initiating the download.  User preferences may also allow the download to occur without prompting or interaction with the user.  Even if Internet Explorer prompts the user to accept the download, some websites abuse this functionality.  Malicious websites may continually prompt users to download a file or present confusing dialog boxes to trick users into downloading or running a file.  If the download occurs and it contains malicious code, the code could become active on user computers or the network."
+              },
+              {
+                "id": "SV-52809r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-40752",
+        "title": "DTOO209 - Zone Elevation Protection",
+        "controls": [
+          {
+            "id": "SV-52810r1_rule",
+            "title": "Protection from zone elevation must be enforced.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-40752",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-52810r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DTOO209"
+              },
+              {
+                "name": "label",
+                "value": "DTOO209"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001695",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent the execution of organization-defined unacceptable mobile code."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              },
+              {
+                "name": "responsibility",
+                "value": "Information Assurance Officer"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (3).1"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-52810r1_rule_statement",
+                "name": "statement",
+                "prose": "Protection from zone elevation must be enforced."
+              },
+              {
+                "id": "SV-52810r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the policy value for Computer Configuration -> Administrative Templates -> Microsoft Office 2013 (Machine) -> Security Settings -> IE Security \"Protection From Zone Elevation\" to \"Enabled\" and 'spdesign.exe' is checked."
+              },
+              {
+                "id": "SV-52810r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Internet Explorer places restrictions on each web page users can use the browser to open. Web pages on a user's local computer have the fewest security restrictions and reside in the Local Machine zone, making this security zone a prime target for malicious users and code. Disabling or not configuring this setting could allow pages in the Internet zone to navigate to pages in the Local Machine zone to then run code to elevate privileges. This could allow malicious code or users to become active on user computers or the network."
+              },
+              {
+                "id": "SV-52810r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-40755",
+        "title": "DTOO211 - Restrict ActiveX Install",
+        "controls": [
+          {
+            "id": "SV-52813r1_rule",
+            "title": "ActiveX installs must be configured for proper restrictions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-40755",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-52813r1_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "DTOO211"
+              },
+              {
+                "name": "label",
+                "value": "DTOO211"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002460",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce organization-defined actions prior to executing mobile code."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              },
+              {
+                "name": "responsibility",
+                "value": "Information Assurance Officer"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (4)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (4)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-52813r1_rule_statement",
+                "name": "statement",
+                "prose": "ActiveX installs must be configured for proper restrictions."
+              },
+              {
+                "id": "SV-52813r1_rule_guidance",
+                "name": "guidance",
+                "prose": "Set the policy value for Computer Configuration -> Administrative Templates -> Microsoft Office 2013 (Machine) -> Security Settings -> IE Security \"Restrict ActiveX Install\" to \"Enabled\" and 'spdesign.exe' is checked."
+              },
+              {
+                "id": "SV-52813r1_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Microsoft ActiveX controls allow unmanaged, unprotected code to run on the user computers. ActiveX controls do not run within a protected container in the browser like the other types of HTML or Microsoft Silverlight-based controls. Disabling or not configuring this setting does not block prompts for ActiveX control installations and these prompts display to users. This could allow malicious code to become active on user computers or the network."
+              },
+              {
+                "id": "SV-52813r1_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

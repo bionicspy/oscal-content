@@ -1,0 +1,3980 @@
+{
+  "catalog": {
+    "uuid": "fc9a9c9d-829c-58e0-a710-ff24fd669e20",
+    "metadata": {
+      "title": "Microsoft SharePoint 2013 Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-01-30T00:00:00Z",
+      "version": "2.4.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2025-01-30"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "2"
+        },
+        {
+          "name": "version.minor",
+          "value": "4"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-223238",
+        "title": "SRG-APP-000003",
+        "controls": [
+          {
+            "id": "SV-223238r960741_rule",
+            "title": "SharePoint must support the requirement to initiate a session lock after 15 minutes of system or application inactivity has transpired.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223238",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223238r960741_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000005"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000005"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960741"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000057",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent further access to the system by initiating a device lock after organization-defined time period of inactivity; and/or requiring the user to initiate a device lock before leaving the system unattended."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-11.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-11 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-11 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223238r960741_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must support the requirement to initiate a session lock after 15 minutes of system or application inactivity has transpired."
+              },
+              {
+                "id": "SV-223238r960741_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to lock the session lock after 15 minutes of inactivity.\n\nIn SharePoint Central Administration, click Application Management. \n\nOn the Application Management page, in the Web Applications section, click Manage web applications. \n\nPerform the following steps for each web application.\n- Select web application.\n- Select General Settings >> General Settings.\n- Navigate to Web Page Security Validation.\n- Set the \"Security validation is:\" property to On.\n- Set the \"Security validation expires:\" property to After.\n- Set the default time-out period to 15 minutes or less.\n- Select OK to save settings."
+              },
+              {
+                "id": "SV-223238r960741_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their application session prior to vacating the vicinity, applications need to be able to identify when a user's application session has idled and take action to initiate the session lock.\n\nThe session lock is implemented at the point where session activity can be determined and/or controlled. This is typically at the operating system level and results in a system lock, but it may be at the application level, where the application interface window is secured instead. The organization defines the period of inactivity that shall pass before a session lock is initiated, so this must be configurable."
+              },
+              {
+                "id": "SV-223238r960741_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223239",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-223239r961863_rule",
+            "title": "SharePoint must maintain and support the use of security attributes with stored information.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223239",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223239r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000010"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000010"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223239r961863_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must maintain and support the use of security attributes with stored information."
+              },
+              {
+                "id": "SV-223239r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to maintain and support the use of security attributes with stored information.\n\nFrom the Site Collection Settings menu:\nAdd a column to Content Types that can hold \"security attributes\", e.g., FOUO, etc., and \"prompt the user to enter as metadata or properties to collect when documents of this content type are added to SharePoint.\""
+              },
+              {
+                "id": "SV-223239r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Security attributes are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.\n\nThese attributes are typically associated with internal data structures (e.g., records, buffers, files) within the information system and are used to enable the implementation of access control and flow control policies, reflect special dissemination, handling or distribution instructions, or support other aspects of the information security policy.\n\nOne example includes marking data as classified or FOUO. These security attributes may be assigned manually or during data processing, but, either way, it is imperative these assignments are maintained while the data is in storage. If the security attributes are lost when the data is stored, there is the risk of a data compromise."
+              },
+              {
+                "id": "SV-223239r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223240",
+        "title": "SRG-APP-000014",
+        "controls": [
+          {
+            "id": "SV-223240r960759_rule",
+            "title": "SharePoint must utilize approved cryptography to protect the confidentiality of remote access sessions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223240",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223240r960759_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000015"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000015"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960759"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000068",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the confidentiality of remote access sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223240r960759_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must utilize approved cryptography to protect the confidentiality of remote access sessions."
+              },
+              {
+                "id": "SV-223240r960759_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to use approved cryptography to protect the confidentiality of remote access sessions.\n\nOpen IIS Manager.\n\nIn the Connections pane, expand \"Sites\".\n\nClick the \"Web Application\" site.\n\nIn the Actions pane, click \"Bindings\".\n\nIn the Site Bindings window, click \"Add\".\n\nIn the Add Site Binding window, change \"Type\" to \"https\", and select the site's SSL certificate. Click \"OK\".\n\nRemove all bindings that do not use https.\n\nClick \"Close\"."
+              },
+              {
+                "id": "SV-223240r960759_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.\n\nRemote network access is accomplished by leveraging common communication protocols and establishing a remote connection. These connections will typically occur over either the public Internet or the Public Switched Telephone Network (PSTN). Since neither of these Internetworking mechanisms are private nor secure, if cryptography is not used, then the session data traversing the remote connection could be intercepted and compromised. Cryptography provides a means to secure the remote connection to prevent unauthorized access to the data traversing the remote access connection, thereby providing a degree of confidentiality. The encryption strength of mechanism is selected based on the security categorization of the information traversing the remote connection."
+              },
+              {
+                "id": "SV-223240r960759_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223241",
+        "title": "SRG-APP-000015",
+        "controls": [
+          {
+            "id": "SV-223241r960762_rule",
+            "title": "SharePoint must use cryptography to protect the integrity of the remote access session.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223241",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223241r960762_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000020"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000020"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960762"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001453",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to protect the integrity of remote access sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223241r960762_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must use cryptography to protect the integrity of the remote access session."
+              },
+              {
+                "id": "SV-223241r960762_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server configuration to use cryptography to protect the integrity of the remote access session.\n\nOpen IIS Manager.\n\nIn the Connections pane, expand \"Sites\".\n\nClick the \"Web Application\" site.\n\nIn the Actions pane, click \"Bindings\".\n\nIn the Site Bindings window, click \"Add\".\n\nIn the Add Site Binding window, change \"Type\" to \"https\", and select the site's SSL certificate. Click \"OK\".\n\nRemove all bindings that do not use https.\n\nClick \"Close\"."
+              },
+              {
+                "id": "SV-223241r960762_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.\n\nRemote network access is accomplished by leveraging common communication protocols and establishing a remote connection. These connections will typically occur over the public Internet, the Public Switched Telephone Network (PSTN), or sometimes both. Since neither of these Internetworking mechanisms are private nor secure, if cryptography is not used, then the session data traversing the remote connection could be intercepted and potentially modified. Cryptography provides a means to secure the remote connection to prevent unauthorized access to the data traversing the remote access connection, thereby providing a degree of integrity. The encryption strength of a mechanism is selected based on the security categorization of the information traversing the remote connection."
+              },
+              {
+                "id": "SV-223241r960762_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223242",
+        "title": "SRG-APP-000016",
+        "controls": [
+          {
+            "id": "SV-223242r960765_rule",
+            "title": "SharePoint must ensure remote sessions for accessing security functions and security-relevant information are audited.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223242",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223242r960765_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000025"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000025"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960765"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000067",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Employ automated mechanisms to monitor remote access methods."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-17 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-17 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-17 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-17 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223242r960765_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must ensure remote sessions for accessing security functions and security-relevant information are audited."
+              },
+              {
+                "id": "SV-223242r960765_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server configuration to audit remote sessions for accessing security functions and security-relevant information.\n\nIn Central Administration, click on Security.\n\nOn the Security page, in the Information policy list, click \"Configure information rights management\".\n\nSelect \"Use the default RMS server specified in Active Directory\", or identify a specific server by selecting \"Use this RMS server:\" and entering the server name.\n\nConfigure information management policies in accordance with the system security plan requirements."
+              },
+              {
+                "id": "SV-223242r960765_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.\n\nRemote network and system access is accomplished by leveraging common communication protocols to establish a remote connection. These connections will typically originate over either the public Internet or the Public Switched Telephone Network (PSTN). Neither of these Internetworking mechanisms is private or secure, and they do not, by default, restrict access to networked resources once connectivity is established.\n\nNumerous best practices are employed to protect remote connections, such as utilizing encryption to protect data sessions and firewalls to restrict and control network connectivity. In addition to these protections, auditing must also be utilized in order to track system activity, assist in diagnosing system issues and provide evidence needed for forensic investigations post security incident.\n\nWhen organizations define security-related application functions or security-related application information, it is incumbent upon the application providing access to that data to ensure auditing of remote connectivity to those resources occurs in support of organizational requirements.\n\nRemote access to security functions (e.g., user management, audit log management, etc.) and security-relevant information requires the activity be audited by the organization. Any application providing remote access must support organizational requirements to audit access or organization-defined security functions and security-relevant information."
+              },
+              {
+                "id": "SV-223242r960765_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223243",
+        "title": "SRG-APP-000039",
+        "controls": [
+          {
+            "id": "SV-223243r960804_rule",
+            "title": "SharePoint must enforce approved authorizations for controlling the flow of information between interconnected systems in accordance with applicable policy.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223243",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223243r960804_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000030"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000030"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960804"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001414",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for controlling the flow of information between connected systems based on organization-defined information flow control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-4.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223243r960804_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must enforce approved authorizations for controlling the flow of information between interconnected systems in accordance with applicable policy."
+              },
+              {
+                "id": "SV-223243r960804_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to enforce approved authorizations for controlling the flow of information between interconnected systems in accordance with applicable policy.\n\nRemove the application server from the DMZ."
+              },
+              {
+                "id": "SV-223243r960804_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.\n\nFrom an application perspective, flow control is established once application data flow modeling has been completed. Data flow modeling can be described as the process of identifying, modeling, and documenting how data moves around an information system. Data flow modeling examines processes (activities that transform data from one form to another), data stores (the holding areas for data), external entities (what sends data into a system or receives data from a system), and data flows (routes by which data can flow).\n\nOnce the application data flows have been identified, corresponding flow controls can be applied at the appropriate points.\n\nA few examples of flow control restrictions include the following: keeping export-controlled information from being transmitted in the clear to the Internet and blocking information that is marked as classified but is being transported to an unapproved destination. Information flow control policies and enforcement mechanisms are commonly employed by organizations to control the flow of information between designated sources and destinations (e.g., networks, individuals, devices) within information systems and between interconnected systems. Flow control is based on the characteristics of the information and/or the information path.\n\nApplication-specific examples of flow control enforcement can be found in information protection software (e.g., guards, proxies, gateways, and cross domain solutions) employing rule sets or establishing configuration settings restricting information system services or providing message-filtering capability based on content (e.g., using key word searches or document characteristics).\n\nApplications providing information flow control must be able to enforce approved authorizations for controlling the flow of information between interconnected systems in accordance with applicable policy.\n\nSharePoint Central Administrator is a powerful management tool used to administer the farm. This server should be installed on a trusted network segment. This server should be used to run required services rather than user-oriented web applications."
+              },
+              {
+                "id": "SV-223243r960804_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223244",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-223244r961863_rule",
+            "title": "SharePoint must identify data type, specification, and usage when transferring information between different security domains so policy restrictions may be applied.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223244",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223244r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000035"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000035"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223244r961863_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must identify data type, specification, and usage when transferring information between different security domains so policy restrictions may be applied."
+              },
+              {
+                "id": "SV-223244r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to identify data type, specification, and usage when transferring information between different security domains so policy restrictions may be applied.\n\nIn Central Administration, click Security.\n\nOn the Security page, in the Information policy list, click \"Configure information rights management\".\n\nSelect \"Use the default RMS server specified in Active Directory\" or identify a specific server by selecting \"Use this RMS server:\" and entering the server name.\n\nConfigure information management policies in accordance with the system security plan requirements."
+              },
+              {
+                "id": "SV-223244r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.\n\nAn example of flow control restrictions includes the following: keeping export-controlled information from being transmitted in the clear to the Internet. Information flow control policies and enforcement mechanisms are commonly employed by organizations to control the flow of information between designated sources and destinations (e.g., users, networks, devices) within information systems and between interconnected systems.\n\nApplication-specific examples of flow control enforcement can be found in information protection software (e.g., guards, proxies, application layer gateways, and cross domain solutions) employing rule sets or establishing configuration settings restricting information system services or providing message-filtering capability based on content (e.g., using key word searches or document characteristics).\n\nFlow control is based on the characteristics of the information and/or the information path. Applications providing flow control must identify data type, specification, and usage when transferring information between different security domains so policy restrictions may be applied.\n\nA security domain is defined as a domain implementing a security policy and administered by a single authority.\n\nData type, specification, and usage includes using file naming to reflect the type of data being transferred and limiting data transfer based on file type."
+              },
+              {
+                "id": "SV-223244r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223245",
+        "title": "SRG-APP-000047",
+        "controls": [
+          {
+            "id": "SV-223245r987620_rule",
+            "title": "SharePoint must provide the ability to prohibit the transfer of unsanctioned information in accordance with security policy.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223245",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223245r987620_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000040"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000040"
+              },
+              {
+                "name": "sv-revision",
+                "value": "987620"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001374",
+                "ns": "https://disa.mil/cci",
+                "remarks": "When transferring information between different security domains, prohibit the transfer of such information in accordance with the organization-defined security or privacy policy."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-4 (15)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-4 (15).1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-4 (15)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-4 (15)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223245r987620_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must provide the ability to prohibit the transfer of unsanctioned information in accordance with security policy."
+              },
+              {
+                "id": "SV-223245r987620_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to prohibit the transfer of unsanctioned information in accordance with security policy.\n\nIn Central Administration, click Security.\n\nOn the Security page, in the Information policy list, click \"Configure information rights management\".\n\nSelect \"Use the default RMS server specified in Active Directory\", or identify a specific server by selecting \"Use this RMS server:\" and entering the server name.\n\nConfigure information management policies in accordance with the system security plan requirements."
+              },
+              {
+                "id": "SV-223245r987620_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The application enforces approved authorizations for controlling the flow of information within the system and between interconnected systems in accordance with applicable policy.\n\nInformation flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.\n\nSpecific examples of flow control enforcement can be found in boundary protection devices (e.g., proxies, gateways, guards, encrypted tunnels, firewalls, and routers) employing rule sets or establishing configuration settings restricting information system services, providing a packet-filtering capability based on header information or message-filtering capability based on content (e.g., using key word searches or document characteristics).\n\nActions to support this requirement include, but are not limited to checking all transferred information for malware, implementing dirty word list searches on transferred information, and applying the same protection measures to metadata (e.g., security attributes) that is applied to the information payload."
+              },
+              {
+                "id": "SV-223245r987620_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223246",
+        "title": "SRG-APP-000068",
+        "controls": [
+          {
+            "id": "SV-223246r960843_rule",
+            "title": "SharePoint must display an approved system use notification message or banner before granting access to the system.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223246",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223246r960843_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000045"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000045"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960843"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000048",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Display an organization-defined system use notification message or banner to users before granting access to the system that provides privacy and security notices consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidelines."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-8 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-8.1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-8 a"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-8 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223246r960843_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must display an approved system use notification message or banner before granting access to the system."
+              },
+              {
+                "id": "SV-223246r960843_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint web application's home page to display the authorized DoD warning banner text on or before the logon page."
+              },
+              {
+                "id": "SV-223246r960843_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Applications are required to display an approved system use notification message or banner before granting access to the system providing privacy and security notices consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance and stating that:\n\n(i) users are accessing a U.S. Government information system;\n(ii) system usage may be monitored, recorded, and subject to audit;\n(iii) unauthorized use of the system is prohibited and subject to criminal and civil penalties; and\n(iv) the use of the system indicates consent to monitoring and recording.\n\nSystem use notification messages can be implemented in the form of warning banners displayed when individuals log on to the information system.\n\nSystem use notification is intended only for information system access including an interactive logon interface with a human user and is not intended to require notification when an interactive interface does not exist.\n\nUse this banner for desktops, laptops, and other devices accommodating banners of 1300 characters. The banner shall be implemented as a click-through banner at logon (to the extent permitted by the operating system), meaning it prevents further activity on the information system unless and until the user executes a positive action to manifest agreement by clicking on a box indicating \"OK\"."
+              },
+              {
+                "id": "SV-223246r960843_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223247",
+        "title": "SRG-APP-000090",
+        "controls": [
+          {
+            "id": "SV-223247r960882_rule",
+            "title": "SharePoint must allow designated organizational personnel to select which auditable events are to be audited by specific components of the system.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223247",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223247r960882_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000055"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000055"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960882"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000171",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Allow organization-defined personnel or roles to select the event types that are to be logged by specific components of the system."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-12 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-12.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-12 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-12 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223247r960882_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must allow designated organizational personnel to select which auditable events are to be audited by specific components of the system."
+              },
+              {
+                "id": "SV-223247r960882_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server configuration to allow designated organizational personnel to select which auditable events are to be audited by specific components of the system.\n\nNavigate to Central Administration.\n\nClick \"Monitoring\".\n\nClick \"Configure Diagnostic Logging\".\n\nSelect the event categories and trace levels to match those defined by the organization's system security plan.\n\nRemember that a base set of events is always audited.\n\nClick \"Ok\"."
+              },
+              {
+                "id": "SV-223247r960882_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Audit records can be generated from various components within the information system, such as network interfaces, hard disks, modems, etc. From an application perspective, certain specific application functionalities may be audited as well.\n\nThe list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records (i.e., auditable events, time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, filenames involved, and access control or flow control rules invoked).\n\nOrganizations may define the organizational personnel accountable for determining which application components shall provide auditable events."
+              },
+              {
+                "id": "SV-223247r960882_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223248",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-223248r961863_rule",
+            "title": "SharePoint must reject or delay, as defined by the organization, network traffic generated above configurable traffic volume thresholds.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223248",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223248r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000060"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000060"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223248r961863_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must reject or delay, as defined by the organization, network traffic generated above configurable traffic volume thresholds."
+              },
+              {
+                "id": "SV-223248r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure SharePoint to reject or delay, as defined by the organization or site SSP, network traffic generated above configurable traffic volume thresholds.\n\nLog on to the server.\n\nClick Start.\n\nType Internet Information Services Manager in the Search Bar, click Enter.\n\nDetermine which IIS Sites are subject to user traffic. This is generally the IIS site hosting the Content Web Application.\n\nFor each site IIS site subject to user traffic, select the site.\n\nClick Advanced Settings.\n\nExpand Connection Limits.\n\nEnsure the following settings possess a value:\n-Connection Time-Out\n-Maximum Bandwidth\n-Maximum Concurrent Connections\n\nRepeat steps for each site subject to user traffic."
+              },
+              {
+                "id": "SV-223248r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "It is critical when a system is at risk of failing to process audit logs as required; actions are automatically taken to mitigate the failure or risk of failure.\n\nOne method used to thwart the auditing system is for an attacker to attempt to overwhelm the auditing system with large amounts of irrelevant data. The end result is audit logs that are either overwritten and activity thereby erased or disk space that is exhausted and any future activity is no longer logged.\n\nIn many system configurations, the disk space allocated to the auditing system is separate from the disks allocated for the operating system; therefore, this may not result in a system outage."
+              },
+              {
+                "id": "SV-223248r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223249",
+        "title": "SRG-APP-000112",
+        "controls": [
+          {
+            "id": "SV-223249r960921_rule",
+            "title": "SharePoint must prevent the execution of prohibited mobile code.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223249",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223249r960921_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000065"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000065"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960921"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001695",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent the execution of organization-defined unacceptable mobile code."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (3)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (3).1"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223249r960921_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must prevent the execution of prohibited mobile code."
+              },
+              {
+                "id": "SV-223249r960921_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure SharePoint to prevent the execution of prohibited mobile code.\n\nNavigate to Central Administration.\n\nClick Manage Web Applications.\n\nFor each Web Application in the Farm:\n-Click on the Web Application to configure.\n-Click on the drop-down box below General Settings.\n-Click on General Settings in the drop down box.\n-Under Browser File Handling, verify that \"Strict\" is selected.\n\nIf \"Strict\" is not selected, this is a finding.\n\nMobile code can be further restricted to meet the policy of the organization:\n\nLog on to a farm server hosting Central Administration.\n\nClick Start and type SharePoint 2013 Management Shell followed by Enter.\n\nType $webApp = Get-SPWebApplication -Identity {URL} where {URL is the {URL} of the web application to configure.\n\nPress Enter.\n\nType $webApp.AllowedInlineDownloadedMimeTypes. Remove ({mime type}) where {mime type} represents the mime type to remove (e.g., application\\x-shockwave-flash).\n\nPress Enter."
+              },
+              {
+                "id": "SV-223249r960921_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Decisions regarding the utilization of mobile code within organizational information systems need to include evaluations that help determine the potential for the code to cause damage to the system if used maliciously.\n\nMobile code technologies include, for example, Java, JavaScript, ActiveX, PDF, Postscript, Shockwave movies, Flash animations, and VBScript. Usage restrictions and implementation guidance apply to both the selection and use of mobile code installed on organizational servers and mobile code downloaded and executed on individual workstations.\n\nApplications can prevent the execution of prohibited mobile code by leveraging architectures that provide a virtual execution environment sometimes referred to as a \"sandbox\". The mobile code is executed within this isolated environment apart from the host's indigenous operating environment that allows for mobile code capability restrictions and helps to prevent malicious code from accessing system resources and data.\n\nPolicy and procedures related to mobile code address preventing the introduction of unacceptable mobile code within the information system. The DoDI 8552.01 policy pertains to the use of mobile code technologies within DoD information systems.\n\nThe application must prevent the execution of prohibited mobile code."
+              },
+              {
+                "id": "SV-223249r960921_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223250",
+        "title": "SRG-APP-000156",
+        "controls": [
+          {
+            "id": "SV-223250r960993_rule",
+            "title": "SharePoint must use replay-resistant authentication mechanisms for network access to privileged accounts.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223250",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223250r960993_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000075"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000075"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960993"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001941",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement replay-resistant authentication mechanisms for access to privileged accounts and/or non-privileged accounts."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-2 (8)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-2 (8)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223250r960993_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must use replay-resistant authentication mechanisms for network access to privileged accounts."
+              },
+              {
+                "id": "SV-223250r960993_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to use replay-resistant authentication mechanisms for network access to privileged accounts.\n\nIf the web application is using Integrated Windows Authentication as the claims provider, perform the following:\n\nOpen the Central Administration site, select \"Application Management\".\n\nOn the \"Application Management\" page, select \"Manage Web Applications\", select the web application that corresponds to the site reviewed in the \"Check\" section above, then click the \"Authentication Providers\" button in the ribbon.\n\nSelect the zone corresponding to the web application being reviewed, which will open the \"Edit Authentication\" dialog in the \"Claims Authentication Types\" section, select \"Negotiate (Kerberos)\" in the \"Integrated Windows Authentication\" dropdown, then click \"Save\"."
+              },
+              {
+                "id": "SV-223250r960993_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "An authentication process resists replay attacks if it is impractical to achieve a successful authentication by recording and replaying a previous authentication message.\n\nTechniques used to address this include protocols using nonces (e.g., numbers generated for a specific one-time use) or challenges (e.g., TLS, WS_Security), and time synchronous or challenge-response one-time authenticators."
+              },
+              {
+                "id": "SV-223250r960993_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223251",
+        "title": "SRG-APP-000180",
+        "controls": [
+          {
+            "id": "SV-223251r961053_rule",
+            "title": "SharePoint must uniquely identify and authenticate non-organizational users (or processes acting on behalf of non-organizational users).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223251",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223251r961053_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000080"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000080"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961053"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000804",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Uniquely identify and authenticate non-organizational users or processes acting on behalf of non-organizational users."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-8"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-8.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-8"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-8"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223251r961053_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must uniquely identify and authenticate non-organizational users (or processes acting on behalf of non-organizational users)."
+              },
+              {
+                "id": "SV-223251r961053_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure SharePoint to uniquely identify and authenticate non-organizational users (or processes acting on behalf of non-organizational users).\n\nNavigate to Central Administration website.\n\nClick on \"Manage web applications\".\n\nClick the web application name.\n\nClick the \"Authentication Providers\" button in the \"Web Applications\" ribbon.\n\nClick each Zone, and clear the \"Enable anonymous access\" check box.\n\nClick \"Save\".\n\nRepeat steps for each web application."
+              },
+              {
+                "id": "SV-223251r961053_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Non-organizational users include all information system users other than organizational users, which include organizational employees or individuals the organization deems to have equivalent status of employees (e.g., contractors, guest researchers, individuals from allied nations).\n\nNon-organizational users must be uniquely identified and authenticated for all accesses other than those accesses explicitly identified and documented by the organization when related to the use of anonymous access, such as accessing a web server.\n\nAccordingly, a risk assessment is used in determining the authentication needs of the organization.\n\nScalability, practicality, and security are simultaneously considered in balancing the need to ensure ease of use for access to federal information and information systems with the need to protect and adequately mitigate risk to organizational operations, organizational assets, individuals, other organizations, and the Nation."
+              },
+              {
+                "id": "SV-223251r961053_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223252",
+        "title": "SRG-APP-000179",
+        "controls": [
+          {
+            "id": "SV-223252r961050_rule",
+            "title": "SharePoint must implement required cryptographic protections using cryptographic modules complying with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223252",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223252r961050_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000085"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000085"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961050"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000803",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement mechanisms for authentication to a cryptographic module that meet the requirements of applicable laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-7.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-7"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223252r961050_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must implement required cryptographic protections using cryptographic modules complying with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance."
+              },
+              {
+                "id": "SV-223252r961050_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to implement required cryptographic protections using cryptographic modules complying with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.\n\nOpen MMC.\n\nClick \u201cFile\u201d, \u201cAdd/Remove Snap-in\u201d, and \u201cadd Group Policy Object Editor\u201d.\n\nEnter a name for the Group Policy Object, or accept the default.\n\nClick \u201cFinish\u201d.\n\nClick \u201cOK\u201d.\n\nNavigate to Computer Policy >> Computer Configuration >> Administrative Templates >> Network >> SSL Configuration Settings.\n\nRight-click \u201cSSL Configuration Settings\u201d, click \u201cSSL Cipher Suite Order\u201d, and then click \u201cEdit\u201d.\n\nIn the \u201cSSL Cipher Suite Order\u201d dialog box, select \"Enabled\".\n\nUnder \u201cOptions\u201d, in the \u201cSSL Cipher Suites\u201d text box, enter desired cipher suites that are not DES or RC4.\n\nClick \u201cOK\u201d."
+              },
+              {
+                "id": "SV-223252r961050_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Certain encryption types are no longer considered secure. This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS and versions of SharePoint will have different suites available."
+              },
+              {
+                "id": "SV-223252r961050_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223254",
+        "title": "SRG-APP-000514",
+        "controls": [
+          {
+            "id": "SV-223254r961857_rule",
+            "title": "SharePoint must employ NSA-approved cryptography to protect classified information.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223254",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223254r961857_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000095"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000095"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961857"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002450",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement organization-defined types of cryptography for each specified cryptography use."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-13"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-13 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223254r961857_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must employ NSA-approved cryptography to protect classified information."
+              },
+              {
+                "id": "SV-223254r961857_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure SharePoint to employ NSA-approved cryptography to protect classified information.\n\nOpen MMC.\n\nClick \u201cFile\u201d, \u201cAdd/Remove Snap-in\u201d, and \u201cadd Group Policy Object Editor\u201d.\n\nEnter a name for the Group Policy Object, or accept the default.\n\nClick \u201cFinish\u201d.\n\nClick \u201cOK\u201d.\n\nNavigate to Computer Policy >> Computer Configuration >> Administrative Templates >> Network >> SSL Configuration Settings.\n\nRight-click \u201cSSL Configuration Settings\u201d, click \u201cSSL Cipher Suite Order\u201d, and then click \u201cEdit\u201d.\n\nIn the \u201cSSL Cipher Suite Order\u201d dialog box, select \"Enabled\".\n\nUnder \u201cOptions\u201d, in the \u201cSSL Cipher Suites\u201d text box, enter desired cipher suites that are not DES or RC4.\n\nClick \u201cOK\u201d."
+              },
+              {
+                "id": "SV-223254r961857_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Certain encryption types are no longer considered secure. This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS and versions of SharePoint will have different suites available."
+              },
+              {
+                "id": "SV-223254r961857_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223255",
+        "title": "SRG-APP-000555",
+        "controls": [
+          {
+            "id": "SV-223255r961866_rule",
+            "title": "SharePoint must employ FIPS-validated cryptography to protect unclassified information when such information must be separated from individuals who have the necessary clearances yet lack the necessary access approvals.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223255",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223255r961866_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000100"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000100"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961866"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002450",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement organization-defined types of cryptography for each specified cryptography use."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-13"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-13 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223255r961866_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must employ FIPS-validated cryptography to protect unclassified information when such information must be separated from individuals who have the necessary clearances yet lack the necessary access approvals."
+              },
+              {
+                "id": "SV-223255r961866_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure SharePoint to employ FIPS-validated cryptography to protect unclassified information when such information must be separated from individuals who have the necessary clearances yet lack the necessary access approvals.\n\nOpen MMC.\n\nClick \u201cFile\u201d, \u201cAdd/Remove Snap-in\u201d, and \u201cadd Group Policy Object Editor\u201d.\n\nEnter a name for the Group Policy Object, or accept the default.\n\nClick \u201cFinish\u201d.\n\nClick \u201cOK\u201d.\n\nNavigate to Computer Policy >> Computer Configuration >> Administrative Templates >> Network >> SSL Configuration Settings.\n\nRight-click \u201cSSL Configuration Settings\u201d, click \u201cSSL Cipher Suite Order\u201d, and then click \u201cEdit\u201d.\n\nIn the \u201cSSL Cipher Suite Order\u201d dialog box, select \"Enabled\".\n\nUnder \u201cOptions\u201d, in the \u201cSSL Cipher Suites\u201d text box, enter desired cipher suites that are not DES or RC4.\n\nClick \u201cOK\u201d."
+              },
+              {
+                "id": "SV-223255r961866_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Certain encryption types are no longer considered secure. This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS and versions of SharePoint will have different suites available."
+              },
+              {
+                "id": "SV-223255r961866_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223257",
+        "title": "SRG-APP-000219",
+        "controls": [
+          {
+            "id": "SV-223257r1043178_rule",
+            "title": "SharePoint must ensure authentication of both client and server during the entire session. An example of this is SSL Mutual Authentication.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223257",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223257r1043178_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000110"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000110"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043178"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001184",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect the authenticity of communications sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-23"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-23.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-23"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-23"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223257r1043178_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must ensure authentication of both client and server during the entire session. An example of this is SSL Mutual Authentication."
+              },
+              {
+                "id": "SV-223257r1043178_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to ensure SSL Mutual authentication of both client and server during the entire session.\n\nOpen IIS Manager.\n\nIn the Connections pane, expand \"Sites\".\n\nClick the \"Web Application\" site.\n\nIn the Actions pane, click \"Bindings\".\n\nIn the Site Bindings window, click \"Add\".\n\nIn the Add Site Binding window, change \"Type\" to \"https\", and select the site's SSL certificate. Click \"OK\".\n\nRemove all bindings that do not use https.\n\nClick \"Close\"."
+              },
+              {
+                "id": "SV-223257r1043178_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "This control focuses on communications protection at the session, versus packet level.\n\nAt the application layer, session IDs are tokens generated by web applications to uniquely identify an application user's session. Web applications utilize session tokens or session IDs in order to establish application user identity. Proper use of session IDs addresses man-in-the-middle attacks, including session hijacking or insertion of false information into a session. This control is only implemented where deemed necessary by the organization (e.g., sessions in service-oriented architectures providing web-based services)."
+              },
+              {
+                "id": "SV-223257r1043178_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223258",
+        "title": "SRG-APP-000220",
+        "controls": [
+          {
+            "id": "SV-223258r1043179_rule",
+            "title": "SharePoint must terminate user sessions upon user logoff, and when idle time limit is exceeded.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223258",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223258r1043179_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000115"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000115"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043179"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001185",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Invalidate session identifiers upon user logout or other session termination."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-23 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-23 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-23 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-23 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223258r1043179_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must terminate user sessions upon user logoff, and when idle time limit is exceeded."
+              },
+              {
+                "id": "SV-223258r1043179_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to terminate user sessions upon user logoff, and when idle time limit is exceeded.\n\nNavigate to Central Administration website.\n\nClick \"Application Management\".\n\nClick \"Manage Web Applications\".\n\nRepeat the following steps for each web application:\n-Select the web application.\n-Click \"General Settings\" in the \"Web Application\" ribbon.\n-In the \"Web Page Security Validation\" section, set \"Security Validation:\" to \"On\" and that the \"Security Validation Expires:\" setting is set to 15 minutes."
+              },
+              {
+                "id": "SV-223258r1043179_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "This requirement focuses on communications protection at the application session, versus network packet level.\n\nSession IDs are tokens generated by web applications to uniquely identify an application user's session.  Applications will make application decisions and execute business logic based on the session ID. Unique session identifiers or IDs are the opposite of sequentially generated session IDs that can be easily guessed by an attacker. Unique session IDs help to reduce predictability of said identifiers. Unique session IDs address man-in-the-middle attacks, including session hijacking or insertion of false information into a session. If the attacker is unable to identify or guess the session information related to pending application traffic, they will have more difficulty in hijacking the session or otherwise manipulating valid sessions. When a user logs off, or when any other session termination event occurs, the application must terminate the user session to minimize the potential for an attacker to hijack that particular user session."
+              },
+              {
+                "id": "SV-223258r1043179_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223259",
+        "title": "SRG-APP-000441",
+        "controls": [
+          {
+            "id": "SV-223259r961638_rule",
+            "title": "SharePoint must maintain the confidentiality of information during aggregation, packaging, and transformation in preparation for transmission. When transmitting data, applications need to leverage transmission protection mechanisms such as TLS, SSL VPNs, or IPSec.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223259",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223259r961638_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000120"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000120"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961638"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002420",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Maintain the confidentiality and/or integrity of information during preparation for transmission."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-8 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-8 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223259r961638_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must maintain the confidentiality of information during aggregation, packaging, and transformation in preparation for transmission. When transmitting data, applications need to leverage transmission protection mechanisms such as TLS, SSL VPNs, or IPSec."
+              },
+              {
+                "id": "SV-223259r961638_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to maintain the confidentiality of information during aggregation, packaging, and transformation in preparation for transmission.\n\nOpen IIS Manager.\n\nIn the Connections pane, expand Sites.\n\nClick the Web Application site.\n\nIn the Actions pane, click Bindings.\n\nIn the Site Bindings window, click Add.\n\nIn the Add Site Binding window, change Type to https, and select the site's SSL certificate.\n\nClick OK, and then click Close."
+              },
+              {
+                "id": "SV-223259r961638_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), SSL VPN, or IPSec tunnel.\n\nAlternative physical protection measures include protected distribution systems. Protective Distribution Systems (PDS) are used to transmit unencrypted classified NSI through an area of lesser classification or control. Inasmuch as the classified NSI is unencrypted, the PDS must provide adequate electrical, electromagnetic, and physical safeguards to deter exploitation. Refer to NSTSSI No. 7003 for additional details on a PDS."
+              },
+              {
+                "id": "SV-223259r961638_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223260",
+        "title": "SRG-APP-000219",
+        "controls": [
+          {
+            "id": "SV-223260r1043178_rule",
+            "title": "SharePoint must implement an information system isolation boundary that minimizes the number of nonsecurity functions included within the boundary containing security functions.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223260",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223260r1043178_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000125"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000125"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043178"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001184",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect the authenticity of communications sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-23"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-23.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-23"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-23"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223260r1043178_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must implement an information system isolation boundary that minimizes the number of nonsecurity functions included within the boundary containing security functions."
+              },
+              {
+                "id": "SV-223260r1043178_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to implement an information system isolation boundary that minimizes the number of nonsecurity functions included within the boundary containing security functions.\n\nLog on to the server that hosts the farm's Central Administration website.\n\nOpen IIS Manager.\n\nExpand \"Sites\" tree view and right-click the web application named \"SharePoint Central Administration\".\n\nSelect \"Edit Bindings ...\".\n\nSelect the site binding record and click \"Edit\".\n\nFrom the \"IP Address\" dropdown list, select an OOB IP address.\n\nClick \"Ok\".\n\n*NOTE: If the Central Administration site has multiple site bindings, steps will need to be repeated for each site binding."
+              },
+              {
+                "id": "SV-223260r1043178_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The information system isolates security functions from nonsecurity functions by means of an isolation boundary (implemented via partitions and domains) controlling access to and protecting the integrity of, the hardware, software, and firmware that perform those security functions. The information system maintains a separate execution domain (e.g., address space) for each executing process."
+              },
+              {
+                "id": "SV-223260r1043178_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223261",
+        "title": "SRG-APP-000238",
+        "controls": [
+          {
+            "id": "SV-223261r987636_rule",
+            "title": "SharePoint must implement security functions as a layered structure minimizing interactions between layers of the design and avoiding any dependence by lower layers on the functionality or correctness of higher layers.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223261",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223261r987636_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000130"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000130"
+              },
+              {
+                "name": "sv-revision",
+                "value": "987636"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001089",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement security functions as a layered structure minimizing interactions between layers of the design and avoiding any dependence by lower layers on the functionality or correctness of higher layers."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-3 (5)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-3 (5).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-3 (5)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-3 (5)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223261r987636_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must implement security functions as a layered structure minimizing interactions between layers of the design and avoiding any dependence by lower layers on the functionality or correctness of higher layers."
+              },
+              {
+                "id": "SV-223261r987636_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to implement security functions as a layered structure minimizing interactions between layers of the design and avoiding any dependence by lower layers on the functionality or correctness of higher layers.\n\nConfigure access to Central Administration to be allowed over a management (OOB) network.\n\nConfigure Central Administration on a server that resides within the internal network (not on a server in the DMZ).\n\nConfigure management access (i.e., remote desktop access and local server access) so that it occurs only via a management network (OOB) and not over a production network."
+              },
+              {
+                "id": "SV-223261r987636_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The information system isolates security functions from nonsecurity functions by means of an isolation boundary (implemented via partitions and domains) controlling access to, and protecting the integrity of, the hardware, software, and firmware that perform those security functions. The information system maintains a separate execution domain (e.g., address space) for each executing process."
+              },
+              {
+                "id": "SV-223261r987636_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223262",
+        "title": "SRG-APP-000440",
+        "controls": [
+          {
+            "id": "SV-223262r961635_rule",
+            "title": "SharePoint must employ cryptographic mechanisms preventing the unauthorized disclosure of information during transmission, unless the transmitted data is otherwise protected by alternative physical measures.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223262",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223262r961635_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000135"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000135"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961635"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002421",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement cryptographic mechanisms to prevent unauthorized disclosure of information and/or detect changes to information during transmission."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-8 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-8 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223262r961635_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must employ cryptographic mechanisms preventing the unauthorized disclosure of information during transmission, unless the transmitted data is otherwise protected by alternative physical measures."
+              },
+              {
+                "id": "SV-223262r961635_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to employ cryptographic mechanisms preventing the unauthorized disclosure of information during transmission, unless the transmitted data is otherwise protected by alternative physical measures.\n\nOpen IIS Manager.\n\nIn the Connections pane, expand Sites.\n\nClick the Web Application site.\n\nIn the Actions pane, click Bindings.\n\nIn the Site Bindings window, click Add.\n\nIn the Add Site Binding window, change Type to https, and select the site's SSL certificate.\n\nClick OK, and then click Close."
+              },
+              {
+                "id": "SV-223262r961635_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), SSL VPN, or IPSEC tunnel.\n\nAlternative physical protection measures include Protected Distribution Systems (PDS). PDS are used to transmit unencrypted classified NSI through an area of lesser classification or control. Inasmuch as the classified NSI is unencrypted, the PDS must provide adequate electrical, electromagnetic, and physical safeguards to deter exploitation. Refer to NSTSSI No. 7003 for additional details on a PDS."
+              },
+              {
+                "id": "SV-223262r961635_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223263",
+        "title": "SRG-APP-000340",
+        "controls": [
+          {
+            "id": "SV-223263r961353_rule",
+            "title": "SharePoint must prevent non-privileged users from circumventing malicious code protection capabilities.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223263",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223263r961353_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000140"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000140"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961353"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002235",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent non-privileged users from executing privileged functions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-6 (10)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-6 (10)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223263r961353_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must prevent non-privileged users from circumventing malicious code protection capabilities."
+              },
+              {
+                "id": "SV-223263r961353_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to prevent non-privileged users from circumventing malicious code protection capabilities.\n\nNavigate to Central Administration.\n\nClick \"Manage web applications\".\n\nSelect the web application by clicking its name.\n\nSelect \"Blocked File Types\" from the ribbon.\n\nAdd file types that are defined in the SSP but not in the list of blocked file types.\n\nClick \"Ok\".\n\nRepeat for each web application that has findings."
+              },
+              {
+                "id": "SV-223263r961353_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Malicious code protection software must be protected to prevent a non-privileged user or malicious piece of software from disabling the protection mechanism. A common tactic of malware is to identify the type of malicious code protection software running on the system and deactivate it. Malicious code includes viruses, worms, Trojan horses, and Spyware.\n\nExamples include the capability for non-administrative users to turn off or otherwise disable anti-virus."
+              },
+              {
+                "id": "SV-223263r961353_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223264",
+        "title": "SRG-APP-000179",
+        "controls": [
+          {
+            "id": "SV-223264r961050_rule",
+            "title": "SharePoint must use mechanisms for authentication to a cryptographic module that meet the requirements of applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223264",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223264r961050_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "high"
+              },
+              {
+                "name": "cat",
+                "value": "CAT I"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000145"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000145"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961050"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000803",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement mechanisms for authentication to a cryptographic module that meet the requirements of applicable laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-7.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-7"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223264r961050_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must use mechanisms for authentication to a cryptographic module that meet the requirements of applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication."
+              },
+              {
+                "id": "SV-223264r961050_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to use mechanisms for authentication to a cryptographic module that meet the requirements of applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication.\n\nOpen MMC.\n\nClick \u201cFile\u201d, \u201cAdd/Remove Snap-in\u201d, and \u201cadd Group Policy Object Editor\u201d.\n\nEnter a name for the Group Policy Object, or accept the default.\n\nClick \u201cFinish\u201d.\n\nClick \u201cOK\u201d.\n\nNavigate to Computer Policy >> Computer Configuration >> Administrative Templates >> Network >> SSL Configuration Settings.\n\nRight-click \u201cSSL Configuration Settings\u201d, click \u201cSSL Cipher Suite Order\u201d, and then click \u201cEdit\u201d.\n\nIn the \u201cSSL Cipher Suite Order\u201d dialog box, select \"Enabled\".\n\nUnder \u201cOptions\u201d, in the \u201cSSL Cipher Suites\u201d text box, enter desired cipher suites that are not DES or RC4.\n\nClick \u201cOK\u201d."
+              },
+              {
+                "id": "SV-223264r961050_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Certain encryption types are no longer considered secure. This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS and versions of SharePoint will have different suites available."
+              },
+              {
+                "id": "SV-223264r961050_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223265",
+        "title": "SRG-APP-000212",
+        "controls": [
+          {
+            "id": "SV-223265r987634_rule",
+            "title": "The SharePoint Central Administration site must not be accessible from Extranet or Internet connections.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223265",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223265r987634_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000150"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000150"
+              },
+              {
+                "name": "sv-revision",
+                "value": "987634"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001083",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Prevent the presentation of system management functionality at an interface for non-privileged users."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-2 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-2 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-2 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-2 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223265r987634_rule_statement",
+                "name": "statement",
+                "prose": "The SharePoint Central Administration site must not be accessible from Extranet or Internet connections."
+              },
+              {
+                "id": "SV-223265r987634_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint Central Administration site to not be accessible from Extranet or Internet connections.\n\nBlock outside Central Administrator access.\n\nUse an IIS IP address restrictions, firewall, or other filtering solutions to limit access to Central Administration site."
+              },
+              {
+                "id": "SV-223265r987634_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "SharePoint must prevent the presentation of information system management-related functionality at an interface utilized by general, (i.e., non-privileged), users. \n\nThe Central Administrator is an application used to manage SharePoint system settings and the settings of the web applications running under SharePoint. The Central Administrator application should both be protected using a defense-in-depth approach. Regular users should not be able to access the Central Administrator as the first line of defense. The second line of defense is regular users do not have user ids defined in the Central Administration application."
+              },
+              {
+                "id": "SV-223265r987634_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223266",
+        "title": "SRG-APP-000039",
+        "controls": [
+          {
+            "id": "SV-223266r960804_rule",
+            "title": "For environments requiring an Internet-facing capability, the SharePoint application server upon which Central Administration is installed, must not be installed in the DMZ.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223266",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223266r960804_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000155"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000155"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960804"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001414",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Enforce approved authorizations for controlling the flow of information between connected systems based on organization-defined information flow control policies."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AC-4.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AC-4"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AC-4"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223266r960804_rule_statement",
+                "name": "statement",
+                "prose": "For environments requiring an Internet-facing capability, the SharePoint application server upon which Central Administration is installed, must not be installed in the DMZ."
+              },
+              {
+                "id": "SV-223266r960804_rule_guidance",
+                "name": "guidance",
+                "prose": "For environments requiring an Internet-facing capability, remove the SharePoint Central Administration application server upon which Central Administration is installed from the DMZ."
+              },
+              {
+                "id": "SV-223266r960804_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to the information. \n\nSharePoint installed Central Administrator is a powerful management tool used to administer the farm. This server should be installed on a trusted network segment. This server should also be used to run services rather than user-oriented web applications."
+              },
+              {
+                "id": "SV-223266r960804_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223267",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-223267r961863_rule",
+            "title": "The SharePoint farm service account (database access account)  must be configured with minimum privileges in Active Directory (AD).",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223267",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223267r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000160"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000160"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223267r961863_rule_statement",
+                "name": "statement",
+                "prose": "The SharePoint farm service account (database access account)  must be configured with minimum privileges in Active Directory (AD)."
+              },
+              {
+                "id": "SV-223267r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint farm service account (database access account) with minimum privileges in Active Directory (AD).\n\nEnsure the Setup User domain user has minimum permissions in Active Directory. \n- Using the AD DS console, navigate to \u201cActive Directory Users and Computers\u201d >> Users.\n- Double click on the account to view the account properties.\n- Select the \u201cMembers of\u201d tab and configure the farm service account is a member of the Domain Users group. Remove any other group membership from the account.\n- Select the other tabs in this area and remove any services or permissions configured for this account."
+              },
+              {
+                "id": "SV-223267r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. \n\nThis requirement is intended to limit exposure due to user accounts being used to operate from within a privileged account or role. Limiting the access and permissions of privileged accounts to the minimum required, reduces exposure if the account is compromised and provides forensic history of activity when operating from these accounts. \nThis policy limits the Farm Account privileges in AD.  However, default permissions for this account are configured by the SharePoint Products Configuration Wizard during product installation. This account is referred to during the installation as the \"Database Access\" account. By default, the account is used as the service account for the SharePoint Timer Service and the SharePoint Central Administration Web Site Application Pool. These settings should not be changed. Furthermore, this account should not be used as the service account for non-privileged services, applications, or application pools."
+              },
+              {
+                "id": "SV-223267r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223268",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-223268r961863_rule",
+            "title": "The SharePoint farm service account (database access account) must be configured with minimum privileges on the SQL server.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223268",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223268r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000165"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000165"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223268r961863_rule_statement",
+                "name": "statement",
+                "prose": "The SharePoint farm service account (database access account) must be configured with minimum privileges on the SQL server."
+              },
+              {
+                "id": "SV-223268r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint farm service account (database access account) with minimum privileges on the SQL server.\n\nConfigure the account on each SQL server in the farm.\n- Launch the SQL Server Management Console and navigate to Security >> Logins. \n- Select the SharePoint farm service account.\n- Click on Server Roles.\n- Ensure only public, dbcreator, and securityadmin roles are checked.\n- Remove checks from all other roles."
+              },
+              {
+                "id": "SV-223268r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. \n\nThis requirement is intended to limit exposure due to user accounts being used to operate from within a privileged account or role. Limiting the access and permissions of privileged accounts to the minimum required, reduces exposure if the account is compromised and provides forensic history of activity when operating from these accounts. \nThis policy limits the Farm Account privileges in AD.  However, default permissions for this account are configured by the SharePoint Products Configuration Wizard during product installation. This account is referred to during the installation as the \"Database Access\" account. By default, the account is used as the service account for the SharePoint Timer Service and the SharePoint Central Administration Web Site Application Pool. These settings should not be changed. Furthermore, this account should not be used as the service account for non-privileged services, applications, or application pools."
+              },
+              {
+                "id": "SV-223268r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223269",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-223269r961863_rule",
+            "title": "The SharePoint setup account must be configured with the minimum privileges in Active Directory.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223269",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223269r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000170"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000170"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223269r961863_rule_statement",
+                "name": "statement",
+                "prose": "The SharePoint setup account must be configured with the minimum privileges in Active Directory."
+              },
+              {
+                "id": "SV-223269r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint setup account to be configured with the minimum privileges in Active Directory.\n\nEnsure the Setup User domain user has minimum permissions in Active Directory. \n- Using the AD DS console, navigate to \u201cActive Directory Users and Computers\u201d >> Users.\n- Double click on the account to view the account properties.\n- Select the \u201cMembers of\u201d tab and configure the Setup user account is a member of the Domain Users group. Remove any other group membership from the account.\n- Select the other tabs in this area and remove any services or permissions configured for this account."
+              },
+              {
+                "id": "SV-223269r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. \n\nThis requirement is intended to limit exposure due to user accounts being used to operate from within a privileged account or role. Limiting the access and permissions of privileged accounts to the minimum required, reduces exposure if the account is compromised and provides forensic history of activity when operating from these accounts.\n \nThis policy limits the setup account privileges in AD.  However, default permissions for this account are configured by the SharePoint Products Configuration Wizard during product installation. This account is referred to during the installation as the \"Database Access\" account. By default, the account is used as the service account for the SharePoint Timer Service and the SharePoint Central Administration Web Site Application Pool. These settings should not be changed. Furthermore, this account should not be used as the service account for non-privileged services, applications, or application pools."
+              },
+              {
+                "id": "SV-223269r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223270",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-223270r961863_rule",
+            "title": "The SharePoint setup account must be configured with the minimum privileges on the SQL server.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223270",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223270r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000175"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000175"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223270r961863_rule_statement",
+                "name": "statement",
+                "prose": "The SharePoint setup account must be configured with the minimum privileges on the SQL server."
+              },
+              {
+                "id": "SV-223270r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint setup account with minimum privileges on the SQL server.\n\nConfigure the account on the SQL server.\n- Launch the SQL Server Management Console and navigate to Security >> Logins. \n- Select the SharePoint Setup User account.\n- Click on \"Server Roles\".\n- Ensure only public, dbcreator, and securityadmin roles are checked.\n- Remove checks from all other roles."
+              },
+              {
+                "id": "SV-223270r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. \n\nThis requirement is intended to limit exposure due to user accounts being used to operate from within a privileged account or role. Limiting the access and permissions of privileged accounts to the minimum required, reduces exposure if the account is compromised and provides forensic history of activity when operating from these accounts. \nThis policy limits the Farm Account privileges in AD.  However, default permissions for this account are configured by the SharePoint Products Configuration Wizard during product installation. This account is referred to during the installation as the \"Database Access\" account. By default, the account is used as the service account for the SharePoint Timer Service and the SharePoint Central Administration Web Site Application Pool. These settings should not be changed. Furthermore, this account should not be used as the service account for non-privileged services, applications, or application pools."
+              },
+              {
+                "id": "SV-223270r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223272",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-223272r961863_rule",
+            "title": "A secondary SharePoint site collection administrator must be defined when creating a new site collection.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223272",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223272r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000185"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000185"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223272r961863_rule_statement",
+                "name": "statement",
+                "prose": "A secondary SharePoint site collection administrator must be defined when creating a new site collection."
+              },
+              {
+                "id": "SV-223272r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure a secondary SharePoint site collection administrator when creating a new site collection.\n\nLog on to SharePoint Central Administration as a member of the Farm Administration Group.\n\nClick on \"Application Management\".\n\nSelect \"Site Collections\" >> Change Site Collections Administrator.\n\nFor each site, define a Secondary Site Collection Administrator.\n\nSelect \"OK\"."
+              },
+              {
+                "id": "SV-223272r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "If a site reaches its maximum size, users will be denied access until an administrator fixes the problem. Having a secondary administrator reduces the risk of having a Denial-of-Service on a site. If the site reaches its maximum size, the secondary administrator can fix the problem if the primary administrator is not available. In some situations, having a secondary site administrator could be inappropriate for reasons of control or confidentiality."
+              },
+              {
+                "id": "SV-223272r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223273",
+        "title": "SRG-APP-000142",
+        "controls": [
+          {
+            "id": "SV-223273r1043177_rule",
+            "title": "When configuring SharePoint Central Administration, the port number selected must comply with DoD Ports and Protocol Management (PPSM) program requirements.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223273",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223273r1043177_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000190"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000190"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043177"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000382",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Configure the system to prohibit or restrict the use of organization-defined prohibited or restricted functions, system ports, protocols, software, and/or services."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-7"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-7.1 (iii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223273r1043177_rule_statement",
+                "name": "statement",
+                "prose": "When configuring SharePoint Central Administration, the port number selected must comply with DoD Ports and Protocol Management (PPSM) program requirements."
+              },
+              {
+                "id": "SV-223273r1043177_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint Central Administration port number selected to comply with DoD Ports and Protocol Management (PPSM) program requirements.\n\nOpen the SharePoint Management Shell (Start >> All Programs >> Microsoft SharePoint Products >> SharePoint Management Shell). \n\nChange the port number to a PPS-approved port that does not conflict with existing port usage using the following command: \nSet -SPCentralAdministration -Port <PortNumber>\n\nPress \"Enter\" to save."
+              },
+              {
+                "id": "SV-223273r1043177_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "During the installation of Microsoft SharePoint, the Central Administration Web site is established on a randomly-assigned TCP port by default. Allowing a randomly-assigned default may result in use of a port which violates DoD policy or conflicts with ports already in use.  Use of certain well-known ports may also result in slow operational response or expose the application to known denial of service attacks."
+              },
+              {
+                "id": "SV-223273r1043177_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223274",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-223274r961863_rule",
+            "title": "SharePoint-specific malware (i.e. anti-virus) protection software must be integrated and configured.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223274",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223274r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000195"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000195"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001167",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Verify that the development of mobile code to be deployed in information systems meets organization-defined mobile code requirements."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (2).1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223274r961863_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint-specific malware (i.e. anti-virus) protection software must be integrated and configured."
+              },
+              {
+                "id": "SV-223274r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure and integrate SharePoint-specific malware (i.e. anti-virus) protection software on the SharePoint server.\n\nInstall and configure anti-virus package.\n\nInstall a SharePoint Server 2010-specific antivirus package. \n\nLog in to Central Administration.\n\nNavigate to Operations >> Security Configuration.\n\nSelect Anti-virus.\n\nCheck the following boxes:\n- Scan documents on upload.\n- Scan documents on download.\n- Attempt to clean infected documents.\n\nSelect \"OK\"."
+              },
+              {
+                "id": "SV-223274r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Configuring anti-virus settings ensures documents will be scanned for viruses upon download from and upload to the SharePoint server. Anti-virus settings are not configured by default, therefore leaving the documents downloaded from or uploaded to SharePoint open to potential viruses."
+              },
+              {
+                "id": "SV-223274r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223275",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-223275r961863_rule",
+            "title": "SharePoint server access to the Online Web Part Gallery must be configured for limited access.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223275",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223275r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000205"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000205"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001167",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Verify that the development of mobile code to be deployed in information systems meets organization-defined mobile code requirements."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-18 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-18 (2).1 (ii)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-18 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-18 (2)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223275r961863_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint server access to the Online Web Part Gallery must be configured for limited access."
+              },
+              {
+                "id": "SV-223275r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server for limited access to the Online Web Part Gallery.\n\nEnable the \"Prevents users from accessing the Online Web Part Gallery, and helps to improve security and performance\" option for each web application. \n\nLog on to Central Administration.\n\nNavigate to the Security page.\n\nClick on \"Manage web part security\".\n\nFor each web application in the web application section, perform the following: \n-Select the correct web application in the web application section.\n-Select the \"Prevents users from accessing the Online Web Part Gallery, and helps to improve security and performance\" option in the Online Web Part Gallery section.\n\nSelect \"OK\"."
+              },
+              {
+                "id": "SV-223275r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Web Part galleries are groupings of Web Parts. There are four Web Part galleries: Closed Web Parts, Site Name Gallery, Server Gallery, and Online Gallery. The Online Gallery is a collection of Microsoft MSNBC Web Parts located on the Internet. Allowing users to access the Online Web Part Gallery causes a significant performance hit on the server, due to the server attempting to connect to the MSNBC online gallery. This could result in a Denial-of-Service. The Online Gallery could contain Web Parts from unknown third parties, which could increase the risk of a malicious code execution attack. Preventing users from accessing the Online Web Part Gallery decreases the system's attack surface."
+              },
+              {
+                "id": "SV-223275r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223276",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-223276r961863_rule",
+            "title": "The SharePoint farm service account (database access account) must be configured with the minimum privileges for the local server.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223276",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223276r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000210"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000210"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223276r961863_rule_statement",
+                "name": "statement",
+                "prose": "The SharePoint farm service account (database access account) must be configured with the minimum privileges for the local server."
+              },
+              {
+                "id": "SV-223276r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint farm service account (database access account) with the minimum privileges for the local server.\n\n- On the server(s) where the SharePoint software is installed, navigate to Server Manager >> Local Users and Groups.\n- Select the \u201cMember of\u201d tab. Configure the farm service account as a member of WSS_RESTRICTED_WPG, WSS_ADMIN_WPG, WSS_WPG, IIS_IUSRS, Performance Monitor User, Performance Log Users, and WSS groups. Remove all other group memberships from this account.\n- Select the other tabs in this area and remove other services or permissions configured for this account."
+              },
+              {
+                "id": "SV-223276r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. \n\nThis requirement is intended to limit exposure due to user accounts being used to operate from within a privileged account or role. Limiting the access and permissions of privileged accounts to the minimum required, reduces exposure if the account is compromised and provides forensic history of activity when operating from these accounts. \nThis policy limits the Farm Account privileges in AD.  However, default permissions for this account are configured by the SharePoint Products Configuration Wizard during product installation. This account is referred to during the installation as the \u201cDatabase Access\u201d account. By default, the account is used as the service account for the SharePoint Timer Service and the SharePoint Central Administration Web Site Application Pool. These settings should not be changed. Furthermore, this account should not be used as the service account for non-privileged services, applications, or application pools."
+              },
+              {
+                "id": "SV-223276r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-223277",
+        "title": "SRG-APP-000204",
+        "controls": [
+          {
+            "id": "SV-223277r961080_rule",
+            "title": "SharePoint must validate the integrity of security attributes exchanged between systems.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-223277",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-223277r961080_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "SP13-00-000105"
+              },
+              {
+                "name": "label",
+                "value": "SP13-00-000105"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961080"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001158",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Verify the integrity of transmitted security attributes."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-16 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-16 (1).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-16 (1)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-16 (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-223277r961080_rule_statement",
+                "name": "statement",
+                "prose": "SharePoint must validate the integrity of security attributes exchanged between systems."
+              },
+              {
+                "id": "SV-223277r961080_rule_guidance",
+                "name": "guidance",
+                "prose": "Configure the SharePoint server to validate the integrity of security attributes exchanged between systems.\n\nIn Central Administration, click Security.\n\nOn the Security page, in the Information policy list, click \"Configure information rights management\".\n\nSelect \"Use the default RMS server specified in Active Directory\", or identify a specific server by selecting \"Use this RMS server:\" and entering the server name.\n\nConfigure information management policies in accordance with the system security plan requirements."
+              },
+              {
+                "id": "SV-223277r961080_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "When data is exchanged between information systems, the security attributes associated with said data need to be maintained.\n\nSecurity attributes are an abstraction representing the basic properties or characteristics of an entity with respect to safeguarding information, typically associated with internal data structures (e.g., records, buffers, files) within the information system and used to enable the implementation of access control and flow control policies, reflect special dissemination, handling or distribution instructions, or support other aspects of the information security policy.\n\nSecurity attributes may be explicitly or implicitly associated with the information contained within the information system."
+              },
+              {
+                "id": "SV-223277r961080_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}

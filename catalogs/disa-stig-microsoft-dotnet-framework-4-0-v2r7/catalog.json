@@ -1,0 +1,1783 @@
+{
+  "catalog": {
+    "uuid": "34de6ebd-0499-544c-a401-521e1707fa46",
+    "metadata": {
+      "title": "Microsoft DotNet Framework 4.0 Security Technical Implementation Guide (Catalog)",
+      "last-modified": "2025-07-02T00:00:00Z",
+      "version": "2.7.0",
+      "oscal-version": "1.1.3",
+      "remarks": "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.",
+      "links": [
+        {
+          "href": "https://public.cyber.mil/stigs/",
+          "rel": "source",
+          "media-type": "text/html"
+        }
+      ],
+      "props": [
+        {
+          "name": "keywords",
+          "value": "DISA, STIG"
+        },
+        {
+          "name": "benchmark-date",
+          "value": "2025-07-02"
+        },
+        {
+          "name": "tool.version.xccdf",
+          "value": "1.0"
+        },
+        {
+          "name": "tool.version.schema",
+          "value": "1.1"
+        },
+        {
+          "name": "version.major",
+          "value": "2"
+        },
+        {
+          "name": "version.minor",
+          "value": "7"
+        },
+        {
+          "name": "version.patch",
+          "value": "0"
+        }
+      ],
+      "roles": [
+        {
+          "id": "creator",
+          "title": "Document creator"
+        },
+        {
+          "id": "publisher",
+          "title": "Publisher"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Original document author"
+        },
+        {
+          "id": "oscal-author",
+          "title": "OSCAL formatted version author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "3b0cd491-0161-4743-9e6f-776f23183c8e",
+          "type": "organization",
+          "name": "Defense Information Systems Agency (DISA)",
+          "email-addresses": [
+            "disa.stig_spt@mail.mil"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "P.O. Box 549"
+              ],
+              "city": "Fort Meade",
+              "state": "MD",
+              "postal-code": "20755-0549"
+            }
+          ]
+        },
+        {
+          "uuid": "7525e825-925e-4075-b812-bb514522fb97",
+          "type": "organization",
+          "name": "University of Toronto",
+          "email-addresses": [
+            "security@utoronto.ca"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "27 King's College Circle"
+              ],
+              "city": "Toronto",
+              "state": "ON",
+              "postal-code": "M5S1A1"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "creator",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "3b0cd491-0161-4743-9e6f-776f23183c8e"
+          ]
+        },
+        {
+          "role-id": "oscal-author",
+          "party-uuids": [
+            "7525e825-925e-4075-b812-bb514522fb97"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "V-225223",
+        "title": "SRG-APP-000175",
+        "controls": [
+          {
+            "id": "SV-225223r961038_rule",
+            "title": "Digital signatures assigned to strongly named assemblies must be verified.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225223",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225223r961038_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0031"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0031"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961038"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000185",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, validate certificates by constructing and verifying a certification path to an accepted trust anchor including checking certificate status information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (2) (a)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (2) (b) (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225223r961038_rule_statement",
+                "name": "statement",
+                "prose": "Digital signatures assigned to strongly named assemblies must be verified."
+              },
+              {
+                "id": "SV-225223r961038_rule_guidance",
+                "name": "guidance",
+                "prose": "Use regedit to remove the values stored in Windows registry key HKLM\\Software\\Microsoft\\StrongName\\Verification. There should be no assemblies or hash values listed under this registry key.\n\nAll assemblies must require strong name verification in a production environment.\n\nStrong name assemblies that do not require verification in a development or test environment must have documented approvals from the IAO."
+              },
+              {
+                "id": "SV-225223r961038_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A strong name consists of the assembly's identity, simple text name, version number, and culture information (if provided)\u2014plus a public key and a digital signature.  Strong names serve to identify the author of the code.  If digital signatures used to sign strong name assemblies are not verified, any self signed code can be impersonated.  This can lead to a loss of system integrity."
+              },
+              {
+                "id": "SV-225223r961038_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225224",
+        "title": "SRG-APP-000175",
+        "controls": [
+          {
+            "id": "SV-225224r961038_rule",
+            "title": "The Trust Providers Software Publishing State must be set to 0x23C00.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225224",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225224r961038_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0046"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0046"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961038"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000185",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, validate certificates by constructing and verifying a certification path to an accepted trust anchor including checking certificate status information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (2) (a)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (2) (b) (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225224r961038_rule_statement",
+                "name": "statement",
+                "prose": "The Trust Providers Software Publishing State must be set to 0x23C00."
+              },
+              {
+                "id": "SV-225224r961038_rule_guidance",
+                "name": "guidance",
+                "prose": "This fix must be performed for each user on the system.\n\nUsing regedit, change the hexadecimal value of the \"HKEY_USER\\[UNIQUE USER SID VALUE]\\Software\\Microsoft\\Windows\\CurrentVersion\\WinTrust\\Trust Providers\\Software Publishing\\State\" registry key to 0x23C00."
+              },
+              {
+                "id": "SV-225224r961038_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Microsoft Windows operating systems provide a feature called Authenticode.  Authenticode technology and its underlying code signing mechanisms serve to provide a structure to identify software publishers and ensure that software applications have not been tampered with.  Authenticode technology relies on digital certificates and is based on Public Key Cryptography Standards (PKCS) #7 (encrypted key specification), PKCS #10 (certificate request formats), X.509 (certificate specification), and Secure Hash Algorithm (SHA) and MD5 hash algorithms.\n\nThe manner in which the Authenticode technology validates a certificate and determines what is considered a valid certificate can be modified to meet the mission of the Microsoft Windows system.  Each facade of certificate validation is controlled through the bits that makeup the hexadecimal value for the Authenticode setting.  An improper setting will allow non-valid certificates to be accepted and can put the integrity of the system into jeopardy.\n\nThe hexadecimal value of 0x23C00 will implement the following certificate enforcement policy:\n- Trust the Test Root = FALSE\n- Use expiration date on certificates = TRUE\n- Check the revocation list = TRUE\n- Offline revocation server OK (Individual) = TRUE\n- Offline revocation server OK (Commercial) = TRUE\n- Java offline revocation server OK (Individual) = TRUE\n- Java offline revocation server OK (Commercial) = TRUE\n- Invalidate version 1 signed objects = FALSE\n- Check the revocation list on Time Stamp Signer = FALSE\n- Only trust items found in the Trust DB = FALSE"
+              },
+              {
+                "id": "SV-225224r961038_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225225",
+        "title": "SRG-APP-000175",
+        "controls": [
+          {
+            "id": "SV-225225r961038_rule",
+            "title": "Developer certificates used with the .NET Publisher Membership Condition must be approved by the ISSO.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225225",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225225r961038_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0048"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0048"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961038"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000185",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, validate certificates by constructing and verifying a certification path to an accepted trust anchor including checking certificate status information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (2) (a)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (2) (b) (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225225r961038_rule_statement",
+                "name": "statement",
+                "prose": "Developer certificates used with the .NET Publisher Membership Condition must be approved by the ISSO."
+              },
+              {
+                "id": "SV-225225r961038_rule_guidance",
+                "name": "guidance",
+                "prose": "Trust must be established when utilizing Publishers Membership Condition. All publisher's certificates must have documented approvals from the ISSO."
+              },
+              {
+                "id": "SV-225225r961038_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A .Net assembly will satisfy the Publisher Membership Condition if it is signed with a software publisher\u2019s Authenticode X.509v3 digital certificate that can be verified by the Windows operating system as having a chain of trust that leads to a trusted root certificate stored in the user\u2019s certificate store. The Publisher Membership Condition can be used to identify an organization, developer, vendor, or other entity as the ultimate source of the assembly, even if the code itself was obtained from a third party, such as a mirror site. Access to system resources, such as file systems or printers, may then be granted to the assembly based on the trust relationship with the identified entity.\n\nCertificates used to sign assemblies so the Publisher Member Condition may be applied must originate from a trusted source. Using a certificate that is not from a trusted source could potentially violate system integrity and confidentiality."
+              },
+              {
+                "id": "SV-225225r961038_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225226",
+        "title": "SRG-APP-000176",
+        "controls": [
+          {
+            "id": "SV-225226r961041_rule",
+            "title": "Encryption keys used for the .NET Strong Name Membership Condition must be protected.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225226",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225226r961041_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0052"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0052"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961041"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000186",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, enforce authorized access to the corresponding private key."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (2) (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (2) (a) (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225226r961041_rule_statement",
+                "name": "statement",
+                "prose": "Encryption keys used for the .NET Strong Name Membership Condition must be protected."
+              },
+              {
+                "id": "SV-225226r961041_rule_guidance",
+                "name": "guidance",
+                "prose": "Ask the Systems Programmer how the private keys used to sign the assembly are protected.\n\nPrivate keys are simply values stored as strings of data. Keys can be stored in files on the file system or in a centralized data repository. \n\nAdequate protection methods include, but are not limited to:\n- utilizing centralized key management;\n- using strict file permissions to limit access; and\n- tying strong pass phrases to the key.\n\nThe private key(s) used to sign the assembly must be protected. Utilize centralized key management or strict file permissions along with strong pass phrases and/or other well-established industry practices for managing and controlling access to private keys."
+              },
+              {
+                "id": "SV-225226r961041_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The Strong Name Membership condition requires that member assemblies be defined with Strong Names. A strong name consists of the assembly's identity, simple text name, version number, and culture information (if provided) \u2014 plus a public key and a digital signature. If assemblies do not have a strong name assigned, the assembly cannot be unique and the author of the code cannot be uniquely identified. In order to create the strong name, the developer must use a cryptographic key pair to sign the assembly. If the developer does not protect the key, the key can be stolen and used to sign any application, including malware applications. This could adversely affect application integrity and confidentiality."
+              },
+              {
+                "id": "SV-225226r961041_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225227",
+        "title": "SRG-APP-000120",
+        "controls": [
+          {
+            "id": "SV-225227r960936_rule",
+            "title": "CAS and policy configuration files must be backed up.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225227",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225227r960936_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0055"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0055"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960936"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000164",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect audit information from unauthorized deletion."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-9"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-9.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-9"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-9 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225227r960936_rule_statement",
+                "name": "statement",
+                "prose": "CAS and policy configuration files must be backed up."
+              },
+              {
+                "id": "SV-225227r960936_rule_guidance",
+                "name": "guidance",
+                "prose": "All CAS policy and policy configuration files must be included in the system backup. \n\nAll CAS policy and policy configuration files must be backed up prior to migration, deployment, and reconfiguration.\n\nCAS policy configuration files must be included in disaster recovery plan documentation."
+              },
+              {
+                "id": "SV-225227r960936_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "A successful disaster recovery plan requires that CAS policy and CAS policy configuration files are identified and included in systems disaster backup and recovery events. Documentation regarding the location of system and application specific CAS policy configuration files and the frequency in which backups occur is required. If these files are not identified and the information is not documented, there is the potential that critical application configuration files may not be included in disaster recovery events which could lead to an availability risk."
+              },
+              {
+                "id": "SV-225227r960936_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225228",
+        "title": "SRG-APP-000219",
+        "controls": [
+          {
+            "id": "SV-225228r1043178_rule",
+            "title": "Remoting Services HTTP channels must utilize authentication and encryption.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225228",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225228r1043178_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0060"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0060"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043178"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001184",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect the authenticity of communications sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-23"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-23.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-23"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-23"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225228r1043178_rule_statement",
+                "name": "statement",
+                "prose": "Remoting Services HTTP channels must utilize authentication and encryption."
+              },
+              {
+                "id": "SV-225228r1043178_rule_guidance",
+                "name": "guidance",
+                "prose": "If .NET remoting with HTTP channel is not used, this fix is Not Applicable.\n\nEnsure encryption and message integrity are used for HTTP remoting channels.\n\nThe HTTP channel only supports encryption and message integrity when the remote object is hosted in Internet Information Services (IIS) using TLS.\n\nHTTP channels are protected via TLS (HTTPS). \n<channels> \n   <channel ref=\u201chttp server\u201d port=\u201c443\u201d/> \n</channels> \n\nChange the channel ref parameter to utilize a TLS port and leverage TLS on the remote IIS server."
+              },
+              {
+                "id": "SV-225228r1043178_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Note: Microsoft recommends using the Windows Communication Framework (WCF) rather than using .Net remoting. New development projects should refrain from using .Net remoting capabilities whenever possible.\n\n.NET remoting provides the capability to build widely distributed applications. The application components may reside all on one computer or they may be spread out across the enclave. .NET client applications can make remoting calls to use objects in other processes on the same computer or on any other computer that is reachable over the network. .NET remoting can also be used to communicate with other application domains within the same process. Remoting is achieved via the exposure of endpoints that can be used to establish remote connectivity.\n\nNormally when application code attempts to access a protected resource, a stack walk is performed to ensure that all stack frames have permission to access the resource. However, with .Net 4.0, when a call is made on a remote object, this stack walk is not performed across the remoting boundary. The .Net remoting infrastructure requires FullTrust permission to execute on either the client or the server. \n\nDue to the fact that FullTrust permission is required, Remoting endpoints should be authenticated and encrypted in order to protect the system and the data. \n\nMicrosoft provides three different \"channels\" that are used for remoting. They are HTTP, TCP, and IPC.\n\nAny unauthorized use of a remoting application provides unauthorized access with FullTrust permissions to the system. This can potentially result in a loss of system integrity or confidentiality."
+              },
+              {
+                "id": "SV-225228r1043178_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225229",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-225229r1107247_rule",
+            "title": ".Net Framework versions installed on the system must be supported.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225229",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225229r1107247_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0061"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0061"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1107247"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225229r1107247_rule_statement",
+                "name": "statement",
+                "prose": ".Net Framework versions installed on the system must be supported."
+              },
+              {
+                "id": "SV-225229r1107247_rule_guidance",
+                "name": "guidance",
+                "prose": "Remove unsupported versions of the .NET Framework and upgrade legacy applications that utilize unsupported versions of the .NET framework."
+              },
+              {
+                "id": "SV-225229r1107247_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Unsupported software introduces risks and violates DOD policy. Applications utilizing unsupported versions of .NET introduce substantial risk to the host, network, and the enclave because they leverage an architecture that is no longer updated by the vendor. This introduces potential application integrity, availability, or confidentiality issues."
+              },
+              {
+                "id": "SV-225229r1107247_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225230",
+        "title": "SRG-APP-000635",
+        "controls": [
+          {
+            "id": "SV-225230r961908_rule",
+            "title": "The .NET CLR must be configured to use FIPS approved encryption modules.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225230",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225230r961908_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0062"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0062"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961908"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002450",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement organization-defined types of cryptography for each specified cryptography use."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-13"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-13 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225230r961908_rule_statement",
+                "name": "statement",
+                "prose": "The .NET CLR must be configured to use FIPS approved encryption modules."
+              },
+              {
+                "id": "SV-225230r961908_rule_guidance",
+                "name": "guidance",
+                "prose": "Examine the .NET CLR configuration files to find the runtime element and then the \"enforceFIPSPolicy\" element.\n\nExample:\n<configuration> \n  <runtime> \n                <enforceFIPSPolicy enabled=\"true|false\" />\n  </runtime>\n</configuration>\n\nDelete the \"enforceFIPSPolicy\" runtime element, change the setting to \"true\" or there must be documented IAO approvals for the FIPS setting."
+              },
+              {
+                "id": "SV-225230r961908_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "FIPS encryption is configured via .NET configuration files.  There are numerous configuration files that affect different aspects of .Net behavior.  The .NET config files are described below.\n \nMachine Configuration Files:\nThe machine configuration file, Machine.config, contains settings that apply to an entire computer. This file is located in the %SYSTEMROOT%\\Microsoft.NET\\Framework\\v4.0.30319\\Config directory for 32 bit .NET 4 installations and %SYSTEMROOT%\\Microsoft.NET\\Framework64\\v4.0.30319\\Config for 64 bit systems.   Machine.config contains configuration settings for machine-wide assembly binding, built-in remoting channels, and ASP.NET.\n\nApplication Configuration Files:\nApplication configuration files contain settings specific to an application. If checking these files, a .NET review of a specific .NET application is most likely being conducted. These files contain configuration settings that the Common Language Runtime reads (such as assembly binding policy, remoting objects, and so on), and settings that the application can read. \n\nThe name and location of the application configuration file depends on the application's host, which can be one of the following: \n\nExecutable\u2013hosted application configuration files. \n\nThe configuration file for an application hosted by the executable host is in the same directory as the application. The name of the configuration file is the name of the application with a .config extension. For example, an application called myApp.exe can be associated with a configuration file called myApp.exe.config. \n\nInternet Explorer-hosted application configuration files. \n\nIf an application hosted in Internet Explorer has a configuration file, the location of this file is specified in a <link> tag with the following syntax.\n\n<link rel=\"ConfigurationFileName\" href=\"location\">\n\nIn this tag, \"location\" represents a URL that point to the configuration file. This sets the application base. The configuration file must be located on the same web site as the application. \n\n.NET 4.0 allows the CLR runtime to be configured to ignore FIPS encryption requirements.  If the CLR is not configured to use FIPS encryption modules, insecure encryption modules might be employed which could introduce an application confidentiality or integrity issue."
+              },
+              {
+                "id": "SV-225230r961908_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225231",
+        "title": "SRG-APP-000175",
+        "controls": [
+          {
+            "id": "SV-225231r961038_rule",
+            "title": ".NET must be configured to validate strong names on full-trust assemblies.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225231",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225231r961038_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0063"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0063"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961038"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000185",
+                "ns": "https://disa.mil/cci",
+                "remarks": "For public key-based authentication, validate certificates by constructing and verifying a certification path to an accepted trust anchor including checking certificate status information."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 IA-5 (2)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 IA-5 (2).1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 IA-5 (2) (a)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 IA-5 (2) (b) (1)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225231r961038_rule_statement",
+                "name": "statement",
+                "prose": ".NET must be configured to validate strong names on full-trust assemblies."
+              },
+              {
+                "id": "SV-225231r961038_rule_guidance",
+                "name": "guidance",
+                "prose": "For 32 bit production systems: \nSet \u201cHKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\.NETFramework\\AllowStrongNameBypass\" to a \u201cDWORD\u201d value of \u201c0\u201d.\nOn 64-bit production systems:\nSet \u201cHKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\.NETFramework\\ AllowStrongNameBypass\u201d and \u201cHKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Microsoft\\.NETFramework\\ AllowStrongNameBypass\u201d to a \u201cDWORD\u201d value of \u201c0\u201d.\nOr, obtain documented ISSO risk acceptance for each .Net application installed on the system. \n\nApproval documentation will include complete list of all installed .Net applications, application versions, and acknowledgement of ISSO trust of each installed application."
+              },
+              {
+                "id": "SV-225231r961038_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The \"bypassTrustedAppStrongNames\" setting specifies whether the bypass feature that avoids validating strong names for full-trust assemblies is enabled. By default the bypass feature is enabled in .Net 4, therefore strong names are not validated for correctness when the assembly/program is loaded. Not validating strong names provides a faster application load time but at the expense of performing certificate validation. \n\nFull trust assemblies are .Net applications launched from the local host. Strong names are digital signatures tied to .Net applications/assemblies.  .Net 4 considers applications installed locally to be fully trusted by default and grants these applications full permissions to access host resources. \n\nThe bypass feature applies to any assembly signed with a strong name and having the following characteristics:\n\n    Fully trusted without the StrongName evidence (for example, has MyComputer zone evidence).\n\n    Loaded into a fully trusted AppDomain.\n\n    Loaded from a location under the ApplicationBase property of that AppDomain.\n\n    Not delay-signed.\n\nNot validating the certificates used to sign strong name assemblies will provide a faster application load time, but falsely assumes that signatures used to sign the application are to be implicitly trusted.  Not validating strong name certificates introduces an integrity risk to the system."
+              },
+              {
+                "id": "SV-225231r961038_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225232",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-225232r1050651_rule",
+            "title": ".Net applications that invoke NetFx40_LegacySecurityPolicy must apply previous versions of .NET STIG guidance.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225232",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225232r1050651_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0064"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0064"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1050651"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225232r1050651_rule_statement",
+                "name": "statement",
+                "prose": ".Net applications that invoke NetFx40_LegacySecurityPolicy must apply previous versions of .NET STIG guidance."
+              },
+              {
+                "id": "SV-225232r1050651_rule_guidance",
+                "name": "guidance",
+                "prose": "The infrastructure to enable CAS exists only in .NET Framework 2.x - 4.x.\n\nThe requirement is Not Applicable (NA) for .NET Framework > 4.x.\n\n(Note: The infrastructure is deprecated and is not receiving servicing or security fixes.)\n\nApply the .NET Framework Security Checklist for .Net versions 1 through 3.5 when using the NetFx40_LegacySecurityPolicy setting."
+              },
+              {
+                "id": "SV-225232r1050651_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "CAS policy is .NET runtime version-specific.  In .NET Framework version 4, CAS policy is disabled by default however; it can be re-enabled by using the NetFx40_LegacySecurityPolicy setting on a per application basis. Caspol.exe is provided by Microsoft to set security policy on .Net applications prior to version 4.0. This requirement does not apply to the caspol.exe assembly or other assemblies provided with the Windows OS or the Windows Secure Host Baseline (SHB).\n\nWhen invoking the NetFx40_LegacySecurityPolicy setting in .NET 4, earlier versions of the .NET Framework CAS policy will become active therefore previous .NET STIG guidance that applies to the reactivated versions must also be applied. \n\nFailure to apply applicable versions of STIG guidance can result in the loss of system confidentiality, integrity or availability."
+              },
+              {
+                "id": "SV-225232r1050651_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225233",
+        "title": "SRG-APP-000431",
+        "controls": [
+          {
+            "id": "SV-225233r961608_rule",
+            "title": "Trust must be established prior to enabling the loading of remote code in .Net 4.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225233",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225233r961608_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0065"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0065"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961608"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002530",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Maintain a separate execution domain for each executing system process."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-39"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-39"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225233r961608_rule_statement",
+                "name": "statement",
+                "prose": "Trust must be established prior to enabling the loading of remote code in .Net 4."
+              },
+              {
+                "id": "SV-225233r961608_rule_guidance",
+                "name": "guidance",
+                "prose": ".Net application code loaded from a remote source must be run in a controlled environment.  \n\nA controlled environment consists of a sandbox, such as running in an Internet Explorer host environment or employing OS based software access controls, such as AppLocker or Software Security Policies, when application design permits.  \n\nObtain documented IAO approvals for all remotely loaded code."
+              },
+              {
+                "id": "SV-225233r961608_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "In the .NET Framework version 3.5 and earlier versions, if an application assembly loaded code/objects from a remote location, that assembly would run partially trusted with a permissions grant set that depended on the zone in which it was loaded. For example, if an assembly was loaded from a web site, it was loaded into the Internet zone and granted the Internet permission set. In other words, it was executed in an Internet sandbox.\n\nIf the same program is run in the .NET Framework version 4, an exception is thrown which effectively states; either explicitly create a sandbox for the assembly or run it in full trust.\n\nThe <loadFromRemoteSources> element specifies the assemblies that run partially trusted in earlier versions of the .NET Framework will be run fully trusted in the .NET Framework 4.\n\nIf loadFromRemoteSources is set to true, the remotely loaded application code is granted full trust.  This could create an integrity vulnerability on the system.  The required method to address this is to explicitly create a sandboxed environment for the remotely loaded code to run in rather than allowing remotely loaded code to run with full trust.\n\nThe appropriate level of trust must be established prior to enabling the loading of remote code in .Net 4 applications and that code must be run in a controlled environment.  The following is an example of the use of loadFromRemoteSources.\n\n<configuration>\n<runtime>\n    <loadFromRemoteSources enabled=\"true\" \"https://my.dodorg.gov\" />\n    <loadFromRemoteSources enabled=\"true\" \"https://192.168.0.*\" />\n    <loadFromRemoteSources enabled=\"false\" \"*\" />\n</runtime>\n</configuration>"
+              },
+              {
+                "id": "SV-225233r961608_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225234",
+        "title": "SRG-APP-000516",
+        "controls": [
+          {
+            "id": "SV-225234r961863_rule",
+            "title": ".NET default proxy settings must be reviewed and approved.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225234",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225234r961863_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "low"
+              },
+              {
+                "name": "cat",
+                "value": "CAT III"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0066"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0066"
+              },
+              {
+                "name": "sv-revision",
+                "value": "961863"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000366",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Implement the security configuration settings."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 CM-6.1 (iv)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-6 b"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-6 b"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225234r961863_rule_statement",
+                "name": "statement",
+                "prose": ".NET default proxy settings must be reviewed and approved."
+              },
+              {
+                "id": "SV-225234r961863_rule_guidance",
+                "name": "guidance",
+                "prose": "Open Windows explorer and search for all \"*.exe.config\" and \"machine.config\" files.\n\nSearch each file for the \"defaultProxy\" element.\n\nClear the values contained in the \"defaultProxy\" element, and the \"bypasslist\", \"module\", and \"proxy\" child elements.\n\nThe IAO must provide documented approvals of any non-default proxy servers."
+              },
+              {
+                "id": "SV-225234r961863_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "The .Net framework can be configured to utilize a different proxy or altogether bypass the default proxy settings in the client's browser.  This may lead to the framework using a proxy that is not approved for use.  If the proxy is malicious, this could lead to a loss of application integrity and confidentiality."
+              },
+              {
+                "id": "SV-225234r961863_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225235",
+        "title": "SRG-APP-000095",
+        "controls": [
+          {
+            "id": "SV-225235r960891_rule",
+            "title": "Event tracing for Windows (ETW) for Common Language Runtime events must be enabled.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225235",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225235r960891_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0067"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0067"
+              },
+              {
+                "name": "sv-revision",
+                "value": "960891"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-000130",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Ensure that audit records contain information that establishes what type of event occurred."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 AU-3.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 AU-3"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 AU-3 a"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225235r960891_rule_statement",
+                "name": "statement",
+                "prose": "Event tracing for Windows (ETW) for Common Language Runtime events must be enabled."
+              },
+              {
+                "id": "SV-225235r960891_rule_guidance",
+                "name": "guidance",
+                "prose": "Open Windows explorer and search for all .NET config files including application config files (*.exe.config).\n\nExamine the configuration settings for \n<etwEnable enabled=\"false\" />.\n\nEnable ETW Tracing by setting the etwEnable flag to \"true\" or obtain documented IAO approvals."
+              },
+              {
+                "id": "SV-225235r960891_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Event tracing captures information about applications utilizing the .NET CLR and the .NET CLR itself. This includes security oriented information, such as Strong Name and Authenticode verification.  \n\nBeginning with Windows Vista, ETW is enabled by default however, the .Net CLR and .Net applications can be configured to not utilize Event Tracing. If ETW event tracing is disabled, critical events that occurred within the runtime will not be captured in event logs."
+              },
+              {
+                "id": "SV-225235r960891_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225236",
+        "title": "SRG-APP-000431",
+        "controls": [
+          {
+            "id": "SV-225236r1069477_rule",
+            "title": "Software utilizing .Net 4.0 must be identified and relevant access controls configured.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225236",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225236r1069477_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0070"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0070"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1069477"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-002530",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Maintain a separate execution domain for each executing system process."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-39"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-39"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225236r1069477_rule_statement",
+                "name": "statement",
+                "prose": "Software utilizing .Net 4.0 must be identified and relevant access controls configured."
+              },
+              {
+                "id": "SV-225236r1069477_rule_guidance",
+                "name": "guidance",
+                "prose": "Document the existence of all .Net 4.0 applications that are not provided by the host Windows OS or the Windows Secure Host Baseline (SHB).\n\nDocument the corresponding runtime hosts that are used to invoke the applications.\n\nDocument the applications security control requirements (restricting application access to resources or user access to the application)."
+              },
+              {
+                "id": "SV-225236r1069477_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "With the advent of .Net 4.0, the .Net framework no longer directly configures or enforces security policy for .Net applications.  This task is now relegated to the operating system layer and the security protections built-in to .Net application \"runtime hosts\" that run on the O.S. \n\nExamples of these .Net \"runtime hosts\" include; Internet Explorer, Windows Shell, ASP.NET, Database Engines or any other \"runtime hosts\" that utilize .Net and load the .Net CLR.\n\nSecurity protections include utilizing runtime host security controls such as sandboxing to restrict or control application behavior as designed or required.  \n\nTo compensate for these design changes, Windows provides native solutions such as Software Security Policies (SSP) and Application Locker (AL) which are technologies that can be implemented via Group Policy (GPO).  SSP, AL and similar third party solutions serve to restrict execution of applications, scripts and libraries based upon cryptographic hash, security zones, path and certificate values that are associated with the application files.  Additionally, application developers will utilize \"sandboxing\" techniques within their code in order to isolate 3rd party code libraries from critical system resources.\n\nIn order to assign protections to .Net 4.0 applications, the applications must first be identified and the appropriate hosting security mechanisms configured to accomplish that task.  \n\n.Net STIG guidance cannot be applied if .Net applications are not identified and documented.  The lack of an application inventory introduces confidentiality, availability and integrity vulnerabilities to the system."
+              },
+              {
+                "id": "SV-225236r1069477_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225237",
+        "title": "SRG-APP-000219",
+        "controls": [
+          {
+            "id": "SV-225237r1043178_rule",
+            "title": "Remoting Services TCP channels must utilize authentication and encryption.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225237",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225237r1043178_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0071"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0071"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1043178"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001184",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Protect the authenticity of communications sessions."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 3 SC-23"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53A Revision 1 SC-23.1"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 SC-23"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 SC-23"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225237r1043178_rule_statement",
+                "name": "statement",
+                "prose": "Remoting Services TCP channels must utilize authentication and encryption."
+              },
+              {
+                "id": "SV-225237r1043178_rule_guidance",
+                "name": "guidance",
+                "prose": "If .NET remoting with TCP channel is not used, this fix is Not Applicable.\n\nEnsure encryption and message integrity are used for TCP remoting channels.\n\nTCP remoting connections are protected via the secure=true configuration parameter.\n<channels>\n   <channel ref=\"tcp\" secure=\"true\" />\n</channels>\n\nInclude the secure=\"true\" flag in the channel ref parameter of the machine.config and [application name].exe.config file if the [application name].exe.config file exists on the system."
+              },
+              {
+                "id": "SV-225237r1043178_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Note: Microsoft recommends using the Windows Communication Framework (WCF) rather than .Net remoting. New development projects should refrain from using .Net remoting capabilities whenever possible.\n\n.NET remoting provides the capability to build widely distributed applications. The application components may reside all on one computer or they may be spread out across the enclave. .NET client applications can make remoting calls to use objects in other processes on the same computer or on any other computer that is reachable over the network. .NET remoting can also be used to communicate with other application domains within the same process. Remoting is achieved via the exposure of endpoints that can be used to establish remote connectivity.\n\nNormally when application code attempts to access a protected resource, a stack walk is performed to ensure that all stack frames have permission to access the resource. However, with .Net 4.0, when a call is made on a remote object, this stack walk is not performed across the remoting boundary. The .Net remoting infrastructure requires FullTrust permission to execute on either the client or the server. \n\nDue to the fact that FullTrust permission is required, Remoting endpoints should be authenticated and encrypted in order to protect the system and the data. \n\nMicrosoft provides three different \"channels\" that are used for remoting. They are HTTP, TCP, and IPC.\n\nAny unauthorized use of a remoting application provides unauthorized access with FullTrust permissions to the system. This can potentially result in a loss of system integrity or confidentiality."
+              },
+              {
+                "id": "SV-225237r1043178_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      },
+      {
+        "id": "V-225238",
+        "title": "SRG-APP-000383",
+        "controls": [
+          {
+            "id": "SV-225238r1069480_rule",
+            "title": "Update and configure the .NET Framework to support TLS.",
+            "props": [
+              {
+                "name": "v-group-id",
+                "value": "V-225238",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "sv-rule-id",
+                "value": "SV-225238r1069480_rule",
+                "ns": "https://disa.mil/stig"
+              },
+              {
+                "name": "severity",
+                "value": "medium"
+              },
+              {
+                "name": "cat",
+                "value": "CAT II"
+              },
+              {
+                "name": "version",
+                "value": "APPNET0075"
+              },
+              {
+                "name": "label",
+                "value": "APPNET0075"
+              },
+              {
+                "name": "sv-revision",
+                "value": "1069480"
+              },
+              {
+                "name": "cci",
+                "value": "CCI-001762",
+                "ns": "https://disa.mil/cci",
+                "remarks": "Disable or remove organization-defined functions, ports, protocols, software, and services within the system deemed to be unnecessary and/or nonsecure."
+              },
+              {
+                "name": "documentable",
+                "value": "false"
+              }
+            ],
+            "links": [
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 4 CM-7 (1) (b)"
+              },
+              {
+                "href": "http://csrc.nist.gov/publications/PubsSPs.html",
+                "rel": "implements",
+                "text": "NIST SP 800-53 Revision 5 CM-7 (1) (b)"
+              }
+            ],
+            "params": [],
+            "parts": [
+              {
+                "id": "SV-225238r1069480_rule_statement",
+                "name": "statement",
+                "prose": "Update and configure the .NET Framework to support TLS."
+              },
+              {
+                "id": "SV-225238r1069480_rule_guidance",
+                "name": "guidance",
+                "prose": "1. SchUseStrongCrypto enabled:\n\nUse regedit to access the following registry key.\n\nFor 32-bit systems:\nHKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\.NETFramework\\v4.0.30319\\\n\nFor 64-bit systems: \nHKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\.NETFramework\\v4.0.30319\\\nHKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Microsoft\\.NETFramework\\v4.0.30319\\\n\nModify or create the following Windows registry value: SchUseStrongCrypto.\n\nSet SchUseStrongCrypto to a REG_DWORD value of \"1\".\n\n2. SystemDefaultTlsVersions enabled (.NET Framework >4.6):\nFor 64-bit Windows, create a .reg file with the following content and apply it:\nWindows Registry Editor Version 5.00\n\n[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\.NETFramework\\v4.0.30319]\n\"SystemDefaultTlsVersions\"=dword:00000001\n\n[HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Microsoft\\.NETFramework\\v4.0.30319]\n\"SystemDefaultTlsVersions\"=dword:00000001\n\n3. Restart the system for changes to take effect."
+              },
+              {
+                "id": "SV-225238r1069480_rule_vulnerability-discussion",
+                "name": "vulnerability-discussion",
+                "prose": "Use of the RC4 cipher in TLS could allow an attacker to perform man-in-the-middle attacks and recover plaintext from encrypted sessions. Applications that target .Net version 4.x running on multiple Windows versions could be vulnerable to these types of attacks. The registry settings in this requirement will prevent .Net applications that target the 4.x framework from selecting and utilizing the Schannel.dll RC4 cipher for TLS connections. Applications that use TLS when connecting to remote systems will perform a handshake and negotiate the TLS version and cipher that is to be used between the client and the server. This is standard protocol for all TLS connections. If the server and client are not configured to use the same TLS version and cipher, the TLS connection may fail. Applications should be tested with these registry settings prior to production implementation of the fix in order to avoid application outages."
+              },
+              {
+                "id": "SV-225238r1069480_rule_assessment-method",
+                "name": "assessment-method",
+                "props": [
+                  {
+                    "name": "method",
+                    "ns": "http://csrc.nist.gov/ns/rmf",
+                    "value": "TEST"
+                  }
+                ],
+                "prose": "Verify configuration meets the statement and guidance."
+              }
+            ]
+          }
+        ],
+        "parts": []
+      }
+    ]
+  }
+}
