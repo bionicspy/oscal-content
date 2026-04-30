@@ -1,0 +1,86 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:identity-authentication",
+
+    "metadata": {
+      "title": "Identity Authentication",
+      "version": "1.2.1",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T13:55:00Z",
+
+      "remarks": "Identity Authentication defines the capability to verify that an entity claiming an identity is the legitimate holder of that identity at the time of access. This pattern establishes proof of identity but does not determine authorization.\n\nGovernance and Responsibility Anchor:\nThis pattern remains the authoritative anchor for SSPPs, procedures, and assurance. Control responsibilities in this variant are intentionally scoped to specific sub-capabilities."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:authentication-events",
+        "type": "capability",
+        "title": "Authentication Events",
+        "description": "Generation and handling of authentication attempts and outcomes.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "au-2",
+                "remarks": "Generate audit records for authentication attempts and outcomes."
+              },
+              {
+                "control-id": "au-3",
+                "remarks": "Ensure authentication audit records contain sufficient detail for analysis."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:authentication-context",
+        "type": "capability",
+        "title": "Authentication Context",
+        "description": "Contextual signals used to inform authentication decisions."
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:step-up-authentication",
+        "type": "capability",
+        "title": "Step-Up Authentication",
+        "description": "Dynamic strengthening of authentication assurance in response to elevated risk.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ia-2",
+                "remarks": "Uniquely identify and authenticate users with increased assurance when risk is elevated."
+              },
+              {
+                "control-id": "ia-7",
+                "remarks": "Use cryptographic mechanisms and multi-factor authentication for high-risk access."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:session-establishment",
+        "type": "capability",
+        "title": "Session Establishment",
+        "description": "Binding authentication to time-bounded access sessions.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-12",
+                "remarks": "Establish sessions only after successful authentication."
+              },
+              {
+                "control-id": "ac-2",
+                "remarks": "Ensure authenticated session use aligns with account management requirements."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
