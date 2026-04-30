@@ -1,0 +1,26 @@
+{
+  "uuid": "9a0d6ed1-82b4-4470-9ec5-071c74010505",
+  "type": "service",
+  "title": "Microsoft Windows AD CS – Issuing Certification Authority",
+  "description": "Online certification authority issuing certificates to users, devices, and services in accordance with defined certificate policies.",
+  "properties": [
+    { "name": "component.role", "value": "pki-issuing-ca" },
+    { "name": "availability.model", "value": "online" },
+    { "name": "enrollment.scope", "value": "user | device | service" }
+  ],
+  "control-implementations": [
+    {
+      "source": "NIST_SP-800-53_rev5",
+      "implemented-requirements": [
+        {
+          "control-id": "IA-7",
+          "description": "The issuing CA enforces certificate-based authentication requirements."
+        },
+        {
+          "control-id": "KM-3",
+          "description": "Cryptographic keys are generated, protected, and used in accordance with cryptographic policy."
+        }
+      ]
+    }
+  ]
+}

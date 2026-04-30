@@ -1,0 +1,65 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:trust:pattern:email-bulk-messaging-gateway",
+    "metadata": {
+      "title": "Email Bulk Messaging Gateway Pattern",
+      "version": "1.0.0",
+      "oscal-version": "1.1.2",
+      "remarks": "Defines architectural requirements for regulated bulk messaging subject to CASL, GDPR, and CAN-SPAM. This pattern uses email as a transport mechanism but does not implement secure institutional email or mailbox-based collaboration."
+    },
+
+    "components": [
+      {
+        "uuid": "email-bulk-messaging-capability",
+        "type": "capability",
+        "title": "Regulated Broadcast Messaging",
+        "description": "Outbound broadcast messaging to individual recipients under strict legal and consent obligations.",
+
+        "links": [
+          {
+            "rel": "supports",
+            "href": "urn:utoronto:cae2:brm#BC220",
+            "text": "Supports Communications Management (BC220) business capability."
+          },
+          {
+            "rel": "uses",
+            "href": "urn:utoronto:security:pattern:email-core",
+            "text": "Uses email transport concepts without inheriting mailbox or collaboration semantics."
+          },
+          {
+            "rel": "mapped-to",
+            "href": "urn:utoronto:cae2:trm#TC048",
+            "text": "Uses Email (TC048) as a transport technology."
+          },
+          {
+            "rel": "handles",
+            "href": "urn:utoronto:cae2:drm#DE188",
+            "text": "Handles Communications and Correspondence data."
+          },
+          {
+            "rel": "handles",
+            "href": "urn:utoronto:cae2:drm#DE205",
+            "text": "Handles Personal Information data."
+          },
+          {
+            "rel": "mapped-to",
+            "href": "urn:utoronto:cae2:arm#AC031",
+            "text": "Maps to Marketing Tools and Services (AC031) in the Application Reference Model."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:utoronto:trust:catalog:ut-reg",
+            "implemented-requirements": [
+              { "control-id": "UT-REG-CASL-01" },
+              { "control-id": "UT-REG-GDPR-07" }
+            ]
+          }
+        ],
+
+        "remarks": "This pattern explicitly excludes mailbox-based communication, collaboration relays, notification gateways, and secure institutional email semantics."
+      }
+    ]
+  }
+}

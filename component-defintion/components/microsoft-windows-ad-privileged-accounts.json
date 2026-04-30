@@ -1,0 +1,31 @@
+{
+  "uuid": "1e9a6c52-9d3f-4a61-9b5c-52e8d7c90101",
+  "type": "service",
+  "title": "Microsoft Windows Active Directory – Privileged Accounts",
+  "description": "Active Directory privileged account roles and groups that provide elevated administrative control over directory, domain, and forest resources.",
+  "properties": [
+    { "name": "vendor", "value": "microsoft" },
+    { "name": "platform", "value": "windows-active-directory" },
+    { "name": "component.role", "value": "privileged-identity-authorization" },
+    { "name": "scope", "value": "directory" },
+    { "name": "security.boundary", "value": "identity-authorization" },
+    { "name": "privilege.level", "value": "high" },
+    { "name": "tier.classification", "value": "Tier-0" },
+    { "name": "abstraction.level", "value": "platform-service" }
+  ],
+  "control-implementations": [
+    {
+      "source": "NIST_SP-800-53_rev5",
+      "implemented-requirements": [
+        {
+          "control-id": "AC-6",
+          "description": "Active Directory privileged groups restrict elevated administrative actions to explicitly authorized identities."
+        },
+        {
+          "control-id": "AC-5",
+          "description": "Distinct privileged roles (e.g., Domain Admins, Enterprise Admins) support separation of duties within the directory."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "uuid": "f2d1a0b9-3f45-4f79-9a5a-9db7c5020303",
+  "type": "service",
+  "title": "Microsoft Windows Active Directory Certificate Services – Core",
+  "description": "Public key infrastructure services providing certificate enrollment, issuance, and lifecycle management integrated with Active Directory.",
+  "properties": [
+    { "name": "vendor", "value": "microsoft" },
+    { "name": "platform", "value": "windows-adcs" },
+    { "name": "component.role", "value": "pki-service" },
+    { "name": "integration.dependency", "value": "active-directory" }
+  ],
+  "control-implementations": [
+    {
+      "source": "NIST_SP-800-53_rev5",
+      "implemented-requirements": [
+        {
+          "control-id": "IA-7",
+          "description": "Certificate-based authentication mechanisms are supported through AD CS."
+        },
+        {
+          "control-id": "KM-4",
+          "description": "Cryptographic keys associated with issued certificates are managed according to defined lifecycles."
+        }
+      ]
+    }
+  ]
+}

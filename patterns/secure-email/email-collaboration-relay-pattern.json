@@ -1,0 +1,56 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:email-collaboration-relay",
+    "metadata": {
+      "title": "Email Collaboration Relay Pattern",
+      "version": "1.0.1",
+      "oscal-version": "1.1.2",
+      "remarks": "Defines the architectural capability for group-bounded, collaborative email communication among institution-associated participants. This pattern represents stable architectural intent and is distinct from secure institutional email, notification gateways, and bulk messaging."
+    },
+
+    "components": [
+      {
+        "uuid": "email-collaboration-relay-capability",
+        "type": "capability",
+        "title": "Group-Bounded Email Collaboration",
+        "description": "Provides moderated, group-scoped email communication to support collaboration among staff, faculty, and students across one or more institutions using institution-associated email identities.",
+
+        "links": [
+          {
+            "rel": "supports",
+            "href": "urn:utoronto:cae2:brm#BC220",
+            "text": "Supports Communications Management (BC220) business capability in the Business Reference Model (BRM)."
+          },
+          {
+            "rel": "mapped-to",
+            "href": "urn:utoronto:cae2:trm#TC048",
+            "text": "Maps to Email (TC048) in the Technology Reference Model (TRM)."
+          },
+          {
+            "rel": "handles",
+            "href": "urn:utoronto:cae2:drm#DE188",
+            "text": "Handles Communications and Correspondence (DE188) data entity in the Data Reference Model (DRM)."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:utoronto:security:catalog:iscs",
+            "implemented-requirements": [
+              {
+                "control-id": "ISCS-IA-02",
+                "remarks": "Participants in collaboration relays must be authenticated using institution-associated identities to ensure accountability and trust among group members."
+              },
+              {
+                "control-id": "ISCS-AU-02",
+                "remarks": "Collaboration relays must retain audit records sufficient to support accountability and investigation of group communications."
+              }
+            ]
+          }
+        ],
+
+        "remarks": "This pattern applies to collaborative, group-bounded email relays with managed membership. It intentionally excludes bulk or campaign messaging, automated notification gateways, and general mailbox-based email services. Membership governance, review, and attestation are required but defined outside this pattern in operational and platform standards."
+      }
+    ]
+  }
+}

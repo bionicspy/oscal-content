@@ -1,0 +1,23 @@
+{
+  "uuid": "e1f4a6a1-8d4e-4e09-91c2-f8a7c1d20202",
+  "type": "infrastructure",
+  "title": "Enterprise Network – Active Directory Segmentation",
+  "description": "Dedicated network segmentation and controls protecting Active Directory domain controllers and associated Tier-0 services.",
+  "properties": [
+    { "name": "component.role", "value": "network-segmentation" },
+    { "name": "protected.assets", "value": "active-directory, dns, adcs" },
+    { "name": "tier.protected", "value": "Tier-0" },
+    { "name": "boundary.type", "value": "network" }
+  ],
+  "control-implementations": [
+    {
+      "source": "NIST_SP-800-53_rev5",
+      "implemented-requirements": [
+        {
+          "control-id": "SC-7",
+          "description": "Network segmentation constrains traffic flows to and from Active Directory Tier-0 assets."
+        }
+      ]
+    }
+  ]
+}

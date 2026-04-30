@@ -1,0 +1,41 @@
+{
+  "uuid": "5b3db7b1-9b4d-4ef0-9fd7-2a8c9d6c8f11",
+  "type": "service",
+  "title": "Microsoft Windows Active Directory - Forest Trusts",
+  "description": "Trust relationships between Active Directory forests that extend authentication and authorization across forest security boundaries.",
+  "properties": [
+    { "name": "vendor", "value": "microsoft" },
+    { "name": "platform", "value": "windows-active-directory" },
+    { "name": "component.role", "value": "identity-trust-relationship" },
+    { "name": "trust.scope", "value": "forest" },
+    { "name": "trust.direction", "value": "one-way | two-way" },
+    { "name": "selective.authentication", "value": "required | optional" },
+    { "name": "sid.filtering", "value": "enabled | disabled" },
+    { "name": "security.boundary", "value": "forest" },
+    { "name": "risk.classification", "value": "high" },
+    { "name": "abstraction.level", "value": "platform-service" }
+  ],
+  "control-implementations": [
+    {
+      "uuid": "d8a7f6c9-8b91-4c9b-8e9f-b1d6f3a2dc42",
+      "source": "NIST_SP-800-53_rev5",
+      "implemented-requirements": [
+        {
+          "uuid": "0c3c2447-d0fe-4b67-aee3-6bd0dc9b58b5",
+          "control-id": "AC-4",
+          "description": "Forest trusts enforce controlled information flow between distinct Active Directory forests. Trust direction explicitly constrains authentication transitivity."
+        },
+        {
+          "uuid": "e4f0b4a7-6b47-4ab0-8b41-73a89142ef22",
+          "control-id": "SC-7",
+          "description": "Forest trust boundaries are treated as security boundary extensions requiring compensating controls such as selective authentication and SID filtering."
+        },
+        {
+          "uuid": "a9e8c1d4-5b88-459b-a67e-3db71ebc6a9f",
+          "control-id": "IA-7",
+          "description": "Authentication mechanisms across forest trusts are explicitly defined and restrict credential replay and unintended privilege propagation."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "uuid": "7d8a1f91-9a6b-43c4-b7b0-2b5c91b7e312",
+  "type": "service",
+  "title": "Microsoft Windows Active Directory - Domain Trusts",
+  "description": "Domain-level trust relationships that extend authentication and authorization between Active Directory domains. This component is instantiated per domain trust and explicitly models trust direction and security characteristics.",
+  "properties": [
+    { "name": "vendor", "value": "microsoft" },
+    { "name": "platform", "value": "windows-active-directory" },
+    { "name": "component.role", "value": "identity-trust-relationship" },
+    { "name": "trust.scope", "value": "domain" },
+    { "name": "trust.direction", "value": "one-way | two-way" },
+    { "name": "authentication.protocol", "value": "kerberos" },
+    { "name": "sid.filtering", "value": "enabled | disabled" },
+    { "name": "transitivity", "value": "explicit" },
+    { "name": "tier.impact", "value": "identity-boundary-extension" },
+    { "name": "abstraction.level", "value": "platform-service" }
+  ],
+  "control-implementations": [
+    {
+      "uuid": "c91b0e0e-2c24-4f82-9a2c-7c6d4b6d8c2f",
+      "source": "NIST_SP-800-53_rev5",
+      "implemented-requirements": [
+        {
+          "uuid": "e0c5c6bb-ff5f-4c6f-9cf4-5ed9c0b7c1d6",
+          "control-id": "AC-4",
+          "description": "Domain trusts enforce controlled information flow between domains. Trust direction explicitly constrains authentication and authorization transitivity."
+        },
+        {
+          "uuid": "a7d0c1ea-6c41-4fa4-9a7f-2ef9a093cc61",
+          "control-id": "IA-7",
+          "description": "Authentication across domain trusts is constrained to Kerberos-based mechanisms and restricts unauthorized credential propagation."
+        },
+        {
+          "uuid": "f2a7a92c-4f4e-4c7a-bdf2-1b68f649eb3d",
+          "control-id": "SC-7",
+          "description": "Domain trust relationships are treated as boundary extensions requiring compensating controls such as SID filtering and restricted transitivity."
+        }
+      ]
+    }
+  ]
+}

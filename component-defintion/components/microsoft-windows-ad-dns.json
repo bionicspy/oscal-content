@@ -1,0 +1,71 @@
+{
+  "uuid": "92c1fd5a-cc8e-4b1a-9a73-2c0eacb7c314",
+  "type": "service",
+  "title": "Microsoft Windows Active Directory–Integrated DNS",
+  "description": "Active Directory–integrated DNS providing name resolution, service location, and secure dynamic updates for Active Directory domains. This component represents DNS as a Tier-0 dependency and is instantiated per domain.",
+  "properties": [
+    {
+      "name": "vendor",
+      "value": "microsoft"
+    },
+    {
+      "name": "platform",
+      "value": "windows-ad-dns"
+    },
+    {
+      "name": "component.role",
+      "value": "name-resolution-service"
+    },
+    {
+      "name": "dns.integration",
+      "value": "active-directory"
+    },
+    {
+      "name": "scope",
+      "value": "domain"
+    },
+    {
+      "name": "dynamic.updates",
+      "value": "secure-only"
+    },
+    {
+      "name": "zone.replication.scope",
+      "value": "domain | forest | custom"
+    },
+    {
+      "name": "authentication.dependency",
+      "value": "ad-ds"
+    },
+    {
+      "name": "tier",
+      "value": "Tier-0 dependency"
+    },
+    {
+      "name": "abstraction.level",
+      "value": "platform-service"
+    }
+  ],
+  "control-implementations": [
+    {
+      "uuid": "e3b7c2a7-5d94-4a1b-9c62-8a6d1c9e1101",
+      "source": "NIST_SP-800-53_rev5",
+      "implemented-requirements": [
+        {
+          "uuid": "0a8d4d25-62b5-4a3e-ae42-9f7c1d8c2201",
+          "control-id": "SC-21",
+          "description": "AD-integrated DNS provides secure name resolution services with authenticated and integrity-protected dynamic updates."
+        },
+        {
+          "uuid": "f4b2c7e6-c1a9-4e6a-bc19-9c2a1e5d2202",
+          "control-id": "IA-7",
+          "description": "DNS services are tightly integrated with Active Directory authentication mechanisms to prevent spoofing and unauthorized updates."
+        },
+        {
+          "uuid": "9a6c2d1e-7f45-4d6a-9b02-2e3f7c6d2203",
+          "control-id": "SC-7",
+          "description": "DNS is treated as a boundary service whose exposure and recursion behavior are restricted to limit lateral movement and abuse."
+        }
+      ]
+    }
+  ]
+}

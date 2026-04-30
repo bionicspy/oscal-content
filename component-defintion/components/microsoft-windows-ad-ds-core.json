@@ -1,0 +1,76 @@
+{
+  "uuid": "6f3c7b7e-0c4e-4e8d-9d8f-4c9e5e3e6a21",
+  "type": "service",
+  "title": "Microsoft Windows Active Directory Domain Services – Core",
+  "description": "Active Directory Domain Services providing centralized identity, authentication, authorization, and directory services. This component represents the core AD DS capability and is instantiated per domain.",
+  "properties": [
+    {
+      "name": "vendor",
+      "value": "microsoft"
+    },
+    {
+      "name": "platform",
+      "value": "windows-active-directory"
+    },
+    {
+      "name": "component.role",
+      "value": "directory-service"
+    },
+    {
+      "name": "identity.authority",
+      "value": "true"
+    },
+    {
+      "name": "scope",
+      "value": "domain"
+    },
+    {
+      "name": "authentication.protocols",
+      "value": "Kerberos, LDAPs"
+    },
+    {
+      "name": "authorization.model",
+      "value": "group-and-acl-based"
+    },
+    {
+      "name": "tier",
+      "value": "Tier-0"
+    },
+    {
+      "name": "hybrid.identity",
+      "value": "not-assumed"
+    },
+    {
+      "name": "abstraction.level",
+      "value": "platform-service"
+    }
+  ],
+  "control-implementations": [
+    {
+      "uuid": "a8ba7e9e-8e9a-4c7b-b8de-8b7f7eab1c42",
+      "source": "NIST_SP-800-53_rev5",
+      "implemented-requirements": [
+        {
+          "uuid": "b3e62f93-4f5c-4bb0-bdc9-9a1bb71a4d10",
+          "control-id": "IA-2",
+          "description": "Active Directory Domain Services provides centralized identification and authentication for domain users, devices, and services using Kerberos."
+        },
+        {
+          "uuid": "dbd57b52-8b25-4694-bb38-d5f92b29d7a0",
+          "control-id": "AC-2",
+          "description": "Active Directory Domain Services manages domain account lifecycle, attributes, and group membership."
+        },
+        {
+          "uuid": "e62a8e05-0de6-4019-9a63-ff57b5a9d4df",
+          "control-id": "AC-6",
+          "description": "Authorization decisions are enforced through group membership and discretionary access control on directory objects."
+        },
+        {
+          "uuid": "4cb6787e-0dc1-4be3-9af3-0bb87c36c98a",
+          "control-id": "IA-5",
+          "description": "Credential policies such as password complexity, lifetime, and lockout are enforced through domain and fine-grained password policies."
+        }
+      ]
+    }
+  ]
+}

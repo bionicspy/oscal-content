@@ -1,0 +1,70 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:security:sspp:secure-institutional-email",
+    "metadata": {
+      "title": "Secure Institutional Email Pattern (SSPP)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.2",
+      "remarks": "System Security and Privacy Plan Pattern for Secure Institutional Email. This SSPP assembles architectural patterns and establishes the system boundary for assessment and governance. It is vendor-agnostic and realization-independent."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Institutional Email",
+      "description": "Institutional email capability providing secure, trustworthy, auditable, and compliant messaging and correspondence services.",
+      "system-type": "service",
+      "authorization-boundary": {
+        "description": "Includes institutional email services and associated protection, identity, and records management capabilities. Excludes endpoint devices, user behavior, and external recipient systems."
+      },
+      "links": [
+        {
+          "rel": "supports",
+          "href": "urn:utoronto:cae2:brm#BC220",
+          "text": "Supports Communications Management (BC220) business capability in the Business Reference Model (BRM)."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "components": [
+        {
+          "component-uuid": "urn:utoronto:security:pattern:secure-email",
+          "type": "architectural-pattern",
+          "title": "Secure Institutional Email Pattern",
+          "description": "Composite architectural pattern defining secure institutional email."
+        },
+        {
+          "component-uuid": "urn:utoronto:security:pattern:email-core",
+          "type": "architectural-pattern",
+          "title": "Email Core Pattern"
+        },
+        {
+          "component-uuid": "urn:utoronto:security:pattern:email-threat-protection",
+          "type": "architectural-pattern",
+          "title": "Email Threat Protection Pattern"
+        },
+        {
+          "component-uuid": "urn:utoronto:security:pattern:email-data-protection",
+          "type": "architectural-pattern",
+          "title": "Email Data Protection Pattern"
+        },
+        {
+          "component-uuid": "urn:utoronto:security:pattern:email-identity",
+          "type": "architectural-pattern",
+          "title": "Email Identity and Delegation Pattern"
+        },
+        {
+          "component-uuid": "urn:utoronto:security:pattern:email-records",
+          "type": "architectural-pattern",
+          "title": "Email Records Management Pattern"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Control requirements applicable to Secure Institutional Email are defined in referenced architectural patterns and derived catalogs (ISCS, UT-SAFE, UT-REG, UT-ETH). This SSPP does not restate or tailor controls.",
+      "implemented-requirements": []
+    },
+
+    "remarks": "Concrete products, lifecycle states, baselines, and assessment results are captured in realization artifacts and assessment artifacts separate from this SSPP. The SSPP remains stable across vendor and product changes."
+  }
+}

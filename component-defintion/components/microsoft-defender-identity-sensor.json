@@ -1,0 +1,75 @@
+{
+  "uuid": "8d2f4a7b-6e27-4c3a-8e4e-5c91a3b2f401",
+  "type": "software",
+  "title": "Microsoft Defender for Identity Sensor",
+  "description": "Microsoft Defender for Identity sensor deployed on Domain Controllers to analyze directory-related traffic and authentication behavior for detection of identity-based attacks and suspicious activity.",
+  "properties": [
+    {
+      "name": "vendor",
+      "value": "microsoft"
+    },
+    {
+      "name": "product",
+      "value": "defender-for-identity-sensor"
+    },
+    {
+      "name": "component.role",
+      "value": "identity-threat-detection-agent"
+    },
+    {
+      "name": "deployment.model",
+      "value": "endpoint-resident"
+    },
+    {
+      "name": "deployment.scope",
+      "value": "domain-controller"
+    },
+    {
+      "name": "packet.capture",
+      "value": "enabled"
+    },
+    {
+      "name": "kernel.dependency",
+      "value": "npcap"
+    },
+    {
+      "name": "detection.focus",
+      "value": "kerberos, ntlm, ldap"
+    },
+    {
+      "name": "telemetry.destination",
+      "value": "microsoft-defender-portal"
+    },
+    {
+      "name": "tier.impact",
+      "value": "Tier-0 identity-attack-detection"
+    },
+    {
+      "name": "abstraction.level",
+      "value": "platform-software"
+    }
+  ],
+  "control-implementations": [
+    {
+      "uuid": "b71df5c4-9a7c-4d9e-bb8f-2e873e1a5401",
+      "source": "NIST_SP-800-53_rev5",
+      "implemented-requirements": [
+        {
+          "uuid": "3f7b5e29-5d8e-4b3d-9f3a-9f9b01a64011",
+          "control-id": "SI-4",
+          "description": "The Microsoft Defender for Identity sensor monitors directory service traffic and authentication behavior to detect indicators of compromise and malicious activity."
+        },
+        {
+          "uuid": "8a1c3f6d-7c92-4a7e-bc58-bb4e9a0a4012",
+          "control-id": "IR-5",
+          "description": "Detected identity-based attack indicators are correlated and reported to centralized security operations platforms to support incident response."
+        },
+        {
+          "uuid": "c9b4c1a7-61a4-44cb-a2e2-92b5a3df4013",
+          "control-id": "AU-6",
+          "description": "Security-relevant events derived from directory traffic analysis contribute to audit review and anomaly detection activities."
+        }
+      ]
+    }
+  ]
+}

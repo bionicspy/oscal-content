@@ -1,0 +1,71 @@
+{
+  "uuid": "f0c8a2c7-4f92-4c1f-8d3e-8b2b6f41d9a7",
+  "type": "software",
+  "title": "Duo Desktop Agent",
+  "description": "Endpoint-resident Duo agent providing multi-factor authentication enforcement for interactive logons, privileged access, and remote sessions on supported operating systems.",
+  "properties": [
+    {
+      "name": "vendor",
+      "value": "duo"
+    },
+    {
+      "name": "product",
+      "value": "duo-desktop-agent"
+    },
+    {
+      "name": "component.role",
+      "value": "interactive-access-mfa-agent"
+    },
+    {
+      "name": "deployment.model",
+      "value": "endpoint-resident"
+    },
+    {
+      "name": "authentication.scope",
+      "value": "interactive-local-and-remote"
+    },
+    {
+      "name": "authentication.type",
+      "value": "secondary-factor"
+    },
+    {
+      "name": "directory.dependency",
+      "value": "active-directory"
+    },
+    {
+      "name": "operating.system.scope",
+      "value": "windows | macos | linux"
+    },
+    {
+      "name": "tier.impact",
+      "value": "Tier-0 access-path-hardening"
+    },
+    {
+      "name": "abstraction.level",
+      "value": "platform-software"
+    }
+  ],
+  "control-implementations": [
+    {
+      "uuid": "9a4f6b32-3c64-4d9f-9b55-7c8d421caa21",
+      "source": "NIST_SP-800-53_rev5",
+      "implemented-requirements": [
+        {
+          "uuid": "c3b5f47e-8a03-4cfa-bfc1-51a6bbf9d801",
+          "control-id": "IA-2",
+          "description": "The Duo Desktop Agent enforces multi-factor authentication for interactive user and administrator access to the host."
+        },
+        {
+          "uuid": "4d5c21b7-8b71-4c18-92c3-10e3a6e1d802",
+          "control-id": "IA-2(1)",
+          "description": "Multi-factor authentication is applied to privileged and remote access paths facilitated by the operating system."
+        },
+        {
+          "uuid": "2a7b9c41-1a6b-4a51-9af5-0e6c932ad803",
+          "control-id": "AC-6",
+          "description": "The agent supports least-privilege enforcement by requiring additional authentication for elevated or sensitive actions."
+        }
+      ]
+    }
+  ]
+}
