@@ -243,15 +243,22 @@ ai/
 ├── ai-core
 ├── ai-identity-and-access
 ├── accountability-and-oversight
+├── decision-authority-and-human-reliance
 ├── agentic-behavior-governance
 ├── model-lifecycle-governance
-├── training-data-protection
+├── training-and-derived-data-protection
 ├── context-and-tooling-security (MCP)
 ├── inference-protection
-├── bias-and-explainability
 ├── output-validity-and-uncertainty
+├── bias-and-explainability
+├── ai-telemetry-and-observability
+├── ai-semantic-dlp
 ├── misuse-and-abuse-detection
+├── ai-incident-response
+├── ai-red-teaming-and-evaluation
 ├── agent-interconnection-and-delegation (A2A)
+├── economic-and-resource-protection
+├── knowledge-decommissioning
 └── trustworthy-ai (composite)
 ```
 
