@@ -1,0 +1,98 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-endpoint",
+
+    "metadata": {
+      "title": "Secure Endpoint",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T14:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC260",
+          "remarks": "Business capability for Compute and Execution Environments, asserted holistically as a trusted endpoint execution posture."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD020",
+          "remarks": "Endpoint and user-operated compute technology domain encompassing all endpoint trust capabilities."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:AP099",
+          "remarks": "Composite trust pattern asserting that endpoints are acceptable execution environments for institutional use."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE420",
+          "remarks": "Endpoint identity, configuration, runtime, and lifecycle artifacts subject to trust evaluation."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1059",
+          "remarks": "Execution of malicious or unauthorized code on user-operated endpoints when execution trust is insufficient."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:EndpointManagement",
+          "remarks": "Defense-in-depth endpoint governance spanning configuration, posture, protection, and lifecycle."
+        }
+      ],
+
+      "remarks": "Secure Endpoint is a composite pattern expressing the institutional position that endpoints are acceptable execution environments for institutional use. This assertion is valid only when endpoints are recognized and managed, securely configured, continuously evaluated for health and compliance, protected at runtime from threats, and deliberately managed through their lifecycle.\n\nGovernance and Responsibility Anchor:\nThis pattern serves as the enterprise endpoint trust statement. It introduces no independent controls. A system may assert use of a secure endpoint only if all referenced constituent endpoint patterns are realized and assessed."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:endpoint-core",
+        "type": "component",
+        "title": "Endpoint Core",
+        "description": "Recognition and baseline trust of user-operated endpoints."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:endpoint-identity-and-posture",
+        "type": "component",
+        "title": "Endpoint Identity and Posture",
+        "description": "Endpoint identity, hardware and OS characteristics, and posture signaling."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:endpoint-configuration-and-hardening",
+        "type": "component",
+        "title": "Endpoint Configuration and Hardening",
+        "description": "Secure-by-default endpoint configuration, including application allow/deny and software restrictions."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:endpoint-health-and-compliance",
+        "type": "component",
+        "title": "Endpoint Health and Compliance",
+        "description": "Continuous evaluation of endpoint health, software state, and compliance."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:endpoint-threat-protection",
+        "type": "component",
+        "title": "Endpoint Threat Protection",
+        "description": "Runtime detection, prevention, and local containment of malicious endpoint activity."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:endpoint-lifecycle",
+        "type": "component",
+        "title": "Endpoint Lifecycle",
+        "description": "Deliberate management of endpoint trust entry, transition, recovery, and exit."
+      }
+    ]
+  }
+}

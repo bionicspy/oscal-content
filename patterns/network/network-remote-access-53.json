@@ -1,0 +1,163 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:network-remote-access",
+
+    "metadata": {
+      "title": "Network Remote Access",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T21:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC240",
+          "remarks": "Business capability for Network and Connectivity Services that enables controlled extension of network access beyond institutional boundaries."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD004",
+          "remarks": "Network and Connectivity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP044",
+          "remarks": "Remote access, secure tunneling, and session brokering platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP064",
+          "remarks": "Brokered remote access with identity-aware, context-constrained sessions."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE384",
+          "remarks": "Remote access sessions, tunneling metadata, and connection context."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1133",
+          "remarks": "External remote services abused to gain unauthorized network access."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1078",
+          "remarks": "Abuse of valid credentials to access the network remotely."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:RemoteAccessManagement",
+          "remarks": "Controlled and monitored remote network access with strong session boundaries."
+        }
+      ],
+
+      "remarks": "Network Remote Access defines the capability to safely extend network connectivity to users, administrators, and systems operating outside institutional network boundaries. Remote access introduces elevated risk and therefore requires brokered sessions, strong contextual controls, and explicit revocation capabilities.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to remote network connectivity. Controls are scoped to remote access sub‑capabilities to enable precise assessment of boundary extension behavior."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:remote-user-access",
+        "type": "capability",
+        "title": "Remote User Access",
+        "description": "Provision of remote network access for end users operating outside institutional boundaries.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-17",
+                "remarks": "Authorize and manage remote access for users."
+              },
+              {
+                "control-id": "ia-2",
+                "remarks": "Authenticate remote users prior to granting network access."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:remote-admin-access",
+        "type": "capability",
+        "title": "Remote Administrative Access",
+        "description": "Remote access mechanisms for administrative and privileged network management.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-17",
+                "remarks": "Restrict and explicitly authorize remote administrative access."
+              },
+              {
+                "control-id": "ia-7",
+                "remarks": "Require enhanced authentication for remote administrative access."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:session-brokering",
+        "type": "capability",
+        "title": "Session Brokering",
+        "description": "Establishment, mediation, and termination of remote access sessions through controlled brokers.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-12",
+                "remarks": "Control the initiation, duration, and termination of remote sessions."
+              },
+              {
+                "control-id": "au-12",
+                "remarks": "Generate centralized audit records for remote access sessions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:context-constraints",
+        "type": "capability",
+        "title": "Context Constraints",
+        "description": "Application of contextual restrictions (location, device posture, time) to remote access sessions.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-17",
+                "remarks": "Apply context-based restrictions to remote access."
+              },
+              {
+                "control-id": "cm-7",
+                "remarks": "Limit remote connectivity to essential services and paths."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

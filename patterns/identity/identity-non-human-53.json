@@ -1,0 +1,170 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:identity-non-human",
+
+    "metadata": {
+      "title": "Identity (Non-Human)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T17:50:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Business capability for Identity and Access Management governing non-human (service and workload) identities."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD001",
+          "remarks": "Digital Identity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP018",
+          "remarks": "Non-human identity, workload identity, and service credential services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP039",
+          "remarks": "Workload and service identity with short-lived credentials and identity-bound execution contexts."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE205",
+          "remarks": "Digital Identity representing a non-human actor."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE360",
+          "remarks": "Service credentials, workload identity tokens, and associated metadata."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1552",
+          "remarks": "Unsecured credentials, including hard-coded or leaked service secrets."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1078",
+          "remarks": "Abuse of valid non-human or service accounts."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:ServiceIdentityManagement",
+          "remarks": "Managed lifecycle, binding, and rotation of service and workload identities."
+        }
+      ],
+
+      "remarks": "Identity (Non-Human) defines the capability to issue, manage, bind, rotate, and revoke identities for services, workloads, and automated processes. Non-human identities require different lifecycle, trust, and protection models than human identities and must not rely on shared or static secrets.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for roles and responsibilities, SSPPs, standards, procedures, guidelines, and assurance activities related to non-Human identity usage. Controls are intentionally scoped to specific non-Human identity sub-capabilities."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:service-identities",
+        "type": "capability",
+        "title": "Service Identities",
+        "description": "Definition and management of identities assigned to long-lived services and applications.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ia-4",
+                "remarks": "Establish and manage identities for non-human service accounts."
+              },
+              {
+                "control-id": "ac-2",
+                "remarks": "Manage service accounts separately from human user accounts."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:workload-identities",
+        "type": "capability",
+        "title": "Workload Identities",
+        "description": "Ephemeral identities issued to workloads, jobs, and execution environments.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ia-7",
+                "remarks": "Use strong, cryptographic mechanisms for workload identity authentication."
+              },
+              {
+                "control-id": "ac-6",
+                "remarks": "Apply least privilege to workload identities based on function."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:identity-binding",
+        "type": "capability",
+        "title": "Identity Binding",
+        "description": "Binding of identity to a specific service instance, workload, or execution context.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ia-5",
+                "remarks": "Protect authenticators and bind them to specific non-human entities."
+              },
+              {
+                "control-id": "ia-7",
+                "remarks": "Ensure identity assertions are cryptographically bound to execution context."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:rotation-and-revocation",
+        "type": "capability",
+        "title": "Rotation and Revocation",
+        "description": "Automated rotation, expiration, and revocation of non-human identity credentials.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ia-5",
+                "remarks": "Rotate and revoke non-human authenticators according to defined policy."
+              },
+              {
+                "control-id": "ac-2",
+                "remarks": "Disable or remove non-human identities that are no longer required."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

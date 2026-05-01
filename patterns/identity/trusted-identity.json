@@ -1,0 +1,122 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:trusted-identity",
+
+    "metadata": {
+      "title": "Trusted Identity",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T19:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Business capability for Identity and Access Management, viewed holistically as an institutional trust posture."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD001",
+          "remarks": "Digital Identity technology domain encompassing all identity trust capabilities."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:AP050",
+          "remarks": "Composite trust pattern asserting that identities meet institutional requirements for assurance, accountability, and control."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE205",
+          "remarks": "Digital Identity subject to comprehensive trust evaluation."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1078",
+          "remarks": "Abuse of valid accounts due to failures anywhere in the identity trust chain."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:IdentityManagement",
+          "remarks": "End-to-end identity governance and defense-in-depth across the identity lifecycle."
+        }
+      ],
+
+      "remarks": "Trusted Identity is a composite pattern expressing the institutional position that identities are authoritative, strongly authenticated, correctly authorized, lifecycle-managed, auditable, and bound to appropriate contexts. This pattern does not introduce new controls or assurances; instead, it aggregates and asserts trust across the constituent identity patterns.\n\nGovernance and Responsibility Anchor:\nThis pattern serves as the enterprise trust statement for identity and is used by SSPPs, architecture reviews, and assurance activities to assert that identity use is acceptable when (and only when) all referenced constituent patterns are realized."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-core",
+        "type": "component",
+        "title": "Identity Core",
+        "description": "Authoritative definition, namespace, uniqueness, and attribution of identities."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-authentication",
+        "type": "component",
+        "title": "Identity Authentication",
+        "description": "Verification that an identity claim is legitimate at the time of use."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-authorization",
+        "type": "component",
+        "title": "Identity Authorization",
+        "description": "Determination of what an authenticated identity is permitted to do."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-lifecycle",
+        "type": "component",
+        "title": "Identity Lifecycle",
+        "description": "Creation, modification, suspension, revocation, and removal of identities."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-federation",
+        "type": "component",
+        "title": "Identity Federation",
+        "description": "Trust relationships and assertion handling across organizational boundaries."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-assurance",
+        "type": "component",
+        "title": "Identity Assurance",
+        "description": "Evaluation and propagation of confidence and assurance in identity claims."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-logging-and-audit",
+        "type": "component",
+        "title": "Identity Logging and Audit",
+        "description": "Accountability, traceability, and auditability of identity-related actions."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-privileged-access",
+        "type": "component",
+        "title": "Identity Privileged Access",
+        "description": "Additional safeguards and oversight for elevated identity usage."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-non-human",
+        "type": "component",
+        "title": "Identity Non-Human",
+        "description": "Lifecycle and use of service and workload identities."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-device-binding",
+        "type": "component",
+        "title": "Identity Device Binding",
+        "description": "Binding identities to trusted devices and execution contexts."
+      }
+    ]
+  }
+}

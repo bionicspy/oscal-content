@@ -1,0 +1,158 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+
+    "metadata": {
+      "title": "Endpoint Configuration and Hardening",
+      "version": "1.0.3",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T13:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC260",
+          "remarks": "Business capability for Compute and Execution Environments that ensures endpoints are securely configured and restricts what software may execute."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD020",
+          "remarks": "Endpoint and user-operated compute technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP062",
+          "remarks": "Endpoint configuration management, application control, and system hardening platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP092",
+          "remarks": "Secure-by-default endpoint execution environment with enforced baselines and application control."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE422",
+          "remarks": "Endpoint configuration baselines, application allow/deny policies, and hardening artifacts."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1562",
+          "remarks": "Defense impairment through weakening or bypassing endpoint configuration and application controls."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:SystemHardening",
+          "remarks": "Reduction of attack surface through hardened configuration and executable control."
+        }
+      ],
+
+      "remarks": "Endpoint Configuration and Hardening defines the preventive controls that establish a secure endpoint execution environment. This includes operating system hardening, explicit control of which applications and scripts may execute, and restriction of user-installed software. These controls are enforced by design and are not dependent on runtime detection or health evaluation.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to endpoint secure configuration and application allow/deny enforcement."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:configuration-baselines",
+        "type": "capability",
+        "title": "Configuration Baselines",
+        "description": "Definition and enforcement of approved endpoint operating system configuration baselines.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-2",
+                "remarks": "Develop, document, and maintain endpoint configuration baselines."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:application-control",
+        "type": "capability",
+        "title": "Application Control",
+        "description": "Allowlisting and restriction of applications, scripts, and binaries permitted to execute on endpoints.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-7",
+                "remarks": "Restrict execution to approved applications and scripts."
+              },
+              {
+                "control-id": "si-7",
+                "remarks": "Prevent execution of unauthorized or tampered software."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:user-installed-software-policy",
+        "type": "capability",
+        "title": "User-Installed Software Policy",
+        "description": "Controls governing whether and how users may install software on endpoints.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-6",
+                "remarks": "Limit administrative privileges required for software installation."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:attack-surface-reduction",
+        "type": "capability",
+        "title": "Attack Surface Reduction",
+        "description": "Reduction of exposed services, interpreters, and features available on endpoints.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-7",
+                "remarks": "Disable unnecessary endpoint services, features, and execution paths."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:configuration-protection",
+        "type": "capability",
+        "title": "Configuration Protection",
+        "description": "Protection of endpoint configuration and application control settings from unauthorized modification.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-5",
+                "remarks": "Restrict, monitor, and audit changes to endpoint configuration and application control policies."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

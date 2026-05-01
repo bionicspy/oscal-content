@@ -1,0 +1,159 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:network-mediation-and-policy-enforcement",
+
+    "metadata": {
+      "title": "Network Mediation and Policy Enforcement",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T21:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC240",
+          "remarks": "Business capability for Network and Connectivity Services ensuring that network communications are mediated and enforced according to policy."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD004",
+          "remarks": "Network and Connectivity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP043",
+          "remarks": "Network traffic mediation, inspection, and policy enforcement platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP063",
+          "remarks": "Policy‑driven network mediation with centralized decision logic and distributed enforcement points."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE383",
+          "remarks": "Network flow metadata, policy evaluations, and enforcement decisions."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1046",
+          "remarks": "Discovery and probing of network services that are insufficiently mediated or restricted."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1071",
+          "remarks": "Use of allowed application‑layer protocols to bypass weak network mediation."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:NetworkTrafficFiltering",
+          "remarks": "Inspection and enforcement of permitted network communications."
+        }
+      ],
+
+      "remarks": "Network Mediation and Policy Enforcement defines the capability to inspect, evaluate, and enforce which network communications are permitted after connectivity has been established. Admission to the network does not imply authorization to communicate. All allowed traffic is explicitly mediated according to policy.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to permitted network communications. Controls are scoped to mediation sub‑capabilities to enable precise assessment of inspection, decision, and enforcement behavior."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:flow-inspection",
+        "type": "capability",
+        "title": "Flow Inspection",
+        "description": "Inspection and classification of network traffic to support policy evaluation.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "sc-7",
+                "remarks": "Inspect and control network communications at defined boundaries."
+              },
+              {
+                "control-id": "si-4",
+                "remarks": "Monitor network traffic to identify unauthorized or anomalous flows."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:policy-evaluation",
+        "type": "capability",
+        "title": "Policy Evaluation",
+        "description": "Evaluation of network policies to determine whether inspected traffic is permitted.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-3",
+                "remarks": "Enforce approved authorizations to regulate network communications."
+              },
+              {
+                "control-id": "ac-4",
+                "remarks": "Apply information flow control policies to network traffic."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:enforcement-points",
+        "type": "capability",
+        "title": "Enforcement Points",
+        "description": "Logical or physical enforcement points where policy decisions are applied to traffic.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "sc-7",
+                "remarks": "Enforce network boundary protection at designated enforcement points."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:exception-handling",
+        "type": "capability",
+        "title": "Exception Handling",
+        "description": "Controlled management of exceptions and overrides to standard network policy.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-1",
+                "remarks": "Define and govern processes for network policy exceptions."
+              },
+              {
+                "control-id": "au-2",
+                "remarks": "Log and audit network policy exceptions and overrides."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -21,7 +21,7 @@ identity/
 ├── identity-assurance
 └── trusted-identity (composite)
 ```
-Covers:
+### Covers:
 * Identity management
 * Federation
 * Privileged access (conceptually)
@@ -40,7 +40,7 @@ network/
 ├── network-monitoring-and-response
 └── secure-network (composite)
 ```
-Covers:
+### Covers:
 * VPN / ZTNA
 * Wireless
 * Third‑party access

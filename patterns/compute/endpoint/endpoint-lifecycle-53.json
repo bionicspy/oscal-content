@@ -1,0 +1,144 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+
+    "metadata": {
+      "title": "Endpoint Lifecycle",
+      "version": "1.0.3",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T13:55:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC260",
+          "remarks": "Business capability for Compute and Execution Environments governing how endpoints enter, transition within, and exit institutional trust."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD020",
+          "remarks": "Endpoint and user-operated compute technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP065",
+          "remarks": "Endpoint provisioning, reset, rebuild, and retirement platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP095",
+          "remarks": "Managed endpoint lifecycle with explicit trust entry, reset, transition, and exit points."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE425",
+          "remarks": "Endpoint lifecycle state, ownership history, recovery events, and disposition records."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1078",
+          "remarks": "Residual access through endpoints that are improperly reassigned or retired."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:AssetLifecycleManagement",
+          "remarks": "Controlled provisioning, recovery, reassignment, and removal of endpoint assets."
+        }
+      ],
+
+      "remarks": "Endpoint Lifecycle defines the capability to deliberately manage endpoint trust over time. It governs how endpoints are introduced into institutional trust, how trust is preserved or reset during ownership and role changes, and how trust is explicitly terminated. Proper lifecycle management ensures that software, credentials, and access do not persist beyond their intended trust boundaries.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to endpoint lifecycle management. Controls are intentionally scoped to trust transitions and exclude configuration enforcement, health evaluation, and runtime threat detection."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:initial-provisioning",
+        "type": "capability",
+        "title": "Initial Provisioning",
+        "description": "Introduction of new endpoints into institutional management and baseline trust.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ia-4",
+                "remarks": "Create and manage endpoint identity records during initial provisioning."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:ownership-and-role-transition",
+        "type": "capability",
+        "title": "Ownership and Role Transition",
+        "description": "Controlled reassignment of endpoints between users, roles, or operational purposes.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-2",
+                "remarks": "Update endpoint ownership, associations, and access during reassignment."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:trust-reset-and-recovery",
+        "type": "capability",
+        "title": "Trust Reset and Recovery",
+        "description": "Reset and restoration of endpoint trust following compromise, misuse, or suspected integrity loss.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ir-4",
+                "remarks": "Restore endpoint integrity and trust following incident or compromise."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:retirement-and-disposition",
+        "type": "capability",
+        "title": "Retirement and Disposition",
+        "description": "Permanent removal of endpoints from institutional trust and eradication of residual access and software.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-8",
+                "remarks": "Remove retired endpoints from institutional inventory."
+              },
+              {
+                "control-id": "mp-7",
+                "remarks": "Sanitize endpoint storage media prior to disposal or reuse."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

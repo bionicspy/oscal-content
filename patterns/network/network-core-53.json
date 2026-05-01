@@ -1,0 +1,140 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:network-core",
+
+    "metadata": {
+      "title": "Network Core",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T20:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC240",
+          "remarks": "Business capability for Network and Connectivity Services establishing baseline institutional connectivity and trust boundaries."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD004",
+          "remarks": "Network and Connectivity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP040",
+          "remarks": "Core network infrastructure, routing, and switching platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP060",
+          "remarks": "Managed institutional network fabric with explicit trust boundaries."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE380",
+          "remarks": "Network address, topology, and connectivity metadata."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1046",
+          "remarks": "Network service discovery performed against poorly defined or exposed network infrastructure."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:NetworkTrafficFiltering",
+          "remarks": "Baseline control of network traffic paths and reachability."
+        }
+      ],
+
+      "remarks": "Network Core defines the foundational capability that establishes what it means for systems, devices, and services to be connected to the institutional network. It defines baseline addressability, routing, reachability, and trust boundaries independent of access control, segmentation, or inspection.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to institutional network connectivity. Controls are scoped to sub‑capabilities to enable precise assurance of foundational network behavior."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:addressability",
+        "type": "capability",
+        "title": "Addressability",
+        "description": "Assignment and management of network addresses and identifiers to enable controlled reachability.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "sc-7",
+                "remarks": "Control network addressability to enforce boundaries and limit exposure."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:routing-and-forwarding",
+        "type": "capability",
+        "title": "Routing and Forwarding",
+        "description": "Controlled routing and forwarding of network traffic based on defined policies and topology.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "sc-10",
+                "remarks": "Ensure network routing and forwarding mechanisms enforce defined flow policies."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:trust-boundaries",
+        "type": "capability",
+        "title": "Trust Boundaries",
+        "description": "Definition and enforcement of institutional network trust boundaries.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "sc-7",
+                "remarks": "Define and enforce network trust boundaries between security domains."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:baseline-connectivity",
+        "type": "capability",
+        "title": "Baseline Connectivity",
+        "description": "Establishment of minimum, approved connectivity paths required for institutional operations.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-7",
+                "remarks": "Allow only essential network services and connectivity paths."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

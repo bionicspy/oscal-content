@@ -1,0 +1,162 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:server-configuration-and-baseline",
+
+    "metadata": {
+      "title": "Server Configuration and Baseline",
+      "version": "1.0.1",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T16:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC260",
+          "remarks": "Business capability for Compute and Execution Environments defining the approved, intended configuration of servers and workloads."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD021",
+          "remarks": "Server, workload, and platform execution technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP068",
+          "remarks": "Server image pipelines, infrastructure-as-code frameworks, and configuration management systems."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP102",
+          "remarks": "Declaratively managed or immutable server configurations enforced through approved baselines."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE432",
+          "remarks": "Server configuration baselines, golden images, build manifests, and declarative configuration definitions."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1601",
+          "remarks": "Compromise via modification of server images or baseline configurations."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:SystemConfigurationEnforcement",
+          "remarks": "Enforcement of approved configuration states for servers and workloads."
+        }
+      ],
+
+      "remarks": "Server Configuration and Baseline defines the approved, intended configuration state for servers and workloads. It establishes what software, services, users, and execution behaviors are permitted by design. Baselines are declarative and serve as the authoritative reference for drift detection, vulnerability assessment, and runtime defense.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to server configuration intent. It does not assess compliance, detect threats, or manage patches."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:baseline-definitions",
+        "type": "capability",
+        "title": "Baseline Definitions",
+        "description": "Definition of approved server configuration baselines and golden images.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-2",
+                "remarks": "Develop, document, and maintain server configuration baselines."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:immutable-or-declarative-builds",
+        "type": "capability",
+        "title": "Immutable or Declarative Builds",
+        "description": "Construction of servers from immutable images or declarative infrastructure definitions.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-6",
+                "remarks": "Implement configuration settings using approved and repeatable mechanisms."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:approved-software-and-services",
+        "type": "capability",
+        "title": "Approved Software and Services",
+        "description": "Restriction of servers to approved operating system packages, services, and runtime components.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-7",
+                "remarks": "Allow only essential server software, services, and execution paths."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:administrative-access-model",
+        "type": "capability",
+        "title": "Administrative Access Model",
+        "description": "Definition of the approved administrative access model for servers.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-6",
+                "remarks": "Limit and constrain administrative privileges on servers by design."
+              },
+              {
+                "control-id": "ac-2",
+                "remarks": "Define authorized administrative accounts for server management."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:configuration-protection",
+        "type": "capability",
+        "title": "Configuration Protection",
+        "description": "Protection of server baselines, images, and configuration pipelines from unauthorized modification.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-5",
+                "remarks": "Restrict, monitor, and audit changes to server configuration baselines and build pipelines."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

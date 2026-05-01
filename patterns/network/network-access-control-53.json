@@ -1,0 +1,144 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:network-access-control",
+
+    "metadata": {
+      "title": "Network Access Control",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T20:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC240",
+          "remarks": "Business capability for Network and Connectivity Services governing admission to institutional networks."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD004",
+          "remarks": "Network and Connectivity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP042",
+          "remarks": "Network access control, admission, and posture evaluation platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP062",
+          "remarks": "Identity‑aware network admission with conditional access enforcement."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE382",
+          "remarks": "Network access requests, posture assessments, and admission decisions."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1046",
+          "remarks": "Discovery of network services following unauthorized network admission."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:NetworkAccessControl",
+          "remarks": "Enforcement of conditional admission to network resources."
+        }
+      ],
+
+      "remarks": "Network Access Control defines the capability to decide whether a device, user, or workload may connect to the institutional network at all. Admission decisions are based on identity, device posture, context, and policy and occur before general network connectivity is granted.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to network admission decisions. Controls are scoped to access control sub‑capabilities to allow precise assessment of admission logic."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:admission-decision",
+        "type": "capability",
+        "title": "Admission Decision",
+        "description": "Evaluation of access requests to determine whether network connectivity may be granted.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-3",
+                "remarks": "Enforce approved authorizations for network access."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:device-and-identity-evaluation",
+        "type": "capability",
+        "title": "Device and Identity Evaluation",
+        "description": "Assessment of identity and device attributes prior to granting network access.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ia-2",
+                "remarks": "Uniquely identify and authenticate users or devices prior to network access."
+              },
+              {
+                "control-id": "ia-7",
+                "remarks": "Apply enhanced authentication mechanisms where required."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:posture-assessment",
+        "type": "capability",
+        "title": "Posture Assessment",
+        "description": "Evaluation of device security posture and compliance before network admission.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-7",
+                "remarks": "Allow only devices and services that meet defined configuration requirements."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:enforcement-triggering",
+        "type": "capability",
+        "title": "Enforcement Triggering",
+        "description": "Activation or denial of network connectivity based on admission evaluation outcomes.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-4",
+                "remarks": "Control information flow into the network based on admission decisions."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

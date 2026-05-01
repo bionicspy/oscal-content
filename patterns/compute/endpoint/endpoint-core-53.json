@@ -1,0 +1,140 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:endpoint-core",
+
+    "metadata": {
+      "title": "Endpoint Core",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T23:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC260",
+          "remarks": "Business capability for Compute and Execution Environments establishing institutional trust in user-operated endpoints."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD020",
+          "remarks": "Endpoint and user-operated compute technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP060",
+          "remarks": "User-operated endpoint devices, operating systems, and execution environments."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP090",
+          "remarks": "Managed endpoint execution environment with explicit enrollment and governance."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE420",
+          "remarks": "Endpoint identity, classification, and execution environment metadata."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1059",
+          "remarks": "Execution of user-controlled code on endpoints outside trusted execution assumptions."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:EndpointManagement",
+          "remarks": "Centralized governance and control over endpoint execution environments."
+        }
+      ],
+
+      "remarks": "Endpoint Core defines the foundational capability that establishes what it means for a device to be recognized as an institutional endpoint. It defines execution environment boundaries, ownership expectations, and baseline trust assumptions independently of configuration hardening, health, or threat state.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to endpoint recognition and execution environment legitimacy. Controls are scoped to endpoint sub‑capabilities to enable precise assessment of baseline endpoint trust."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:endpoint-enrollment",
+        "type": "capability",
+        "title": "Endpoint Enrollment",
+        "description": "Formal enrollment and registration of devices into institutional endpoint management.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ia-4",
+                "remarks": "Establish and manage identities for endpoint devices."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:endpoint-classification",
+        "type": "capability",
+        "title": "Endpoint Classification",
+        "description": "Classification of endpoints by role, ownership, and permissible use.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-1",
+                "remarks": "Define and enforce policies governing endpoint use and classification."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:execution-boundaries",
+        "type": "capability",
+        "title": "Execution Boundaries",
+        "description": "Definition of execution environment boundaries between endpoint and institutional services.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "sc-7",
+                "remarks": "Define and enforce boundaries between endpoint execution environments and institutional systems."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:baseline-trust",
+        "type": "capability",
+        "title": "Baseline Trust",
+        "description": "Establishment of minimum trust assumptions required for endpoint participation.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-7",
+                "remarks": "Allow only approved endpoint services and execution behaviors."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

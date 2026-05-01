@@ -1,0 +1,130 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:data-encryption",
+
+    "metadata": {
+      "title": "Data Encryption",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T21:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC300",
+          "remarks": "Business capability for Data and Information Management that protects data confidentiality and integrity through encryption."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD030",
+          "remarks": "Data and information protection technology domain."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP123",
+          "remarks": "Cryptographic protection of institutional data across storage, transmission, and processing contexts."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE503",
+          "remarks": "Encrypted data, cryptographic policy requirements, and protection assertions."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1552",
+          "remarks": "Access to unencrypted or improperly protected sensitive data."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:DataEncryption",
+          "remarks": "Cryptographic protection of data to prevent unauthorized disclosure or tampering."
+        }
+      ],
+
+      "remarks": "Data Encryption defines the capability to cryptographically protect institutional data at rest, in transit, and, where applicable, in use. This pattern defines encryption requirements and expectations but does not manage cryptographic keys or certificates. Key lifecycle governance is handled by the key-management pattern."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:encryption-at-rest",
+        "type": "capability",
+        "title": "Encryption at Rest",
+        "description": "Cryptographic protection of stored data to prevent unauthorized access.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "sc-12",
+                "remarks": "Employ cryptographic mechanisms to protect data stored on systems."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:encryption-in-transit",
+        "type": "capability",
+        "title": "Encryption in Transit",
+        "description": "Cryptographic protection of data as it traverses networks and communication channels.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "sc-8",
+                "remarks": "Protect data in transit from unauthorized disclosure or modification."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:encryption-in-use",
+        "type": "capability",
+        "title": "Encryption in Use",
+        "description": "Protection of data while being processed using trusted execution or confidential computing mechanisms.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "sc-16",
+                "remarks": "Protect data during processing where supported by execution environments."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:algorithm-and-strength-requirements",
+        "type": "capability",
+        "title": "Algorithm and Strength Requirements",
+        "description": "Definition of approved cryptographic algorithms, key lengths, and modes of operation.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ia-7",
+                "remarks": "Use approved cryptographic algorithms and key strengths to protect data."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

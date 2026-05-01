@@ -1,0 +1,98 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-server",
+
+    "metadata": {
+      "title": "Secure Server",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T17:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC260",
+          "remarks": "Business capability for Compute and Execution Environments asserted holistically as a trusted server and workload execution posture."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD021",
+          "remarks": "Server, workload, and platform execution technology domain."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:AP109",
+          "remarks": "Composite trust pattern asserting that servers and workloads are acceptable execution environments for institutional services."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE430",
+          "remarks": "Server and workload identity, integrity, configuration, and runtime artifacts subject to trust evaluation."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1068",
+          "remarks": "Exploitation of server vulnerabilities to compromise privileged execution environments."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:PlatformManagement",
+          "remarks": "Defense-in-depth governance of servers through integrity, configuration, protection, and monitoring."
+        }
+      ],
+
+      "remarks": "Secure Server is a composite pattern expressing the institutional position that servers and workloads are acceptable execution environments for institutional services. This assertion is valid only when server identity and ownership are established, platform integrity is verifiable, configuration and baseline state are controlled, vulnerability exposure is understood, runtime behavior is actively protected, and activity is observable and responsive. This pattern introduces no independent controls."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:server-core",
+        "type": "component",
+        "title": "Server Core",
+        "description": "Legitimacy and institutional control of server and workload execution environments."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:server-attestation-and-trust",
+        "type": "component",
+        "title": "Server Attestation and Trust",
+        "description": "Cryptographic and measurable verification of server and workload integrity."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:server-configuration-and-baseline",
+        "type": "component",
+        "title": "Server Configuration and Baseline",
+        "description": "Approved and intended configuration state for servers and workloads."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:server-patch-and-vulnerability-posture",
+        "type": "component",
+        "title": "Server Patch and Vulnerability Posture",
+        "description": "Assessment of server exposure to known vulnerabilities and missing updates."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:server-runtime-protection",
+        "type": "component",
+        "title": "Server Runtime Protection",
+        "description": "Active protection of servers and workloads during execution."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:server-monitoring-and-response",
+        "type": "component",
+        "title": "Server Monitoring and Response",
+        "description": "Visibility, detection, and coordinated response for server and workload activity."
+      }
+    ]
+  }
+}

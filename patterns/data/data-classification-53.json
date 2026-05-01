@@ -1,0 +1,129 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:dataurn:utoronto:cae2:trm",
+    "metadata": {
+      "title": "Data Classification",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T20:20:00Z",
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC300",
+          "remarks": "Business capability for Data and Information Management that determines data sensitivity and associated obligations."
+        },
+        {
+          "name": "technology-domain",
+    
+    "uuid": "urn:utoronto:security:pattern:data-classification",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD030",
+          "remarks": "Data and information protection technology domain."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP121",
+          "remarks": "Institutional data classification aligned with impact, risk, and obligation."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE501",
+          "remarks": "Classified data, sensitivity labels, and obligation mappings."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1213",
+          "remarks": "Data discovery and access due to misclassified or unlabeled data."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:InformationClassification",
+          "remarks": "Determination and assertion of data sensitivity prior to enforcement."
+        }
+      ],
+
+      "remarks": "Data Classification defines the capability to assign sensitivity levels and associated obligations to institutional data. Classification informs handling, encryption, disclosure, and retention requirements but does not itself enforce those controls. All downstream data protection patterns assume data-classification has been established."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:classification-scheme",
+        "type": "capability",
+        "title": "Classification Scheme",
+        "description": "Definition of standard data sensitivity levels and categories used by the institution.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ra-2",
+                "remarks": "Define data sensitivity categories based on risk considerations."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:impact-and-risk-mapping",
+        "type": "capability",
+        "title": "Impact and Risk Mapping",
+        "description": "Mapping of data classes to confidentiality, integrity, and availability impact levels.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ra-3",
+                "remarks": "Assess and document risk impact associated with data sensitivity."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:regulatory-and-contractual-obligations",
+        "type": "capability",
+        "title": "Regulatory and Contractual Obligations",
+        "description": "Identification of legal, regulatory, and contractual requirements associated with data classes.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "pl-8",
+                "remarks": "Identify requirements and constraints applicable to sensitive data."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:classification-assertion-and-labeling",
+        "type": "capability",
+        "title": "Classification Assertion and Labeling",
+        "description": "Representation and propagation of data classification labels and assertions.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "mp-7",
+                "remarks": "Label data to reflect sensitivity and associated handling requirements."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

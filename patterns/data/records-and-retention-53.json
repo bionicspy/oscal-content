@@ -1,0 +1,139 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:records-and-retention",
+
+    "metadata": {
+      "title": "Records and Retention",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T22:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC300"
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD030"
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP127"
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE507"
+        }
+      ],
+
+      "remarks": "Records and Retention defines the capability to identify records, enforce retention schedules, apply legal holds, and securely dispose of data in accordance with legal, regulatory, and institutional obligations. This pattern governs temporal data obligations and evidence of compliance and does not define data classification, encryption, or data loss prevention controls."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:records-identification",
+        "type": "capability",
+        "title": "Records Identification",
+        "description": "Identification of which data and information qualify as official records.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:records-identification",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:records-identification-pl-8",
+                "control-id": "pl-8",
+                "remarks": "Identify and document information types that constitute official records."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:retention-schedules",
+        "type": "capability",
+        "title": "Retention Schedules",
+        "description": "Definition and enforcement of retention periods for records.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:retention-schedules",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:retention-schedules-ca-7",
+                "control-id": "ca-7",
+                "remarks": "Ensure retention requirements are implemented and periodically reviewed."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:legal-holds-and-preservation",
+        "type": "capability",
+        "title": "Legal Holds and Preservation",
+        "description": "Preservation of records subject to legal, regulatory, or investigative holds.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:legal-holds",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:legal-holds-ir-5",
+                "control-id": "ir-5",
+                "remarks": "Preserve information necessary for incident handling and legal proceedings."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:secure-destruction-and-disposal",
+        "type": "capability",
+        "title": "Secure Destruction and Disposal",
+        "description": "Irreversible deletion or destruction of records when retention obligations expire.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:secure-destruction",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:secure-destruction-mp-7",
+                "control-id": "mp-7",
+                "remarks": "Sanitize or destroy information in accordance with approved disposal methods."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:audit-and-attestation-of-compliance",
+        "type": "capability",
+        "title": "Audit and Attestation of Compliance",
+        "description": "Provision of evidence demonstrating compliance with retention and disposition requirements.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:records-audit",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:records-audit-au-6",
+                "control-id": "au-6",
+                "remarks": "Review and analyze records management activities for compliance."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

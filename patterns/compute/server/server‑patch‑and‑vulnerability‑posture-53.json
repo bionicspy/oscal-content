@@ -1,0 +1,140 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:server-patch-and-vulnerability-posture",
+
+    "metadata": {
+      "title": "Server Patch and Vulnerability Posture",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T16:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC260",
+          "remarks": "Business capability for Compute and Execution Environments that evaluates server exposure to known vulnerabilities and missing patches."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD021",
+          "remarks": "Server, workload, and platform execution technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP069",
+          "remarks": "Patch management systems, vulnerability scanners, and exposure assessment platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP103",
+          "remarks": "Continuous assessment of server vulnerability and patch exposure against known weaknesses."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE433",
+          "remarks": "Patch status, vulnerability findings, CVE mappings, and exposure assessment results."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1068",
+          "remarks": "Exploitation of unpatched or vulnerable server software to gain elevated privileges."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:VulnerabilityManagement",
+          "remarks": "Identification and prioritization of vulnerabilities to reduce exploitable attack surface."
+        }
+      ],
+
+      "remarks": "Server Patch and Vulnerability Posture defines the capability to assess a server or workload's exposure to known vulnerabilities and missing security updates. This pattern evaluates current risk based on available intelligence and does not itself enforce patching or remediation. Results produced by this capability inform change management, risk acceptance, and runtime defense decisions.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to server vulnerability awareness and patch posture. Controls are intentionally scoped to assessment and evaluation and exclude remediation and enforcement."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:patch-status-evaluation",
+        "type": "capability",
+        "title": "Patch Status Evaluation",
+        "description": "Assessment of server operating system and software patch currency.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "si-2",
+                "remarks": "Identify missing security updates and patches on servers."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:vulnerability-identification",
+        "type": "capability",
+        "title": "Vulnerability Identification",
+        "description": "Identification of known vulnerabilities affecting server operating systems, platforms, and installed components.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ra-5",
+                "remarks": "Scan servers for known vulnerabilities using approved methodologies."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:exposure-analysis",
+        "type": "capability",
+        "title": "Exposure Analysis",
+        "description": "Evaluation of exploitability and exposure based on server role, configuration, and connectivity.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ra-3",
+                "remarks": "Assess the risk posed by identified vulnerabilities in their operational context."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:posture-reporting",
+        "type": "capability",
+        "title": "Posture Reporting",
+        "description": "Reporting of patch and vulnerability posture to stakeholders and decision authorities.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ca-7",
+                "remarks": "Provide ongoing visibility into server vulnerability and patch posture."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

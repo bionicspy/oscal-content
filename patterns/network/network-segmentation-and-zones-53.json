@@ -1,0 +1,144 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:network-segmentation-and-zones",
+
+    "metadata": {
+      "title": "Network Segmentation and Zones",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T20:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC240",
+          "remarks": "Business capability for Network and Connectivity Services that enforces separation of trust domains to limit exposure and lateral movement."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD004",
+          "remarks": "Network and Connectivity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP041",
+          "remarks": "Network segmentation, zoning, and isolation technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP061",
+          "remarks": "Explicit network zones with policy‑controlled inter‑zone traffic."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE381",
+          "remarks": "Network zone definitions, segmentation policies, and traffic rules."
+        },
+        {
+          "name": "threat-technique",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "urn:mitre:attack:technique:T1021",
+          "remarks": "Lateral movement across insufficiently segmented network zones."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "urn:mitre:d3fend:technique:d3f:NetworkSegmentation",
+          "remarks": "Isolation of network zones to restrict unauthorized communication paths."
+        }
+      ],
+
+      "remarks": "Network Segmentation and Zones defines the capability to partition the institutional network into discrete trust domains and to strictly control traffic between them. Segmentation reduces blast radius, limits lateral movement, and enforces differing trust assumptions across workloads, users, and environments.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to internal network trust boundaries. Controls are scoped to segmentation sub‑capabilities to enable precise assurance of zone definition and enforcement."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:zone-definition",
+        "type": "capability",
+        "title": "Zone Definition",
+        "description": "Definition of discrete network zones representing differing trust levels and security requirements.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "sc-7",
+                "remarks": "Define and document network boundaries and protection domains."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:inter-zone-traffic",
+        "type": "capability",
+        "title": "Inter‑Zone Traffic",
+        "description": "Control and restriction of network traffic crossing zone boundaries.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-4",
+                "remarks": "Enforce information flow control across network zones."
+              },
+              {
+                "control-id": "sc-7",
+                "remarks": "Restrict communications between zones to approved paths only."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:microsegmentation",
+        "type": "capability",
+        "title": "Microsegmentation",
+        "description": "Fine‑grained segmentation within zones to limit east‑west traffic between workloads.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-4",
+                "remarks": "Apply granular flow control to limit workload‑to‑workload communication."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:boundary-policy",
+        "type": "capability",
+        "title": "Boundary Policy",
+        "description": "Definition and enforcement of policies governing permissible communications between zones.",
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-1",
+                "remarks": "Establish and maintain policies governing inter‑zone network communication."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
