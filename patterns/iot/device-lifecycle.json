@@ -1,0 +1,122 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-lifecycle",
+    "metadata": {
+      "title":"IoT Device Lifecycle",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T11:15:00Z",
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC370",
+          "remarks": "Business capability for securely managing IoT devices from onboarding through retirement."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD090",
+          "remarks": "IoT provisioning, firmware update, lifecycle management, and decommissioning technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP213",
+          "remarks": "Pattern for securely provisioning, updating, and retiring IoT devices over extended lifecycles."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Device lifecycle controls mitigate risks from abandoned, unmanaged, or persistently vulnerable IoT devices."
+        },
+        {
+          "name": "attack-techniques",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "TA0001, TA0003, TA0040",
+          "remarks": "Relevant ATT&CK tactics include Initial Access, Persistence, and Impact affecting unmanaged devices."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Device lifecycle governance aligns with D3FEND lifecycle management and exposure reduction techniques."
+        },
+        {
+          "name": "defensive-techniques",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "LifecycleManagement, SecureProvisioning, ControlledDecommissioning",
+          "remarks": "Defensive techniques ensuring IoT devices do not become unmanaged or unsafe over time."
+        }
+      ],
+      "remarks": "Device Lifecycle defines how IoT devices are securely onboarded, updated, maintained, and retired to prevent accumulation of unmanaged risk. Control realization is expressed at the capability level following NIST IoT Core Baseline guidance."
+    },
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:secure-provisioning",
+        "type": "capability",
+        "title": "Secure Provisioning",
+        "description": "Controlled onboarding and initialization of IoT devices into managed environments.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-secure-provisioning",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-provisioning",
+                "control-id": "NIST-IR-8425-PROVISION",
+                "remarks": "IoT devices are securely provisioned with identities, configuration, and trust anchors before operation."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:update-and-patch-management",
+        "type": "capability",
+        "title": "Update and Patch Management",
+        "description": "Secure distribution and installation of firmware and software updates for IoT devices.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-update-management",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-update",
+                "control-id": "NIST-IR-8425-UPDATE",
+                "remarks": "IoT devices support authenticated and integrity-protected updates to remediate vulnerabilities."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:decommissioning-and-revocation",
+        "type": "capability",
+        "title": "Decommissioning and Revocation",
+        "description": "Secure retirement, credential revocation, and disposal of IoT devices.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-decommissioning",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-decommission",
+                "control-id": "NIST-IR-8425-DECOMMISSION",
+                "remarks": "IoT devices are securely decommissioned, with credentials revoked and data sanitized at end of life."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

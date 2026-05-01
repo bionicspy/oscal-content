@@ -1,0 +1,127 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:backup-and-recovery",
+
+    "metadata": {
+      "title": "Backup and Recovery",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T03:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC340",
+          "remarks": "Business capability for restoring data and systems following loss, corruption, or disruption."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD060",
+          "remarks": "Backup, recovery, and data protection technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP170",
+          "remarks": "Systematic, policy-driven data backup and restoration pattern."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Backup and recovery mitigates impact of ATT&CK destruction, impact, and sabotage techniques."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Backup and recovery aligns with D3FEND recovery and restore defensive techniques."
+        }
+      ],
+
+      "remarks": "Backup and Recovery defines the capability to create, protect, and restore backups of data and systems. Control implementation is expressed at the capability level to support auditability and resilience against data loss, corruption, or malicious destruction."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:backup-creation-and-scheduling",
+        "type": "capability",
+        "title": "Backup Creation and Scheduling",
+        "description": "Regular, automated creation of backups in accordance with defined policies.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:backup-creation",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cp-9-backup",
+                "control-id": "CP-9",
+                "remarks": "Backups of user-level, system-level, and application data are created and maintained according to established schedules."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:backup-protection-and-immutability",
+        "type": "capability",
+        "title": "Backup Protection and Immutability",
+        "description": "Protection of backups from unauthorized modification, deletion, or ransomware impact.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:backup-protection",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cp-9-protection",
+                "control-id": "CP-9",
+                "remarks": "Backups are protected against unauthorized access, alteration, and destruction."
+              },
+              {
+                "uuid": "urn:utoronto:security:ir:cp-10-immutability",
+                "control-id": "CP-10",
+                "remarks": "Backup mechanisms support resilience and recovery through protected and isolated storage."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:recovery-and-restore-procedures",
+        "type": "capability",
+        "title": "Recovery and Restore Procedures",
+        "description": "Documented and tested procedures to restore data and systems from backups.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:backup-recovery",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cp-10-recovery",
+                "control-id": "CP-10",
+                "remarks": "Recovery procedures are defined, exercised, and used to restore systems following disruption."
+              },
+              {
+                "uuid": "urn:utoronto:security:ir:cp-4-testing",
+                "control-id": "CP-4",
+                "remarks": "Backup and recovery processes are tested to verify effectiveness."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

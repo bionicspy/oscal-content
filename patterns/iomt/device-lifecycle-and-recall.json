@@ -1,0 +1,118 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-lifecycle-and-recall",
+    "metadata": {
+      "title": "Medical Device Lifecycle and Recall",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T13:30:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC380",
+          "remarks": "Business capability for safely managing medical devices across installation, updates, recall, and end-of-life."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD100",
+          "remarks": "Technology domain encompassing medical devices, clinical maintenance systems, and recall coordination processes."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP223",
+          "remarks": "Pattern for controlling installation, update, recall, and retirement of medical devices without disrupting patient care."
+        },
+        {
+          "name": "safety-principle",
+          "ns": "urn:health:clinical-safety",
+          "class": "safety-principle",
+          "value": "Lifecycle Safety Preservation",
+          "remarks": "Changes to medical devices across their lifecycle must not introduce new patient safety risks."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Threat context for lifecycle abuse, unpatched vulnerabilities, and unsafe device persistence in clinical environments."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Defensive intent focused on controlled updates, managed retirement, and exposure reduction of medical devices."
+        }
+      ],
+
+      "remarks": "Device Lifecycle and Recall defines how medical devices are commissioned, updated, remediated, recalled, and decommissioned in a manner that preserves patient safety, regulatory compliance, and continuity of clinical care."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:validated-device-provisioning",
+        "type": "capability",
+        "title": "Validated Device Provisioning",
+        "description": "Controlled installation and commissioning of medical devices into clinical environments.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:medical-device-provisioning",
+            "source": "urn:regulatory:medical-device-lifecycle",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:md-validated-provisioning",
+                "control-id": "MD-PROVISIONING",
+                "remarks": "Medical devices are commissioned according to validated procedures ensuring correct configuration and clinical safety."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:controlled-update-and-patching",
+        "type": "capability",
+        "title": "Controlled Update and Patching",
+        "description": "Safety-aware management of software, firmware, and configuration updates for medical devices.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:medical-device-update",
+            "source": "urn:regulatory:medical-device-lifecycle",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:md-controlled-update",
+                "control-id": "MD-UPDATE",
+                "remarks": "Updates to medical devices are evaluated, scheduled, and applied to avoid disruption to patient care."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:recall-and-decommissioning",
+        "type": "capability",
+        "title": "Recall and Decommissioning",
+        "description": "Coordinated response to medical device recalls and secure device retirement.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:medical-device-recall",
+            "source": "urn:regulatory:medical-device-recall",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:md-recall-decommission",
+                "control-id": "MD-RECALL",
+                "remarks": "Medical device recalls and decommissioning activities are executed in a manner that protects patient safety and clinical continuity."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

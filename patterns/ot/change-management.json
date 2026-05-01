@@ -1,0 +1,129 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:change-management",
+    "metadata": {
+      "title": "OT Change Management",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T09:10:00Z",
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC360",
+          "remarks": "Business capability for governing changes to operational technology systems in a safety-aware and controlled manner."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",  
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD080",
+          "remarks": "OT configuration management, controller programming, and safety validation technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP203",
+          "remarks": "Pattern for authorizing, validating, and auditing changes to OT logic and configuration."
+        },
+        {
+          "name": "safety-principle",
+          "ns": "urn:iec:62443",
+          "class": "safety-principle",
+          "value": "Safety-Preserving Change",
+          "remarks": "All changes to OT systems must preserve or improve safety and must never introduce unsafe conditions."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "OT change controls mitigate adversary attempts to manipulate control logic or introduce unsafe process states."
+        },
+        {
+          "name": "attack-techniques",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "TA0006, TA0040",
+          "remarks": "Relevant ATT&CK tactics include Credential Access and Impact related to unauthorized OT changes."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Change management aligns with D3FEND configuration control and change validation techniques."
+        },
+        {
+          "name": "defensive-techniques",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "ConfigurationManagement, ChangeControl, IntegrityValidation",
+          "remarks": "Defensive techniques that ensure only authorized and validated changes are applied to OT systems."
+        }
+      ],
+      "remarks": "OT Change Management defines how changes to controllers, configurations, and control logic are requested, reviewed, tested, approved, and audited to ensure safety and operational stability. IEC 62443 provides the normative control framework, supplemented by safety-focused Management of Change (MOC) practices."
+    },
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:change-authorization-and-approval",
+        "type": "capability",
+        "title": "Change Authorization and Approval",
+        "description": "Formal authorization and multi-disciplinary approval of OT changes prior to implementation.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:ot-change-authorization",
+            "source": "urn:iec:62443-2-1",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:iec-62443-2-1-change-approval",
+                "control-id": "IEC-62443-2-1-5.4",
+                "remarks": "Changes to OT systems are formally reviewed and approved by authorized personnel before deployment."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:change-testing-and-validation",
+        "type": "capability",
+        "title": "Change Testing and Validation",
+        "description": "Safety and functional testing of OT changes before they are applied to production environments.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:ot-change-testing",
+            "source": "urn:iec:62443-3-3",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:iec-62443-3-3-change-validation",
+                "control-id": "IEC-62443-3-3-SR-7.6",
+                "remarks": "Changes are tested and validated to ensure they do not introduce unsafe or unstable behavior."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:change-auditability",
+        "type": "capability",
+        "title": "Change Auditability",
+        "description": "Traceability, logging, and audit of OT changes for accountability and incident investigation.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:ot-change-audit",
+            "source": "urn:iec:62443-3-3",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:iec-62443-3-3-change-audit",
+                "control-id": "IEC-62443-3-3-SR-6.2",
+                "remarks": "All changes to OT systems are logged and auditable to support accountability and forensic analysis."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

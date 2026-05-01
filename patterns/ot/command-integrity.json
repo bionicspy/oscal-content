@@ -1,0 +1,130 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:command-integrity",
+    "metadata": {
+      "title": "Command Integrity",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T09:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC360",
+          "remarks": "Business capability for ensuring that only authorized, authentic, and safe commands are executed by OT systems."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD080",
+          "remarks": "OT protocol security, command validation, and industrial communications control technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP204",
+          "remarks": "Pattern for validating the authenticity, integrity, and safety of commands sent to OT systems."
+        },
+        {
+          "name": "safety-principle",
+          "ns": "urn:iec:62443",
+          "class": "safety-principle",
+          "value": "Safe Command Execution",
+          "remarks": "Only commands that are authorized, intact, and safety‑compliant may be executed by OT control systems."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Command integrity mitigates malicious command injection and unsafe control actions in OT environments."
+        },
+        {
+          "name": "attack-techniques",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "TA0005, TA0040",
+          "remarks": "Relevant ATT&CK tactics include Defense Evasion and Impact affecting industrial control systems."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Command integrity aligns with D3FEND command validation and control flow enforcement techniques."
+        },
+        {
+          "name": "defensive-techniques",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "CommandAuthentication, MessageIntegrity, ControlFlowRestriction",
+          "remarks": "Defensive techniques ensuring OT commands are authentic, intact, and safely executed."
+        }
+      ],
+      "remarks": "Command Integrity defines how OT systems ensure that only authorized and uncompromised commands are accepted and executed. This pattern protects against unsafe, malicious, or malformed control actions that could result in physical harm or system instability. IEC 62443 provides the authoritative security requirements."
+    },
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:command-authentication",
+        "type": "capability",
+        "title": "Command Authentication",
+        "description": "Verification that commands originate from authorized and trusted control entities.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iec-command-authentication",
+            "source": "urn:iec:62443-3-3",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:iec-62443-3-3-sr-1-2",
+                "control-id": "IEC-62443-3-3-SR-1.2",
+                "remarks": "OT systems verify the authenticity of command sources before accepting control actions."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:command-integrity-and-validation",
+        "type": "capability",
+        "title": "Command Integrity and Validation",
+        "description": "Validation that commands are not altered, malformed, or inconsistent with expected operation.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iec-command-integrity",
+            "source": "urn:iec:62443-3-3",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:iec-62443-3-3-sr-3-1",
+                "control-id": "IEC-62443-3-3-SR-3.1",
+                "remarks": "OT systems protect the integrity of command messages to prevent tampering or corruption."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:command-execution-controls",
+        "type": "capability",
+        "title": "Command Execution Controls",
+        "description": "Enforcement of safe execution boundaries and rejection of unsafe or out-of-sequence commands.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iec-command-execution",
+            "source": "urn:iec:62443-3-3",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:iec-62443-3-3-sr-7-1",
+                "control-id": "IEC-62443-3-3-SR-7.1",
+                "remarks": "OT systems enforce execution constraints to prevent unsafe or unauthorized control actions."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-attestation",
+    "metadata": {
+      "title": "IoT Device Attestation",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T10:55:00Z",
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC370",
+          "remarks": "Business capability for verifying the boot, firmware, and runtime integrity of IoT devices."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD090",
+          "remarks": "Measured boot, firmware integrity, and remote attestation technologies for IoT devices."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP212",
+          "remarks": "Pattern for establishing trust in IoT device software and runtime state through attestation."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Device attestation mitigates risks from compromised firmware, bootkits, and malicious runtime modification."
+        },
+        {
+          "name": "attack-techniques",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "TA0003, TA0040",
+          "remarks": "Relevant ATT&CK tactics include Persistence and Impact affecting IoT device integrity."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Device attestation aligns with D3FEND device integrity verification and trust validation techniques."
+        },
+        {
+          "name": "defensive-techniques",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "BootIntegrityVerification, RuntimeIntegrityMonitoring, TrustValidation",
+          "remarks": "Defensive techniques ensuring IoT devices operate in a known and trustworthy state."
+        }
+      ],
+      "remarks": "Device Attestation defines how IoT devices prove that their firmware, software, and runtime state are trustworthy before being permitted to interact with systems or transmit data. Control realization is expressed at the capability level using NIST IoT Core Baseline and IETF RATS concepts."
+    },
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:boot-and-firmware-integrity",
+        "type": "capability",
+        "title": "Boot and Firmware Integrity",
+        "description": "Measurement and verification of bootloaders, firmware, and critical software components during startup.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-boot-integrity",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-firmware-integrity",
+                "control-id": "NIST-IR-8425-INTEGRITY",
+                "remarks": "IoT devices implement mechanisms to verify the integrity of firmware and software at boot."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:runtime-attestation",
+        "type": "capability",
+        "title": "Runtime Attestation",
+        "description": "Ongoing or on-demand attestation of IoT device runtime state during operation.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-runtime-attestation",
+            "source": "urn:ietf:rats",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:rfc-rats-runtime-attestation",
+                "control-id": "IETF-RATS-RUNTIME",
+                "remarks": "IoT devices provide runtime integrity evidence to support continuous trust decisions."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:attestation-verification",
+        "type": "capability",
+        "title": "Attestation Verification",
+        "description": "Validation of attestation evidence by trusted verifiers or device management platforms.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-attestation-verification",
+            "source": "urn:ietf:rats",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:rfc-rats-verification",
+                "control-id": "IETF-RATS-VERIFY",
+                "remarks": "Attestation evidence is validated against expected measurements and trust policies."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

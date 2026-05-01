@@ -1,0 +1,119 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:medical-device-core",
+
+    "metadata": {
+      "title": "Medical Device Core",
+      "version": "1.1.1",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T12:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC380",
+          "remarks": "Defines governance responsibility for network-connected medical and clinical devices."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD100",
+          "remarks": "Regulated medical devices, clinical systems, and IoMT environments."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP220",
+          "remarks": "Establishes clinical scope, intended use, and patient-safety context for medical devices."
+        },
+        {
+          "name": "safety-principle",
+          "ns": "urn:health:clinical-safety",
+          "class": "safety-principle",
+          "value": "Patient Safety First",
+          "remarks": "Cybersecurity and operational controls must never compromise patient safety or continuity of care."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Provides threat context for cyber activity that could affect clinical outcomes or patient safety."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Maps defensive intent for visibility, classification, and safety-aware protection of medical devices."
+        }
+      ],
+
+      "remarks": "Defines what constitutes a regulated medical device, establishes clinical risk classification, and records baseline safety assumptions that constrain cybersecurity and operational controls for IoMT environments."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:medical-device-identification",
+        "type": "capability",
+        "title": "Medical Device Identification",
+        "description": "Identification and authoritative inventory of regulated medical and clinical devices connected to institutional networks.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:medical-device-identification",
+            "source": "urn:regulatory:medical-device-cyber",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:md-identification",
+                "control-id": "MD-IDENTIFICATION",
+                "remarks": "Medical devices are uniquely identified and associated with their intended clinical use and connectivity."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:clinical-risk-classification",
+        "type": "capability",
+        "title": "Clinical Risk Classification",
+        "description": "Classification of medical devices based on potential patient harm and impact to care delivery.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:clinical-risk-classification",
+            "source": "urn:regulatory:medical-device-risk",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:md-risk-classification",
+                "control-id": "MD-RISK-CLASS",
+                "remarks": "Medical devices are classified according to patient safety and clinical criticality."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:baseline-clinical-assumptions",
+        "type": "capability",
+        "title": "Baseline Clinical Assumptions",
+        "description": "Documentation of baseline clinical and safety assumptions governing medical device operation.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:baseline-clinical-assumptions",
+            "source": "urn:regulatory:medical-device-safety",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:md-baseline-assumptions",
+                "control-id": "MD-BASELINE",
+                "remarks": "Clinical and safety assumptions explicitly constrain operational and security controls."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

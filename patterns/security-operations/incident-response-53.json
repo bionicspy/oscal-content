@@ -1,0 +1,122 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:incident-response",
+
+    "metadata": {
+      "title": "Incident Response",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T02:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC330",
+          "remarks": "Business capability for coordinated response to security incidents."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD050",
+          "remarks": "Security operations and incident response technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP153",
+          "remarks": "Structured, repeatable security incident handling and coordination pattern."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Incident response activities are triggered by detection of ATT&CK-aligned adversary behavior."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Incident response aligns to D3FEND containment, remediation, and recovery techniques."
+        }
+      ],
+
+      "remarks": "Incident Response defines the capability to formally identify, contain, remediate, and coordinate the response to security incidents. Control implementation is expressed at the capability level to support audit traceability and operational clarity."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:incident-identification-and-classification",
+        "type": "capability",
+        "title": "Incident Identification and Classification",
+        "description": "Formal recognition, declaration, and categorization of security incidents.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:ir-identification",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:ir-4-identification",
+                "control-id": "IR-4",
+                "remarks": "Security events are evaluated and formally declared as incidents according to documented criteria."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:containment-and-remediation",
+        "type": "capability",
+        "title": "Containment and Remediation",
+        "description": "Actions to limit the impact of incidents and remediate affected systems and data.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:ir-containment",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:ir-4-containment",
+                "control-id": "IR-4",
+                "remarks": "Containment and eradication actions are taken to limit incident impact and restore services."
+              },
+              {
+                "uuid": "urn:utoronto:security:ir:ir-7-remediation",
+                "control-id": "IR-7",
+                "remarks": "Remediation actions and lessons learned are incorporated into incident response improvements."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:coordination-and-communication",
+        "type": "capability",
+        "title": "Coordination and Communication",
+        "description": "Structured coordination and communication with internal and external stakeholders.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:ir-coordination",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:ir-6-communication",
+                "control-id": "IR-6",
+                "remarks": "Incident status and required notifications are communicated to stakeholders and external entities."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

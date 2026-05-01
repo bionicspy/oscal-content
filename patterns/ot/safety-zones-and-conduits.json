@@ -1,0 +1,129 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:safety-zones-and-conduits",
+    "metadata": {
+      "title": "Safety Zones and Conduits",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T08:20:00Z",
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC360",
+          "remarks": "Business capability for segmenting OT systems according to safety, function, and risk."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD080",
+          "remarks": "OT network segmentation, industrial firewalls, and protocol-aware gateway technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP201",
+          "remarks": "IEC 62443-aligned pattern for enforcing safety zones and controlled conduits in OT environments."
+        },
+        {
+          "name": "safety-principle",
+          "ns": "urn:iec:62443",
+          "class": "safety-principle",
+          "value": "Fail-Safe Segmentation",
+          "remarks": "Segmentation ensures unsafe interactions cannot occur even during control or network failures."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Zones and conduits mitigate attacker lateral movement and unsafe command propagation in OT."
+        },
+        {
+          "name": "attack-techniques",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "TA0008, TA0040",
+          "remarks": "Relevant ATT&CK tactics include Lateral Movement and Impact in OT/ICS environments."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Segmentation aligns with D3FEND network isolation and control flow restriction techniques."
+        },
+        {
+          "name": "defensive-techniques",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "NetworkSegmentation, BoundaryProtection, ProtocolFiltering",
+          "remarks": "Defensive techniques supporting zone isolation and controlled conduits."
+        }
+      ],
+      "remarks": "Safety Zones and Conduits defines how OT systems are segmented into safety-aligned zones with explicitly controlled conduits, ensuring that communication is predictable, bounded, and cannot introduce unsafe interactions. IEC 62443 provides the normative control basis."
+    },
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:zone-definition-and-classification",
+        "type": "capability",
+        "title": "Zone Definition and Classification",
+        "description": "Definition and classification of OT zones based on function, trust level, and safety impact.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iec-zone-definition",
+            "source": "urn:iec:62443-3-2",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:iec-62443-3-2-zones",
+                "control-id": "IEC-62443-3-2-5.2",
+                "remarks": "OT systems are grouped into zones according to safety, function, and risk."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:conduit-definition-and-control",
+        "type": "capability",
+        "title": "Conduit Definition and Control",
+        "description": "Explicit definition and control of communication paths between OT zones.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iec-conduit-control",
+            "source": "urn:iec:62443-3-3",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:iec-62443-3-3-conduits",
+                "control-id": "IEC-62443-3-3-SR-5.2",
+                "remarks": "All communication between zones is constrained to defined conduits with approved protocols and flows."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:inter-zone-policy-enforcement",
+        "type": "capability",
+        "title": "Inter-Zone Policy Enforcement",
+        "description": "Enforcement mechanisms ensuring only authorized traffic traverses OT conduits.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iec-policy-enforcement",
+            "source": "urn:iec:62443-3-3",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:iec-62443-3-3-policy-enforcement",
+                "control-id": "IEC-62443-3-3-SR-5.1",
+                "remarks": "Security mechanisms enforce zone policies and prevent unauthorized control or data flows."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

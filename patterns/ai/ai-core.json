@@ -1,0 +1,170 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:ai-core",
+
+    "metadata": {
+      "title": "AI Core",
+      "version": "1.2.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T15:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC390",
+          "remarks": "AI Core capability for identifying, scoping, and governing artificial intelligence systems, including agentic and interconnected AI."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD110",
+          "remarks": "Artificial intelligence, machine learning, autonomous agents, and research AI platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP230",
+          "remarks": "Defines the foundational scope, trust boundaries, and threat context for AI systems."
+        },
+
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Used to model traditional adversarial activity targeting AI infrastructure, supply chains, platforms, and deployment environments."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:atlas",
+          "class": "attack-framework",
+          "value": "ATLAS",
+          "remarks": "Used to model AI‑specific adversarial behaviors including model manipulation, data poisoning, prompt injection, and agentic misuse."
+        },
+
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Training Integrity Compromise",
+          "remarks": "Threats in which AI training or fine-tuning data is poisoned, manipulated, or backdoored to alter downstream behavior."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Inference Manipulation and Prompt Injection",
+          "remarks": "Threats exploiting inference-time inputs, context, or tool invocation to bypass controls or alter AI behavior."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Model Extraction and Intellectual Property Theft",
+          "remarks": "Threats involving unauthorized reconstruction of model behavior, parameters, or sensitive training data through querying."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Epistemic Harm and False Confidence",
+          "remarks": "Threats where AI produces plausible but incorrect, misleading, or overconfident outputs that cause downstream harm."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Unsafe Autonomy and Over-Delegation",
+          "remarks": "Threats arising from agentic AI acting beyond authorized scope or humans over-relying on AI decisions."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Inter-Agent Cascading Failure",
+          "remarks": "Threats caused by agent-to-agent delegation, transitive trust, or error amplification across AI systems."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Semantic Data Leakage and Privacy Inference",
+          "remarks": "Threats where sensitive information is revealed indirectly through AI-generated content or inference."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Misuse, Dual-Use, and Economic Abuse",
+          "remarks": "Threats involving repurposing of AI capabilities for harm, misuse of research outputs, or cost and resource exhaustion."
+        }
+      ],
+
+      "remarks": "AI Core establishes the definition, scope, trust boundaries, and foundational threat model for artificial intelligence systems. It rationalizes the existence of the AI trust plane by explicitly enumerating AI-native threat classes that cannot be adequately addressed by traditional application, data, or SDLC security patterns."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:ai-system-identification",
+        "type": "capability",
+        "title": "AI System Identification",
+        "description": "Identification and inventory of AI models, services, agents, and supporting systems.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:ai-identification",
+            "source": "urn:utoronto:ai:governance",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:ai-identification",
+                "control-id": "AI-IDENTIFICATION",
+                "remarks": "All AI models, services, and agents are identified, catalogued, and associated with accountable owners."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:intended-use-and-scope",
+        "type": "capability",
+        "title": "Intended Use and Scope",
+        "description": "Definition of approved purposes, limitations, and prohibited uses of AI systems.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:ai-scope",
+            "source": "urn:utoronto:ai:governance",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:ai-intended-use",
+                "control-id": "AI-INTENDED-USE",
+                "remarks": "Each AI system has a documented intended use, scope, and explicit prohibited uses."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:trust-boundary-definition",
+        "type": "capability",
+        "title": "Trust Boundary Definition",
+        "description": "Definition of trust boundaries between humans, AI models, agents, tools, and external systems.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:ai-trust-boundaries",
+            "source": "urn:utoronto:ai:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:ai-trust-boundaries",
+                "control-id": "AI-TRUST-BOUNDARIES",
+                "remarks": "Trust boundaries are explicitly defined to constrain AI autonomy, tool usage, and inter-system interaction."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:agent-interconnection-and-delegation",
+    "metadata": {
+      "title": "Agent Interconnection and Delegation",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T16:50:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC390",
+          "remarks": "Business capability for governing trust, authority, and delegation between interconnected AI agents and AI systems."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD110",
+          "remarks": "Agent-to-agent communication, autonomous delegation, multi-agent systems, and distributed AI architectures."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP236",
+          "remarks": "Pattern defining how AI agents establish trust, delegate authority, and restrict transitive risk across agent boundaries."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:atlas",
+          "class": "attack-framework",
+          "value": "ATLAS",
+          "remarks": "Provides AI-specific threat taxonomy for multi-agent cascading failures, delegated misuse, and transitive authority escalation."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Inter-Agent Cascading Failure",
+          "remarks": "Threats where errors, hallucinations, or misuse propagate across interconnected AI agents."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Delegated Authority Escalation",
+          "remarks": "Threats arising when AI agents delegate capabilities or decisions beyond approved scope or without human oversight."
+        }
+      ],
+
+      "remarks": "Agent Interconnection and Delegation defines how AI agents establish trust relationships, delegate authority, and constrain transitive risk. This pattern exists to prevent systemic failures, attribution loss, and runaway delegation in multi-agent AI environments."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:agent-trust-establishment",
+        "type": "capability",
+        "title": "Agent Trust Establishment",
+        "description": "Explicit authorization and validation of trust relationships between AI agents before interaction or task delegation.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:agent-trust",
+            "source": "urn:utoronto:ai:governance",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:agent-trust",
+                "control-id": "AI-AGENT-TRUST",
+                "remarks": "AI agents are permitted to interact or collaborate only after explicit trust establishment and policy approval."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:delegated-capability-scopes",
+        "type": "capability",
+        "title": "Delegated Capability Scopes",
+        "description": "Restriction of what authority or actions an AI agent may delegate to another agent.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:delegation-scope",
+            "source": "urn:utoronto:ai:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:delegation-scope",
+                "control-id": "AI-DELEGATION-SCOPE",
+                "remarks": "Delegated tasks and permissions are limited to predefined scopes and cannot expand authority transitively."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:cross-agent-auditability",
+        "type": "capability",
+        "title": "Cross-Agent Auditability",
+        "description": "Preservation of attribution, traceability, and accountability across agent-to-agent interactions.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cross-agent-audit",
+            "source": "urn:utoronto:ai:operations",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cross-agent-audit",
+                "control-id": "AI-CROSS-AGENT-AUDIT",
+                "remarks": "All agent-to-agent interactions are logged and correlated to preserve end-to-end accountability and forensic traceability."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

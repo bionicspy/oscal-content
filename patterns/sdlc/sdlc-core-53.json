@@ -1,0 +1,95 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:sdlc-core",
+
+    "metadata": {
+      "title": "SDLC Core",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T22:50:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC320"
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD040"
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP140"
+        }
+      ],
+
+      "remarks": "SDLC Core defines what constitutes institutional software delivery and establishes baseline expectations for governed, repeatable, and auditable software development and delivery activities. This pattern establishes scope and legitimacy only and does not itself define security controls, integrity enforcement, or assurance mechanisms."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-scope-definition",
+        "type": "capability",
+        "title": "SDLC Scope Definition",
+        "description": "Definition of which software delivery activities, artifacts, and pipelines are governed under the institutional SDLC.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:sdlc-scope",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sdlc-scope-pl-8",
+                "control-id": "pl-8",
+                "remarks": "Define the scope and boundaries of institutional software development and delivery activities."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:delivery-models",
+        "type": "capability",
+        "title": "Delivery Models",
+        "description": "Definition of supported software delivery models such as CI/CD, DevSecOps, and Infrastructure as Code.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:sdlc-delivery-models",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sdlc-delivery-models-pm-1",
+                "control-id": "pm-1",
+                "remarks": "Establish and maintain governance for institutional software delivery practices."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:baseline-sdlc-trust-assumptions",
+        "type": "capability",
+        "title": "Baseline SDLC Trust Assumptions",
+        "description": "Minimum expectations for automation, traceability, repeatability, and governance within the software delivery lifecycle.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:sdlc-baseline-assumptions",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sdlc-baseline-pl-2",
+                "control-id": "pl-2",
+                "remarks": "Establish baseline assumptions for secure and governed software delivery."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:sdlc-operations-handover",
+
+    "metadata": {
+      "title": "SDLC Operations Handover",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T00:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC320"
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD040"
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP145"
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE524"
+        }
+      ],
+
+      "remarks": "SDLC Operations Handover defines the capability to securely transition software artifacts, configurations, and assurance context from delivery pipelines into operational environments. This pattern preserves integrity, authorization, and assurance continuity at the point where software becomes operational and does not define runtime execution controls."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:release-authorization-and-promotion",
+        "type": "capability",
+        "title": "Release Authorization and Promotion",
+        "description": "Controlled authorization and promotion of software artifacts into operational environments.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:sdlc-release-promotion",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sdlc-release-promotion-cm-5",
+                "control-id": "cm-5",
+                "remarks": "Restrict and authorize the promotion of software artifacts into production environments."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:deployment-artifact-integrity",
+        "type": "capability",
+        "title": "Deployment Artifact Integrity",
+        "description": "Verification that deployed software artifacts match approved and verified delivery outputs.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:sdlc-deployment-integrity",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sdlc-deployment-integrity-si-7",
+                "control-id": "si-7",
+                "remarks": "Ensure integrity of software artifacts during deployment to operations."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:assurance-continuity",
+        "type": "capability",
+        "title": "Assurance Continuity",
+        "description": "Preservation and availability of SDLC assurance artifacts for operational use and audit.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:sdlc-assurance-continuity",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sdlc-assurance-continuity-ca-7",
+                "control-id": "ca-7",
+                "remarks": "Maintain and make available assurance evidence supporting operational trust decisions."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

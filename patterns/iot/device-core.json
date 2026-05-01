@@ -1,0 +1,122 @@
+{
+"component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-core",
+    "metadata": {
+      "title": "IoT Device Core",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T10:10:00Z",
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC370",
+          "remarks": "Business capability for defining, classifying, and governing Internet of Things devices and their trust boundaries."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD090",
+          "remarks": "Internet of Things (IoT), embedded systems, and edge‑connected device technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP210",
+          "remarks": "Pattern establishing the scope, trust boundaries, and baseline assumptions for IoT devices."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "IoT device context for understanding attacker behavior targeting exposed or unmanaged devices."
+        },
+        {
+          "name": "attack-techniques",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "TA0001, TA0008, TA0040",
+          "remarks": "Relevant ATT&CK tactics include Initial Access, Lateral Movement, and Impact affecting IoT environments."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "IoT core governance aligns with defensive techniques for asset visibility and boundary definition."
+        },
+        {
+          "name": "defensive-techniques",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "AssetInventory, BoundaryDefinition, ExposureReduction",
+          "remarks": "Defensive techniques supporting baseline IoT device trust and risk reduction."
+        }
+      ],
+      "remarks": "Device Core defines what constitutes an IoT device, the baseline assumptions under which it operates, and the physical, network, and logical trust boundaries that constrain it. Control realization is expressed at the capability level using NIST IoT Core Baseline guidance."
+    },
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:device-identification-and-classification",
+        "type": "capability",
+        "title": "Device Identification and Classification",
+        "description": "Identification and classification of IoT devices by type, role, capability, and risk.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-device-identification",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-device-identification",
+                "control-id": "NIST-IR-8425-DEVID",
+                "remarks": "IoT devices are uniquely identifiable and categorized based on function, deployment, and risk."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:device-trust-boundaries",
+        "type": "capability",
+        "title": "Device Trust Boundaries",
+        "description": "Definition of physical, logical, and network boundaries separating IoT devices from other systems.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-trust-boundaries",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-boundaries",
+                "control-id": "NIST-IR-8425-BOUNDARY",
+                "remarks": "Trust boundaries are defined to limit the blast radius of compromised IoT devices."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:baseline-device-assumptions",
+        "type": "capability",
+        "title": "Baseline Device Assumptions",
+        "description": "Documentation of baseline assumptions regarding device capability, connectivity, updateability, and exposure.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-baseline-assumptions",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-baseline",
+                "control-id": "NIST-IR-8425-BASELINE",
+                "remarks": "Baseline security and operational assumptions are defined for IoT devices based on their constraints."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

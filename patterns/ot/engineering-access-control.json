@@ -1,0 +1,129 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:engineering-access-control",
+    "metadata": {
+      "title": "Engineering Access Control",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T08:45:00Z",
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC360",
+          "remarks": "Business capability for controlling and governing engineering and privileged access to operational technology systems."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD080",
+          "remarks": "Engineering workstations, OT privileged access management, and session control technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP202",
+          "remarks": "Pattern for restricting, auditing, and supervising engineering access to OT environments."
+        },
+        {
+          "name": "safety-principle",
+          "ns": "urn:iec:62443",
+          "class": "safety-principle",
+          "value": "Controlled Engineering Access",
+          "remarks": "Engineering access must be explicitly authorized and constrained to prevent unsafe process modification."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Engineering access controls mitigate abuse of engineering functions and credential misuse in OT."
+        },
+        {
+          "name": "attack-techniques",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "TA0005, TA0006, TA0040",
+          "remarks": "Relevant tactics include Defense Evasion, Credential Access, and Impact in OT/ICS environments."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Engineering access governance aligns with privileged access restriction and activity monitoring techniques."
+        },
+        {
+          "name": "defensive-techniques",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "PrivilegedAccountManagement, AccessRestriction, SessionMonitoring",
+          "remarks": "Defensive techniques supporting safe engineering access in OT environments."
+        }
+      ],
+      "remarks": "Engineering Access Control defines how engineering and privileged access to OT systems is authorized, limited, and audited to prevent unsafe or malicious modification of control logic. IEC 62443 provides the authoritative control framework."
+    },
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:engineering-identity-governance",
+        "type": "capability",
+        "title": "Engineering Identity Governance",
+        "description": "Identification, authorization, and lifecycle management of engineering and maintenance identities.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iec-engineering-identity",
+            "source": "urn:iec:62443-3-3",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:iec-62443-3-3-sr-1-1",
+                "control-id": "IEC-62443-3-3-SR-1.1",
+                "remarks": "Engineering users are uniquely identified and authenticated prior to accessing OT systems."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:privileged-ot-access-controls",
+        "type": "capability",
+        "title": "Privileged OT Access Controls",
+        "description": "Enforcement of least privilege and role-based access for OT engineering functions.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iec-ot-privilege-control",
+            "source": "urn:iec:62443-3-3",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:iec-62443-3-3-sr-2-1",
+                "control-id": "IEC-62443-3-3-SR-2.1",
+                "remarks": "Engineering privileges are restricted to the minimum necessary to perform authorized tasks."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:engineering-session-monitoring",
+        "type": "capability",
+        "title": "Engineering Session Monitoring",
+        "description": "Monitoring, logging, and review of engineering activities performed on OT systems.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iec-engineering-session-monitoring",
+            "source": "urn:iec:62443-3-3",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:iec-62443-3-3-sr-6-1",
+                "control-id": "IEC-62443-3-3-SR-6.1",
+                "remarks": "Engineering activities are logged and monitored to support accountability and forensic analysis."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

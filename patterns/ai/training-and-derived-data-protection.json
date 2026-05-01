@@ -1,0 +1,126 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:training-and-derived-data-protection",
+
+    "metadata": {
+      "title": "Training and Derived Data Protection",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T19:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC390",
+          "remarks": "Business capability for protecting training data and AI-derived artifacts from poisoning, leakage, misuse, and inappropriate reuse."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD110",
+          "remarks": "AI training pipelines, fine-tuning workflows, embeddings, gradients, checkpoints, and derived model artifacts."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP243",
+          "remarks": "Pattern defining how AI training data and derived representations are governed, protected, and constrained across the AI lifecycle."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:atlas",
+          "class": "attack-framework",
+          "value": "ATLAS",
+          "remarks": "Provides AI-specific threat context for training data poisoning, backdoor insertion, memorization, and privacy inference attacks."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Training Data Poisoning and Backdoor Insertion",
+          "remarks": "Threats where malicious or manipulated data is introduced into AI training or fine-tuning pipelines to alter downstream behavior."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Derived Artifact Leakage and Memorization",
+          "remarks": "Threats where embeddings, gradients, or model parameters implicitly retain or expose sensitive training data."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Privacy Inference from Learned Representations",
+          "remarks": "Threats where protected attributes or membership can be inferred from trained models or derived artifacts."
+        }
+      ],
+
+      "remarks": "Training and Derived Data Protection defines how data used to train AI systems, as well as artifacts derived from that data, are governed and protected. This pattern exists to address AI-native risks such as training data poisoning, memorization, and privacy inference that are not mitigated by traditional data protection controls."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:training-data-origin-and-integrity",
+        "type": "capability",
+        "title": "Training Data Origin and Integrity",
+        "description": "Verification of provenance, integrity, and authorized use of datasets used for AI training and fine-tuning.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:training-data-integrity",
+            "source": "urn:utoronto:ai:governance",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:training-data-integrity",
+                "control-id": "AI-TRAINING-DATA-INTEGRITY",
+                "remarks": "Training and fine-tuning datasets are validated for provenance, integrity, and approved purpose prior to use."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:derived-artifact-governance",
+        "type": "capability",
+        "title": "Derived Artifact Governance",
+        "description": "Governance of AI-derived artifacts such as embeddings, checkpoints, gradients, and intermediate representations.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:derived-artifact-governance",
+            "source": "urn:utoronto:ai:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:derived-artifact-governance",
+                "control-id": "AI-DERIVED-ARTIFACT-GOVERNANCE",
+                "remarks": "Derived AI artifacts are treated as sensitive assets and protected against unauthorized access, reuse, or disclosure."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:data-scope-and-appropriateness",
+        "type": "capability",
+        "title": "Data Scope and Appropriateness",
+        "description": "Enforcement of consent, purpose limitation, and contextual appropriateness for AI training data usage.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:data-scope-appropriateness",
+            "source": "urn:utoronto:ai:privacy",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:data-scope-appropriateness",
+                "control-id": "AI-DATA-SCOPE",
+                "remarks": "AI training data usage is restricted to approved scopes, purposes, and regulatory constraints."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

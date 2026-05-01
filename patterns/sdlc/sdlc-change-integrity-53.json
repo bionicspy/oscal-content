@@ -1,0 +1,101 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:sdlc-change-integrity",
+
+    "metadata": {
+      "title": "SDLC Change Integrity",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T23:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC320"
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD040"
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP142"
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE521"
+        }
+      ],
+
+      "remarks": "SDLC Change Integrity defines the capability to ensure that software changes are authorized, reviewed, and protected from tampering throughout the delivery lifecycle. This pattern enforces integrity from source control through build and deployment pipelines and does not address identity attribution or security testing."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:change-authorization-and-approval",
+        "type": "capability",
+        "title": "Change Authorization and Approval",
+        "description": "Formal authorization and review requirements for software changes prior to integration or deployment.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:sdlc-change-approval",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sdlc-change-approval-cm-3",
+                "control-id": "cm-3",
+                "remarks": "Require authorization and approval for changes to software and infrastructure code."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:source-and-artifact-integrity",
+        "type": "capability",
+        "title": "Source and Artifact Integrity",
+        "description": "Protection of source code, build outputs, and deployment artifacts from unauthorized modification.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:sdlc-artifact-integrity",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sdlc-artifact-integrity-si-7",
+                "control-id": "si-7",
+                "remarks": "Protect software and build artifacts from unauthorized changes and detect integrity violations."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:pipeline-integrity-controls",
+        "type": "capability",
+        "title": "Pipeline Integrity Controls",
+        "description": "Integrity protection of CI/CD pipelines, build environments, and promotion workflows.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:sdlc-pipeline-integrity",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sdlc-pipeline-integrity-cm-5",
+                "control-id": "cm-5",
+                "remarks": "Restrict and protect software delivery pipelines from unauthorized modification."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:dependency-transparency",
+    "metadata": {
+      "title": "Dependency Transparency",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T07:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC350",
+          "remarks": "Business capability for maintaining transparency into third-party software dependencies and components."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD070",
+          "remarks": "SBOM generation, dependency inventory, and software composition analysis technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP193",
+          "remarks": "Pattern for creating, maintaining, and analyzing software bills of materials to support supply chain risk management."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Dependency transparency mitigates ATT&CK techniques that exploit unknown or vulnerable third-party software components."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "SBOM and dependency transparency align with D3FEND software composition analysis and dependency risk identification techniques."
+        }
+      ],
+
+      "remarks": "Dependency Transparency defines the capability to generate, maintain, and analyze software bills of materials (SBOMs) to ensure visibility into third-party and open-source components. Control realization is expressed at the capability level to support traceable and enforceable software supply chain risk management."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:sbom-generation-and-maintenance",
+        "type": "capability",
+        "title": "SBOM Generation and Maintenance",
+        "description": "Generation and upkeep of software bills of materials for applications, services, and artifacts.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:sbom-generation",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sr-3-sbom-generation",
+                "control-id": "SR-3",
+                "remarks": "Software components and dependencies are documented in software bills of materials prior to use."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dependency-inventory-and-tracking",
+        "type": "capability",
+        "title": "Dependency Inventory and Tracking",
+        "description": "Centralized inventory and lifecycle tracking of third-party and open-source dependencies.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dependency-inventory",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sr-6-dependency-inventory",
+                "control-id": "SR-6",
+                "remarks": "Dependencies are tracked and monitored to identify changes in risk posture over time."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dependency-risk-analysis",
+        "type": "capability",
+        "title": "Dependency Risk Analysis",
+        "description": "Analysis of dependency information to identify vulnerable, deprecated, or malicious components.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dependency-risk-analysis",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:ra-5-dependency-analysis",
+                "control-id": "RA-5",
+                "remarks": "Dependency information is analyzed to identify vulnerabilities and exposure to known risks."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

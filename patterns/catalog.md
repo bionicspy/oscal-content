@@ -242,11 +242,16 @@ iomt/
 ai/
 ├── ai-core
 ├── ai-identity-and-access
+├── accountability-and-oversight
+├── agentic-behavior-governance
 ├── model-lifecycle-governance
 ├── training-data-protection
+├── context-and-tooling-security (MCP)
 ├── inference-protection
 ├── bias-and-explainability
+├── output-validity-and-uncertainty
 ├── misuse-and-abuse-detection
+├── agent-interconnection-and-delegation (A2A)
 └── trustworthy-ai (composite)
 ```
 

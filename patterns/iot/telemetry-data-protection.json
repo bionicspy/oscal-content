@@ -1,0 +1,122 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:telemetry-data-protection",
+    "metadata": {
+      "title": "IoT Telemetry Data Protection",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T11:40:00Z",
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC370",
+          "remarks": "Business capability for protecting the authenticity, integrity, and confidentiality of data produced and consumed by IoT devices."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD090",
+          "remarks": "IoT telemetry and command data protection technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP214",
+          "remarks": "Pattern for ensuring IoT telemetry and command data is authentic, intact, confidential, and policy-compliant."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Telemetry data protection mitigates spoofing, tampering, and data manipulation attacks affecting IoT devices."
+        },
+        {
+          "name": "attack-techniques",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "TA0006, TA0040",
+          "remarks": "Relevant ATT&CK tactics include Credential Access and Impact through falsified or manipulated telemetry."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Telemetry protection aligns with D3FEND data integrity, authentication, and transport protection techniques."
+        },
+        {
+          "name": "defensive-techniques",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "MessageAuthentication, DataIntegrityVerification, EncryptedChannel",
+          "remarks": "Defensive techniques ensuring IoT telemetry data is trustworthy and protected in transit."
+        }
+      ],
+      "remarks": "Telemetry Data Protection defines how IoT devices protect the data they transmit and receive to ensure authenticity, integrity, confidentiality, and policy compliance. Control realization is expressed at the capability level using NIST IoT Core Baseline data protection principles."
+    },
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:telemetry-authentication-and-integrity",
+        "type": "capability",
+        "title": "Telemetry Authentication and Integrity",
+        "description": "Mechanisms ensuring telemetry originates from authentic devices and is not altered in transit.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-telemetry-integrity",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-telemetry-integrity",
+                "control-id": "NIST-IR-8425-DATA-INTEGRITY",
+                "remarks": "IoT telemetry is authenticated and integrity-protected to prevent spoofing and tampering."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:telemetry-confidentiality",
+        "type": "capability",
+        "title": "Telemetry Confidentiality",
+        "description": "Protection of IoT telemetry data against unauthorized disclosure during transmission.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-telemetry-confidentiality",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-confidentiality",
+                "control-id": "NIST-IR-8425-DATA-CONF",
+                "remarks": "IoT telemetry is encrypted in transit when confidentiality is required."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:telemetry-policy-enforcement",
+        "type": "capability",
+        "title": "Telemetry Policy Enforcement",
+        "description": "Enforcement of data minimization, scope, and usage policy for IoT telemetry and commands.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-telemetry-policy",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-telemetry-policy",
+                "control-id": "NIST-IR-8425-DATA-MGMT",
+                "remarks": "IoT telemetry collection and usage are constrained by defined data protection and minimization policies."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

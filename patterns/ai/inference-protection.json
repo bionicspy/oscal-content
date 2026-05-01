@@ -1,0 +1,133 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:inference-protection",
+
+    "metadata": {
+      "title": "Inference Protection",
+      "version": "1.1.0",
+      "oscal-version": "1.0.0",
+      "last-modified": "2026-04-29T19:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC390",
+          "remarks": "Business capability for protecting AI inference interfaces from abuse, leakage, extraction, and unsafe or excessive use."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD110",
+          "remarks": "AI inference endpoints, APIs, interactive query interfaces, and generative service surfaces."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP244",
+          "remarks": "Pattern defining how access to AI inference is authorized, constrained, monitored, and defended against abuse and extraction."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Provides adversary-centric context for abuse of exposed services, denial-of-service, and resource exhaustion via AI inference interfaces."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:atlas",
+          "class": "attack-framework",
+          "value": "ATLAS",
+          "remarks": "Provides AI-specific threat taxonomy for model extraction, membership inference, prompt abuse, and inference-time attacks."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Model Extraction and Intellectual Property Theft",
+          "remarks": "Threats where attackers reconstruct model behavior or parameters through repeated or adaptive querying."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Inference Abuse and Denial-of-Wallet",
+          "remarks": "Threats involving excessive, recursive, or adversarial inference requests that exhaust resources or incur excessive cost."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Membership and Attribute Inference",
+          "remarks": "Threats where sensitive training data membership or attributes are inferred through inference responses."
+        }
+      ],
+
+      "remarks": "Inference Protection defines how AI systems expose inference capabilities in a controlled and defendable manner. This pattern exists to mitigate AI-native risks such as model extraction, inference abuse, membership inference, and economic denial-of-service that arise from unrestricted or poorly governed querying."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:inference-access-controls",
+        "type": "capability",
+        "title": "Inference Access Controls",
+        "description": "Authorization controls defining who or what may invoke AI inference and under what conditions.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:inference-access",
+            "source": "urn:utoronto:ai:operations",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:inference-access",
+                "control-id": "AI-INFERENCE-ACCESS",
+                "remarks": "AI inference endpoints are accessible only to authenticated and authorized identities with approved purposes."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:rate-limiting-and-usage-controls",
+        "type": "capability",
+        "title": "Rate Limiting and Usage Controls",
+        "description": "Constraining the volume, frequency, and pattern of inference requests to prevent abuse and extraction.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:rate-limiting",
+            "source": "urn:utoronto:ai:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:rate-limiting",
+                "control-id": "AI-INFERENCE-RATE-LIMIT",
+                "remarks": "Inference usage is throttled and monitored to prevent model extraction, denial-of-wallet, and abusive querying patterns."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:output-safeguards-and-response-shaping",
+        "type": "capability",
+        "title": "Output Safeguards and Response Shaping",
+        "description": "Controls applied to inference responses to limit leakage, over-precision, or harmful output patterns.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:output-safeguards",
+            "source": "urn:utoronto:ai:operations",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:output-safeguards",
+                "control-id": "AI-INFERENCE-OUTPUT-GUARD",
+                "remarks": "AI inference responses are shaped or constrained to reduce the risk of leakage, extraction, or unsafe disclosure."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

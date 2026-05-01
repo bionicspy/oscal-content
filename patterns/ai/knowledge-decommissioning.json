@@ -1,0 +1,119 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:knowledge-decommissioning",
+
+    "metadata": {
+      "title": "Knowledge Decommissioning",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "lst-modified": "2026-04-29T20:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC390",
+          "remarks": "Business capability for safely retiring, removing, and preventing reuse of knowledge retained or derived by AI systems."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD110",
+          "remarks": "AI model artifacts, embeddings, memory stores, fine-tuned derivatives, caches, and downstream AI dependencies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP248",
+          "remarks": "Pattern defining how AI-retained knowledge and derived artifacts are identified, removed, and rendered unusable at end-of-life."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:atlas",
+          "class": "attack-framework",
+          "value": "ATLAS",
+          "remarks": "Provides AI-specific threat context for residual knowledge leakage, unintended reuse, and post-retirement exposure."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Residual Knowledge Leakage",
+          "remarks": "Threats where AI systems retain or expose sensitive knowledge after models or datasets are decommissioned."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Downstream Dependency Persistence",
+          "remarks": "Threats where retired AI models continue influencing behavior through embeddings, derivatives, or dependent systems."
+        }
+      ],
+
+      "remarks": "Knowledge Decommissioning defines how AI systems safely forget. This pattern exists to address AI-native risks where sensitive, outdated, or disallowed knowledge persists beyond model retirement through embeddings, derivatives, caches, or downstream dependencies."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:residual-artifact-identification",
+        "type": "capability",
+        "title": "Residual Artifact Identification",
+        "description": "Identification of embeddings, checkpoints, caches, and other artifacts that retain model knowledge.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:residual-artifact-identification",
+            "source": "urn:utoronto:ai:operations",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:residual-artifact-identification",
+                "control-id": "AI-KNOWLEDGE-RESIDUALS",
+                "remarks": "AI systems maintain inventories of residual artifacts that may retain knowledge after model or data decommissioning."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:knowledge-retirement",
+        "type": "capability",
+        "title": "Knowledge Retirement",
+        "description": "Secure removal, invalidation, or isolation of AI-retained knowledge and representations.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:knowledge-retirement",
+            "source": "urn:utoronto:ai:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:knowledge-retirement",
+                "control-id": "AI-KNOWLEDGE-RETIRE",
+                "remarks": "Residual AI knowledge is removed, invalidated, or cryptographically rendered unusable when no longer permitted."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:downstream-dependency-cleanup",
+        "type": "capability",
+        "title": "Downstream Dependency Cleanup",
+        "description": "Identification and remediation of systems or models that depend on retired AI knowledge.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:downstream-cleanup",
+            "source": "urn:utoronto:ai:governance",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:downstream-cleanup",
+                "control-id": "AI-DOWNSTREAM-CLEANUP",
+                "remarks": "Dependent systems are updated, retrained, or disabled to prevent continued use of retired AI knowledge."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

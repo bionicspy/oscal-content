@@ -1,0 +1,117 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:vendor-risk-management",
+
+    "metadata": {
+      "title": "Vendor Risk Management",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T05:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC350",
+          "remarks": "Business capability for governing security and operational risks introduced by external vendors and service providers."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD070",
+          "remarks": "Third-party risk management, vendor assurance, and external dependency governance technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP190",
+          "remarks": "Pattern for assessing, approving, monitoring, and governing third-party vendor risk."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Vendor risk management mitigates ATT&CK techniques enabled through third-party compromise or abuse of trusted relationships."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Vendor governance aligns with D3FEND organizational policy enforcement and dependency risk mitigation techniques."
+        }
+      ],
+
+      "remarks": "Vendor Risk Management defines the capability to identify, assess, approve, and continuously govern risks introduced by external vendors and service providers. Control implementation is expressed at the capability level to ensure traceable, enforceable third-party risk governance."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:vendor-identification-and-classification",
+        "type": "capability",
+        "title": "Vendor Identification and Classification",
+        "description": "Identification and categorization of vendors based on criticality, access level, and risk exposure.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:vendor-classification",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sr-2-vendor-classification",
+                "control-id": "SR-2",
+                "remarks": "Vendors are identified, categorized, and prioritized based on their access, criticality, and potential risk."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:risk-assessment-and-due-diligence",
+        "type": "capability",
+        "title": "Risk Assessment and Due Diligence",
+        "description": "Initial and periodic assessment of vendor security, privacy, and operational risk.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:vendor-risk-assessment",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sr-3-due-diligence",
+                "control-id": "SR-3",
+                "remarks": "Vendor risk assessments evaluate security controls, practices, and assurance evidence prior to engagement and periodically thereafter."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:contractual-and-control-requirements",
+        "type": "capability",
+        "title": "Contractual and Control Requirements",
+        "description": "Definition and enforcement of contractual, policy, and technical security requirements for vendors.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:vendor-contract-controls",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:sr-5-contractual-controls",
+                "control-id": "SR-5",
+                "remarks": "Security requirements and controls are incorporated into vendor contracts and monitored for compliance."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

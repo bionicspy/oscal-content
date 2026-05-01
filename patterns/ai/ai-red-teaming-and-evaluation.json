@@ -1,0 +1,126 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:ai-red-teaming-and-evaluation",
+
+    "metadata": {
+      "title": "AI Red Teaming and Evaluation",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T17:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC390",
+          "remarks": "Business capability for proactively identifying and evaluating adversarial, unsafe, or unintended behaviors in AI systems through structured testing."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD110",
+          "remarks": "AI evaluation frameworks, adversarial testing, red teaming methodologies, and safety assessment environments."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP238",
+          "remarks": "Pattern defining how AI systems are continuously tested against adversarial, misuse, and failure scenarios across their lifecycle."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:atlas",
+          "class": "attack-framework",
+          "value": "ATLAS",
+          "remarks": "Provides AI-specific adversarial techniques and abuse categories used as the basis for AI red teaming and evaluation scenarios."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Prompt Injection and Jailbreak",
+          "remarks": "Threats where adversarial input bypasses safeguards or forces the AI to violate intended use and policy."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Agentic Goal Hijacking and Unsafe Planning",
+          "remarks": "Threats where autonomous or semi-autonomous agents pursue goals in unsafe, unintended, or policy-violating ways."
+        },
+        {
+          "name": "ai-threat-class",
+          "ns": "urn:utoronto:security:ai",
+          "class": "threat-class",
+          "value": "Emergent Behavior and Capability Drift",
+          "remarks": "Threats involving new or unexpected behaviors that emerge over time without explicit retraining or approval."
+        }
+      ],
+
+      "remarks": "AI Red Teaming and Evaluation defines how AI systems are stress-tested against realistic adversarial, misuse, and failure scenarios. This pattern treats red teaming as a continuous lifecycle activity required to identify emergent behavior, unsafe autonomy, and novel attack techniques before they result in real-world harm."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:adversarial-scenario-testing",
+        "type": "capability",
+        "title": "Adversarial Scenario Testing",
+        "description": "Structured testing of AI systems using known and hypothesized adversarial techniques and misuse patterns.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:adversarial-testing",
+            "source": "urn:utoronto:ai:evaluation",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:adversarial-testing",
+                "control-id": "AI-REDTEAM-ADVERSARIAL",
+                "remarks": "AI systems are tested against adversarial prompts, inputs, and scenarios derived from real-world threat models."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:agent-goal-hijack-testing",
+        "type": "capability",
+        "title": "Agent Goal Hijack Testing",
+        "description": "Evaluation of autonomous agents to detect unsafe planning, delegation, or goal misalignment.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:agent-hijack-testing",
+            "source": "urn:utoronto:ai:evaluation",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:agent-hijack-testing",
+                "control-id": "AI-REDTEAM-AGENT-HIJACK",
+                "remarks": "Agentic AI systems are evaluated for susceptibility to goal hijacking, unsafe reasoning chains, or escalation beyond authorized scope."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:post-deployment-evaluation",
+        "type": "capability",
+        "title": "Post-Deployment Evaluation",
+        "description": "Ongoing evaluation of AI systems in operation to detect emergent behaviors, drift, or degradation.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:post-deployment-eval",
+            "source": "urn:utoronto:ai:operations",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:post-deployment-eval",
+                "control-id": "AI-REDTEAM-POSTDEPLOY",
+                "remarks": "AI systems are periodically re-evaluated after deployment to identify new risks, behaviors, or control erosion."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

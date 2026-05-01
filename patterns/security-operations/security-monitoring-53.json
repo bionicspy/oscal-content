@@ -1,0 +1,121 @@
+{  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:security-monitoring",
+
+    "metadata": {
+      "title": "Security Monitoring",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T01:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC330",
+          "remarks": "Business capability for continuous security visibility and situational awareness."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD050",
+          "remarks": "Security operations monitoring, analytics, and visualization technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP151",
+          "remarks": "Centralized, continuous security monitoring and analysis pattern."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Security monitoring observes activity associated with ATT&CK-aligned adversary behaviors."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Security monitoring aligns to D3FEND detection and observation techniques."
+        }
+      ],
+
+      "remarks": "Security Monitoring defines the capability to continuously analyze security telemetry, correlate events across domains, establish behavioral baselines, and generate actionable alerts. Control implementation is expressed at the capability level to support operational traceability."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:event-correlation-and-analysis",
+        "type": "capability",
+        "title": "Event Correlation and Analysis",
+        "description": "Correlation and analysis of security telemetry across multiple sources.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:monitoring-correlation",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:si-4-correlation",
+                "control-id": "SI-4",
+                "remarks": "Security events are correlated and analyzed to identify potential incidents."
+              },
+              {
+                "uuid": "urn:utoronto:security:ir:au-6-correlation",
+                "control-id": "AU-6",
+                "remarks": "Audit records are reviewed and analyzed for indications of suspicious activity."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:baseline-and-anomaly-detection",
+        "type": "capability",
+        "title": "Baseline and Anomaly Detection",
+        "description": "Establishment of expected behavior baselines and detection of deviations.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:monitoring-anomaly",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:ca-7-anomaly",
+                "control-id": "CA-7",
+                "remarks": "Continuous monitoring activities identify deviations from expected operational behavior."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:alerting-and-visibility",
+        "type": "capability",
+        "title": "Alerting and Visibility",
+        "description": "Generation of alerts, notifications, and dashboards for security operations.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:monitoring-alerting",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:au-6-alerting",
+                "control-id": "AU-6",
+                "remarks": "Security-relevant events generate alerts and visualizations for timely operator awareness."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

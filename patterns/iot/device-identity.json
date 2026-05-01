@@ -1,0 +1,122 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-identity",
+    "metadata": {
+      "title": "IoT Device Identity",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T10:30:00Z",
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC370",
+          "remarks": "Business capability for uniquely identifying and authenticating Internet of Things devices."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD090",
+          "remarks": "Device identity, embedded cryptography, and IoT authentication technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP211",
+          "remarks": "Pattern for issuing, binding, and authenticating cryptographic identities for IoT devices."
+        },
+        {
+          "name": "threat-framework",
+          "ns": "urn:mitre:attack",
+          "class": "attack-framework",
+          "value": "ATT&CK",
+          "remarks": "Device identity mitigates impersonation, spoofing, and unauthorized device onboarding."
+        },
+        {
+          "name": "attack-techniques",
+          "ns": "urn:mitre:attack",
+          "class": "attack-technique",
+          "value": "TA0001, TA0006",
+          "remarks": "Relevant ATT&CK tactics include Initial Access and Credential Access affecting IoT devices."
+        },
+        {
+          "name": "defense-framework",
+          "ns": "urn:mitre:d3fend",
+          "class": "defense-framework",
+          "value": "D3FEND",
+          "remarks": "Device identity aligns with D3FEND device authentication and credential binding techniques."
+        },
+        {
+          "name": "defensive-techniques",
+          "ns": "urn:mitre:d3fend",
+          "class": "defensive-technique",
+          "value": "DeviceAuthentication, CredentialBinding, TrustAnchor",
+          "remarks": "Defensive techniques ensuring devices present strong, verifiable identities."
+        }
+      ],
+      "remarks": "Device Identity defines how IoT devices are uniquely identified, issued cryptographic credentials, and authenticated when interacting with platforms, services, and networks. Control realization is expressed at the capability level using NIST IoT Core Baseline guidance."
+    },
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:device-identity-provisioning",
+        "type": "capability",
+        "title": "Device Identity Provisioning",
+        "description": "Secure issuance and enrollment of cryptographic identities for IoT devices.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-identity-provisioning",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-identity-provisioning",
+                "control-id": "NIST-IR-8425-IDENTITY",
+                "remarks": "Each IoT device is provisioned with a unique and verifiable identity prior to operation."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:hardware-root-of-trust",
+        "type": "capability",
+        "title": "Hardware Root of Trust",
+        "description": "Binding of device identity to hardware-backed trust anchors such as secure elements or TPMs.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-hardware-root-trust",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-hardware-root",
+                "control-id": "NIST-IR-8425-HW-ROOT",
+                "remarks": "Device identities are bound to tamper-resistant hardware roots of trust where feasible."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:device-authentication",
+        "type": "capability",
+        "title": "Device Authentication",
+        "description": "Mutual authentication between IoT devices and backend services or gateways.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:iot-device-authentication",
+            "source": "urn:nist:ir:8425",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:nist-ir-8425-authentication",
+                "control-id": "NIST-IR-8425-AUTH",
+                "remarks": "IoT devices authenticate to platforms and services using their provisioned identities."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
