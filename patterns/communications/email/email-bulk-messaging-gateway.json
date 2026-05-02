@@ -1,0 +1,203 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:email-bulk-messaging-gateway",
+
+    "metadata": {
+      "title": "Email Bulk Messaging Gateway",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T07:50:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC346",
+          "remarks": "Business capability for sending high-volume institutional email with explicit authorization, consent awareness, abuse prevention, and reputational protection."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD156",
+          "remarks": "Bulk email platforms, list management systems, rate-limiting services, and outbound reputation controls."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP276",
+          "remarks": "Pattern for governing high-volume outbound email while preventing spam, abuse, and unauthorized mass communication."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "email-core",
+          "remarks": "Bulk messaging assumes baseline email delivery, identity binding, and accountability are established."
+        }
+      ],
+
+      "remarks": "Email Bulk Messaging Gateway defines trust properties required to safely execute high-volume outbound email campaigns. This pattern addresses authorization, consent alignment, abuse prevention, and reputational risk, and is distinct from threat protection or system notification messaging."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:bulk-send-authorization",
+        "type": "capability",
+        "title": "Bulk Send Authorization",
+        "description": "Ensures only explicitly authorized identities and systems may initiate bulk email campaigns.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Abuse of valid accounts to send unauthorized bulk email."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Privileged access control over bulk messaging capabilities."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:bulk-send-authorization",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-6",
+                "remarks": "Bulk email send privileges are limited to authorized roles following least privilege."
+              },
+              {
+                "control-id": "IA-2",
+                "remarks": "Bulk email initiation is attributable to authenticated identities."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:rate-limiting-and-abuse-prevention",
+        "type": "capability",
+        "title": "Rate Limiting and Abuse Prevention",
+        "description": "Prevents misuse of bulk messaging systems through throttling and anomaly detection.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1566",
+            "remarks": "Use of email at scale for phishing or deceptive campaigns."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0056",
+            "remarks": "Monitoring and alerting to detect abnormal bulk email behavior."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:bulk-abuse-prevention",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-4",
+                "remarks": "Bulk email activity is monitored to detect anomalous or abusive patterns."
+              },
+              {
+                "control-id": "IR-4",
+                "remarks": "Abusive or unauthorized bulk messaging triggers incident response actions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:recipient-consent-and-scope-alignment",
+        "type": "capability",
+        "title": "Recipient Consent and Scope Alignment",
+        "description": "Aligns bulk email distribution with recipient expectations, consent, and institutional policy.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1098",
+            "remarks": "Manipulation of mailing lists or recipient scope to overreach intended audiences."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement to constrain inappropriate data and message distribution."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:bulk-consent-alignment",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define allowable use of bulk email and appropriate recipient scope."
+              },
+              {
+                "control-id": "MP-7",
+                "remarks": "Controls reduce the risk of inappropriate dissemination of sensitive information via bulk email."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:bulk-email-auditability",
+        "type": "capability",
+        "title": "Bulk Email Auditability",
+        "description": "Provides traceability and accountability for bulk messaging activity.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Deletion or suppression of evidence related to bulk messaging misuse."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging to support accountability and investigation."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:bulk-email-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Bulk email send events are captured as auditable records."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports oversight of bulk email campaigns."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

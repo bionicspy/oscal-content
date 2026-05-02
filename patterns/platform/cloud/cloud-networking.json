@@ -1,0 +1,162 @@
+{
+  "component-definition": {
+      "uuid": "urn:utoronto:security:pattern:cloud-networking",
+
+    "metadata": {
+      "title": "Cloud Networking",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T02:50:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC328",
+          "remarks": "Business capability for enforcing network segmentation, controlled connectivity, and exposure management in cloud environments."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD137",
+          "remarks": "Cloud virtual networks, subnets, routing constructs, security groups, private connectivity, and provider-managed network fabrics."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP257",
+          "remarks": "Pattern for establishing trust boundaries, segmentation, and controlled connectivity within and across cloud networks."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-infrastructure-core", 
+          "remarks": "Cloud networking builds on baseline cloud infrastructure trust assumptions."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0008",
+          "remarks": "Lateral movement across improperly segmented cloud network resources."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0001",
+          "remarks": "Initial access through exposed cloud network interfaces or services."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0005",
+          "remarks": "Defense evasion by modifying or bypassing cloud network security controls."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1046",
+          "remarks": "Network service discovery within cloud virtual networks."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1021",
+          "remarks": "Remote service access across cloud network boundaries."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0001",
+          "remarks": "Network isolation and segmentation between cloud workloads."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0021",
+          "remarks": "Network traffic filtering and allow-listing within cloud networks."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0034",
+          "remarks": "Managed network boundary enforcement to restrict unintended exposure."
+        }
+      ],
+
+      "remarks": "Cloud Networking defines the trust properties required to enforce segmentation, limit exposure, and control connectivity within cloud environments. This pattern recognizes that cloud networks are software-defined and provider-managed, requiring explicit governance to prevent unintended access and lateral movement."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:cloud-network-segmentation",
+        "type": "capability",
+        "title": "Cloud Network Segmentation",
+        "description": "Separates cloud workloads into distinct network zones with controlled connectivity.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-segmentation",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-segmentation",
+                "control-id": "CLOUD-NET-SEGMENT",
+                "remarks": "Network segmentation limits unintended communication between cloud resources."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:cloud-exposure-management",
+        "type": "capability",
+        "title": "Cloud Exposure Management",
+        "description": "Controls which cloud resources are exposed to external or public networks.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-exposure",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-exposure",
+                "control-id": "CLOUD-NET-EXPOSURE",
+                "remarks": "Cloud network exposure is explicitly managed to prevent unintended access."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:cloud-private-connectivity",
+        "type": "capability",
+        "title": "Cloud Private Connectivity",
+        "description": "Supports private and controlled connectivity between cloud resources and trusted networks.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-private-connectivity",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-private-connectivity",
+                "control-id": "CLOUD-NET-PRIVATE",
+                "remarks": "Private connectivity mechanisms reduce exposure to untrusted networks."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:schema-and-contract-governance",
+
+    "metadata": {
+      "title": "Schema and Contract Governance",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T12:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC373",
+          "remarks": "Business capability for governing schemas and message contracts so that producers and consumers interpret integration messages consistently and safely."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD183",
+          "remarks": "Schema registries, contract definitions, versioning frameworks, and compatibility validation mechanisms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP303",
+          "remarks": "Pattern for establishing semantic trust through explicit schema and contract governance in integration systems."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "integration-core",
+          "remarks": "Schema and contract governance assumes baseline integration identity, ownership, and accountability."
+        }
+      ],
+
+      "remarks": "Schema and Contract Governance defines trust properties required to prevent semantic drift, silent incompatibility, and misinterpretation of integration messages. This pattern treats schemas as authoritative contracts and does not address transport delivery, cryptographic protection, or replay behavior."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:schema-authority-and-ownership",
+        "type": "capability",
+        "title": "Schema Authority and Ownership",
+        "description": "Defines authoritative ownership for schemas and contracts used in integration.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading through unauthorized or misleading schema definitions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Access control restricting who may define or modify schemas."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:schema-ownership",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-2",
+                "remarks": "Schema and contract definitions are managed by authorized owners."
+              },
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define schema ownership and approval requirements."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:schema-versioning-and-compatibility",
+        "type": "capability",
+        "title": "Schema Versioning and Compatibility",
+        "description": "Controls how schemas evolve over time and manages compatibility between producers and consumers.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565.001",
+            "remarks": "Manipulation of data structures to cause silent consumer failure or misinterpretation."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Lifecycle controls governing schema evolution and deprecation."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:schema-versioning",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-7",
+                "remarks": "Schema evolution features are constrained to prevent unsafe compatibility changes."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:semantic-validation-and-contract-enforcement",
+        "type": "capability",
+        "title": "Semantic Validation and Contract Enforcement",
+        "description": "Ensures messages conform to agreed schemas and semantic constraints.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1071",
+            "remarks": "Delivery of malformed or semantically incorrect messages to bypass controls."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0011",
+            "remarks": "Validation of message content against authoritative contracts."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:schema-validation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-7",
+                "remarks": "Integrity checks validate messages against defined schemas."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:contract-observability-and-change-audit",
+        "type": "capability",
+        "title": "Contract Observability and Change Audit",
+        "description": "Provides traceability of schema usage and contract changes over time.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression or obfuscation of evidence related to schema or contract changes."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging of contract definition and usage."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:schema-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Schema definition and usage events are logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports investigation of semantic integration issues."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -47,6 +47,9 @@ network/
 * East‑west / north‑south trust boundaries
 
 ## 2. Compute & Execution Environments
+```
+compute/
+```
 
 ### 2.1 Endpoints (User‑Operated Compute)
 ```
@@ -72,6 +75,17 @@ server/
 ```
 
 ## 3. Platform & Infrastructure
+```
+platform/
+├── hosting-model-trust
+├── infrastructure-management-plane-trust
+```
+
+### 3.1 Bare Metal
+```
+bare-metal/
+└── bare-metal-core
+```
 
 ### 3.1 Virtualization & Bare Metal
 ```
@@ -124,6 +138,9 @@ Covers:
 
 
 ## 5. Communications & Collaboration
+```
+communications/
+```
 ### 5.1 Email
 ```
 email/
@@ -137,14 +154,31 @@ email/
 ├── email-bulk-messaging-gateway
 └── secure-email (composite)
 ```
-### 5.2 Collaboration & File Sharing
+#### Intent:
+Trust in asynchronous, directed communication for both human and system‑initiated messages, including identity assurance, content protection, delivery integrity, and records obligations.
+
+### 5.2 Collaboration & Messaging
 ```
 collaboration/
 ├── collaboration-core
+├── instant-messaging
+├── presence-and-availability
+├── conference-bridges
 ├── file-sharing-and-sync
 ├── real-time-messaging
 └── secure-collaboration (composite)
 ```
+#### Intent:
+Trust in synchronous and near‑synchronous human collaboration systems, including chat, presence signals, meetings, shared workspaces, and live interaction.
+#### Explicitly included:
+* Instant messaging (high‑velocity, informal communication)
+* Presence & availability (signal exposure and inference risk)
+* Conference bridges (remote teaching, meetings, webinars)
+  * recording & playback authority
+  * participant awareness and consent
+  * scope of capture (audio/video/chat/screen)
+  * access to recordings, transcripts, and artifacts
+
 ### 5.3 Printing
 ```
 printing/
@@ -154,8 +188,39 @@ printing/
 ├── print-accountability
 └── secure-printing (composite)
 ```
+#### Intent:
+Trust in physical output of digital content, including identity binding, data leakage prevention, secure release, and accountability for printed artifacts.
 
-## 6. Secure Software Delivery (SDLC)
+Printing remains a first‑class egress channel, not a legacy afterthought.
+
+### 5.4 Survey & Feedback Systems
+```
+surveys/
+├── survey
+├── survey-core
+├── survey-data-protection
+├── survey-consent-and-ethics
+└── secure-survey (composite)
+```
+#### Intent:
+Trust in intentional data solicitation systems, including anonymity guarantees, consent, ethical obligations, and protection of responses across teaching, administration, and research use cases.
+
+Surveys are treated as communications systems that create data, not merely data stores.
+
+## 6. Application Integration & Messaging
+```
+integration/
+├── integration-core
+├── event-streaming
+├── message-queuing
+├── service-bus-and-esb
+├── schema-and-contract-governance
+├── message-security-and-integrity
+├── replay-and-retention
+└── trusted-integration (composite)
+```
+
+## 7. Secure Software Delivery (SDLC)
 ```
 sdlc/
 ├── sdlc-core
@@ -172,7 +237,7 @@ Covers:
 * IaC
 * DevSecOps assurance
 
-## 7. Monitoring, Detection & Response
+## 8. Monitoring, Detection & Response
 ```
 security-operations/
 ├── logging-and-telemetry
@@ -193,7 +258,7 @@ resilience/
 └── operational-resilience (composite)
 ```
 
-## 9. Supply Chain & Third‑Party Risk
+## 10. Supply Chain & Third‑Party Risk
 ```
 supply-chain/
 ├── vendor-risk-management
@@ -203,9 +268,9 @@ supply-chain/
 └── trusted-supply-chain (composite)
 ```
 
-## 10. Domain‑Specific Systems
+## 11. Domain‑Specific Systems
 
-### 10.1 OT (Operational Technology)
+### 11.1 OT (Operational Technology)
 ```
 ot/
 ├── ot-core
@@ -216,7 +281,7 @@ ot/
 └── safe-and-secure-operations (composite)
 ```
 
-### 10.2 IoT
+### 11.2 IoT
 ```
 iot/
 ├── device-core
@@ -227,7 +292,7 @@ iot/
 └── secure-iot (composite)
 ```
 
-### 10.3 IoMT (Medical / Clinical)
+### 11.3 IoMT (Medical / Clinical)
 ```
 iomt/
 ├── medical-device-core
@@ -237,7 +302,7 @@ iomt/
 └── safe-and-trusted-medical-operations (composite)
 ```
 
-## 11. Artificial Intelligence & Research Systems
+## 12. Artificial Intelligence & Research Systems
 ```
 ai/
 ├── ai-core
@@ -262,7 +327,7 @@ ai/
 └── trustworthy-ai (composite)
 ```
 
-## 12. Enterprise‑Wide Composite Views
+## 13. Enterprise‑Wide Composite Views
 These answer executive‑level questions:
 ```
 enterprise/

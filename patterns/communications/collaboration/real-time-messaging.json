@@ -1,0 +1,206 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:real-time-messaging",
+
+    "metadata": {
+      "title": "Real-Time Messaging",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2024-06-01T00:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC355",
+          "remarks": "Business capability for enabling ad-hoc, live communication while preserving identity clarity, boundary control, and accountability."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD165",
+          "remarks": "Voice and video calling, huddles, live chat overlays, real-time reactions, and transient synchronous communication features."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP285",
+          "remarks": "Pattern for governing identity, access, and behavior in ad-hoc real-time communication contexts."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "collaboration-core",
+          "remarks": "Real-time messaging trust depends on baseline collaboration identity, boundary, and accountability guarantees."
+        }
+      ],
+
+      "remarks": "Real-Time Messaging defines trust properties for ad-hoc, live communication that is neither asynchronous chat nor scheduled conferencing. This pattern addresses rapid escalation risks, authority confusion, and unrecorded interaction without prescribing recording or conferencing semantics."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:rtm-session-identity-and-attribution",
+        "type": "capability",
+        "title": "Real-Time Session Identity and Attribution",
+        "description": "Ensures all real-time participants are authenticated and accurately attributed during live communication.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading through misleading identity presentation in live sessions."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Abuse of valid accounts to misrepresent authority in real-time interactions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Strong identity binding to live communication sessions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:rtm-identity",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-2",
+                "remarks": "Participants in real-time sessions are authenticated."
+              },
+              {
+                "control-id": "IA-4",
+                "remarks": "Identity attributes support reliable attribution during live communication."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:rtm-boundary-and-escalation-control",
+        "type": "capability",
+        "title": "Real-Time Boundary and Escalation Control",
+        "description": "Constrains opportunistic escalation from chat to live communication without appropriate boundaries.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1566",
+            "remarks": "Social engineering via rapid escalation to live communication."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy-based restriction of real-time initiation and escalation."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:rtm-escalation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-6",
+                "remarks": "Real-time messaging initiation and escalation follow least privilege."
+              },
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define appropriate use and escalation paths for live communication."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:rtm-transience-and-recording-awareness",
+        "type": "capability",
+        "title": "Transience and Recording Awareness",
+        "description": "Ensures participants understand the transient or recorded nature of real-time communication.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1114",
+            "remarks": "Collection or misuse of live communication content."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0011",
+            "remarks": "Clear signaling of recording or non-recording conditions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:rtm-transience",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define when real-time communication may be recorded."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:rtm-observability-and-accountability",
+        "type": "capability",
+        "title": "Real-Time Messaging Observability and Accountability",
+        "description": "Provides oversight into initiation, participation, and termination of real-time communication.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression of evidence related to misuse of live communication."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging and review to ensure accountability."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:rtm-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Real-time messaging events are defined and logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports investigation of real-time misuse."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

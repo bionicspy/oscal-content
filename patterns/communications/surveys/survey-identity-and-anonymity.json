@@ -1,0 +1,195 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:survey-identity-and-anonymity",
+
+    "metadata": {
+      "title": "Survey Identity and Anonymity",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T13:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC363",
+          "remarks": "Business capability for ensuring survey respondent identity handling aligns with stated anonymity or confidentiality guarantees."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD173",
+          "remarks": "Survey identity models, response collection mechanisms, tracking tokens, metadata controls, and anonymization features."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP293",
+          "remarks": "Pattern for governing identity exposure, anonymity guarantees, and re-identification risk in survey systems."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "survey-core",
+          "remarks": "Survey identity and anonymity controls assume baseline survey authority, purpose clarity, and response integrity."
+        }
+      ],
+
+      "remarks": "Survey Identity and Anonymity defines trust properties required to ensure that survey identity handling matches claims made to respondents. This pattern addresses anonymity guarantees, pseudonymization, re-identification risk, and protection against hidden identity leakage."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:survey-identity-model-definition",
+        "type": "capability",
+        "title": "Survey Identity Model Definition",
+        "description": "Explicitly defines whether surveys are anonymous, pseudonymous, or identity-bound.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Misrepresentation of survey anonymity or respondent identity handling."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement to align system behavior with stated anonymity guarantees."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:survey-identity-model",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define allowable identity models for surveys."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:survey-anonymity-enforcement",
+        "type": "capability",
+        "title": "Survey Anonymity Enforcement",
+        "description": "Prevents direct attribution of responses when anonymity is promised.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1589",
+            "remarks": "Collection of identifying information contrary to stated anonymity."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0034",
+            "remarks": "Minimization and suppression of identity-bearing metadata."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:survey-anonymity",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PT-7",
+                "remarks": "Controls limit unnecessary disclosure of respondent identities."
+              },
+              {
+                "control-id": "IA-10",
+                "remarks": "Adaptive restrictions prevent identity leakage in anonymous surveys."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:survey-deanonymization-risk-management",
+        "type": "capability",
+        "title": "Survey De-anonymization Risk Management",
+        "description": "Reduces re-identification risk from small populations or response combinations.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1005",
+            "remarks": "Inference of respondent identity from survey response content or metadata."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Aggregation and suppression techniques to reduce re-identification risk."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:survey-deanonymization",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-7",
+                "remarks": "Survey features are constrained to reduce unintended re-identification."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:survey-identity-auditability",
+        "type": "capability",
+        "title": "Survey Identity Auditability",
+        "description": "Provides oversight into how survey identity and anonymity guarantees are implemented.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression of evidence related to identity handling violations."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging to validate adherence to anonymity commitments."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:survey-identity-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Identity-related survey events are logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports verification of anonymity enforcement."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

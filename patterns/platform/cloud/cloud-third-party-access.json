@@ -1,0 +1,170 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:cloud-third-party-access",
+
+    "metadata": {
+      "title": "Cloud Third-Party Access",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T03:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC331",
+          "remarks": "Business capability for governing and constraining access to cloud environments by third parties, partners, vendors, and external services."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD140",
+          "remarks": "Third-party integrations, delegated access models, federated identities, APIs, service principals, and vendor-managed cloud access."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP260",
+          "remarks": "Pattern for establishing trust and governance boundaries for third-party access to cloud resources."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-identity-and-access",
+          "remarks": "Third-party access relies on cloud-native identity and authorization mechanisms."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0006",
+          "remarks": "Credential access through compromise of third-party accounts or integrations."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0004",
+          "remarks": "Privilege escalation via overly permissive third-party roles or delegated trust."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0008",
+          "remarks": "Lateral movement from third-party access paths into core cloud resources."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0005",
+          "remarks": "Defense evasion by abusing trusted third-party integrations or disabling visibility."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1078",
+          "remarks": "Abuse of valid third-party or partner cloud accounts."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1199",
+          "remarks": "Trust relationship abuse through compromised vendor or partner access."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0004",
+          "remarks": "Privileged access management applied to third-party and vendor identities."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0046",
+          "remarks": "Separation of duties between internal administrators and external parties."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0056",
+          "remarks": "Monitoring and auditing of third-party access and activity."
+        }
+      ],
+
+      "remarks": "Cloud Third-Party Access defines the trust properties required to safely grant cloud access to external entities. This pattern explicitly models the elevated risk introduced by vendors, partners, and integrations, ensuring access is constrained, attributable, and continuously monitored."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:third-party-identity-governance",
+        "type": "capability",
+        "title": "Third-Party Identity Governance",
+        "description": "Governs identities and credentials used by third parties within cloud environments.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:third-party-identity",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:third-party-identity",
+                "control-id": "CLOUD-THIRD-IDENTITY",
+                "remarks": "Third-party identities are explicitly governed and limited to approved access scopes."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:delegated-access-boundaries",
+        "type": "capability",
+        "title": "Delegated Access Boundaries",
+        "description": "Constrains the scope, duration, and permissions of delegated third-party access.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:delegated-access",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:delegated-access",
+                "control-id": "CLOUD-DELEGATED-ACCESS",
+                "remarks": "Delegated access is bounded to minimize blast radius and unintended exposure."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:third-party-activity-observability",
+        "type": "capability",
+        "title": "Third-Party Activity Observability",
+        "description": "Provides visibility into actions taken by third parties in cloud environments.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:third-party-observability",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:third-party-observability",
+                "control-id": "CLOUD-THIRD-OBSERVE",
+                "remarks": "Activities performed by third parties are observable and attributable."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

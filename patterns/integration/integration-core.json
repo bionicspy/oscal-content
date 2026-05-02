@@ -1,0 +1,203 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:integration-core",
+
+    "metadata": {
+      "title": "Integration Core",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T10:30:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC370",
+          "remarks": "Business capability for operating system-to-system integration channels that are attributable, intentional, and governable."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD180",
+          "remarks": "Asynchronous messaging substrates including events, queues, and buses that connect producer and consumer systems."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP300",
+          "remarks": "Pattern establishing baseline trust assumptions for machine-to-machine, message-driven integration."
+        }
+      ],
+
+      "remarks": "Integration Core defines the foundational trust properties required for system-generated messages to be treated as authoritative. This pattern establishes machine identity, ownership, lifecycle, and accountability for integration channels, without addressing transport semantics, schemas, or message security."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:integration-identity-and-attribution",
+        "type": "capability",
+        "title": "Integration Identity and Attribution",
+        "description": "Binds integration messages to accountable producer and consumer system identities.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Abuse of valid service or application accounts to emit unauthorized messages."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading as a trusted producer system."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Strong identity binding for non-human actors."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:integration-identity",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-2",
+                "remarks": "Integration endpoints and producers are authenticated."
+              },
+              {
+                "control-id": "IA-4",
+                "remarks": "Identity attributes support correct attribution of integration activity."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:integration-ownership-and-lifecycle",
+        "type": "capability",
+        "title": "Integration Ownership and Lifecycle",
+        "description": "Defines ownership, purpose, and lifecycle for integration channels.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1213",
+            "remarks": "Persistence through abandoned or undocumented integration channels."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Lifecycle management to reduce residual and orphaned integration risk."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:integration-lifecycle",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define ownership, purpose, and lifecycle of integration channels."
+              },
+              {
+                "control-id": "CM-7",
+                "remarks": "Unnecessary or obsolete integrations are disabled."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:integration-boundary-and-scope-control",
+        "type": "capability",
+        "title": "Integration Boundary and Scope Control",
+        "description": "Enforces explicit trust relationships and access control for integration participation.", 
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1199",
+            "remarks": "Abuse of trusted relationships between integrated systems."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Access control restricting integration participation."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:integration-boundary",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-2",
+                "remarks": "Systems participating in integrations are explicitly authorized."
+              },
+              {
+                "control-id": "AC-3",
+                "remarks": "Enforcement mechanisms prevent unauthorized integration access."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:integration-observability-and-accountability",
+        "type": "capability",
+        "title": "Integration Observability and Accountability",
+        "description": "Provides traceability of integration activity for governance and investigation.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Deletion or suppression of evidence related to integration misuse."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging for accountability and investigation."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:integration-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Integration events are defined and logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports oversight and investigation of integration activity."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

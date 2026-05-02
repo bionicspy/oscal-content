@@ -1,0 +1,170 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:cloud-access-security-broker",
+
+    "metadata": {
+      "title": "Cloud Access Security Broker",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T04:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC332",
+          "remarks": "Business capability for discovering, governing, and securing access to cloud services, including sanctioned and unsanctioned SaaS usage."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD141",
+          "remarks": "Cloud access security brokers, SaaS usage visibility systems, inline and API-based policy enforcement mechanisms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP261",
+          "remarks": "Pattern for governing cloud application access, shadow IT visibility, and policy enforcement through CASB capabilities."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-identity-and-access",
+          "remarks": "CASB capabilities depend on cloud-native identity and authentication mechanisms."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-monitoring-and-logging",
+          "remarks": "CASB capabilities rely on cloud activity visibility and telemetry."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0006",
+          "remarks": "Credential access via unmanaged or poorly governed cloud applications."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0009",
+          "remarks": "Collection of sensitive data through unsanctioned or misused SaaS platforms."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0005",
+          "remarks": "Defense evasion by shifting activity to cloud services outside formal governance."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1078",
+          "remarks": "Use of valid accounts in cloud services to maintain access and evade detection."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1020",
+          "remarks": "Automated data exfiltration via legitimate cloud service APIs."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0011",
+          "remarks": "Data access control and policy enforcement for cloud applications."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0056",
+          "remarks": "Monitoring and alerting on risky or policy-violating cloud usage."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0063",
+          "remarks": "Application discovery and classification to surface shadow IT."
+        }
+      ],
+
+      "remarks": "Cloud Access Security Broker defines the trust properties required to discover, govern, and enforce security policy over access to cloud applications. This pattern addresses shadow IT, unsanctioned SaaS usage, and data exposure risks that arise outside traditional infrastructure-centric security controls."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:cloud-application-discovery",
+        "type": "capability",
+        "title": "Cloud Application Discovery",
+        "description": "Identifies and classifies cloud applications in use across the organization.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-app-discovery",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-app-discovery",
+                "control-id": "CLOUD-CASB-DISCOVERY",
+                "remarks": "Cloud application usage is identified to surface sanctioned and unsanctioned services."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:cloud-access-policy-enforcement",
+        "type": "capability",
+        "title": "Cloud Access Policy Enforcement",
+        "description": "Applies security and data protection policies to cloud application access.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-access-policy",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-access-policy",
+                "control-id": "CLOUD-CASB-POLICY",
+                "remarks": "Access to cloud applications is governed according to defined security policies."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:cloud-application-data-protection",
+        "type": "capability",
+        "title": "Cloud Application Data Protection",
+        "description": "Protects sensitive data accessed or stored within cloud applications.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-app-data-protection",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-app-data-protection",
+                "control-id": "CLOUD-CASB-DATA",
+                "remarks": "Sensitive data in cloud applications is monitored and protected against inappropriate exposure."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

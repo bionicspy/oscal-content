@@ -1,0 +1,205 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:message-queuing",
+
+    "metadata": {
+      "title": "Message Queuing",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T11:30:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC372",
+          "remarks": "Business capability for reliable, bounded, asynchronous message delivery between producer and consumer systems."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD182",
+          "remarks": "Asynchronous message queues supporting delivery guarantees, retries, acknowledgements, and dead-letter handling."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP302",
+          "remarks": "Pattern for governing trust, reliability, and failure handling in point-to-point asynchronous messaging."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "integration-core",
+          "remarks": "Message queuing trust assumes baseline integration identity, ownership, boundary, and accountability guarantees."
+        }
+      ],
+      "remarks": "This pattern captures security-relevant aspects of message queuing systems, including producer and consumer authorization, delivery guarantees, duplication management, poison message handling, and observability. It focuses on how these features shape system behavior and security assumptions without prescribing specific schemas or cryptographic protections."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:queue-producer-and-consumer-authorization",
+        "type": "capability",
+        "title": "Producer and Consumer Authorization",
+        "description": "Ensures only authorized producers may enqueue messages and only authorized consumers may dequeue them.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Abuse of valid service identities to enqueue or dequeue unauthorized messages."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading as an authorized producer or consumer."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Strong identity binding for non-human queue participants."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:queue-authz",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-2",
+                "remarks": "Queue producers and consumers are authenticated."
+              },
+              {
+                "control-id": "AC-3",
+                "remarks": "Enforcement mechanisms restrict enqueue and dequeue operations."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:delivery-guarantee-and-duplication-management",
+        "type": "capability",
+        "title": "Delivery Guarantees and Duplication Management",
+        "description": "Manages delivery semantics to prevent unintended duplicate processing or message loss.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565.001",
+            "remarks": "Manipulation of message handling to cause duplicate or inconsistent processing."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Lifecycle and retry controls to manage delivery semantics safely."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:queue-delivery",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-7",
+                "remarks": "Queue features are constrained to reduce unsafe delivery behaviors."
+              },
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define acceptable delivery and retry semantics."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:poison-message-and-dead-letter-handling",
+        "type": "capability",
+        "title": "Poison Message and Dead-Letter Handling",
+        "description": "Prevents repeated processing failures from causing indefinite retries or cascading failure.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1213",
+            "remarks": "Persistence through poison messages that block or destabilize consumers."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Lifecycle controls to isolate and remediate failed messages."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:queue-deadletter",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-12",
+                "remarks": "Mechanisms prevent indefinite retention or reprocessing of failed messages."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:queue-observability-and-accountability",
+        "type": "capability",
+        "title": "Queue Observability and Accountability",
+        "description": "Provides visibility into enqueue, dequeue, retry, and dead-letter activity.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression of evidence related to queue misuse or failure."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging and traceability of queue activity."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:queue-observability",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Queue operations are defined and logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports investigation of queue-related behavior."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:service-bus-and-esb",
+
+    "metadata": {
+      "title": "Service Bus and ESB",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T12:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC374",
+          "remarks": "Business capability for centralized integration, orchestration, and mediation of system-to-system messaging."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD184",
+          "remarks": "Enterprise service buses, integration hubs, orchestration engines, message routers, and protocol mediation layers."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP304",
+          "remarks": "Pattern for governing centralized orchestration, transformation, and policy enforcement in integration architectures."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "integration-core",
+          "remarks": "Service bus trust assumes baseline integration identity, ownership, boundary control, and accountability."
+        }
+      ],
+
+      "remarks": "Service Bus and ESB defines trust properties required when integration logic is centralized. This pattern addresses invisible routing logic, semantic transformation risk, privilege concentration, and governance blind spots inherent in ESB-style architectures."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:centralized-routing-and-orchestration-control",
+        "type": "capability",
+        "title": "Centralized Routing and Orchestration Control",
+        "description": "Ensures routing and orchestration logic is explicit, authorized, and observable.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565.001",
+            "remarks": "Manipulation of routing or orchestration logic to alter system behavior."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Access control restricting who may define orchestration behavior."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:esb-routing-control",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-3",
+                "remarks": "Enforcement mechanisms restrict modification of routing and orchestration logic."
+              },
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define approved use of centralized routing and orchestration."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:message-transformation-and-semantic-integrity",
+        "type": "capability",
+        "title": "Message Transformation and Semantic Integrity",
+        "description": "Prevents unintended semantic changes during message transformation or mediation.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1071",
+            "remarks": "Injection of malformed or semantically altered messages through mediation layers."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0011",
+            "remarks": "Validation of transformed messages against authoritative contracts."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:esb-transformation-integrity",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-7",
+                "remarks": "Integrity mechanisms ensure message transformations do not violate contracts."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:privilege-concentration-and-scope-reduction",
+        "type": "capability",
+        "title": "Privilege Concentration and Scope Reduction",
+        "description": "Limits accumulated authority and blast radius of centralized integration components.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1199",
+            "remarks": "Abuse of trusted integration hubs to access multiple downstream systems."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Identity and privilege isolation for centralized integration components."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:esb-scope-control",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-6",
+                "remarks": "Centralized integration components operate under least privilege."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:esb-observability-and-auditability",
+        "type": "capability",
+        "title": "Service Bus Observability and Auditability",
+        "description": "Provides visibility into routing decisions, transformations, and policy enforcement.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression of evidence related to orchestration or mediation behavior."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging and full traceability of integration decisions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:esb-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Service bus routing and transformation activities are logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports investigation of integration-layer behavior."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

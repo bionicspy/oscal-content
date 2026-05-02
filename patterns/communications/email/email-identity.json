@@ -1,0 +1,199 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:email-identity",
+
+    "metadata": {
+      "title": "Email Identity",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T05:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC341",
+          "remarks": "Business capability for ensuring correct, defensible, and non-deceptive use of sender identity in institutional email systems."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD151",
+          "remarks": "Email address namespaces, shared mailboxes, aliases, delegation mechanisms, and identity verification controls."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP271",
+          "remarks": "Pattern for governing sender identity, delegation, and impersonation resistance in email environments."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "email-core",
+          "remarks": "Email identity trust assumes baseline email delivery and identity binding are already established."
+        }
+      ],
+
+      "remarks": "Email Identity defines trust properties required to ensure that sender identity claims in email are accurate, authorized, and resistant to impersonation. This pattern addresses delegation, shared mailboxes, aliases, and external identity trust without prescribing specific authentication technologies."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:authorized-sender-assertion",
+        "type": "capability",
+        "title": "Authorized Sender Assertion",
+        "description": "Ensures that only authorized identities may send email using a given sender address.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Abuse of valid email accounts."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1098",
+            "remarks": "Mailbox rule and delegation abuse."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Privileged access controls over delegated identities."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:authorized-sender",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:email-ia-4",
+                "control-id": "IA-4",
+                "remarks": "Email identity attributes are managed to prevent unauthorized use or alteration."
+              },
+              {
+                "uuid": "urn:utoronto:security:ir:email-ia-8",
+                "control-id": "IA-8",
+                "remarks": "Identity assurance mechanisms support accurate attribution of email sender identities."
+              },
+              {
+                "uuid": "urn:utoronto:security:ir:email-ac-6",
+                "control-id": "AC-6",
+                "remarks": "Email sending privileges are restricted to least privilege necessary."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:delegation-and-shared-mailbox-governance",
+        "type": "capability",
+        "title": "Delegation and Shared Mailbox Governance",
+        "description": "Governs delegated email access and use of shared or functional mailboxes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1585.002",
+            "remarks": "Creation of malicious email accounts."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1114",
+            "remarks": "Email content abuse following identity compromise."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Identity hardening to reduce spoofing surface."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:email-delegation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:email-ac-2",
+                "control-id": "AC-2",
+                "remarks": "Shared and delegated email accounts are explicitly managed and reviewed."
+              },
+              {
+                "uuid": "urn:utoronto:security:ir:email-ac-3",
+                "control-id": "AC-3",
+                "remarks": "Access enforcement mechanisms restrict delegated email usage to authorized contexts."
+              },
+              {
+                "uuid": "urn:utoronto:security:ir:email-ac-6-delegation",
+                "control-id": "AC-6",
+                "remarks": "Delegated email access follows the principle of least privilege."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:impersonation-and-spoofing-resistance",
+        "type": "capability",
+        "title": "Impersonation and Spoofing Resistance",
+        "description": "Reduces the risk of deceptive or misleading sender identities in email communications.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1585.002",
+            "remarks": "Creation of malicious email accounts."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1114",
+            "remarks": "Email content abuse following identity compromise."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Identity hardening to reduce spoofing surface."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:email-impersonation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:email-ia-10",
+                "control-id": "IA-10",
+                "remarks": "Mechanisms are in place to mitigate impersonation of email identities."
+              },
+              {
+                "uuid": "urn:utoronto:security:ir:email-sc-23",
+                "control-id": "SC-23",
+                "remarks": "Email system design mitigates unauthorized identity claims and spoofing."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

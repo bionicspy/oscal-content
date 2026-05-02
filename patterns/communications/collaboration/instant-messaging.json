@@ -1,0 +1,209 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:instant-messaging",
+    "metadata": {
+      "title": "Instant Messaging",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T09:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC351",
+          "remarks": "Business capability for enabling rapid, conversational messaging while maintaining identity clarity, behavioral boundaries, and accountability."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD161",
+          "remarks": "Instant messaging platforms, persistent chat channels, direct messaging, reactions, embeds, and bot-mediated interactions."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP281",
+          "remarks": "Pattern for governing trust, identity, and acceptable use in high-velocity instant messaging systems."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "collaboration-core",
+          "remarks": "Instant messaging trust depends on baseline collaboration identity, boundary, and accountability guarantees."
+        }
+      ],
+
+      "remarks": "Instant Messaging defines trust properties required for informal, rapid communication channels. This pattern addresses impersonation, harassment, authority confusion, data leakage, and misuse risks inherent in conversational messaging environments."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:im-identity-and-attribution",
+        "type": "capability",
+        "title": "Instant Messaging Identity and Attribution",
+        "description": "Ensures participants in instant messaging can be accurately identified and attributed.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading through misleading display names or avatars in chat."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Abuse of valid accounts to misrepresent authority in messaging."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Strong identity binding for chat participants."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:im-identity",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-2",
+                "remarks": "Instant messaging users are authenticated and attributable."
+              },
+              {
+                "control-id": "IA-4",
+                "remarks": "Identity attributes are managed to ensure correct representation in messaging contexts."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:im-behavioral-boundaries",
+        "type": "capability",
+        "title": "Instant Messaging Behavioral Boundaries",
+        "description": "Constrains inappropriate, abusive, or coercive behavior within messaging environments.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1589",
+            "remarks": "Social engineering and targeting through conversational data collection."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement to reduce misuse and harassment in messaging."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:im-behavior",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define acceptable use of instant messaging platforms."
+              },
+              {
+                "control-id": "AC-3",
+                "remarks": "Enforcement mechanisms restrict misuse of messaging features."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:im-data-handling-and-leakage-prevention",
+        "type": "capability",
+        "title": "Instant Messaging Data Handling and Leakage Prevention",
+        "description": "Reduces inadvertent or inappropriate disclosure of information shared via chat.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1041",
+            "remarks": "Exfiltration of sensitive data via chat messages or posted artifacts."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0011",
+            "remarks": "Data access control and monitoring for shared chat content."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:im-data-handling",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "MP-7",
+                "remarks": "Controls reduce inappropriate dissemination of sensitive information via instant messaging."
+              },
+              {
+                "control-id": "IA-10",
+                "remarks": "Adaptive restrictions apply when risky information sharing patterns are detected."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:im-observability-and-accountability",
+        "type": "capability",
+        "title": "Instant Messaging Observability and Accountability",
+        "description": "Provides auditability and oversight of instant messaging interactions.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Deletion or suppression of chat evidence to evade accountability."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging to support investigation of messaging misuse."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:im-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Instant messaging events are defined and captured for audit."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports accountability and misuse detection."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

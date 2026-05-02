@@ -1,0 +1,202 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-print-release",
+
+    "metadata": {
+      "title": "Secure Print Release",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T11:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC358",
+          "remarks": "Business capability for ensuring printed output is physically released only to the authorized requester at the point of printing."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD168",
+          "remarks": "Secure print queues, pull-print systems, release stations, identity-aware printers, and print job holding mechanisms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP288",
+          "remarks": "Pattern for preventing unattended or misdirected print output through identity-bound release controls."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:security:pattern",
+          "class": "platform-pattern",
+          "value": "printing-core",
+          "remarks": "Secure print release assumes baseline print identity attribution and accountability."
+        }
+      ],
+
+      "remarks": "Secure Print Release defines trust properties required to prevent walk-up disclosure and misdelivery of printed materials. This pattern ensures that print jobs remain held until explicitly released by an authenticated and authorized individual at the output device."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:print-job-hold-and-controlled-release",
+        "type": "capability",
+        "title": "Print Job Hold and Controlled Release",
+        "description": "Ensures print jobs are not output until explicitly released by the intended recipient.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1005",
+            "remarks": "Collection of sensitive information from unattended print output."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0011",
+            "remarks": "Data access control to prevent unauthorized retrieval of printed artifacts."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:print-job-hold",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "MP-7",
+                "remarks": "Print jobs containing sensitive information are protected to prevent unauthorized access."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:identity-bound-release-authentication",
+        "type": "capability",
+        "title": "Identity-Bound Release Authentication",
+        "description": "Requires user authentication at the printer or release station before output is produced.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Abuse of valid credentials to retrieve another user's output."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading to falsely claim ownership of a print job."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Strong authentication to bind release actions to an identity."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:print-release-auth",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-2",
+                "remarks": "Print release requires authentication of the requesting individual."
+              },
+              {
+                "control-id": "IA-4",
+                "remarks": "Identity attributes support accurate association of print jobs with users."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:print-release-context-and-device-binding",
+        "type": "capability",
+        "title": "Print Release Context and Device Binding",
+        "description": "Constrains print job release to approved devices and physical contexts.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1199",
+            "remarks": "Misuse of trusted physical access to intercept printed materials."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Access control to restrict where print jobs may be released."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:print-context-binding",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-6",
+                "remarks": "Print release privileges are restricted by device and context."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:secure-print-release-auditability",
+        "type": "capability",
+        "title": "Secure Print Release Auditability",
+        "description": "Provides traceability of print release actions for accountability and investigation.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression or avoidance of evidence related to print output misuse."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging to support attribution and misuse investigation."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:print-release-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Print release events are defined and logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports detection of unauthorized or suspicious print release."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-container-platform",
+    "metadata": {
+      "title": "Secure Container Platform",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T23:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC317",
+          "remarks": "Business capability for operating container platforms that preserve isolation, integrity, and trust across build, runtime, and shared execution layers."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD126",
+          "remarks": "Container platforms, runtimes, orchestration environments, and associated control planes."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP246",
+          "remarks": "Composite pattern asserting that foundational container trust, runtime isolation, and supply-chain integrity requirements are satisfied."
+        },
+
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "container-core",
+          "remarks": "Secure container platforms require baseline container trust and shared-kernel execution assumptions."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "container-runtime-and-isolation",
+          "remarks": "Secure container platforms require enforced runtime isolation and kernel boundary protections."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "container-supply-chain",
+          "remarks": "Secure container platforms require trust in container image provenance and distribution mechanisms."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0004",
+          "remarks": "Privilege escalation risks arising from shared-kernel and container runtime environments."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0008",
+          "remarks": "Lateral movement risks across container workloads and shared nodes."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0001",
+          "remarks": "Initial access via malicious or compromised container artifacts."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1611",
+          "remarks": "Escape to host from container affecting the platform as a whole."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1195",
+          "remarks": "Supply chain compromise impacting container images or build systems."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0001",
+          "remarks": "Execution isolation enforced across container workloads."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0012",
+          "remarks": "Integrity validation of container artifacts prior to execution."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0036",
+          "remarks": "Reduction of attack surface across container control planes and runtimes."
+        }
+      ],
+
+      "remarks": "Secure Container Platform is a composite pattern asserting that container execution, runtime isolation, and supply-chain integrity requirements are collectively satisfied. It introduces no independent controls and exists solely as an aggregate trust claim for use in solution patterns and system security and privacy plans."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:container-core",
+        "type": "component",
+        "title": "Container Core",
+        "description": "Baseline trust assumptions for shared-kernel container execution."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:container-runtime-and-isolation",
+        "type": "component",
+        "title": "Container Runtime and Isolation",
+        "description": "Runtime confinement and kernel-level isolation for container workloads."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:container-supply-chain",
+        "type": "component",
+        "title": "Container Supply Chain",
+        "description": "Trust in container image provenance, registries, and distribution pipelines."
+      }
+    ]
+  }
+}

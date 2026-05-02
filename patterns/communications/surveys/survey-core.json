@@ -1,0 +1,195 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:survey-core",
+
+    "metadata": {
+      "title": "Survey Core",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T12:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC362",
+          "remarks": "Business capability for conducting structured surveys and feedback collection as intentional, authoritative communication activities."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD172",
+          "remarks": "Survey platforms, feedback tooling, form-based data collection systems, and response aggregation services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP292",
+          "remarks": "Pattern for establishing baseline trust assumptions for survey and feedback systems before applying anonymity, data protection, or ethical controls."
+        }
+      ],
+
+      "remarks": "Survey Core defines the foundational trust properties required to treat surveys as deliberate communication mechanisms. This pattern focuses on clarity of purpose, authority of solicitation, response integrity, and accountability, without addressing anonymity, sensitive data handling, or consent obligations."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:survey-solicitation-authority",
+        "type": "capability",
+        "title": "Survey Solicitation Authority",
+        "description": "Ensures surveys are distributed by authorized and accountable survey owners.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1566",
+            "remarks": "Phishing-style deception via fraudulent or misleading survey requests."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading as legitimate institutional survey authorities."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Strong identity binding for survey organizers and distributors."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:survey-authority",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-2",
+                "remarks": "Survey creation and distribution are attributable to authenticated identities."
+              },
+              {
+                "control-id": "IA-4",
+                "remarks": "Identity attributes support correct representation of survey ownership."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:survey-purpose-and-scope-clarity",
+        "type": "capability",
+        "title": "Survey Purpose and Scope Clarity",
+        "description": "Ensures survey intent, scope, and use are explicitly defined and communicated.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1589",
+            "remarks": "Collection of excess or misleading information beyond stated purpose."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement to constrain information solicitation to approved purposes."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:survey-purpose",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define acceptable purposes and scope for surveys."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:survey-response-integrity",
+        "type": "capability",
+        "title": "Survey Response Integrity",
+        "description": "Preserves the correctness and completeness of submitted survey responses.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565.001",
+            "remarks": "Manipulation or corruption of survey responses."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0050",
+            "remarks": "Integrity controls to prevent unauthorized modification of collected responses."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:survey-integrity",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-7",
+                "remarks": "Integrity mechanisms protect survey response data."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:survey-observability-and-accountability",
+        "type": "capability",
+        "title": "Survey Observability and Accountability",
+        "description": "Provides auditability of survey distribution and response collection.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression or deletion of evidence related to survey activity."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging to support accountability and investigation."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:survey-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Survey-related events are defined and logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports oversight of survey usage."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

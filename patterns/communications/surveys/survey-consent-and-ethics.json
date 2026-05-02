@@ -1,0 +1,191 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:survey-consent-and-ethics",
+
+    "metadata": {
+      "title": "Survey Consent and Ethics",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T13:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC365",
+          "remarks": "Business capability for ensuring survey participation is informed, voluntary, ethically governed, and consistent with institutional and regulatory expectations."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD175",
+          "remarks": "Survey consent mechanisms, participation controls, withdrawal workflows, and ethics oversight processes."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP295",
+          "remarks": "Pattern for governing informed consent, ethical approval, and respondent rights in survey systems."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "survey-core",
+          "remarks": "Survey consent and ethics assumes baseline authority, purpose clarity, and integrity of survey operations."
+        }
+      ],
+
+      "remarks": "Survey Consent and Ethics defines trust properties required to ensure surveys are conducted in a manner consistent with ethical principles and regulatory obligations. This pattern addresses informed consent, voluntariness, withdrawal, and formal ethics oversight, and does not address data access or anonymization mechanics directly."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:informed-consent-presentation",
+        "type": "capability",
+        "title": "Informed Consent Presentation",
+        "description": "Ensures participants are clearly informed about survey purpose, use, and implications before responding.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1566",
+            "remarks": "Deceptive solicitation that obscures true intent or data use."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement to ensure transparency and clarity of participation conditions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:survey-informed-consent",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies require clear disclosure of survey purpose, risks, and data use."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:voluntary-participation-and-non-coercion",
+        "type": "capability",
+        "title": "Voluntary Participation and Non-Coercion",
+        "description": "Prevents coercive or mandatory participation except where explicitly justified.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1589",
+            "remarks": "Coercive collection of information under implied authority."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0034",
+            "remarks": "Controls ensuring participation conditions are explicit and limited."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:survey-voluntariness",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-10",
+                "remarks": "Adaptive controls prevent enforcement of participation beyond approved conditions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:withdrawal-and-response-revocation",
+        "type": "capability",
+        "title": "Withdrawal and Response Revocation",
+        "description": "Supports withdrawal from surveys and handling of responses upon participant request where applicable.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Improper retention of responses after withdrawal or revocation."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Lifecycle management to enforce withdrawal and revocation where possible."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:survey-withdrawal",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "DM-2",
+                "remarks": "Survey responses are managed according to withdrawal and disposition requirements."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:ethics-review-and-oversight-alignment",
+        "type": "capability",
+        "title": "Ethics Review and Oversight Alignment",
+        "description": "Aligns survey activity with institutional ethics review and oversight processes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1098",
+            "remarks": "Circumvention of institutional oversight or approval processes."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit and review mechanisms supporting governance accountability."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:survey-ethics-oversight",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies require ethics review and approval for survey activities."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports verification of ethics compliance."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

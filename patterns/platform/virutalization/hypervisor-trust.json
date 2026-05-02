@@ -1,0 +1,176 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:hypervisor-trust",
+    "metadata": {
+      "title": "Hypervisor Trust",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T22:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC312",
+          "remarks": "Business capability for ensuring the integrity, isolation, and secure control of hypervisors underpinning virtualized compute platforms."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD121",
+          "remarks": "Hypervisors, virtual machine monitors, and privileged virtualization control planes."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP241",
+          "remarks": "Pattern for protecting the integrity and trustworthiness of hypervisors and their management interfaces."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-layer",
+          "value": "bare-metal-core",
+          "remarks": "Hypervisor trust assumes a trusted physical host and firmware foundation."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-layer",
+          "value": "virtualization-core",
+          "remarks": "Hypervisor trust refines and strengthens the baseline virtualization trust assumptions."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0004",
+          "remarks": "Privilege escalation targeting hypervisor or host-level execution contexts."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0005",
+          "remarks": "Defense evasion below the guest operating system, including hypervisor-level persistence."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0040",
+          "remarks": "Impact on availability or integrity of all workloads hosted on a compromised hypervisor."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1068",
+          "remarks": "Exploitation for privilege escalation from guest or management interface into the hypervisor."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1548",
+          "remarks": "Abuse of elevation control mechanisms associated with privileged hypervisor functions."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1489",
+          "remarks": "Service stop or platform disruption affecting all virtual machines on a host."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0004",
+          "remarks": "Privileged access management for hypervisor administrative functions."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0008",
+          "remarks": "Integrity verification of hypervisor binaries and configuration state."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0036",
+          "remarks": "Reduction of exposed hypervisor attack surfaces and management interfaces."
+        }
+      ],
+
+      "remarks": "Hypervisor Trust defines the trust properties required to ensure that the hypervisor enforcing virtualization boundaries remains secure, isolated, and resistant to compromise. This pattern narrows focus from general virtualization guarantees to the integrity and control of the hypervisor itself, whose failure would compromise all hosted workloads."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:hypervisor-integrity",
+        "type": "capability",
+        "title": "Hypervisor Integrity",
+        "description": "Ensures the hypervisor remains free from unauthorized modification or subversion.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:hypervisor-integrity",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:hypervisor-integrity",
+                "control-id": "HYP-INTEGRITY",
+                "remarks": "The hypervisor execution environment is protected against unauthorized change or persistence."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:hypervisor-privileged-access-control",
+        "type": "capability",
+        "title": "Hypervisor Privileged Access Control",
+        "description": "Controls and limits access to hypervisor administrative and management interfaces.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:hypervisor-access",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:hypervisor-access",
+                "control-id": "HYP-PRIV-ACCESS",
+                "remarks": "Only authorized identities are permitted to perform privileged hypervisor operations."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:hypervisor-failure-containment",
+        "type": "capability",
+        "title": "Hypervisor Failure Containment",
+        "description": "Limits blast radius and impact resulting from hypervisor faults or compromise.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:hypervisor-containment",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:hypervisor-containment",
+                "control-id": "HYP-FAILURE-CONTAIN",
+                "remarks": "Hypervisor failures or compromises do not propagate unchecked across dependent systems."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

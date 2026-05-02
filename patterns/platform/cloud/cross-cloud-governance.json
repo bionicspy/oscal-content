@@ -1,0 +1,177 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:cross-cloud-governance",
+
+    "metadata": {
+      "title": "Cross-Cloud Governance",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T04:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC333",
+          "remarks": "Business capability for maintaining consistent security governance, policy intent, and risk posture across multiple cloud providers."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD142",
+          "remarks": "Multi-cloud management layers, centralized policy engines, cross-provider identity, configuration, and monitoring systems."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP262",
+          "remarks": "Pattern for governing policy equivalence, risk normalization, and assurance consistency across heterogeneous cloud environments."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-identity-and-access",
+          "remarks": "Cross-cloud governance relies on consistent identity, federation, and authorization semantics."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-configuration-and-posture",
+          "remarks": "Cross-cloud governance assumes visibility into configuration and posture across providers."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-monitoring-and-logging",
+          "remarks": "Cross-cloud governance requires consistent observability and auditability across cloud environments."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0005",
+          "remarks": "Defense evasion through exploiting policy gaps or semantic differences between cloud providers."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0004",
+          "remarks": "Privilege escalation by leveraging weaker governance controls in one cloud environment."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0008",
+          "remarks": "Lateral movement between environments exploiting weakest-governed cloud."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1098",
+          "remarks": "Account and role manipulation across federated or multi-cloud identity systems."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1580",
+          "remarks": "Cloud infrastructure discovery leveraged to identify governance inconsistencies."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0050",
+          "remarks": "Policy change verification across cloud providers to ensure consistent enforcement."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0056",
+          "remarks": "Centralized monitoring and alerting across multi-cloud environments."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0065",
+          "remarks": "Policy abstraction and normalization to reduce provider-specific semantic drift."
+        }
+      ],
+
+      "remarks": "Cross-Cloud Governance defines the trust properties required to ensure that security policy intent, enforcement, and assurance remain consistent across multiple cloud providers. This pattern recognizes that multi-cloud risk often emerges from governance and semantic gaps rather than individual platform failures."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:policy-intent-normalization",
+        "type": "capability",
+        "title": "Policy Intent Normalization",
+        "description": "Ensures security policies express consistent intent across heterogeneous cloud providers.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:policy-normalization",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:policy-normalization",
+                "control-id": "CROSS-POLICY-NORMALIZE",
+                "remarks": "Security policy intent is normalized to avoid provider-specific ambiguity."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:governance-drift-detection",
+        "type": "capability",
+        "title": "Governance Drift Detection",
+        "description": "Detects divergence in governance posture between cloud environments.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:governance-drift",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:governance-drift",
+                "control-id": "CROSS-GOV-DRIFT",
+                "remarks": "Cross-cloud governance drift is detected and surfaced for remediation."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:centralized-cloud-risk-visibility",
+        "type": "capability",
+        "title": "Centralized Cloud Risk Visibility",
+        "description": "Provides unified visibility into security risk across all cloud providers.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:central-risk-view",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:central-risk-view",
+                "control-id": "CROSS-RISK-VISIBILITY",
+                "remarks": "Security risk across providers is visible in a single governance context."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

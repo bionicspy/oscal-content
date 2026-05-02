@@ -1,0 +1,145 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-printing",
+
+    "metadata": {
+      "title": "Secure Printing",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T12:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC361",
+          "remarks": "Business capability for operating institutional printing services that preserve confidentiality, accountability, and policy compliance when producing physical artifacts."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD171",
+          "remarks": "Enterprise printing systems, secure release mechanisms, data-aware print pipelines, audit logging, and accountability services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP291",
+          "remarks": "Composite pattern asserting that all trust requirements for secure institutional printing are satisfied."
+        },
+
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "printing-core",
+          "remarks": "Secure printing assumes baseline identity attribution, boundary control, and observability for printing services."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "secure-print-release",
+          "remarks": "Secure printing requires identity-bound release of physical output."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "print-data-protection",
+          "remarks": "Secure printing requires classification-aware handling and protection of printed data."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "print-accountability",
+          "remarks": "Secure printing requires attribution, investigation, and governance response capabilities."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0009",
+          "remarks": "Collection of sensitive information from printed artifacts."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0005",
+          "remarks": "Evasion of accountability through misuse of physical output channels."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1005",
+          "remarks": "Data collection from unattended or improperly controlled print output."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1107",
+          "remarks": "Destruction or suppression of evidence related to printing misuse."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0045",
+          "remarks": "Strong identity binding for printing actions and release."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0011",
+          "remarks": "Data access control to prevent inappropriate physical disclosure."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0061",
+          "remarks": "Audit logging and traceability to support accountability and investigation."
+        }
+      ],
+
+      "remarks": "Secure Printing is a composite pattern asserting that all foundational, protective, and accountability requirements for institutional printing have been met. It introduces no independent controls and exists solely as an aggregate trust claim for use in solution patterns, risk analysis, and system security and privacy plans."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:printing-core",
+        "type": "component",
+        "title": "Printing Core",
+        "description": "Baseline trust assumptions for institutional printing."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:secure-print-release",
+        "type": "component",
+        "title": "Secure Print Release",
+        "description": "Identity-bound release of physical print output."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:print-data-protection",
+        "type": "component",
+        "title": "Print Data Protection",
+        "description": "Classification-aware handling and protection of printed information."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:print-accountability",
+        "type": "component",
+        "title": "Print Accountability",
+        "description": "Attribution, investigation, and governance response for printing activity."
+      }
+    ]
+  }
+}

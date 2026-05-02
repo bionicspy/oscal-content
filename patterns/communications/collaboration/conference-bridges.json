@@ -1,0 +1,245 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:conference-bridges",
+
+    "metadata": {
+      "title": "Conference Bridges",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T10:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC353",
+          "remarks": "Business capability for conducting live, multi-party conferencing sessions that preserve authority, participant safety, and accountability."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD163",
+          "remarks": "Video conferencing platforms, webinar systems, virtual classrooms, meeting services, and associated recording and participation metadata."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP283",
+          "remarks": "Pattern for governing authority, access, recording, and behavior in live conference environments."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "collaboration-core",
+          "remarks": "Conference bridge trust depends on baseline collaboration identity, boundary control, and accountability."
+        }
+      ],
+
+      "remarks": "Conference Bridges defines trust properties required to safely conduct live sessions such as meetings, lectures, and webinars. This pattern addresses access control, role authority, recording and playback, participant consent, and session-level abuse risks."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:session-access-and-role-control",
+        "type": "capability",
+        "title": "Session Access and Role Control",
+        "description": "Constrains who may join a session and what actions participants may perform.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1199",
+            "remarks": "Unauthorized access via trusted relationships or shared meeting links."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Abuse of valid accounts to obtain inappropriate meeting privileges."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Role-based access control for session participation and privileges."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:conference-access-control",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-2",
+                "remarks": "Conference access is explicitly controlled and managed."
+              },
+              {
+                "control-id": "AC-3",
+                "remarks": "Enforcement mechanisms restrict inappropriate session actions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:session-authority-and-moderation",
+        "type": "capability",
+        "title": "Session Authority and Moderation",
+        "description": "Ensures hosts and moderators can enforce behavioral and participation boundaries in real time.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1589",
+            "remarks": "Targeting and harassment enabled through live participant observation."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy-based restriction and moderation of session behavior."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:conference-moderation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define acceptable and enforceable behavior in live sessions."
+              },
+              {
+                "control-id": "AC-6",
+                "remarks": "Moderation privileges follow least privilege principles."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:recording-and-playback-governance",
+        "type": "capability",
+        "title": "Recording and Playback Governance",
+        "description": "Controls when sessions may be recorded and how recordings may be accessed or reused.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1114",
+            "remarks": "Collection or misuse of recorded session content."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Lifecycle and access control for recorded session artifacts."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:conference-recording",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "DM-2",
+                "remarks": "Recorded sessions are treated as managed information assets."
+              },
+              {
+                "control-id": "AU-11",
+                "remarks": "Retention of session recordings aligns with institutional policy."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:participant-consent-and-awareness",
+        "type": "capability",
+        "title": "Participant Consent and Awareness",
+        "description": "Ensures participants are informed of session conditions such as recording and visibility.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading or deception about session conditions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0011",
+            "remarks": "Clarity of conditions and information disclosure to participants."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:conference-consent",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies require transparency of session conditions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:conference-auditability",
+        "type": "capability",
+        "title": "Conference Auditability",
+        "description": "Provides traceability of participation, actions, and session events.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Deletion or suppression of evidence related to session misuse."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging to support investigation and accountability."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:conference-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Conference-related events are defined and logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports oversight and investigation of sessions."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

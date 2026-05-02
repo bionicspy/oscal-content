@@ -1,0 +1,162 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:cloud-saas-core",
+
+    "metadata": {
+      "title": "Cloud Software-as-a-Service Core",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T02:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC326",
+          "remarks": "Business capability for safely consuming provider-operated software services where application logic, runtime, and infrastructure are outside consumer control."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD135",
+          "remarks": "Cloud-delivered software services, provider-managed application platforms, and externally operated service control planes."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP255",
+          "remarks": "Pattern for establishing trust assumptions and governance boundaries for Software-as-a-Service consumption."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "hosting-model-trust",
+          "remarks": "SaaS trust assumptions depend on the provider's hosting, jurisdiction, and operational model."
+        },
+        {
+          "name": "attack-tactic", 
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0006",
+          "remarks": "Credential access risks from phishing or account takeover of SaaS users."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0001",
+          "remarks": "Initial access through exposed SaaS interfaces or misconfigured service settings."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0009",
+          "remarks": "Collection of sensitive data stored or processed within SaaS platforms."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1078",
+          "remarks": "Abuse of valid SaaS user accounts following compromise."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1110",
+          "remarks": "Credential attacks against SaaS authentication mechanisms."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0045",
+          "remarks": "Strong authentication and MFA enforcement for SaaS user access."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0011",
+          "remarks": "Data access control and authorization enforcement within SaaS platforms."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0056",
+          "remarks": "Monitoring and auditing of SaaS configuration and user activity."
+        }
+      ],
+
+      "remarks": "Cloud Software-as-a-Service Core defines the foundational trust properties required to consume provider-operated software services. This pattern recognizes that consumers cannot control application logic or runtime behavior and therefore must anchor trust in identity governance, configuration oversight, data protection, and continuous visibility into SaaS usage."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:saas-identity-governance",
+        "type": "capability",
+        "title": "SaaS Identity Governance",
+        "description": "Controls user and service identity access within SaaS platforms.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:saas-identity-governance",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:saas-identity-governance",
+                "control-id": "CLOUD-SAAS-IDENTITY",
+                "remarks": "SaaS access is limited to authorized and correctly governed identities."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:saas-configuration-oversight",
+        "type": "capability",
+        "title": "SaaS Configuration Oversight",
+        "description": "Ensures consumer-controlled SaaS settings are explicitly governed and monitored.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:saas-config-oversight",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:saas-config-oversight",
+                "control-id": "CLOUD-SAAS-CONFIG",
+                "remarks": "Consumer-managed SaaS configurations are reviewed to prevent unsafe settings."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:saas-data-protection-boundary",
+        "type": "capability",
+        "title": "SaaS Data Protection Boundary",
+        "description": "Defines data custody and protection expectations within SaaS services.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:saas-data-boundary",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:saas-data-boundary",
+                "control-id": "CLOUD-SAAS-DATA",
+                "remarks": "Data stored in SaaS platforms is subject to defined access, retention, and protection expectations."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

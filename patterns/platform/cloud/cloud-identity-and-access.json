@@ -1,0 +1,163 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:cloud-identity-and-access",
+
+    "metadata": {
+      "title": "Cloud Identity and Access",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2024-06-01T00:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC327",
+          "remarks": "Business capability for governing identity, authentication, and authorization in cloud environments across IaaS, PaaS, and SaaS service models."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD136",
+          "remarks": "Cloud-native identity systems, service identities, federated authentication, role-based access control, and cross-account authorization models."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP256",
+          "remarks": "Pattern for establishing trusted identity and access control boundaries across cloud service models and providers."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "hosting-model-trust",
+          "remarks": "Cloud identity trust assumptions depend on the operational and jurisdictional context of the hosting model."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0006",
+          "remarks": "Credential access targeting cloud user accounts, service identities, or federated credentials."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0004",
+          "remarks": "Privilege escalation through misconfigured cloud identities, roles, or trust relationships."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0005",
+          "remarks": "Defense evasion by manipulating identity policies, role assignments, or audit visibility."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1078",
+          "remarks": "Abuse of valid cloud accounts, including user and service identities."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1098",
+          "remarks": "Account manipulation through modification of cloud role bindings or trust policies."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0004",
+          "remarks": "Privileged access management for cloud identities and administrative roles."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0045",
+          "remarks": "Strong authentication enforcement for cloud user and service identities."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0046",
+          "remarks": "Separation of duties and role partitioning across cloud identity domains."
+        }
+      ],
+
+      "remarks": "Cloud Identity and Access defines the foundational trust properties required to govern identity and authorization in cloud environments. This pattern addresses cloud-native identity constructs, federation, service identities, and cross-account access, recognizing that identity is the primary security control plane in cloud platforms."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:cloud-identity-federation",
+        "type": "capability",
+        "title": "Cloud Identity Federation",
+        "description": "Supports federated identity and trust relationships between on-premises and cloud identity providers.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-federation",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-federation",
+                "control-id": "CLOUD-IDENTITY-FEDERATION",
+                "remarks": "Federated identity allows centralized governance of cloud access without duplicating credentials."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:service-identity-governance",
+        "type": "capability",
+        "title": "Service Identity Governance",
+        "description": "Controls non-human identities such as workloads, services, and automation in cloud environments.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:service-identity",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:service-identity",
+                "control-id": "CLOUD-SERVICE-IDENTITY",
+                "remarks": "Service identities are governed to prevent excessive or unintended privileges."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:cloud-role-and-policy-governance",
+        "type": "capability",
+        "title": "Cloud Role and Policy Governance",
+        "description": "Governs creation and assignment of roles, permissions, and trust policies in cloud platforms.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-role-policy",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-role-policy",
+                "control-id": "CLOUD-ROLE-POLICY",
+                "remarks": "Cloud roles and policies are defined and maintained to enforce least privilege and separation of duties."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

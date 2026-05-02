@@ -1,0 +1,162 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:cloud-configuration-and-posture",
+
+    "metadata": {
+      "title": "Cloud Configuration and Posture",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2024-06-01T12:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC329",
+          "remarks": "Business capability for maintaining secure configuration baselines and detecting configuration drift across cloud environments."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD138",
+          "remarks": "Cloud configuration settings, policy engines, posture management systems, and provider-native governance services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP258",
+          "remarks": "Pattern for governing secure configuration, baseline enforcement, and posture awareness in cloud platforms."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-iaas-core",
+          "remarks": "Cloud configuration and posture management builds on baseline cloud infrastructure trust assumptions."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0005",
+          "remarks": "Defense evasion through disabling, bypassing, or weakening cloud security configuration."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0004",
+          "remarks": "Privilege escalation enabled by permissive or incorrect cloud configuration."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0008",
+          "remarks": "Lateral movement facilitated by misconfigured cloud resources or network policies."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1087",
+          "remarks": "Account discovery enabled by overly permissive cloud configuration."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1098",
+          "remarks": "Cloud account or role manipulation through configuration changes."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0016",
+          "remarks": "Configuration hardening and baseline enforcement to reduce attack surface."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0050",
+          "remarks": "Change monitoring and verification for cloud configuration state."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0056",
+          "remarks": "Continuous monitoring of cloud posture and configuration deviations."
+        }
+      ],
+
+      "remarks": "Cloud Configuration and Posture defines the trust properties required to ensure cloud environments remain in an intended secure state over time. This pattern addresses the reality that cloud compromise frequently arises from configuration drift or misalignment rather than software flaws."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:configuration-baseline-definition",
+        "type": "capability",
+        "title": "Configuration Baseline Definition",
+        "description": "Establishes intended secure configuration baselines for cloud resources.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-baseline",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-baseline",
+                "control-id": "CLOUD-CONFIG-BASELINE",
+                "remarks": "Cloud configurations are defined against approved security baselines."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:configuration-drift-detection",
+        "type": "capability",
+        "title": "Configuration Drift Detection",
+        "description": "Detects deviations from approved cloud configuration baselines.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-drift-detection",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-drift-detection",
+                "control-id": "CLOUD-CONFIG-DRIFT",
+                "remarks": "Deviations from intended cloud configuration state are detected and surfaced."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:posture-visibility-and-reporting",
+        "type": "capability",
+        "title": "Posture Visibility and Reporting",
+        "description": "Provides visibility into cloud security posture for governance and risk decisions.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-posture-visibility",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-posture-visibility",
+                "control-id": "CLOUD-POSTURE-VISIBILITY",
+                "remarks": "Cloud security posture is observable and reportable to relevant stakeholders."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

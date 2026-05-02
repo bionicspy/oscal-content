@@ -1,0 +1,199 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:printing-core",
+
+    "metadata": {
+      "title": "Printing Core",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T11:30:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC357",
+          "remarks": "Business capability for providing printing services that preserve confidentiality, identity attribution, and accountability when digital information is physically released."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD167",
+          "remarks": "Enterprise printing services, network printers, multifunction devices, print servers, and print job management systems."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP287",
+          "remarks": "Pattern for establishing baseline trust assumptions for institutional printing as a data egress mechanism."
+        }
+      ],
+
+      "remarks": "Printing Core defines the foundational trust properties required to treat printing as a controlled and accountable transformation of digital content into physical artifacts. This pattern establishes identity awareness, boundary control, and auditability without addressing secure release mechanisms or data classification."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:print-job-identity-attribution",
+        "type": "capability",
+        "title": "Print Job Identity Attribution",
+        "description": "Ensures print jobs are attributable to authenticated and accountable identities.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading or misattribution of print job origin."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Abuse of valid accounts to print without accountability."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Strong identity binding for printing actions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:print-identity",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-2",
+                "remarks": "Print job submission is attributable to authenticated identities."
+              },
+              {
+                "control-id": "IA-4",
+                "remarks": "Identity attributes support correct attribution of print jobs."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:printing-boundary-and-access-control",
+        "type": "capability",
+        "title": "Printing Boundary and Access Control",
+        "description": "Constrains who may submit print jobs and access printing devices.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1199",
+            "remarks": "Misuse of trusted internal access paths to retrieve printed output."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Access control to restrict printing capabilities to authorized users."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:printing-access-control",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-2",
+                "remarks": "Access to printing services is explicitly managed and reviewed."
+              },
+              {
+                "control-id": "AC-6",
+                "remarks": "Printing privileges follow least privilege principles."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:print-artifact-confidentiality",
+        "type": "capability",
+        "title": "Print Artifact Confidentiality",
+        "description": "Reduces the risk of unintended exposure of printed materials.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1005",
+            "remarks": "Collection of sensitive information from unattended or misdirected printouts."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0011",
+            "remarks": "Data access control and handling practices to protect printed output."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:print-confidentiality",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "MP-7",
+                "remarks": "Controls reduce the risk of inappropriate disclosure of printed information."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:printing-observability-and-accountability",
+        "type": "capability",
+        "title": "Printing Observability and Accountability",
+        "description": "Provides auditability and traceability of printing activity.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Destruction or suppression of evidence related to printing misuse."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging to support investigation and accountability."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:printing-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Printing events are defined and logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports oversight of printing activity."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

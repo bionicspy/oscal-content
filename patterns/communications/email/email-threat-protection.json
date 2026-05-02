@@ -1,0 +1,178 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:email-threat-protection",
+
+    "metadata": {
+      "title": "Email Threat Protection",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T06:15:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC342",
+          "remarks": "Business capability for detecting, blocking, and responding to malicious or deceptive email content targeting users and systems."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD152",
+          "remarks": "Email security gateways, content inspection systems, attachment analysis, link analysis, and incident response workflows."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP272",
+          "remarks": "Pattern for preventing, detecting, and responding to email-based threats such as phishing, malware, and business email compromise."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "email-core",
+          "remarks": "Relies on core email infrastructure and protocols to ensure secure and reliable message delivery."
+        }
+      ],
+
+      "remarks": "Email Threat Protection defines the trust properties required to reduce risk from phishing, malicious attachments, weaponized links, and social engineering delivered through email. This pattern focuses on detection and response rather than identity governance or data classification."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:phishing-and-social-engineering-detection",
+        "type": "capability",
+        "title": "Phishing and Social Engineering Detection",
+        "description": "Detects deceptive email messages intended to manipulate recipients into unsafe actions.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1566",
+            "remarks": "Phishing via email messages, links, or attachments."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1204",
+            "remarks": "User execution triggered by deceptive email content."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0009",
+            "remarks": "Content inspection and analysis to identify deceptive or malicious email."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:email-phishing-detection",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-3",
+                "remarks": "Email content is examined to detect and block malicious or deceptive messages."
+              },
+              {
+                "control-id": "SI-4",
+                "remarks": "Email activity is monitored to identify indicators of phishing and social engineering."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:malicious-attachment-and-link-protection",
+        "type": "capability",
+        "title": "Malicious Attachment and Link Protection",
+        "description": "Identifies and mitigates malware and exploit delivery through email attachments and links.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1204.002",
+            "remarks": "Malicious file execution initiated via email attachments."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1105",
+            "remarks": "Ingress tool transfer through embedded links or payloads in email."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0014",
+            "remarks": "Malware detonation and analysis prior to delivery."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:email-malware-protection",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-3",
+                "remarks": "Email attachments and links are assessed for malicious code prior to user access."
+              },
+              {
+                "control-id": "SR-11",
+                "remarks": "External threat intelligence informs detection of malicious email artifacts."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:email-incident-detection-and-response",
+        "type": "capability",
+        "title": "Email Incident Detection and Response",
+        "description": "Supports rapid identification and containment of email-based security incidents.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Compromise and abuse of valid email accounts."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0056",
+            "remarks": "Monitoring and alerting to enable timely response to email threats."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:email-incident-response",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IR-4",
+                "remarks": "Email-related incidents are analyzed, contained, and eradicated."
+              },
+              {
+                "control-id": "IR-5",
+                "remarks": "Automated response mechanisms may be used to contain malicious email activity."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

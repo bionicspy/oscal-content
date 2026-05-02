@@ -1,0 +1,162 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:hpc-identity-and-access",
+    "metadata": {
+      "title": "High-Performance Computing Identity and Access",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T00:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC321",
+          "remarks": "Business capability for ensuring correct identification, authentication, and authorization of users, workloads, and schedulers in shared high-performance computing environments."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD130",
+          "remarks": "HPC identity systems, batch schedulers, job submission interfaces, and non-interactive execution contexts."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP250",
+          "remarks": "Pattern for governing identity, job attribution, and access control in scheduler-mediated HPC platforms."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "hpc-core",
+          "remarks": "HPC identity and access assumptions build on foundational trust in shared HPC platforms."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0006",
+          "remarks": "Credential access risks associated with shared login nodes, job submission mechanisms, or scheduler services."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0004",
+          "remarks": "Privilege escalation through misuse of scheduler roles or misattributed job execution."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0005",
+          "remarks": "Defense evasion by executing jobs under incorrect or unintended identities."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1078",
+          "remarks": "Abuse of valid accounts to submit or execute unauthorized HPC jobs."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1068",
+          "remarks": "Privilege escalation via scheduler or identity misconfiguration."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0004",
+          "remarks": "Privileged access management for HPC administrators, schedulers, and service accounts."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0045",
+          "remarks": "Strong authentication mechanisms for interactive and non-interactive HPC access."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0046",
+          "remarks": "Separation of duties between users, schedulers, and platform administrators."
+        }
+      ],
+
+      "remarks": "High-Performance Computing Identity and Access defines the trust properties required to correctly attribute, authorize, and constrain users and workloads in scheduler-driven HPC environments. This pattern recognizes that HPC systems frequently rely on non-interactive execution contexts and shared login infrastructure, making identity assurance and role separation critical."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:job-identity-attribution",
+        "type": "capability",
+        "title": "Job Identity Attribution",
+        "description": "Ensures that HPC jobs are unambiguously attributed to the correct initiating identity.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:job-identity",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:job-identity",
+                "control-id": "HPC-JOB-IDENTITY",
+                "remarks": "Each job execution is associated with an accountable user or service identity."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:scheduler-access-control",
+        "type": "capability",
+        "title": "Scheduler Access Control",
+        "description": "Restricts who may submit, modify, or control jobs through the HPC scheduler.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:scheduler-access",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:scheduler-access",
+                "control-id": "HPC-SCHEDULER-ACCESS",
+                "remarks": "Access to scheduler functions is limited to authorized identities and roles."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:role-separation-and-delegation",
+        "type": "capability",
+        "title": "Role Separation and Delegation",
+        "description": "Separates user, administrator, and scheduler roles to prevent inappropriate privilege overlap.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:role-separation",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:role-separation",
+                "control-id": "HPC-ROLE-SEPARATION",
+                "remarks": "Distinct roles and delegation boundaries prevent unauthorized escalation or misuse."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

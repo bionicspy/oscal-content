@@ -1,0 +1,204 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-email",
+
+    "metadata": {
+      "title": "Secure Email",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T08:30:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC348",
+          "remarks": "Business capability for operating email as a secure, trustworthy, and institutionally governed communication system."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD158",
+          "remarks": "Institutional email systems including identity, threat protection, data governance, workflow relay, bulk messaging, and automation."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP278",
+          "remarks": "Composite pattern asserting that all required trust properties for secure institutional email are satisfied."
+        },
+
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "email-core",
+          "remarks": "Secure Email assumes baseline email delivery, identity binding, and accountability."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "email-identity",
+          "remarks": "Secure Email requires defensible sender identity and impersonation resistance."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "email-threat-protection",
+          "remarks": "Secure Email requires protection against phishing, malware, and social engineering."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "email-data-protection",
+          "remarks": "Secure Email requires controls preventing misuse and leakage of sensitive data."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "email-records",
+          "remarks": "Secure Email requires defensible treatment of email as an institutional record."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "email-notification-gateway",
+          "remarks": "Secure Email requires trusted handling of system-generated email."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "email-collaboration-relay",
+          "remarks": "Secure Email requires safe use of email as a workflow and collaboration relay."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "email-bulk-messaging-gateway",
+          "remarks": "Secure Email requires governed use of high-volume outbound email."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0001",
+          "remarks": "Initial access attempts commonly originate through email."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0006",
+          "remarks": "Credential access through phishing and identity deception."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0009",
+          "remarks": "Collection and exfiltration of sensitive information via email."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1566",
+          "remarks": "Phishing via email is a dominant attack vector."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1078",
+          "remarks": "Abuse of valid email accounts undermines trust and authority."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0045",
+          "remarks": "Strong authentication and identity assurance across email usage."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0011",
+          "remarks": "Data access control to protect sensitive email content."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0061",
+          "remarks": "Audit logging and traceability to support accountability and investigation."
+        }
+      ],
+
+      "remarks": "Secure Email is a composite pattern asserting that all foundational, defensive, and governance requirements for institutional email have been satisfied. It introduces no independent controls and exists solely as an aggregate trust claim for use in solution patterns, risk analysis, and system security and privacy plans."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:email-core",
+        "type": "component",
+        "title": "Email Core",
+        "description": "Baseline trust assumptions for institutional email."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:email-identity",
+        "type": "component",
+        "title": "Email Identity",
+        "description": "Defensible sender identity and impersonation resistance."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:email-threat-protection",
+        "type": "component",
+        "title": "Email Threat Protection",
+        "description": "Detection and response to malicious and deceptive email."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:email-data-protection",
+        "type": "component",
+        "title": "Email Data Protection",
+        "description": "Controls preventing inappropriate disclosure of email content."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:email-records",
+        "type": "component",
+        "title": "Email Records",
+        "description": "Institutional record management for email communications."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:email-notification-gateway",
+        "type": "component",
+        "title": "Email Notification Gateway",
+        "description": "Trusted system-generated email."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:email-collaboration-relay",
+        "type": "component",
+        "title": "Email Collaboration Relay",
+        "description": "Safe use of email in workflow and collaboration contexts."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:email-bulk-messaging-gateway",
+        "type": "component",
+        "title": "Email Bulk Messaging Gateway",
+        "description": "Governed high-volume outbound email."
+      }
+    ]
+  }
+}

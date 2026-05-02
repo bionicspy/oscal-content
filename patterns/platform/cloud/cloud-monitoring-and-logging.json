@@ -1,0 +1,163 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:cloud-monitoring-and-logging",
+
+    "metadata": {
+      "title": "Cloud Monitoring and Logging",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2024-06-01T12:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC330",
+          "remarks": "Business capability for ensuring cloud activity, configuration changes, and security-relevant events are observable, auditable, and retained for investigation."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD139",
+          "remarks": "Cloud logging services, monitoring pipelines, audit logs, telemetry systems, and event streams across IaaS, PaaS, and SaaS."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP259",
+          "remarks": "Pattern for establishing consistent observability, logging, and auditability across cloud service models."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-iaas-core",
+          "remarks": "Cloud monitoring and logging build on baseline cloud infrastructure trust assumptions."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0005",
+          "remarks": "Defense evasion through disabling or avoiding cloud logging and monitoring mechanisms."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0007",
+          "remarks": "Attempts to hide activity by corrupting, deleting, or bypassing logs."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0009",
+          "remarks": "Data collection activity that is only detectable through monitoring and logging."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1070",
+          "remarks": "Indicator removal or log tampering to evade detection."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1562",
+          "remarks": "Impairing defenses by disabling or modifying monitoring and logging services."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0009",
+          "remarks": "Centralized log collection and aggregation for detection and investigation."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0056",
+          "remarks": "Monitoring and alerting for abnormal or security-relevant cloud activity."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0061",
+          "remarks": "Audit logging to support accountability and forensic analysis."
+        }
+      ],
+
+      "remarks": "Cloud Monitoring and Logging defines the trust properties required to ensure that cloud activity, configuration changes, and security-relevant events are observable and auditable. This pattern recognizes that without reliable telemetry, misconfiguration, misuse, and compromise in cloud environments often remain undetected."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:cloud-activity-logging",
+        "type": "capability",
+        "title": "Cloud Activity Logging",
+        "description": "Records security-relevant actions performed within cloud environments.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-activity-logging",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-activity-logging",
+                "control-id": "CLOUD-ACTIVITY-LOG",
+                "remarks": "Cloud control-plane and workload activities are logged for accountability and review."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:cloud-telemetry-and-alerting",
+        "type": "capability",
+        "title": "Cloud Telemetry and Alerting",
+        "description": "Detects and signals anomalous or policy-relevant cloud behavior.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:cloud-telemetry",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:cloud-telemetry",
+                "control-id": "CLOUD-TELEMETRY",
+                "remarks": "Monitoring systems surface security-relevant conditions in cloud environments."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:log-retention-and-integrity",
+        "type": "capability",
+        "title": "Log Retention and Integrity",
+        "description": "Preserves cloud logs in a manner that supports investigation and audit.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:log-retention",
+            "source": "urn:utoronto:cae2:architecture",
+            "implemented-requirements": [
+              {
+                "uuid": "urn:utoronto:security:ir:log-retention",
+                "control-id": "CLOUD-LOG-RETENTION",
+                "remarks": "Cloud logs are retained immutably for a duration sufficient to support investigations."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

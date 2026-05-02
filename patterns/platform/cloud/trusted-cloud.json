@@ -1,0 +1,230 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:trusted-cloud",
+
+    "metadata": {
+      "title": "Trusted Cloud",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T04:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC334",
+          "remarks": "Business capability for operating cloud services in a manner that preserves security, governance, and risk control across IaaS, PaaS, SaaS, and multi-cloud environments."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD143",
+          "remarks": "Public and private cloud services including infrastructure, application platforms, software services, identity systems, and governance layers."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP263",
+          "remarks": "Composite pattern asserting that foundational, operational, and governance trust requirements for cloud environments are satisfied."
+        },
+
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-iaas-core",
+          "remarks": "Trusted cloud builds on baseline trust for consumer-managed cloud infrastructure."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-paas-core",
+          "remarks": "Trusted cloud includes provider-managed application platforms under shared responsibility."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-saas-core",
+          "remarks": "Trusted cloud includes provider-operated software services consumed by users and systems."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-identity-and-access",
+          "remarks": "Trusted cloud requires consistent and governed cloud identity and authorization."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-networking",
+          "remarks": "Trusted cloud requires controlled connectivity, segmentation, and exposure management."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-configuration-and-posture",
+          "remarks": "Trusted cloud requires maintenance of secure configuration baselines and posture."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-monitoring-and-logging",
+          "remarks": "Trusted cloud assumes reliable observability, logging, and auditability."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-third-party-access",
+          "remarks": "Trusted cloud includes governance of external and delegated access."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cloud-access-security-broker",
+          "remarks": "Trusted cloud includes visibility and control over sanctioned and unsanctioned cloud application usage."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "cross-cloud-governance",
+          "remarks": "Trusted cloud requires consistent governance and policy intent across multiple cloud providers."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0004",
+          "remarks": "Privilege escalation risks across cloud identities, roles, and configurations."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0008",
+          "remarks": "Lateral movement within or across cloud environments."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0009",
+          "remarks": "Collection of sensitive data from cloud platforms and services."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1078",
+          "remarks": "Abuse of valid cloud identities across service models."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1195",
+          "remarks": "Supply chain compromise affecting cloud-hosted services or integrations."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0004",
+          "remarks": "Privileged access management across cloud environments."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0056",
+          "remarks": "Centralized monitoring and alerting across cloud services."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0065",
+          "remarks": "Policy normalization and governance consistency in multi-cloud environments."
+        }
+      ],
+
+      "remarks": "Trusted Cloud is a composite pattern asserting that foundational infrastructure trust, identity governance, networking controls, configuration posture, monitoring, third-party access governance, and cross-cloud policy consistency are collectively satisfied. It introduces no independent controls and exists solely as an aggregate trust claim for use in solution patterns and system security and privacy plans."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cloud-iaas-core",
+        "type": "component",
+        "title": "Cloud IaaS Core",
+        "description": "Baseline trust for consumer-managed cloud infrastructure."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cloud-paas-core",
+        "type": "component",
+        "title": "Cloud PaaS Core",
+        "description": "Trust assumptions for provider-managed application platforms."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cloud-saas-core",
+        "type": "component",
+        "title": "Cloud SaaS Core",
+        "description": "Trust assumptions for provider-operated software services."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cloud-identity-and-access",
+        "type": "component",
+        "title": "Cloud Identity and Access",
+        "description": "Governed cloud identity, authentication, and authorization."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cloud-networking",
+        "type": "component",
+        "title": "Cloud Networking",
+        "description": "Controlled connectivity, segmentation, and exposure management."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cloud-configuration-and-posture",
+        "type": "component",
+        "title": "Cloud Configuration and Posture",
+        "description": "Secure configuration baselines and drift detection."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cloud-monitoring-and-logging",
+        "type": "component",
+        "title": "Cloud Monitoring and Logging",
+        "description": "Observability, logging, and auditability across cloud environments."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cloud-third-party-access",
+        "type": "component",
+        "title": "Cloud Third-Party Access",
+        "description": "Governance of vendor, partner, and external access."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cloud-access-security-broker",
+        "type": "component",
+        "title": "Cloud Access Security Broker",
+        "description": "Discovery and control of sanctioned and unsanctioned cloud application use."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cross-cloud-governance",
+        "type": "component",
+        "title": "Cross-Cloud Governance",
+        "description": "Policy normalization and risk consistency across providers."
+      }
+    ]
+  }
+}

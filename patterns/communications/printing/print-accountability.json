@@ -1,0 +1,206 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:print-accountability",
+
+    "metadata": {
+      "title": "Print Accountability",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-30T12:15:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC360",
+          "remarks": "Business capability for attributing printing activity to responsible identities and supporting investigation, escalation, and remediation."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD170",
+          "remarks": "Print audit logs, incident workflows, usage reporting systems, and accountability tooling."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP290",
+          "remarks": "Pattern for establishing accountability, attribution, and investigation capability for institutional printing services."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "printing-core",
+          "remarks": "Print accountability assumes baseline identity attribution and print event logging."
+        }
+      ],
+
+      "remarks": "Print Accountability defines trust properties required to investigate misuse, disputes, or incidents involving printed material. This pattern focuses on attribution, evidentiary integrity, and governance response, and does not address secure release or data classification."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:print-event-attribution",
+        "type": "capability",
+        "title": "Print Event Attribution",
+        "description": "Associates print actions with accountable identities and devices.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading to obscure responsibility for printed output."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Use of valid accounts to avoid accountability for misuse."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Strong identity binding for action attribution."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:print-attribution",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-2",
+                "remarks": "Print events are attributable to authenticated users."
+              },
+              {
+                "control-id": "IA-4",
+                "remarks": "Identity attributes support accurate attribution of printing actions."  
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:print-activity-audit-trail",
+        "type": "capability",
+        "title": "Print Activity Audit Trail",
+        "description": "Maintains an immutable and reviewable log of print-related events.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Deletion or suppression of evidence related to printing activity."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging to preserve evidentiary integrity."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:print-audit-trail",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Printing events are defined and logged as auditable activities."
+              },
+              {
+                "control-id": "AU-12",
+                "remarks": "Audit records are generated for printing actions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:print-incident-investigation-support",
+        "type": "capability",
+        "title": "Print Incident Investigation Support",
+        "description": "Supports investigation and response to printing-related incidents or disputes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565.001",
+            "remarks": "Manipulation or corruption of print-related records."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0056",
+            "remarks": "Monitoring and response to suspicious activity."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:print-incident-response",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IR-4",
+                "remarks": "Printing-related incidents are analyzed and investigated."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports escalation and response."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:print-accountability-governance",
+        "type": "capability",
+        "title": "Print Accountability Governance",
+        "description": "Aligns printing accountability with institutional governance and disciplinary processes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1098",
+            "remarks": "Improper expansion or abuse of privileges to avoid oversight."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement to ensure appropriate consequences for misuse."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:print-governance",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define acceptable use and consequences for printing misuse."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
