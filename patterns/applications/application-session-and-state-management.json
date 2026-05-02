@@ -1,0 +1,205 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:application-session-and-state-management",
+
+    "metadata": {
+      "title": "Application Session and State Management",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T15:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC383",
+          "remarks": "Business capability for maintaining correct identity, privilege, and execution context across application interactions."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD193",
+          "remarks": "Application sessions, cookies, tokens, state stores, caches, and contextual execution data."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP313",
+          "remarks": "Pattern for governing identity- and privilege-bearing application state over time."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-core",
+          "remarks": "Session management assumes baseline application purpose, ownership, and lifecycle governance."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-identity-and-authorization",
+          "remarks": "Session continuity depends on prior establishment of actor identity and authorization context."
+        }
+      ],
+
+      "remarks": "Application Session and State Management defines trust properties required to preserve identity, privilege, and execution context across requests. This pattern addresses session fixation, privilege carry-over, stale state, and context confusion without addressing input validation or data access rules."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:session-establishment-and-binding",
+        "type": "capability",
+        "title": "Session Establishment and Binding",
+        "description": "Binds application sessions securely to authenticated actors and execution context.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Use of valid credentials combined with session manipulation to gain unauthorized access."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading through stolen or reused session identifiers."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Strong binding of session identifiers to authenticated identity."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:session-binding",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-2",
+                "remarks": "Application sessions are bound to authenticated identity context."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:session-lifecycle-and-expiration",
+        "type": "capability",
+        "title": "Session Lifecycle and Expiration",
+        "description": "Ensures sessions are created, refreshed, and terminated appropriately.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1213",
+            "remarks": "Persistence through stale or non-expiring application sessions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Lifecycle management of session state to reduce residual risk."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:session-lifecycle",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-7",
+                "remarks": "Session lifetime and renewal are constrained to reduce misuse."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:privilege-consistency-and-state-isolation",
+        "type": "capability",
+        "title": "Privilege Consistency and State Isolation",
+        "description": "Prevents privilege escalation or leakage through shared or mutable state.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1098",
+            "remarks": "Privilege escalation through manipulation of persistent or shared session state."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Access control and isolation of privilege-bearing state."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:state-isolation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-6",
+                "remarks": "Application state enforces least privilege across execution contexts."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:session-observability-and-audit",
+        "type": "capability",
+        "title": "Session Observability and Audit",
+        "description": "Provides visibility into session creation, use, and termination.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression of evidence related to session misuse or hijacking."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging of session lifecycle events."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:session-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Session lifecycle events are logged by the application."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports detection of session abuse."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -7,38 +7,6 @@ So DNS belongs to multiple planes, depending on what problem is being solved.
 
 High‑Level Placement Summary
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 DNS AspectPrimary Trust PlaneDNS protocol & resolution mechanicsPlatform & InfrastructureInternal vs external vs private DNS zonesNetwork / Platform boundaryDNS caching & recursion behaviourPlatform & InfrastructureDNS record lifecycle & ownershipApplication + Data (naming)DNS firewall / filteringNetwork security / External accessService discovery (internal DNS)Integration & Applications boundary
 Let’s walk through this carefully.
 

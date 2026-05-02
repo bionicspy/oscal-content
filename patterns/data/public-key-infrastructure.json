@@ -1,0 +1,222 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:public-key-infrastructure",
+
+    "metadata": {
+      "title": "Public Key Infrastructure",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T19:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC405",
+          "remarks": "Business capability for establishing and governing certificate-based cryptographic trust."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD205",
+          "remarks": "Certificate authorities, trust anchors, certificate issuance, validation, and revocation mechanisms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP325",
+          "remarks": "Pattern for institutional governance of certificate-based trust relationships."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "key-management",
+          "remarks": "Public key infrastructure relies on secure cryptographic key lifecycle management."
+        }
+      ],
+
+      "remarks": "Public Key Infrastructure defines trust properties required to establish, validate, and revoke certificate-based cryptographic trust. This pattern governs trust anchors and certificate lifecycles and does not define application authentication flows or encryption policy."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:certificate-authorities-and-trust-anchors",
+        "type": "capability",
+        "title": "Certificate Authorities and Trust Anchors",
+        "description": "Defines trusted root and intermediate certificate authorities used by the institution.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1552",
+            "remarks": "Compromise or misuse of certificate authority trust anchors."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0047",
+            "remarks": "Strict governance and protection of CA root trust."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:pki-trust-anchors",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-7",
+                "remarks": "Trusted certificate authorities and trust anchors are defined and protected."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:certificate-issuance",
+        "type": "capability",
+        "title": "Certificate Issuance",
+        "description": "Governs certificate enrollment, identity proofing, and issuance processes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Issuance of certificates to unauthorized entities."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy-driven certificate enrollment and approval."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:pki-issuance",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-4",
+                "remarks": "Certificate issuance is bound to verified identity attributes."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:certificate-validation",
+        "type": "capability",
+        "title": "Certificate Validation",
+        "description": "Ensures certificate chains and trust paths are validated prior to use.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1552",
+            "remarks": "Use of expired, invalid, or untrusted certificates."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0047",
+            "remarks": "Automated validation of certificate trust chains."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:pki-validation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-7",
+                "remarks": "Certificate validity and trust are verified prior to acceptance."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:certificate-revocation",
+        "type": "capability",
+        "title": "Certificate Revocation",
+        "description": "Revokes and invalidates certificates that are expired, compromised, or no longer authorized.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1552",
+            "remarks": "Continued use of revoked or compromised certificates."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Timely revocation and dissemination of certificate status."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:pki-revocation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-5",
+                "remarks": "Revocation mechanisms invalidate untrusted certificates."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:cross-domain-and-federated-trust",
+        "type": "capability",
+        "title": "Cross-Domain and Federated Trust",
+        "description": "Supports certificate trust across organizational or domain boundaries.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1199",
+            "remarks": "Abuse of federated trust relationships to gain unauthorized access."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Explicit governance of cross-domain certificate trust."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:pki-federation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-7",
+                "remarks": "Cross-domain trust relationships are authorized and governed."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

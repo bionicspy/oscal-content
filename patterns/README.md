@@ -1,339 +1,227 @@
-# Enterprise Security Pattern Catalog
-(Conceptual / SABSA Layer – OSCAL Component‑Definitions)
 
-## How to read this
+# Trust Planes Overview
 
-* Patterns = conceptual trust capabilities (OSCAL component-definition)
-* Composites answer business questions (“Is X secure?”)
-* Components = sub‑capabilities within a pattern (used sparingly)
-* No tools, no controls, no job titles embedded
+This repository defines a **trust‑plane architecture** for describing how institutional trust is established, exercised, monitored, and enforced across systems, data, and interactions.
 
-## 0. Governance & Trust Foundation (Applies to Everything)
+Trust planes are **not organizational charts, deployment diagrams, or tooling taxonomies**. They are a way of reasoning about **who is trusted to do what, under what conditions, and with what oversight**, independent of specific technologies or implementations.
 
-### 0.1 Identity & Trust (Root of All Security)
-```
-identity/
-├── identity-core
-├── identity-authentication
-├── identity-authorization
-├── identity-lifecycle
-├── identity-federation
-├── identity-assurance
-└── trusted-identity (composite)
-```
-### Covers:
-* Identity management
-* Federation
-* Privileged access (conceptually)
-* Assurance of identity strength
+This trust‑plane model is used as a means of organizing systems, components, and responsibilities in order to **reduce control duplication**, **make trust assumptions explicit**, and **demonstrate control context and rationale**.
 
-## 1. Network & Connectivity
-```
-network/
-├── network-core
-├── network-segmentation-and-zones
-├── network-access-control
-├── network-mediation-and-policy-enforcement
-├── network-remote-access
-├── network-wireless-access
-├── network-third-party-connectivity
-├── network-monitoring-and-response
-└── secure-network (composite)
-```
-### Covers:
-* VPN / ZTNA
-* Wireless
-* Third‑party access
-* East‑west / north‑south trust boundaries
+Rather than repeating the same controls across every system or technology, trust planes identify *where* a control belongs, *why* it exists, and *what trust concern it addresses*. This allows controls to be inherited deliberately, assessed consistently, and explained defensibly.
 
-## 2. Compute & Execution Environments
-```
-compute/
-```
+At a high level, the model distinguishes between:
 
-### 2.1 Endpoints (User‑Operated Compute)
-```
-endpoint/
-├── endpoint-core
-├── endpoint-identity-and-posture
-├── endpoint-configuration-and-hardening
-├── endpoint-health-and-compliance
-├── endpoint-threat-protection
-├── endpoint-lifecycle
-└── secure-endpoint (composite)
-```
-### 2.2 Servers & Workloads
-```
-server/
-├── server-core
-├── server-attestation-and-trust
-├── server-configuration-and-baseline
-├── server-patch-and-vulnerability-posture
-├── server-runtime-protection
-├── server-monitoring-and-response
-└── secure-server (composite)
-```
+- **Trust authorities** — planes that establish, govern, and preserve trust
+- **Execution and interaction planes** — where systems operate and decisions are made
+- **Trust boundaries** — where trust is explicitly mediated and enforced
 
-## 3. Platform & Infrastructure
-```
-platform/
-├── hosting-model-trust
-├── infrastructure-management-plane-trust
-```
+---
 
-### 3.1 Bare Metal
-```
-bare-metal/
-└── bare-metal-core
-```
+## Trust Context (High‑Level Model)
 
-### 3.1 Virtualization & Bare Metal
-```
-platform/
-├── virtualization-core
-├── hypervisor-trust
-└── secure-virtualization (composite)
-```
-### 3.2 Cloud
-```
-cloud/
-├── cloud-iaas-core
-├── cloud-paas-core
-├── cloud-saas-core
-├── cloud-identity-and-access
-├── cloud-networking
-├── cloud-configuration-and-posture
-├── cloud-monitoring-and-logging
-├── cloud-third-party-access
-├── cloud-access-security-broker (CASB)
-└── trusted-cloud (composite)
-```
-### 3.3 High‑Performance Computing (HPC)
-```
-hpc/
-├── hpc-core
-├── hpc-identity-and-access
-├── hpc-data-protection
-└── secure-hpc (composite)
+```mermaid
+graph TD
+    Data["Data & Information Protection"]
+    Identity["Identity & Trust"]
+    SecOps["Security Operations"]
+
+    Identity -->|Underpins| TRUST
+    Identity -->|context informs| Data
+    SecOps -->|Monitors| TRUST
+    SecOps -->|relies on| Identity
+    Data -->|Governs| TRUST
+    Data -->|governs boundary rules| External
+
+    subgraph TRUST["Trusted Environment"]
+        subgraph Compute["Compute"]
+            CE["Endpoints"]
+            CS["Servers"]
+        end
+
+        subgraph Platform["Platform"]
+            PBM["Bare Metal"]
+            PV["Virtualization"]
+            PC["Containers"]
+            PCL["Cloud"]
+            PHPC["HPC"]
+        end
+
+        subgraph Network["Network"]
+            NAC["NAC"]
+            SEG["Segmentation"]
+            WIFI["Wireless"]
+            TP["3rd‑Party Connectivity"]
+        end
+
+        Integration["Integration & Messaging"]
+        Applications["Applications"]
+
+        subgraph Comms["Communication & Collaboration"]
+            Email["Email"]
+            Collab["Collaboration"]
+            Printing["Printing"]
+            Surveys["Surveys"]
+        end
+
+        OT["OT"]
+        IoT["IoT"]
+        IoMT["IoMT"]
+        AI["AI"]
+
+        Compute --> Platform
+        Network --> Platform
+        Platform --> Applications
+        Platform --> Integration
+        Platform --> Comms
+        Integration <--> |flow control ⟷ business logic| Applications
+        Compute --> AI --> Platform
+        OT --> Network
+        IoT --> Network
+        IoMT --> Network
+    end
+
+    Applications <--> |exposes / consumes| External
+    Comms <--> |exchanges| External
+    Network --> |connectivity enforcement| External
+
+    External["External Access & Boundary Enforcement"]
+    External <--> UNTRUSTED
+
+    subgraph UNTRUSTED["Untrusted Environment"]
+        BYOD
+        ThirdParties["3rd Parties"]
+    end
+
+    style TRUST fill:none,stroke-width:2,stroke-dasharray:5 5
+    style UNTRUSTED fill:none,stroke-width:2,stroke-dasharray:5 5
+
+    %% VISUAL SEMANTICS: UNTRUSTED ENTITIES (NOT TRUST PLANES)
+    style BYOD fill:#eeeeee,stroke:#999999,stroke-width:1
+    style ThirdParties fill:#eeeeee,stroke:#999999,stroke-width:1
 ```
 
-## 4. Data & Information Protection
-```
-data/
-├── data-core
-├── data-classification
-├── data-handling-and-use
-├── data-encryption
-├── key-management
-├── public-key-infrastructure (PKI)
-├── data-loss-prevention
-├── records-and-retention
-└── trusted-data (composite)
-```
-Covers:
-* Data handling rules
-* Encryption at rest/in transit
-* Keys & certificates
-* Legal retention
+**Important:**  
+**Trusted Environment** and **Untrusted Environment** are **scopes**, not trust planes.  
+They denote **where trust assumptions apply**, not who enforces them.
 
+## Core Trust Authorities
 
-## 5. Communications & Collaboration
-```
-communications/
-```
-### 5.1 Email
-```
-email/
-├── email-core
-├── email-identity
-├── email-threat-protection
-├── email-data-protection
-├── email-records
-├── email-notification-gateway
-├── email-collaboration-relay
-├── email-bulk-messaging-gateway
-└── secure-email (composite)
-```
-#### Intent:
-Trust in asynchronous, directed communication for both human and system‑initiated messages, including identity assurance, content protection, delivery integrity, and records obligations.
+These planes do not execute workloads. They establish, govern, and preserve trust across the environment.
 
-### 5.2 Collaboration & Messaging
-```
-collaboration/
-├── collaboration-core
-├── instant-messaging
-├── presence-and-availability
-├── conference-bridges
-├── file-sharing-and-sync
-├── real-time-messaging
-└── secure-collaboration (composite)
-```
-#### Intent:
-Trust in synchronous and near‑synchronous human collaboration systems, including chat, presence signals, meetings, shared workspaces, and live interaction.
-#### Explicitly included:
-* Instant messaging (high‑velocity, informal communication)
-* Presence & availability (signal exposure and inference risk)
-* Conference bridges (remote teaching, meetings, webinars)
-  * recording & playback authority
-  * participant awareness and consent
-  * scope of capture (audio/video/chat/screen)
-  * access to recordings, transcripts, and artifacts
+### Identity & Trust
+**Purpose:** Establishes who or what may participate in the trusted environment.
 
-### 5.3 Printing
-```
-printing/
-├── printing-core
-├── secure-print-release
-├── print-data-protection
-├── print-accountability
-└── secure-printing (composite)
-```
-#### Intent:
-Trust in physical output of digital content, including identity binding, data leakage prevention, secure release, and accountability for printed artifacts.
+Identity underpins every other plane. Authentication, identity assurance, trust anchors, service identity, and non‑human identities all originate here. Identity defines *who may exist* in the trusted environment before any execution or interaction occurs.
 
-Printing remains a first‑class egress channel, not a legacy afterthought.
+➡ Details: `../identity/README.md`
 
-### 5.4 Survey & Feedback Systems
-```
-surveys/
-├── survey
-├── survey-core
-├── survey-data-protection
-├── survey-consent-and-ethics
-└── secure-survey (composite)
-```
-#### Intent:
-Trust in intentional data solicitation systems, including anonymity guarantees, consent, ethical obligations, and protection of responses across teaching, administration, and research use cases.
+---
 
-Surveys are treated as communications systems that create data, not merely data stores.
+### Security Operations
+**Purpose:** Monitors, detects, responds, and recovers when trust assumptions fail.
 
-## 6. Application Integration & Messaging
-```
-integration/
-├── integration-core
-├── event-streaming
-├── message-queuing
-├── service-bus-and-esb
-├── schema-and-contract-governance
-├── message-security-and-integrity
-├── replay-and-retention
-└── trusted-integration (composite)
-```
+Security Operations observes behavior across all planes, correlates signals using identity context, and initiates response and recovery actions. It does not define policy or execute workloads; it preserves trust over time.
 
-## 7. Secure Software Delivery (SDLC)
-```
-sdlc/
-├── sdlc-core
-├── sdlc-identity-and-attribution
-├── sdlc-change-integrity
-├── sdlc-supply-chain
-├── sdlc-assurance
-├── sdlc-operations-handover
-└── secure-sdlc (composite)
-```
-Covers:
-* Secure SDLC
-* Software supply chain
-* IaC
-* DevSecOps assurance
+➡ Details: `../security-operations/README.md`
 
-## 8. Monitoring, Detection & Response
-```
-security-operations/
-├── logging-and-telemetry
-├── security-monitoring
-├── threat-detection
-├── incident-response
-├── digital-forensics
-└── security-operations (composite)
-```
+---
 
-## 8. Resilience & Continuity
-```
-resilience/
-├── backup-and-recovery
-├── ransomware-resilience
-├── disaster-recovery
-├── continuity-of-operations
-└── operational-resilience (composite)
-```
+### Data & Information Protection
+**Purpose:** Governs what may be done with information, wherever it exists.
 
-## 10. Supply Chain & Third‑Party Risk
-```
-supply-chain/
-├── vendor-risk-management
-├── third-party-privileged-access
-├── software-supply-chain
-├── dependency-transparency (SBOM)
-└── trusted-supply-chain (composite)
-```
+This plane defines data classification, handling rules, cryptographic requirements, retention obligations, and disclosure constraints. Data does not execute logic; it defines obligations that all other planes must follow, including boundary enforcement.
 
-## 11. Domain‑Specific Systems
+➡ Details: `../data/README.md`
 
-### 11.1 OT (Operational Technology)
-```
-ot/
-├── ot-core
-├── safety-zones-and-conduits
-├── engineering-access-control
-├── change-management
-├── command-integrity
-└── safe-and-secure-operations (composite)
-```
+---
 
-### 11.2 IoT
-```
-iot/
-├── device-core
-├── device-identity
-├── device-attestation
-├── device-lifecycle
-├── telemetry-data-protection
-└── secure-iot (composite)
-```
+## Execution and Interaction Planes (Within Trusted Environment)
 
-### 11.3 IoMT (Medical / Clinical)
-```
-iomt/
-├── medical-device-core
-├── patient-safety-assurance
-├── clinical-data-protection
-├── device-lifecycle-and-recall
-└── safe-and-trusted-medical-operations (composite)
-```
+These planes define *where* systems run and *how* interactions occur, subject to the authority and oversight of the core trust planes.
 
-## 12. Artificial Intelligence & Research Systems
-```
-ai/
-├── ai-core
-├── ai-identity-and-access
-├── accountability-and-oversight
-├── decision-authority-and-human-reliance
-├── agentic-behavior-governance
-├── model-lifecycle-governance
-├── training-and-derived-data-protection
-├── context-and-tooling-security (MCP)
-├── inference-protection
-├── output-validity-and-uncertainty
-├── bias-and-explainability
-├── ai-telemetry-and-observability
-├── ai-semantic-dlp
-├── misuse-and-abuse-detection
-├── ai-incident-response
-├── ai-red-teaming-and-evaluation
-├── agent-interconnection-and-delegation (A2A)
-├── economic-and-resource-protection
-├── knowledge-decommissioning
-└── trustworthy-ai (composite)
-```
+### Compute
+Endpoints and servers where code executes.
 
-## 13. Enterprise‑Wide Composite Views
-These answer executive‑level questions:
-```
-enterprise/
-├── secure-compute-environment
-├── secure-communication-services
-├── secure-software-delivery
-├── safe-device-operations
-└── enterprise-trust-posture
-```
+The Compute plane provides execution capability but does not define policy, trust, or exposure.
+
+➡ Details: `../compute/README.md`
+
+---
+
+### Platform
+Shared execution substrates such as bare metal, virtualization, containers, cloud platforms, and high‑performance computing.
+
+The Platform plane enforces isolation, runtime constraints, and platform‑level protections that support applications, integration, and communications.
+
+➡ Details: `../platform/README.md`
+
+---
+
+### Network
+Connectivity mechanisms including segmentation, NAC, wireless, and third‑party connectivity.
+
+The Network plane defines *who can connect to whom*. It does not define application behavior or data meaning.
+
+➡ Details: `../network/README.md`
+
+---
+
+### Integration & Messaging
+Mediates system‑to‑system communication including routing, transformation, retries, and delivery semantics.
+
+Integration controls **flow**, not **meaning**. Business semantics and authority remain with applications.
+
+➡ Details: `../integration/README.md`
+
+---
+
+### Applications
+Where institutional intent, business rules, and decisions are expressed.
+
+Applications consume identity context, data governance rules, integration flows, and platform services to produce outcomes and expose capabilities.
+
+➡ Details: `../applications/README.md`
+
+---
+
+### Communication & Collaboration
+Human‑centric interaction systems such as email, collaboration tools, printing, and surveys.
+
+These systems bridge people and technology and introduce distinct trust, social engineering, and data leakage considerations.
+
+➡ Details: `../communication/README.md`
+
+---
+
+### Specialized Domains
+These planes represent environments with distinct trust characteristics and risk profiles:
+
+- **OT** – Operational Technology  
+- **IoT** – Internet of Things  
+- **IoMT** – Internet of Medical Things  
+- **AI** – Machine learning, inference, and model lifecycle concerns  
+
+Each domain operates within the trusted environment and is governed by Identity, Data, and Security Operations, while requiring additional domain‑specific controls.
+
+➡ Details: see respective READMEs.
+
+---
+
+## External Access & Boundary Enforcement
+
+**Purpose:** Explicitly mediates trust boundary crossings.
+
+This plane governs ingress and egress, exposure, inspection, filtering, and enforcement between the trusted environment and untrusted entities. It is neither “the network” nor “applications,” but a dedicated boundary‑enforcement authority.
+
+➡ Details: `../external-access/README.md`
+
+---
+
+## Summary
+
+- Trust planes define **responsibility**, not deployment.
+- Identity, Security Operations, and Data establish **authority and oversight**.
+- Compute, Platform, Network, Integration, Applications, and Communications execute within **trusted scope**.
+- External Access is the **only sanctioned mediation point** between trusted and untrusted domains.
+
+This architecture allows trust to be reasoned about **explicitly**, **consistently**, and **defensibly** across systems and over time.

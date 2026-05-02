@@ -1,0 +1,117 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:platform-dns-resolution-and-recursion",
+
+    "metadata": {
+      "title": "Platform DNS Resolution and Recursion",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T22:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC421",
+          "remarks": "Business capability for providing deterministic, controlled DNS name resolution within the trusted platform."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD221",
+          "remarks": "Recursive DNS resolvers, forwarding behavior, and resolution path control."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP341",
+          "remarks": "Pattern controlling how DNS resolution is performed without embedding naming semantics or exposure decisions."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "platform-dns-core",
+          "remarks": "DNS resolution and recursion inherit baseline trust assumptions defined in Platform DNS Core."
+        }
+      ],
+
+      "remarks": "Platform DNS Resolution and Recursion defines how names are resolved within the trusted environment. It governs recursive behavior, forwarding paths, and upstream dependencies to ensure resolution is deterministic, controlled, and free from unintended delegation."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:dns-recursive-resolution",
+        "type": "capability",
+        "title": "DNS Recursive Resolution",
+        "description": "Controls the use of recursive DNS resolution within the platform.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1046",
+            "remarks": "Network service discovery and abuse through uncontrolled or open DNS recursion."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0054",
+            "remarks": "Restriction of recursive resolution to authorized clients and scopes."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dns-recursion-control",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-7",
+                "remarks": "Recursive resolution is restricted to authorized systems within defined trust boundaries."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dns-forwarding-control",
+        "type": "capability",
+        "title": "DNS Forwarding Control",
+        "description": "Governs forwarding of DNS queries to upstream resolvers.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1199",
+            "remarks": "Exploitation of implicit trust in upstream DNS resolution dependencies."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Explicit control of resolution paths and upstream dependencies."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dns-forwarding",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SA-17",
+                "remarks": "Upstream resolution dependencies are explicitly defined and governed."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:data-encryption",
+
+    "metadata": {
+      "title": "Data Encryption",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T18:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC403",
+          "remarks": "Business capability for enforcing cryptographic protection of institutional data independent of application or platform."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD203",
+          "remarks": "Cryptographic mechanisms protecting data at rest, in transit, and during use."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP323",
+          "remarks": "Pattern for protecting institutional data confidentiality and integrity through mandatory encryption."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "data-classification",
+          "remarks": "Encryption requirements are derived from data sensitivity and classification."
+        }
+      ],
+
+      "remarks": "Data Encryption defines trust properties required to ensure institutional data is cryptographically protected wherever it is stored, processed, or transmitted. These protections are invariant and must be enforced by platforms and consumed by applications without redefining policy."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:encryption-at-rest",
+        "type": "capability",
+        "title": "Encryption at Rest",
+        "description": "Protects stored data from unauthorized access through cryptographic controls.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1005",
+            "remarks": "Access to sensitive data stored without encryption."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0047",
+            "remarks": "Encryption mechanisms protecting stored data."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:encryption-at-rest",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-28",
+                "remarks": "Data at rest is protected by cryptographic mechanisms."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:encryption-in-transit",
+        "type": "capability",
+        "title": "Encryption in Transit",
+        "description": "Protects data while being transmitted across networks or trust boundaries.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1040",
+            "remarks": "Eavesdropping on unencrypted data transmissions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0047",
+            "remarks": "Transport encryption preventing interception."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:encryption-in-transit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-16",
+                "remarks": "Data in transit is encrypted to maintain confidentiality and integrity."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:encryption-in-use",
+        "type": "capability",
+        "title": "Encryption in Use",
+        "description": "Protects sensitive data during active processing where supported.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1552",
+            "remarks": "Exposure of sensitive data during processing in memory."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0047",
+            "remarks": "Cryptographic isolation of data during execution."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:encryption-in-use",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-12",
+                "remarks": "Cryptographic mechanisms protect sensitive data during processing where feasible."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:algorithm-and-strength-requirements",
+        "type": "capability",
+        "title": "Algorithm and Strength Requirements",
+        "description": "Defines approved cryptographic algorithms and minimum strength requirements.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1596",
+            "remarks": "Exploitation of weak or deprecated cryptographic algorithms."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0027",
+            "remarks": "Cryptographic agility and standards enforcement."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:crypto-standards",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-12",
+                "remarks": "Approved cryptographic algorithms and key sizes are enforced."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

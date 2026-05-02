@@ -1,0 +1,117 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:platform-dns-zoning-and-views",
+
+    "metadata": {
+      "title": "Platform DNS Zoning and Views",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T23:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC423",
+          "remarks": "Business capability for defining and enforcing DNS resolution boundaries through zoning and view separation."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD223",
+          "remarks": "DNS zone management, namespace separation, and split-horizon resolution views."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP343",
+          "remarks": "Pattern for constraining DNS name visibility across trust boundaries without introducing implicit exposure."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "platform-dns-caching-and-ttl-behavior",
+          "remarks": "DNS zoning and views depend on predictable caching and TTL enforcement to maintain boundary correctness."
+        }
+      ],
+
+      "remarks": "Platform DNS Zoning and Views defines how DNS namespaces are structured and resolved across different trust scopes. It ensures that name visibility is constrained appropriately without embedding naming semantics, exposure decisions, or enforcement policy into the platform."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:dns-zone-definition",
+        "type": "capability",
+        "title": "DNS Zone Definition",
+        "description": "Defines logical DNS namespaces used within the platform.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1596.001",
+            "remarks": "Discovery of internal infrastructure through misconfigured or overly broad DNS namespaces."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Explicit namespace definition to constrain infrastructure discoverability."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dns-zone-definition",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-7",
+                "remarks": "DNS namespaces are defined to enforce logical separation and prevent unintended discovery."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dns-view-segmentation",
+        "type": "capability",
+        "title": "DNS View Segmentation",
+        "description": "Constrains DNS resolution results based on request origin or trust context.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1071.004",
+            "remarks": "Use of DNS resolution paths to infer or bypass logical trust boundaries."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy-driven segmentation of resolution views across trust contexts."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dns-view-segmentation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-4",
+                "remarks": "Information flow through DNS resolution is constrained based on defined trust boundaries."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

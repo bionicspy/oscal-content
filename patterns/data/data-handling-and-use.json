@@ -4,56 +4,42 @@
 
     "metadata": {
       "title": "Data Handling and Use",
-      "version": "1.0.0",
+      "version": "0.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T20:40:00Z",
+      "last-modified": "2026-04-28T18:00:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC300",
-          "remarks": "Business capability for Data and Information Management that governs how institutional data may be accessed, processed, shared, and used."
+          "value": "urn:utoronto:cae2:brm:BC402",
+          "remarks": "Business capability for defining institution-wide rules governing how data may be accessed, processed, and shared."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD030",
-          "remarks": "Data and information protection technology domain."
+          "value": "urn:utoronto:cae2:trm:TD202",
+          "remarks": "Policy frameworks, rule definitions, and control logic governing permissible data use."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP122",
-          "remarks": "Policy-driven constraints on data access, processing, sharing, and purpose of use."
+          "value": "urn:utoronto:cae2:arm:AP322",
+          "remarks": "Pattern for establishing allowable and prohibited data behaviors independent of application execution context."
         },
         {
-          "name": "data-entity",
-          "ns": "urn:utoronto:cae2:drm",
-          "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE502",
-          "remarks": "Data use policies, permitted actions, sharing contexts, and purpose bindings."
-        },
-        {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1530",
-          "remarks": "Inappropriate access, processing, or sharing of data beyond authorized use."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "defensive-technique",
-          "value": "urn:mitre:d3fend:technique:d3f:PolicyEnforcement",
-          "remarks": "Definition and enforcement of policies governing acceptable data use."
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "data-classification",
+          "remarks": "Data handling rules depend on established data sensitivity and obligations."
         }
       ],
 
-      "remarks": "Data Handling and Use defines the capability to constrain how institutional data may be accessed, processed, transformed, shared, and used. This pattern establishes behavioral rules derived from data classification and obligation. It does not define cryptographic protection, leakage prevention mechanisms, or retention requirements."
+      "remarks": "Data Handling and Use defines global, policy-level constraints on how institutional data may be accessed, processed, transformed, or shared. These rules define allowable use in principle and must be enforced by applications, integrations, and platforms."
     },
 
     "components": [
@@ -61,65 +47,140 @@
         "uuid": "urn:utoronto:security:capability:access-and-use-rules",
         "type": "capability",
         "title": "Access and Use Rules",
-        "description": "Definition of who may access data and under what approved conditions.",
+        "description": "Defines who may access data and under what institutional conditions.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Use of valid credentials to access data beyond permitted conditions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Access control policies that constrain data usage contexts."
+          }
+        ],
         "control-implementations": [
           {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "uuid": "urn:utoronto:security:ci:data-access-rules",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "ac-3",
-                "remarks": "Enforce approved authorizations for data access and use."
+                "control-id": "AC-3",
+                "remarks": "Policies restrict data access to authorized roles and contexts."
+              },
+              {
+                "control-id": "AC-6",
+                "remarks": "Least privilege principles apply to data access."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:processing-and-transformation-rules",
         "type": "capability",
         "title": "Processing and Transformation Rules",
-        "description": "Constraints on permitted processing, analytics, and transformation of data.",
+        "description": "Governs permitted processing, analytics, and transformation of data.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565.001",
+            "remarks": "Improper processing or manipulation of data leading to misuse or misrepresentation."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement governing permissible data transformations."
+          }
+        ],
         "control-implementations": [
           {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "uuid": "urn:utoronto:security:ci:data-processing-rules",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "ac-4",
-                "remarks": "Control information flow during data processing and transformation."
+                "control-id": "PL-8",
+                "remarks": "Policies define acceptable processing and analytic use of data."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:sharing-and-disclosure-rules",
         "type": "capability",
         "title": "Sharing and Disclosure Rules",
-        "description": "Definition of permissible internal and external data sharing contexts.",
+        "description": "Defines constraints on internal and external data sharing.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1041",
+            "remarks": "Exfiltration of data through unauthorized sharing paths."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0011",
+            "remarks": "Policy constraints limiting where and how data may be disclosed."
+          }
+        ],
         "control-implementations": [
           {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "uuid": "urn:utoronto:security:ci:data-sharing-rules",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "ac-20",
-                "remarks": "Restrict and govern external data sharing and disclosure."
+                "control-id": "MP-7",
+                "remarks": "Controls reduce risk of unauthorized data dissemination."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:purpose-limitation",
         "type": "capability",
         "title": "Purpose Limitation",
-        "description": "Restriction of data use to approved purposes consistent with collection intent.",
+        "description": "Restricts data use to explicitly approved purposes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1213",
+            "remarks": "Secondary use of data beyond the originally approved purpose."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement tying data use to approved purposes."
+          }
+        ],
         "control-implementations": [
           {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "uuid": "urn:utoronto:security:ci:data-purpose-limitation",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "pl-8",
-                "remarks": "Limit data use to defined and approved purposes."
+                "control-id": "PL-8",
+                "remarks": "Data use is restricted to defined and approved purposes."
               }
             ]
           }

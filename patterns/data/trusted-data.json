@@ -1,40 +1,146 @@
-{  "component-definition": {
+{
+  "component-definition": {
     "uuid": "urn:utoronto:security:pattern:trusted-data",
 
     "metadata": {
       "title": "Trusted Data",
-      "version": "1.0.0",
+      "version": "0.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T22:35:00Z",
+      "last-modified": "2026-04-28T20:00:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC300"
+          "value": "urn:utoronto:cae2:brm:BC408",
+          "remarks": "Business capability for asserting that institutional data is properly governed, protected, retained, and disposed of in accordance with policy and obligation."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD030"
+          "value": "urn:utoronto:cae2:trm:TD208",
+          "remarks": "Data governance, protection, cryptography, loss prevention, and records management technologies."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "composite-pattern",
-          "value": "urn:utoronto:cae2:arm:AP129"
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP328",
+          "remarks": "Composite pattern asserting holistic institutional trust in data governance and protection."
+        },
+
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "data-core",
+          "remarks": "Trusted data assumes clear definition, ownership, scope, and baseline trust assumptions."
         },
         {
-          "name": "data-entity",
-          "ns": "urn:utoronto:cae2:drm",
-          "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE500"
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "data-classification",
+          "remarks": "Trusted data requires sensitivity classification and obligation mapping."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "data-handling-and-use",
+          "remarks": "Trusted data requires explicit rules governing permitted and prohibited data behaviors."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "data-encryption",
+          "remarks": "Trusted data requires mandatory cryptographic protection based on classification."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "key-management",
+          "remarks": "Trusted data requires governed lifecycle and protection of cryptographic keys."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "public-key-infrastructure",
+          "remarks": "Trusted data requires certificate-based trust anchors and validation."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "data-loss-prevention",
+          "remarks": "Trusted data requires enforcement against unauthorized disclosure or exfiltration."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "records-and-retention",
+          "remarks": "Trusted data requires compliance with retention, legal hold, and disposal obligations."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0006",
+          "remarks": "Credential access and misuse impacting protected data."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0009",
+          "remarks": "Unauthorized collection or exfiltration of institutional data."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1005",
+          "remarks": "Collection of data from unsecured or improperly governed repositories."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1041",
+          "remarks": "Exfiltration of data via unauthorized communication channels."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0016",
+          "remarks": "Policy enforcement governing data classification, handling, and disclosure."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0047",
+          "remarks": "Cryptographic protection of data confidentiality and integrity."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0061",
+          "remarks": "Audit logging and oversight supporting accountability and compliance."
         }
       ],
 
-      "remarks": "Trusted Data is a composite pattern asserting that institutional data is appropriately defined, classified, protected, governed, and retained in accordance with institutional, legal, regulatory, and contractual obligations. This pattern introduces no independent controls. A system may claim trusted-data only when all constituent data protection patterns are realized and assessed."
+      "remarks": "Trusted Data is a composite pattern asserting that institutional data is properly defined, classified, governed, protected, retained, and defensibly disposed of. It introduces no independent controls and exists solely as an aggregate trust claim for system security plans, audits, and architectural risk analysis."
     },
 
     "components": [
@@ -42,49 +148,49 @@
         "uuid": "urn:utoronto:security:pattern-ref:data-core",
         "type": "component",
         "title": "Data Core",
-        "description": "Definition of institutional data, ownership, stewardship, and scope."
+        "description": "Definition, ownership, scope, and baseline trust assumptions for institutional data."
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:data-classification",
         "type": "component",
         "title": "Data Classification",
-        "description": "Assignment of sensitivity levels and associated data protection obligations."
+        "description": "Sensitivity classification and obligation mapping for data."
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:data-handling-and-use",
         "type": "component",
         "title": "Data Handling and Use",
-        "description": "Policy constraints governing how data may be accessed, processed, shared, and used."
+        "description": "Permitted and prohibited behaviors governing data use."
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:data-encryption",
         "type": "component",
         "title": "Data Encryption",
-        "description": "Cryptographic protection of institutional data at rest, in transit, and in use."
+        "description": "Mandatory cryptographic protection of data."
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:key-management",
         "type": "component",
         "title": "Key Management",
-        "description": "Lifecycle governance of cryptographic keys supporting data protection."
+        "description": "Lifecycle governance of cryptographic keys."
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:public-key-infrastructure",
         "type": "component",
         "title": "Public Key Infrastructure",
-        "description": "Certificate-based trust, validation, and revocation for cryptographic identity."
+        "description": "Certificate-based trust anchors and validation."
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:data-loss-prevention",
         "type": "component",
         "title": "Data Loss Prevention",
-        "description": "Detection and prevention of unauthorized disclosure or exfiltration of data."
+        "description": "Enforcement against unauthorized data disclosure."
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:records-and-retention",
         "type": "component",
         "title": "Records and Retention",
-        "description": "Legal, regulatory, and institutional record retention and disposition controls."
+        "description": "Retention schedules, legal holds, and defensible disposition."
       }
     ]
   }

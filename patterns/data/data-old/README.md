@@ -1,74 +1,51 @@
 # Data & Information Protection - Trust Plane Overview
 
-The Data & Information Protection trust plane defines how data itself is governed as an institutional asset, independent of:
-* where the data is stored,
-* which application processes it,
-* which integration transports it,
-* or which user or system accesses it.
+The Data & Information Protection trust plane defines how institutional data is identified, classified, handled, protected, retained, and disposed of throughout its lifecycle.
 
-This plane treats data as having intrinsic properties—sensitivity, classification, retention obligations, and protection requirements—that persist across systems and over time.
-Where applications decide whether to use data in a given context, the Data trust plane defines what the data is, what rules attach to it, and what obligations exist regardless of context.
+This trust plane establishes trust in data itself, independent of:
+* who accesses it (Identity),
+* where it traverses (Network),
+* or where it is processed (Compute & Execution Environments).
 
-In this model, data is not passive; it carries policy, enforceable constraints, and institutional responsibility wherever it flows.
+It ensures that data is governed according to institutional, legal, regulatory, and contractual obligations, and that protective controls remain consistent and enforceable regardless of system, platform, or user context.
 
 ## Purpose
-The purpose of the Data & Information Protection trust plane is to:
-* Establish data as a first‑class institutional asset
-* Define classification, sensitivity, and governance policies that apply everywhere
-* Ensure protection requirements (e.g., encryption, key management) are consistent and non‑optional
+The purpose of the Data & Information Protection trust plane is to ensure that:
+* Institutional data is clearly defined and governed
+* Data sensitivity is understood and consistently classified
+* Data is handled and used only in permitted ways
+* Cryptographic protections are applied correctly
+* Cryptographic keys and certificates are securely managed
+* Unauthorized disclosure or exfiltration is prevented
+* Legal, regulatory, and institutional retention obligations are satisfied
+* Data is securely and verifiably disposed of when required
 
-Support legal, regulatory, and institutional obligations such as:
-* retention,
-* disposition,
-* records management,
-* and defensible deletion
-
-Provide a stable trust foundation that:
-* Applications consume,
-* Integrations transport,
-* Platforms enforce
-
-This plane deliberately does not decide when or how data is used in a specific transaction—that responsibility belongs to the Applications trust plane.
+This trust plane enables the institution to assert data stewardship and compliance, not merely data access control.
 
 ## Scope
 ### In Scope
-* Data identity and ownership
-* Data classification and sensitivity
-* Allowable uses and handling constraints
-* Cryptographic protection requirements
-* Key management and trust anchors
-* Loss prevention and exfiltration controls
-* Records designation, retention, and disposition
+The Data & Information Protection trust plane applies to:
+* Institutional data at rest, in transit, and in use
+* Structured, semi‑structured, and unstructured data
+* Derived data, metadata, and data products
+* Data classification and labeling
+* Data handling, use, disclosure, and sharing rules
+* Cryptographic protection of data
+* Key and certificate lifecycle management
+* Data loss prevention controls
+* Records management, retention, legal holds, and disposal
 
 ### Out of Scope
-* Application business logic
-* Authorization decisions at runtime
-* Input interpretation and output shaping
-* Transport mechanics (events, queues, APIs)
-*Compute or storage execution environments
+This trust plane does not define:
+* Authentication or authorization decisions (Identity trust plane)
+* Network transport security mechanisms (Network trust plane)
+* Compute hardening or runtime execution security (Endpoint / Server trust planes)
+* Application‑specific access logic
+* System availability, backup, or disaster recovery
 
+Those concerns consume data trust, but they do not establish it.
 
-## Position in the Overall Trust Model
-The Data trust plane sits above platforms and storage, and alongside applications, governing both without being subsumed by either.
-```mermaid
-
-flowchart TB
-    Data["Data & Information Trust<br/>(classification, protection,<br/>retention, obligations)"]
-
-    Platform["Platform & Storage<br/>(DB, NAS, Object Storage)"]
-    Applications["Applications<br/>(decide when/how data is<br/>accessed and exposed)"]
-
-    Data -- governs --> Applications
-    Data -- governs --> Platform
-
-    Applications -- accesses --> Platform
-```
-* Platforms enforce protection mechanisms
-* Applications decide context‑specific use
-* Data trust plane defines invariant rules and obligations
-
-
-## Trust Plan Decomposition
+## Pattern Decomposition
 ```
 data/
 ├── data-core
@@ -81,18 +58,17 @@ data/
 ├── records-and-retention
 └── trusted-data (composite)
 ```
+Each pattern answers a distinct trust question, avoiding overlap and ensuring audit clarity and composability.
 
 ### 1. data-core
 Defines what constitutes institutional data and who is accountable for it.
 #### Purpose
-To establish data legitimacy, ownership, and stewardship as intrinsic properties of data, before protection mechanisms or application use are considered.
-
-✅ **Clarification:**
-* This pattern defines what data is and who is accountable for it, not how data is accessed or used in specific execution contexts.
+To establish data legitimacy, ownership, and stewardship before protection mechanisms are applied.
 #### Scope
 * Definition of institutional data
 * Ownership and stewardship roles
 * Data boundaries and lifecycle scope
+
 #### Components
 * data-definition
   * Defines what constitutes institutional data, including derived data and metadata
@@ -102,8 +78,10 @@ To establish data legitimacy, ownership, and stewardship as intrinsic properties
   * Defines where data exists and its trust boundaries
 * baseline-data-trust-assumptions
   * Establishes minimum expectations for data handling
+
 #### Answers the Question
 “What data is the institution responsible for protecting?”
+
 
 ### 2. data-classification
 Determines the sensitivity and obligations associated with data.
@@ -114,6 +92,7 @@ To ensure protections and handling requirements are risk‑appropriate and consi
 * Impact and risk mapping
 * Regulatory and contractual obligations
 * Classification labeling and propagation
+
 #### Components
 * classification-scheme
   * Defines standard data sensitivity levels
@@ -123,22 +102,21 @@ To ensure protections and handling requirements are risk‑appropriate and consi
   * Captures applicable external requirements
 * classification-assertion-and-labeling
   * Specifies how classification is represented and conveyed
+
 #### Answers the Question
 “How sensitive is this data and what obligations apply?”
+
 
 ### 3. data-handling-and-use
 Defines permitted and prohibited behaviors involving data.
 #### Purpose
-To establish institution‑wide rules governing how data may be accessed, processed, transformed, and shared.
-
-✅ **Clarification:**
-* These rules define what is allowable in principle.
-* Enforcement of these rules in specific transactions occurs within the Applications trust plane.
+To enforce behavioral and policy constraints on how data is accessed, processed, and shared.
 #### Scope
 * Authorized access contexts
 * Processing and transformation rules
 * Sharing and disclosure constraints
 * Purpose limitation
+
 #### Components
 * access-and-use-rules
   * Defines who may access data and under what conditions
@@ -148,6 +126,7 @@ To establish institution‑wide rules governing how data may be accessed, proces
   * Defines internal and external sharing constraints
 * purpose-limitation
   * Restricts data use to approved purposes
+
 #### Answers the Question
 “What is allowed to be done with this data?”
 
@@ -160,6 +139,7 @@ To protect data confidentiality and integrity through encryption.
 * Encryption in transit
 * Encryption in use (where applicable)
 * Algorithm and strength requirements
+
 #### Components
 * encryption-at-rest
   * Protects stored data
@@ -169,6 +149,7 @@ To protect data confidentiality and integrity through encryption.
   * Protects data during processing where supported
 * algorithm-and-strength-requirements
   * Defines approved cryptographic standards
+
 #### Answers the Question
 “How is this data protected cryptographically?”
 
@@ -182,6 +163,7 @@ To ensure cryptographic protections remain trustworthy over time.
 * Rotation and renewal
 * Revocation and destruction
 * Access governance
+
 #### Components
 * key-generation
   * Controls secure key creation
@@ -193,6 +175,7 @@ To ensure cryptographic protections remain trustworthy over time.
   * Invalidates and destroys obsolete or compromised keys
 * key-access-governance
   * Governs who may use keys and for what purposes
+
 #### Answers the Question
 “How are cryptographic keys governed and protected?”
 
@@ -205,6 +188,7 @@ To enable cryptographically verifiable trust relationships.
 * Trust anchors
 * Issuance and validation
 * Revocation and federation
+
 #### Components
 * certificate-authorities-and-trust-anchors
   * Defines trusted roots and intermediates
@@ -216,6 +200,7 @@ To enable cryptographically verifiable trust relationships.
   * Manages revocation mechanisms
 * cross-domain-and-federated-trust
   * Enables inter‑organizational trust
+
 #### Answers the Question
 “How is cryptographic trust established and validated?”
 
@@ -228,6 +213,7 @@ To detect and enforce controls against data misuse or leakage.
 * Content inspection
 * Policy enforcement
 * Incident escalation
+
 #### Components
 * egress-monitoring-and-control
   * Monitors outbound data flows
@@ -237,6 +223,7 @@ To detect and enforce controls against data misuse or leakage.
   * Enforces blocking or conditional handling
 * incident-signaling-and-escalation
   * Triggers alerts and response actions
+
 #### Answers the Question
 “How do we prevent data from leaving inappropriately?”
 
@@ -250,12 +237,14 @@ To fulfill retention, preservation, and disposal requirements.
 * Legal holds
 * Secure destruction
 * Compliance evidence
+
 #### Components
 * records-identification – Determines what qualifies as a record
 * retention-schedules – Defines required retention periods
 * legal-holds-and-preservation – Prevents deletion when legally required
 * secure-destruction-and-disposal – Ensures irreversible deletion at end of life
 * audit-and-attestation-of-compliance – Provides evidence of compliance
+
 #### Answers the Question
 “How long must this data exist and how is it disposed of?”
 
@@ -266,6 +255,7 @@ To serve as the enterprise‑level data trust assertion.
 #### Scope
 * Composition only
 * No independent controls
+
 #### Components (References)
 ```
 data-core
@@ -279,18 +269,3 @@ records-and-retention
 ```
 #### Answers the Question
 “Can the institution assert that its data is properly protected and governed?”
-
-## Relationship to Other Trust Planes
-### Depends on
-* Platform & Infrastructure (for enforcement)
-* Cryptographic trust anchors (PKI, KMS)
-
-### Informs
-* Applications (how data may be used)
-* Integration & Messaging (what may be transported)
-* Communications (what may be shared)
-
-### Distinct from
-* Application‑level data handling decisions
-* Runtime authorization and context
-* Transport and delivery semantics

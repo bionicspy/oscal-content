@@ -1,0 +1,191 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:application-runtime-and-execution-boundaries",
+
+    "metadata": {
+      "title": "Application Runtime and Execution Boundaries",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T15:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC385",
+          "remarks": "Business capability for constraining application execution context and limiting blast radius from faults or compromise."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD195",
+          "remarks": "Application runtimes, dependency environments, execution permissions, isolation mechanisms, and context boundaries."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP315",
+          "remarks": "Pattern for bounding application execution and limiting impact of runtime compromise or failure."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-core",
+          "remarks": "Application execution boundaries assume baseline application purpose, ownership, and lifecycle governance."
+        }
+      ],
+
+      "remarks": "Application Runtime and Execution Boundaries defines trust properties required to ensure applications execute within constrained and intentional environments. This pattern addresses dependency sprawl, excessive runtime privilege, lateral movement, and blast radius containment, without redefining infrastructure or OS-level controls."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:runtime-scope-and-permission-limitation",
+        "type": "capability",
+        "title": "Runtime Scope and Permission Limitation",
+        "description": "Constrains the privileges and capabilities available to application code at runtime.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1068",
+            "remarks": "Exploitation of excessive execution privileges to gain broader system access."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Least-privilege execution and permission scoping."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:runtime-permissions",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-6",
+                "remarks": "Application runtime operates with least privilege."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dependency-and-execution-environment-isolation",
+        "type": "capability",
+        "title": "Dependency and Execution Environment Isolation",
+        "description": "Isolates application execution from unrelated code, libraries, and dependencies.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1195",
+            "remarks": "Compromise via shared or ungoverned runtime dependencies."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Isolation and lifecycle management of execution dependencies."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dependency-isolation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-7",
+                "remarks": "Application runtime dependencies are minimized and isolated."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:blast-radius-and-fault-containment",
+        "type": "capability",
+        "title": "Blast Radius and Fault Containment",
+        "description": "Limits the impact of application failure or compromise on other systems.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1210",
+            "remarks": "Lateral movement enabled by insufficient execution boundaries."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0036",
+            "remarks": "Execution containment and isolation to reduce lateral impact."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:blast-radius",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-7",
+                "remarks": "Controls limit application interaction scope to reduce blast radius."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:execution-boundary-observability",
+        "type": "capability",
+        "title": "Execution Boundary Observability",
+        "description": "Provides visibility into runtime boundary violations and anomalous execution behavior.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression of evidence related to runtime boundary violations."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit and telemetry for execution boundary enforcement."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:execution-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Execution boundary violations and anomalies are logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports investigation of runtime abuse."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

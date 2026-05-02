@@ -1,0 +1,152 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:platform-dns-caching-and-ttl-behavior",
+
+    "metadata": {
+      "title": "Platform DNS Caching and TTL Behavior",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T23:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC422",
+          "remarks": "Business capability for governing DNS caching behavior and TTL semantics to ensure correctness, consistency, and recoverability."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD222",
+          "remarks": "DNS cache management, TTL enforcement, and resolver consistency mechanisms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP342",
+          "remarks": "Pattern governing how DNS responses are cached without introducing stale, inconsistent, or unsafe resolution behavior."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "platform-dns-resolution-and-recursion",
+          "remarks": "DNS caching and TTL behavior depend on controlled resolution and recursion paths."
+        }
+      ],
+
+      "remarks": "Platform DNS Caching and TTL Behavior defines expectations for how DNS responses are cached and how long they remain valid. It ensures that caching behavior supports correctness, security, and operational recovery without embedding enforcement or policy decisions."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:dns-ttl-enforcement",
+        "type": "capability",
+        "title": "DNS TTL Enforcement",
+        "description": "Ensures DNS time-to-live (TTL) values are honored consistently by platform resolvers.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565.001",
+            "remarks": "Persistence or misdirection caused by stale or improperly retained DNS records."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Lifecycle enforcement of cached information based on declared validity."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dns-ttl-enforcement",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-7",
+                "remarks": "DNS responses are cached only for their declared validity period to preserve integrity."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dns-cache-consistency",
+        "type": "capability",
+        "title": "DNS Cache Consistency",
+        "description": "Ensures DNS caches behave consistently across platform resolvers.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1557",
+            "remarks": "Inconsistent resolution results caused by divergent caching behavior."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0046",
+            "remarks": "Consistency controls to prevent divergent or conflicting cached responses."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dns-cache-consistency",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-24",
+                "remarks": "Resolution services enforce consistent behavior across redundant components."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dns-negative-caching-behavior",
+        "type": "capability",
+        "title": "DNS Negative Caching Behavior",
+        "description": "Controls how non-existent or failed DNS resolutions are cached.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1499",
+            "remarks": "Service degradation or denial caused by prolonged negative caching."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Bounded caching of negative responses to support recovery."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dns-negative-caching",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-10",
+                "remarks": "DNS caching supports recovery from transient resolution failures."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

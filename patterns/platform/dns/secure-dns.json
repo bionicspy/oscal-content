@@ -1,0 +1,70 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-dns",
+
+    "metadata": {
+      "title": "Secure DNS",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T02:40:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC436",
+          "remarks": "Business capability for asserting that name resolution, naming authority, and DNS-dependent trust decisions are supported by authoritative, bounded, observable, and resilient DNS."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:AP356",
+          "remarks": "Composite trust assertion aggregating DNS platform capabilities to support secure name resolution and DNS-dependent trust decisions."
+        }
+      ],
+
+      "remarks": "Secure DNS is a composite trust assertion stating that DNS used for discovery, service identity binding, integration, and boundary enforcement is authoritative, bounded, observable, and resilient. It introduces no independent controls and exists solely as an aggregate trust claim."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:platform-dns-core",
+        "type": "component",
+        "title": "Platform DNS Core",
+        "description": "Baseline trust assumptions for DNS as a governed platform service."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:platform-dns-resolution-and-recursion",
+        "type": "component",
+        "title": "DNS Resolution and Recursion",
+        "description": "Controlled and deterministic name resolution behavior."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:platform-dns-caching-and-ttl-behavior",
+        "type": "component",
+        "title": "DNS Caching and TTL Behavior",
+        "description": "Predictable and bounded DNS caching semantics."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:platform-dns-zoning-and-views",
+        "type": "component",
+        "title": "DNS Zoning and Views",
+        "description": "Intentional DNS resolution boundaries and split-horizon visibility."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:platform-dns-resolver-availability-and-resilience",
+        "type": "component",
+        "title": "DNS Resolver Availability and Resilience",
+        "description": "Redundant, resilient, and predictable DNS resolver behavior."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:platform-dns-observability-and-telemetry",
+        "type": "component",
+        "title": "DNS Observability and Telemetry",
+        "description": "Visibility into DNS behavior to support monitoring and investigation."
+      }
+    ]
+  }
+}

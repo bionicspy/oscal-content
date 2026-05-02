@@ -1,0 +1,152 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:platform-time-drift-and-correction",
+
+    "metadata": {
+      "title": "Platform Time Drift and Correction",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T01:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC432",
+          "remarks": "Business capability for detecting, bounding, and correcting time drift to preserve platform trust."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD232",
+          "remarks": "Clock drift detection, skew bounds, and correction mechanisms for platform systems."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP352",
+          "remarks": "Pattern ensuring time drift is detected and corrected without silently undermining trust."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "platform-time-synchronization-and-sources",
+          "remarks": "Time drift detection and correction depend on controlled synchronization and authoritative time sources."
+        }
+      ],
+
+      "remarks": "Platform Time Drift and Correction defines expectations for detecting time skew, enforcing acceptable bounds, and applying correction behavior. It ensures time inaccuracies are corrected deliberately rather than propagating silently across the trusted environment."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:time-drift-detection",
+        "type": "capability",
+        "title": "Time Drift Detection",
+        "description": "Detects deviation between local system clocks and authoritative platform time.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565",
+            "remarks": "Integrity degradation caused by undetected or gradual time skew."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0060",
+            "remarks": "Monitoring mechanisms identifying anomalous or divergent state."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-drift-detection",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-4",
+                "remarks": "Time drift is monitored to detect anomalous conditions affecting system integrity."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:time-skew-bounding",
+        "type": "capability",
+        "title": "Time Skew Bounding",
+        "description": "Defines acceptable bounds for time skew across platform systems.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1499",
+            "remarks": "Service degradation or failure caused by excessive clock skew."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Bounded tolerance enforcement to preserve system correctness."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-skew-bounding",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-10",
+                "remarks": "Acceptable time skew bounds support recovery and continuity of operations."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:time-correction-behavior",
+        "type": "capability",
+        "title": "Time Correction Behavior",
+        "description": "Defines how time corrections are applied to affected systems.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1134",
+            "remarks": "Privilege or logic abuse resulting from abrupt or unmanaged time changes."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0046",
+            "remarks": "Controlled, deterministic correction behavior preserving system stability."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-correction-behavior",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-13",
+                "remarks": "Time correction behavior preserves integrity and avoids destabilizing dependent systems."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

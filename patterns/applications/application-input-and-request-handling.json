@@ -1,0 +1,202 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:application-input-and-request-handling",
+
+    "metadata": {
+      "title": "Application Input and Request Handling",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T14:50:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC382",
+          "remarks": "Business capability for safely receiving, validating, and interpreting inputs to applications without ambiguity or manipulation."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD192",
+          "remarks": "Application request interfaces including web requests, API inputs, form submissions, and system-to-application calls."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP312",
+          "remarks": "Pattern for preventing malformed, ambiguous, or malicious inputs from altering intended application behavior."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-core",
+          "remarks": "Application input handling assumes baseline application identity, purpose, and ownership."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-identity-and-authorization",
+          "remarks": "Request handling occurs after actor identity is established and before authorization decisions are enforced."
+        }
+      ],
+
+      "remarks": "Application Input and Request Handling defines trust properties required to ensure applications correctly interpret requests. This pattern addresses malformed inputs, intent ambiguity, injection, and confused-deputy risks, without addressing authorization logic or session state."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:input-validation-and-normalization",
+        "type": "capability",
+        "title": "Input Validation and Normalization",
+        "description": "Validates and normalizes incoming input before it influences application logic.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1059",
+            "remarks": "Injection of malicious or malformed data into application input paths."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0011",
+            "remarks": "Input validation and constraint enforcement to reject unsafe data."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:input-validation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-10",
+                "remarks": "Application validates inputs before processing."
+              },
+              {
+                "control-id": "SI-7",
+                "remarks": "Integrity checks ensure request data conforms to expected formats."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:request-intent-disambiguation",
+        "type": "capability",
+        "title": "Request Intent Disambiguation",
+        "description": "Ensures the intended action of a request is explicit and unambiguous.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1190",
+            "remarks": "Crafting requests that exploit ambiguous interpretation paths."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement requiring explicit, well-scoped request intent."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:intent-disambiguation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define how application requests must explicitly convey intent."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:confused-deputy-prevention",
+        "type": "capability",
+        "title": "Confused-Deputy Prevention",
+        "description": "Prevents applications from being tricked into misusing their own authority.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1199",
+            "remarks": "Abuse of trusted application authority through malicious input."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Context-aware authorization boundaries to prevent misuse."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:confused-deputy",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-3",
+                "remarks": "Application enforces authorization based on request context, not just identity."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:request-handling-observability",
+        "type": "capability",
+        "title": "Request Handling Observability",
+        "description": "Provides visibility into rejected, malformed, or suspicious requests.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression of evidence related to malicious input attempts."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging of request validation and rejection decisions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:request-observability",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Application logs request handling and validation outcomes."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports investigation of malicious or erroneous inputs."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:platform-time-core",
+
+    "metadata": {
+      "title": "Platform Time Core",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T00:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC430",
+          "remarks": "Business capability for providing governed, reliable, and consistent time as foundational platform infrastructure."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD230",
+          "remarks": "Platform-level time services including clock sources, synchronization, and time correctness mechanisms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP350",
+          "remarks": "Pattern establishing time as a governed platform service rather than an implicit operating system feature."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "platform-core",
+          "remarks": "Platform time depends on foundational platform availability, compute, and network capabilities."
+        }
+      ],
+
+      "remarks": "Platform Time Core defines baseline trust assumptions for time as a critical platform capability. It establishes ownership, scope, and separation of responsibilities between time mechanics, time semantics, and time-based policy enforcement."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:platform-time-governance",
+        "type": "capability",
+        "title": "Platform Time Governance",
+        "description": "Establishes time as an intentional, governed platform service with clear accountability boundaries.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565",
+            "remarks": "Manipulation or degradation of system behavior due to ungoverned or inconsistent time sources."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy-governed infrastructure services with explicit ownership and constraints."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-governance",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Platform services, including time, are governed by policy and assigned accountability."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:platform-time-boundary-definition",
+        "type": "capability",
+        "title": "Platform Time Boundary Definition",
+        "description": "Defines trust boundaries between platform time mechanics and higher-level time semantics and enforcement.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1499",
+            "remarks": "System instability or denial caused by inconsistent or unbounded time assumptions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Explicit separation of infrastructure time provision from time-based policy decisions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-boundaries",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-7",
+                "remarks": "Trust boundaries are defined to prevent implicit reliance on unmanaged time semantics."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

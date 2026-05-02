@@ -1,0 +1,64 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-time",
+
+    "metadata": {
+      "title": "Secure Time",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T02:30:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC435",
+          "remarks": "Business capability for asserting that time-dependent trust decisions are supported by authoritative, consistent, and defensible time."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:AP355",
+          "remarks": "Composite trust assertion aggregating platform time capabilities to support secure, time-dependent trust decisions."
+        }
+      ],
+
+      "remarks": "Secure Time is a composite trust assertion stating that time used for authentication, authorization, auditing, correlation, and enforcement is authoritative, bounded, observable, and resilient. It introduces no independent controls and exists solely as an aggregate trust claim."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:platform-time-core",
+        "type": "component",
+        "title": "Platform Time Core",
+        "description": "Baseline trust assumptions for time as a governed platform service."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:platform-time-synchronization-and-sources",
+        "type": "component",
+        "title": "Time Synchronization and Sources",
+        "description": "Acquisition and synchronization of time from authoritative sources."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:platform-time-drift-and-correction",
+        "type": "component",
+        "title": "Time Drift and Correction",
+        "description": "Detection, bounding, and correction of time skew."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:platform-time-availability-and-resilience",
+        "type": "component",
+        "title": "Time Availability and Resilience",
+        "description": "Redundancy, failover, and predictable behavior under failure."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:platform-time-observability-and-telemetry",
+        "type": "component",
+        "title": "Time Observability and Telemetry",
+        "description": "Visibility into time behavior to support monitoring and investigation."
+      }
+    ]
+  }
+}

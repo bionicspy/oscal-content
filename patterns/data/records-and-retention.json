@@ -1,0 +1,222 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:records-and-retention",
+
+    "metadata": {
+      "title": "Records and Retention",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T19:40:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC407",
+          "remarks": "Business capability for governing data retention, preservation, and lawful disposal as institutional obligations."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD207",
+          "remarks": "Records management systems, retention controls, legal hold mechanisms, and secure destruction processes."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP327",
+          "remarks": "Pattern for ensuring institutional data is retained, preserved, and disposed of in compliance with obligations."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "data-classification",
+          "remarks": "Retention and records obligations depend on data classification and regulatory context."
+        }
+      ],
+
+      "remarks": "Records and Retention defines trust properties required to identify institutional records, apply retention schedules, enforce legal holds, and ensure defensible destruction of data. These obligations apply independently of application or platform lifecycle."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:records-identification",
+        "type": "capability",
+        "title": "Records Identification",
+        "description": "Determines which data qualifies as an institutional record and under what conditions.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1213",
+            "remarks": "Failure to identify data as a record to evade retention obligations."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement defining record status and applicability."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:records-identification",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-2",
+                "remarks": "Data is evaluated to determine whether it constitutes an institutional record."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:retention-schedules",
+        "type": "capability",
+        "title": "Retention Schedules",
+        "description": "Defines how long records and data must be retained.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Premature deletion of data to avoid legal or regulatory exposure."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Lifecycle management enforcing minimum retention periods."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:retention-schedules",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-12",
+                "remarks": "Retention schedules govern how long data and records are preserved."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:legal-holds-and-preservation",
+        "type": "capability",
+        "title": "Legal Holds and Preservation",
+        "description": "Prevents deletion or alteration of data subject to legal or regulatory holds.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Destruction or modification of data under legal hold."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Preservation controls preventing alteration or deletion."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:legal-holds",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-12",
+                "remarks": "Legal holds prevent deletion or alteration of protected data."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:secure-destruction-and-disposal",
+        "type": "capability",
+        "title": "Secure Destruction and Disposal",
+        "description": "Ensures irreversible deletion of data at the end of its approved lifecycle.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1552",
+            "remarks": "Recovery of data that was improperly or incompletely destroyed."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0047",
+            "remarks": "Cryptographically or physically secure data destruction."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:secure-destruction",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "MP-6",
+                "remarks": "Data and records are securely destroyed when no longer required."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:audit-and-attestation-of-compliance",
+        "type": "capability",
+        "title": "Audit and Attestation of Compliance",
+        "description": "Provides evidence that retention and disposal obligations are met.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Lack of evidence to prove compliance with retention obligations."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging and attestation of records compliance."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:records-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit records demonstrate compliance with records retention requirements."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

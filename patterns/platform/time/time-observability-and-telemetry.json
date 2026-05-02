@@ -1,0 +1,152 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:platform-time-observability-and-telemetry",
+
+    "metadata": {
+      "title": "Platform Time Observability and Telemetry",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T02:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC434",
+          "remarks": "Business capability for providing visibility into time behavior to support monitoring, investigation, and trust assurance."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD234",
+          "remarks": "Time synchronization telemetry, drift metrics, logging, and audit data supporting operational and security visibility."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP354",
+          "remarks": "Pattern enabling visibility into time correctness and behavior without embedding enforcement or time semantics into the platform."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "platform-time-availability-and-resilience",
+          "remarks": "Time observability depends on resilient time services to produce meaningful and trustworthy telemetry."
+        }
+      ],
+
+      "remarks": "Platform Time Observability and Telemetry defines expectations for visibility into time synchronization, drift, and availability. It supports Security Operations and platform owners in detecting anomalies, investigating incidents, and validating time-related trust assumptions."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:time-synchronization-telemetry",
+        "type": "capability",
+        "title": "Time Synchronization Telemetry",
+        "description": "Provides telemetry describing synchronization state between platform systems and authoritative time sources.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565",
+            "remarks": "Time manipulation or desynchronization that goes unnoticed due to lack of synchronization visibility."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0060",
+            "remarks": "Operational telemetry enabling detection of anomalous system state."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-synchronization-telemetry",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-4",
+                "remarks": "Time synchronization state is monitored to detect anomalous or degraded conditions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:time-drift-telemetry",
+        "type": "capability",
+        "title": "Time Drift Telemetry",
+        "description": "Provides metrics and signals describing clock drift and skew across platform systems.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1499",
+            "remarks": "Service or security degradation caused by undetected clock divergence."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0060",
+            "remarks": "Continuous monitoring of operational metrics to detect destabilizing conditions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-drift-telemetry",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-7",
+                "remarks": "Time drift telemetry supports integrity assurance of platform services."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:time-investigation-support",
+        "type": "capability",
+        "title": "Time Investigation Support",
+        "description": "Supports correlation and analysis of time-related events during incident response and forensic investigation.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Obfuscation of malicious activity through manipulation or lack of time audit data."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Retention and correlation of event data to support investigation and accountability."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-investigation-support",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-6",
+                "remarks": "Time-related telemetry and logs support investigation and incident analysis."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -71,6 +71,21 @@ platform/
 │   ├── cloud-access-security-broker
 │   ├── cross-cloud-governance
 │   └── trusted-cloud (composite)
+└── time/
+│   ├── time-core
+│   ├── time-synchronization-and-sources
+│   ├── time-drift-and-correction
+│   ├── time-availability-and-resilience
+│   ├── time-observability-and-telemetry
+│   └── secure-time (composite)
+└── dns/
+│   ├── dns-core
+│   ├── dns-resolution-and-recursion
+│   ├── dns-caching-and-ttl-behavior
+│   ├── dns-zoning-and-views
+│   ├── dns-resolver-availability-and-resilience
+│   ├── dns-observability-and-telemetry
+│   └── secure-dns (composite)
 └── hpc/
     ├── hpc-core
     ├── hpc-identity-and-access
@@ -145,81 +160,76 @@ To define isolation and integrity guarantees for hypervisor‑mediated execution
 Can multiple workloads safely coexist on a shared virtualized host?
 
 ### 3.5 Container Platforms
-Addresses the unique risks of shared‑kernel execution, orchestration control planes, and image‑based deployment models.
+Models shared‑kernel execution environments and orchestration systems as first‑class platform substrates, distinct from both virtualization and applications.
 #### Purpose
-To model container environments as first‑class platform substrates, distinct from both virtualization and applications.
-#### Scope
-* Container runtimes
-* Shared‑kernel isolation
-* Orchestration systems (e.g., Kubernetes)
+To establish explicit trust boundaries and isolation guarantees for containerized workloads operating under shared kernels and centralized orchestration control planes.
+#### Scope (Summary)
+* Container runtimes and isolation primitives
+* Orchestration systems and control planes
 * Namespace and workload identity boundaries
-* Image provenance and distribution
-#### Components
-* container-core
-  * Establishes baseline trust expectations for container platforms.
-* container-runtime-and-isolation
-  * Addresses runtime and namespace isolation guarantees.
-* container-supply-chain
-  * Covers container image provenance and supply chain risk.
-* secure-container-platform (composite)
-  * Asserts holistic container platform trust.
+* Container image provenance and supply‑chain risk
+#### Detailed Decomposition
+Full container platform trust decomposition, components, and composite assertions are defined in:
+➡ `platform/containers/README.md`
 #### Answers the Question
 Can containerized workloads run without compromising each other or the host?
 
 ### 3.6 Cloud Platforms
-Separates cloud trust concerns by service model and explicitly addresses cross‑cloud governance and policy equivalence.
+Defines trust for provider‑managed platforms operating under shared responsibility models, including multi‑cloud and hybrid environments.
 #### Purpose
-To define trust for provider‑managed platforms under shared responsibility models, including multi‑cloud environments.
-#### Scope
-* IaaS, PaaS, and SaaS services
-* Cloud‑native identity and networking
-* Configuration drift and posture management
-* Observability and logging
-* Third‑party and integration access
-* Cross‑cloud management and governance
-#### Components
-* cloud-iaas-core
-  * Trust for consumer‑managed cloud infrastructure.
-* cloud-paas-core
-  * Trust for provider‑managed runtimes.
-* cloud-saas-core
-  * Trust for fully provider‑operated applications.
-* cloud-identity-and-access
-  * Cloud control‑plane identity semantics.
-* cloud-networking
-  * Segmentation and connectivity trust.
-* cloud-configuration-and-posture
-  * Drift and posture management.
-* cloud-monitoring-and-logging
-  * Visibility into cloud behavior.
-* cloud-third-party-access
-  * External integration risk.
-* cloud-access-security-broker
-  * Policy enforcement for SaaS usage.
-* cross-cloud-governance
-  * Policy consistency and drift control across providers.
-* trusted-cloud (composite)
-  * Asserts aggregated cloud trust.
+To separate cloud trust concerns by service model while enabling consistent governance, visibility, and policy across providers.
+#### Scope (Summary)
+* IaaS, PaaS, and SaaS trust assumptions
+* Cloud control‑plane identity and networking
+* Configuration posture and drift management
+* Observability, third‑party access, and CASB
+#### Detailed Decomposition
+Full cloud platform trust decomposition, components, and composite assertions are defined in:
+➡ `platform/cloud/README.md`
 #### Answers the Question
 Can workloads be safely operated and governed across one or more cloud providers?
 
 ### 3.7 High‑Performance Computing (HPC)
-Models the unique execution, identity, and data risks of scheduler‑driven environments that prioritize throughput over default isolation.
+Models scheduler‑driven, throughput‑oriented compute platforms with mixed‑trust workloads and shared accelerators.
 #### Purpose
-To establish trust for performance‑oriented, shared compute platforms commonly used for research and advanced workloads.
-#### Scope
+To establish trust assumptions for HPC environments that prioritize performance over default isolation models.
+#### Scope (Summary)
 * Batch and scheduler‑mediated execution
 * Shared accelerators (GPUs, specialized hardware)
-* Mixed‑trust workloads
+* Mixed‑trust user and workload models
 * High‑volume data movement
-#### Components
-* hpc-core
-  * Defines baseline HPC platform trust assumptions.
-* hpc-identity-and-access
-  * Identity and access semantics in scheduler‑driven environments.
-* hpc-data-protection
-  * Protection of sensitive research and computational data.
-* secure-hpc (composite)
-  * Asserts secure HPC operation.
+#### Detailed Decomposition
+Full HPC trust decomposition, components, and composite assertions are defined in:
+➡ `platform/hpc/README.md`
 #### Answers the Question
 Can shared high‑performance compute resources be safely used across diverse users and workloads?
+
+### 3.8 Domain Name System (DNS)
+Treats DNS as a foundational platform service that enables reliable, bounded, and observable name resolution within the trusted environment.
+#### Purpose
+To ensure that name resolution behaves deterministically and does not introduce ambiguity or implicit exposure that could invalidate higher‑level trust assumptions.
+#### Scope (Summary)
+* Recursive resolution and forwarding behavior
+* DNS caching and TTL semantics
+* Resolution boundaries and split‑horizon views
+* Availability, resilience, and observability of resolvers
+#### Detailed Decomposition
+Full Platform DNS trust decomposition and components are defined in:
+➡ `platform/dns/README.md`
+#### Answers the Question
+Can systems reliably resolve names to the correct destinations without unintended visibility?
+
+### 3.9 Time
+Treats Time as a foundational platform service that underpins time‑dependent trust decisions across the environment.
+#### Purpose
+To provide authoritative, consistent, bounded, and observable time such that authentication, auditing, correlation, and enforcement remain defensible.
+#### Scope (Summary)
+* Authoritative time sources and synchronization
+* Drift detection and correction
+* Availability and predictable failure behavior
+* Observability and telemetry for time anomalies
+#### Detailed Decomposition
+Full Platform Time trust decomposition and components are defined in:
+➡ `platform/time/README.md`
+#### Answers the Question
+Can systems reliably depend on a correct and consistent notion of time without silent drift or instability?

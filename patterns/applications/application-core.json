@@ -1,0 +1,188 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:application-core",
+
+    "metadata": {
+      "title": "Application Core",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T14:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC380",
+          "remarks": "Business capability for operating applications as intentional, accountable units of institutional logic."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD190",
+          "remarks": "Executable application services, web applications, APIs, background workers, and internal services implementing business logic."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP310",
+          "remarks": "Pattern establishing baseline trust assumptions for applications as decision-making systems."
+        }
+      ],
+
+      "remarks": "Application Core defines the foundational trust properties required to treat an application as a legitimate, intentional, and governable system. This pattern establishes ownership, purpose, lifecycle awareness, and accountability, without addressing authorization logic, input handling, or data access."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:application-identity-and-ownership",
+        "type": "capability",
+        "title": "Application Identity and Ownership",
+        "description": "Defines clear ownership and identity for the application as an accountable institutional asset.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading as a legitimate application or service."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Strong identity binding for application-level actors."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:application-ownership",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Applications have defined ownership and documented purpose."
+              },
+              {
+                "control-id": "IA-4",
+                "remarks": "Identity attributes uniquely identify the application and its role."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:application-purpose-and-intent-definition",
+        "type": "capability",
+        "title": "Application Purpose and Intent Definition",
+        "description": "Ensures each application has a defined and understood purpose that constrains its behavior.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1199",
+            "remarks": "Abuse of trusted application behavior to perform unintended actions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement aligning execution with stated application purpose."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:application-purpose",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define and constrain the intended purpose of applications."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:application-lifecycle-awareness",
+        "type": "capability",
+        "title": "Application Lifecycle Awareness",
+        "description": "Manages creation, change, and retirement of applications to prevent residual risk.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1213",
+            "remarks": "Persistence through deprecated or unmanaged applications."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Lifecycle controls to retire or restrict obsolete applications."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:application-lifecycle",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-7",
+                "remarks": "Unnecessary or obsolete application functionality is removed or disabled."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:application-accountability-and-observability",
+        "type": "capability",
+        "title": "Application Accountability and Observability",
+        "description": "Provides traceability of application execution and decisions.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression of evidence related to application behavior."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging to support investigation of application actions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:application-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Application execution and decision points are logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports oversight and accountability of application behavior."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

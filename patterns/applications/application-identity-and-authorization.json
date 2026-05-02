@@ -1,0 +1,206 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:application-identity-and-authorization",
+
+    "metadata": {
+      "title": "Application Identity and Authorization",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T14:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC381",
+          "remarks": "Business capability for identifying actors and enforcing authorization decisions within applications."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD191",
+          "remarks": "Application-level authentication contexts, authorization logic, permission models, and policy enforcement mechanisms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP311",
+          "remarks": "Pattern for enforcing identity-aware and policy-driven authorization decisions inside applications."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-core",
+          "remarks": "Application identity and authorization assumes baseline application ownership, intent, and lifecycle governance."
+        }
+      ],
+
+      "remarks": "Application Identity and Authorization defines trust properties required for applications to identify actors and enforce access control correctly. This pattern focuses on authorization decisions at the point of business logic execution, not infrastructure authentication or network enforcement."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:actor-identity-establishment",
+        "type": "capability",
+        "title": "Actor Identity Establishment",
+        "description": "Establishes reliable identity context for users and non-human actors within the application.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Use of valid credentials to impersonate legitimate application users or services."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1036",
+            "remarks": "Masquerading as a different user or role within application context."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Strong identity binding and context propagation within applications."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:app-identity",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-2",
+                "remarks": "Application establishes authenticated identity context for actors."
+              },
+              {
+                "control-id": "IA-4",
+                "remarks": "Identity attributes are available to application authorization logic."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:application-authorization-decision-making",
+        "type": "capability",
+        "title": "Authorization Decision Making",
+        "description": "Evaluates whether an identified actor is permitted to perform a requested action.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1199",
+            "remarks": "Abuse of trusted application pathways to bypass authorization logic."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Policy-based access control and authorization enforcement."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:app-authorization",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-3",
+                "remarks": "Application enforces authorization checks for protected actions."
+              },
+              {
+                "control-id": "AC-6",
+                "remarks": "Authorization decisions follow least privilege principles."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:role-and-permission-model-governance",
+        "type": "capability",
+        "title": "Role and Permission Model Governance",
+        "description": "Defines and constrains roles, permissions, and privilege boundaries within the application.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1098",
+            "remarks": "Manipulation of account permissions to expand application privileges."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement preventing unsanctioned privilege expansion."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:app-permissions",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define allowable roles and permission assignments."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:authorization-observability-and-decision-audit",
+        "type": "capability",
+        "title": "Authorization Observability and Decision Audit",
+        "description": "Provides visibility into authorization decisions for oversight and investigation.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression of evidence related to improper access or authorization failures."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging of authorization decisions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:authorization-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Authorization decisions are logged by the application."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports investigation of application access behavior."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:application-observability-and-governance",
+
+    "metadata": {
+      "title": "Application Observability and Governance",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T16:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC386",
+          "remarks": "Business capability for observing, explaining, and governing application behavior over time."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD196",
+          "remarks": "Application logging, metrics, traces, audit events, error handling, and governance workflows."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP316",
+          "remarks": "Pattern for ensuring application behavior is observable, explainable, and governable."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-core",
+          "remarks": "Application observability and governance assumes baseline application identity, purpose, and lifecycle governance."
+        }
+      ],
+
+      "remarks": "Application Observability and Governance defines trust properties required to understand and oversee application behavior. This pattern addresses logging, telemetry, error handling, and governance visibility without redefining application logic or data access rules."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:application-behavior-observability",
+        "type": "capability",
+        "title": "Application Behavior Observability",
+        "description": "Provides visibility into application actions, decisions, and execution flow.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression or absence of logs to obscure application misuse."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Comprehensive logging and telemetry for accountability."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:app-observability",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Application activities and decision points are logged."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:error-handling-and-failure-transparency",
+        "type": "capability",
+        "title": "Error Handling and Failure Transparency",
+        "description": "Ensures errors and failures are handled predictably and transparently.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565.001",
+            "remarks": "Manipulation or misuse of error conditions to produce unsafe behavior."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0011",
+            "remarks": "Controlled error handling that avoids unsafe state or disclosure."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:app-error-handling",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-11",
+                "remarks": "Application error handling prevents unsafe information disclosure or logic bypass."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:governance-visibility-and-oversight",
+        "type": "capability",
+        "title": "Governance Visibility and Oversight",
+        "description": "Provides governance bodies with visibility into application behavior and risk posture.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1098",
+            "remarks": "Circumvention of oversight by obscuring application behavior."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy-driven oversight and reporting mechanisms."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:app-governance",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define governance expectations and oversight of application behavior."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:application-audit-and-review",
+        "type": "capability",
+        "title": "Application Audit and Review",
+        "description": "Supports investigation, compliance, and continuous improvement through review.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Destruction or suppression of evidence relevant to application incidents."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit trails supporting investigation and accountability."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:app-audit-review",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit analysis supports investigation and governance review of application behavior."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

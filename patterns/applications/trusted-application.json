@@ -1,0 +1,184 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:trusted-application",
+
+    "metadata": {
+      "title": "Trusted Application",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T16:30:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC387",
+          "remarks": "Business capability for operating applications as trustworthy, accountable, and policy-governed institutional systems."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD197",
+          "remarks": "Application services, APIs, web applications, background workers, and decision-making systems implementing institutional logic."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP317",
+          "remarks": "Composite pattern asserting that all trust requirements for an application have been satisfied."
+        },
+
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-core",
+          "remarks": "Trusted applications assume baseline ownership, purpose, and lifecycle governance."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-identity-and-authorization",
+          "remarks": "Trusted applications require correct enforcement of identity and authorization decisions."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-input-and-request-handling",
+          "remarks": "Trusted applications require safe and unambiguous interpretation of inputs and requests."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-session-and-state-management",
+          "remarks": "Trusted applications require correct preservation of identity, privilege, and execution context across interactions."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-data-handling",
+          "remarks": "Trusted applications require responsible, purpose-limited use and exposure of data."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-runtime-and-execution-boundaries",
+          "remarks": "Trusted applications require bounded execution context and limited blast radius."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "application-observability-and-governance",
+          "remarks": "Trusted applications require visibility, explainability, and governance oversight."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0004",
+          "remarks": "Privilege escalation through flaws in application logic or authorization."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0005",
+          "remarks": "Defense evasion via abuse of application behavior and error handling."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1190",
+          "remarks": "Exploitation of public-facing application logic."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1213",
+          "remarks": "Persistence through unmanaged or legacy applications."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0045",
+          "remarks": "Strong identity binding and authorization enforcement."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0016",
+          "remarks": "Policy enforcement constraining application behavior."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0061",
+          "remarks": "Audit logging and observability to support accountability and investigation."
+        }
+      ],
+
+      "remarks": "Trusted Application is a composite pattern asserting that an application can be relied upon as a secure, accountable, and governable system. It introduces no independent controls and exists solely as an aggregate trust claim for solution patterns, system security and privacy plans, and architectural risk analysis."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:application-core",
+        "type": "component",
+        "title": "Application Core",
+        "description": "Baseline trust assumptions for applications as institutional systems."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:application-identity-and-authorization",
+        "type": "component",
+        "title": "Application Identity and Authorization",
+        "description": "Correct enforcement of identity and authorization decisions within the application."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:application-input-and-request-handling",
+        "type": "component",
+        "title": "Application Input and Request Handling",
+        "description": "Safe, explicit, and unambiguous interpretation of requests and inputs."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:application-session-and-state-management",
+        "type": "component",
+        "title": "Application Session and State Management",
+        "description": "Correct preservation of identity, privilege, and execution context over time."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:application-data-handling",
+        "type": "component",
+        "title": "Application Data Handling",
+        "description": "Purpose-limited and policy-aligned use of data by applications."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:application-runtime-and-execution-boundaries",
+        "type": "component",
+        "title": "Application Runtime and Execution Boundaries",
+        "description": "Bounded execution context and controlled blast radius."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:application-observability-and-governance",
+        "type": "component",
+        "title": "Application Observability and Governance",
+        "description": "Visibility, explainability, and governance oversight of application behavior."
+      }
+    ]
+  }
+}

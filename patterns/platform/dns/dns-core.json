@@ -1,0 +1,117 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:platform-dns-core",
+
+    "metadata": {
+      "title": "Platform DNS Core",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T22:30:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC420",
+          "remarks": "Business capability for providing governed, reliable name resolution as foundational platform infrastructure."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD220",
+          "remarks": "Platform-level DNS resolution, recursion, caching, and zoning services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP340",
+          "remarks": "Pattern establishing DNS as a governed platform service rather than an implicit utility."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "platform-core",
+          "remarks": "Platform DNS depends on foundational platform availability, compute, and network capabilities."
+        }
+      ],
+
+      "remarks": "Platform DNS Core defines baseline trust assumptions for DNS as a critical platform capability. It establishes ownership, scope, and separation of responsibilities between resolution mechanics, data governance, application naming intent, and boundary enforcement."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:platform-dns-governance",
+        "type": "capability",
+        "title": "Platform DNS Governance",
+        "description": "Establishes DNS as an intentional, governed platform service with clear accountability boundaries.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565",
+            "remarks": "Manipulation or abuse of infrastructure configuration due to lack of governance."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy-governed infrastructure services with explicit ownership and constraints."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dns-governance",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Platform services, including DNS, are governed by policy and assigned accountability."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:platform-dns-boundary-definition",
+        "type": "capability",
+        "title": "Platform DNS Boundary Definition",
+        "description": "Defines trust boundaries between DNS resolution behavior and higher-level naming, data, and exposure concerns.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1199",
+            "remarks": "Exploitation of implicit trust boundaries in shared infrastructure services."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Explicit trust boundary definition between infrastructure mechanics and policy enforcement."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dns-boundaries",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-7",
+                "remarks": "Platform service boundaries are defined to prevent implicit exposure or unintended delegation."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

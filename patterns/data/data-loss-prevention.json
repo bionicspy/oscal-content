@@ -1,0 +1,187 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:data-loss-prevention",
+
+    "metadata": {
+      "title": "Data Loss Prevention",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T19:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC406",
+          "remarks": "Business capability for detecting and preventing unauthorized disclosure, exfiltration, or misuse of institutional data."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD206",
+          "remarks": "Data loss prevention controls including content inspection, egress monitoring, and policy-enforced restrictions."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP326",
+          "remarks": "Pattern for enforcing data handling and disclosure constraints at data egress points."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "data-handling-and-use",
+          "remarks": "Data loss prevention enforces permitted and prohibited data behaviors defined at the policy level."
+        }
+      ],
+
+      "remarks": "Data Loss Prevention defines trust properties required to prevent data from leaving institutional control in violation of policy. DLP enforces data-centric rules at egress points and does not make application authorization or data classification decisions."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:egress-monitoring-and-control",
+        "type": "capability",
+        "title": "Egress Monitoring and Control",
+        "description": "Monitors and controls outbound data flows across institutional boundaries.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1041",
+            "remarks": "Exfiltration of data through unauthorized outbound channels."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0043",
+            "remarks": "Outbound traffic monitoring and restriction to prevent data exfiltration."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dlp-egress",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-4",
+                "remarks": "Outbound data flows are monitored for unauthorized disclosure."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:content-inspection-and-classification",
+        "type": "capability",
+        "title": "Content Inspection and Classification",
+        "description": "Detects sensitive data based on content, patterns, or classification signals.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1005",
+            "remarks": "Exposure of sensitive data through uninspected or misidentified content."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0021",
+            "remarks": "Content inspection and sensitive data detection."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dlp-content-inspection",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-3",
+                "remarks": "Mechanisms inspect content to identify sensitive data before transmission."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:policy-enforced-restrictions",
+        "type": "capability",
+        "title": "Policy-Enforced Restrictions",
+        "description": "Blocks, conditionally allows, or constrains data flows based on policy.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1567",
+            "remarks": "Circumvention of data handling policy during transmission."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy-driven enforcement of data disclosure restrictions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dlp-policy",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define and enforce restrictions on data disclosure."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:incident-signaling-and-escalation",
+        "type": "capability",
+        "title": "Incident Signaling and Escalation",
+        "description": "Generates alerts and initiates response when data loss risk is detected.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression of alerts related to data loss events."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Alerting and escalation for rapid incident response."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dlp-incident",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IR-4",
+                "remarks": "Alerts support detection and response to data loss incidents."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

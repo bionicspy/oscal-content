@@ -1,0 +1,152 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:platform-dns-observability-and-telemetry",
+
+    "metadata": {
+      "title": "Platform DNS Observability and Telemetry",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T00:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC425",
+          "remarks": "Business capability for providing visibility into DNS behavior to support monitoring, investigation, and trust assurance."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD225",
+          "remarks": "DNS logging, telemetry, metrics, and audit data supporting operational and security visibility."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP345",
+          "remarks": "Pattern enabling DNS observability without embedding enforcement or policy logic into the platform."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "platform-dns-resolver-availability-and-resilience",
+          "remarks": "DNS observability depends on stable, resilient resolver behavior to produce reliable telemetry."
+        }
+      ],
+
+      "remarks": "Platform DNS Observability and Telemetry defines expectations for visibility into DNS resolution behavior. It enables Security Operations and platform owners to detect anomalies, investigate incidents, and validate trust assumptions without performing enforcement at the platform layer."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:dns-resolution-logging",
+        "type": "capability",
+        "title": "DNS Resolution Logging",
+        "description": "Provides logs of DNS queries and responses sufficient to support investigation and audit.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1046",
+            "remarks": "Undetected reconnaissance or abuse due to lack of DNS query visibility."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Observability mechanisms that record and preserve security-relevant events."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dns-resolution-logging",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "DNS resolution activity is logged to support monitoring and investigation."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dns-behavior-telemetry",
+        "type": "capability",
+        "title": "DNS Behavior Telemetry",
+        "description": "Emits metrics and signals describing DNS behavior and performance over time.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1499",
+            "remarks": "Service degradation or denial that goes unnoticed due to insufficient telemetry."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0060",
+            "remarks": "Operational telemetry supporting detection of anomalous behavior."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dns-behavior-telemetry",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-4",
+                "remarks": "DNS operational behavior is monitored to detect anomalous conditions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dns-investigation-support",
+        "type": "capability",
+        "title": "DNS Investigation Support",
+        "description": "Supports correlation and analysis of DNS events during incident response or forensic investigation.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Covering tracks by exploiting insufficient DNS audit data."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Retention and correlation of event data to support investigation."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:dns-investigation-support",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-6",
+                "remarks": "DNS logs and telemetry support analysis and incident investigation."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

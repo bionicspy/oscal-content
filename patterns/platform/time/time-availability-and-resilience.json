@@ -1,0 +1,152 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:platform-time-availability-and-resilience",
+
+    "metadata": {
+      "title": "Platform Time Availability and Resilience",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T01:55:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC433",
+          "remarks": "Business capability for ensuring time services remain available, resilient, and predictable under failure conditions."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD233",
+          "remarks": "Redundancy, fault tolerance, and recovery mechanisms for platform time services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP353",
+          "remarks": "Pattern ensuring trusted time does not become a single point of failure for the platform."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "platform-time-drift-and-correction",
+          "remarks": "Time availability depends on bounded drift and controlled correction behavior to prevent cascading failures."
+        }
+      ],
+
+      "remarks": "Platform Time Availability and Resilience defines expectations for redundancy, failover, and degradation behavior of time services. It ensures time failures are explicit, bounded, and recoverable rather than silent or destabilizing."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:time-source-redundancy",
+        "type": "capability",
+        "title": "Time Source Redundancy",
+        "description": "Ensures multiple independent time sources are available to prevent loss of authoritative time.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1499",
+            "remarks": "Denial of service or integrity failure caused by reliance on a single time source."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Redundant infrastructure to preserve service availability."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-source-redundancy",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-7",
+                "remarks": "Redundant time sources are used to support high availability."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:time-service-failover",
+        "type": "capability",
+        "title": "Time Service Failover",
+        "description": "Defines how platform systems fail over when primary time services become unavailable.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565",
+            "remarks": "Integrity degradation caused by unpredictable or unmanaged time service failure."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0046",
+            "remarks": "Deterministic failover behavior preserving system stability."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-service-failover",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-13",
+                "remarks": "Time services fail over in a predictable manner that preserves system integrity."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:time-degraded-mode-behavior",
+        "type": "capability",
+        "title": "Time Degraded Mode Behavior",
+        "description": "Defines acceptable platform behavior when authoritative time cannot be maintained.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565.001",
+            "remarks": "Subtle trust failure caused by systems operating on inconsistent or frozen time."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Graceful degradation preserving partial trust guarantees."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-degraded-mode",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-2",
+                "remarks": "Degraded time behavior is defined to support continuity of operations."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

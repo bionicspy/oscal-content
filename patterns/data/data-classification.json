@@ -1,0 +1,187 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:data-classification",
+
+    "metadata": {
+      "title": "Data Classification",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-28T17:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC401",
+          "remarks": "Business capability for determining data sensitivity and expressing obligations that apply to data wherever it exists."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD201",
+          "remarks": "Data classification frameworks, labeling mechanisms, and obligation signaling applied to institutional data."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP321",
+          "remarks": "Pattern for establishing and propagating data sensitivity, impact, and protection obligations."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "data-core",
+          "remarks": "Data classification assumes institutional data definition, ownership, and scope have been established."
+        }
+      ],
+
+      "remarks": "Data Classification defines trust properties required to assign sensitivity levels and obligations to institutional data. These properties are invariant and must be respected by applications, integrations, and platforms wherever the data is stored or processed."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:classification-scheme",
+        "type": "capability",
+        "title": "Classification Scheme",
+        "description": "Defines standard data sensitivity levels used consistently across the institution.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1567",
+            "remarks": "Misclassification of data to avoid required protections."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy-enforced classification standards applied institution-wide."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:data-classification-scheme",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "RA-2",
+                "remarks": "Data is categorized by sensitivity and impact."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:impact-and-risk-mapping",
+        "type": "capability",
+        "title": "Impact and Risk Mapping",
+        "description": "Maps classified data to confidentiality, integrity, and availability impact levels.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1005",
+            "remarks": "Exploitation of data whose impact is underestimated."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0034",
+            "remarks": "Risk-informed mapping linking data sensitivity to protection requirements."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:data-impact-mapping",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "RA-3",
+                "remarks": "Risks associated with data sensitivity are identified and documented."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:regulatory-and-contractual-obligations",
+        "type": "capability",
+        "title": "Regulatory and Contractual Obligations",
+        "description": "Captures external legal, regulatory, and contractual requirements associated with data classes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1213",
+            "remarks": "Retention or processing of regulated data without meeting external obligations."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement ensuring compliance with external data obligations."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:data-regulatory-obligations",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "External regulatory and contractual requirements for data are defined and enforced."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:classification-assertion-and-labeling",
+        "type": "capability",
+        "title": "Classification Assertion and Labeling",
+        "description": "Ensures data classification is represented and propagated with the data.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1030",
+            "remarks": "Loss or stripping of classification metadata during data movement."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0011",
+            "remarks": "Persistent labeling and integrity checks on classification metadata."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:data-labeling",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-7",
+                "remarks": "Integrity controls ensure classification labels remain accurate and intact."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

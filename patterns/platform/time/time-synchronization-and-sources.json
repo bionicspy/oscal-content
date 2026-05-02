@@ -1,0 +1,152 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:platform-time-synchronization-and-sources",
+
+    "metadata": {
+      "title": "Platform Time Synchronization and Sources",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T01:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC431",
+          "remarks": "Business capability for acquiring and synchronizing time from authoritative sources in a controlled and accountable manner."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD231",
+          "remarks": "Time synchronization mechanisms, authoritative clock sources, and upstream time dependencies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP351",
+          "remarks": "Pattern governing how time is sourced and synchronized without embedding time semantics or enforcement policy."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "platform-time-core",
+          "remarks": "Time synchronization and source selection inherit baseline trust assumptions defined in Platform Time Core."
+        }
+      ],
+
+      "remarks": "Platform Time Synchronization and Sources defines how time is acquired and synchronized across the platform. It governs authoritative sources, synchronization behavior, and dependency control to ensure platform time remains correct and defensible."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:authoritative-time-sources",
+        "type": "capability",
+        "title": "Authoritative Time Sources",
+        "description": "Defines which time sources are considered authoritative for the platform.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1195",
+            "remarks": "Compromise or manipulation of upstream dependencies used as authoritative time sources."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0008",
+            "remarks": "Controlled selection and validation of trusted upstream dependencies."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:authoritative-time-sources",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SR-3",
+                "remarks": "Authoritative time sources are explicitly defined and governed."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:time-synchronization-mechanisms",
+        "type": "capability",
+        "title": "Time Synchronization Mechanisms",
+        "description": "Controls how platform systems synchronize time with authoritative sources.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565",
+            "remarks": "Integrity degradation through manipulation of time synchronization behavior."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Lifecycle control of synchronized state to preserve system integrity."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-synchronization",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-7",
+                "remarks": "Time synchronization mechanisms are configured explicitly and restricted to approved behavior."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:time-dependency-control",
+        "type": "capability",
+        "title": "Time Dependency Control",
+        "description": "Governs upstream dependencies and trust relationships used for time synchronization.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1046",
+            "remarks": "Discovery or exploitation of implicit time dependencies."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Explicit dependency definition and boundary enforcement."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:time-dependency-control",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SA-17",
+                "remarks": "Time synchronization dependencies are explicitly defined and governed."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
