@@ -1,0 +1,177 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:identity-non-human",
+
+    "metadata": {
+      "title": "Identity Non‑Human",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T06:50:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Institutional capability governing identities that represent non‑human actors such as services, workloads, devices, and automation."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD001",
+          "remarks": "Digital Identity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP018",
+          "remarks": "Non‑human identity, workload identity, and service identity services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP039",
+          "remarks": "First‑class non‑human identity with explicit lifecycle, authentication, and policy binding."
+        },
+
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE205",
+          "remarks": "Digital Identity representing a non‑human subject."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE360",
+          "remarks": "Non‑human identity metadata, credentials, and bindings."
+        }
+      ],
+
+      "remarks": "Identity Non‑Human defines the capability to represent, authenticate, and govern identities that do not correspond to natural persons. This includes services, workloads, devices, automation, and integrations. Non‑human identities often operate continuously, at scale, and without interactive oversight, requiring explicit governance.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, and assurance related to non‑human identities. Identity semantics are defined by Identity Core; this pattern governs non‑human instantiation and risk."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:non-human-identity-definition",
+        "type": "capability",
+        "title": "Non‑Human Identity Definition",
+        "description": "Definition and classification of identities representing services, workloads, devices, and automation.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid non‑human identities."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:ServiceIdentityManagement",
+            "remarks": "Explicit governance and classification of non‑human identities."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:non-human-authentication",
+        "type": "capability",
+        "title": "Non‑Human Authentication",
+        "description": "Authentication mechanisms appropriate for non‑interactive and automated identities.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1552",
+            "remarks": "Theft or exposure of credentials used by non‑human identities."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:CredentialRotation",
+            "remarks": "Short‑lived and automatically rotated credentials."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:non-human-lifecycle",
+        "type": "capability",
+        "title": "Non‑Human Lifecycle Management",
+        "description": "Creation, rotation, suspension, and deprovisioning of non‑human identities.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1098",
+            "remarks": "Persistence of non‑human identities beyond intended lifetime."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:AccountLifecycleManagement",
+            "remarks": "Automated lifecycle enforcement for non‑human identities."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:non-human-scope-and-policy",
+        "type": "capability",
+        "title": "Scope and Policy Binding",
+        "description": "Binding of non‑human identities to narrowly scoped permissions and policies.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1068",
+            "remarks": "Privilege escalation via overly broad non‑human permissions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:LeastPrivilege",
+            "remarks": "Strict scope limitation for non‑human identities."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:non-human-observability",
+        "type": "capability",
+        "title": "Non‑Human Identity Observability",
+        "description": "Logging and monitoring of non‑human identity usage to support detection and investigation.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1070",
+            "remarks": "Evasion through lack of visibility into non‑human activity."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:LogAnalysis",
+            "remarks": "Continuous monitoring and analysis of non‑human identity activity."
+          }
+        ]
+      }
+    ]
+  }
+}

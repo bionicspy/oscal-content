@@ -1,0 +1,188 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:identity-assurance",
+
+    "metadata": {
+      "title": "Identity Assurance",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T05:30:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Institutional capability governing confidence and assurance in identity assertions."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD001",
+          "remarks": "Digital Identity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP016",
+          "remarks": "Identity assurance, risk evaluation, and confidence signaling services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP036",
+          "remarks": "Adaptive identity assurance with dynamic evaluation and assurance propagation."
+        },
+
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE205",
+          "remarks": "Digital Identity subject to assurance evaluation."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE312",
+          "remarks": "Authentication and identity assurance events."
+        }
+      ],
+
+      "remarks": "Identity Assurance defines the capability to evaluate, express, and propagate confidence in identity assertions based on authentication strength, contextual risk, and observed behavior. Assurance enables adaptive access decisions and consistent trust signaling across systems.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, and assurance related to identity confidence and assurance. Identity semantics are defined by Identity Core; assurance governs confidence and reliability."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:assurance-levels",
+        "type": "capability",
+        "title": "Assurance Levels",
+        "description": "Definition and classification of assurance levels representing confidence in identity assertions.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1556",
+            "remarks": "Manipulation of authentication or trust processes to reduce effective assurance."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:IdentityConfidenceAssessment",
+            "remarks": "Explicit definition and enforcement of assurance levels."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-7", "remarks": "Define and apply strength-of-mechanism and assurance requirements." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:confidence-signals",
+        "type": "capability",
+        "title": "Confidence Signals",
+        "description": "Collection and evaluation of signals contributing to identity confidence, including authentication method, device posture, and behavior.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1621",
+            "remarks": "Spoofing or manipulation of signals used to determine identity confidence."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:BehavioralAnalytics",
+            "remarks": "Evaluation of behavioral and contextual confidence signals."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SI-4", "remarks": "Monitor signals relevant to identity confidence and risk." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:risk-context",
+        "type": "capability",
+        "title": "Risk Context",
+        "description": "Incorporation of contextual and situational risk into identity assurance evaluations.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid identities under elevated risk conditions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:RiskBasedAuthentication",
+            "remarks": "Adjustment of assurance based on contextual risk."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "RA-3", "remarks": "Assess risk associated with identity use." },
+              { "control-id": "IA-7", "remarks": "Adapt assurance requirements based on assessed risk." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:assurance-propagation",
+        "type": "capability",
+        "title": "Assurance Propagation",
+        "description": "Propagation of identity assurance claims and confidence levels to relying systems and services.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1556",
+            "remarks": "Tampering with conveyed assurance claims."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:TrustPropagation",
+            "remarks": "Cryptographically and logically protected propagation of assurance signals."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-7", "remarks": "Ensure assurance claims are correctly conveyed." },
+              { "control-id": "AU-2", "remarks": "Log assurance evaluation and propagation events." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

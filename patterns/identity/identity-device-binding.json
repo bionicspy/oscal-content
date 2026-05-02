@@ -1,0 +1,158 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:identity-device-binding",
+
+    "metadata": {
+      "title": "Identity Device Binding",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T07:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Institutional capability binding identities to trusted devices or execution contexts."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD001",
+          "remarks": "Digital Identity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP019",
+          "remarks": "Device identity, posture, and trust validation services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP040",
+          "remarks": "Identity binding to attested devices with continuous posture and context validation."
+        },
+
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE205",
+          "remarks": "Digital Identity bound to a device or execution context."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE370",
+          "remarks": "Device identity, posture, and attestation metadata."
+        }
+      ],
+
+      "remarks": "Identity Device Binding defines the capability to associate identities with specific devices or execution contexts and to continuously validate that association over time. Device binding reduces the risk of credential replay, remote misuse, and access from untrusted or compromised environments.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, and assurance related to identity–device association and context validation. Identity semantics are defined by Identity Core; device binding constrains execution context."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:device-association",
+        "type": "capability",
+        "title": "Device Association",
+        "description": "Association of identities with known, managed, or registered devices.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Use of valid identities from unauthorized or unmanaged devices."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:DeviceAuthorization",
+            "remarks": "Explicit association of identities with approved devices."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-4", "remarks": "Associate identities with organizationally defined devices." },
+              { "control-id": "AC-2", "remarks": "Manage device-bound identities within account management." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:trust-binding",
+        "type": "capability",
+        "title": "Trust Binding",
+        "description": "Cryptographic and logical binding of identity credentials to a specific device or execution context.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1556",
+            "remarks": "Manipulation of authentication or trust mechanisms to bypass binding."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:CryptographicBinding",
+            "remarks": "Binding credentials cryptographically to device or execution context."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-5", "remarks": "Bind authenticators to devices and protect against reuse." },
+              { "control-id": "IA-7", "remarks": "Enforce cryptographic trust binding." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:context-validation",
+        "type": "capability",
+        "title": "Context Validation",
+        "description": "Continuous validation of device posture, integrity, and execution context during identity use.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1556",
+            "remarks": "Degradation or spoofing of device posture to maintain access."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:ContinuousAuthentication",
+            "remarks": "Ongoing evaluation of device trust and execution context."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SI-4", "remarks": "Monitor device posture relevant to identity trust." },
+              { "control-id": "IA-7", "remarks": "Adjust assurance or access based on continued context validation." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

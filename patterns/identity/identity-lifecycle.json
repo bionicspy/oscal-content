@@ -1,0 +1,190 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:identity-lifecycle",
+
+    "metadata": {
+      "title": "Identity Lifecycle",
+      "version": "1.2.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T04:40:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Institutional capability governing the creation, modification, suspension, revocation, and termination of identities."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD001",
+          "remarks": "Digital Identity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP014",
+          "remarks": "Identity lifecycle and provisioning services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP034",
+          "remarks": "Authoritative lifecycle management with event-driven provisioning and deprovisioning."
+        },
+
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE205",
+          "remarks": "Digital Identity subject to lifecycle operations."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE101",
+          "remarks": "Human or non-human subject associated with an identity."
+        }
+      ],
+
+      "remarks": "Identity Lifecycle defines how identities are created, modified, suspended, revoked, and terminated throughout their institutional existence. Lifecycle management ensures access remains aligned with current affiliation, role, and risk.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, and assurance related to identity lifecycle management. Identity semantics are defined by Identity Core; lifecycle governs temporal validity."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:onboarding",
+        "type": "capability",
+        "title": "Onboarding",
+        "description": "Controlled creation and initial activation of identities, including assignment of attributes and baseline access.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Creation of accounts with inappropriate initial permissions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:IdentityProvisioning",
+            "remarks": "Governed, policy-driven identity provisioning."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-4", "remarks": "Establish identities as part of onboarding." },
+              { "control-id": "AC-2", "remarks": "Create accounts according to account management procedures." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:changes-in-status",
+        "type": "capability",
+        "title": "Changes in Status",
+        "description": "Updates to identity attributes and access triggered by role, affiliation, or status changes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1098",
+            "remarks": "Privilege persistence following unnoticed or delayed status changes."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:AccountLifecycleManagement",
+            "remarks": "Automated entitlement updates aligned with status changes."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-2", "remarks": "Modify accounts when status changes." },
+              { "control-id": "AC-6", "remarks": "Reapply least privilege after changes." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:suspension-and-revocation",
+        "type": "capability",
+        "title": "Suspension and Revocation",
+        "description": "Temporary or permanent disabling of identities in response to risk, policy, or separation events.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Continued access by identities that should be suspended."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:AccessRevocation",
+            "remarks": "Rapid suspension or revocation of access."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-2", "remarks": "Disable accounts under defined conditions." },
+              { "control-id": "AC-16", "remarks": "Restrict access dynamically based on status." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:deprovisioning",
+        "type": "capability",
+        "title": "Deprovisioning",
+        "description": "Permanent removal of identities and associated access following end of affiliation.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1531",
+            "remarks": "Failure to remove accounts leading to lingering access."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:Deprovisioning",
+            "remarks": "Timely and complete removal of identity access."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-2", "remarks": "Remove accounts when no longer required." },
+              { "control-id": "IA-4", "remarks": "Terminate identity records per lifecycle policy." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

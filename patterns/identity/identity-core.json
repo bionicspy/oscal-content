@@ -1,38 +1,60 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:identity-core",
+
     "metadata": {
       "title": "Identity Core",
-      "version": "1.3.1",
+      "version": "1.4.2",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T12:25:00Z",
+      "last-modified": "2026-04-29T03:25:00Z",
 
       "props": [
-        { "name": "brm-capability", "value": "urn:utoronto:cae2:brm:BC220" },
-        { "name": "trm-domain", "value": "urn:utoronto:cae2:trm:TD001" },
-        { "name": "trm-platform", "value": "urn:utoronto:cae2:trm:TP012" },
-        { "name": "arm-pattern", "value": "urn:utoronto:cae2:arm:AP031" },
-        { "name": "drm-data-entity", "value": "urn:utoronto:cae2:drm:DE205" },
-        { "name": "drm-data-entity", "value": "urn:utoronto:cae2:drm:DE101" },
-        { "name": "mitre-attack-technique", "value": "urn:mitre:attack:technique:T1078" },
-        { "name": "mitre-attack-technique", "value": "urn:mitre:attack:technique:T1556" },
-        { "name": "mitre-attack-technique", "value": "urn:mitre:attack:technique:T1110" },
-        { "name": "mitre-d3fend-technique", "value": "urn:mitre:d3fend:technique:D3-Authentication" },
-        { "name": "mitre-d3fend-technique", "value": "urn:mitre:d3fend:technique:D3-CredentialHardening" },
-        { "name": "mitre-d3fend-technique", "value": "urn:mitre:d3fend:technique:D3-IdentityGovernance" }
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Business capability for Identity and Access Management establishing authoritative identity foundations."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD001",
+          "remarks": "Digital Identity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP011",
+          "remarks": "Authoritative identity and directory services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "core-pattern",
+          "value": "urn:utoronto:cae2:arm:AP030",
+          "remarks": "Authoritative institutional identity source with centralized governance."
+        },
+
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE205",
+          "remarks": "Digital Identity representing a human or non-human subject."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE101",
+          "remarks": "Person or subject associated with an institutional identity."
+        }
       ],
 
-      "links": [
-        { "rel": "related", "href": "urn:utoronto:cae2:brm:BC220", "text": "BRM BC220 – Identity and Access Management" },
-        { "rel": "related", "href": "urn:utoronto:cae2:trm:TD001", "text": "TRM TD001 – Digital Identity" },
-        { "rel": "related", "href": "urn:utoronto:cae2:trm:TP012", "text": "TRM TP012 – Authentication Services" },
-        { "rel": "related", "href": "urn:utoronto:cae2:arm:AP031", "text": "ARM AP031 – Authoritative Identity Provider" },
-        { "rel": "related", "href": "urn:utoronto:cae2:drm:DE205", "text": "DRM DE205 – Digital Identity" },
-        { "rel": "related", "href": "urn:utoronto:cae2:drm:DE101", "text": "DRM DE101 – Person" },
-        { "rel": "derived-from", "href": "urn:herm:brm:BC220", "text": "Derived from HERM BRM BC220" }
-      ],
-
-      "remarks": "Identity Core defines the foundational institutional identity capability. Identity is established as a persistent trust object, authoritative independently of authentication mechanisms, authorization decisions, federation relationships, or lifecycle automation.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for roles and responsibilities, SSPPs, standards, procedures, guidelines, and assurance activities within scope. Controls are intentionally applied at the pattern level. Sub-capabilities are descriptive only and do not carry independent control or assurance scope."
+      "remarks": "Identity Core defines what constitutes an identity within the institution. It establishes authoritative identity meaning, namespace control, uniqueness, attribution, and lifecycle semantics. Identity Core defines meaning; Data & Information Protection governs handling.\n\nThis component-definition is the authoritative governance anchor for SSPPs and downstream identity patterns."
     },
 
     "components": [
@@ -40,38 +62,91 @@
         "uuid": "urn:utoronto:security:capability:identity-authority",
         "type": "capability",
         "title": "Identity Authority",
-        "description": "Defines the authoritative institutional source(s) of truth for identity existence and core attributes."
+        "description": "Authoritative sources of truth responsible for asserting identity existence and core attributes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid accounts due to weak or poorly governed identity authority."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:IdentityManagement",
+            "remarks": "Governed, authoritative identity sources prevent unauthorized account persistence."
+          }
+        ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:identity-namespace",
         "type": "capability",
         "title": "Identity Namespace",
-        "description": "Defines the namespace(s) and identifier schemes used to avoid ambiguity in identity representation."
+        "description": "Namespaces and identifier schemes ensuring identities are non-ambiguous.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1589",
+            "remarks": "Identity confusion or impersonation through ambiguous or overlapping namespaces."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NamespaceSeparation",
+            "remarks": "Clear identity namespaces prevent collision and impersonation."
+          }
+        ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:identity-uniqueness",
         "type": "capability",
         "title": "Identity Uniqueness",
-        "description": "Ensures each identity corresponds to a single subject and prevents collision or duplication."
+        "description": "Ensures each identity corresponds to a single subject and prevents duplication or collision.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1098",
+            "remarks": "Account manipulation through identity duplication or collision."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:IdentityBinding",
+            "remarks": "Strong binding between subject and identity prevents duplication."
+          }
+        ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:identity-attribution",
         "type": "capability",
         "title": "Identity Attribution",
-        "description": "Ensures actions can be reliably attributed to a specific identity for accountability and audit."
-      }
-    ],
-
-    "control-implementations": [
-      {
-        "source": "urn:utoronto:security:catalog:iscs",
-        "implemented-requirements": [
-          { "control-id": "ISCS-IA-01", "remarks": "Authoritative digital identities must be defined and governed. (NIST 800-171r3 IA-1)" },
-          { "control-id": "ISCS-IA-02", "remarks": "Unique identity assignment must be enforced. (NIST 800-171r3 IA-2)" },
-          { "control-id": "ISCS-IA-05", "remarks": "Identity attributes must maintain integrity across the lifecycle. (NIST 800-171r3 IA-5)" },
-          { "control-id": "ISCS-AC-01", "remarks": "Access control policy must rely on authoritative identities. (NIST 800-171r3 AC-1)" },
-          { "control-id": "ISCS-IA-07", "remarks": "Enhanced identity governance applies to high-risk and privileged identities. (NIST 800-172r3 IA-7)" },
-          { "control-id": "ISCS-PL-08", "remarks": "Identity architecture must be formally defined and governed. (NIST 800-172r3 PL-8)" }
+        "description": "Ensures actions can be attributed to a defined identity to support accountability.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1070",
+            "remarks": "Evasion or repudiation through lack of attributable identity."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:IdentityAttribution",
+            "remarks": "Strong attribution supports accountability and investigation."
+          }
         ]
       }
     ]

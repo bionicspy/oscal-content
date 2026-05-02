@@ -1,294 +1,271 @@
-# Identity & Trust Pattern Family
-<insert text here>
+# Identity & Trust (Trust Pattern Family)
 
-## Description:
-<insert text here>
+## Overview
 
-## Purpose:
-The purpose of the Network & Connectivity Pattern Family is to ensure that:
-* <insert text here>
+The **Identity & Trust** pattern family defines how the institution establishes, evaluates, and relies upon identity as a **foundational trust authority**.
 
-<insert statement here>
+Identity is not merely a mechanism for access control. It is the **semantic root** that enables accountability, authorization, attribution, and governance across all trust planes. Failures in identity invalidate security assumptions in applications, data protection, infrastructure, and external access.
 
-## Scope:
-This family applies to all institutional connectivity contexts, including but not limited to:
-* <insert text here>
+This pattern family treats identity as:
 
-<insert statement here>
+- an authoritative representation of a subject (human or non‑human),
+- a governed data object, and
+- a trust signal consumed by other planes.
+
+Identity at this level answers a single overarching trust question:
+
+> *Can actions performed in the name of an identity be relied upon as legitimate, accountable, and institutionally acceptable?*
+
+---
+
+## Purpose
+
+The purpose of the Identity & Trust pattern family is to:
+
+- Define **what constitutes an identity** that the institution recognizes  
+- Ensure identities are **authoritative, unique, and attributable**  
+- Establish **proof**, **permission**, **confidence**, and **accountability** around identity use  
+- Govern identity behavior **over time**, across **boundaries**, and within **execution contexts**  
+- Provide a **single inheritance anchor** for SSPPs and assurance activities  
+
+Identity enables higher‑level trust decisions by Applications, Data & Information Protection, Platform, External Access, and Security Operations by ensuring that **identity itself is trustworthy**.
+
+---
+
+## Scope
+
+### In Scope
+
+- Human and non‑human identities (services, workloads, automation)  
+- Authentication and time‑of‑use verification  
+- Authorization and policy decision semantics  
+- Identity lifecycle (creation through termination)  
+- Federation and external identity trust  
+- Identity assurance and confidence signaling  
+- Identity logging, audit, and traceability  
+- Privileged identity usage  
+- Identity binding to devices or execution contexts  
+
+### Out of Scope
+
+- Application‑specific business logic  
+- Endpoint security controls themselves  
+- Network transport security  
+- Cryptographic primitives not used for identity  
+- Vendor‑specific IAM products or tooling  
+
+These concerns are addressed in other trust planes and **consume** identity trust rather than defining it.
+
+---
 
 ## Pattern Decomposition
-The Identity & Trust family is decomposed into functionally distinct patterns, each of which acts as a governance anchor and may itself decompose internally into components.
+
+The Identity & Trust pattern family is decomposed into distinct patterns, each of which acts as a **governance anchor** for a specific aspect of identity trust.
 
 ```
 identity/
-├── identity-core
-├── identity-authentication
-├── identity-authorization
-├── identity-lifecycle
-├── identity-federation
-├── identity-assurance
-├── identity-logging-and-audit
-├── identity-privileged-access
-├── identity-non-human
-├── identity-device-binding
-└── trusted-identity (composite)
+    ├── identity-core
+    ├── identity-authentication
+    ├── identity-authorization
+    ├── identity-lifecycle
+    ├── identity-federation
+    ├── identity-assurance
+    ├── identity-logging-and-audit
+    ├── identity-privileged-access
+    ├── identity-non-human
+    ├── identity-device-binding
+    └── secure-identity (composite)
 ```
 
-### 1. identity-core
-Institutional Digital Identity
+---
 
-#### Purpose:
-Defines what an identity is in the institution and how identity functions as the root trust construct.
+## identity-core  
+**Institutional Digital Identity**
 
-#### Scope:
-* Human identities
-* Non‑human identities (workloads, services, devices)
-* Identity uniqueness and authority
-* Identity as a persistent trust object
+### Purpose  
+Defines what an identity *is* within the institution and establishes identity as the root trust construct.
 
-#### Components:
-```
-identity-core/
-├── identity-authority
-├── identity-namespace
-├── identity-uniqueness
-└── identity-attribution
-```
-#### Answers the question:
-“What does it mean to have an identity the institution recognizes?”
+### Scope  
+- Human and non‑human identities  
+- Identity authority and uniqueness  
+- Identity attribution and namespace control  
+- Identity as a persistent, governed data object  
 
+### Answers the Question  
+**“What does it mean to have an identity the institution recognizes?”**
 
-### 2. identity-authentication
-Proof of Identity at Time of Use
+---
 
-#### Purpose:
-Defines how identities prove who or what they are at interaction time.
+## identity-authentication  
+**Proof of Identity at Time of Use**
 
-#### Scope:
-* Authentication events (conceptual)
-* Contextual evaluation
-* Re‑authentication expectations
+### Purpose  
+Defines how identities prove who or what they are at the moment of interaction.
 
-#### Components:
-```
-identity-authentication/
-├── authentication-events
-├── authentication-context
-├── step-up-authentication
-└── session-establishment
-```
+### Scope  
+- Authentication events  
+- Authentication context and signals  
+- Re‑authentication and session establishment  
 
-#### Answers the question:
-“How do we know this identity is really who (or what) it claims to be right now?”
+### Answers the Question  
+**“How do we know this identity is really who (or what) it claims to be right now?”**
 
-### 3. identity-authorization
-What an Identity Is Allowed to Do
+---
 
-#### Purpose:
-Defines how access decisions are made, independent of enforcement.
+## identity-authorization  
+**What an Identity Is Allowed to Do**
 
-#### Scope:
-* Entitlement concepts
-* Delegation
-* Policy decision logic
-* Role vs attribute based concepts
+### Purpose  
+Defines how access decisions are made once an identity is authenticated.
 
-#### Components:
-```
-identity-authorization/
-├── entitlement-model
-├── delegation
-├── policy-decision
-└── enforcement-separation
-```
-#### Answers the question:
-“What may this identity do once authenticated?”
+### Scope  
+- Entitlements, roles, and attributes  
+- Policy decision logic  
+- Delegation and separation of enforcement  
 
-### 4. identity-lifecycle
-Creation, Change, Suspension, and Termination
+### Answers the Question  
+**“What may this identity do once authenticated?”**
 
-#### Purpose:
-Defines identity existence over time.
+---
 
-#### Scope:
-* Join / move / leave
-* Dormancy
-* Revocation
-* Exception handling
+## identity-lifecycle  
+**Identity Existence Over Time**
 
-#### Components:
-```
-identity-lifecycle/
-├── onboarding
-├── changes-in-status
-├── suspension-and-revocation
-└── deprovisioning
-```
+### Purpose  
+Defines when identities are created, changed, suspended, and terminated.
 
-#### Answers the question:
-“When should an identity exist—and when should it not?”
+### Scope  
+- Join / move / leave  
+- Suspension and revocation  
+- Deprovisioning and dormancy  
 
-### 5. identity-federation
-Trust Across Organizational Boundaries
+### Answers the Question  
+**“When should an identity exist—and when should it not?”**
 
-#### Purpose:
-Defines cross‑organization identity trust.
+---
 
-#### Scope:
-* External identity acceptance
-* Trust boundary definition
-* Assertion handling
-* Assurance inheritance
+## identity-federation  
+**Trust Across Organizational Boundaries**
 
-#### Components:
-```
-identity-federation/
-├── trust-relationships
-├── assertion-consumption
-├── external-identity-assurance
-└── responsibility-boundaries
-```
+### Purpose  
+Defines how identities issued by external organizations are trusted and constrained.
 
-#### Answers the question:
-“Whose identities do we trust, and under what conditions?”
+### Scope  
+- External identity acceptance  
+- Trust relationship governance  
+- Assertion handling and assurance inheritance  
 
-### 6. identity-assurance
-Confidence in Identity and Authentication Strength
+### Answers the Question  
+**“Whose identities do we trust, and under what conditions?”**
 
-#### Purpose
-Defines how much trust the institution places in identity claims.
+---
 
-#### Scope:
-* Assurance levels (conceptual)
-* Risk signaling
-* Context propagation
-* Degradation of confidence
+## identity-assurance  
+**Confidence in Identity Claims**
 
-#### Components:
-```
-identity-assurance/
-├── assurance-levels
-├── confidence-signals
-├── risk-context
-└── assurance-propagation
-```
+### Purpose  
+Defines how much confidence the institution places in an identity assertion.
 
-#### Answers the question:
-“How confident are we in this identity assertion?”
+### Scope  
+- Assurance levels  
+- Risk and contextual signals  
+- Propagation and degradation of confidence  
 
-### 7. identity-logging-and-audit
-Accountability and Traceability
+### Answers the Question  
+**“How confident are we in this identity assertion?”**
 
-#### Purpose:
-Defines how identity actions are recorded for accountability and investigation.
+---
 
-#### Scope:
-* Authentication events
-* Authorization decisions
-* Identity lifecycle events
-* Delegation actions
+## identity-logging-and-audit  
+**Accountability and Traceability**
 
-#### Components:
-```
-identity-logging-and-audit/
-├── authentication-logging
-├── authorization-logging
-├── lifecycle-event-logging
-└── traceability
-```
+### Purpose  
+Defines how identity actions are recorded, preserved, and analyzed.
 
-#### Answers the question:
-“Can we reconstruct and attribute identity actions after the fact?”
+### Scope  
+- Authentication and authorization logging  
+- Lifecycle event logging  
+- Traceability and non‑repudiation  
 
-### 8. identity-privileged-access
-High‑Risk Identity Usage
+### Answers the Question  
+**“Can we reconstruct and attribute identity actions after the fact?”**
 
-#### Purpose:
-* Defines elevated trust modes for identities with expanded authority.
+---
 
-#### Scope:
-* Privileged identity concepts
-* Just‑in‑time access
-* Enhanced accountability
-* Segregation of duties
+## identity-privileged-access  
+**High‑Risk Identity Usage**
 
-#### Components:
-```
-identity-privileged-access/
-├── privileged-identities
-├── temporary-elevation
-├── privileged-session-control
-└── enhanced-accountability
-```
+### Purpose  
+Defines additional safeguards for identities operating with elevated authority.
 
-#### Answers the question:
-“How do we handle identities that carry exceptional risk?”
+### Scope  
+- Privileged identities  
+- Temporary elevation and just‑in‑time access  
+- Enhanced monitoring and accountability  
 
-### 9. identity-non-human
-Machine and Workload Identity
+### Answers the Question  
+**“How do we safely handle identities that carry exceptional risk?”**
 
-#### Purpose:
-* Defines identity for services, workloads, and automation.
+---
 
-#### Scope:
-* Service identities
-* Workload identities
-* API and system‑to‑system trust
+## identity-non-human  
+**Machine, Service, and Workload Identity**
 
-#### Components:
-```
-identity-non-human/
-├── service-identities
-├── workload-identities
-├── identity-binding
-└── rotation-and-revocation
-```
+### Purpose  
+Defines identity for non‑human actors that operate continuously or autonomously.
 
-#### Answers the question:
-“How do non‑human actors authenticate and gain trust?”
+### Scope  
+- Service identities  
+- Workload identities  
+- Credential binding, rotation, and revocation  
 
-### 10. identity-device-binding
-Identity–Device Relationship
+### Answers the Question  
+**“How do non‑human actors authenticate and gain trust?”**
 
-#### Purpose:
-Defines how identities bind to devices or execution contexts.
+---
 
-#### Scope:
-* User‑device trust relationships
-* Context validation
-* Device‑bound identity
+## identity-device-binding  
+**Identity and Execution Context**
 
-#### Components:
-```
-identity-device-binding/
-├── device-association
-├── trust-binding
-└── context-validation
-```
+### Purpose  
+Defines how identities are constrained to trusted devices or execution environments.
 
-#### Answers the question:
-“Is this identity using an acceptable execution environment?”
+### Scope  
+- Identity–device association  
+- Cryptographic binding  
+- Continuous context validation  
 
-### 11. Composite Pattern: trusted-identity
-Acceptable Institutional Identity Trust Posture
+### Answers the Question  
+**“Is this identity operating from an acceptable execution environment?”**
 
-#### Purpose
-Defines when the institution considers identity usage acceptable and trustworthy.
+---
 
-#### Composed Of:
-```
-trusted-identity/
-├── identity-core
-├── identity-authentication
-├── identity-authorization
-├── identity-lifecycle
-├── identity-federation
-├── identity-assurance
-├── identity-logging-and-audit
-├── identity-privileged-access
-├── identity-non-human
-└── identity-device-binding
-```
+## secure-identity (Composite Trust Assertion)  
+**Acceptable Institutional Identity Posture**
 
-#### Answers the business question:
-“Can we trust actions taken in the name of this identity?”
+### Purpose  
+Aggregates all identity trust patterns into a single assertion that identity usage is institutionally acceptable.
+
+### Composed Of  
+
+- identity-core  
+- identity-authentication  
+- identity-authorization  
+- identity-lifecycle  
+- identity-federation  
+- identity-assurance  
+- identity-logging-and-audit  
+- identity-privileged-access  
+- identity-non-human  
+- identity-device-binding  
+
+### Answers the Business Question  
+**“Can we trust actions taken in the name of this identity?”**
+
+---
+
+## Summary
+
+Identity underpins all institutional trust. The Identity & Trust pattern family ensures that identities are **well‑defined, provable, constrained, auditable, and contextual**, so that higher‑level trust decisions remain valid across systems and time.
+
+This family provides the authoritative reference for identity trust, while **Secure Identity** provides the consumable assertion used by SSPPs, architecture reviews, and assurance processes.

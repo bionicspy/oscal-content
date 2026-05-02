@@ -1,0 +1,190 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:identity-federation",
+
+    "metadata": {
+      "title": "Identity Federation",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T05:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Institutional capability enabling trusted use of externally asserted identities across organizational boundaries."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD001",
+          "remarks": "Digital Identity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP015",
+          "remarks": "Federated identity and trust services, independent of protocol or vendor."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP035",
+          "remarks": "Federated identity broker with explicit trust agreements and assurance signaling."
+        },
+
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE205",
+          "remarks": "Digital Identity represented in federated assertions."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE330",
+          "remarks": "Federated identity assertions and federation metadata."
+        }
+      ],
+
+      "remarks": "Identity Federation defines the capability to accept, validate, and rely upon identity assertions issued by external organizations under explicitly governed trust relationships. Federation enables cross-organizational access while preserving local policy control, accountability, and auditability.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, and assurance related to federated identity. Identity semantics are defined in Identity Core; federation governs external trust."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:trust-relationships",
+        "type": "capability",
+        "title": "Trust Relationships",
+        "description": "Establishment and governance of trust relationships with external identity providers.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1556",
+            "remarks": "Compromise or modification of federated authentication or trust configuration."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:FederatedIdentityManagement",
+            "remarks": "Explicit governance of inter-organizational trust relationships."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-7", "remarks": "Establish cryptographically strong trust relationships." },
+              { "control-id": "PL-8", "remarks": "Define and govern federation architecture and agreements." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:assertion-consumption",
+        "type": "capability",
+        "title": "Assertion Consumption",
+        "description": "Validation and consumption of identity assertions from trusted external identity providers.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid federated accounts or assertions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:AssertionValidation",
+            "remarks": "Strict validation of issuer, audience, and integrity of federated assertions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-2", "remarks": "Ensure federated identities are uniquely identified." },
+              { "control-id": "IA-5", "remarks": "Protect and validate federated authenticators and assertions." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:external-identity-assurance",
+        "type": "capability",
+        "title": "External Identity Assurance",
+        "description": "Evaluation and enforcement of assurance levels associated with external identity assertions.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1589",
+            "remarks": "Acceptance of low-assurance external identity attributes."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:IdentityAssurance",
+            "remarks": "Enforcement of minimum assurance levels for federated identities."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-7", "remarks": "Assess and enforce assurance requirements for federated identities." },
+              { "control-id": "AC-16", "remarks": "Incorporate attributes and assurance claims into decisions." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:responsibility-boundaries",
+        "type": "capability",
+        "title": "Responsibility Boundaries",
+        "description": "Definition and enforcement of responsibility boundaries between the institution and external identity providers.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1562",
+            "remarks": "Bypassing or disabling federation enforcement and auditing."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:BoundaryDefense",
+            "remarks": "Explicit enforcement of cross-organizational responsibility boundaries."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-1", "remarks": "Define access control responsibilities across trust boundaries." },
+              { "control-id": "AU-2", "remarks": "Log federated access decisions for accountability." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:identity-authorization",
+
+    "metadata": {
+      "title": "Identity Authorization",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T04:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Institutional capability for determining what authenticated identities are permitted to do."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD001",
+          "remarks": "Digital Identity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP013",
+          "remarks": "Authorization and policy decision services (PDP/PEP), independent of vendor."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP033",
+          "remarks": "Centralized policy decision with distributed enforcement."
+        },
+
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE205",
+          "remarks": "Digital Identity acting as the authorization subject."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE220",
+          "remarks": "Entitlement, role, and authorization policy data."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE312",
+          "remarks": "Authorization decision and access event records."
+        }
+      ],
+
+      "remarks": "Identity Authorization defines the capability to evaluate policy and determine what authenticated identities are permitted to do. Authorization decisions are evaluated at access time and are independent of authentication strength.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, and assurance activities related to authorization. Identity semantics are defined by Identity Core; authorization evaluates permissions, attributes, and context against policy."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:entitlement-model",
+        "type": "capability",
+        "title": "Entitlement Model",
+        "description": "Defines how permissions, roles, attributes, and relationships are represented to express authorization intent.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1098",
+            "remarks": "Unauthorized modification of permissions or entitlements."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:AccessControlPolicy",
+            "remarks": "Structured and governed representation of authorization intent."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-2", "remarks": "Authorization based on managed identities and roles." },
+              { "control-id": "AC-6", "remarks": "Least privilege enforced through entitlement modeling." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:delegation",
+        "type": "capability",
+        "title": "Delegation",
+        "description": "Controls how one identity may delegate limited authority to another.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1548",
+            "remarks": "Abuse of delegated privileges to escalate access."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:PrivilegeRestriction",
+            "remarks": "Constrained delegation preventing privilege accumulation."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-5", "remarks": "Separation of duties enforced in delegation." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:policy-decision",
+        "type": "capability",
+        "title": "Policy Decision",
+        "description": "Evaluates authorization policies against identity attributes, entitlements, and contextual information.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid identities when authorization is overly permissive."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:PolicyDecisionPoint",
+            "remarks": "Centralized, consistent policy evaluation."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-3", "remarks": "Authorized access enforced by policy decisions." },
+              { "control-id": "AC-16", "remarks": "Attribute-based authorization supported." },
+              { "control-id": "AU-2", "remarks": "Authorization decisions recorded as audit events." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:enforcement-separation",
+        "type": "capability",
+        "title": "Enforcement Separation",
+        "description": "Separates policy decision from enforcement to ensure consistent application of authorization.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1562",
+            "remarks": "Bypassing or disabling authorization enforcement."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:ReferenceMonitor",
+            "remarks": "Consistent enforcement of decisions via centralized policy."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-1", "remarks": "Authorization policies centrally defined and enforced." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

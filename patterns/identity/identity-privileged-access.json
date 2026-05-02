@@ -1,0 +1,190 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:identity-privileged-access",
+
+    "metadata": {
+      "title": "Identity Privileged Access",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T06:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Institutional capability governing high-risk and elevated identity usage."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD001",
+          "remarks": "Digital Identity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP017",
+          "remarks": "Privileged Identity and Access Management (PAM) services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP038",
+          "remarks": "Just-in-time privileged access with session isolation, approval, and centralized oversight."
+        },
+
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE205",
+          "remarks": "Digital Identity used for privileged operations."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE350",
+          "remarks": "Privileged access requests, approvals, elevations, and session records."
+        }
+      ],
+
+      "remarks": "Identity Privileged Access defines the capability to control, constrain, monitor, and audit the use of elevated or administrative identities. Privileged access introduces heightened risk and therefore requires additional safeguards beyond standard authentication and authorization.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, and assurance related to privileged identity usage. Identity semantics are defined in Identity Core; privileged access governs risk amplification and containment."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:privileged-identities",
+        "type": "capability",
+        "title": "Privileged Identities",
+        "description": "Definition and management of identities designated for elevated or administrative access.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid privileged accounts."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:PrivilegedAccountManagement",
+            "remarks": "Separate governance and restriction of privileged identities."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-2", "remarks": "Manage privileged accounts separately." },
+              { "control-id": "AC-6", "remarks": "Enforce least privilege for privileged identities." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:temporary-elevation",
+        "type": "capability",
+        "title": "Temporary Elevation",
+        "description": "Time-bound and purpose-specific elevation of privileges.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1068",
+            "remarks": "Privilege escalation through exploitation of misconfiguration or weak controls."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:JustInTimeAccess",
+            "remarks": "Just-in-time elevation bounded by approval and duration."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-2", "remarks": "Grant privileged access only for approved time windows." },
+              { "control-id": "IA-7", "remarks": "Require enhanced authentication for elevation." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:privileged-session-control",
+        "type": "capability",
+        "title": "Privileged Session Control",
+        "description": "Monitoring and control of sessions initiated using privileged identities.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1556",
+            "remarks": "Tampering with or bypassing session control mechanisms."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:SessionIsolation",
+            "remarks": "Isolated, monitored privileged sessions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-12", "remarks": "Control initiation, duration, and termination of privileged sessions." },
+              { "control-id": "AU-12", "remarks": "Record and centrally manage privileged session activity." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:enhanced-accountability",
+        "type": "capability",
+        "title": "Enhanced Accountability",
+        "description": "Strengthened accountability and non-repudiation for privileged identity actions.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1070",
+            "remarks": "Removal or manipulation of evidence of privileged actions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:EnhancedAudit",
+            "remarks": "Detailed auditing and correlation of privileged activity."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AU-2", "remarks": "Generate detailed audit records for privileged actions." },
+              { "control-id": "AU-7", "remarks": "Support analysis and correlation of privileged activity." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

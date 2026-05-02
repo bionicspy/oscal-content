@@ -1,0 +1,107 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-identity",
+    "metadata": {
+      "title": "Secure Identity",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T07:30:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Institutional identity trust posture asserting that identities are safe to rely upon for access, accountability, and governance."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD001",
+          "remarks": "Digital Identity trust domain encompassing all identity capabilities."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:AP050",
+          "remarks": "Composite trust assertion aggregating identity capabilities into a single institutional identity trust statement."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE205",
+          "remarks": "Digital Identity subject to comprehensive trust evaluation."
+        }
+      ],
+
+      "remarks": "Secure Identity is a composite trust assertion expressing the institutional position that identities are authoritative, correctly authenticated, properly authorized, lifecycle‑managed, auditable, assurance‑rated, and bound to appropriate contexts. Secure Identity introduces no independent controls; it aggregates and asserts trust across constituent identity patterns.\n\nGovernance and Responsibility Anchor:\nThis pattern serves as the enterprise identity trust statement used by SSPPs, architecture reviews, and assurance activities. A system may assert Secure Identity only when all referenced identity patterns are satisfied or explicitly compensated."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-core",
+        "type": "component",
+        "title": "Identity Core",
+        "description": "Authoritative definition, namespace, uniqueness, and attribution of identities."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-authentication",
+        "type": "component",
+        "title": "Identity Authentication",
+        "description": "Verification that an identity claim is legitimate at the time of use."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-authorization",
+        "type": "component",
+        "title": "Identity Authorization",
+        "description": "Determination of what an authenticated identity is permitted to do."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-lifecycle",
+        "type": "component",
+        "title": "Identity Lifecycle",
+        "description": "Creation, modification, suspension, revocation, and removal of identities."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-federation",
+        "type": "component",
+        "title": "Identity Federation",
+        "description": "Trust relationships and assertion handling across organizational boundaries."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-assurance",
+        "type": "component",
+        "title": "Identity Assurance",
+        "description": "Evaluation and propagation of confidence and assurance in identity claims."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-logging-and-audit",
+        "type": "component",
+        "title": "Identity Logging and Audit",
+        "description": "Accountability, traceability, and auditability of identity-related actions."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-privileged-access",
+        "type": "component",
+        "title": "Identity Privileged Access",
+        "description": "Additional safeguards and oversight for elevated identity usage."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-non-human",
+        "type": "component",
+        "title": "Identity Non-Human",
+        "description": "Lifecycle and use of service, workload, and automation identities."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:identity-device-binding",
+        "type": "component",
+        "title": "Identity Device Binding",
+        "description": "Binding of identities to trusted devices and execution contexts."
+      }
+    ]
+  }
+}

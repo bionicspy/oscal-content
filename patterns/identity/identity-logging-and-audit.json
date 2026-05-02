@@ -1,0 +1,190 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:identity-logging-and-audit",
+
+    "metadata": {
+      "title": "Identity Logging and Audit",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-04-29T06:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Institutional capability ensuring accountability, auditability, and non-repudiation of identity-related actions."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD010",
+          "remarks": "Cybersecurity monitoring and audit technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP020",
+          "remarks": "Security logging, audit, and event correlation services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP037",
+          "remarks": "Centralized identity event logging with secure aggregation and audit analytics."
+        },
+
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE312",
+          "remarks": "Authentication, authorization, federation, and lifecycle event records."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE340",
+          "remarks": "Audit logs and identity traceability records."
+        }
+      ],
+
+      "remarks": "Identity Logging and Audit defines the capability to generate, protect, retain, and analyze records of identity-related actions. Logging applies across authentication, authorization, lifecycle, assurance, and federation to support accountability, investigation, compliance, and non-repudiation.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, and assurance related to identity logging and audit. Identity semantics are defined by Identity Core; logging provides evidentiary assurance."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:authentication-logging",
+        "type": "capability",
+        "title": "Authentication Logging",
+        "description": "Generation and preservation of authentication attempts, outcomes, and contextual attributes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1070",
+            "remarks": "Removal or manipulation of authentication logs to evade detection."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:AuditEventLogging",
+            "remarks": "Comprehensive logging of authentication activity."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AU-2", "remarks": "Log authentication events." },
+              { "control-id": "AU-3", "remarks": "Capture sufficient detail in authentication audit records." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:authorization-logging",
+        "type": "capability",
+        "title": "Authorization Logging",
+        "description": "Recording of authorization decisions and access enforcement outcomes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1556",
+            "remarks": "Manipulation of authorization processes to avoid accountability."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:AuthorizationAudit",
+            "remarks": "Auditable enforcement of authorization decisions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AU-2", "remarks": "Log authorization decisions." },
+              { "control-id": "AC-3", "remarks": "Ensure enforcement actions are auditable." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:lifecycle-event-logging",
+        "type": "capability",
+        "title": "Lifecycle Event Logging",
+        "description": "Recording of identity lifecycle events such as creation, modification, suspension, and removal.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1098",
+            "remarks": "Undetected identity changes enabling persistence or privilege abuse."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:AccountMonitoring",
+            "remarks": "Logging of identity state transitions."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-2", "remarks": "Log account lifecycle events." },
+              { "control-id": "AU-12", "remarks": "Centralized generation of audit records." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:traceability",
+        "type": "capability",
+        "title": "Traceability",
+        "description": "Correlation and preservation of identity-related audit records across systems to support investigation and non-repudiation.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1070",
+            "remarks": "Fragmentation or destruction of audit trails."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:LogCorrelation",
+            "remarks": "Cross-system correlation and preservation of evidence."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AU-7", "remarks": "Audit reduction, search, and reporting." },
+              { "control-id": "AU-11", "remarks": "Retention of audit records for investigation." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
