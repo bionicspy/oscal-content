@@ -1,0 +1,157 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:trusted-cloud-template",
+
+    "metadata": {
+      "title": "SSPP Template - Trusted Cloud",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-02T23:30:00Z",
+      "remarks": "Normative SSPP template defining institutional trust expectations for third-party cloud platforms (primarily SaaS). Addresses platform-level security, isolation, governance, and assurance without duplicating application, identity, or regulatory controls."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:profile:institutional-baseline",
+      "remarks": "Imports institutional baseline security and governance requirements applicable to cloud platforms."
+    },
+
+    "system-characteristics": {
+      "system-name": "Trusted Cloud Platform",
+      "system-description": "Baseline trust and governance expectations for cloud service providers hosting institutional workloads or data, independent of business function or application logic.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "institutional-owner",
+          "value": "Information Security",
+          "remarks": "Defines cloud trust posture, assurance expectations, and risk tolerance."
+        },
+        {
+          "name": "business-owner",
+          "value": "Service Owner",
+          "remarks": "Owns the business relationship with the cloud provider and accepts residual platform risk."
+        },
+
+        {
+          "name": "cloud-service-model",
+          "value": "saas",
+          "remarks": "This SSPP is primarily scoped to Software-as-a-Service platforms."
+        },
+
+        {
+          "name": "governance-model",
+          "value": "centrally-governed",
+          "remarks": "Cloud trust expectations are centrally defined and assessed. Individual services inherit this baseline."
+        },
+
+        {
+          "name": "shared-responsibility-model",
+          "value": "provider-defined",
+          "remarks": "The provider is responsible for underlying platform security; the institution is responsible for access, configuration, and data use within the service."
+        },
+
+        {
+          "name": "tenant-isolation",
+          "value": "required",
+          "remarks": "Logical isolation between tenants MUST be enforced by the provider. Cross-tenant data access is not permitted."
+        },
+
+        {
+          "name": "data-residency-transparency",
+          "value": "required",
+          "remarks": "The provider MUST disclose regions used for primary data storage, backups, and disaster recovery."
+        },
+
+        {
+          "name": "provider-admin-access",
+          "value": "controlled-and-auditable",
+          "remarks": "Provider privileged access to customer tenants MUST be controlled, limited, and auditable."
+        },
+
+        {
+          "name": "security-assurance",
+          "value": "independent-attestation",
+          "remarks": "The provider SHOULD maintain independent security attestations (e.g., SOC 2 Type II, ISO 27001)."
+        },
+
+        {
+          "name": "logging-and-evidence",
+          "value": "customer-relevant-logs-available",
+          "remarks": "The platform MUST provide sufficient logs or evidence to support investigations, audits, and compliance activities."
+        },
+
+        {
+          "name": "incident-notification",
+          "value": "required",
+          "remarks": "The provider MUST notify customers of security incidents affecting customer data or service availability."
+        },
+
+        {
+          "name": "subprocessor-governance",
+          "value": "transparent",
+          "remarks": "Use of subprocessors MUST be disclosed, with change notification and security obligation flow-down."
+        },
+
+        {
+          "name": "data-exit-and-decommissioning",
+          "value": "supported",
+          "remarks": "The provider MUST support data export and contractually commit to data deletion upon termination."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This template defines platform trust expectations only. Provider-specific implementations are documented in SSPP instances.",
+
+      "components": [
+        {
+          "uuid": "component-cloud-platform",
+          "type": "logical",
+          "title": "Cloud Platform Service",
+          "description": "Third-party cloud platform providing hosting, processing, or management of institutional workloads.",
+          "props": [
+            {
+              "name": "evaluation-scope",
+              "value": "platform-level"
+            }
+          ]
+        },
+
+        {
+          "uuid": "component-cloud-assurance",
+          "type": "logical",
+          "title": "Cloud Assurance and Evidence",
+          "description": "Provider security attestations, audit reports, and compliance evidence available for review.",
+          "props": [
+            {
+              "name": "assurance-evidence",
+              "value": "referenced-not-reproduced"
+            }
+          ]
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-cloud-policy",
+        "title": "Cloud Security Policy Authority",
+        "remarks": "Aligned to NIST NICE SP-PLN-001. Defines baseline trust and risk posture for cloud platforms."
+      },
+      {
+        "id": "role-cloud-architect",
+        "title": "Cloud Architecture Authority",
+        "remarks": "Aligned to NIST NICE SP-ARC-001. Ensures platforms integrate consistently with institutional architecture."
+      },
+      {
+        "id": "role-cloud-assurance",
+        "title": "Cloud Security Assessor",
+        "remarks": "Aligned to NIST NICE SP-RSK-001. Performs platform trust assessments and issues SARs."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction is demonstrated through provider disclosures, independent attestations, contractual commitments, and evidence availability rather than customer-managed technical controls."
+    }
+  }
+}

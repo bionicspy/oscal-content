@@ -1,0 +1,111 @@
+{
+  "assessment-results": {
+    "uuid": "urn:utoronto:sar:trusted-cloud:envoke",
+    "metadata": {
+      "title": "Security Assessment Results - Trusted Cloud (Envoke)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T00:15:00Z",
+      "remarks": "Platform-level Trusted Cloud assessment for Envoke. Findings reflect declared observability and integration governance limitations; strong tenant isolation, data residency, and assurance posture are confirmed."
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:trusted-cloud"
+    },
+
+    "results": [
+      {
+        "uuid": "result-envoke-trusted-cloud",
+
+        "props": [
+          { "name": "platform", "value": "Envoke" },
+          { "name": "assessment-scope", "value": "platform-trust" }
+        ],
+
+        "findings": [
+          {
+            "uuid": "finding-envoke-log-exportability",
+            "title": "Limited Log Exportability for Correlation",
+            "description": "The Envoke platform provides tenant-visible administrative action logs and campaign telemetry within each account, but does not currently support export of these logs for external correlation or SIEM ingestion.",
+            "severity": "moderate",
+            "props": [
+              { "name": "risk-posture", "value": "amber" },
+              { "name": "risk-category", "value": "observability" }
+            ],
+            "associated-risk": {
+              "uuid": "risk-limited-correlation",
+              "title": "Limited Centralized Correlation",
+              "description": "Inability to export logs limits centralized correlation with other security telemetry and may increase investigation effort during incidents."
+            }
+          },
+          {
+            "uuid": "finding-envoke-single-api-key",
+            "title": "Single Per-Account API Key with Tenant-Wide Rotation Impact",
+            "description": "Each Envoke account uses a single API key for all data and application integrations. The key may be retrieved by certain non-administrative roles, and rotation invalidates all integrations for the account simultaneously.",
+            "severity": "moderate",
+            "props": [
+              { "name": "risk-posture", "value": "amber" },
+              { "name": "risk-category", "value": "integration-governance" }
+            ],
+            "associated-risk": {
+              "uuid": "risk-api-key-blast-radius",
+              "title": "Integration Blast Radius and Rotation Risk",
+              "description": "A single shared API key increases blast radius in the event of compromise and complicates safe, staged key rotation without service disruption."
+            }
+          }
+        ],
+
+        "remediations": [
+          {
+            "uuid": "poam-envoke-log-api",
+            "title": "Introduce Log Export and Security API",
+            "description": "Provide a provider-supported security API to enable extraction of administrative and campaign telemetry for external correlation and SIEM integration.",
+            "related-findings": [
+              { "finding-uuid": "finding-envoke-log-exportability" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-log-api",
+                "title": "Deliver Security Logging API",
+                "description": "Implement a security API to allow customers to programmatically retrieve logs for correlation and monitoring.",
+                "status": "planned"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low",
+              "risk-acceptance-permitted": true
+            }
+          },
+          {
+            "uuid": "poam-envoke-api-key-maturity",
+            "title": "Improve API Key Management Granularity",
+            "description": "Enhance API credential management to support per-integration keys, restricted visibility, and staged rotation to reduce disruption and blast radius.",
+            "related-findings": [
+              { "finding-uuid": "finding-envoke-single-api-key" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-per-integration-keys",
+                "title": "Support Per-Integration API Keys",
+                "description": "Enable multiple API keys per account scoped to individual integrations.",
+                "status": "planned"
+              },
+              {
+                "uuid": "task-key-visibility-controls",
+                "title": "Restrict API Key Visibility",
+                "description": "Limit retrieval of API credentials to administrative roles only.",
+                "status": "planned"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low",
+              "risk-acceptance-permitted": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

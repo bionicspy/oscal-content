@@ -1,0 +1,157 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:trusted-cloud:envoke",
+
+    "metadata": {
+      "title": "SSPP Instance – Trusted Cloud (Envoke)",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-02T23:59:00Z",
+      "remarks": "Updated SSPP instance evaluating Envoke as a third‑party SaaS platform under institutional Trusted Cloud governance. Incorporates clarified tenant isolation, logging constraints, and API key lifecycle characteristics."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:trusted-cloud-template",
+      "remarks": "Inherits all normative platform trust, governance, and assessment expectations defined in the Trusted Cloud SSPP Template."
+    },
+
+    "system-characteristics": {
+      "system-name": "Envoke Email Campaign Platform",
+      "system-description": "Third-party SaaS platform providing multi-tenant email campaign management services to institutional customers.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "institutional-owner",
+          "value": "Branding and Communications",
+          "remarks": "Institutional and business owner responsible for campaign governance and acceptance of residual platform risk."
+        },
+        {
+          "name": "technical-owner",
+          "value": "Email Services Team",
+          "remarks": "Technical owner responsible for SSO configuration, authorization administration, and platform operations."
+        },
+
+        {
+          "name": "cloud-service-model",
+          "value": "saas"
+        },
+        {
+          "name": "tenant-model",
+          "value": "multi-tenant"
+        },
+
+        {
+          "name": "isolation-boundary",
+          "value": "account",
+          "remarks": "Each Envoke account represents a fully isolated tenant."
+        },
+        {
+          "name": "data-segmentation-model",
+          "value": "one-account-one-dataset",
+          "remarks": "All users within an account share a single dataset; no cross-account or intra-account data partitioning exists."
+        },
+
+        {
+          "name": "cross-account-sharing",
+          "value": "restricted",
+          "remarks": "No sharing of data, contacts, audiences, campaigns, or authorized senders between accounts."
+        },
+        {
+          "name": "branding-template-sharing",
+          "value": "root-to-subaccount-only",
+          "remarks": "A root account may share branding templates with subaccounts. Sharing is content-only and does not create data plane linkage."
+        },
+
+        {
+          "name": "authorization-scope",
+          "value": "functional-not-data-scoping",
+          "remarks": "Roles limit available actions within an account but do not restrict access to the account dataset."
+        },
+
+        {
+          "name": "data-residency",
+          "value": "canada",
+          "remarks": "Customer data, backups, and primary service hosting are located in Canada."
+        },
+        {
+          "name": "data-sovereignty",
+          "value": "canadian-provider",
+          "remarks": "The service is operated by a Canadian company subject to Canadian jurisdiction."
+        },
+
+        {
+          "name": "independent-assurance",
+          "value": "soc2-certified",
+          "remarks": "Provider maintains independent SOC 2 assurance, referenced through procurement and risk processes."
+        },
+
+        {
+          "name": "logging-scope",
+          "value": "tenant-visible",
+          "remarks": "Administrative action logs are available to tenant administrators. Campaign logs and telemetry are available to users within their respective accounts."
+        },
+        {
+          "name": "log-exportability",
+          "value": "not-currently-supported",
+          "remarks": "Logs cannot currently be exported for external correlation. A provider security API is planned to enable log collection and SIEM integration."
+        },
+
+        {
+          "name": "api-credential-model",
+          "value": "single-key-per-account",
+          "remarks": "Each Envoke account uses a single API key for data and application integrations."
+        },
+        {
+          "name": "api-key-access-scope",
+          "value": "non-admin-accessible",
+          "remarks": "The account API key may be retrieved by certain non-administrative roles."
+        },
+        {
+          "name": "api-key-rotation-impact",
+          "value": "tenant-wide",
+          "remarks": "Rotating the API key invalidates all integrations for the account simultaneously."
+        },
+        {
+          "name": "api-key-management-maturity",
+          "value": "limited",
+          "remarks": "Per-integration keys and granular rotation are not currently supported. A future security API and enhancements are planned."
+        },
+
+        {
+          "name": "subprocessor-transparency",
+          "value": "documented",
+          "remarks": "Use of subprocessors is disclosed by the provider with change notification."
+        },
+        {
+          "name": "data-exit-support",
+          "value": "supported",
+          "remarks": "Provider supports data export and contractually commits to data deletion upon termination."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "components": [
+        {
+          "uuid": "component-envoke-cloud-platform",
+          "type": "logical",
+          "title": "Envoke SaaS Platform",
+          "description": "Multi-tenant SaaS platform operated by Envoke hosting institutional email campaign workloads.",
+          "links": [
+            {
+              "rel": "inherits-from",
+              "href": "urn:utoronto:sspp:trusted-cloud-template",
+              "text": "Inherits Trusted Cloud baseline requirements."
+            }
+          ],
+          "remarks": "This SSPP instance evaluates Envoke at the platform trust level only. Identity, email security, and application behavior are addressed by separate SSPPs."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "Trusted Cloud controls are satisfied through inherited template expectations and provider-supplied disclosures, attestations, and contractual commitments. Known observability and API key lifecycle limitations are declared to drive governance-focused findings."
+    }
+  }
+}
