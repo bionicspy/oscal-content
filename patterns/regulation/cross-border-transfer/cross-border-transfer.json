@@ -1,0 +1,161 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:cross-border-transfer",
+
+    "metadata": {
+      "title": "Cross-Border Data Transfer",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T02:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Business Compliance Management – ensures international transfers of data meet regulatory, contractual, and institutional protection obligations."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP178",
+          "remarks": "Cross-Border Data Transfer – architecture pattern governing the movement of data across national or jurisdictional boundaries."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:DD310",
+          "remarks": "Regulated and Personal Data – data subject to jurisdictional, privacy, and records obligations when transferred internationally."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD132",
+          "remarks": "Data Transfer and Connectivity Technologies – mechanisms used to transmit or replicate data across geographic or jurisdictional boundaries."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD141",
+          "remarks": "Cryptography and Key Management Technologies – technologies supporting encryption in transit, at rest, and export control compliance."
+        }
+      ],
+
+      "links": [
+        {
+          "rel": "authoritative-source",
+          "href": "https://www.tradecommissioner.gc.ca/en/market-industry-info/search-country-region/country/canada-india-export/data-privacy-legislation.html",
+          "text": "Global Affairs Canada – Data Privacy Legislation (Country Example)",
+          "remarks": "Authoritative reference for jurisdiction-specific data protection expectations affecting cross-border transfers."
+        },
+        {
+          "rel": "authoritative-source",
+          "href": "https://www.tradecommissioner.gc.ca/en/market-industry-info/search-country-region.html",
+          "text": "Global Data Privacy Legislation Index",
+          "remarks": "Authoritative index of data protection regimes across jurisdictions affecting international data transfers."
+        }
+      ],
+
+      "remarks": "The Cross-Border Data Transfer pattern defines obligations and governance expectations for international data movement. It reflects Canadian regulatory requirements under PIPEDA, contractual safeguards ensuring comparable protection, export-control-aware encryption use, and ongoing monitoring of evolving legislation such as Bill C-27."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:comparable-level-of-protection",
+        "type": "capability",
+        "title": "Comparable Level of Protection",
+        "description": "Ensures that personal or regulated data transferred outside Canada is protected at a level comparable to domestic protections through contractual and organizational safeguards.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1530",
+            "remarks": "Exposure of sensitive data through inappropriate sharing with foreign entities."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement and contractual governance of data sharing."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:encryption-and-export-controls",
+        "type": "capability",
+        "title": "Encryption and Export Control Awareness",
+        "description": "Affirms that cryptographic protections used for cross-border transfers comply with applicable export control and import restrictions in relevant jurisdictions.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1040",
+            "remarks": "Interception of data during international transit."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0007",
+            "remarks": "Encrypted communication to protect data in transit."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:jurisdictional-awareness",
+        "type": "capability",
+        "title": "Jurisdictional Awareness and Monitoring",
+        "description": "Ensures awareness of jurisdiction-specific privacy and data protection obligations applicable to international transfers, including emerging regulatory changes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1600",
+            "remarks": "Non-compliance due to failure to monitor regulatory change."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0001",
+            "remarks": "Governance tracking and regulatory monitoring."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:regulatory-change-observability",
+        "type": "capability",
+        "title": "Regulatory Change Observability",
+        "description": "Affirms that proposed and evolving legislation (e.g., Canada’s Bill C-27) is monitored and assessed for impact on cross-border data transfer practices.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Loss of compliance evidence or failure to adapt to regulatory change."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Auditability and evidence preservation supporting regulatory readiness."
+          }
+        ]
+      }
+    ]
+  }
+}

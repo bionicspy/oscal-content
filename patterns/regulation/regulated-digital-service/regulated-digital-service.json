@@ -1,0 +1,166 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:regulated-digital-service",
+
+    "metadata": {
+      "title": "Regulated Digital Service",
+      "version": "0.4.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T01:55:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Business Compliance Management – ensures institutional services operate in accordance with external regulation and internal policy obligations."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP145",
+          "remarks": "Regulated Digital Service – an architecture pattern establishing a normative compliance boundary for digital services subject to regulatory or policy oversight."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:DD310",
+          "remarks": "Records and Governance Data – includes regulated records, disclosures, and compliance evidence associated with digital services."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD156",
+          "remarks": "Digital Accessibility Technologies – technologies and service capabilities supporting accessible digital service delivery."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD102",
+          "remarks": "Digital Communication Technologies – platforms and services used to communicate with users or the public."
+        }
+      ],
+
+      "links": [
+        {
+          "rel": "authoritative-source",
+          "href": "https://brand.utoronto.ca/",
+          "text": "University of Toronto Branding Guidelines",
+          "remarks": "Authoritative institutional source for branding, identity, and official representation requirements."
+        },
+        {
+          "rel": "authoritative-source",
+          "href": "https://www.ontario.ca/laws/statute/05a11",
+          "text": "Accessibility for Ontarians with Disabilities Act (AODA)",
+          "remarks": "Primary legislative authority governing accessibility obligations for digital services in Ontario."
+        }
+      ],
+
+      "remarks": "The Regulated Digital Service pattern defines non-security regulatory obligations applicable to digital services. It establishes compliance scope and assessability without embedding legal interpretation, design requirements, or procedural controls."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:regulatory-applicability",
+        "type": "capability",
+        "title": "Regulatory Applicability Declaration",
+        "description": "Affirms that the digital service is subject to external regulation or institutional policy obligations beyond security controls.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1600",
+            "remarks": "Failure to acknowledge or scope applicable governance or regulatory requirements."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0001",
+            "remarks": "Explicit governance declaration and compliance scoping."
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:branding-and-representation",
+        "type": "capability",
+        "title": "Branding and Institutional Representation",
+        "description": "Ensures institutional branding and official representation obligations apply to the digital service.",
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:branding-compliance",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Institutional policies govern branding and public communications."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:accessibility-compliance",
+        "type": "capability",
+        "title": "Accessibility Compliance Obligation",
+        "description": "Affirms that accessibility legislation applies across all digital service delivery channels.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1585",
+            "remarks": "Exclusion of users through inaccessible digital service design."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0038",
+            "remarks": "Design assurance and accessibility conformance verification."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:accessibility-obligation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Accessibility legislation (e.g., AODA) establishes mandatory requirements for digital services."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:assessable-compliance",
+        "type": "capability",
+        "title": "Assessable Regulatory Compliance",
+        "description": "Ensures regulatory compliance is assessable through governance artifacts, attestations, and institutional oversight.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Suppression or evasion of compliance evidence."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Auditability and evidence preservation."
+          }
+        ]
+      }
+    ]
+  }
+}

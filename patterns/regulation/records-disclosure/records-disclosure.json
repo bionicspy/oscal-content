@@ -1,0 +1,148 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:records-disclosure",
+
+    "metadata": {
+      "title": "Records Disclosure",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T04:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Business Compliance Management – ensures institutional records are disclosed in accordance with legal, regulatory, and policy obligations."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP183",
+          "remarks": "Records Disclosure – architecture pattern governing how systems support lawful access, disclosure, and production of institutional records."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:DD310",
+          "remarks": "Records and Governance Data – includes institutional records, logs, communications, and evidence subject to disclosure obligations."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD138",
+          "remarks": "Information Lifecycle and Records Management Technologies – systems supporting retention, retrieval, preservation, and controlled disclosure of records."
+        }
+      ],
+
+      "links": [
+        {
+          "rel": "authoritative-source",
+          "href": "https://utarms.library.utoronto.ca/records-management",
+          "text": "University of Toronto Archives and Records Management Services (UTARMS)",
+          "remarks": "Authoritative institutional source governing records classification, retention, legal holds, and disclosure obligations."
+        }
+      ],
+
+      "remarks": "The Records Disclosure pattern defines obligations and governance expectations for producing institutional records in response to lawful disclosure requirements. It establishes assessability and boundary conditions without embedding procedural, legal, or workflow logic."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:lawful-disclosure-support",
+        "type": "capability",
+        "title": "Lawful Disclosure Support",
+        "description": "Ensures that systems are capable of supporting lawful disclosure of records in response to regulatory, legal, or oversight requests.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Destruction or suppression of records to avoid disclosure or accountability."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Auditability and evidence preservation enabling lawful disclosure."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:controlled-records-access",
+        "type": "capability",
+        "title": "Controlled Records Access",
+        "description": "Ensures records subject to disclosure are accessed and produced in a controlled manner by authorized institutional functions.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1530",
+            "remarks": "Unauthorized disclosure or over-disclosure of sensitive records."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement and governed access to records."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:disclosure-scope-and-minimization",
+        "type": "capability",
+        "title": "Disclosure Scope and Minimization",
+        "description": "Affirms that disclosure is limited to records within lawful scope and excludes data not subject to the request.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565",
+            "remarks": "Alteration, inclusion, or omission of records beyond authorized disclosure scope."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0043",
+            "remarks": "Governance oversight ensuring correct disclosure scope."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:disclosure-auditability",
+        "type": "capability",
+        "title": "Disclosure Auditability",
+        "description": "Ensures that disclosure actions are traceable, reviewable, and auditable to support accountability and institutional oversight.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Obfuscation or deletion of disclosure-related evidence."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logs and evidence preservation supporting post-disclosure review."
+          }
+        ]
+      }
+    ]
+  }
+}

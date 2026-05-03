@@ -1,0 +1,161 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:data-retention",
+
+    "metadata": {
+      "title": "Data Retention",
+      "version": "0.2.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T03:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Business Compliance Management – ensures institutional data and records are retained and disposed of in accordance with regulatory, legal, and policy obligations."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP181",
+          "remarks": "Data Retention – architecture pattern governing the lifecycle, retention duration, and defensible disposition of data and records."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:DD310",
+          "remarks": "Records and Governance Data – includes institutional records, audit logs, consent records, and compliance evidence subject to retention schedules."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD138",
+          "remarks": "Information Lifecycle and Storage Management Technologies – technologies used to retain, archive, retrieve, and defensibly dispose of data and records."
+        }
+      ],
+
+      "links": [
+        {
+          "rel": "authoritative-source",
+          "href": "https://utarms.library.utoronto.ca/records-management",
+          "text": "University of Toronto Archives and Records Management Services (UTARMS)",
+          "remarks": "Authoritative institutional source for records classification, retention schedules, legal holds, and defensible disposition."
+        },
+        {
+          "rel": "authoritative-source",
+          "href": "https://ised-isde.canada.ca/site/canada-anti-spam-legislation/en",
+          "text": "Canada Anti-Spam Legislation (CASL)",
+          "remarks": "Authoritative source governing retention of electronic messaging consent, opt-out records, and related compliance evidence."
+        },
+        {
+          "rel": "authoritative-source",
+          "href": "https://www.pcisecuritystandards.org/",
+          "text": "Payment Card Industry Data Security Standard (PCI DSS)",
+          "remarks": "Authoritative source governing retention requirements for payment card data and associated security and audit logs."
+        }
+      ],
+
+      "remarks": "The Data Retention pattern defines obligations and governance expectations for how long institutional data and records are retained and how they are disposed of. Retention requirements vary by data type and governing regime and are defined by authoritative sources rather than by individual systems."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:authoritative-retention-schedules",
+        "type": "capability",
+        "title": "Authoritative Retention Schedules",
+        "description": "Ensures data retention durations are defined by authoritative institutional records management and regulatory requirements, not by system discretion.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Improper deletion or premature disposal of records to evade accountability."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Auditability and evidence preservation supporting compliance with retention obligations."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:data-type-specific-retention",
+        "type": "capability",
+        "title": "Data-Type-Specific Retention Obligations",
+        "description": "Affirms that retention requirements vary by data type, regulatory regime, and business context.",
+        "remarks": "Examples include payment card data audit logs (PCI DSS), electronic messaging consent and opt-out records (CASL), and institutional records governed by UTARMS schedules.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565",
+            "remarks": "Manipulation, alteration, or loss of records subject to mandated retention."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement ensuring appropriate handling of regulated data types."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:legal-hold-and-preservation",
+        "type": "capability",
+        "title": "Legal Hold and Preservation",
+        "description": "Ensures that records subject to legal hold, investigation, or disclosure requirements are preserved regardless of standard retention schedules.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Deletion or suppression of evidence relevant to investigations or legal proceedings."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Evidence retention supporting investigation and disclosure obligations."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:defensible-disposition",
+        "type": "capability",
+        "title": "Defensible Disposition",
+        "description": "Ensures that data and records are disposed of in a controlled, auditable, and policy-aligned manner once retention requirements are satisfied.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1485",
+            "remarks": "Unauthorized, unrecorded, or non-compliant destruction of data or records."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0019",
+            "remarks": "Lifecycle governance ensuring authorized and auditable data disposal."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:mandatory-breach-notification",
+
+    "metadata": {
+      "title": "Mandatory Breach Notification",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T04:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC220",
+          "remarks": "Business Compliance Management – ensures legally required security and privacy breach notifications are identified, governed, and executed by authorized institutional functions."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP186",
+          "remarks": "Mandatory Breach Notification – architecture pattern governing statutory notification obligations following security or privacy breaches."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:DD310",
+          "remarks": "Records and Governance Data – includes breach records, notification evidence, regulator correspondence, and incident documentation."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD102",
+          "remarks": "Digital Communication Technologies – technologies used to deliver breach notifications to regulators, affected individuals, and institutional stakeholders."
+        }
+      ],
+
+      "links": [
+        {
+          "rel": "authoritative-source",
+          "href": "https://www.priv.gc.ca/en/privacy-topics/privacy-breaches/",
+          "text": "Office of the Privacy Commissioner of Canada – Breach Notification Guidance",
+          "remarks": "Authoritative guidance on breach notification obligations under PIPEDA, including reporting to regulators and notification of affected individuals."
+        },
+        {
+          "rel": "authoritative-source",
+          "href": "https://www.parl.ca/legisinfo/en/bill/44-1/c-27",
+          "text": "Digital Charter Implementation Act, 2022 (Bill C‑27)",
+          "remarks": "Proposed Canadian legislative changes strengthening privacy obligations and breach notification requirements; monitored for future impact."
+        }
+      ],
+
+      "remarks": "The Mandatory Breach Notification pattern defines regulatory obligations and governance expectations for notifying regulators, affected individuals, and institutional authorities following a security or privacy breach. It establishes compliance scope and assessability without embedding timelines, thresholds, legal interpretation, or incident response procedures."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:breach-identification-and-materiality",
+        "type": "capability",
+        "title": "Breach Identification and Materiality Assessment",
+        "description": "Ensures that potential security or privacy incidents are evaluated to determine whether statutory breach notification obligations are triggered.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1600",
+            "remarks": "Failure to recognize or acknowledge notifiable breaches."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0001",
+            "remarks": "Governance decision-making and policy enforcement for breach determination."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:authorized-breach-notification",
+        "type": "capability",
+        "title": "Authorized Breach Notification",
+        "description": "Ensures that breach notifications are issued only by authorized institutional functions and in accordance with legal and policy authority.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Issuance of unauthorized or misleading breach notifications."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Role-based authorization and controlled notification authority."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:multi-party-notification",
+        "type": "capability",
+        "title": "Multi-Party Notification Obligations",
+        "description": "Affirms that breach notification obligations may require communication with regulators, affected individuals, and other parties as defined by applicable law.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565",
+            "remarks": "Incomplete or selective notification that fails to meet statutory requirements."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0043",
+            "remarks": "Governance oversight ensuring notification scope aligns with legal obligations."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:breach-notification-recordkeeping",
+        "type": "capability",
+        "title": "Breach Notification Recordkeeping",
+        "description": "Ensures that breach determinations, notifications issued, and related decisions are documented and retained for accountability and regulatory review.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Suppression or deletion of breach notification evidence."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Auditability and evidence preservation supporting compliance verification."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:regulatory-change-monitoring",
+        "type": "capability",
+        "title": "Regulatory Change Monitoring",
+        "description": "Affirms that evolving breach notification legislation and guidance (e.g., proposed changes under Bill C‑27) are monitored and assessed for impact.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1600",
+            "remarks": "Non-compliance due to failure to track regulatory change."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0001",
+            "remarks": "Governance oversight and regulatory intelligence."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:public-communications",
+
+    "metadata": {
+      "title": "Public Communications",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T03:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC305",
+          "remarks": "Institutional Communications Management – ensures official communications representing the institution are authorized, consistent, and governance-aligned."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP192",
+          "remarks": "Public Communications – an architecture pattern governing systems that disseminate official messages to public or broad audiences."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:DD210",
+          "remarks": "Communications and Messaging Data – includes public-facing messages, sender identities, campaign artifacts, and related records."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD102",
+          "remarks": "Digital Communication Technologies – platforms and services used to distribute messages to external or broad audiences."
+        }
+      ],
+
+      "links": [
+        {
+          "rel": "authoritative-source",
+          "href": "https://brand.utoronto.ca/",
+          "text": "University of Toronto Branding Guidelines",
+          "remarks": "Authoritative institutional source governing branding, sender identity, and official representation in public communications."
+        }
+      ],
+
+      "remarks": "The Public Communications pattern defines governance obligations for systems that represent or communicate on behalf of the institution to public or broad audiences. It establishes authorization, branding, accountability, and assessability boundaries without prescribing messaging content or workflows."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:authorized-public-messaging",
+        "type": "capability",
+        "title": "Authorized Public Messaging",
+        "description": "Ensures that only explicitly authorized roles, systems, and sender identities may issue public or institutional communications.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Abuse of valid accounts to issue unauthorized public communications."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Role-based access control and authorization of communication privileges."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:branding-and-sender-identity",
+        "type": "capability",
+        "title": "Branding and Sender Identity Governance",
+        "description": "Ensures that sender identities and branding used in public communications are reviewed, approved, and consistent with institutional standards.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565",
+            "remarks": "Manipulation or misuse of branding or sender identity to misrepresent institutional authority."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0016",
+            "remarks": "Policy enforcement and governance review of branding and sender identity."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:reputational-risk-management",
+        "type": "capability",
+        "title": "Reputational Risk Management",
+        "description": "Affirms that public communications are subject to oversight to mitigate reputational, legal, and trust risks to the institution.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1585",
+            "remarks": "Erosion of institutional trust through misleading or inappropriate public messaging."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0043",
+            "remarks": "Governance oversight and policy compliance verification."
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:auditable-public-communications",
+        "type": "capability",
+        "title": "Auditable Public Communications",
+        "description": "Ensures that public communications and sender authorizations are traceable and auditable for oversight and accountability.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Suppression or deletion of evidence related to public communications."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging and evidence preservation."
+          }
+        ]
+      }
+    ]
+  }
+}
