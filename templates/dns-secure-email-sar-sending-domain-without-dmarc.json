@@ -1,0 +1,84 @@
+{
+  "assessment-results": {
+    "uuid": "sar-sending-domain-without-dmarc",
+
+    "metadata": {
+      "title": "SAR - Sending Domain Without DMARC",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-02T18:30:00Z",
+      "remarks": "Assessment result identifying an institutional sending domain that does not publish a DMARC policy, contrary to the DNS Secure Email SSPP."
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:dns-secure-email"
+    },
+
+    "results": [
+      {
+        "uuid": "result-dmarc-missing",
+
+        "props": [
+          { "name": "risk-posture", "value": "red" },
+          { "name": "regulatory-impact", "value": "true" },
+          { "name": "risk-acceptance-allowed", "value": "no" },
+          { "name": "mandatory-escalation", "value": "branding-and-security" }
+        ],
+
+        "findings": [
+          {
+            "uuid": "finding-dmarc-missing",
+            "title": "Sending Domain Missing DMARC",
+            "description": "An institutional email-sending domain does not publish a DMARC policy as required by the DNS Secure Email SSPP.",
+            "severity": "high",
+
+            "target": {
+              "type": "component",
+              "target-id": "component-delegated-email-domains"
+            },
+
+            "related-requirements": [
+              {
+                "requirement-id": "dns-secure-email:dmarc-posture"
+              }
+            ],
+
+            "associated-risk": {
+              "uuid": "risk-email-spoofing",
+              "title": "Email Spoofing and Brand Impersonation",
+              "description": "Without DMARC, unauthorized senders may impersonate institutional domains, leading to phishing, fraud, and reputational harm."
+            }
+          }
+        ],
+
+        "remediations": [
+          {
+            "uuid": "poam-implement-dmarc",
+            "title": "Implement DMARC on Sending Domain",
+            "description": "Publish and enforce a DMARC policy for the identified sending domain in accordance with institutional DNS Secure Email requirements.",
+
+            "props": [
+              { "name": "poam-category", "value": "regulatory-remediation" }
+            ],
+
+            "tasks": [
+              {
+                "uuid": "task-publish-dmarc",
+                "title": "Publish DMARC Record",
+                "description": "Publish a DMARC record with enforcement for the sending domain and validate alignment with SPF and DKIM.",
+                "status": "open",
+                "due-date": "2026-06-30"
+              }
+            ],
+
+            "risk-adjustment": {
+              "initial-risk": "high",
+              "residual-risk-target": "low",
+              "risk-acceptance-permitted": false
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

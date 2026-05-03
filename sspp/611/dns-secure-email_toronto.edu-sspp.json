@@ -1,0 +1,89 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:dns-secure-email:toronto-edu",
+
+    "metadata": {
+      "title": "SSPP Instance - DNS Secure Email (toronto.edu)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-02T21:45:00Z",
+      "remarks": "Instance SSPP for the toronto.edu apex domain. Declares current DNS Secure Email posture, including absence of MTA-STS enforcement."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:dns-secure-email-template",
+      "remarks": "Inherits all normative DNS Secure Email governance, security, monitoring, and assessment requirements."
+    },
+
+    "system-characteristics": {
+      "system-name": "DNS Secure Email - toronto.edu",
+      "system-description": "Apex institutional domain used for email identity and mailbox sending, governed under DNS Secure Email controls.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "domain-name",
+          "value": "toronto.edu"
+        },
+        {
+          "name": "domain-role",
+          "value": "apex-sending",
+          "remarks": "Apex domain authorizing mailbox sending and delegating bulk and notification sending to approved subdomains."
+        },
+        {
+          "name": "mailbox-sending-pattern",
+          "value": "secure-email",
+          "remarks": "Mailbox sending provided through secure-email (Exchange Online)."
+        },
+        {
+          "name": "campaign-sending-delegation",
+          "value": "subdomains-only",
+          "remarks": "Campaign and bulk email is sent only from approved subdomains."
+        },
+        {
+          "name": "dmarc-posture",
+          "value": "reject",
+          "remarks": "DMARC enforced for the apex domain."
+        },
+        {
+          "name": "spf-posture",
+          "value": "centrally-managed",
+          "remarks": "SPF centrally managed and restricted to approved mailbox senders."
+        },
+        {
+          "name": "dkim-posture",
+          "value": "required",
+          "remarks": "DKIM required for all authorized senders."
+        },
+        {
+          "name": "transport-security",
+          "value": "mta-sts-not-enabled",
+          "remarks": "MTA-STS is not currently enforced for the toronto.edu domain. TLS reporting may be partially or not enabled."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "components": [
+        {
+          "uuid": "component-toronto-edu-apex",
+          "type": "logical",
+          "title": "toronto.edu Apex Email Domain",
+          "description": "Authoritative DNS domain for email identity and delivery.",
+          "links": [
+            {
+              "rel": "inherits-from",
+              "href": "urn:utoronto:sspp:dns-secure-email-template",
+              "text": "Inherits DNS Secure Email governance and enforcement expectations."
+            }
+          ],
+          "remarks": "All non-mailbox sending is prohibited at the apex and must occur via explicitly approved subdomains."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "DNS Secure Email controls are largely satisfied via inherited governance. Absence of MTA-STS enforcement is expected to be recorded as an Amber assessment finding."
+    }
+  }
+}

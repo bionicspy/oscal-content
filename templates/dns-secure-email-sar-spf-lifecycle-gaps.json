@@ -1,0 +1,109 @@
+{
+  "assessment-results": {
+    "uuid": "sar-spf-lifecycle-gaps",
+
+    "metadata": {
+      "title": "SAR – SPF Lifecycle Management Gaps",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-02T20:05:00Z",
+      "remarks": "Assessment result identifying institutional domains with SPF records that lack documented ownership, review cadence, or contain obsolete or undocumented senders, contrary to DNS Secure Email SSPP expectations."
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:dns-secure-email"
+    },
+
+    "results": [
+      {
+        "uuid": "result-spf-lifecycle-gaps",
+
+        "props": [
+          {
+            "name": "risk-posture",
+            "value": "amber"
+          },
+          {
+            "name": "regulatory-impact",
+            "value": "false"
+          },
+          {
+            "name": "risk-acceptance-allowed",
+            "value": "yes"
+          }
+        ],
+
+        "findings": [
+          {
+            "uuid": "finding-spf-lifecycle-gaps",
+            "title": "SPF Lifecycle Management Gaps",
+            "description": "One or more institutional domains publish SPF records that include undocumented, obsolete, or unreviewed senders, and lack defined ownership or lifecycle management.",
+            "severity": "moderate",
+
+            "target": {
+              "type": "component",
+              "target-id": "component-central-email-dns"
+            },
+
+            "related-requirements": [
+              {
+                "requirement-id": "dns-secure-email:spf-lifecycle-management"
+              }
+            ],
+
+            "associated-risk": {
+              "uuid": "risk-spf-sprawl",
+              "title": "Expanded Email Attack Surface",
+              "description": "Overly permissive or stale SPF entries may allow abuse of dormant or unintended sending infrastructure."
+            }
+          }
+        ],
+
+        "remediations": [
+          {
+            "uuid": "poam-spf-lifecycle-remediation",
+            "title": "Establish SPF Lifecycle Management",
+            "description": "Document SPF ownership, review cadence, and remove obsolete or unauthorized senders in alignment with DNS Secure Email governance.",
+
+            "props": [
+              {
+                "name": "poam-category",
+                "value": "governance-remediation"
+              }
+            ],
+
+            "tasks": [
+              {
+                "uuid": "task-identify-spf-owner",
+                "title": "Identify SPF Ownership",
+                "description": "Assign an accountable owner for each SPF record and associated sending authorization.",
+                "status": "open",
+                "due-date": "2026-07-31"
+              },
+              {
+                "uuid": "task-review-spf-records",
+                "title": "Review and Clean Up SPF Records",
+                "description": "Review existing SPF entries, remove obsolete senders, and validate remaining authorized senders.",
+                "status": "open",
+                "due-date": "2026-08-15"
+              },
+              {
+                "uuid": "task-define-spf-review-cadence",
+                "title": "Define SPF Review Cadence",
+                "description": "Establish and document a periodic SPF review and recertification process.",
+                "status": "open",
+                "due-date": "2026-08-31"
+              }
+            ],
+
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low",
+              "risk-acceptance-permitted": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:dns-secure-email:utoronto-ca",
+
+    "metadata": {
+      "title": "SSPP Instance - DNS Secure Email (utoronto.ca)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-02T21:25:00Z",
+      "remarks": "Instance SSPP for the utoronto.ca apex domain, implementing DNS Secure Email for institutional mailbox sending and delegated subdomain sending."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:dns-secure-email-template",
+      "remarks": "Inherits all normative DNS Secure Email governance, security, monitoring, and assessment requirements."
+    },
+
+    "system-characteristics": {
+      "system-name": "DNS Secure Email - utoronto.ca",
+      "system-description": "Apex institutional domain for email identity, authorizing mailbox sending via secure-email and delegating campaign and notification sending to approved subdomains.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "domain-name",
+          "value": "utoronto.ca"
+        },
+        {
+          "name": "domain-role",
+          "value": "apex-sending",
+          "remarks": "Apex domain authorizes mailbox sending and delegates other sending to approved subdomains."
+        },
+        {
+          "name": "mailbox-sending-pattern",
+          "value": "secure-email",
+          "remarks": "Mailbox sending is provided through secure-email (Exchange Online)."
+        },
+        {
+          "name": "campaign-sending-delegation",
+          "value": "subdomains-only",
+          "remarks": "Bulk and campaign sending occurs only from approved subdomains governed by the Email Bulk Messaging Gateway pattern."
+        },
+        {
+          "name": "notification-sending-delegation",
+          "value": "dedicated-subdomains",
+          "remarks": "System and transactional email is sent only from dedicated notification subdomains."
+        },
+        {
+          "name": "dmarc-posture",
+          "value": "reject",
+          "remarks": "DMARC enforced for the apex domain."
+        },
+        {
+          "name": "spf-posture",
+          "value": "centrally-managed",
+          "remarks": "SPF authorizes only centrally approved mailbox senders; no direct campaign authorization at apex."
+        },
+        {
+          "name": "dkim-posture",
+          "value": "required",
+          "remarks": "DKIM required for all authorized senders on the apex domain."
+        },
+        {
+          "name": "transport-security",
+          "value": "mta-sts-and-tls-rpt-enabled",
+          "remarks": "MTA-STS enforced and TLS reporting enabled for the apex domain."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "components": [
+        {
+          "uuid": "component-utoronto-ca-apex",
+          "type": "logical",
+          "title": "utoronto.ca Apex Email Domain",
+          "description": "Authoritative DNS domain defining email identity posture and delegating permitted sending to approved services.",
+          "links": [
+            {
+              "rel": "inherits-from",
+              "href": "urn:utoronto:sspp:dns-secure-email-template",
+              "text": "Inherits DNS Secure Email governance and enforcement."
+            }
+          ],
+          "remarks": "Campaign and notification sending are prohibited at the apex and must occur from approved subdomains."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "DNS Secure Email controls are satisfied through inherited template requirements and central DNS operations. This instance documents scope and delegation only."
+    }
+  }
+}

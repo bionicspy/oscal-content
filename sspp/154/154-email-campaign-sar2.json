@@ -1,0 +1,143 @@
+{
+  "assessment-results": {
+    "uuid": "uuid-sar-email-campaign-consent-failure-medicine",
+
+    "metadata": {
+      "title": "Security Assessment Results - Consent Governance Failure",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T17:45:00Z",
+      "remarks": "Enterprise-visible assessment results capturing a high-severity consent governance failure for the Medicine Advancement Communications Email Campaign Platform instance."
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:email-campaign-platform"
+    },
+
+    "results": [
+      {
+        "uuid": "result-consent-governance-medicine",
+        "title": "Assessment Result - Consent Governance",
+        "description": "Assessment result documenting use of audience data without verifiable consent from an authoritative source.",
+
+        "props": [
+          {
+            "name": "enterprise-severity",
+            "value": "high"
+          },
+          {
+            "name": "regulatory-impact",
+            "value": "true"
+          },
+          {
+            "name": "risk-posture",
+            "value": "red"
+          },
+          {
+            "name": "risk-acceptance-allowed",
+            "value": "no"
+          },
+          {
+            "name": "mandatory-escalation",
+            "value": "legal-and-privacy"
+          }
+        ],
+
+        "findings": [
+          {
+            "uuid": "finding-emcp-consent-001",
+            "title": "Consent Not Obtained from Authoritative Source",
+            "description": "One or more email campaigns were executed without verifiable, certified consent eligibility from the designated authoritative consent system under an approved data exchange agreement.",
+
+            "target": {
+              "type": "component",
+              "target-id": "component-email-campaign-platform"
+            },
+
+            "severity": "high",
+
+            "props": [
+              {
+                "name": "finding-category",
+                "value": "regulatory"
+              },
+              {
+                "name": "legal-obligation-breached",
+                "value": "electronic-communications-consent"
+              },
+              {
+                "name": "systemic-issue",
+                "value": "no"
+              },
+              {
+                "name": "localized-instance",
+                "value": "medicine-advancement-comms"
+              }
+            ],
+
+            "associated-risk": {
+              "uuid": "risk-consent-noncompliance",
+              "title": "Unlawful Electronic Communication",
+              "description": "Execution of campaigns without verified consent may violate statutory electronic communications requirements, exposing the institution to enforcement, fines, and reputational harm."
+            }
+          }
+        ],
+
+        "remediations": [
+          {
+            "uuid": "poam-emcp-consent-001",
+            "title": "Consent Governance Remediation Plan",
+            "description": "Mandatory remediation to restore authoritative consent verification prior to any campaign execution.",
+
+            "related-findings": [
+              {
+                "finding-uuid": "finding-emcp-consent-001"
+              }
+            ],
+
+            "props": [
+              {
+                "name": "poam-category",
+                "value": "regulatory-remediation"
+              },
+              {
+                "name": "campaign-freeze-recommended",
+                "value": "true"
+              }
+            ],
+
+            "tasks": [
+              {
+                "uuid": "task-identify-authoritative-consent",
+                "title": "Verify Authoritative Consent Source",
+                "description": "Identify and document the authoritative consent system for all audience data used in campaigns.",
+                "status": "open",
+                "due-date": "2026-06-30"
+              },
+              {
+                "uuid": "task-enforce-consent-gate",
+                "title": "Enforce Certified Consent Gate",
+                "description": "Prevent campaign approval or release unless certified consent state is present.",
+                "status": "open",
+                "due-date": "2026-07-31"
+              },
+              {
+                "uuid": "task-data-exchange-agreement",
+                "title": "Validate Data Exchange Agreement",
+                "description": "Confirm or establish a formal data exchange agreement defining consent certification and audit requirements.",
+                "status": "open",
+                "due-date": "2026-08-31"
+              }
+            ],
+
+            "risk-adjustment": {
+              "initial-risk": "high",
+              "residual-risk-target": "low",
+              "risk-acceptance-permitted": false
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

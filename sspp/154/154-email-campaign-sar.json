@@ -1,0 +1,126 @@
+{
+  "assessment-results": {
+    "uuid": "sar-email-campaign-platform-medicine-advancement",
+    "metadata": {
+      "title": "Security Assessment Results - Email Campaign Platform (Medicine Advancement Communications)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T05:30:00Z",
+      "remarks": "Assessment results for the Medicine Advancement Communications instance of the Email Campaign Platform. This SAR documents a governance deviation related to branding template inheritance."
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:email-campaign-platform"
+    },
+
+    "local-definitions": {
+      "objectives": [
+        {
+          "uuid": "obj-branding-governance",
+          "title": "Institutional Branding Governance",
+          "description": "Ensure public communications adhere to approved institutional branding requirements."
+        }
+      ]
+    },
+
+    "results": [
+      {
+        "uuid": "result-email-campaign-medicine-branding",
+        "title": "Assessment Result - Branding Governance (Medicine Advancement)",
+        "description": "Assessment of institutional branding controls for the Medicine Advancement Communications Email Campaign Platform instance.",
+
+        "findings": [
+          {
+            "uuid": "finding-emcp-branding-001",
+            "title": "Local Branding Templates Not Centrally Inherited",
+            "description": "This instance does not use centrally approved branding templates. Instead, locally authored templates are used, which do not automatically inherit institutional branding updates or attestations.",
+
+            "target": {
+              "type": "component",
+              "target-id": "component-branding"
+            },
+
+            "related-observations": [
+              {
+                "uuid": "obs-local-branding",
+                "description": "Branding templates are created and maintained locally by Medicine Advancement Communications."
+              }
+            ],
+
+            "associated-risk": {
+              "uuid": "risk-branding-divergence",
+              "title": "Potential Branding Inconsistency",
+              "description": "Locally maintained templates may diverge from institutional branding standards over time, creating reputational risk."
+            },
+
+            "severity": "moderate",
+
+            "origin": {
+              "actors": [
+                {
+                  "actor-uuid": "actor-assessment-team",
+                  "type": "assessment-team"
+                }
+              ]
+            },
+
+            "related-controls": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Institutional public communications policy."
+              }
+            ]
+          }
+        ],
+
+        "remediations": [
+          {
+            "uuid": "poam-emcp-branding-001",
+            "title": "Branding Governance Alignment Plan",
+            "description": "Establish governance mechanisms to ensure locally developed templates remain aligned with institutional branding requirements.",
+
+            "related-findings": [
+              {
+                "finding-uuid": "finding-emcp-branding-001"
+              }
+            ],
+
+            "remarks": "This is a governance remediation rather than a technical control failure.",
+
+            "tasks": [
+              {
+                "uuid": "task-branding-checklist",
+                "title": "Document Local Branding Checklist",
+                "description": "Create a documented checklist aligning local branding practices with institutional standards.",
+                "assigned-to": "Medicine Advancement Communications",
+                "status": "open",
+                "due-date": "2026-09-30"
+              },
+              {
+                "uuid": "task-branding-attestation",
+                "title": "Establish Branding Attestation Process",
+                "description": "Implement an annual branding attestation with central Communications.",
+                "assigned-to": "Medicine Advancement Communications / Central Communications",
+                "status": "open",
+                "due-date": "2026-12-31"
+              },
+              {
+                "uuid": "task-template-inheritance-review",
+                "title": "Evaluate Optional Central Template Inheritance",
+                "description": "Assess feasibility of selectively inheriting centrally approved templates for future campaigns.",
+                "assigned-to": "ITS / Medicine Advancement Communications",
+                "status": "planned",
+                "due-date": "2027-03-31"
+              }
+            ],
+
+            "risk-adjustment": {
+              "residual-risk": "low-to-moderate",
+              "risk-acceptance-required": false
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

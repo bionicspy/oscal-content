@@ -1,0 +1,222 @@
+{
+  "assessment-results": {
+    "uuid": "sar-dns-secure-email-assessment-2026-01",
+
+    "metadata": {
+      "title": "Security Assessment Results - DNS Secure Email",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-06-01T18:00:00Z",
+      "remarks": "Consolidated assessment results for DNS Secure Email governance, including DMARC, SPF, DKIM, and transport security."
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:dns-secure-email"
+    },
+
+    "results": [
+      {
+        "uuid": "result-dns-secure-email",
+
+        "props": [
+          { "name": "service", "value": "dns-secure-email" },
+          { "name": "assessment-scope", "value": "enterprise" }
+        ],
+
+        "findings": [
+          {
+            "uuid": "finding-red-dmarc-missing",
+            "title": "Sending Domain Missing DMARC",
+            "severity": "high",
+            "description": "An institutional sending domain does not publish a DMARC policy.",
+            "props": [
+              { "name": "risk-posture", "value": "red" },
+              { "name": "regulatory-impact", "value": "true" },
+              { "name": "risk-acceptance-allowed", "value": "no" }
+            ],
+            "associated-risk": {
+              "uuid": "risk-email-spoofing",
+              "title": "Email Spoofing and Brand Impersonation",
+              "description": "Without DMARC, unauthorized senders may spoof institutional email."
+            }
+          },
+          {
+            "uuid": "finding-red-dmarc-not-enforced",
+            "title": "DMARC Not Enforced on Campaign Domain",
+            "severity": "high",
+            "description": "Campaign domains publish DMARC with non-enforcing policy.",
+            "props": [
+              { "name": "risk-posture", "value": "red" },
+              { "name": "regulatory-impact", "value": "true" },
+              { "name": "risk-acceptance-allowed", "value": "no" }
+            ]
+          },
+          {
+            "uuid": "finding-red-unauthorized-sender",
+            "title": "Unauthorized Senders Passing Authentication",
+            "severity": "high",
+            "description": "Unapproved senders are able to pass SPF, DKIM, or DMARC.",
+            "props": [
+              { "name": "risk-posture", "value": "red" },
+              { "name": "regulatory-impact", "value": "true" },
+              { "name": "mandatory-escalation", "value": "branding-and-security" }
+            ]
+          },
+          {
+            "uuid": "finding-amber-dmarc-reporting",
+            "title": "DMARC Reporting Not Monitored",
+            "severity": "moderate",
+            "description": "DMARC reports are enabled but not actively reviewed.",
+            "props": [
+              { "name": "risk-posture", "value": "amber" }
+            ]
+          },
+          {
+            "uuid": "finding-amber-spf-lifecycle",
+            "title": "SPF Lifecycle Management Gaps",
+            "severity": "moderate",
+            "description": "SPF records contain obsolete or undocumented entries.",
+            "props": [
+              { "name": "risk-posture", "value": "amber" }
+            ]
+          },
+          {
+            "uuid": "finding-amber-transport-security",
+            "title": "Missing MTA-STS or TLS Reporting",
+            "severity": "moderate",
+            "description": "Email transport security policies or reporting are incomplete.",
+            "props": [
+              { "name": "risk-posture", "value": "amber" }
+            ]
+          }
+        ],
+
+        "remediations": [
+          {
+            "uuid": "poam-dmarc-missing",
+            "title": "Implement DMARC on Sending Domains",
+            "related-findings": [
+              { "finding-uuid": "finding-red-dmarc-missing" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-publish-dmarc",
+                "title": "Publish and Enforce DMARC",
+                "description": "Publish DMARC with enforcement on all sending domains.",
+                "status": "open",
+                "due-date": "2026-06-30"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "high",
+              "residual-risk-target": "low",
+              "risk-acceptance-permitted": false
+            }
+          },
+          {
+            "uuid": "poam-dmarc-enforce-campaign",
+            "title": "Enforce DMARC on Campaign Domains",
+            "related-findings": [
+              { "finding-uuid": "finding-red-dmarc-not-enforced" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-enforce-dmarc",
+                "title": "Update DMARC Policy",
+                "description": "Move campaign domains to enforcing DMARC posture.",
+                "status": "open",
+                "due-date": "2026-06-15"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "high",
+              "residual-risk-target": "low",
+              "risk-acceptance-permitted": false
+            }
+          },
+          {
+            "uuid": "poam-revoke-unauthorized-sender",
+            "title": "Revoke Unauthorized Senders",
+            "related-findings": [
+              { "finding-uuid": "finding-red-unauthorized-sender" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-spf-cleanup",
+                "title": "Remove Unauthorized SPF Entries",
+                "description": "Remove unapproved senders from SPF and revoke DKIM keys.",
+                "status": "open",
+                "due-date": "2026-05-31"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "high",
+              "residual-risk-target": "low",
+              "risk-acceptance-permitted": false
+            }
+          },
+          {
+            "uuid": "poam-dmarc-reporting",
+            "title": "Establish DMARC Monitoring",
+            "related-findings": [
+              { "finding-uuid": "finding-amber-dmarc-reporting" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-monitor-dmarc",
+                "title": "Implement DMARC Report Review",
+                "description": "Define review cadence and responsible role for DMARC reports.",
+                "status": "open",
+                "due-date": "2026-07-31"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low"
+            }
+          },
+          {
+            "uuid": "poam-spf-lifecycle",
+            "title": "Clean Up SPF Records",
+            "related-findings": [
+              { "finding-uuid": "finding-amber-spf-lifecycle" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-review-spf",
+                "title": "Review SPF Lifecycle",
+                "description": "Document ownership and remove obsolete SPF entries.",
+                "status": "open",
+                "due-date": "2026-08-15"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low"
+            }
+          },
+          {
+            "uuid": "poam-transport-security",
+            "title": "Enable Email Transport Security",
+            "related-findings": [
+              { "finding-uuid": "finding-amber-transport-security" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-mta-sts",
+                "title": "Enable MTA-STS and TLS-RPT",
+                "description": "Publish MTA-STS policy and enable TLS reporting.",
+                "status": "open",
+                "due-date": "2026-09-01"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

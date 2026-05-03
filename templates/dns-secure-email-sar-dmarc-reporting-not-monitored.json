@@ -1,0 +1,102 @@
+{
+  "assessment-results": {
+    "uuid": "sar-dmarc-reporting-not-monitored",
+
+    "metadata": {
+      "title": "SAR - DMARC Reporting Not Monitored",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-02T19:55:00Z",
+      "remarks": "Assessment result identifying institutional domains where DMARC is present but aggregate reporting is not actively monitored, contrary to DNS Secure Email SSPP expectations."
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:dns-secure-email"
+    },
+
+    "results": [
+      {
+        "uuid": "result-dmarc-reporting-not-monitored",
+
+        "props": [
+          {
+            "name": "risk-posture",
+            "value": "amber"
+          },
+          {
+            "name": "regulatory-impact",
+            "value": "false"
+          },
+          {
+            "name": "risk-acceptance-allowed",
+            "value": "yes"
+          }
+        ],
+
+        "findings": [
+          {
+            "uuid": "finding-dmarc-reporting-not-monitored",
+            "title": "DMARC Reporting Not Actively Monitored",
+            "description": "DMARC aggregate reporting is configured for one or more institutional domains, but reports are not reviewed, analyzed, or acted upon by an assigned role.",
+            "severity": "moderate",
+
+            "target": {
+              "type": "component",
+              "target-id": "component-central-email-dns"
+            },
+
+            "related-requirements": [
+              {
+                "requirement-id": "dns-secure-email:dmarc-reporting"
+              }
+            ],
+
+            "associated-risk": {
+              "uuid": "risk-reduced-detection",
+              "title": "Reduced Email Authentication Visibility",
+              "description": "Without active review of DMARC reports, unauthorized sending attempts, configuration errors, or emerging abuse may go undetected."
+            }
+          }
+        ],
+
+        "remediations": [
+          {
+            "uuid": "poam-enable-dmarc-monitoring",
+            "title": "Establish DMARC Reporting Monitoring",
+            "description": "Define operational ownership, review cadence, and escalation procedures for DMARC aggregate reports.",
+
+            "props": [
+              {
+                "name": "poam-category",
+                "value": "governance-remediation"
+              }
+            ],
+
+            "tasks": [
+              {
+                "uuid": "task-assign-dmarc-owner",
+                "title": "Assign DMARC Report Ownership",
+                "description": "Assign a responsible role to receive and review DMARC aggregate reports.",
+                "status": "open",
+                "due-date": "2026-07-15"
+              },
+              {
+                "uuid": "task-define-review-cadence",
+                "title": "Define Review Cadence",
+                "description": "Document review frequency and escalation thresholds for DMARC findings.",
+                "status": "open",
+                "due-date": "2026-07-31"
+              }
+            ],
+
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low",
+              "risk-acceptance-permitted": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

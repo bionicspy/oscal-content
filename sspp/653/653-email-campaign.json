@@ -1,0 +1,131 @@
+{
+  "system-security-plan": {
+    "uuid": "uuid-sspp-email-campaign-advancement-comms",
+
+    "metadata": {
+      "title": "Email Campaign Platform SSPP - Advancement Communications",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "remarks": "Instance SSPP for the Advancement Communications Envoke tenant. This SSPP instantiates the Email Campaign Platform SSPP Template and references authoritative institutional SSPPs."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:profile:email-campaign-platform-template",
+      "remarks": "Imports the Email Campaign Platform SSPP Template and its normative trust and regulatory assertions."
+    },
+
+    "system-characteristics": {
+      "system-name": "Email Campaign Platform - Advancement Communications",
+      "system-description": "Institutional email campaign platform instance supporting Advancement Communications campaigns.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "deployment-platform",
+          "value": "Envoke"
+        },
+        {
+          "name": "tenant-name",
+          "value": "Advancement-Comms"
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "components": [
+        {
+          "uuid": "component-email-platform-envoke",
+          "type": "logical",
+          "title": "Email Campaign Platform (Envoke)",
+          "description": "SaaS email campaign platform implementing the Email Bulk Messaging Gateway pattern.",
+          "links": [
+            {
+              "rel": "satisfies",
+              "href": "urn:utoronto:security:pattern:email-bulk-messaging-gateway",
+              "text": "Implements the Email Bulk Messaging Gateway pattern."
+            },
+            {
+              "rel": "inherits-from",
+              "href": "urn:utoronto:sspp:envoke-platform",
+              "text": "Inherits technical controls from the Envoke Platform SSPP."
+            }
+          ],
+          "remarks": "Opt-out enforcement, campaign audit logging, suppression lists, and delivery tracking are native to Envoke and configured per institutional standards."
+        },
+
+        {
+          "uuid": "component-identity",
+          "type": "logical",
+          "title": "Institutional Identity (Entra ID)",
+          "links": [
+            {
+              "rel": "inherits-from",
+              "href": "urn:utoronto:sspp:entra-id-sso",
+              "text": "Uses Entra ID for authentication and role assignment."
+            }
+          ],
+          "remarks": "Roles are mapped to HRIS-backed Entra ID groups."
+        },
+
+        {
+          "uuid": "component-dns-email-identity",
+          "type": "logical",
+          "title": "Email DNS / DMARC",
+          "links": [
+            {
+              "rel": "inherits-from",
+              "href": "urn:utoronto:sspp:dns-secure-email:utoronto-ca",
+              "text": "Uses institutional SPF, DKIM, and DMARC controls."
+            }
+          ]
+        },
+
+        {
+          "uuid": "component-consent-source",
+          "type": "logical",
+          "title": "Advancement CRM (Consent Authority)",
+          "links": [
+            {
+              "rel": "inherits-from",
+              "href": "urn:utoronto:sspp:advancement-crm",
+              "text": "Authoritative source of consent eligibility."
+            }
+          ],
+          "remarks": "Consent and audience eligibility are exchanged via an approved data-exchange agreement."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-account-owner",
+        "title": "Account Owner",
+        "remarks": "Mapped to HRIS group ADV-COMMS-OWNER."
+      },
+      {
+        "id": "role-author",
+        "title": "Campaign Author",
+        "remarks": "Mapped to HRIS group ADV-COMMS-AUTHOR."
+      },
+      {
+        "id": "role-approver",
+        "title": "Campaign Manager",
+        "remarks": "Mapped to HRIS group ADV-COMMS-MANAGER."
+      },
+      {
+        "id": "role-sender-approver",
+        "title": "Branding / Communications Approver",
+        "remarks": "Mapped to Institutional Comms group COMM-BRANDING-APPROVER."
+      },
+      {
+        "id": "role-sender",
+        "title": "Campaign Sender",
+        "remarks": "Mapped to HRIS group ADV-COMMS-SENDER."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All control requirements are satisfied via imported SSPPs and inherited institutional services. Local configuration is limited to integration and role mapping."
+    }
+  }
+}

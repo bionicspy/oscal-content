@@ -1,0 +1,185 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:dns-secure-email-template",
+
+    "metadata": {
+      "title": "SSPP Template - DNS Secure Email",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-02T23:45:00Z",
+      "remarks": "Normative SSPP template defining institutional DNS-based email security, identity, and transport governance. Includes DMARC, SPF, DKIM, transport security, monitoring, and workforce accountability aligned to NIST NICE."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:profile:institutional-baseline",
+      "remarks": "Imports institutional baseline security, privacy, and governance requirements."
+    },
+
+    "system-characteristics": {
+      "system-name": "Institutional DNS Secure Email",
+      "system-description": "Central DNS-based email security and identity governance for all institutional email domains, covering mailbox delivery, campaign messaging, and notification gateways.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "institutional-owner",
+          "value": "Branding and Communications",
+          "remarks": "Owns institutional email identity, reputation, sender legitimacy, and external representation."
+        },
+        {
+          "name": "technical-owner",
+          "value": "Information Security",
+          "remarks": "Defines, enforces, and monitors DNS-based email security controls and risk posture."
+        },
+
+        {
+          "name": "governance-model",
+          "value": "centrally-governed",
+          "remarks": "DNS-based email security is centrally governed. Delegation is limited, approved, auditable, and revocable."
+        },
+
+        {
+          "name": "domain-scope",
+          "value": "all-apex-and-subdomains",
+          "remarks": "All apex domains and subdomains owned, operated, or represented by the University are in scope, including non-sending domains."
+        },
+
+        {
+          "name": "non-sending-domain-policy",
+          "value": "dmarc-required",
+          "remarks": "Domains not intended to send email MUST still publish DMARC policies to prevent spoofing and abuse."
+        },
+
+        {
+          "name": "primary-mailbox-pattern",
+          "value": "secure-email",
+          "remarks": "Mailbox email delivery is governed through the secure-email pattern (e.g., Exchange Online)."
+        },
+
+        {
+          "name": "campaign-email-pattern",
+          "value": "email-bulk-messaging-gateway",
+          "remarks": "Bulk and campaign email is governed through the Email Bulk Messaging Gateway pattern (e.g., Envoke)."
+        },
+
+        {
+          "name": "notification-email-pattern",
+          "value": "email-notification-gateway",
+          "remarks": "Automated notifications MUST use a dedicated sending subdomain governed through the Email Notification Gateway pattern."
+        },
+
+        {
+          "name": "dmarc-posture",
+          "value": "strict",
+          "remarks": "DMARC MUST be enforced for all sending domains. Unauthorized senders must not pass DMARC evaluation."
+        },
+
+        {
+          "name": "dmarc-reporting",
+          "value": "mandatory",
+          "remarks": "DMARC aggregate reporting MUST be enabled and actively monitored."
+        },
+
+        {
+          "name": "spf-governance",
+          "value": "centrally-managed",
+          "remarks": "SPF records are centrally governed. Limited delegation is permitted only to the institutional email team and requires branding approval."
+        },
+
+        {
+          "name": "spf-lifecycle-management",
+          "value": "required",
+          "remarks": "All SPF entries MUST have ownership, review cadence, and documented retirement of obsolete senders."
+        },
+
+        {
+          "name": "dkim-requirement",
+          "value": "required-for-all-senders",
+          "remarks": "All institutional sending platforms MUST authenticate using DKIM under centrally approved standards."
+        },
+
+        {
+          "name": "transport-security",
+          "value": "mta-sts-and-tls-reporting",
+          "remarks": "MTA-STS MUST be enforced and TLS reporting (TLS-RPT) MUST be enabled and monitored."
+        },
+
+        {
+          "name": "future-capabilities",
+          "value": "bimi-arc-dane",
+          "remarks": "BIMI, ARC, and DANE are tracked for future adoption once prerequisites such as DNSSEC and mature DMARC deployment are met."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP template defines governance, trust, and enforcement expectations. Platform-specific implementations are documented in SSPP instances and inherited platform SSPPs.",
+
+      "components": [
+        {
+          "uuid": "component-central-email-dns",
+          "type": "logical",
+          "title": "Central Email DNS Governance",
+          "description": "Defines, enforces, and monitors DMARC, SPF, DKIM, and email transport security policies for institutional domains.",
+          "props": [
+            { "name": "authoritative-policy-owner", "value": "central" }
+          ]
+        },
+        {
+          "uuid": "component-delegated-email-domains",
+          "type": "logical",
+          "title": "Delegated Email Sending Domains",
+          "description": "Approved delegated subdomains used for campaign or notification email under formal governance controls.",
+          "props": [
+            { "name": "delegation-requires-approval", "value": "true" }
+          ]
+        },
+        {
+          "uuid": "component-email-dns-pki",
+          "type": "logical",
+          "title": "Email DNS PKI Controls",
+          "description": "DNS-based public key infrastructure governance for email-related certificates.",
+          "links": [
+            {
+              "rel": "depends-on",
+              "href": "urn:utoronto:sspp:dns-secure-pki",
+              "text": "Depends on DNS Secure PKI (CAA) governance."
+            }
+          ]
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-dns-secure-email-policy",
+        "title": "DNS Secure Email Policy Authority",
+        "remarks": "Aligned to NIST NICE SP-PLN-001 (Cybersecurity Policy and Strategy Planner). Defines institutional DNS-based email security posture and delegation rules."
+      },
+      {
+        "id": "role-dns-secure-email-architect",
+        "title": "DNS Secure Email Architect",
+        "remarks": "Aligned to NIST NICE SP-ARC-001 (Enterprise Architect). Ensures consistent application of DNS Secure Email controls across platforms and patterns."
+      },
+      {
+        "id": "role-dns-secure-email-operations",
+        "title": "DNS Secure Email Operations",
+        "remarks": "Aligned to NIST NICE OM-NET-001 and PR-CY-001. Executes approved DNS email security changes and enforces controls."
+      },
+      {
+        "id": "role-dns-secure-email-monitoring",
+        "title": "DNS Secure Email Monitoring and Assessment",
+        "remarks": "Aligned to NIST NICE PR-CDA-001 and SP-RSK-001. Monitors DMARC and TLS reports and contributes to assessments and SARs."
+      },
+      {
+        "id": "role-email-identity-governance",
+        "title": "Email Identity and Branding Governance",
+        "remarks": "Business governance role responsible for institutional email identity, sender reputation, and approval of SPF and sender delegation."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction is demonstrated through existence of enforced DNS records (DMARC, SPF, DKIM, MTA-STS), active monitoring, and governance approval artifacts."
+    }
+  }
+}

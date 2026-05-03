@@ -1,0 +1,77 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:dns-secure-email:siem-utoronto-ca",
+    "metadata": {
+      "title": "SSPP Instance - DNS Secure Email (siem.utoronto.ca)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-02T21:05:00Z",
+      "remarks": "Instance SSPP for the siem.utoronto.ca domain, implementing DNS Secure Email as a non-sending domain used for email security telemetry and reporting."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:dns-secure-email-template",
+      "remarks": "Inherits all normative DNS Secure Email governance, security, and assessment requirements."
+    },
+
+    "system-characteristics": {
+      "system-name": "DNS Secure Email - siem.utoronto.ca",
+      "system-description": "Non-sending institutional domain used for email security telemetry, including DMARC aggregate reports and TLS transport reports.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "domain-name",
+          "value": "siem.utoronto.ca"
+        },
+        {
+          "name": "domain-role",
+          "value": "non-sending",
+          "remarks": "This domain is not authorized to send email."
+        },
+        {
+          "name": "dmarc-posture",
+          "value": "reject",
+          "remarks": "DMARC enforced to prevent spoofing of a non-sending domain."
+        },
+        {
+          "name": "spf-posture",
+          "value": "none",
+          "remarks": "No SPF authorization required as the domain does not send email."
+        },
+        {
+          "name": "dkim-posture",
+          "value": "not-applicable",
+          "remarks": "DKIM is not applicable to non-sending domains."
+        },
+        {
+          "name": "email-security-telemetry",
+          "value": "dmrc-and-tls-reporting"
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "components": [
+        {
+          "uuid": "component-siem-dns-domain",
+          "type": "logical",
+          "title": "SIEM Reporting Domain",
+          "description": "DNS domain providing endpoints for email security telemetry ingestion.",
+          "links": [
+            {
+              "rel": "inherits-from",
+              "href": "urn:utoronto:sspp:dns-secure-email-template",
+              "text": "Inherits DNS Secure Email governance and controls."
+            }
+          ],
+          "remarks": "The domain receives DMARC aggregate reports (rua) and TLS-RPT telemetry for centralized monitoring and analysis by Information Security."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "DNS Secure Email controls are satisfied through inherited template requirements. Local configuration is limited to DNS records enabling DMARC and TLS reporting endpoints."
+    }
+  }
+}

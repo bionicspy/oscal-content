@@ -1,0 +1,84 @@
+{
+  "assessment-results": {
+    "uuid": "sar-campaign-domain-dmarc-not-enforced",
+
+    "metadata": {
+      "title": "SAR - DMARC Not Enforced on Campaign Domains",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-02T19:10:00Z",
+      "remarks": "Assessment result identifying campaign email domains publishing DMARC without an enforcing policy, contrary to the DNS Secure Email SSPP."
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:dns-secure-email"
+    },
+
+    "results": [
+      {
+        "uuid": "result-campaign-dmarc-not-enforced",
+
+        "props": [
+          { "name": "risk-posture", "value": "red" },
+          { "name": "regulatory-impact", "value": "true" },
+          { "name": "risk-acceptance-allowed", "value": "no" },
+          { "name": "mandatory-escalation", "value": "branding-and-security" }
+        ],
+
+        "findings": [
+          {
+            "uuid": "finding-campaign-dmarc-not-enforced",
+            "title": "DMARC Not Enforced on Campaign Domain",
+            "description": "One or more campaign email domains publish DMARC with a non-enforcing policy (e.g., p=none), which does not meet institutional DNS Secure Email requirements.",
+            "severity": "high",
+
+            "target": {
+              "type": "component",
+              "target-id": "component-delegated-email-domains"
+            },
+
+            "related-requirements": [
+              {
+                "requirement-id": "dns-secure-email:dmarc-posture"
+              }
+            ],
+
+            "associated-risk": {
+              "uuid": "risk-campaign-spoofing",
+              "title": "Campaign Email Spoofing and Abuse",
+              "description": "Non-enforcing DMARC on campaign domains allows unauthorized senders to spoof campaign messages, increasing phishing and reputational risk."
+            }
+          }
+        ],
+
+        "remediations": [
+          {
+            "uuid": "poam-enforce-dmarc-campaign-domain",
+            "title": "Enforce DMARC on Campaign Domain",
+            "description": "Update DMARC policy for campaign domains to an enforcing posture in accordance with the DNS Secure Email SSPP.",
+
+            "props": [
+              { "name": "poam-category", "value": "regulatory-remediation" }
+            ],
+
+            "tasks": [
+              {
+                "uuid": "task-update-dmarc-policy",
+                "title": "Update DMARC Policy to Enforcing Mode",
+                "description": "Modify the DMARC record for campaign domains to enforce rejection or quarantine and validate alignment with SPF and DKIM.",
+                "status": "open",
+                "due-date": "2026-06-15"
+              }
+            ],
+
+            "risk-adjustment": {
+              "initial-risk": "high",
+              "residual-risk-target": "low",
+              "risk-acceptance-permitted": false
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:entra-id-sso:envoke",
+    "metadata": {
+      "title": "Envoke Email Campaign Platform - Entra ID SSO Integration SSPP",
+      "version": "1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-02T22:45:00Z",
+      "remarks": "Slim SSPP instance documenting Envoke integration with institutional Entra ID SSO. Authentication and coarse-grained access control are enforced by Entra ID; fine-grained authorization is enforced within the Envoke service."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:entra-id-sso-template",
+      "remarks": "Inherits all normative identity, authentication, MFA, conditional access, logging, and governance requirements from the Entra ID SSO SSPP template."
+    },
+
+    "system-characteristics": {
+      "system-name": "Envoke Email Campaign Platform - SSO",
+      "system-description": "Email campaign platform using institutional Entra ID Single Sign-On for authentication and coarse-grained access control, with service-internal role-based authorization.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "identity-provider",
+          "value": "microsoft-entra-id"
+        },
+        {
+          "name": "authentication-protocol",
+          "value": "oidc",
+          "remarks": "Envoke authenticates users via OpenID Connect federation with Entra ID."
+        },
+        {
+          "name": "local-credentials",
+          "value": "not-permitted",
+          "remarks": "Local Envoke user passwords are disabled; all interactive access requires Entra ID authentication."
+        },
+        {
+          "name": "multi-factor-authentication",
+          "value": "inherited",
+          "remarks": "MFA enforcement is inherited from Entra ID conditional access policies."
+        },
+        {
+          "name": "coarse-grained-authorization",
+          "value": "entra-id-group-restricted",
+          "remarks": "Access to the Envoke service is restricted to authorized Entra ID groups."
+        },
+        {
+          "name": "fine-grained-authorization",
+          "value": "service-internal-role-based",
+          "remarks": "Authorization within Envoke is enforced using service-defined roles, independent of Entra ID groups."
+        },
+        {
+          "name": "identity-lifecycle",
+          "value": "external-authoritative",
+          "remarks": "User provisioning and deprovisioning are governed by authoritative HR and identity systems via Entra ID access control."
+        }
+      ]
+    },
+    "system-implementation": {
+      "components": [
+        {
+          "uuid": "component-envoke-sso",
+          "type": "logical",
+          "title": "Envoke SSO Integration",
+          "description": "Federated authentication with Entra ID providing identity assurance and access gating for the Envoke service.",
+          "links": [
+            {
+              "rel": "inherits-from",
+              "href": "urn:utoronto:sspp:entra-id-sso-template",
+              "text": "Inherits institutional SSO and identity security controls."
+            }
+          ],
+          "remarks": "Entra ID determines who may access Envoke. Envoke enforces all application-specific role permissions internally."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "Authentication, MFA, conditional access, and access eligibility are inherited from Entra ID. Application role enforcement is handled within the Envoke service."
+    }
+  }
+}
