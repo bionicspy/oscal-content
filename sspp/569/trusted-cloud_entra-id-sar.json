@@ -1,0 +1,83 @@
+{
+  "assessment-results": {
+    "uuid": "urn:utoronto:sar:trusted-cloud:entra-id:sovereignty",
+
+    "metadata": {
+      "title": "Security Assessment Results – Trusted Cloud (Microsoft Entra ID)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T02:15:00Z",
+      "remarks": "Trusted-Cloud assessment identifying contextual data residency and sovereignty risk for identity-related PII stored by Microsoft Entra ID, in light of emerging Canadian digital sovereignty policy (2025–2026)."
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:trusted-cloud"
+    },
+
+    "results": [
+      {
+        "uuid": "result-entra-id-trusted-cloud",
+
+        "props": [
+          { "name": "platform", "value": "Microsoft Entra ID" },
+          { "name": "assessment-scope", "value": "platform-trust" }
+        ],
+
+        "findings": [
+          {
+            "uuid": "finding-entra-id-pii-sovereignty",
+            "title": "Identity-Related PII Hosted Under Foreign Jurisdiction",
+            "description": "Microsoft Entra ID stores identity-related personal information (e.g., usernames, alternate email addresses, phone numbers for MFA and recovery, device identifiers, and authentication metadata). Tenant identity data is geo-located in North America with instances hosted in the United States and operated by a U.S.-owned provider, making such data subject to U.S. jurisdiction. Emerging Canadian digital sovereignty policy (2025–2026) emphasizes sovereign control over sensitive data beyond mere residency, creating forward-looking compliance and procurement risk for certain contexts.",
+            "severity": "moderate",
+            "props": [
+              { "name": "risk-posture", "value": "amber" },
+              { "name": "risk-category", "value": "data-residency-and-sovereignty" },
+              { "name": "regulatory-trend", "value": "emerging" }
+            ],
+            "associated-risk": {
+              "uuid": "risk-entra-id-jurisdiction",
+              "title": "Jurisdictional Control over Identity PII",
+              "description": "Foreign jurisdiction over identity-related PII may become misaligned with Canadian federal procurement rules and sector-specific requirements for protected or critical contexts, even where data is adequately secured and disclosed."
+            }
+          }
+        ],
+
+        "remediations": [
+          {
+            "uuid": "poam-entra-id-sovereignty-governance",
+            "title": "Manage Identity PII Sovereignty through Governance and Contextual Controls",
+            "description": "Address jurisdictional and residency risk through policy, classification, and planning measures rather than technical remediation of the platform.",
+            "related-findings": [
+              { "finding-uuid": "finding-entra-id-pii-sovereignty" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-pia-and-classification",
+                "title": "Conduct PIAs and Identity Data Classification",
+                "description": "Perform and maintain Privacy Impact Assessments to document identity PII usage, residency, and jurisdictional exposure, and classify acceptable identity platforms by data sensitivity and use context.",
+                "status": "planned"
+              },
+              {
+                "uuid": "task-contextual-use-restrictions",
+                "title": "Apply Contextual Use Restrictions",
+                "description": "Define contexts and data classes (e.g., Protected B/C, critical infrastructure roles) where Entra ID usage may be restricted or require additional approvals due to sovereignty considerations.",
+                "status": "planned"
+              },
+              {
+                "uuid": "task-strategic-identity-options",
+                "title": "Track Sovereign Identity Alternatives",
+                "description": "Monitor and evaluate Canadian-sovereign or government-grade identity options and federation patterns to mitigate future procurement or regulatory constraints.",
+                "status": "planned"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low-to-moderate",
+              "risk-acceptance-permitted": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:trusted-cloud:m365",
+
+    "metadata": {
+      "title": "SSPP Instance - Trusted Cloud (Microsoft 365)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T02:45:00Z",
+      "remarks": "Trusted Cloud SSPP instance for Microsoft 365 as a collaboration and productivity SaaS platform. Evaluates platform-level trust characteristics for data storage, processing, and governance."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:trusted-cloud-template",
+      "remarks": "Inherits all normative platform trust, governance, and assessment expectations defined in the Trusted Cloud SSPP Template."
+    },
+
+    "system-characteristics": {
+      "system-name": "Microsoft 365",
+      "system-description": "Microsoft-operated SaaS platform providing email, document management, collaboration, and productivity services (e.g., Exchange Online, SharePoint Online, OneDrive, Teams).",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "cloud-provider",
+          "value": "Microsoft"
+        },
+        {
+          "name": "cloud-service-model",
+          "value": "saas",
+          "remarks": "Microsoft 365 is consumed as a multi-tenant SaaS platform."
+        },
+
+        {
+          "name": "institutional-owner",
+          "value": "Information Technology Services",
+          "remarks": "Owns institutional use of Microsoft 365 for productivity and collaboration services."
+        },
+        {
+          "name": "business-owner",
+          "value": "Information Security",
+          "remarks": "Accepts residual platform trust, residency, and jurisdictional risk for institutional data stored within Microsoft 365."
+        },
+
+        {
+          "name": "tenant-model",
+          "value": "multi-tenant",
+          "remarks": "Customer data is logically isolated per tenant within Microsoft-operated infrastructure."
+        },
+        {
+          "name": "isolation-boundary",
+          "value": "tenant",
+          "remarks": "The Microsoft 365 tenant is the isolation boundary for customer content, configurations, and workloads."
+        },
+
+        {
+          "name": "personal-data-scope",
+          "value": "user-generated-content-and-metadata",
+          "remarks": "Microsoft 365 stores user-generated content and associated metadata, including email, documents, files, collaboration artifacts, and personal information associated with those artifacts."
+        },
+
+        {
+          "name": "data-residency",
+          "value": "canada",
+          "remarks": "Microsoft 365 tenant is geographically pinned to Canada, with Exchange Online, SharePoint Online, OneDrive, and Teams data hosted in Canadian data centres."
+        },
+
+        {
+          "name": "data-sovereignty",
+          "value": "foreign-jurisdiction-us",
+          "remarks": "Microsoft is a U.S.-owned provider subject to U.S. jurisdiction. Customer data may be subject to lawful access under U.S. law regardless of hosting region."
+        },
+
+        {
+          "name": "provider-admin-access",
+          "value": "provider-controlled-and-auditable",
+          "remarks": "Privileged access to customer environments by Microsoft personnel is controlled and audited under Microsoft internal controls."
+        },
+
+        {
+          "name": "independent-assurance",
+          "value": "soc2-and-iso",
+          "remarks": "Microsoft maintains independent third-party security attestations (including SOC 2 and ISO certifications) applicable to Microsoft 365 services."
+        },
+
+        {
+          "name": "logging-availability",
+          "value": "comprehensive-audit-and-ediscovery",
+          "remarks": "Microsoft 365 provides extensive audit logging, eDiscovery, retention, and compliance tooling subject to licensing and configuration."
+        },
+
+        {
+          "name": "subprocessor-transparency",
+          "value": "documented",
+          "remarks": "Microsoft discloses subprocessors and provides customer notification of material changes in accordance with contractual terms."
+        },
+
+        {
+          "name": "data-exit-support",
+          "value": "supported",
+          "remarks": "Customer content can be exported using supported Microsoft APIs and tools. Data deletion commitments are contractually defined."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "components": [
+        {
+          "uuid": "component-m365-platform",
+          "type": "logical",
+          "title": "Microsoft 365 SaaS Platform",
+          "description": "Multi-tenant collaboration and productivity SaaS platform operated by Microsoft.",
+          "links": [
+            {
+              "rel": "inherits-from",
+              "href": "urn:utoronto:sspp:trusted-cloud-template",
+              "text": "Inherits Trusted Cloud baseline requirements."
+            }
+          ],
+          "remarks": "This SSPP instance evaluates Microsoft 365 at the platform trust level only. Identity control, authentication, and authorization are evaluated through Entra ID SSPPs."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "Trusted Cloud controls for Microsoft 365 are satisfied through Microsoft disclosures, independent assurance, tenant isolation mechanisms, and built-in compliance and audit capabilities. Residency and sovereignty considerations are explicitly declared to support policy-driven assessments."
+    }
+  }
+}

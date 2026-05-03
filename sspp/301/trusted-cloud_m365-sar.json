@@ -1,0 +1,84 @@
+{
+  "assessment-results": {
+    "uuid": "urn:utoronto:sar:trusted-cloud:m365:sovereignty",
+
+    "metadata": {
+      "title": "Security Assessment Results - Trusted Cloud (Microsoft 365)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T03:05:00Z",
+      "remarks": "Trusted-Cloud assessment for Microsoft 365 with tenant data hosted in Canada. Identifies contextual data sovereignty risk due to U.S. jurisdiction in light of emerging Canadian digital sovereignty policy (2025–2026)."
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:trusted-cloud"
+    },
+
+    "results": [
+      {
+        "uuid": "result-m365-trusted-cloud",
+
+        "props": [
+          { "name": "platform", "value": "Microsoft 365" },
+          { "name": "assessment-scope", "value": "platform-trust" },
+          { "name": "data-residency-status", "value": "canada-hosted" }
+        ],
+
+        "findings": [
+          {
+            "uuid": "finding-m365-sovereignty-contextual",
+            "title": "Foreign Jurisdiction over Canada-Hosted Productivity Data",
+            "description": "The Microsoft 365 tenant is geographically pinned to Canada, with Exchange Online, SharePoint Online, OneDrive, and Teams data hosted in Canadian data centres. However, Microsoft is a U.S.-owned provider and remains subject to U.S. jurisdiction. Emerging Canadian digital sovereignty policy (2025–2026) emphasizes jurisdictional autonomy over sensitive data beyond physical residency, introducing forward-looking governance and procurement considerations for certain data classes and regulated contexts.",
+            "severity": "moderate",
+            "props": [
+              { "name": "risk-posture", "value": "amber" },
+              { "name": "risk-category", "value": "data-sovereignty" },
+              { "name": "regulatory-trend", "value": "emerging" }
+            ],
+            "associated-risk": {
+              "uuid": "risk-m365-jurisdiction",
+              "title": "Contextual Sovereignty Risk for User Content",
+              "description": "While residency requirements are satisfied, foreign legal jurisdiction over provider operations may become misaligned with future Canadian federal procurement rules, critical-infrastructure requirements, or sector-specific restrictions for protected or sensitive data."
+            }
+          }
+        ],
+
+        "remediations": [
+          {
+            "uuid": "poam-m365-sovereignty-governance",
+            "title": "Manage Data Sovereignty through Classification and Policy Controls",
+            "description": "Address jurisdictional sovereignty risk through governance and contextual use controls rather than technical remediation of the Microsoft 365 platform.",
+            "related-findings": [
+              { "finding-uuid": "finding-m365-sovereignty-contextual" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-m365-data-classification",
+                "title": "Apply Data Classification and Use Scoping",
+                "description": "Define permitted Microsoft 365 use by data classification (e.g., Institutional, Protected B, Protected C) in alignment with evolving Canadian sovereignty requirements.",
+                "status": "planned"
+              },
+              {
+                "uuid": "task-m365-pia",
+                "title": "Maintain Privacy Impact Assessments",
+                "description": "Conduct and update Privacy Impact Assessments documenting Canadian residency, U.S. jurisdiction exposure, and compensating controls.",
+                "status": "planned"
+              },
+              {
+                "uuid": "task-sovereignty-monitoring",
+                "title": "Monitor Sovereignty Policy and Platform Options",
+                "description": "Track changes to Canadian digital sovereignty policy and evaluate sovereign or hybrid collaboration alternatives for restricted contexts.",
+                "status": "planned"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low-to-moderate",
+              "risk-acceptance-permitted": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
