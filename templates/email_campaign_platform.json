@@ -4,10 +4,10 @@
 
     "metadata": {
       "title": "SSPP Template - Email Campaign Platform",
-      "version": "0.8.0",
+      "version": "0.9.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-03T00:25:00Z",
-      "remarks": "Architecture-driven SSPP template for an institutional Email Bulk Messaging Gateway. This SSPP defines system purpose, trust dependencies, data authority boundaries, recipient and content constraints, separation of duties, governance accountability, and enforceable usage boundaries."
+      "last-modified": "2026-05-03T01:15:00Z",
+      "remarks": "Architecture-driven SSPP template for an institutional Email Bulk Messaging Gateway. This SSPP defines system purpose, trust dependencies, consent and opt-out expectations, data minimization, regulatory obligations, governance accountability, and separation of duties."
     },
 
     "import-profile": {
@@ -71,20 +71,40 @@
         },
 
         {
-          "name": "data-authority",
-          "value": "non-authoritative-identity-and-consent",
-          "remarks": "Identity, primary email address, and consent eligibility are ingested as certified copies from authoritative systems under institutional data sharing agreements."
-        },
-        {
-          "name": "data-authority",
-          "value": "authoritative-opt-out-and-delivery",
-          "remarks": "This system is the authoritative source for opt-out (suppression) status, campaign execution history, recipient targeting, and delivery outcomes."
+          "name": "consent-authority",
+          "value": "external-authoritative",
+          "remarks": "Consent eligibility originates from authoritative external systems and is ingested as certified status under a data exchange agreement. The Email Campaign Platform does not independently determine consent legality."
         },
 
         {
-          "name": "consent-enforcement",
-          "value": "no-reenrollment",
-          "remarks": "The system enforces opt-out decisions and suppression lists and MUST NOT re-enroll recipients or override consent determinations received from authoritative sources."
+          "name": "opt-out-availability",
+          "value": "mandatory-multi-scope",
+          "remarks": "Opt-out capability MUST be available at all times and support single-scope, multi-scope, and global opt-out without undue friction."
+        },
+        {
+          "name": "opt-out-single-scope",
+          "value": "message-embedded",
+          "remarks": "Every outbound message MUST include an unsubscribe mechanism enabling opt-out from the specific campaign or sender without authentication."
+        },
+        {
+          "name": "opt-out-preference-management",
+          "value": "centralized-view",
+          "remarks": "Users MUST be able to view and manage all consented communications, including opting out of multiple subscriptions or all communications, via an authoritative consent management interface."
+        },
+        {
+          "name": "opt-out-enforcement",
+          "value": "authoritative-platform",
+          "remarks": "The Email Campaign Platform is the authoritative enforcement point for opt-out and suppression decisions and MUST exclude recipients based on applicable opt-out scope at send time."
+        },
+        {
+          "name": "opt-out-non-overridable",
+          "value": "true",
+          "remarks": "Opt-out and suppression decisions MUST NOT be overridden by campaign logic, targeting rules, or sender preference."
+        },
+        {
+          "name": "opt-out-auditability",
+          "value": "required",
+          "remarks": "All opt-out actions and enforcement decisions MUST be auditable and retained in accordance with authoritative records and retention obligations."
         },
 
         {
@@ -103,11 +123,6 @@
           "name": "audit-evidence-availability",
           "value": "institutional-retention",
           "remarks": "Audit records related to campaign authorization, sending, opt-out enforcement, and delivery outcomes are retained in accordance with institutional records retention schedules."
-        },
-        {
-          "name": "records-and-retention-governance",
-          "value": "external-authority",
-          "remarks": "Retention durations and disposal requirements are defined by authoritative institutional and regulatory sources and implemented through inherited records-and-retention capabilities."
         }
       ]
     },
@@ -120,7 +135,7 @@
           "uuid": "component-bulk-email-gateway",
           "type": "logical",
           "title": "Email Bulk Messaging Gateway",
-          "description": "Primary solution capability governing authorization, consent alignment, abuse prevention, auditability, delivery tracking, and reputational protection for bulk email campaigns.",
+          "description": "Primary solution capability governing authorization, consent alignment, abuse prevention, opt-out enforcement, auditability, delivery tracking, and reputational protection for bulk email campaigns.",
           "props": [{ "name": "pattern-family", "value": "solution" }],
           "links": [
             { "rel": "depends-on", "href": "urn:utoronto:security:pattern:email-bulk-messaging-gateway" }
@@ -144,7 +159,7 @@
           "uuid": "component-regulation",
           "type": "logical",
           "title": "Regulated Digital Service Obligations",
-          "description": "Compliance with accessibility, branding, communications, disclosure, and jurisdictional requirements.",
+          "description": "Compliance with externally imposed regulatory and institutional requirements for digital service delivery.",
           "props": [{ "name": "pattern-family", "value": "regulation" }],
           "links": [
             { "rel": "depends-on", "href": "urn:utoronto:security:pattern:regulated-digital-service" }
@@ -161,7 +176,7 @@
       {
         "id": "role-account-owner",
         "title": "Account Owner",
-        "description": "Accountable for the lifecycle, governance, and financing of the email campaign account. Responsibilities include requesting role assignments via the institutional identity system, performing periodic access reviews and attestations, requesting sender identity (from-address) enablement, requesting account decommissioning when no longer required, and accepting financial responsibility for account operation and cross-billing. This role does not perform campaign operations or platform administration."
+        "description": "Accountable for the lifecycle, governance, and financing of the email campaign account, including role assignment requests, access attestations, sender identity requests, decommissioning, and cost responsibility."
       },
       {
         "id": "role-author",
@@ -171,7 +186,7 @@
       {
         "id": "role-approver",
         "title": "Campaign Manager",
-        "description": "Reviews and approves campaign content and messaging intent for compliance with institutional communications requirements prior to authorization."
+        "description": "Reviews and approves campaign content and messaging intent for compliance with institutional communications requirements."
       },
       {
         "id": "role-sender-approver",
@@ -186,7 +201,7 @@
       {
         "id": "role-admin",
         "title": "Platform Administrator (ITS)",
-        "description": "Performs centralized platform configuration, maintenance, and enforcement as part of institutional service operations. This role is not delegated to tenants and does not participate in campaign authoring, approval, or sending."
+        "description": "Performs centralized platform configuration, maintenance, and enforcement as part of institutional service operations. This role is not delegated to tenants."
       }
     ]
   }
