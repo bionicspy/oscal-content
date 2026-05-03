@@ -4,10 +4,10 @@
 
     "metadata": {
       "title": "SSPP Template - Email Campaign Platform",
-      "version": "0.7.0",
+      "version": "0.8.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-03T00:10:00Z",
-      "remarks": "Architecture-driven SSPP template for an institutional Email Bulk Messaging Gateway. This SSPP defines system purpose, trust dependencies, data authority boundaries, recipient and content constraints, separation of duties, and governance accountability."
+      "last-modified": "2026-05-03T00:25:00Z",
+      "remarks": "Architecture-driven SSPP template for an institutional Email Bulk Messaging Gateway. This SSPP defines system purpose, trust dependencies, data authority boundaries, recipient and content constraints, separation of duties, governance accountability, and enforceable usage boundaries."
     },
 
     "import-profile": {
@@ -35,6 +35,12 @@
         { "name": "trust-assertion", "value": "secure-sdlc" },
         { "name": "trust-assertion", "value": "regulated-digital-service" },
         { "name": "trust-assertion", "value": "trusted-data" },
+
+        {
+          "name": "usage-constraint",
+          "value": "campaign-only",
+          "remarks": "This system is authorized for planned, approved outbound email campaigns only. It MUST NOT be used for ad-hoc, emergency, transactional, or personal messaging."
+        },
 
         {
           "name": "recipient-scope",
@@ -76,9 +82,27 @@
         },
 
         {
+          "name": "consent-enforcement",
+          "value": "no-reenrollment",
+          "remarks": "The system enforces opt-out decisions and suppression lists and MUST NOT re-enroll recipients or override consent determinations received from authoritative sources."
+        },
+
+        {
           "name": "branding-constraint",
           "value": "approved-sender-only",
           "remarks": "Sender identities (from-addresses) MUST receive explicit branding and communications approval prior to being enabled for outbound campaigns."
+        },
+
+        {
+          "name": "tenant-isolation",
+          "value": "logical-account-boundary",
+          "remarks": "Campaign configuration, recipient data, audit records, and sender identities are logically isolated per account and are not accessible across accounts."
+        },
+
+        {
+          "name": "audit-evidence-availability",
+          "value": "institutional-retention",
+          "remarks": "Audit records related to campaign authorization, sending, opt-out enforcement, and delivery outcomes are retained in accordance with institutional records retention schedules."
         }
       ]
     },
