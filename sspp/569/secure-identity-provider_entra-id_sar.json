@@ -1,0 +1,105 @@
+{
+  "assessment-results": {
+    "uuid": "urn:utoronto:sar:secure-identity-provider:entra-id",
+
+    "metadata": {
+      "title": "Security Assessment Results - Secure Identity Provider (Microsoft Entra ID)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T04:40:00Z"
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:secure-identity-provider"
+    },
+
+    "results": [
+      {
+        "uuid": "result-entra-id-secure-identity",
+
+        "props": [
+          { "name": "identity-provider", "value": "Microsoft Entra ID" },
+          { "name": "assessment-scope", "value": "identity-assurance" }
+        ],
+
+        "findings": [
+          {
+            "uuid": "finding-entra-id-kmsi",
+            "title": "Persistent Session Support Undermines Continuous Identity Assurance",
+            "description": "Microsoft Entra ID currently allows persistent session mechanisms (e.g., 'Keep Me Signed In'), enabling long-lived authentication sessions that can bypass continuous identity assurance requirements. This reduces resistance to session hijacking, shared-device exposure, and post-authentication misuse.",
+            "severity": "high",
+            "props": [
+              { "name": "risk-posture", "value": "red" },
+              { "name": "identity-pattern", "value": "identity-authentication,identity-assurance,identity-device-binding" }
+            ],
+            "associated-risk": {
+              "uuid": "risk-session-persistence",
+              "title": "Loss of Continuous Authentication Assurance",
+              "description": "Persistent sessions weaken identity assurance by extending trust beyond the moment of authentication without sufficient revalidation."
+            }
+          },
+          {
+            "uuid": "finding-entra-id-federation-dependency",
+            "title": "Upstream Federation Dependencies Affect End-to-End Identity Assurance",
+            "description": "Primary user authentication in Entra ID depends on upstream on-premises federation services (ADFS and Shibboleth). Assurance of identity claims is therefore dependent on the security, availability, and configuration of external identity providers and secure token exchange mechanisms.",
+            "severity": "moderate",
+            "props": [
+              { "name": "risk-posture", "value": "amber" },
+              { "name": "identity-pattern", "value": "identity-federation,identity-assurance" }
+            ],
+            "associated-risk": {
+              "uuid": "risk-federation-trust-chain",
+              "title": "Extended Trust Chain and Downgrade Risk",
+              "description": "Federation increases the length of the identity trust chain and can introduce downgrade or resilience risks if upstream identity providers do not maintain equivalent assurance guarantees."
+            }
+          }
+        ],
+
+        "remediations": [
+          {
+            "uuid": "poam-entra-id-kmsi-removal",
+            "title": "Disable Persistent Session Features",
+            "description": "Remove or strictly constrain persistent session mechanisms to ensure continuous identity assurance and session revalidation.",
+            "related-findings": [
+              { "finding-uuid": "finding-entra-id-kmsi" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-disable-kmsi",
+                "title": "Disable Keep Me Signed In",
+                "description": "Update Entra ID authentication and session policies to prevent long-lived persistent sessions.",
+                "status": "planned"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "high",
+              "residual-risk-target": "low",
+              "risk-acceptance-permitted": false
+            }
+          },
+          {
+            "uuid": "poam-entra-id-federation-hardening",
+            "title": "Reduce Federation Dependency and Strengthen Assurance",
+            "description": "Strengthen or reduce reliance on upstream federation by improving native identity assurance capabilities.",
+            "related-findings": [
+              { "finding-uuid": "finding-entra-id-federation-dependency" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-eam-migration",
+                "title": "Migrate to Native Entra ID Assurance Mechanisms",
+                "description": "Transition from custom federation overlays and MFA integrations to Entra ID native External Authentication Methods (EAM) and identity protection controls.",
+                "status": "planned"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low-to-moderate",
+              "risk-acceptance-permitted": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-identity-provider:ad-utoronto-ca",
+
+    "metadata": {
+      "title": "SSPP Instance - Secure Identity Provider (Active Directory ad.utoronto.ca)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T04:55:00Z",
+      "remarks": "Slim SSPP instance assessing the on-premises Active Directory forest ad.utoronto.ca as an identity provider against institutional Secure Identity assurance requirements. This Active Directory instance is federated to Microsoft Entra ID."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-identity-provider-template",
+      "remarks": "Inherits all normative identity assurance requirements from the Secure Identity Provider SSPP template."
+    },
+
+    "system-characteristics": {
+      "system-name": "Active Directory ad.utoronto.ca",
+      "system-description": "On-premises Microsoft Active Directory forest providing authoritative identity authentication services and federated assertions to Microsoft Entra ID.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "identity-provider-type",
+          "value": "on-premises",
+          "remarks": "Identity provider is an on-premises Active Directory deployment."
+        },
+        {
+          "name": "authentication-protocols",
+          "value": "kerberos,ntlm,federated",
+          "remarks": "Primary authentication uses Kerberos; federated authentication occurs via ADFS and Shibboleth."
+        },
+        {
+          "name": "federation-role",
+          "value": "upstream-authoritative",
+          "remarks": "Active Directory is the authoritative upstream identity source for Microsoft Entra ID via federation."
+        },
+
+        {
+          "name": "password-policy-enforcement",
+          "value": "group-policy",
+          "remarks": "Password policies are enforced using Active Directory Group Policy and fine-grained password policies."
+        },
+        {
+          "name": "breached-password-protection",
+          "value": "limited",
+          "remarks": "Native Active Directory does not provide built-in breached password detection; supplemental controls may exist externally."
+        },
+
+        {
+          "name": "mfa-enforcement",
+          "value": "federated-or-external",
+          "remarks": "Multi-factor authentication enforcement is provided through federated services (e.g., DUO via ADFS/Shibboleth) rather than natively in Active Directory."
+        },
+
+        {
+          "name": "session-assurance-model",
+          "value": "ticket-based",
+          "remarks": "Session assurance relies on Kerberos ticket lifetimes and reauthentication intervals."
+        },
+
+        {
+          "name": "identity-risk-monitoring",
+          "value": "limited-native",
+          "remarks": "Active Directory provides limited native identity risk detection; advanced identity protection requires external tooling."
+        },
+
+        {
+          "name": "privileged-accounts",
+          "value": "domain-admin-and-equivalents",
+          "remarks": "Privileged identities include Domain Admins and equivalent groups operating within the forest."
+        },
+
+        {
+          "name": "identity-logging",
+          "value": "security-and-directory-logs",
+          "remarks": "Authentication and directory events are logged via domain controller security logs and directory services logs."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "components": [
+        {
+          "uuid": "component-ad-secure-identity",
+          "type": "component",
+          "title": "Secure Identity Provider - Active Directory",
+          "description": "Assessment of Active Directory ad.utoronto.ca against institutional Secure Identity assurance patterns.",
+          "links": [
+            {
+              "rel": "asserts",
+              "href": "urn:utoronto:security:pattern:secure-identity",
+              "text": "Asserts compliance with the Secure Identity composite pattern subject to documented findings."
+            },
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-core"
+            },
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-authentication"
+            },
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-federation"
+            },
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-logging-and-audit"
+            },
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-privileged-access"
+            }
+          ],
+          "remarks": "Identity lifecycle provisioning and disaster recovery posture are evaluated in Identity Governance SSPPs. Federation assurance impacts downstream Entra ID identity assurance."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "Identity assurance for Active Directory is demonstrated through authentication controls, password policy enforcement, federation trust integrity, privileged identity safeguards, and identity event logging. Gaps in breached password detection, native MFA, and identity risk monitoring are evaluated via SARs."
+    }
+  }
+}

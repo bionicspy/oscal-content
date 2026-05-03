@@ -1,0 +1,141 @@
+{
+  "assessment-results": {
+    "uuid": "urn:utoronto:sar:secure-identity-provider:ad-utoronto-ca",
+    "metadata": {
+      "title": "Security Assessment Results - Secure Identity Provider (Active Directory ad.utoronto.ca)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T05:10:00Z",
+      "remarks": "Security Assessment Results for the Active Directory instance ad.utoronto.ca, evaluating its identity assurance posture and its role as an upstream federated identity provider to Microsoft Entra ID."
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:secure-identity-provider"
+    },
+
+    "results": [
+      {
+        "uuid": "result-ad-secure-identity",
+
+        "props": [
+          { "name": "identity-provider", "value": "Active Directory ad.utoronto.ca" },
+          { "name": "assessment-scope", "value": "identity-assurance" }
+        ],
+
+        "findings": [
+          {
+            "uuid": "finding-ad-breached-password-detection",
+            "title": "Limited Native Breached Password Detection",
+            "description": "Native on-premises Active Directory does not provide built-in breached password detection or credential compromise prevention. Reliance on password length and complexity alone provides limited resistance to modern credential stuffing and password reuse attacks.",
+            "severity": "moderate",
+            "props": [
+              { "name": "risk-posture", "value": "amber" },
+              { "name": "identity-pattern", "value": "identity-authentication,identity-assurance" }
+            ],
+            "associated-risk": {
+              "uuid": "risk-ad-password-compromise",
+              "title": "Increased Risk of Credential Compromise",
+              "description": "Lack of breached password detection increases exposure to account takeover via reused or compromised passwords."
+            }
+          },
+          {
+            "uuid": "finding-ad-mfa-external-dependency",
+            "title": "Dependence on External MFA and Federation for Strong Authentication",
+            "description": "Active Directory does not natively enforce multi-factor authentication. Strong authentication assurance is achieved through external MFA systems and federation (e.g., DUO via ADFS/Shibboleth), extending the identity trust chain beyond the directory itself.",
+            "severity": "moderate",
+            "props": [
+              { "name": "risk-posture", "value": "amber" },
+              { "name": "identity-pattern", "value": "identity-authentication,identity-federation" }
+            ],
+            "associated-risk": {
+              "uuid": "risk-ad-mfa-dependency",
+              "title": "Extended Authentication Trust Chain",
+              "description": "Authentication assurance depends on the availability, configuration, and security of external federation and MFA components."
+            }
+          },
+          {
+            "uuid": "finding-ad-identity-risk-detection",
+            "title": "Limited Native Identity Risk Detection",
+            "description": "Active Directory provides authentication and directory events but lacks native identity risk scoring, anomaly detection, and automated compromise signaling. Advanced identity threat detection requires supplemental tooling.",
+            "severity": "moderate",
+            "props": [
+              { "name": "risk-posture", "value": "amber" },
+              { "name": "identity-pattern", "value": "identity-assurance,identity-logging-and-audit" }
+            ],
+            "associated-risk": {
+              "uuid": "risk-ad-threat-visibility",
+              "title": "Reduced Visibility into Identity Compromise",
+              "description": "Limited native risk detection may delay identification of compromised or abused accounts."
+            }
+          }
+        ],
+
+        "remediations": [
+          {
+            "uuid": "poam-ad-password-hardening",
+            "title": "Enhance Password Compromise Protection",
+            "description": "Supplement Active Directory password policies with breached password detection and modern credential hygiene controls.",
+            "related-findings": [
+              { "finding-uuid": "finding-ad-breached-password-detection" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-deploy-password-protection",
+                "title": "Deploy Breached Password Detection",
+                "description": "Implement Azure AD Password Protection for on-premises Active Directory or equivalent breached-password detection mechanisms.",
+                "status": "planned"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low-to-moderate",
+              "risk-acceptance-permitted": true
+            }
+          },
+          {
+            "uuid": "poam-ad-federation-assurance",
+            "title": "Reduce and Harden Federation Dependencies",
+            "description": "Preserve or improve authentication assurance by simplifying federation paths and increasing reliance on native Entra ID identity protection where appropriate.",
+            "related-findings": [
+              { "finding-uuid": "finding-ad-mfa-external-dependency" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-align-federation-with-entra",
+                "title": "Align Federation with Entra ID Assurance",
+                "description": "Review ADFS and Shibboleth federation configurations and migrate applicable authentication flows toward native Entra ID MFA and risk-based controls.",
+                "status": "planned"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low-to-moderate",
+              "risk-acceptance-permitted": true
+            }
+          },
+          {
+            "uuid": "poam-ad-identity-risk-visibility",
+            "title": "Improve Identity Threat Detection for AD",
+            "description": "Increase visibility into identity compromise through identity threat monitoring tools and correlation with downstream IdPs.",
+            "related-findings": [
+              { "finding-uuid": "finding-ad-identity-risk-detection" }
+            ],
+            "tasks": [
+              {
+                "uuid": "task-identity-threat-tools",
+                "title": "Integrate Identity Threat Detection",
+                "description": "Deploy identity threat detection solutions (e.g., Defender for Identity) and integrate signals with SIEM and Entra ID Identity Protection.",
+                "status": "planned"
+              }
+            ],
+            "risk-adjustment": {
+              "initial-risk": "moderate",
+              "residual-risk-target": "low-to-moderate",
+              "risk-acceptance-permitted": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

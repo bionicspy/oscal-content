@@ -1,0 +1,129 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-identity-provider:entra-id",
+
+    "metadata": {
+      "title": "SSPP Instance - Secure Identity Provider (Microsoft Entra ID)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T04:25:00Z",
+      "remarks": "Slim SSPP instance assessing Microsoft Entra ID as an identity provider against institutional Secure Identity assurance requirements."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-identity-provider-template",
+      "remarks": "Inherits all normative identity assurance requirements from the Secure Identity Provider SSPP template."
+    },
+
+    "system-characteristics": {
+      "system-name": "Microsoft Entra ID",
+      "system-description": "Cloud-based identity provider delivering authentication, federation, and identity assurance services for institutional users and systems.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "identity-provider-type",
+          "value": "cloud",
+          "remarks": "Identity provider is delivered as a multi-tenant cloud service."
+        },
+        {
+          "name": "authentication-model",
+          "value": "federated-primary",
+          "remarks": "Most user identities authenticate via federation with on-premises ADFS and Shibboleth identity providers."
+        },
+        {
+          "name": "native-identities",
+          "value": "restricted",
+          "remarks": "Native cloud identities are limited to Global Administrator and break-glass emergency accounts."
+        },
+
+        {
+          "name": "mfa-enforcement",
+          "value": "required",
+          "remarks": "Multi-factor authentication is enforced using Conditional Access policies."
+        },
+        {
+          "name": "persistent-session-behavior",
+          "value": "enabled",
+          "remarks": "Persistent session mechanisms (e.g., Keep Me Signed In) are currently enabled."
+        },
+
+        {
+          "name": "password-policy-enforcement",
+          "value": "centralized",
+          "remarks": "Password policy enforcement is centralized through Entra ID and upstream identity sources."
+        },
+        {
+          "name": "breached-password-protection",
+          "value": "enabled",
+          "remarks": "Breached and weak password detection is available through Entra ID password protection features."
+        },
+
+        {
+          "name": "identity-risk-monitoring",
+          "value": "enabled",
+          "remarks": "Native identity risk signals and detections are available through Entra ID identity protection capabilities."
+        },
+
+        {
+          "name": "federation-dependencies",
+          "value": "adfs-and-shibboleth",
+          "remarks": "Authentication assurance depends on upstream on-premises federation services."
+        },
+
+        {
+          "name": "identity-logging",
+          "value": "enabled",
+          "remarks": "Authentication events, risk signals, and administrative actions are logged and available for audit and investigation."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "components": [
+        {
+          "uuid": "component-entra-id-secure-identity",
+          "type": "component",
+          "title": "Secure Identity Provider - Microsoft Entra ID",
+          "description": "Assessment of Microsoft Entra ID against institutional Secure Identity assurance patterns.",
+          "links": [
+            {
+              "rel": "asserts",
+              "href": "urn:utoronto:security:pattern:secure-identity",
+              "text": "Asserts compliance with the Secure Identity composite pattern subject to documented findings."
+            },
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-core"
+            },
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-authentication"
+            },
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-assurance"
+            },
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-federation"
+            },
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-logging-and-audit"
+            },
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-privileged-access"
+            }
+          ],
+          "remarks": "Identity lifecycle provisioning, DRP behavior, and authorization semantics are evaluated in separate SSPPs."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "Identity assurance for Microsoft Entra ID is evaluated based on authentication strength, credential protection, session controls, identity risk monitoring, federation trust, privileged identity safeguards, and evidence availability. Deviations from required assurance levels are tracked in SARs."
+    }
+  }
+}

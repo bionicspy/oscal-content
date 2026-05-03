@@ -1,0 +1,206 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-identity-provider-template",
+
+    "metadata": {
+      "title": "SSPP Template - Secure Identity Provider",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-03T04:05:00Z",
+      "remarks": "Normative SSPP template defining identity assurance requirements for identity providers (IdPs). This template evaluates whether an identity provider can be trusted to correctly, continuously, and securely assert identity claims. It intentionally distinguishes provider assurance from the Secure Identity pattern definition."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:profile:institutional-baseline",
+      "remarks": "Imports institutional baseline security and assurance requirements."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Identity Provider",
+      "system-description": "Identity assurance controls ensuring that identity providers maintain strong authentication, credential protection, session security, breach resistance, federation integrity, and auditable evidence over time and during failure conditions.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "institutional-owner",
+          "value": "Information Security",
+          "remarks": "Defines identity assurance posture, risk tolerance, and outcomes required for trusted identity providers."
+        },
+        {
+          "name": "service-owner",
+          "value": "Identity and Access Management",
+          "remarks": "Responsible for implementation, operation, and maintenance of identity provider security controls."
+        },
+
+        {
+          "name": "governance-scope",
+          "value": "identity-assurance-provider",
+          "remarks": "This SSPP governs the assurance properties of identity providers. It does not define lifecycle provisioning, application authorization, or cloud platform trust."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP asserts identity provider assurance by referencing institutional identity patterns. Compliance requires satisfaction or documented compensation for all referenced patterns.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:secure-identity-composite",
+          "type": "component",
+          "title": "Secure Identity (Composite Assertion)",
+          "description": "Composite assertion that identity claims issued by the provider meet institutional Secure Identity requirements.",
+          "links": [
+            {
+              "rel": "asserts",
+              "href": "urn:utoronto:security:pattern:secure-identity",
+              "text": "Asserts the Secure Identity composite pattern"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:identity-core",
+          "type": "component",
+          "title": "Identity Core",
+          "description": "Authoritative identity definition, uniqueness, namespace control, and attribution.",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-core"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:identity-authentication",
+          "type": "component",
+          "title": "Identity Authentication",
+          "description": "Verification of identity claims including MFA enforcement, password policy, breached password protection, and resistance to credential compromise.",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-authentication"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:identity-authorization",
+          "type": "component",
+          "title": "Identity Authorization",
+          "description": "Assertion of access eligibility and privilege boundaries at the identity-provider layer.",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-authorization"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:identity-lifecycle",
+          "type": "component",
+          "title": "Identity Lifecycle",
+          "description": "Creation, modification, suspension, revocation, and destruction of identity records at the provider.",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-lifecycle"
+            }
+          ],
+          "remarks": "Provisioning source systems and DRP orchestration are evaluated in Identity Governance SSPPs."
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:identity-federation",
+          "type": "component",
+          "title": "Identity Federation",
+          "description": "Trust relationships, assertion exchange, and assurance preservation across organizational identity boundaries.",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-federation"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:identity-assurance",
+          "type": "component",
+          "title": "Identity Assurance",
+          "description": "Evaluation of confidence in identity claims including continuous risk analysis, anomaly detection, and compromise signaling.",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-assurance"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:identity-logging-and-audit",
+          "type": "component",
+          "title": "Identity Logging and Audit",
+          "description": "Generation, retention, and availability of identity-related logs for monitoring, investigation, and accountability.",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-logging-and-audit"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:identity-privileged-access",
+          "type": "component",
+          "title": "Identity Privileged Access",
+          "description": "Safeguards governing elevated and emergency identities, including break-glass accounts and separation of duties.",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-privileged-access"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:identity-non-human",
+          "type": "component",
+          "title": "Non-Human Identity",
+          "description": "Management and protection of service accounts, workload identities, and automation principals.",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-non-human"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:identity-device-binding",
+          "type": "component",
+          "title": "Identity Device Binding",
+          "description": "Binding of identities to trusted devices, execution environments, or hardware-backed assurance contexts.",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:identity-device-binding"
+            }
+          ]
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-identity-policy",
+        "title": "Identity Assurance Authority",
+        "remarks": "Aligned to NIST NICE SP-PLN-001. Defines identity assurance standards and risk posture."
+      },
+      {
+        "id": "role-identity-operations",
+        "title": "Identity Security Operations",
+        "remarks": "Aligned to NIST NICE PR-CY-001 and PR-CDA-001. Operates identity protection, detection, and response."
+      },
+      {
+        "id": "role-identity-assessor",
+        "title": "Identity Control Assessor",
+        "remarks": "Aligned to NIST NICE SP-RSK-001. Performs assessments and issues SARs for identity provider assurance."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Identity provider assurance is demonstrated through enforced authentication controls, breached-password prevention, continuous identity risk monitoring, session misuse protection, federation integrity, privileged account safeguards, and auditable evidence. Failures impacting identity confidence may result in Red or Amber SAR findings."
+    }
+  }
+}
