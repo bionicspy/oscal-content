@@ -260,3 +260,25 @@ Therefore:
 * Benchmarks belong to the SSPP, not the component patterns.
 
 This avoids hard‑coding technology assumptions into architecture.
+
+
+## How This Repository Fits Together (So far)
+
+This repository intentionally separates **architecture**, **capability assertions**, and **system‑specific assurance** to enable scale, reuse, and automation.
+
+The key artifacts are:
+
+- **Component (Trust) Patterns** (`./patterns/README.md`)  
+  Define **technology‑agnostic, normative trust capabilities** (e.g., trusted‑identity, secure‑network, trustworthy‑ai).  
+  These patterns assert *what must be true*, not how systems are configured.
+
+- **SSPP Composition Model** (`./SSPP_COMPOSITION_MODEL.md`)  
+  Describes how trust patterns, shared services, and inherited capabilities are composed into **System Security & Privacy Plans (SSPPs)**, including:
+  - inheritance and reuse,
+  - assessment scope,
+  - findings, POA&Ms, and residual risk handling.
+
+In summary:
+- This document defines **the architectural model and flow**
+- Trust Patterns define **reusable trust expectations**
+- SSPP composition explains **how system‑specific assurance is constructed and governed**
