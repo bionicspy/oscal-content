@@ -1,13 +1,23 @@
 {
   "system-security-plan": {
-    "uuid": "urn:utoronto:sspp:entra-id-sso-template",
+    "uuid": "urn:utoronto:sspp:identity-federation-sso-template",
 
     "metadata": {
-      "title": "SSPP Template - Entra ID Single Sign-On (SSO)",
-      "version": "1.0.0",
+      "title": "SSPP Template - Institutional Identity Federation (SSO)",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-02T22:10:00Z",
-      "remarks": "Normative SSPP template defining institutional identity, authentication, authorization, and conditional access expectations using Microsoft Entra ID. This SSPP establishes trust boundaries and governance expectations for all SSO-integrated services."
+      "last-modified": "2026-05-04T07:30:00Z",
+      "remarks": "Normative SSPP template defining institutional requirements for federated authentication, authorization enforcement, and conditional access using a centrally governed identity federation service. This SSPP establishes trust boundaries, assurance expectations, and governance obligations for all SSO-integrated services, independent of vendor or protocol.",
+
+      "props": [
+        {
+          "name": "implements-architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP035",
+          "remarks": "This SSPP implements the institutional Identity Federation architecture pattern."
+        }
+      ]
     },
 
     "import-profile": {
@@ -16,103 +26,128 @@
     },
 
     "system-characteristics": {
-      "system-name": "Institutional Identity - Entra ID SSO",
-      "system-description": "Central identity provider and single sign-on service for institutional users, applications, and platforms, providing authentication, authorization, and conditional access enforcement.",
+      "system-name": "Institutional Identity Federation Service",
+      "system-description": "A centrally governed identity federation service providing authentication and single sign-on for institutional users and applications. The service consumes and issues federated identity assertions, enforces authentication and access policy, and integrates with institutional monitoring and audit capabilities.",
       "security-sensitivity-level": "high",
 
       "props": [
         {
           "name": "institutional-owner",
           "value": "Central Identity and Access Management",
-          "remarks": "Owns institutional identity lifecycle, authentication standards, and access governance."
+          "remarks": "Owns identity lifecycle, federation trust relationships, and access governance."
         },
         {
           "name": "technical-owner",
           "value": "Information Security",
-          "remarks": "Defines and enforces security controls, conditional access, and identity risk management."
+          "remarks": "Defines and enforces authentication standards, assurance requirements, and conditional access controls."
         },
         {
-          "name": "identity-provider",
-          "value": "microsoft-entra-id",
-          "remarks": "Microsoft Entra ID is the authoritative identity provider for institutional authentication."
+          "name": "identity-federation-model",
+          "value": "brokered-federation",
+          "remarks": "A centralized federation broker mediates trust, policy, and assurance between users, applications, and external identity providers."
         },
         {
           "name": "governance-model",
           "value": "centrally-governed",
-          "remarks": "Identity, authentication, and conditional access controls are centrally governed. Delegation is limited and controlled."
+          "remarks": "Federation trust relationships, authentication policies, and access controls are centrally governed. Delegation is limited and explicitly controlled."
         },
         {
           "name": "authentication-model",
-          "value": "single-sign-on",
-          "remarks": "SSO is provided to applications using federation or modern authentication protocols."
+          "value": "federated-single-sign-on",
+          "remarks": "Applications rely on federated authentication rather than managing credentials locally."
         },
         {
           "name": "supported-protocols",
           "value": "oidc,saml2,oauth2",
-          "remarks": "Supported federation and authentication protocols."
+          "remarks": "Common federation and modern authentication protocols. Protocol choice does not alter governance expectations."
         },
         {
           "name": "multi-factor-authentication",
-          "value": "mandatory",
-          "remarks": "Multi-factor authentication is required for interactive user authentication in accordance with institutional policy."
+          "value": "mandatory-for-interactive-users",
+          "remarks": "Multi-factor authentication is required for all interactive user authentication in accordance with institutional policy."
         },
         {
           "name": "conditional-access",
-          "value": "enforced",
-          "remarks": "Risk-based conditional access controls are enforced for users, devices, locations, and applications."
+          "value": "risk-based-enforced",
+          "remarks": "Risk-based access decisions incorporate user, device, location, and session context."
         },
         {
-          "name": "coarse-grained-authorization",
-          "value": "entra-id-enforced",
-          "remarks": "Access to the service MUST be restricted at the Entra ID level using enterprise application assignment or equivalent controls."
+          "name": "coarse-grained-access-control",
+          "value": "federation-service-enforced",
+          "remarks": "Access to an application MUST be restricted at the federation service using explicit application assignment or equivalent controls."
         },
         {
           "name": "fine-grained-authorization",
-          "value": "entra-id-preferred-service-allowed",
-          "remarks": "Fine-grained authorization SHOULD be enforced using Entra ID groups where feasible. Service-internal role models are permitted but introduce governance and attestation risk."
+          "value": "externalized-preferred",
+          "remarks": "Fine-grained authorization SHOULD be enforced using centrally governed groups or attributes. Service-internal role models are permitted but increase governance and attestation risk."
         },
         {
-          "name": "privileged-access",
-          "value": "separate-controls",
-          "remarks": "Privileged roles are subject to additional controls, including just-in-time access and heightened monitoring."
+          "name": "claims-governance",
+          "value": "minimized-and-approved",
+          "remarks": "Federated assertions include only approved, minimal claims necessary for access and authorization decisions."
+        },
+        {
+          "name": "federation-trust-lifecycle",
+          "value": "centrally-approved",
+          "remarks": "Federation trust creation, modification, and removal require formal approval and documented justification."
+        },
+        {
+          "name": "non-interactive-identities",
+          "value": "out-of-scope",
+          "remarks": "Service principals, workload identities, and non-interactive authentication are governed under separate institutional identity standards."
         },
         {
           "name": "logging-and-audit",
-          "value": "centralized",
-          "remarks": "Authentication, authorization, and conditional access events are logged centrally and integrated with institutional SIEM."
+          "value": "centralized-and-authoritative",
+          "remarks": "Authentication, federation, and conditional access decisions are logged centrally and treated as authoritative audit records."
         }
       ]
     },
 
     "system-implementation": {
-      "remarks": "This SSPP template defines identity governance and security expectations. Application-specific integrations and role mappings are documented in SSPP instances.",
+      "remarks": "This SSPP defines institutional identity federation requirements and control expectations. Application-specific federation configurations, claim mappings, and authorization models are documented in SSPP instances. This SSPP inherits trust, assurance, and responsibility boundary requirements from the Identity Federation architecture pattern.",
 
       "components": [
         {
-          "uuid": "component-entra-id-core",
+          "uuid": "component-federation-core",
           "type": "logical",
-          "title": "Microsoft Entra ID Core Services",
-          "description": "Provides authentication, federation, conditional access, and identity governance for institutional users and applications.",
+          "title": "Identity Federation Core Services",
+          "description": "Federation service providing authentication, assertion issuance and consumption, and policy enforcement.",
           "props": [
-            { "name": "authoritative-identity-source", "value": "true" }
+            {
+              "name": "implements-capability",
+              "value": "urn:utoronto:security:capability:trust-relationships"
+            }
           ]
         },
         {
-          "uuid": "component-entra-id-conditional-access",
+          "uuid": "component-conditional-access",
           "type": "logical",
-          "title": "Conditional Access Enforcement",
-          "description": "Risk-based access control enforcing MFA, device trust, location restrictions, and session controls."
+          "title": "Conditional Access and Assurance Enforcement",
+          "description": "Enforces assurance and access policy based on contextual risk signals.",
+          "props": [
+            {
+              "name": "implements-capability",
+              "value": "urn:utoronto:security:capability:external-identity-assurance"
+            }
+          ]
         },
         {
-          "uuid": "component-entra-id-logging",
+          "uuid": "component-identity-logging",
           "type": "logical",
-          "title": "Identity Logging and Monitoring",
-          "description": "Centralized logging of identity events for audit, investigation, and correlation.",
+          "title": "Federated Identity Logging and Monitoring",
+          "description": "Centralized logging of federated authentication and access decisions.",
           "links": [
             {
               "rel": "forwards-to",
               "href": "urn:utoronto:sspp:siem",
-              "text": "Identity events are forwarded to the institutional SIEM."
+              "text": "Federation and access events are forwarded to the institutional SIEM."
+            }
+          ],
+          "props": [
+            {
+              "name": "implements-capability",
+              "value": "urn:utoronto:security:capability:responsibility-boundaries"
             }
           ]
         }
@@ -123,27 +158,27 @@
       {
         "id": "role-identity-policy",
         "title": "Identity Policy Authority",
-        "remarks": "Aligned to NIST NICE SP-PLN-001 (Cybersecurity Policy and Strategy Planner). Defines authentication, MFA, and conditional access posture."
+        "remarks": "Defines federation posture, assurance requirements, and acceptable use of externally asserted identities."
       },
       {
         "id": "role-identity-architect",
         "title": "Identity Architect",
-        "remarks": "Aligned to NIST NICE SP-ARC-001 (Enterprise Architect). Designs identity integration patterns and trust boundaries."
+        "remarks": "Designs federation patterns, trust boundaries, and integration models."
       },
       {
         "id": "role-identity-operations",
         "title": "Identity Operations",
-        "remarks": "Aligned to NIST NICE OM-ADM-001 and PR-CY-001. Operates identity services and enforces access controls."
+        "remarks": "Operates the federation service and enforces centrally defined controls."
       },
       {
         "id": "role-identity-monitoring",
         "title": "Identity Monitoring and Assessment",
-        "remarks": "Aligned to NIST NICE PR-CDA-001 and SP-RSK-001. Monitors authentication events and supports assessments and SARs."
+        "remarks": "Monitors federated authentication activity and supports audit, investigations, and risk assessments."
       }
     ],
 
     "control-implementation": {
-      "remarks": "Control satisfaction is demonstrated through enforced MFA, conditional access policies, group-based authorization, and centrally logged identity events."
+      "remarks": "Control satisfaction is achieved through enforced federated authentication, mandatory MFA, conditional access, minimized claims, centrally governed authorization, and authoritative logging. Detailed control inheritance is documented through the imported institutional baseline and the Identity Federation architecture pattern."
     }
   }
 }
