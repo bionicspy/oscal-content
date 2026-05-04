@@ -1,0 +1,191 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-identity-federation:shibboleth-idp",
+
+    "metadata": {
+      "title": "SSPP - Secure Identity Federation (Shibboleth IdP)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T12:35:00Z",
+      "remarks": "System Security Plan for the institutional Shibboleth Identity Provider (IdP), which authenticates users against ad.utoronto.ca as the authoritative identity repository with a legacy LDAP repository configured as a secondary fallback. This SSPP documents current behavior, known defects, risk implications, and compensating governance controls.",
+
+      "props": [
+        {
+          "name": "implements-architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP035",
+          "remarks": "Implements the institutional Identity Federation architecture pattern."
+        },
+        {
+          "name": "inherits-sspp-template",
+          "value": "urn:utoronto:sspp:identity-federation-sso-template",
+          "remarks": "Inherits federation, assurance, and governance requirements from the Identity Federation SSPP template."
+        }
+      ]
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:profile:institutional-baseline",
+      "remarks": "Imports baseline institutional security and identity governance requirements."
+    },
+
+    "system-characteristics": {
+      "system-name": "Institutional Shibboleth Identity Provider",
+      "system-description": "Shibboleth Identity Provider providing federated authentication services to internal and external relying parties. The IdP authenticates users primarily against ad.utoronto.ca and issues SAML assertions under institutional federation policy.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "institutional-owner",
+          "value": "Central Identity and Access Management",
+          "remarks": "Owns authentication policy, identity source selection, and federation trust."
+        },
+        {
+          "name": "technical-owner",
+          "value": "Information Security",
+          "remarks": "Defines authentication assurance requirements and acceptable risk posture."
+        },
+        {
+          "name": "authentication-role",
+          "value": "primary-idp",
+          "remarks": "Shibboleth functions as the primary authentication service for federated identities."
+        },
+        {
+          "name": "primary-identity-repository",
+          "value": "ad.utoronto.ca",
+          "remarks": "Active Directory domain serving as the authoritative institutional identity repository."
+        },
+        {
+          "name": "secondary-identity-repository",
+          "value": "legacy-ldap",
+          "remarks": "Legacy LDAP directory retained for historical and transitional users."
+        },
+        {
+          "name": "authentication-protocol",
+          "value": "saml2",
+          "remarks": "Shibboleth issues SAML 2.0 assertions to relying parties."
+        },
+        {
+          "name": "fallback-behavior",
+          "value": "enabled-non-ideal",
+          "remarks": "Authentication flow is configured to fall back to legacy LDAP not only when an account is not found in ad.utoronto.ca, but also when authentication against ad.utoronto.ca fails."
+        },
+        {
+          "name": "known-design-defect",
+          "value": "true",
+          "remarks": "Fallback on authentication failure violates intended assurance and trust model."
+        },
+        {
+          "name": "external-identity-assurance",
+          "value": "variable",
+          "remarks": "Assurance level depends on which identity repository is used in the authentication flow."
+        },
+        {
+          "name": "claims-governance",
+          "value": "centrally-governed",
+          "remarks": "Issued SAML assertions are subject to institutional attribute release policy; repository source is not always reflected in claims."
+        },
+        {
+          "name": "logging-and-audit",
+          "value": "centralized-and-authoritative",
+          "remarks": "Authentication attempts, repository selection, and assertion issuance are logged and forwarded to the institutional SIEM."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This system implements federated authentication by validating user credentials against directory services and issuing SAML assertions. While ad.utoronto.ca is the authoritative identity source, a legacy LDAP directory is configured as a secondary authentication source. Current fallback behavior introduces elevated risk by permitting authentication via legacy LDAP following primary authentication failure.",
+
+      "components": [
+        {
+          "uuid": "component-shibboleth-core",
+          "type": "logical",
+          "title": "Shibboleth Identity Provider Core",
+          "description": "Primary authentication and federated assertion issuance service.",
+          "props": [
+            {
+              "name": "implements-capability",
+              "value": "urn:utoronto:security:capability:assertion-consumption"
+            }
+          ]
+        },
+        {
+          "uuid": "component-directory-integration",
+          "type": "logical",
+          "title": "Directory Authentication Integration",
+          "description": "Integration with ad.utoronto.ca and legacy LDAP for credential validation.",
+          "props": [
+            {
+              "name": "implements-capability",
+              "value": "urn:utoronto:security:capability:external-identity-assurance"
+            }
+          ]
+        },
+        {
+          "uuid": "component-authentication-logging",
+          "type": "logical",
+          "title": "Authentication Logging and Monitoring",
+          "description": "Captures authentication attempts, failures, fallback activation, and assertion issuance.",
+          "links": [
+            {
+              "rel": "forwards-to",
+              "href": "urn:utoronto:sspp:siem",
+              "text": "Authentication and federation events are forwarded to the institutional SIEM."
+            }
+          ],
+          "props": [
+            {
+              "name": "implements-capability",
+              "value": "urn:utoronto:security:capability:responsibility-boundaries"
+            }
+          ]
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-idp-owner",
+        "title": "Identity Provider Owner",
+        "remarks": "Accountable for authentication source selection and risk acceptance."
+      },
+      {
+        "id": "role-idp-architect",
+        "title": "Identity Provider Architect",
+        "remarks": "Designs authentication flows and repository precedence."
+      },
+      {
+        "id": "role-idp-operations",
+        "title": "Identity Provider Operations",
+        "remarks": "Operates Shibboleth IdP and maintains directory integrations."
+      },
+      {
+        "id": "role-idp-monitoring",
+        "title": "Identity Provider Monitoring and Assessment",
+        "remarks": "Monitors authentication activity and investigates anomalous fallback usage."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Federated authentication controls are partially satisfied through strong cryptographic federation and centralized logging. However, assurance controls are weakened by permissive fallback behavior. This condition is subject to risk acceptance and tracked remediation."
+    },
+
+    "poam": {
+      "items": [
+        {
+          "id": "POAM-IDP-001",
+          "title": "Restrict Legacy LDAP Fallback to Account-Not-Found Only",
+          "description": "Current authentication flow permits fallback to legacy LDAP following authentication failure against ad.utoronto.ca. This undermines assurance guarantees and may enable credential abuse.",
+          "severity": "high",
+          "status": "open",
+          "planned-milestones": [
+            "Modify Shibboleth authentication flow to allow legacy LDAP fallback only when the user account does not exist in ad.utoronto.ca.",
+            "Ensure authentication failure against ad.utoronto.ca is treated as terminal."
+          ],
+          "risk-statement": "Until remediation is complete, federated authentication assurance may be inconsistent and weaker than institutional policy requires."
+        }
+      ]
+    }
+  }
+}

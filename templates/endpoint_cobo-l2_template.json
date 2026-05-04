@@ -1,0 +1,177 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cobo-l2",
+
+    "metadata": {
+      "title": "SSPP - COBO L2 Enhanced-Assurance Managed Endpoint",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T18:10:00Z",
+      "remarks": "Normative System Security Plan Profile defining enhanced assurance requirements for COBO L2 institution-owned, centrally managed endpoints. COBO L2 builds on COBO L1 by introducing additional security controls required for participation in higher-risk institutional workflows."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:endpoint:cobo-l1",
+      "remarks": "COBO L2 explicitly inherits all requirements defined in the COBO L1 Managed Endpoint SSPP."
+    },
+
+    "system-characteristics": {
+      "system-name": "COBO L2 Enhanced-Assurance Managed Endpoint",
+      "system-description": "Institution-owned, centrally managed endpoint providing enhanced assurance beyond the COBO L1 baseline. COBO L2 endpoints are intended for users with elevated institutional responsibilities or access to higher-risk workflows, while remaining general-purpose in nature.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "endpoint-classification",
+          "value": "cobo-l2",
+          "remarks": "Enhanced assurance managed endpoint tier."
+        },
+        {
+          "name": "assurance-model",
+          "value": "enhanced",
+          "remarks": "Provides assurance beyond baseline through additional controls and stricter enforcement."
+        },
+        {
+          "name": "ownership-model",
+          "value": "institution-owned",
+          "remarks": "Endpoint remains institution-owned; personal ownership is not permitted."
+        },
+        {
+          "name": "management-model",
+          "value": "centrally-managed",
+          "remarks": "Endpoint remains centrally enrolled and governed."
+        },
+        {
+          "name": "eligible-data-classifications",
+          "value": "level-1,level-2,level-3",
+          "remarks": "Endpoint may participate in workflows involving Data Classification Levels 1–3, subject to policy, role, and contextual controls."
+        },
+        {
+          "name": "non-equivalence-statement",
+          "value": "device-not-data",
+          "remarks": "COBO L2 assurance does not confer automatic entitlement to any data classification."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COBO L2 endpoints inherit all Secure Endpoint requirements via COBO L1. This SSPP defines only the additional controls and enforcement expectations required to achieve enhanced assurance.",
+
+      "components": [
+
+        {
+          "uuid": "component-enhanced-authentication",
+          "type": "control-delta",
+          "title": "Enhanced Authentication and Session Assurance",
+          "description": "Additional authentication and session protections beyond COBO L1 baseline.",
+          "props": [
+            {
+              "name": "delta-from",
+              "value": "cobo-l1"
+            }
+          ],
+          "control-implementations": [
+            {
+              "source": "urn:nist.gov:800-53:r5",
+              "implemented-requirements": [
+                {
+                  "control-id": "IA-2",
+                  "remarks": "Stricter enforcement of multi-factor authentication and session reauthentication where applicable."
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "uuid": "component-enhanced-config-hardening",
+          "type": "control-delta",
+          "title": "Enhanced Configuration and Hardening",
+          "description": "Stricter configuration baselines and reduced flexibility relative to COBO L1.",
+          "props": [
+            {
+              "name": "delta-from",
+              "value": "cobo-l1"
+            }
+          ],
+          "control-implementations": [
+            {
+              "source": "urn:nist.gov:800-53:r5",
+              "implemented-requirements": [
+                {
+                  "control-id": "CM-7",
+                  "remarks": "More restrictive default application execution and reduced support for user-installed software."
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "uuid": "component-enhanced-health-enforcement",
+          "type": "control-delta",
+          "title": "Enhanced Health and Compliance Enforcement",
+          "description": "Tighter health enforcement and faster remediation expectations.",
+          "props": [
+            {
+              "name": "delta-from",
+              "value": "cobo-l1"
+            }
+          ],
+          "control-implementations": [
+            {
+              "source": "urn:nist.gov:800-53:r5",
+              "implemented-requirements": [
+                {
+                  "control-id": "CA-7",
+                  "remarks": "Stricter and more frequent posture assessment with lower tolerance for drift."
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "uuid": "component-enhanced-threat-response",
+          "type": "control-delta",
+          "title": "Enhanced Threat Detection and Containment",
+          "description": "More aggressive response actions and lower tolerance for active threats.",
+          "props": [
+            {
+              "name": "delta-from",
+              "value": "cobo-l1"
+            }
+          ],
+          "control-implementations": [
+            {
+              "source": "urn:nist.gov:800-53:r5",
+              "implemented-requirements": [
+                {
+                  "control-id": "IR-4",
+                  "remarks": "Faster isolation and mandatory investigation for detected endpoint threats."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-endpoint-owner",
+        "title": "Endpoint Service Owner",
+        "remarks": "Approves endpoint classification at the COBO L2 tier."
+      },
+      {
+        "id": "role-risk-approval",
+        "title": "Risk and Security Approval Authority",
+        "remarks": "Validates business justification for COBO L2 assignment."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "COBO L2 satisfies all COBO L1 controls and introduces additional assurance controls required for higher-risk workflows. No compensating controls or risk acceptances are defined at this tier."
+    }
+  }
+}

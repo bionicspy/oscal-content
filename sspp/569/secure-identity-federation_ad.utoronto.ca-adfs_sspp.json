@@ -1,0 +1,174 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-identity-federation:ad-utoronto-ca-adfs",
+
+    "metadata": {
+      "title": "SSPP - Secure Identity Federation (ad.utoronto.ca ADFS)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T11:45:00Z",
+      "remarks": "System Security Plan for the ad.utoronto.ca Active Directory Federation Services (ADFS) deployment, providing secure token exchange between institutional authentication services (Shibboleth) and Microsoft Entra ID. This system functions as a federation bridge and trust boundary enforcing institutional assurance, claims governance, and accountability.",
+
+      "props": [
+        {
+          "name": "implements-architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP035",
+          "remarks": "Implements the institutional Identity Federation architecture pattern."
+        },
+        {
+          "name": "inherits-sspp-template",
+          "value": "urn:utoronto:pattern:secure-identity-federation-template",
+          "remarks": "Inherits all normative federation, assurance, and governance requirements from the Identity Federation SSPP template."
+        }
+      ]
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:profile:institutional-baseline",
+      "remarks": "Imports baseline institutional security, identity, and access control requirements."
+    },
+
+    "system-characteristics": {
+      "system-name": "ad.utoronto.ca Secure Identity Federation (ADFS)",
+      "system-description": "Active Directory Federation Services (ADFS) deployment acting as a secure token exchange and federation broker between the institutional Shibboleth Identity Provider and Microsoft Entra ID. This system validates inbound SAML assertions, enforces institutional policy, transforms approved claims, and issues federated tokens to downstream relying parties.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "institutional-owner",
+          "value": "Central Identity and Access Management",
+          "remarks": "Owns federation trust, claims policy, and service lifecycle."
+        },
+        {
+          "name": "technical-owner",
+          "value": "Information Security",
+          "remarks": "Defines assurance requirements, federation controls, and monitoring."
+        },
+        {
+          "name": "federation-role",
+          "value": "token-exchange-broker",
+          "remarks": "ADFS operates as a federation bridge performing assertion validation and token issuance."
+        },
+        {
+          "name": "authentication-source",
+          "value": "shibboleth-idp",
+          "remarks": "Primary user authentication occurs within institutional Shibboleth Identity Provider."
+        },
+        {
+          "name": "assertion-consumed",
+          "value": "saml2",
+          "remarks": "Inbound federated assertions are received using SAML 2.0."
+        },
+        {
+          "name": "assertion-issued",
+          "value": "saml2,oidc",
+          "remarks": "Outbound tokens are issued to Entra ID and other relying parties using approved federation protocols."
+        },
+        {
+          "name": "claims-transformation",
+          "value": "centrally-governed",
+          "remarks": "Claims mapping and transformation rules are centrally approved and version-controlled."
+        },
+        {
+          "name": "external-identity-assurance",
+          "value": "institutionally-evaluated",
+          "remarks": "Inbound assertions are evaluated for sufficient assurance before token issuance."
+        },
+        {
+          "name": "conditional-access-dependency",
+          "value": "entra-id-downstream",
+          "remarks": "Session and access risk evaluation is enforced downstream by Microsoft Entra ID conditional access."
+        },
+        {
+          "name": "non-interactive-identities",
+          "value": "not-supported",
+          "remarks": "This federation service does not issue tokens for non-interactive workloads."
+        },
+        {
+          "name": "logging-and-audit",
+          "value": "centralized-and-authoritative",
+          "remarks": "All federation transactions are logged and forwarded to the institutional SIEM."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This system implements secure identity federation by brokering trust and tokens between institutional authentication systems and cloud services. It inherits federation trust, assurance, and responsibility boundary requirements from the Identity Federation SSPP template.",
+
+      "components": [
+        {
+          "uuid": "component-adfs-core",
+          "type": "logical",
+          "title": "ADFS Federation Core",
+          "description": "Active Directory Federation Services providing secure assertion validation, claims transformation, and token issuance.",
+          "props": [
+            {
+              "name": "implements-capability",
+              "value": "urn:utoronto:security:capability:trust-relationships"
+            }
+          ]
+        },
+        {
+          "uuid": "component-claims-policy",
+          "type": "logical",
+          "title": "Claims Governance and Transformation",
+          "description": "Approved claims rules enforcing attribute minimization, normalization, and policy-aligned token content.",
+          "props": [
+            {
+              "name": "implements-capability",
+              "value": "urn:utoronto:security:capability:assertion-consumption"
+            }
+          ]
+        },
+        {
+          "uuid": "component-federation-logging",
+          "type": "logical",
+          "title": "Federation Logging and Monitoring",
+          "description": "Logging of assertion validation, token issuance, and federation errors.",
+          "links": [
+            {
+              "rel": "forwards-to",
+              "href": "urn:utoronto:sspp:siem",
+              "text": "Federation telemetry is forwarded to the institutional SIEM."
+            }
+          ],
+          "props": [
+            {
+              "name": "implements-capability",
+              "value": "urn:utoronto:security:capability:responsibility-boundaries"
+            }
+          ]
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-federation-owner",
+        "title": "Federation Service Owner",
+        "remarks": "Accountable for federation trust relationships and lifecycle decisions."
+      },
+      {
+        "id": "role-federation-architect",
+        "title": "Federation Architect",
+        "remarks": "Defines token exchange flows, claims mapping, and trust boundaries."
+      },
+      {
+        "id": "role-federation-operations",
+        "title": "Federation Operations",
+        "remarks": "Operates ADFS infrastructure and enforces approved configuration."
+      },
+      {
+        "id": "role-federation-monitoring",
+        "title": "Federation Monitoring and Assessment",
+        "remarks": "Monitors federation activity and supports investigations."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through cryptographically protected federation trust, strict validation of inbound SAML assertions, centrally governed claims transformation, enforced separation of responsibility between authentication and authorization, and authoritative federation logging. Conditional access enforcement is inherited downstream through Microsoft Entra ID."
+    }
+  }
+}

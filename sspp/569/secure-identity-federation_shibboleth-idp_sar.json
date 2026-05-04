@@ -1,0 +1,156 @@
+{
+  "assessment-results": {
+    "uuid": "urn:utoronto:sar:secure-identity-federation:shibboleth-idp",
+
+    "metadata": {
+      "title": "Security Assessment Results - Shibboleth Identity Provider",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T13:15:00Z",
+      "remarks": "OSCAL Security Assessment Results documenting the assessment of the Institutional Shibboleth Identity Provider, including identified risks, control deviations, and remediation plans."
+    },
+
+    "import-ap": {
+      "href": "urn:utoronto:assessment-plan:identity-federation-targeted"
+    },
+
+    "local-definitions": {
+      "activities": [
+        {
+          "uuid": "activity-auth-flow-review",
+          "title": "Authentication Flow Review",
+          "description": "Review of Shibboleth authentication flow configuration and directory fallback behavior."
+        }
+      ],
+      "methods": [
+        {
+          "uuid": "method-config-analysis",
+          "title": "Configuration Analysis",
+          "description": "Analysis of authentication configuration, logs, and documented behavior."
+        }
+      ],
+      "findings": [
+        {
+          "uuid": "finding-idp-legacy-fallback",
+          "title": "Legacy LDAP Fallback on Authentication Failure",
+          "description": "Shibboleth authentication flow permits fallback to legacy LDAP following authentication failure against ad.utoronto.ca.",
+          "target": {
+            "type": "component",
+            "target-id": "component-shibboleth-core"
+          },
+          "related-observations": [
+            {
+              "uuid": "obs-fallback-triggered",
+              "description": "Authentication logs demonstrate legacy LDAP fallback after failed AD authentication attempts."
+            }
+          ],
+          "risk": {
+            "statement": "Permissive fallback behavior undermines authentication assurance by allowing federated authentication via a legacy repository after failure of the authoritative directory.",
+            "status": "open"
+          }
+        }
+      ]
+    },
+
+    "results": [
+      {
+        "uuid": "assessment-result-2026-05-04",
+        "title": "Targeted Assessment - Shibboleth Identity Provider",
+        "description": "Assessment of federated authentication and identity assurance controls.",
+        "start": "2026-05-04T09:00:00Z",
+        "end": "2026-05-04T12:00:00Z",
+
+        "reviewed-controls": {
+          "control-selections": [
+            {
+              "include": {
+                "control-ids": [
+                  "IA-2",
+                  "IA-5",
+                  "IA-7",
+                  "AC-16",
+                  "AU-2"
+                ]
+              }
+            }
+          ]
+        },
+
+        "observations": [
+          {
+            "uuid": "observation-fallback-behavior",
+            "title": "Authentication Fallback Behavior",
+            "description": "Fallback to legacy LDAP occurs for both account-not-found and authentication-failure conditions.",
+            "methods": [
+              { "uuid": "method-config-analysis" }
+            ],
+            "subjects": [
+              {
+                "type": "component",
+                "subject-id": "component-directory-integration"
+              }
+            ]
+          }
+        ],
+
+        "findings": [
+          {
+            "finding-uuid": "finding-idp-legacy-fallback",
+            "related-controls": [
+              {
+                "control-id": "IA-7"
+              },
+              {
+                "control-id": "AC-16"
+              }
+            ],
+            "severity": "high",
+            "description": "Fallback on authentication failure enables weak assurance paths.",
+            "remediation": {
+              "description": "Restrict legacy LDAP fallback to account-not-found scenarios only; treat authentication failure against ad.utoronto.ca as terminal."
+            }
+          }
+        ],
+
+        "risks": [
+          {
+            "uuid": "risk-idp-assurance-degradation",
+            "title": "Identity Assurance Degradation",
+            "description": "Federated authentication assurance may be inconsistent due to permissive fallback behavior.",
+            "statement": "Until remediation is implemented, Shibboleth authentication may rely on legacy controls following failure of the authoritative directory.",
+            "status": "accepted",
+            "origin": {
+              "actors": [
+                {
+                  "type": "organization",
+                  "actor-id": "Central IAM"
+                }
+              ]
+            }
+          }
+        ],
+
+        "poam-items": [
+          {
+            "uuid": "poam-idp-legacy-fallback",
+            "title": "Restrict Legacy LDAP Fallback",
+            "description": "Modify authentication flow to restrict legacy LDAP usage to account-not-found conditions only.",
+            "related-findings": [
+              "finding-idp-legacy-fallback"
+            ],
+            "severity": "high",
+            "status": "open",
+            "remediation-plan": {
+              "steps": [
+                "Update Shibboleth authentication flow logic",
+                "Test terminal failure behavior",
+                "Validate logs and assurance outcomes"
+              ],
+              "scheduled-completion": "2026-08-01"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

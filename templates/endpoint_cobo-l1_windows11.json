@@ -1,0 +1,209 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:implementation:endpoint:cobo-l1:windows11",
+
+    "metadata": {
+      "title": "COBO L1 - Windows 11 Deployment & Hardening Profile",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T19:10:00Z",
+
+      "props": [
+        {
+          "name": "implements-sspp",
+          "value": "urn:utoronto:sspp:endpoint:cobo-l1",
+          "remarks": "This component implements the COBO L1 Managed Endpoint SSPP for Windows 11."
+        },
+        {
+          "name": "implements-composite-pattern",
+          "value": "urn:utoronto:security:pattern:secure-endpoint"
+        },
+        {
+          "name": "operating-system",
+          "value": "windows-11-enterprise"
+        },
+        {
+          "name": "benchmark",
+          "value": "CIS Microsoft Windows 11 Benchmark"
+        },
+        {
+          "name": "benchmark-scope",
+          "value": "cis-level-1-plus-selective-level-2"
+        }
+      ],
+
+      "remarks": "This component defines the authoritative Windows 11 deployment, configuration, and hardening implementation for COBO L1 managed endpoints. It aligns the COBO L1 SSPP to the CIS Windows 11 Benchmark while documenting required controls, deviations, and enforcement expectations."
+    },
+
+    "components": [
+
+      {
+        "uuid": "component-w11-account-security",
+        "type": "implementation",
+        "title": "Account and Authentication Security",
+        "description": "Account, authentication, and credential protection controls for Windows 11 endpoints.",
+
+        "props": [
+          {
+            "name": "cis-sections",
+            "value": "1,2"
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:cis:benchmark:windows11",
+            "implemented-requirements": [
+              {
+                "control-id": "1.1",
+                "remarks": "Password length, history, and complexity enforced per institutional policy."
+              },
+              {
+                "control-id": "2.3",
+                "remarks": "Guest and unused local accounts disabled."
+              }
+            ]
+          },
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-2",
+                "remarks": "Strong authentication enforced through centralized identity and device policy."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "component-w11-privilege-management",
+        "type": "implementation",
+        "title": "Privilege and Role Enforcement",
+        "description": "Restriction of administrative privileges on COBO L1 endpoints.",
+
+        "props": [
+          {
+            "name": "cis-sections",
+            "value": "2,5"
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:cis:benchmark:windows11",
+            "implemented-requirements": [
+              {
+                "control-id": "2.2.1",
+                "remarks": "No standing local administrator rights for standard users."
+              }
+            ]
+          },
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-6",
+                "remarks": "Least privilege enforced on endpoint operating system."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "component-w11-malware-threat-protection",
+        "type": "implementation",
+        "title": "Malware and Threat Protection",
+        "description": "Runtime malware detection, behavioral analysis, and containment.",
+
+        "props": [
+          {
+            "name": "cis-sections",
+            "value": "9,18"
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:cis:benchmark:windows11",
+            "implemented-requirements": [
+              {
+                "control-id": "9.1",
+                "remarks": "Microsoft Defender real-time protection enabled."
+              },
+              {
+                "control-id": "18.8",
+                "remarks": "Baseline Attack Surface Reduction rules enforced."
+              }
+            ]
+          },
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-3",
+                "remarks": "Malicious code protection mechanisms deployed."
+              },
+              {
+                "control-id": "IR-4",
+                "remarks": "Local containment actions supported for endpoint threats."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "component-w11-logging-audit",
+        "type": "implementation",
+        "title": "Logging and Audit",
+        "description": "Endpoint logging, auditing, and telemetry forwarding.",
+
+        "props": [
+          {
+            "name": "cis-sections",
+            "value": "17"
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:cis:benchmark:windows11",
+            "implemented-requirements": [
+              {
+                "control-id": "17.1",
+                "remarks": "Security audit policies enabled per institutional baseline."
+              }
+            ]
+          },
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Endpoint audit events generated and forwarded centrally."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "component-w11-deviations",
+        "type": "implementation",
+        "title": "Documented CIS Deviations",
+        "description": "Explicitly approved deviations from CIS recommendations.",
+
+        "props": [
+          {
+            "name": "cis-level-1-policy",
+            "value": "reviewed-case-by-case"
+          }
+        ],
+
+        "remarks": "CIS Level 1 controls are adopted selectively. Any excluded control MUST be documented with rationale, mitigation, and approval."
+      }
+    ]
+  }
+}

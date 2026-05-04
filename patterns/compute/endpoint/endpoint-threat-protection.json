@@ -1,0 +1,170 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+
+    "metadata": {
+      "title": "Endpoint Threat Protection",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T16:55:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC260",
+          "remarks": "Business capability enabling endpoints to detect, prevent, and contain active malicious activity."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD020",
+          "remarks": "Endpoint and user-operated compute technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP064",
+          "remarks": "Endpoint threat detection, malware protection, and local containment platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP094",
+          "remarks": "Runtime endpoint threat detection and containment with local enforcement."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE424",
+          "remarks": "Malware detections, behavioral alerts, threat telemetry, and containment actions."
+        }
+      ],
+
+      "remarks": "Endpoint Threat Protection defines the capability for endpoints to defend themselves against active threats through runtime detection, prevention, and local containment. This pattern addresses malicious activity that evades preventive configuration controls and health baselines.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to endpoint threat detection and response. Controls are scoped to detection and local enforcement and exclude configuration management, posture evaluation, and centralized incident response."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:malware-detection",
+        "type": "capability",
+        "title": "Malware Detection",
+        "description": "Detection and prevention of known malicious software on endpoints.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1204",
+            "remarks": "Execution of malicious files through user interaction."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:MalwarePrevention",
+            "remarks": "Identification and blocking of known malware."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-3",
+                "remarks": "Employ malicious code protection mechanisms."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:behavioral-protection",
+        "type": "capability",
+        "title": "Behavioral Protection",
+        "description": "Detection of malicious activity based on anomalous or unsafe behavior.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1059",
+            "remarks": "Abuse of command and scripting interpreters."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1055",
+            "remarks": "Process injection to execute malicious code."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:BehavioralAnalysis",
+            "remarks": "Detection of malicious activity through behavioral monitoring."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-4",
+                "remarks": "Monitor endpoint activity to detect malicious behavior."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:local-containment",
+        "type": "capability",
+        "title": "Local Containment Actions",
+        "description": "Autonomous containment of threats to prevent spread or further compromise.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1021",
+            "remarks": "Lateral movement from compromised endpoints."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:IsolateSystem",
+            "remarks": "Local endpoint isolation to contain active threats."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IR-4",
+                "remarks": "Contain and mitigate incidents at the endpoint level."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

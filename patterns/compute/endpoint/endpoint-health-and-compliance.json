@@ -1,0 +1,203 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+
+    "metadata": {
+      "title": "Endpoint Health and Compliance",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T15:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC260",
+          "remarks": "Business capability that evaluates whether endpoints continue to meet required security, configuration, and software posture expectations."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD020",
+          "remarks": "Endpoint and user-operated compute technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP063",
+          "remarks": "Endpoint health, compliance, and posture assessment platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP093",
+          "remarks": "Continuous endpoint posture evaluation with health and compliance signaling."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE423",
+          "remarks": "Endpoint health status, software inventory, and compliance assessment results."
+        }
+      ],
+
+      "remarks": "Endpoint Health and Compliance defines the capability to continuously evaluate endpoint state against required security, configuration, and software posture expectations. Health reflects current conditions and is used as an input to access control, policy enforcement, and risk decisions. This pattern evaluates trust and posture but does not enforce configuration, remediate issues, or respond to threats.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to endpoint posture evaluation and signaling. Enforcement and response capabilities are intentionally excluded to preserve clear architectural boundaries."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:health-monitoring",
+        "type": "capability",
+        "title": "Health Monitoring",
+        "description": "Collection and evaluation of runtime endpoint health indicators.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1082",
+            "remarks": "System information discovery used to identify vulnerable or degraded endpoint states."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ConfigurationMonitoring",
+            "remarks": "Ongoing evaluation of endpoint runtime state and security posture."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-4",
+                "remarks": "Monitor endpoint state to identify degraded or unsafe conditions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:software-state-compliance",
+        "type": "capability",
+        "title": "Software State Compliance",
+        "description": "Evaluation of installed software and versions against approved application and patch baselines.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1518",
+            "remarks": "Discovery of installed software and versions to identify exploitable conditions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:SoftwareInventory",
+            "remarks": "Maintenance and evaluation of authoritative software inventory."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CA-7",
+                "remarks": "Perform ongoing assessment of endpoint software compliance."
+              },
+              {
+                "control-id": "CM-8",
+                "remarks": "Maintain accurate inventory of installed endpoint software."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:drift-detection",
+        "type": "capability",
+        "title": "Drift Detection",
+        "description": "Detection of deviation from approved configuration and software baselines.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1622",
+            "remarks": "Modification of system configurations to evade security controls or policy."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ConfigurationDriftDetection",
+            "remarks": "Identification of unapproved changes relative to baseline state."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-3",
+                "remarks": "Detect configuration and software changes that cause drift."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:health-and-compliance-signaling",
+        "type": "capability",
+        "title": "Health and Compliance Signaling",
+        "description": "Secure propagation of endpoint health and compliance assessment results to relying systems.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1552",
+            "remarks": "Credential or token access through interception or tampering with posture signals."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:SecureChannel",
+            "remarks": "Integrity-protected and authenticated signaling of endpoint posture."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-7",
+                "remarks": "Protect the transmission of endpoint health and compliance assertions."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:endpoint-identity-and-posture",
+
+    "metadata": {
+      "title": "Endpoint Identity and Posture",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T15:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC260",
+          "remarks": "Business capability providing endpoint identity and posture signals used to inform access and policy decisions."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD020",
+          "remarks": "Endpoint and user-operated compute technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP061",
+          "remarks": "Endpoint identity, posture assessment, and device trust signaling platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP091",
+          "remarks": "Strong device identity with continuously evaluated posture signals."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE421",
+          "remarks": "Endpoint identity attributes, posture measurements, and trust signals."
+        }
+      ],
+
+      "remarks": "Endpoint Identity and Posture defines the capability to uniquely identify endpoints and to evaluate trust signals describing their security‑relevant characteristics. Posture is treated as an input to identity‑, network‑, and policy‑based decisions and does not by itself guarantee trust.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to endpoint identity establishment, posture evaluation, and trust signaling. Enforcement and remediation are intentionally excluded to preserve clean architectural boundaries."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:endpoint-identity",
+        "type": "capability",
+        "title": "Endpoint Identity",
+        "description": "Unique and verifiable identification of endpoint devices.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of trusted endpoint identities to gain unauthorized access."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:DeviceIdentityVerification",
+            "remarks": "Verification of endpoint identity prior to trust decisions."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-4",
+                "remarks": "Assign and manage unique identifiers for endpoint devices."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:hardware-and-os-characteristics",
+        "type": "capability",
+        "title": "Hardware and OS Characteristics",
+        "description": "Collection of endpoint hardware and operating system attributes relevant to trust decisions.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1082",
+            "remarks": "System information discovery to tailor attacks to endpoint characteristics."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AssetInventory",
+            "remarks": "Authoritative inventory of endpoint hardware and operating system attributes."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-8",
+                "remarks": "Maintain accurate inventory information for endpoint hardware and operating systems."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:posture-signals",
+        "type": "capability",
+        "title": "Posture Signals",
+        "description": "Evaluation of security‑relevant endpoint posture signals used to inform decisions.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1562",
+            "remarks": "Impairment or falsification of endpoint posture signals."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PostureAssessment",
+            "remarks": "Collection and evaluation of endpoint posture indicators."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-4",
+                "remarks": "Collect and evaluate endpoint security posture signals."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:trust-signaling",
+        "type": "capability",
+        "title": "Trust Signaling",
+        "description": "Secure presentation of endpoint identity and posture information to relying policy engines.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1552",
+            "remarks": "Credential or signal interception or tampering affecting trust decisions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:SecureChannel",
+            "remarks": "Integrity‑protected and authenticated trust signal transport."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-7",
+                "remarks": "Use protected mechanisms to convey endpoint trust and posture assertions."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
