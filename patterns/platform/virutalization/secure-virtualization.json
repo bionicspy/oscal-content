@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Secure Virtualization",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-06T03:55:00Z",
+      "last-modified": "2026-05-06T11:05:00Z",
 
       "props": [
         {
@@ -14,43 +14,29 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC313",
-          "remarks": "Business capability for operating virtualized compute environments in a manner that preserves isolation, integrity, and platform trust."
+          "remarks": "Business capability for operating virtualized compute environments in a manner that preserves isolation, integrity, lifecycle safety, and platform trust."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD122",
-          "remarks": "Virtualized compute platforms, hypervisors, and shared host execution environments."
+          "remarks": "Virtualized compute platforms, hypervisors, virtual machine lifecycles, and virtualization management control planes."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "composite-pattern",
           "value": "urn:utoronto:cae2:arm:AP242",
-          "remarks": "Composite pattern asserting that physical host trust, virtualization isolation, and hypervisor integrity requirements are collectively satisfied."
+          "remarks": "Composite pattern asserting that host trust, virtualization isolation, hypervisor integrity, VM lifecycle security, and management-plane trust requirements are collectively satisfied."
         },
 
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "bare-metal-core",
-          "remarks": "Secure virtualization assumes a trusted physical compute substrate."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "virtualization-core",
-          "remarks": "Secure virtualization builds on baseline virtualization isolation guarantees."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "hypervisor-trust",
-          "remarks": "Secure virtualization requires explicit trust in the hypervisor enforcing isolation."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-125",
+          "class": "guidance-reference",
+          "value": "2–5",
+          "remarks": "Aggregate alignment with NIST SP 800-125 covering hypervisor trust, guest isolation, VM lifecycle artifacts, and virtualization management risks."
         },
 
         {
@@ -58,28 +44,36 @@
           "ns": "urn:mitre:attack",
           "class": "tactic",
           "value": "TA0004",
-          "remarks": "Privilege escalation that compromises virtualization or hypervisor boundaries."
+          "remarks": "Privilege escalation compromising virtualization or hypervisor boundaries."
         },
         {
           "name": "attack-tactic",
           "ns": "urn:mitre:attack",
           "class": "tactic",
           "value": "TA0008",
-          "remarks": "Lateral movement across co-resident virtual machines."
+          "remarks": "Lateral movement across co-resident virtual machines and intra-host networks."
         },
         {
           "name": "attack-tactic",
           "ns": "urn:mitre:attack",
           "class": "tactic",
           "value": "TA0040",
-          "remarks": "Platform-wide impact resulting from virtualization or hypervisor compromise."
+          "remarks": "Platform-wide impact resulting from virtualization, lifecycle, or management-plane compromise."
         },
+
         {
           "name": "attack-technique",
           "ns": "urn:mitre:attack",
           "class": "technique",
           "value": "T1068",
-          "remarks": "Privilege escalation exploiting virtualization or hypervisor vulnerabilities."
+          "remarks": "Privilege escalation via shared hypervisor or virtualization control surfaces."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1195",
+          "remarks": "Supply chain compromise of VM images or virtualization artifacts."
         },
 
         {
@@ -87,7 +81,7 @@
           "ns": "urn:mitre:d3fend",
           "class": "technique",
           "value": "D3FEND-0001",
-          "remarks": "Execution isolation across virtual machines."
+          "remarks": "Execution isolation across virtual machines and virtualization layers."
         },
         {
           "name": "defense-technique",
@@ -101,11 +95,11 @@
           "ns": "urn:mitre:d3fend",
           "class": "technique",
           "value": "D3FEND-0036",
-          "remarks": "Reduction of attack surface exposed by virtualization control planes."
+          "remarks": "Reduction of attack surface across virtualization management and control planes."
         }
       ],
 
-      "remarks": "Secure Virtualization is a composite trust pattern asserting that physical host integrity, virtualization isolation, and hypervisor trust requirements are collectively satisfied. It introduces no independent controls and exists solely as an aggregate trust claim for threat modeling, solution patterns, and system security and privacy plans."
+      "remarks": "Secure Virtualization is a composite trust pattern asserting that physical host integrity, virtualization isolation, hypervisor trust, VM lifecycle security, and management-plane governance are collectively satisfied. It introduces no independent controls and exists solely as an aggregate trust claim for SSPPs, solution architectures, and threat modeling."
     },
 
     "components": [
@@ -123,6 +117,16 @@
         "uuid": "urn:utoronto:security:pattern-ref:hypervisor-trust",
         "type": "component",
         "title": "Hypervisor Trust"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:virtual-machine-lifecycle-security",
+        "type": "component",
+        "title": "Virtual Machine Lifecycle Security"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:infrastructure-management-plane-trust",
+        "type": "component",
+        "title": "Infrastructure Management Plane Trust"
       }
     ]
   }

@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Virtualization Core",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-06T04:10:00Z",
+      "last-modified": "2026-05-06T10:35:00Z",
 
       "props": [
         {
@@ -21,7 +21,7 @@
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD120",
-          "remarks": "Virtualized compute platforms, hypervisor-managed infrastructure, and shared host execution environments."
+          "remarks": "Virtualized compute platforms, hypervisor-managed infrastructure, intra-host networking, and shared host execution environments."
         },
         {
           "name": "architecture-pattern",
@@ -36,10 +36,17 @@
           "class": "platform-pattern",
           "value": "bare-metal-core",
           "remarks": "Virtualization trust assumes an explicitly trusted physical host substrate."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-125",
+          "class": "guidance-reference",
+          "value": "3, 4",
+          "remarks": "Virtual machine isolation, intra-host communication risks, and hypervisor-mediated networking as described in NIST SP 800-125."
         }
       ],
 
-      "remarks": "Virtualization Core defines the foundational trust properties required to safely operate multiple workloads on a shared physical host using a hypervisor. This pattern makes guest isolation, host–guest boundaries, and virtualization-layer attack surface explicit, without asserting hypervisor-specific control ownership."
+      "remarks": "Virtualization Core defines the foundational trust properties required to safely operate multiple workloads on a shared physical host using a hypervisor. This pattern makes explicit guest isolation, host–guest privilege boundaries, and intra-host network attack surfaces, without asserting hypervisor-specific control ownership."
     },
 
     "components": [
@@ -71,8 +78,14 @@
           {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              { "control-id": "SC-7", "remarks": "Boundary protection between virtualized workloads." },
-              { "control-id": "AC-4", "remarks": "Information flow control between VM execution domains." }
+              {
+                "control-id": "SC-7",
+                "remarks": "Boundary protection between virtualized workloads."
+              },
+              {
+                "control-id": "AC-4",
+                "remarks": "Information flow control between VM execution domains."
+              }
             ]
           }
         ]
@@ -105,8 +118,14 @@
           {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              { "control-id": "SI-7", "remarks": "Integrity protection of host and hypervisor execution state." },
-              { "control-id": "CM-7", "remarks": "Least functionality exposed from host to guest workloads." }
+              {
+                "control-id": "SI-7",
+                "remarks": "Integrity protection of host and hypervisor execution state."
+              },
+              {
+                "control-id": "CM-7",
+                "remarks": "Least functionality exposed from host to guest workloads."
+              }
             ]
           }
         ]
@@ -139,8 +158,54 @@
           {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              { "control-id": "SC-7", "remarks": "Containment of east–west traffic within virtualized hosts." },
-              { "control-id": "RA-5", "remarks": "Identification of exploitable lateral movement paths." }
+              {
+                "control-id": "SC-7",
+                "remarks": "Containment of east–west traffic within virtualized hosts."
+              },
+              {
+                "control-id": "RA-5",
+                "remarks": "Identification of exploitable lateral movement paths."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:intra-host-vm-network-isolation",
+        "type": "capability",
+        "title": "Intra‑Host VM Network Isolation",
+        "description": "Isolation and control of network traffic exchanged between virtual machines on the same physical host.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1040",
+            "remarks": "Eavesdropping or manipulation of VM-to-VM traffic via shared virtual switches or host networking."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkSegmentation",
+            "remarks": "Hypervisor-mediated segregation of VM network paths within a single host."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-7",
+                "remarks": "Boundary protection for intra-host VM network traffic."
+              },
+              {
+                "control-id": "AC-4",
+                "remarks": "Information flow control between VMs communicating on the same host."
+              }
             ]
           }
         ]

@@ -1,0 +1,231 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:virtual-machine-lifecycle-security",
+
+    "metadata": {
+      "title": "Virtual Machine Lifecycle Security",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T10:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC331",
+          "remarks": "Business capability for governing the security of virtual machines throughout image creation, provisioning, execution, migration, snapshotting, and decommissioning."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD141",
+          "remarks": "Virtual machine images, snapshots, cloning mechanisms, live migration channels, and VM decommissioning processes."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP271",
+          "remarks": "Pattern for securing virtual machine lifecycle artifacts and state transitions that extend beyond runtime execution."
+        },
+
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "hypervisor-trust",
+          "remarks": "VM lifecycle security assumes a trusted hypervisor enforcing guest execution boundaries."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "virtualization-core",
+          "remarks": "VM lifecycle security builds on baseline virtual machine isolation guarantees."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "infrastructure-management-plane-trust",
+          "remarks": "VM lifecycle actions are mediated through privileged virtualization management control planes."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-125",
+          "class": "guidance-reference",
+          "value": "3, 4, 5",
+          "remarks": "Virtual machine images, snapshots, migration, and lifecycle risks as described in NIST SP 800-125."
+        }
+      ],
+
+      "remarks": "Virtual Machine Lifecycle Security defines trust properties for VM artifacts and transitions that persist beyond runtime. This pattern recognizes that VM images, snapshots, and migration events may preserve sensitive memory and configuration state, and therefore must be governed as security-relevant objects."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:vm-image-and-template-security",
+        "type": "capability",
+        "title": "VM Image and Template Security",
+        "description": "Protection and governance of virtual machine images and templates used to instantiate workloads.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1195",
+            "remarks": "Supply chain compromise or tampering with VM images and templates."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "SupplyChainIntegrity",
+            "remarks": "Verification and control of VM image provenance and integrity."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-5",
+                "remarks": "Restricted modification of virtual machine images and templates."
+              },
+              {
+                "control-id": "SI-7",
+                "remarks": "Integrity protection for VM image artifacts."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:vm-snapshot-and-suspension-governance",
+        "type": "capability",
+        "title": "VM Snapshot and Suspension Governance",
+        "description": "Controls governing snapshotting, suspension, and restoration of virtual machine state.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1005",
+            "remarks": "Collection of sensitive memory or disk state preserved in VM snapshots."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "StateSanitization",
+            "remarks": "Governance and sanitization of VM snapshots containing sensitive execution state."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "MP-7",
+                "remarks": "Sanitization of virtual machine storage and memory artifacts."
+              },
+              {
+                "control-id": "AC-3",
+                "remarks": "Authorized control of snapshot creation and restoration."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:vm-migration-security",
+        "type": "capability",
+        "title": "VM Migration Security",
+        "description": "Protection of confidentiality and integrity during live or offline virtual machine migration.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1040",
+            "remarks": "Interception or observation of memory and state during VM migration."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "SecureChannel",
+            "remarks": "Protection of migration channels and validation of migration endpoints."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-12",
+                "remarks": "Cryptographic protection of VM migration channels."
+              },
+              {
+                "control-id": "IA-7",
+                "remarks": "Trust establishment between migration source and destination."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:vm-decommissioning-and-residual-state",
+        "type": "capability",
+        "title": "VM Decommissioning and Residual State Mitigation",
+        "description": "Ensures proper cleanup of VM artifacts and execution state after deprovisioning.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1005",
+            "remarks": "Collection of residual data from decommissioned or reallocated VM resources."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "DataLifecycleManagement",
+            "remarks": "Controlled destruction and sanitization of VM disk and memory resources."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-9",
+                "remarks": "Protection of backup and decommissioned VM artifacts."
+              },
+              {
+                "control-id": "SI-12",
+                "remarks": "Information management and destruction controls for retired VM resources."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

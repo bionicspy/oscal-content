@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Hypervisor Trust",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-06T03:10:00Z",
+      "last-modified": "2026-05-06T10:50:00Z",
 
       "props": [
         {
@@ -21,32 +21,39 @@
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD121",
-          "remarks": "Hypervisors, virtual machine monitors, and privileged virtualization control planes."
+          "remarks": "Hypervisors, virtual machine monitors, privileged virtualization control planes, and intra-host execution boundaries."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP241",
-          "remarks": "Protects the integrity and trustworthiness of hypervisors and their management interfaces."
+          "remarks": "Protects the integrity and trustworthiness of hypervisors and their privileged management interfaces."
         },
         {
           "name": "depends-on",
           "ns": "urn:utoronto:cae2:dependency",
           "class": "platform-pattern",
           "value": "bare-metal-core",
-          "remarks": "Hypervisor trust assumes a trusted physical host, firmware, and boot foundation."
+          "remarks": "Hypervisor trust assumes a trusted physical host, firmware, and secure boot foundation."
         },
         {
           "name": "depends-on",
           "ns": "urn:utoronto:cae2:dependency",
           "class": "platform-pattern",
           "value": "virtualization-core",
-          "remarks": "Hypervisor trust refines and strengthens baseline virtualization assumptions."
+          "remarks": "Hypervisor trust builds upon baseline virtual machine isolation and intra-host trust assumptions."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-125",
+          "class": "guidance-reference",
+          "value": "2, 3",
+          "remarks": "Hypervisor integrity, privileged access risk, and virtualization trust boundary considerations as described in NIST SP 800-125."
         }
       ],
 
-      "remarks": "Hypervisor Trust defines the trust properties required to ensure the hypervisor enforcing virtualization boundaries remains secure, isolated, and resistant to compromise. Because hypervisor failure compromises all hosted workloads, this pattern focuses on integrity, privileged access control, and blast‑radius containment, without addressing guest operating systems."
+      "remarks": "Hypervisor Trust defines the trust properties required to ensure the hypervisor enforcing virtualization boundaries remains secure, isolated, and resistant to compromise. Because hypervisor failure compromises all hosted workloads, this pattern focuses on integrity, privileged access control, and blast-radius containment, consistent with NIST SP 800-125 guidance."
     },
 
     "components": [
@@ -78,8 +85,14 @@
           {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              { "control-id": "SI-7", "remarks": "Integrity protection for hypervisor code and configuration." },
-              { "control-id": "CM-5", "remarks": "Restricted changes to hypervisor configuration." }
+              {
+                "control-id": "SI-7",
+                "remarks": "Integrity protection for hypervisor code and configuration."
+              },
+              {
+                "control-id": "CM-5",
+                "remarks": "Restricted changes to hypervisor configuration."
+              }
             ]
           }
         ]
@@ -112,8 +125,14 @@
           {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              { "control-id": "AC-6", "remarks": "Least privilege for hypervisor administration." },
-              { "control-id": "IA-2", "remarks": "Strong authentication for privileged hypervisor access." }
+              {
+                "control-id": "AC-6",
+                "remarks": "Least privilege for hypervisor administration."
+              },
+              {
+                "control-id": "IA-2",
+                "remarks": "Strong authentication for privileged hypervisor access."
+              }
             ]
           }
         ]
@@ -146,8 +165,14 @@
           {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              { "control-id": "SC-7", "remarks": "Boundary protection limiting the impact of hypervisor compromise." },
-              { "control-id": "CP-10", "remarks": "Recovery and availability controls to limit platform-wide impact." }
+              {
+                "control-id": "SC-7",
+                "remarks": "Boundary protection limiting the impact of hypervisor compromise."
+              },
+              {
+                "control-id": "CP-10",
+                "remarks": "Recovery and availability controls to limit platform-wide impact."
+              }
             ]
           }
         ]
