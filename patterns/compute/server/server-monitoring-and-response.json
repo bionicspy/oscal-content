@@ -1,0 +1,203 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:server-monitoring-and-response",
+
+    "metadata": {
+      "title": "Server Monitoring and Response",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T22:55:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC260",
+          "remarks": "Business capability providing visibility, detection, and coordinated response for servers and workloads."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD010",
+          "remarks": "Security monitoring, analytics, and incident response technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP071",
+          "remarks": "Log aggregation, telemetry pipelines, SIEM, and incident response coordination platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP105",
+          "remarks": "Centralized server telemetry with correlated detection and coordinated incident response."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE435",
+          "remarks": "Server logs, security telemetry, alerts, incident records, and response artifacts."
+        }
+      ],
+
+      "remarks": "Server Monitoring and Response defines the capability to observe server and workload behavior, detect indicators of compromise or misuse, and coordinate response actions across the enterprise. This pattern provides centralized visibility and response enablement and is intentionally distinct from runtime enforcement or host-level threat prevention.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to server observability, detection, and response coordination. Controls are scoped to visibility, analysis, and coordination only."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:telemetry-collection",
+        "type": "capability",
+        "title": "Telemetry Collection",
+        "description": "Collection and aggregation of logs and security-relevant telemetry from servers and workloads.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1071",
+            "remarks": "Use of application-layer protocols for command and control traffic from compromised servers."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:TelemetryCollection",
+            "remarks": "Centralized collection and retention of security-relevant server telemetry."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-12",
+                "remarks": "Collect server audit records and security telemetry in a centralized manner."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:detection-and-correlation",
+        "type": "capability",
+        "title": "Detection and Correlation",
+        "description": "Analysis and correlation of server telemetry to detect malicious or abnormal activity.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1059",
+            "remarks": "Execution of malicious commands or scripts within server workloads."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AnomalyDetection",
+            "remarks": "Correlation and behavioral analysis to identify abnormal or malicious server activity."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-4",
+                "remarks": "Analyze server activity to identify indicators of compromise or misuse."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Review and analyze server audit logs for security-relevant events."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:incident-response-coordination",
+        "type": "capability",
+        "title": "Incident Response Coordination",
+        "description": "Coordination of response activities across operational, security, and recovery teams.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1565",
+            "remarks": "Manipulation or disruption of incident data to delay or evade response."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:IncidentResponseCoordination",
+            "remarks": "Coordinated execution and tracking of response actions across teams."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IR-4",
+                "remarks": "Coordinate server incident response activities using defined procedures."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:evidence-and-forensics",
+        "type": "capability",
+        "title": "Evidence and Forensics",
+        "description": "Preservation and analysis of server data to support investigation and lessons learned.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1070",
+            "remarks": "Deletion or manipulation of logs to evade detection or investigation."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:IncidentInvestigation",
+            "remarks": "Preservation and analysis of forensic evidence for accountability and recovery."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IR-6",
+                "remarks": "Collect, preserve, and analyze evidence related to server incidents."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

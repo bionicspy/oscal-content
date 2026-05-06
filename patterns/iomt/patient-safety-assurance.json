@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Patient Safety Assurance",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T13:00:00Z",
+      "last-modified": "2026-05-05T01:30:00Z",
 
       "props": [
         {
@@ -14,14 +14,14 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC380",
-          "remarks": "Business capability for ensuring cybersecurity controls actively preserve patient safety in clinical environments."
+          "remarks": "Business capability ensuring cybersecurity controls actively preserve patient safety in clinical environments."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD100",
-          "remarks": "Clinical safety systems, medical device safety validation, and cyber-physical assurance technologies."
+          "remarks": "Clinical safety systems, medical device safety validation, and cyber‑physical assurance technologies."
         },
         {
           "name": "architecture-pattern",
@@ -35,33 +35,38 @@
           "ns": "urn:health:clinical-safety",
           "class": "safety-principle",
           "value": "Cybersecurity as a Safety Control",
-          "remarks": "Cybersecurity mechanisms must reduce, not introduce, risk to patient safety and clinical outcomes."
-        },
-        {
-          "name": "threat-framework",
-          "ns": "urn:mitre:attack",
-          "class": "attack-framework",
-          "value": "ATT&CK",
-          "remarks": "Provides threat context for cyber activity that could directly or indirectly cause patient harm."
-        },
-        {
-          "name": "defense-framework",
-          "ns": "urn:mitre:d3fend",
-          "class": "defense-framework",
-          "value": "D3FEND",
-          "remarks": "Maps defensive intent for preventing unsafe device behavior and supporting fail-safe clinical operation."
+          "remarks": "Cybersecurity mechanisms must reduce—not introduce—risk to patient safety and clinical outcomes."
         }
       ],
 
-      "remarks": "Patient Safety Assurance defines how cybersecurity risks are identified, analyzed, and mitigated as clinical safety hazards. This pattern ensures that medical device security controls are evaluated through the lens of patient harm prevention and safe clinical operation."
+      "remarks": "Patient Safety Assurance defines how cybersecurity risks are identified, analyzed, and mitigated as clinical safety hazards. This pattern ensures that security controls are evaluated through the lens of patient harm prevention, safe degradation, and continuity of care. It establishes governance expectations and safety validation requirements rather than specific technical controls."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:safety-hazard-identification",
         "type": "capability",
         "title": "Safety Hazard Identification",
-        "description": "Identification of cybersecurity-induced hazards that may impact patient safety.",
+        "description": "Identification of cybersecurity‑induced hazards that may impact patient safety.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1565",
+            "remarks": "Manipulation or corruption of data or device behavior leading to unsafe clinical outcomes."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:SafetyHazardAnalysis",
+            "remarks": "Systematic identification of cybersecurity risks as potential patient safety hazards."
+          }
+        ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:clinical-hazard-analysis",
@@ -76,11 +81,30 @@
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:fail-safe-and-safe-state-controls",
         "type": "capability",
-        "title": "Fail-Safe and Safe-State Controls",
-        "description": "Design and validation of safe degradation or fail-safe behavior during fault or attack conditions.",
+        "title": "Fail‑Safe and Safe‑State Controls",
+        "description": "Design and validation of safe degradation or fail‑safe behavior during fault or attack conditions.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1499",
+            "remarks": "Disruption or denial of safe operation through induced fault or unsafe state."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:FailSafeDesign",
+            "remarks": "Engineering controls ensuring systems transition to safe states under abnormal conditions."
+          }
+        ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:clinical-fail-safe-controls",
@@ -89,17 +113,36 @@
               {
                 "uuid": "urn:utoronto:security:ir:md-fail-safe",
                 "control-id": "MD-FAIL-SAFE",
-                "remarks": "Medical devices transition to defined safe states during abnormal or unsafe conditions."
+                "remarks": "Medical devices transition to defined safe states during abnormal, unsafe, or cyber‑induced conditions."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:safety-validation-and-testing",
         "type": "capability",
         "title": "Safety Validation and Testing",
         "description": "Validation and testing to ensure cybersecurity controls do not negatively impact patient safety.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Unauthorized modification or activation of controls that bypass safety validation."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:SafetyTesting",
+            "remarks": "Formal testing and validation to confirm cybersecurity controls preserve clinical safety."
+          }
+        ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:clinical-safety-validation",
@@ -108,7 +151,7 @@
               {
                 "uuid": "urn:utoronto:security:ir:md-safety-validation",
                 "control-id": "MD-SAFETY-VALIDATION",
-                "remarks": "Cybersecurity controls are validated and tested to confirm clinical safety is preserved."
+                "remarks": "Cybersecurity controls are validated and tested to confirm patient safety and clinical outcomes are preserved."
               }
             ]
           }

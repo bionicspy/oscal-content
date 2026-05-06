@@ -1,11 +1,12 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:device-lifecycle-and-recall",
+
     "metadata": {
       "title": "Medical Device Lifecycle and Recall",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T13:30:00Z",
+      "last-modified": "2026-05-05T00:45:00Z",
 
       "props": [
         {
@@ -13,14 +14,14 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC380",
-          "remarks": "Business capability for safely managing medical devices across installation, updates, recall, and end-of-life."
+          "remarks": "Business capability for safely managing medical devices across installation, update, recall, and end-of-life."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD100",
-          "remarks": "Technology domain encompassing medical devices, clinical maintenance systems, and recall coordination processes."
+          "remarks": "Medical devices, clinical maintenance systems, and recall coordination processes."
         },
         {
           "name": "architecture-pattern",
@@ -35,32 +36,37 @@
           "class": "safety-principle",
           "value": "Lifecycle Safety Preservation",
           "remarks": "Changes to medical devices across their lifecycle must not introduce new patient safety risks."
-        },
-        {
-          "name": "threat-framework",
-          "ns": "urn:mitre:attack",
-          "class": "attack-framework",
-          "value": "ATT&CK",
-          "remarks": "Threat context for lifecycle abuse, unpatched vulnerabilities, and unsafe device persistence in clinical environments."
-        },
-        {
-          "name": "defense-framework",
-          "ns": "urn:mitre:d3fend",
-          "class": "defense-framework",
-          "value": "D3FEND",
-          "remarks": "Defensive intent focused on controlled updates, managed retirement, and exposure reduction of medical devices."
         }
       ],
 
-      "remarks": "Device Lifecycle and Recall defines how medical devices are commissioned, updated, remediated, recalled, and decommissioned in a manner that preserves patient safety, regulatory compliance, and continuity of clinical care."
+      "remarks": "Device Lifecycle and Recall defines how medical devices are commissioned, updated, remediated, recalled, and decommissioned in a manner that preserves patient safety, regulatory compliance, and continuity of clinical care. This pattern treats lifecycle governance as a patient safety control rather than a purely operational or IT concern."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:validated-device-provisioning",
         "type": "capability",
         "title": "Validated Device Provisioning",
         "description": "Controlled installation and commissioning of medical devices into clinical environments.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1601",
+            "remarks": "Insertion of compromised, counterfeit, or improperly configured devices into clinical environments."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AssetProvisioning",
+            "remarks": "Validated commissioning procedures ensuring devices enter service in a known-safe state."
+          }
+        ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:medical-device-provisioning",
@@ -75,11 +81,30 @@
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:controlled-update-and-patching",
         "type": "capability",
         "title": "Controlled Update and Patching",
         "description": "Safety-aware management of software, firmware, and configuration updates for medical devices.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1562",
+            "remarks": "Suppression or manipulation of updates that leaves devices in a vulnerable or unsafe operational state."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PatchManagement",
+            "remarks": "Controlled, safety-reviewed updates that reduce risk without disrupting patient care."
+          }
+        ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:medical-device-update",
@@ -94,11 +119,30 @@
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:recall-and-decommissioning",
         "type": "capability",
         "title": "Recall and Decommissioning",
-        "description": "Coordinated response to medical device recalls and secure device retirement.",
+        "description": "Coordinated response to medical device recalls and secure retirement of unsafe or obsolete devices.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1070",
+            "remarks": "Persistence of unsafe devices through incomplete recall or improper decommissioning."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AssetDecommissioning",
+            "remarks": "Coordinated recall, isolation, and retirement of devices to eliminate patient safety risk."
+          }
+        ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:medical-device-recall",
@@ -107,7 +151,7 @@
               {
                 "uuid": "urn:utoronto:security:ir:md-recall-decommission",
                 "control-id": "MD-RECALL",
-                "remarks": "Medical device recalls and decommissioning activities are executed in a manner that protects patient safety and clinical continuity."
+                "remarks": "Medical device recalls and decommissioning activities are executed to protect patient safety and clinical continuity."
               }
             ]
           }

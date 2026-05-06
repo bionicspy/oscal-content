@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Server Core",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T14:35:00Z",
+      "last-modified": "2026-05-04T21:25:00Z",
 
       "props": [
         {
@@ -14,7 +14,7 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC260",
-          "remarks": "Business capability for Compute and Execution Environments establishing institutional control and accountability for server and workload execution."
+          "remarks": "Business capability establishing institutional control and accountability for server and workload execution."
         },
         {
           "name": "technology-domain",
@@ -43,20 +43,6 @@
           "class": "data-entity",
           "value": "urn:utoronto:cae2:drm:DE430",
           "remarks": "Server and workload identity records, ownership metadata, execution boundaries, and management state."
-        },
-        {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1098",
-          "remarks": "Account manipulation or control of server management mechanisms."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "defensive-technique",
-          "value": "urn:mitre:d3fend:technique:d3f:PlatformManagement",
-          "remarks": "Centralized governance and control of server and workload execution platforms."
         }
       ],
 
@@ -64,17 +50,36 @@
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:server-identity",
         "type": "capability",
         "title": "Server Identity",
         "description": "Establishment of a unique, authoritative identity for servers and workloads.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1098",
+            "remarks": "Manipulation of identities or accounts used to manage servers or workloads."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:IdentityManagement",
+            "remarks": "Authoritative identity assignment and lifecycle management for servers and workloads."
+          }
+        ],
+
         "control-implementations": [
           {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "ia-4",
+                "control-id": "IA-4",
                 "remarks": "Assign and manage identities for servers and workloads."
               }
             ]
@@ -87,12 +92,30 @@
         "type": "capability",
         "title": "Execution Boundaries",
         "description": "Definition of execution boundaries separating servers and workloads from other execution environments and management planes.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1611",
+            "remarks": "Execution of workloads across unauthorized or unintended trust boundaries."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:BoundaryDefense",
+            "remarks": "Explicit definition and enforcement of server execution boundaries."
+          }
+        ],
+
         "control-implementations": [
           {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "sc-7",
+                "control-id": "SC-7",
                 "remarks": "Define and enforce boundaries between server execution environments and other domains."
               }
             ]
@@ -105,17 +128,35 @@
         "type": "capability",
         "title": "Management Authority",
         "description": "Definition of who or what is authorized to manage, modify, or control servers and workloads.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid administrative credentials for server control."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PlatformManagement",
+            "remarks": "Centralized and auditable governance over server management actions."
+          }
+        ],
+
         "control-implementations": [
           {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "cm-5",
-                "remarks": "Restrict and govern changes to servers and workloads through approved management mechanisms."
+                "control-id": "CM-5",
+                "remarks": "Restrict and govern changes through approved management mechanisms."
               },
               {
-                "control-id": "ac-2",
-                "remarks": "Ensure server management access is explicitly authorized and tracked."
+                "control-id": "AC-2",
+                "remarks": "Ensure administrative access is explicitly authorized and tracked."
               }
             ]
           }
@@ -126,14 +167,32 @@
         "uuid": "urn:utoronto:security:capability:baseline-trust-assumptions",
         "type": "capability",
         "title": "Baseline Trust Assumptions",
-        "description": "Minimum trust assumptions that must be satisfied for servers to participate as institutional execution environments.",
+        "description": "Minimum trust assumptions required for servers to participate as institutional execution environments.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1204",
+            "remarks": "Execution of unauthorized or ad-hoc code on servers."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:LeastFunctionality",
+            "remarks": "Restricting servers to approved execution models and minimal functionality."
+          }
+        ],
+
         "control-implementations": [
           {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "cm-7",
-                "remarks": "Allow only essential server functions and prohibit ad-hoc or interactive execution models."
+                "control-id": "CM-7",
+                "remarks": "Allow only essential server functions and prohibit ad-hoc or interactive execution models by default."
               }
             ]
           }
