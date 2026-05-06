@@ -4,40 +4,171 @@
 
     "metadata": {
       "title": "Container Host OS Security",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T05:25:00Z",
 
       "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC324",
+          "remarks": "Business capability for securing operating systems that host container runtimes by minimizing attack surface, maintaining configuration integrity, and aligning lifecycle management with container workloads."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD133",
+          "remarks": "Container host operating systems, minimal OS distributions, kernel configurations, and supporting system services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP264",
+          "remarks": "Pattern for securing the operating system layer that hosts container runtimes, focusing on kernel exposure, configuration stability, and lifecycle hygiene."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "secure-virtualization",
+          "remarks": "Container host OS security assumes a trusted physical or virtualized execution substrate."
+        },
         {
           "name": "nist-guidance",
           "ns": "urn:nist.gov:800-190",
           "class": "guidance-reference",
           "value": "4.4",
-          "remarks": "Host OS considerations for container platforms."
+          "remarks": "Host OS considerations for container platforms, including kernel exposure, OS hardening, and patch alignment."
         }
       ],
 
-      "remarks": "Defines trust properties for operating systems that host container runtimes, focusing on kernel exposure, configuration stability, and lifecycle alignment with container execution."
+      "remarks": "Container Host OS Security defines trust properties required for operating systems that host container runtimes. This pattern makes explicit the risks associated with kernel attack surface, configuration drift, and lifecycle misalignment between host and container workloads, without asserting container runtime or orchestration controls."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:container-host-os-hardening",
         "type": "capability",
         "title": "Container Host OS Hardening",
-        "description": "Minimization and hardening of the operating system hosting container runtimes."
+        "description": "Minimization and hardening of the operating system hosting container runtimes.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1068",
+            "remarks": "Privilege escalation via exploitation of unnecessary host OS services or kernel interfaces."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AttackSurfaceReduction",
+            "remarks": "Reduction of host OS services and kernel interfaces exposed to container workloads."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-7",
+                "remarks": "Least functionality enforced on container host operating systems."
+              },
+              {
+                "control-id": "SI-7",
+                "remarks": "Integrity protection for host OS components supporting container execution."
+              }
+            ]
+          }
+        ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:container-host-patching-alignment",
         "type": "capability",
         "title": "Container Host Patching Alignment",
-        "description": "Kernel and OS patching aligned to container runtime and workload risk."
+        "description": "Kernel and OS patching aligned to container runtime behavior and workload risk.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1068",
+            "remarks": "Exploitation of unpatched kernel or OS vulnerabilities affecting all container workloads."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:VulnerabilityRemediation",
+            "remarks": "Timely remediation of kernel and OS vulnerabilities on container hosts."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-2",
+                "remarks": "Flaw remediation applied to container host operating systems."
+              },
+              {
+                "control-id": "RA-5",
+                "remarks": "Vulnerability identification for container host OS components."
+              }
+            ]
+          }
+        ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:container-host-drift-detection",
         "type": "capability",
         "title": "Container Host Configuration Drift Detection",
-        "description": "Detection of unauthorized or unintended host OS configuration change."
+        "description": "Detection of unauthorized or unintended configuration changes on container host operating systems.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1601",
+            "remarks": "Modification of host OS configuration to persist or evade detection in container environments."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ConfigurationMonitoring",
+            "remarks": "Monitoring and detection of configuration drift on container host operating systems."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-3",
+                "remarks": "Configuration change control for container host operating systems."
+              },
+              {
+                "control-id": "CA-7",
+                "remarks": "Continuous monitoring of container host OS configuration state."
+              }
+            ]
+          }
+        ]
       }
     ]
   }
