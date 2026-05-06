@@ -1,0 +1,181 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:platform-time-cryptographic-validity",
+
+    "metadata": {
+      "title": "Platform Time Cryptographic Validity",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T20:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC437",
+          "remarks": "Business capability for interpreting authoritative time in cryptographic contexts to determine validity windows, freshness, revocation timing, and evidentiary sufficiency."
+        },
+
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD412",
+          "remarks": "Cryptographic timestamps, certificate validity periods, token lifetimes, revocation freshness, and long-term validation semantics."
+        },
+
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP357",
+          "remarks": "Defines how cryptographic systems interpret trusted time without defining time sourcing, synchronization, or enforcement mechanisms."
+        },
+
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "secure-time",
+          "remarks": "Cryptographic validity interpretation depends on authoritative, observable, and bounded platform time."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "secure-identity",
+          "remarks": "Token, certificate, and assertion lifetimes depend on secure identity primitives."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "secure-pki",
+          "remarks": "Cryptographic validity semantics depend on PKI key, certificate, and revocation governance."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-102",
+          "class": "guidance-reference",
+          "value": "SP 800-102",
+          "remarks": "Provides guidance for evaluating digital signature timeliness and long-term validity. Referenced here for cryptographic interpretation semantics, not as a platform time control standard."
+        }
+      ],
+
+      "remarks": "Platform Time Cryptographic Validity defines how security services interpret authoritative time to determine cryptographic validity, freshness, and evidentiary sufficiency. It deliberately excludes time sourcing, synchronization, and drift handling, which are governed by Secure Time leaf patterns."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:cryptographic-validity-windows",
+        "type": "capability",
+        "title": "Cryptographic Validity Windows",
+        "description": "Defines acceptable validity intervals for cryptographic artifacts including certificates, tokens, and signed objects.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1558",
+            "remarks": "Reuse of expired, revoked, or not-yet-valid cryptographic artifacts."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "ValidityBoundaryEnforcement",
+            "remarks": "Explicit enforcement of cryptographic validity intervals using trusted time."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-7",
+                "remarks": "Cryptographic validity intervals are enforced using authoritative time."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:revocation-and-freshness-evaluation",
+        "type": "capability",
+        "title": "Revocation and Freshness Evaluation",
+        "description": "Evaluates cryptographic revocation status and freshness (e.g., OCSP, CRLs, token issuance time) using authoritative time.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1557",
+            "remarks": "Adversary-in-the-middle attacks manipulating revocation freshness or replaying stale responses."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "FreshnessValidation",
+            "remarks": "Evaluation of freshness windows for revocation and authentication evidence."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-12",
+                "remarks": "Cryptographic revocation and freshness checks are protected and time-bounded."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:long-term-signature-validity",
+        "type": "capability",
+        "title": "Long-Term Signature Validity",
+        "description": "Supports determination of whether a digital signature was valid at a specific point in time, independent of current cryptographic state.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1649",
+            "remarks": "Exploitation of cryptographic algorithm deprecation or key expiration to invalidate historical evidence."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "CryptographicEvidencePreservation",
+            "remarks": "Preservation of timestamp and validation evidence enabling future verification."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-10",
+                "remarks": "Cryptographic evidence includes verifiable time context supporting non-repudiation."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

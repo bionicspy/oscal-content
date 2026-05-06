@@ -1,0 +1,185 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-time",
+
+    "metadata": {
+      "title": "SSPP – Secure Time Platform",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T21:00:00Z",
+      "remarks": "System Security & Privacy Plan template asserting institutional requirements for authoritative, resilient, and defensible platform time and its correct interpretation by cryptographic consumers."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:profile:institutional-baseline",
+      "remarks": "Imports institutional baseline security and governance requirements applicable to all platform services."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Time Platform",
+      "system-description": "Authoritative platform time service supporting authentication, cryptographic validity, auditing, detection, forensics, and policy enforcement across the institutional environment.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "platform-capability",
+          "value": "secure-time",
+          "remarks": "This system asserts the Secure Time composite trust pattern."
+        },
+        {
+          "name": "time-governance-scope",
+          "value": "platform-wide",
+          "remarks": "Time is provided as a governed platform dependency and consumed by higher-level trust planes."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP asserts Secure Time by composition of platform time patterns. It defines no independent controls; compliance is achieved through satisfaction of referenced patterns.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:secure-time-composite",
+          "type": "component",
+          "title": "Secure Time (Composite Assertion)",
+          "description": "Composite assertion that platform time is authoritative, bounded, observable, resilient, and correctly interpreted for cryptographic validity.",
+          "links": [
+            {
+              "rel": "asserts",
+              "href": "urn:utoronto:security:pattern:secure-time"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:time-core",
+          "type": "component",
+          "title": "Platform Time Core",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-time-core"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:time-sync",
+          "type": "component",
+          "title": "Time Synchronization and Sources",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-time-synchronization-and-sources"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:time-drift",
+          "type": "component",
+          "title": "Time Drift and Correction",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-time-drift-and-correction"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:time-availability",
+          "type": "component",
+          "title": "Time Availability and Resilience",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-time-availability-and-resilience"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:time-observability",
+          "type": "component",
+          "title": "Time Observability and Telemetry",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-time-observability-and-telemetry"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:time-crypto-validity",
+          "type": "component",
+          "title": "Platform Time Cryptographic Validity",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-time-cryptographic-validity"
+            }
+          ]
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-time-policy",
+        "title": "Time Governance Authority",
+        "remarks": "Defines institutional posture for authoritative time, acceptable skew, resilience requirements, and risk tolerance.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-EXL",
+            "remarks": "Executive Cyber Leadership per NIST NICE Framework (SP 800-181)."
+          }
+        ]
+      },
+      {
+        "id": "role-time-architect",
+        "title": "Platform Time Architect",
+        "remarks": "Designs time architecture, dependency relationships, and integration with cryptographic and security services.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC",
+            "remarks": "Security Architect per NIST NICE Framework."
+          }
+        ]
+      },
+      {
+        "id": "role-time-operations",
+        "title": "Platform Time Operations",
+        "remarks": "Operates authoritative time sources, synchronization services, and resilience mechanisms.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA",
+            "remarks": "Systems Administrator per NIST NICE Framework."
+          }
+        ]
+      },
+      {
+        "id": "role-time-monitoring",
+        "title": "Time Monitoring and Assurance",
+        "remarks": "Monitors time drift, synchronization health, anomalies, and supports incident response and forensics.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC",
+            "remarks": "Security Operations Analyst per NIST NICE Framework."
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction is achieved through inherited control implementations in Secure Time constituent patterns. This SSPP introduces no standalone controls or compensating measures."
+    }
+  }
+}

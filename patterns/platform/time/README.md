@@ -4,11 +4,13 @@
 
 Within the Platform trust plane, **Time** is treated as a **foundational infrastructure service** that enables systems to make consistent, correct, and defensible time‑dependent trust decisions.
 
-At this layer, Time is concerned with **correctness, consistency, availability, and predictability**, not time‑based policy, identity semantics, or business logic. Platform Time exists to ensure that when systems rely on time, that time is **authoritative, bounded, observable, and resilient**.
+At this layer, Time is concerned with **correctness, consistency, availability, observability, and predictability**. Platform Time ensures that when systems rely on time, that time is **authoritative, bounded, observable, and resilient**.
+
+Crucially, Platform Time **does not define what time means** for authentication, cryptography, or policy. It exists to ensure that time itself can be trusted as an input to higher‑level security and governance decisions.
 
 Time at the Platform plane answers a single trust question:
 
-> *Can systems within the trusted environment reliably depend on a correct and consistent notion of time, without silent drift, ambiguity, or instability?*
+> *Can systems within the trusted environment reliably depend on a correct, consistent, and defensible notion of time, without silent drift, ambiguity, or instability?*
 
 ---
 
@@ -22,7 +24,7 @@ The purpose of Platform Time is to:
 - Enable observability for time‑related anomalies and investigation  
 - Treat time as a governed platform service, not an implicit OS feature  
 
-Platform Time enables higher‑level trust decisions made by Identity, Data governance, Security Operations, and External Access by ensuring that **time itself is trustworthy**.
+Platform Time enables higher‑level trust decisions made by **Identity**, **Cryptography**, **Security Operations**, **Data governance**, and **External Access** by ensuring that **time itself is trustworthy**.
 
 ---
 
@@ -38,33 +40,35 @@ Platform Time enables higher‑level trust decisions made by Identity, Data gove
 
 #### Out of Scope
 
-- Token expiration semantics and credential validity rules  
-- Certificate lifetime and activation logic  
-- Replay detection and enforcement decisions  
+- Token expiration semantics and credential lifetime policy  
+- Certificate validity interpretation and signature evidence rules  
+- Replay detection and cryptographic freshness enforcement  
 - Data retention clocks and legal hold semantics  
 - Business logic deadlines or application‑specific scheduling  
 
-These concerns are owned by other trust planes:
+These concerns are owned by other layers:
 
-- **Identity & Trust** defines time‑based identity semantics  
-- **Data & Information Protection** governs timestamps, retention, and records  
-- **External Access & Boundary Enforcement** applies time at trust boundaries  
-- **Applications** consume time for business intent  
+- **Secure Identity** – authentication and authorization time semantics  
+- **Secure PKI / Cryptographic Validity** – certificate and signature interpretation  
+- **Data & Information Protection** – records retention and evidentiary timelines  
+- **External Access & Boundary Enforcement** – trust decisions using time  
+- **Applications** – business logic and scheduling  
 
 ---
 
 ## Decomposition
 
-Platform Time is decomposed into discrete components, each representing a specific trust responsibility. Together, these components implement the authoritative Platform Time capability.
+Platform Time is decomposed into discrete components, each representing a specific trust responsibility. Together, these components implement authoritative platform time and its correct use by security‑sensitive consumers.
 
 ```
 platform/
-└── time/
+    └── time/
     ├── time-core
     ├── time-synchronization-and-sources
     ├── time-drift-and-correction
     ├── time-availability-and-resilience
-    └── time-observability-and-telemetry
+    ├── time-observability-and-telemetry
+    ├── time-cryptographic-validity
     └── secure-time (composite)
 ```
 
@@ -82,12 +86,8 @@ To establish Time as intentional, accountable platform infrastructure rather tha
 - Baseline trust assumptions for time correctness  
 - Separation between time mechanics and time semantics or policy  
 
-#### Components  
-- **time-core**  
-  - Establishes foundational trust expectations for Platform Time  
-
 #### Answers the Question  
-“Is time treated as a governed Platform capability with explicit trust assumptions?”
+**“Is time treated as a governed Platform capability with explicit trust assumptions?”**
 
 ---
 
@@ -96,23 +96,23 @@ To establish Time as intentional, accountable platform infrastructure rather tha
 Controls how time is acquired and synchronized within the trusted environment.
 
 #### Purpose  
-To ensure time is derived from authoritative sources and synchronized in a controlled, intentional manner.
+To ensure time is derived from authoritative sources and synchronized in a controlled, defensible manner suitable for security‑sensitive use.
+
+This component establishes **where time comes from** and **why it can be trusted**, including cryptographic defensibility of time sources.  
+**NIST SP 800‑102** is referenced here as *contextual guidance* for the use of authoritative time in cryptographic evidence evaluation.
 
 #### Scope  
 - Authoritative time sources  
-- Time synchronization mechanisms  
+- Time synchronization mechanisms (e.g., NTP, NTS, PTP)  
 - Upstream time dependency control  
 
 #### Components  
 - **authoritative-time-sources**  
-  - Defines trusted time sources  
 - **time-synchronization-mechanisms**  
-  - Controls how systems synchronize time  
-- **time-dependency-control**  
-  - Governs upstream time dependencies  
+- **time-dependency-control**
 
 #### Answers the Question  
-“Where does trusted time come from, and is it synchronized in a controlled way?”
+**“Where does trusted time come from, and is it synchronized in a controlled and defensible way?”**
 
 ---
 
@@ -121,23 +121,15 @@ To ensure time is derived from authoritative sources and synchronized in a contr
 Detects, bounds, and corrects deviations in system time.
 
 #### Purpose  
-To prevent silent time drift from undermining trust and to ensure correction behavior is predictable and safe.
+To prevent silent time drift from undermining trust and to ensure correction behavior is predictable, observable, and safe.
 
 #### Scope  
 - Time drift detection  
-- Acceptable time skew bounds  
-- Correction behavior and stability guarantees  
-
-#### Components  
-- **time-drift-detection**  
-  - Detects clock divergence  
-- **time-skew-bounding**  
-  - Defines acceptable skew limits  
-- **time-correction-behavior**  
-  - Applies controlled time correction  
+- Acceptable skew bounds  
+- Time correction behavior  
 
 #### Answers the Question  
-“Does time remain accurate and correct during normal operation and degradation?”
+**“Does time remain accurate and stable during normal operation and degradation?”**
 
 ---
 
@@ -146,60 +138,66 @@ To prevent silent time drift from undermining trust and to ensure correction beh
 Ensures time services remain available and predictable under failure conditions.
 
 #### Purpose  
-To prevent loss of trusted time from becoming a single point of failure for the platform.
+To prevent loss or disruption of trusted time from becoming a single point of failure.
 
 #### Scope  
-- Redundancy of time sources  
-- Failover behavior for time services  
+- Redundant time sources  
+- Failover behavior  
 - Defined degraded‑mode operation  
 
-#### Components  
-- **time-source-redundancy**  
-  - Ensures multiple authoritative sources exist  
-- **time-service-failover**  
-  - Defines predictable failover behavior  
-- **time-degraded-mode-behavior**  
-  - Bounds acceptable behavior when time degrades  
-
 #### Answers the Question  
-“Does time fail safely and predictably without silently undermining Platform trust?”
+**“Does time fail safely and predictably without silently undermining trust?”**
 
 ---
 
 ### time-observability-and-telemetry
 
-Provides visibility into time behavior to support monitoring and investigation.
+Provides visibility into time behavior to support monitoring, investigation, and forensics.
 
 #### Purpose  
-To enable Security Operations and platform owners to observe, analyze, and investigate time anomalies without embedding enforcement at the Platform layer.
+To ensure time behavior is observable and auditable without embedding enforcement logic at the Platform plane.
 
 #### Scope  
 - Synchronization state telemetry  
 - Drift and skew metrics  
-- Audit and investigation support  
-
-#### Components  
-- **time-synchronization-telemetry**  
-  - Reports synchronization state  
-- **time-drift-telemetry**  
-  - Exposes drift and skew metrics  
-- **time-investigation-support**  
-  - Supports incident and forensic analysis  
+- Investigation and forensic support  
 
 #### Answers the Question  
-“Can time behavior be observed, analyzed, and investigated when trust assumptions are questioned?”
+**“Can time behavior be observed, investigated, and explained when trust assumptions are questioned?”**
+
+---
+
+### time-cryptographic-validity
+
+Defines how authoritative platform time is **interpreted by cryptographic systems**.
+
+#### Purpose  
+To govern cryptographic **validity windows**, **freshness evaluation**, **revocation timing**, and **long‑term signature validity** using trusted time.
+
+This component explicitly addresses the semantic gap between *knowing what time it is* and *knowing what that time means* for cryptographic trust.
+
+**NIST SP 800‑102** is authoritative guidance for this layer.
+
+#### Scope  
+- Certificate and token validity windows  
+- Revocation and freshness evaluation (e.g., OCSP, CRLs)  
+- Long‑term digital signature validity (LTV)  
+- Evidentiary sufficiency of timestamps  
+
+#### Answers the Question  
+**“Given authoritative time, can cryptographic systems determine whether something was valid at a specific point in time?”**
 
 ---
 
 ### Trust Boundaries
 
-Platform Time defines **how time is provided and maintained**, not how it is interpreted or enforced.
+Platform Time defines **how time is provided and maintained**, and—via `time-cryptographic-validity`—how time is **interpreted for cryptographic trust**.
 
-While time underpins identity, security, and policy decisions across the environment, Platform Time must never:
+Platform Time does **not**:
 
 - encode business meaning  
-- apply policy decisions  
-- enforce boundary rules  
+- apply access control decisions  
+- enforce policy rules  
 
 Those interpretations belong to consuming trust planes.
 
@@ -208,30 +206,39 @@ Those interpretations belong to consuming trust planes.
 ### Dependency and Relationships
 
 - **Consumed by:**  
-  - Identity & Trust  
+  - Secure Identity  
+  - Secure PKI  
   - Data & Information Protection  
   - Security Operations  
   - External Access & Boundary Enforcement  
   - Applications  
 
 - **Monitored by:**  
-  - Security Operations for drift, degradation, and anomalies  
+  - Security Operations (for drift, degradation, and anomalies)
 
-Platform Time is a prerequisite dependency for higher‑level trust planes but does not assume their authority.
+Platform Time is a prerequisite dependency for higher‑level trust planes.
 
 ---
 
 ### Secure Time (Composite Trust Assertion)
 
-The **`secure-time`** composite component asserts that time‑dependent trust decisions are supported by authoritative, consistent, bounded, observable, and resilient time.
+The **`secure-time`** composite asserts that time‑dependent trust decisions are supported by authoritative, consistent, bounded, observable, and resilient time **and** that cryptographic consumers correctly interpret that time.
 
-Platform Time components collectively satisfy the Platform portion of the `secure-time` trust assertion. Systems and SSPPs SHOULD reference `secure-time` rather than redefining time controls independently.
+Platform Time components and the cryptographic‑validity layer together satisfy the `secure-time` trust assertion.  
+SSPPs SHOULD reference `secure-time` rather than redefining time controls independently.
 
 ---
 
 ### Summary
 
-At the Platform trust plane, Time is a **core infrastructure capability** whose responsibility is to make trusted time *boringly correct*. It does not decide how time is used or interpreted. Instead, it ensures that time is reliable, predictable, and defensible so that higher‑level trust decisions can be enforced consistently and safely.
+At the Platform trust plane, Time is a **core infrastructure capability** whose responsibility is to make trusted time *boringly correct*.
+
+Secure Time ensures:
+
+- time is correct, stable, and defensible  
+- cryptographic systems can correctly interpret time for validity and evidence  
+
+It deliberately avoids embedding business policy or application logic, enabling higher‑level trust decisions to be enforced **consistently, safely, and auditably**.
 
 For cross‑plane Time trust responsibilities and governance rationale, see:
 

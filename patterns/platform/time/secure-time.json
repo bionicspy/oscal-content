@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Secure Time",
-      "version": "0.1.0",
+      "version": "0.3.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T02:30:00Z",
+      "last-modified": "2026-05-06T20:25:00Z",
 
       "props": [
         {
@@ -14,50 +14,126 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC435",
-          "remarks": "Business capability for asserting that time-dependent trust decisions are supported by authoritative, consistent, and defensible time."
+          "remarks": "Business capability for asserting that time-dependent trust decisions are supported by authoritative, consistent, bounded, and defensible time."
         },
+
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD410",
+          "remarks": "Authoritative time services, synchronization protocols (NTP, PTP, NTS), hardware clocks, and platform time consumers."
+        },
+
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "composite-pattern",
           "value": "urn:utoronto:cae2:arm:AP355",
           "remarks": "Composite trust assertion aggregating platform time capabilities to support secure, time-dependent trust decisions."
+        },
+
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "secure-networking",
+          "remarks": "Secure Time depends on reliable, protected network transport for time synchronization and distribution."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "secure-identity",
+          "remarks": "Secure Time depends on cryptographic identity and trust anchors for authenticated time sources (e.g., NTS, TLS validation)."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "platform-availability-and-resilience",
+          "remarks": "Secure Time depends on platform availability and resilience guarantees to prevent time failure cascades."
+        },
+
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1071",
+          "remarks": "Manipulation or spoofing of network-based services, including time synchronization channels."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1498",
+          "remarks": "Denial of service affecting authoritative or internal time services, impacting authentication, logging, and enforcement."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1557",
+          "remarks": "Adversary-in-the-middle attacks against unauthenticated or weakly protected time synchronization."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "CredentialBoundChannel",
+          "remarks": "Authenticated and integrity-protected time synchronization (e.g., NTS)."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "RedundantServiceProvisioning",
+          "remarks": "Redundant authoritative time sources and failover behavior."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "TelemetryCorrelation",
+          "remarks": "Monitoring and correlation of time drift to detect misconfiguration or attack."
         }
       ],
 
-      "remarks": "Secure Time is a composite trust assertion stating that time used for authentication, authorization, auditing, correlation, and enforcement is authoritative, bounded, observable, and resilient. It introduces no independent controls and exists solely as an aggregate trust claim."
+      "remarks": "Secure Time is a composite trust assertion stating that time used for authentication, authorization, auditing, correlation, cryptographic validity, and policy enforcement is authoritative, bounded, observable, and resilient. It introduces no independent controls and exists solely as an aggregate trust claim for use in SSPPs, solution patterns, and system trust decisions."
     },
 
     "components": [
       {
         "uuid": "urn:utoronto:security:pattern-ref:platform-time-core",
         "type": "component",
-        "title": "Platform Time Core",
-        "description": "Baseline trust assumptions for time as a governed platform service."
+        "title": "Platform Time Core"
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:platform-time-synchronization-and-sources",
         "type": "component",
-        "title": "Time Synchronization and Sources",
-        "description": "Acquisition and synchronization of time from authoritative sources."
+        "title": "Time Synchronization and Sources"
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:platform-time-drift-and-correction",
         "type": "component",
-        "title": "Time Drift and Correction",
-        "description": "Detection, bounding, and correction of time skew."
+        "title": "Time Drift and Correction"
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:platform-time-availability-and-resilience",
         "type": "component",
-        "title": "Time Availability and Resilience",
-        "description": "Redundancy, failover, and predictable behavior under failure."
+        "title": "Time Availability and Resilience"
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:platform-time-observability-and-telemetry",
         "type": "component",
-        "title": "Time Observability and Telemetry",
-        "description": "Visibility into time behavior to support monitoring and investigation."
+        "title": "Time Observability and Telemetry"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:platform-time-cryptographic-validity",
+        "type": "component",
+        "title": "Platform Time Cryptographic Validity",
+        "description": "Defines how authoritative time is interpreted by cryptographic systems to evaluate validity windows, freshness, revocation timing, and evidentiary sufficiency."
       }
     ]
   }
