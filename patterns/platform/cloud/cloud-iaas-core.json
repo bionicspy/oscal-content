@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Cloud Infrastructure-as-a-Service Core",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T01:40:00Z",
+      "last-modified": "2026-05-05T05:25:00Z",
 
       "props": [
         {
@@ -21,21 +21,21 @@
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD133",
-          "remarks": "Cloud infrastructure services including virtual machines, virtual networks, block and object storage, and provider control planes."
+          "remarks": "Cloud infrastructure services including virtual machines, networks, storage, and provider control planes."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP253",
-          "remarks": "Composite pattern asserting that core cloud IaaS trust assumptions are satisfied for consumer-managed resources."
+          "remarks": "Defines foundational trust assumptions for consumer-managed cloud IaaS resources."
         },
         {
           "name": "depends-on",
           "ns": "urn:utoronto:cae2:dependency",
           "class": "platform-pattern",
           "value": "hosting-model-trust",
-          "remarks": "Cloud infrastructure trust assumptions depend on the underlying hosting and jurisdictional context."
+          "remarks": "Cloud infrastructure trust depends on hosting model and jurisdictional assumptions."
         },
         {
           "name": "depends-on",
@@ -43,130 +43,128 @@
           "class": "platform-pattern",
           "value": "infrastructure-management-plane-trust",
           "remarks": "Cloud IaaS security relies on trusted automation and management control planes."
-        },
-
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0001",
-          "remarks": "Initial access via exposed cloud infrastructure interfaces or misconfigured services."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0004",
-          "remarks": "Privilege escalation through cloud role misconfiguration or excessive permissions."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0005",
-          "remarks": "Defense evasion through modification of cloud configuration or logging settings."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0008",
-          "remarks": "Lateral movement across cloud infrastructure resources and accounts."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1078",
-          "remarks": "Abuse of valid accounts to access cloud infrastructure resources."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1098",
-          "remarks": "Account manipulation through modification of cloud roles, policies, or identities."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0004",
-          "remarks": "Privileged access management for cloud infrastructure identities and roles."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0016",
-          "remarks": "Configuration hardening and drift prevention for cloud infrastructure resources."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0050",
-          "remarks": "Change verification and monitoring for cloud infrastructure state."
         }
       ],
 
-      "remarks": "Cloud Infrastructure-as-a-Service Core defines the foundational trust properties required to safely operate consumer-managed cloud resources. This pattern explicitly models shared responsibility, cloud-native identity and configuration risks, and control-plane exposure, without prescribing provider-specific services or configurations."
+      "remarks": "Cloud Infrastructure-as-a-Service Core defines the baseline trust properties required to safely operate consumer-managed cloud infrastructure. This pattern makes shared responsibility boundaries explicit and establishes trust assumptions for identity, isolation, control planes, and resource ownership, without prescribing provider-specific services or configurations."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:iaas-resource-isolation",
         "type": "capability",
         "title": "IaaS Resource Isolation",
-        "description": "Ensures separation between cloud tenants, subscriptions, projects, or accounts.",
+        "description": "Separation of cloud tenants, subscriptions, projects, or accounts to prevent cross-boundary access.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1021",
+            "remarks": "Lateral movement across improperly isolated cloud resources."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkSegmentation",
+            "remarks": "Isolation of cloud infrastructure resources through logical segmentation."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:iaas-isolation",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:iaas-isolation",
-                "control-id": "CLOUD-IAAS-ISOLATION",
-                "remarks": "Cloud infrastructure boundaries prevent unauthorized access across tenants or resource groups."
+                "control-id": "SC-7",
+                "remarks": "Boundary protection between cloud infrastructure domains."
+              },
+              {
+                "control-id": "AC-4",
+                "remarks": "Information flow control between cloud resource boundaries."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:cloud-control-plane-awareness",
         "type": "capability",
         "title": "Cloud Control Plane Awareness",
-        "description": "Defines trust boundaries and risk exposure associated with provider-managed control planes.",
+        "description": "Understanding and constraining trust in provider-managed control planes.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid identities to access cloud management APIs."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PrivilegedAccessManagement",
+            "remarks": "Governance and restriction of privileged cloud control-plane access."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:control-plane-awareness",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:control-plane-awareness",
-                "control-id": "CLOUD-CONTROL-PLANE",
-                "remarks": "Cloud consumers understand and constrain their reliance on provider control-plane behavior."
+                "control-id": "IA-2",
+                "remarks": "Strong authentication for cloud management access."
+              },
+              {
+                "control-id": "AC-6",
+                "remarks": "Least privilege for cloud control-plane roles."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:consumer-responsibility-enforcement",
         "type": "capability",
         "title": "Consumer Responsibility Enforcement",
-        "description": "Ensures that security responsibilities owned by the cloud consumer are explicitly addressed.",
+        "description": "Explicit ownership and enforcement of cloud security controls assigned to the consumer.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1098",
+            "remarks": "Account or role manipulation through mismanaged consumer-owned permissions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ResponsibilityAssignment",
+            "remarks": "Explicit definition and enforcement of consumer-owned security responsibilities."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:consumer-responsibility",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:consumer-responsibility",
-                "control-id": "CLOUD-CONSUMER-RESP",
-                "remarks": "Consumer-managed infrastructure responsibilities are clearly defined and implemented."
+                "control-id": "PL-2",
+                "remarks": "Security planning reflects shared responsibility boundaries."
+              },
+              {
+                "control-id": "RA-3",
+                "remarks": "Risk assessments account for consumer-managed cloud responsibilities."
               }
             ]
           }

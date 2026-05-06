@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Cloud Software-as-a-Service Core",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T02:10:00Z",
+      "last-modified": "2026-05-05T07:55:00Z",
 
       "props": [
         {
@@ -21,138 +21,128 @@
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD135",
-          "remarks": "Cloud-delivered software services, provider-managed application platforms, and externally operated service control planes."
+          "remarks": "Cloud-delivered software services, provider-managed applications, and externally operated service control planes."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP255",
-          "remarks": "Pattern for establishing trust assumptions and governance boundaries for Software-as-a-Service consumption."
+          "remarks": "Establishes trust assumptions and governance boundaries for Software-as-a-Service consumption."
         },
         {
           "name": "depends-on",
           "ns": "urn:utoronto:cae2:dependency",
           "class": "platform-pattern",
           "value": "hosting-model-trust",
-          "remarks": "SaaS trust assumptions depend on the provider's hosting, jurisdiction, and operational model."
-        },
-        {
-          "name": "attack-tactic", 
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0006",
-          "remarks": "Credential access risks from phishing or account takeover of SaaS users."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0001",
-          "remarks": "Initial access through exposed SaaS interfaces or misconfigured service settings."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0009",
-          "remarks": "Collection of sensitive data stored or processed within SaaS platforms."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1078",
-          "remarks": "Abuse of valid SaaS user accounts following compromise."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1110",
-          "remarks": "Credential attacks against SaaS authentication mechanisms."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0045",
-          "remarks": "Strong authentication and MFA enforcement for SaaS user access."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0011",
-          "remarks": "Data access control and authorization enforcement within SaaS platforms."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0056",
-          "remarks": "Monitoring and auditing of SaaS configuration and user activity."
+          "remarks": "SaaS trust assumptions depend on provider hosting, jurisdiction, and operational controls."
         }
       ],
 
-      "remarks": "Cloud Software-as-a-Service Core defines the foundational trust properties required to consume provider-operated software services. This pattern recognizes that consumers cannot control application logic or runtime behavior and therefore must anchor trust in identity governance, configuration oversight, data protection, and continuous visibility into SaaS usage."
+      "remarks": "Cloud Software-as-a-Service Core defines the baseline trust properties required to consume provider-operated software services. Because consumers cannot control application logic or runtime behavior, trust is anchored in identity governance, configuration oversight, data protection expectations, and continuous visibility into SaaS activity."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:saas-identity-governance",
         "type": "capability",
         "title": "SaaS Identity Governance",
-        "description": "Controls user and service identity access within SaaS platforms.",
+        "description": "Governance of user and service identity access within SaaS platforms.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid SaaS user or service accounts following compromise."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:IdentityManagement",
+            "remarks": "Strong governance of SaaS identities, authentication, and session control."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:saas-identity-governance",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:saas-identity-governance",
-                "control-id": "CLOUD-SAAS-IDENTITY",
-                "remarks": "SaaS access is limited to authorized and correctly governed identities."
-              }
+              { "control-id": "IA-2", "remarks": "Strong authentication for SaaS user access." },
+              { "control-id": "IA-4", "remarks": "Lifecycle management of SaaS identities." },
+              { "control-id": "AC-6", "remarks": "Least privilege enforced for SaaS access." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:saas-configuration-oversight",
         "type": "capability",
         "title": "SaaS Configuration Oversight",
-        "description": "Ensures consumer-controlled SaaS settings are explicitly governed and monitored.",
+        "description": "Governance and review of consumer-controlled configuration in SaaS services.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1562",
+            "remarks": "Defense evasion by disabling or weakening SaaS security configuration."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ConfigurationManagement",
+            "remarks": "Explicit definition and governance of consumer-owned SaaS configuration."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:saas-config-oversight",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:saas-config-oversight",
-                "control-id": "CLOUD-SAAS-CONFIG",
-                "remarks": "Consumer-managed SaaS configurations are reviewed to prevent unsafe settings."
-              }
+              { "control-id": "CM-2", "remarks": "Baseline configuration for consumer-managed SaaS settings." },
+              { "control-id": "CM-6", "remarks": "Configuration settings reviewed and maintained." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:saas-data-protection-boundary",
         "type": "capability",
         "title": "SaaS Data Protection Boundary",
-        "description": "Defines data custody and protection expectations within SaaS services.",
+        "description": "Definition and enforcement of data custody, access, and protection expectations in SaaS services.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1110",
+            "remarks": "Credential attacks enabling unauthorized access to SaaS-stored data."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:DataAccessControl",
+            "remarks": "Authorization, retention, and protection controls applied to SaaS data."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:saas-data-boundary",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:saas-data-boundary",
-                "control-id": "CLOUD-SAAS-DATA",
-                "remarks": "Data stored in SaaS platforms is subject to defined access, retention, and protection expectations."
-              }
+              { "control-id": "AC-3", "remarks": "Enforcement of approved data access within SaaS platforms." },
+              { "control-id": "IA-7", "remarks": "Protection of authentication tokens and sessions." },
+              { "control-id": "SC-12", "remarks": "Cryptographic protection for SaaS-managed data." }
             ]
           }
         ]

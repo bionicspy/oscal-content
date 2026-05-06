@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Cloud Platform-as-a-Service Core",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T01:55:00Z",
+      "last-modified": "2026-05-05T07:30:00Z",
 
       "props": [
         {
@@ -28,14 +28,14 @@
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP254",
-          "remarks": "Pattern for establishing trust assumptions and shared responsibility boundaries for Platform-as-a-Service environments."
+          "remarks": "Establishes trust assumptions and shared responsibility boundaries for Platform-as-a-Service environments."
         },
         {
           "name": "depends-on",
           "ns": "urn:utoronto:cae2:dependency",
           "class": "platform-pattern",
           "value": "hosting-model-trust",
-          "remarks": "PaaS trust assumptions depend on the underlying hosting model and provider operational controls."
+          "remarks": "PaaS trust assumptions depend on underlying hosting model and provider operational controls."
         },
         {
           "name": "depends-on",
@@ -43,131 +43,112 @@
           "class": "platform-pattern",
           "value": "infrastructure-management-plane-trust",
           "remarks": "PaaS security relies on trusted cloud management and automation control planes."
-        },
-
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0001",
-          "remarks": "Initial access via misconfigured application services or exposed PaaS endpoints."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0004",
-          "remarks": "Privilege escalation through misconfigured service identities or excessive PaaS permissions."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0005",
-          "remarks": "Defense evasion by modifying PaaS configuration, logging, or monitoring settings."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0009",
-          "remarks": "Collection of sensitive data from provider-managed application platforms."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1190",
-          "remarks": "Exploitation of exposed application services or platform endpoints."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1078",
-          "remarks": "Abuse of valid identities associated with PaaS services or service principals."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0004",
-          "remarks": "Privileged access management for PaaS service identities and administrators."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0016",
-          "remarks": "Configuration hardening and validation for provider-managed platform services."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0056",
-          "remarks": "Monitoring and auditing of application platform behavior and configuration changes."
         }
       ],
 
-      "remarks": "Cloud Platform-as-a-Service Core defines the foundational trust properties required to safely consume provider-managed application platforms. This pattern explicitly recognizes that the runtime and operating system are outside consumer control, shifting trust to configuration, identity, data access, and provider-managed security controls."
+      "remarks": "Cloud Platform-as-a-Service Core defines the baseline trust properties for consuming provider-managed application platforms. This pattern explicitly models the shift in responsibility away from the operating system and runtime toward identity, configuration, data access, and provider-managed security controls."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:paas-runtime-trust-boundary",
         "type": "capability",
         "title": "PaaS Runtime Trust Boundary",
-        "description": "Defines trust boundaries between consumer workloads and provider-managed runtimes.",
+        "description": "Trust boundary between consumer workloads and provider-managed runtimes.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1190",
+            "remarks": "Exploitation of exposed PaaS application services or platform endpoints."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:RuntimeIsolation",
+            "remarks": "Isolation controls enforced by the provider-managed runtime environment."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:paas-runtime-boundary",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:paas-runtime-boundary",
-                "control-id": "CLOUD-PAAS-RUNTIME",
-                "remarks": "Consumers rely on provider controls for runtime isolation and security enforcement."
-              }
+              { "control-id": "SC-2",  "remarks": "Separation of user functionality from provider-managed execution layers." },
+              { "control-id": "SA-8",  "remarks": "Security design principles applied to shared runtime platforms." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:paas-configuration-responsibility",
         "type": "capability",
         "title": "PaaS Configuration Responsibility",
-        "description": "Ensures consumer-managed configuration within PaaS environments is explicitly governed.",
+        "description": "Governance of configuration settings that remain under consumer control in PaaS environments.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1562",
+            "remarks": "Defense evasion through disabling or weakening PaaS security configuration."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ConfigurationManagement",
+            "remarks": "Explicit definition and governance of consumer-owned PaaS configuration."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:paas-config-responsibility",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:paas-config-responsibility",
-                "control-id": "CLOUD-PAAS-CONFIG",
-                "remarks": "Configuration settings owned by the consumer are explicitly understood and managed."
-              }
+              { "control-id": "CM-2", "remarks": "Baseline configuration for consumer-controlled PaaS settings." },
+              { "control-id": "CM-6", "remarks": "Configuration settings established and maintained for PaaS components." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:paas-service-identity-control",
         "type": "capability",
         "title": "PaaS Service Identity Control",
-        "description": "Controls identities and permissions used by PaaS services and applications.",
+        "description": "Governance of identities and permissions used by PaaS services and applications.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid service identities or service principals in PaaS environments."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ServiceIdentityManagement",
+            "remarks": "Least-privilege lifecycle management of PaaS service identities."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:paas-identity-control",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:paas-identity-control",
-                "control-id": "CLOUD-PAAS-IDENTITY",
-                "remarks": "PaaS service identities are constrained to minimum required privileges."
-              }
+              { "control-id": "AC-6", "remarks": "Least privilege for PaaS service identities." },
+              { "control-id": "IA-7", "remarks": "Protection of service identity credentials and tokens." },
+              { "control-id": "AC-3", "remarks": "Enforcement of approved authorizations for PaaS services." }
             ]
           }
         ]

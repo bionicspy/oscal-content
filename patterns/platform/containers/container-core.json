@@ -1,11 +1,12 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:container-core",
+
     "metadata": {
       "title": "Container Core",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T22:40:00Z",
+      "last-modified": "2026-05-05T09:10:00Z",
 
       "props": [
         {
@@ -20,14 +21,14 @@
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD123",
-          "remarks": "Container platforms, shared-kernel execution environments, and container orchestration systems."
+          "remarks": "Container platforms, shared-kernel execution environments, and container runtime foundations."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP243",
-          "remarks": "Pattern for establishing baseline trust boundaries and isolation assumptions in containerized execution environments."
+          "remarks": "Establishes baseline trust boundaries and isolation assumptions in containerized execution environments."
         },
         {
           "name": "depends-on",
@@ -36,122 +37,134 @@
           "value": "secure-virtualization",
           "remarks": "Container platforms assume a trusted virtualized or equivalent execution substrate."
         },
-
         {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0004",
-          "remarks": "Privilege escalation risks due to shared-kernel execution and elevated container capabilities."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0008",
-          "remarks": "Lateral movement between co-resident containers on a shared host or node."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0005",
-          "remarks": "Defense evasion via container boundary bypass or namespace abuse."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1611",
-          "remarks": "Escape to host from container due to kernel or runtime exploitation."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1055",
-          "remarks": "Process injection techniques applicable within shared-kernel environments."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0001",
-          "remarks": "Execution isolation enforced between container workloads."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0018",
-          "remarks": "Kernel attack surface minimization relevant to container hosts."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0036",
-          "remarks": "Reduction of privileged interfaces exposed to containerized workloads."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-190",
+          "class": "guidance-reference",
+          "value": "4.2, 4.4",
+          "remarks": "Shared-kernel execution risks and container host considerations."
         }
       ],
 
-      "remarks": "Container Core defines the foundational trust properties required to operate containerized workloads on shared infrastructure. This pattern makes shared-kernel risks, isolation boundaries, and container-layer threat relevance explicit and assertable, without prescribing orchestration, runtime, or supply-chain controls."
+      "remarks": "Container Core defines the foundational trust properties required to operate containerized workloads on shared infrastructure. This pattern makes shared-kernel risks, isolation boundaries, and container-layer threat relevance explicit and assertable, without prescribing orchestration, runtime policy, or supply-chain controls."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:container-workload-isolation",
         "type": "capability",
         "title": "Container Workload Isolation",
         "description": "Prevents unintended interaction or interference between containerized workloads.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1055",
+            "remarks": "Process injection or memory manipulation across container boundaries."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ExecutionIsolation",
+            "remarks": "Enforcement of isolation boundaries between container workloads."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:container-isolation",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:container-isolation",
-                "control-id": "CONT-ISOLATION",
-                "remarks": "Container workloads are isolated such that compromise of one does not permit access to others."
+                "control-id": "SC-7",
+                "remarks": "Logical separation of containerized workloads."
+              },
+              {
+                "control-id": "AC-4",
+                "remarks": "Information flow control between container execution domains."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:container-host-boundary",
         "type": "capability",
         "title": "Container–Host Trust Boundary",
         "description": "Maintains separation between container workloads and the underlying host operating system.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1611",
+            "remarks": "Container escape to host via kernel or runtime exploitation."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:KernelAttackSurfaceReduction",
+            "remarks": "Minimization of host attack surface exposed to containers."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:container-host-boundary",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:container-host-boundary",
-                "control-id": "CONT-HOST-BOUNDARY",
-                "remarks": "Container workloads cannot influence or escape into the host execution context."
+                "control-id": "SI-7",
+                "remarks": "Protection of host execution integrity."
+              },
+              {
+                "control-id": "CM-7",
+                "remarks": "Least functionality for host interfaces exposed to containers."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:container-lateral-movement-containment",
         "type": "capability",
         "title": "Container Lateral Movement Containment",
         "description": "Limits the ability of a compromised container to move laterally across shared container infrastructure.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1021",
+            "remarks": "Lateral movement between container workloads via shared platform resources."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkSegmentation",
+            "remarks": "Containment of east-west movement across containerized workloads."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:container-lateral-movement",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:container-lateral-movement",
-                "control-id": "CONT-LATERAL-CONTAIN",
-                "remarks": "Platform controls reduce lateral attack paths between containerized workloads."
+                "control-id": "SC-7",
+                "remarks": "Boundary protection within shared container platforms."
+              },
+              {
+                "control-id": "RA-5",
+                "remarks": "Identification of exploitable lateral movement paths."
               }
             ]
           }

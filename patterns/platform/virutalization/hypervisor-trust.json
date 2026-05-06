@@ -1,11 +1,12 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:hypervisor-trust",
+
     "metadata": {
       "title": "Hypervisor Trust",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T22:05:00Z",
+      "last-modified": "2026-05-06T03:10:00Z",
 
       "props": [
         {
@@ -27,146 +28,126 @@
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP241",
-          "remarks": "Pattern for protecting the integrity and trustworthiness of hypervisors and their management interfaces."
+          "remarks": "Protects the integrity and trustworthiness of hypervisors and their management interfaces."
         },
         {
           "name": "depends-on",
           "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-layer",
+          "class": "platform-pattern",
           "value": "bare-metal-core",
-          "remarks": "Hypervisor trust assumes a trusted physical host and firmware foundation."
+          "remarks": "Hypervisor trust assumes a trusted physical host, firmware, and boot foundation."
         },
         {
           "name": "depends-on",
           "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-layer",
+          "class": "platform-pattern",
           "value": "virtualization-core",
-          "remarks": "Hypervisor trust refines and strengthens the baseline virtualization trust assumptions."
-        },
-
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0004",
-          "remarks": "Privilege escalation targeting hypervisor or host-level execution contexts."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0005",
-          "remarks": "Defense evasion below the guest operating system, including hypervisor-level persistence."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0040",
-          "remarks": "Impact on availability or integrity of all workloads hosted on a compromised hypervisor."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1068",
-          "remarks": "Exploitation for privilege escalation from guest or management interface into the hypervisor."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1548",
-          "remarks": "Abuse of elevation control mechanisms associated with privileged hypervisor functions."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1489",
-          "remarks": "Service stop or platform disruption affecting all virtual machines on a host."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0004",
-          "remarks": "Privileged access management for hypervisor administrative functions."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0008",
-          "remarks": "Integrity verification of hypervisor binaries and configuration state."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0036",
-          "remarks": "Reduction of exposed hypervisor attack surfaces and management interfaces."
+          "remarks": "Hypervisor trust refines and strengthens baseline virtualization assumptions."
         }
       ],
 
-      "remarks": "Hypervisor Trust defines the trust properties required to ensure that the hypervisor enforcing virtualization boundaries remains secure, isolated, and resistant to compromise. This pattern narrows focus from general virtualization guarantees to the integrity and control of the hypervisor itself, whose failure would compromise all hosted workloads."
+      "remarks": "Hypervisor Trust defines the trust properties required to ensure the hypervisor enforcing virtualization boundaries remains secure, isolated, and resistant to compromise. Because hypervisor failure compromises all hosted workloads, this pattern focuses on integrity, privileged access control, and blast‑radius containment, without addressing guest operating systems."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:hypervisor-integrity",
         "type": "capability",
         "title": "Hypervisor Integrity",
-        "description": "Ensures the hypervisor remains free from unauthorized modification or subversion.",
+        "description": "Protection of hypervisor binaries, configuration, and execution state from unauthorized modification.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1068",
+            "remarks": "Privilege escalation into the hypervisor through exploitation of control-plane or low-level interfaces."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:IntegrityVerification",
+            "remarks": "Verification of hypervisor binaries and configuration integrity."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:hypervisor-integrity",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:hypervisor-integrity",
-                "control-id": "HYP-INTEGRITY",
-                "remarks": "The hypervisor execution environment is protected against unauthorized change or persistence."
-              }
+              { "control-id": "SI-7", "remarks": "Integrity protection for hypervisor code and configuration." },
+              { "control-id": "CM-5", "remarks": "Restricted changes to hypervisor configuration." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:hypervisor-privileged-access-control",
         "type": "capability",
         "title": "Hypervisor Privileged Access Control",
-        "description": "Controls and limits access to hypervisor administrative and management interfaces.",
+        "description": "Restriction and governance of hypervisor administrative and management access.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1548",
+            "remarks": "Abuse of elevation control mechanisms associated with privileged hypervisor functions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PrivilegedAccessManagement",
+            "remarks": "Strong identity, authorization, and auditing for hypervisor administrators."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:hypervisor-access",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:hypervisor-access",
-                "control-id": "HYP-PRIV-ACCESS",
-                "remarks": "Only authorized identities are permitted to perform privileged hypervisor operations."
-              }
+              { "control-id": "AC-6", "remarks": "Least privilege for hypervisor administration." },
+              { "control-id": "IA-2", "remarks": "Strong authentication for privileged hypervisor access." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:hypervisor-failure-containment",
         "type": "capability",
         "title": "Hypervisor Failure Containment",
-        "description": "Limits blast radius and impact resulting from hypervisor faults or compromise.",
+        "description": "Limitation of blast radius and impact resulting from hypervisor faults or compromise.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1489",
+            "remarks": "Service disruption affecting all virtual machines on a compromised host."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:FaultIsolation",
+            "remarks": "Containment and isolation to prevent cascading failures across virtualized workloads."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:hypervisor-containment",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:hypervisor-containment",
-                "control-id": "HYP-FAILURE-CONTAIN",
-                "remarks": "Hypervisor failures or compromises do not propagate unchecked across dependent systems."
-              }
+              { "control-id": "SC-7", "remarks": "Boundary protection limiting the impact of hypervisor compromise." },
+              { "control-id": "CP-10", "remarks": "Recovery and availability controls to limit platform-wide impact." }
             ]
           }
         ]

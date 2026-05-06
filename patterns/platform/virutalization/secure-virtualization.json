@@ -1,11 +1,12 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:secure-virtualization",
+
     "metadata": {
       "title": "Secure Virtualization",
-      "version": "0.1.0",
+      "version": "0.3.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T22:20:00Z",
+      "last-modified": "2026-05-06T03:55:00Z",
 
       "props": [
         {
@@ -25,9 +26,9 @@
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
+          "class": "composite-pattern",
           "value": "urn:utoronto:cae2:arm:AP242",
-          "remarks": "Composite pattern asserting that virtualization and hypervisor trust requirements are satisfied."
+          "remarks": "Composite pattern asserting that physical host trust, virtualization isolation, and hypervisor integrity requirements are collectively satisfied."
         },
 
         {
@@ -57,28 +58,28 @@
           "ns": "urn:mitre:attack",
           "class": "tactic",
           "value": "TA0004",
-          "remarks": "Privilege escalation risks affecting virtualized platforms as a whole."
+          "remarks": "Privilege escalation that compromises virtualization or hypervisor boundaries."
         },
         {
           "name": "attack-tactic",
           "ns": "urn:mitre:attack",
           "class": "tactic",
           "value": "TA0008",
-          "remarks": "Lateral movement risks across co-resident virtual workloads."
+          "remarks": "Lateral movement across co-resident virtual machines."
         },
         {
           "name": "attack-tactic",
           "ns": "urn:mitre:attack",
           "class": "tactic",
           "value": "TA0040",
-          "remarks": "Platform-level impact resulting from virtualization or hypervisor compromise."
+          "remarks": "Platform-wide impact resulting from virtualization or hypervisor compromise."
         },
         {
           "name": "attack-technique",
           "ns": "urn:mitre:attack",
           "class": "technique",
           "value": "T1068",
-          "remarks": "Exploitation for privilege escalation that may compromise virtualization boundaries."
+          "remarks": "Privilege escalation exploiting virtualization or hypervisor vulnerabilities."
         },
 
         {
@@ -93,7 +94,7 @@
           "ns": "urn:mitre:d3fend",
           "class": "technique",
           "value": "D3FEND-0008",
-          "remarks": "Integrity verification of platform and hypervisor components."
+          "remarks": "Integrity verification of hypervisor and virtualization platform components."
         },
         {
           "name": "defense-technique",
@@ -104,27 +105,24 @@
         }
       ],
 
-      "remarks": "Secure Virtualization is a composite pattern asserting that physical host trust, virtualization isolation, and hypervisor integrity requirements are all satisfied. It introduces no independent controls and exists solely as an aggregate trust claim for use in solution patterns and system security and privacy plans."
+      "remarks": "Secure Virtualization is a composite trust pattern asserting that physical host integrity, virtualization isolation, and hypervisor trust requirements are collectively satisfied. It introduces no independent controls and exists solely as an aggregate trust claim for threat modeling, solution patterns, and system security and privacy plans."
     },
 
     "components": [
       {
         "uuid": "urn:utoronto:security:pattern-ref:bare-metal-core",
         "type": "component",
-        "title": "Bare Metal Core",
-        "description": "Trusted physical host foundation for virtualization."
+        "title": "Bare Metal Core"
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:virtualization-core",
         "type": "component",
-        "title": "Virtualization Core",
-        "description": "Baseline isolation guarantees for virtualized workloads."
+        "title": "Virtualization Core"
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:hypervisor-trust",
         "type": "component",
-        "title": "Hypervisor Trust",
-        "description": "Integrity and control of the hypervisor enforcing virtualization boundaries."
+        "title": "Hypervisor Trust"
       }
     ]
   }

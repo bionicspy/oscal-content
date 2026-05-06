@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "High-Performance Computing Data Protection",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T01:05:00Z",
+      "last-modified": "2026-05-06T01:55:00Z",
 
       "props": [
         {
@@ -28,7 +28,7 @@
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP251",
-          "remarks": "Pattern for governing data protection, lifecycle control, and access boundaries in high-performance computing environments."
+          "remarks": "Governs data protection, lifecycle control, and access boundaries in high‑performance computing environments."
         },
         {
           "name": "depends-on",
@@ -42,125 +42,112 @@
           "ns": "urn:utoronto:cae2:dependency",
           "class": "platform-pattern",
           "value": "hpc-identity-and-access",
-          "remarks": "Data protection relies on correct attribution and authorization of HPC users and jobs."
-        },
-
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0006",
-          "remarks": "Credential and access abuse leading to unauthorized access to shared HPC data stores."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0008",
-          "remarks": "Lateral movement through shared filesystems or data paths in HPC environments."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0009",
-          "remarks": "Collection of sensitive or proprietary research data from shared storage."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1005",
-          "remarks": "Data from local system collection via access to shared HPC storage."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1039",
-          "remarks": "Data transfer through shared networked storage or intermediate buffers."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0011",
-          "remarks": "Data access control enforcement on shared storage resources."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0026",
-          "remarks": "Encryption or protection of data at rest within shared filesystems."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0037",
-          "remarks": "Data lifecycle management to remove or protect residual data after job completion."
+          "remarks": "Data protection depends on correct attribution and authorization of HPC users and jobs."
         }
       ],
 
-      "remarks": "High-Performance Computing Data Protection defines the trust properties required to protect data within shared, performance-oriented computing environments. This pattern makes data access boundaries, lifecycle risks, and high-volume data movement explicit, recognizing that HPC platforms prioritize throughput and collaboration over default data isolation."
+      "remarks": "High‑Performance Computing Data Protection defines trust properties required to protect data in shared, performance‑oriented computing environments. This pattern makes data access boundaries, lifecycle risks, and high‑volume data movement explicit, recognizing that HPC platforms prioritize throughput, collaboration, and scale over default data isolation."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:shared-storage-access-control",
         "type": "capability",
         "title": "Shared Storage Access Control",
         "description": "Controls access to shared HPC filesystems and data repositories.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1005",
+            "remarks": "Unauthorized data access via shared filesystem exposure."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AccessControl",
+            "remarks": "Authorization controls limiting access to shared HPC storage resources."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:shared-storage-access",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:shared-storage-access",
-                "control-id": "HPC-STORAGE-ACCESS",
-                "remarks": "Access to shared storage resources is limited to authorized users and workloads."
-              }
+              { "control-id": "AC-3", "remarks": "Enforce approved access to shared HPC data." },
+              { "control-id": "AC-6", "remarks": "Least privilege applied to storage access." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:job-data-isolation",
         "type": "capability",
         "title": "Job Data Isolation",
         "description": "Separates data used or produced by concurrent HPC jobs.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1039",
+            "remarks": "Data transfer or leakage through shared storage or intermediate buffers."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:DataSegregation",
+            "remarks": "Logical separation of job‑scoped data within shared storage systems."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:job-data-isolation",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:job-data-isolation",
-                "control-id": "HPC-JOB-DATA-ISOLATION",
-                "remarks": "Data generated or consumed by HPC jobs is isolated to prevent unintended cross-job access."
-              }
+              { "control-id": "SC-7", "remarks": "Boundary protection between job‑scoped data domains." },
+              { "control-id": "AC-4", "remarks": "Information flow controls preventing cross‑job data leakage." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:data-lifecycle-and-residual-risk",
         "type": "capability",
         "title": "Data Lifecycle and Residual Risk Management",
         "description": "Manages data persistence, cleanup, and residual risk after HPC job completion.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1005",
+            "remarks": "Residual data exposure following job completion or reuse of storage."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:DataLifecycleManagement",
+            "remarks": "Controlled retention, cleanup, and protection of HPC data artifacts."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:data-lifecycle",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:data-lifecycle",
-                "control-id": "HPC-DATA-LIFECYCLE",
-                "remarks": "Residual data risks are addressed through lifecycle management of HPC data."
-              }
+              { "control-id": "MP-7", "remarks": "Controlled removal and sanitization of temporary storage." },
+              { "control-id": "SI-7", "remarks": "Integrity protection for data throughout its lifecycle." }
             ]
           }
         ]

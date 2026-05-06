@@ -1,11 +1,12 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:container-supply-chain",
+
     "metadata": {
       "title": "Container Supply Chain",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T23:20:00Z",
+      "last-modified": "2026-05-05T10:10:00Z",
 
       "props": [
         {
@@ -13,7 +14,7 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC316",
-          "remarks": "Business capability for ensuring the integrity, provenance, and trustworthiness of container images and artifacts used in execution environments."
+          "remarks": "Business capability for ensuring the integrity, provenance, and trustworthiness of container images and artifacts prior to execution."
         },
         {
           "name": "technology-domain",
@@ -27,7 +28,7 @@
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP245",
-          "remarks": "Pattern for establishing trust in container artifacts from build through distribution and deployment."
+          "remarks": "Establishes trust in container artifacts from build through distribution and deployment."
         },
         {
           "name": "depends-on",
@@ -36,122 +37,134 @@
           "value": "container-core",
           "remarks": "Supply-chain trust builds on baseline container platform trust assumptions."
         },
-
         {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0001",
-          "remarks": "Initial access through malicious or compromised container images."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0003",
-          "remarks": "Persistence achieved through trojanized or backdoored container artifacts."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0005",
-          "remarks": "Defense evasion by embedding malicious logic within expected container images."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1195",
-          "remarks": "Compromise of trusted software supply chain affecting container images or build systems."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1554",
-          "remarks": "Compromise of software dependencies embedded within container images."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0005",
-          "remarks": "Software provenance verification to ensure authenticity and integrity of container artifacts."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0012",
-          "remarks": "Artifact integrity validation to detect unauthorized modification of container images."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0041",
-          "remarks": "Restriction of execution to approved and verified software artifacts."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-190",
+          "class": "guidance-reference",
+          "value": "5.1, 5.2, 6.1",
+          "remarks": "Container image creation, distribution, and supply chain risks."
         }
       ],
 
-      "remarks": "Container Supply Chain defines the trust properties required to ensure that container images and artifacts are authentic, untampered, and appropriate for deployment. This pattern addresses risks introduced prior to runtime, including malicious images, compromised build pipelines, and untrusted registries."
+      "remarks": "Container Supply Chain defines the trust properties required to ensure container images and related artifacts are authentic, untampered, and appropriate for deployment. This pattern addresses risks introduced prior to runtime, including malicious images, compromised build systems, and untrusted registries, without asserting runtime or orchestration controls."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:image-provenance-and-authenticity",
         "type": "capability",
         "title": "Image Provenance and Authenticity",
-        "description": "Ensures container images have verifiable origin and authorship.",
+        "description": "Verification of the origin, authorship, and authenticity of container images.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1195",
+            "remarks": "Compromise of trusted software supply chain affecting container images or build systems."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:SoftwareProvenanceVerification",
+            "remarks": "Verification of image origin and authorship prior to acceptance."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:image-provenance",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:image-provenance",
-                "control-id": "CONT-IMAGE-PROVENANCE",
-                "remarks": "Container images are traceable to trusted sources and verified prior to use."
+                "control-id": "SR-11",
+                "remarks": "Establish and maintain provenance for software components."
+              },
+              {
+                "control-id": "SA-12",
+                "remarks": "Supply-chain protection for container build artifacts."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:registry-and-distribution-trust",
         "type": "capability",
         "title": "Registry and Distribution Trust",
-        "description": "Addresses trust in container registries and artifact distribution channels.",
+        "description": "Trust controls for container registries and artifact distribution paths.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1554",
+            "remarks": "Compromise of software dependencies embedded within container images."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:TrustedDistribution",
+            "remarks": "Restricted and authenticated container artifact distribution."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:registry-trust",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:registry-trust",
-                "control-id": "CONT-REGISTRY-TRUST",
-                "remarks": "Container registries and distribution mechanisms prevent unauthorized modification or injection of artifacts."
+                "control-id": "CM-8",
+                "remarks": "Inventory of approved container images and repositories."
+              },
+              {
+                "control-id": "SR-3",
+                "remarks": "Supply-chain controls for third-party software distribution."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:artifact-integrity",
         "type": "capability",
         "title": "Artifact Integrity",
-        "description": "Ensures container artifacts have not been altered between build and deployment.",
+        "description": "Detection and prevention of unauthorized modification of container images.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1554",
+            "remarks": "Tampering with container artifacts between build and deployment."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ArtifactIntegrityValidation",
+            "remarks": "Cryptographic verification of container artifact integrity."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:artifact-integrity",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:artifact-integrity",
-                "control-id": "CONT-ARTIFACT-INTEGRITY",
-                "remarks": "Integrity mechanisms detect or prevent unauthorized changes to container images."
+                "control-id": "SI-7",
+                "remarks": "Integrity checking of container artifacts."
+              },
+              {
+                "control-id": "SR-5",
+                "remarks": "Verification of delivered software to prevent tampering."
               }
             ]
           }

@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Bare Metal Core",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T20:55:00Z",
+      "last-modified": "2026-05-05T03:35:00Z",
 
       "props": [
         {
@@ -29,84 +29,201 @@
           "class": "solution-pattern",
           "value": "bare-metal-core",
           "remarks": "Establishes explicit trust boundaries at the point where software execution meets physical hardware."
+        },
+
+        {
+          "name": "nist-control-family",
+          "ns": "urn:nist.gov:800-53:r5",
+          "class": "control-family",
+          "value": "PE",
+          "remarks": "Physical and environmental protection of compute substrates."
+        },
+        {
+          "name": "nist-control-family",
+          "ns": "urn:nist.gov:800-53:r5",
+          "class": "control-family",
+          "value": "CM",
+          "remarks": "Configuration management of hardware, firmware, and provisioning pipelines."
+        },
+        {
+          "name": "nist-control",
+          "ns": "urn:nist.gov:800-53:r5",
+          "class": "control",
+          "value": "CM-8",
+          "remarks": "Inventory of physical compute assets."
+        },
+        {
+          "name": "nist-control",
+          "ns": "urn:nist.gov:800-53:r5",
+          "class": "control",
+          "value": "SI-7",
+          "remarks": "Integrity verification of firmware and boot processes."
         }
       ],
 
-      "remarks": "Bare Metal Core defines the trust baseline for physical compute hosts prior to virtualization, containerization, or cloud abstraction. This pattern exists to avoid implicit assumptions about hardware integrity, provisioning, and control planes, and to make physical host trust an explicit, assertable capability."
+      "remarks": "Bare Metal Core defines the trust baseline for physical compute hosts prior to virtualization, containerization, or cloud abstraction. This pattern exists to prevent implicit assumptions about hardware integrity, provisioning pipelines, and management control planes, and to make physical host trust an explicit, assertable capability."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:physical-host-integrity",
         "type": "capability",
         "title": "Physical Host Integrity",
-        "description": "Establishes expectations for the integrity and controlled lifecycle of physical compute hosts.",
+        "description": "Expectations for the integrity, inventory, and controlled lifecycle of physical compute hosts.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1601",
+            "remarks": "Insertion of compromised, counterfeit, or tampered physical hardware."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AssetInventory",
+            "remarks": "Authoritative inventory and lifecycle control of physical compute assets."
+          }
+        ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:physical-host-integrity",
-            "source": "urn:utoronto:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:physical-host-integrity",
-                "control-id": "BM-HOST-INTEGRITY",
-                "remarks": "Physical hosts are managed, inventoried, and operated in a manner that supports trustworthy execution of software workloads."
+                "control-id": "CM-8",
+                "remarks": "Physical hosts are inventoried and managed as controlled assets."
+              },
+              {
+                "control-id": "PE-3",
+                "remarks": "Physical access to compute hosts is restricted and monitored."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:firmware-and-boot-trust",
         "type": "capability",
         "title": "Firmware and Boot Trust",
-        "description": "Defines trust assumptions for firmware, boot processes, and early execution stages.",
+        "description": "Trust assumptions for firmware integrity and early boot execution stages.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1542",
+            "remarks": "Persistence through compromised firmware or boot loaders."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:BootIntegrityVerification",
+            "remarks": "Verification of firmware and boot integrity prior to workload execution."
+          }
+        ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:firmware-boot-trust",
-            "source": "urn:utoronto:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:firmware-boot-trust",
-                "control-id": "BM-FIRMWARE-BOOT",
-                "remarks": "Firmware and boot processes are managed to reduce the risk of persistent or undetected compromise."
+                "control-id": "SI-7",
+                "remarks": "Integrity checks on firmware and boot components."
+              },
+              {
+                "control-id": "CM-5",
+                "remarks": "Restricted changes to firmware and boot configuration."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:out-of-band-management-trust",
         "type": "capability",
         "title": "Out-of-Band Management Trust",
-        "description": "Covers trust considerations for remote and out-of-band management interfaces.",
+        "description": "Trust and governance of out-of-band and remote management interfaces.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid management credentials to control hardware platforms."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PrivilegedAccessManagement",
+            "remarks": "Governing out-of-band interfaces as highly privileged control planes."
+          }
+        ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:oob-management",
-            "source": "urn:utoronto:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:oob-management",
-                "control-id": "BM-OOB-MGMT",
-                "remarks": "Out-of-band management systems are treated as privileged control planes and governed accordingly."
+                "control-id": "AC-6",
+                "remarks": "Least privilege enforced for out-of-band management access."
+              },
+              {
+                "control-id": "IA-2",
+                "remarks": "Strong authentication required for privileged management interfaces."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:provisioning-and-lifecycle-control",
         "type": "capability",
         "title": "Provisioning and Lifecycle Control",
-        "description": "Addresses trust in host provisioning, re-imaging, and decommissioning processes.",
+        "description": "Trust in host provisioning, re-imaging, and decommissioning workflows.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1653",
+            "remarks": "Persistence or misconfiguration introduced through compromised provisioning pipelines."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:SecureProvisioning",
+            "remarks": "Controlled, auditable provisioning and decommissioning workflows."
+          }
+        ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:provisioning-lifecycle",
-            "source": "urn:utoronto:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:provisioning-lifecycle",
-                "control-id": "BM-PROVISIONING",
-                "remarks": "Provisioning and lifecycle workflows are designed to prevent unauthorized persistence and configuration drift."
+                "control-id": "CM-2",
+                "remarks": "Standardized and approved baseline configurations for provisioning."
+              },
+              {
+                "control-id": "CM-3",
+                "remarks": "Formal change control over provisioning and lifecycle workflows."
               }
             ]
           }

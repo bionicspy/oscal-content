@@ -1,18 +1,19 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:virtualization-core",
+
     "metadata": {
       "title": "Virtualization Core",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T21:30:00Z",
+      "last-modified": "2026-05-06T04:10:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "capabilitycae2:brm:BC310",
+          "value": "urn:utoronto:cae2:brm:BC310",
           "remarks": "Business capability for providing secure, isolated, and trustworthy execution of multiple workloads on shared physical computing platforms."
         },
         {
@@ -20,138 +21,126 @@
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD120",
-          "remarks": "Virtualized computing platforms, hypervisor-managed infrastructure, and shared host execution environments."
+          "remarks": "Virtualized compute platforms, hypervisor-managed infrastructure, and shared host execution environments."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP240",
-          "remarks": "Pattern for establishing isolation, trust boundaries, and safe multi-tenant operation on hypervisor-mediated compute platforms."
+          "remarks": "Establishes isolation, trust boundaries, and safe multi-tenant operation on hypervisor-mediated platforms."
         },
         {
           "name": "depends-on",
           "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-layer",
+          "class": "platform-pattern",
           "value": "bare-metal-core",
           "remarks": "Virtualization trust assumes an explicitly trusted physical host substrate."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0004",
-          "remarks": "Privilege escalation risks inherent to shared virtualized execution substrates."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0008",
-          "remarks": "Lateral movement risks between co-resident virtual machines."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0005",
-          "remarks": "Defense evasion techniques operating below the guest operating system."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1068",
-          "remarks": "Guest-to-host or hypervisor escape via exploitation for privilege escalation."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1021",
-          "remarks": "Remote services and shared host services enabling inter-VM lateral movement."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0001",
-          "remarks": "Execution isolation enforced at the hypervisor layer."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0008",
-          "remarks": "Verification of platform and hypervisor integrity."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0036",
-          "remarks": "Reduction of hypervisor attack surface available to guest workloads."
         }
       ],
 
-      "remarks": "Virtualization Core defines the foundational trust properties required to safely operate multiple workloads on a shared physical host using a hypervisor. This pattern makes isolation guarantees, trust boundaries, and virtualization-layer threat relevance explicit and assertable."
+      "remarks": "Virtualization Core defines the foundational trust properties required to safely operate multiple workloads on a shared physical host using a hypervisor. This pattern makes guest isolation, host–guest boundaries, and virtualization-layer attack surface explicit, without asserting hypervisor-specific control ownership."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:virtual-machine-isolation",
         "type": "capability",
         "title": "Virtual Machine Isolation",
-        "description": "Prevents unauthorized interaction or interference between virtual machines.",
+        "description": "Prevents unauthorized interaction or interference between co-resident virtual machines.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1021",
+            "remarks": "Lateral movement through shared host services or misconfigured inter-VM communication paths."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ExecutionIsolation",
+            "remarks": "Isolation of execution contexts across virtual machines."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:vm-isolation",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:vm-isolation",
-                "control-id": "VIRT-VM-ISOLATION",
-                "remarks": "Compromise of one virtual machine does not enable access to other co-resident workloads."
-              }
+              { "control-id": "SC-7", "remarks": "Boundary protection between virtualized workloads." },
+              { "control-id": "AC-4", "remarks": "Information flow control between VM execution domains." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:host-guest-trust-boundary",
         "type": "capability",
         "title": "Host–Guest Trust Boundary",
-        "description": "Maintains strict separation between guest workloads and the host system.",
+        "description": "Maintains strict separation between guest workloads and the host or hypervisor execution context.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1068",
+            "remarks": "Privilege escalation via guest-to-host or guest-to-hypervisor exploitation."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PrivilegeBoundaryEnforcement",
+            "remarks": "Enforcement of separation between guest and host privilege domains."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:host-guest-boundary",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:host-guest-boundary",
-                "control-id": "VIRT-HOST-GUEST-BOUNDARY",
-                "remarks": "Guest workloads cannot influence or escape into the host or hypervisor execution context."
-              }
+              { "control-id": "SI-7", "remarks": "Integrity protection of host and hypervisor execution state." },
+              { "control-id": "CM-7", "remarks": "Least functionality exposed from host to guest workloads." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:lateral-movement-containment",
         "type": "capability",
         "title": "Lateral Movement Containment",
         "description": "Limits the ability of a compromised guest to move laterally across shared virtual infrastructure.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1021",
+            "remarks": "Remote service abuse enabling cross-VM lateral movement."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkSegmentation",
+            "remarks": "Logical segmentation and restriction of inter-VM communication paths."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:lateral-movement",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:lateral-movement",
-                "control-id": "VIRT-LATERAL-CONTAINMENT",
-                "remarks": "Hypervisor-mediated controls reduce lateral attack paths between virtual machines."
-              }
+              { "control-id": "SC-7", "remarks": "Containment of east–west traffic within virtualized hosts." },
+              { "control-id": "RA-5", "remarks": "Identification of exploitable lateral movement paths." }
             ]
           }
         ]

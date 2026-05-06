@@ -1,15 +1,17 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:hosting-model-trust",
+
     "metadata": {
       "title": "Hosting Model Trust",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T23:55:00Z",
+      "last-modified": "2026-05-06T04:35:00Z",
 
       "props": [
         {
           "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC318",
           "remarks": "Business capability for establishing explicit trust assumptions based on where computing platforms are physically hosted and operationally managed."
@@ -26,106 +28,78 @@
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP247",
-          "remarks": "Pattern for defining environmental and operational trust assumptions for infrastructure hosting models."
-        },
-
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0001",
-          "remarks": "Initial access risks arising from physical access, hosting provider compromise, or unauthorized facility access."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0006",
-          "remarks": "Credential access risks due to exposure of management systems or personnel with privileged facility access."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0040",
-          "remarks": "Impact to availability or integrity resulting from facility outage, environmental failure, or hosting provider incident."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1190",
-          "remarks": "Exploitation of externally exposed management or hosting service interfaces."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1078",
-          "remarks": "Abuse of valid accounts associated with hosting providers or facility operations."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0004",
-          "remarks": "Privileged access management for personnel and systems with hosting-level control."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0035",
-          "remarks": "Environmental and facility resilience measures to reduce impact of physical or operational disruption."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0046",
-          "remarks": "Administrative and operational separation of duties within hosting and facility management."
+          "remarks": "Defines environmental, jurisdictional, and operational trust assumptions for infrastructure hosting models."
         }
       ],
 
-      "remarks": "Hosting Model Trust defines the trust assumptions derived from the physical location, ownership, and operational control of infrastructure hosting environments. This pattern does not prescribe physical security controls; instead, it makes environmental trust boundaries explicit so that higher-level platform and system trust decisions are made with clear awareness of hosting context."
+      "remarks": "Hosting Model Trust defines the trust assumptions derived from the physical location, ownership, and operational control of infrastructure hosting environments. This pattern does not prescribe physical or environmental controls; instead, it makes hosting context explicit so that higher‑level platform and system trust decisions are made knowingly."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:hosting-environment-classification",
         "type": "capability",
         "title": "Hosting Environment Classification",
-        "description": "Classifies infrastructure based on hosting ownership, operational responsibility, and jurisdiction.",
+        "description": "Identification and categorization of hosting environments based on ownership, operation, and jurisdiction.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid accounts associated with hosting providers or facility operations."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AssetClassification",
+            "remarks": "Explicit classification of hosting environments to support appropriate trust assumptions."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:hosting-classification",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:hosting-classification",
-                "control-id": "HOST-CLASSIFY",
-                "remarks": "Hosting environments are identified and categorized to support appropriate trust assumptions."
-              }
+              { "control-id": "CM-8", "remarks": "Inventory and classification of system components including hosting environments." },
+              { "control-id": "PL-8", "remarks": "Security architecture reflects hosting model assumptions." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:operational-control-boundaries",
         "type": "capability",
         "title": "Operational Control Boundaries",
-        "description": "Defines boundaries between institutional, provider, and third-party operational responsibilities.",
+        "description": "Clear definition of operational responsibility boundaries between institution, provider, and third parties.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1190",
+            "remarks": "Exploitation of externally exposed management or hosting service interfaces."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ResponsibilityAssignment",
+            "remarks": "Explicit assignment and governance of operational responsibilities."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:operational-boundaries",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:operational-boundaries",
-                "control-id": "HOST-OP-BOUNDARY",
-                "remarks": "Operational roles and responsibilities for hosting environments are explicitly defined and understood."
-              }
+              { "control-id": "PL-2", "remarks": "Defined roles and responsibilities for system operation." },
+              { "control-id": "SA-9", "remarks": "External service and hosting dependencies are governed." }
             ]
           }
         ]

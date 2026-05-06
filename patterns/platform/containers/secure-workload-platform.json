@@ -1,0 +1,103 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-workload-platform",
+
+    "metadata": {
+      "title": "Secure Workload Platform",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T00:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC319",
+          "remarks": "Business capability for operating application workloads with consistent security, governance, and trust guarantees across execution platforms."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD128",
+          "remarks": "Application workloads across containers, virtual machines, PaaS services, and serverless platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:AP248",
+          "remarks": "Composite pattern asserting that workloads are deployed, governed, and operated under consistent trust controls."
+        },
+
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0004",
+          "remarks": "Privilege escalation within or between workloads."
+        },
+        {
+          "name": "attack-tactic",
+          "ns": "urn:mitre:attack",
+          "class": "tactic",
+          "value": "TA0008",
+          "remarks": "Lateral movement between application workloads."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1078",
+          "remarks": "Abuse of workload identities or service principals."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0046",
+          "remarks": "Separation of duties and workload identity governance."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "D3FEND-0056",
+          "remarks": "Centralized visibility and monitoring of workload behavior."
+        }
+      ],
+
+      "remarks": "Secure Workload Platform is a composite trust pattern asserting that application workloads are governed, isolated, authorized, monitored, and constrained regardless of execution substrate. It introduces no independent controls and exists solely as an aggregate trust claim for SSPPs and solution architectures."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:secure-container-platform",
+        "type": "component",
+        "title": "Secure Container Platform"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:container-orchestration-security",
+        "type": "component",
+        "title": "Container Orchestration Security"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cloud-identity-and-access",
+        "type": "component",
+        "title": "Cloud Identity and Access"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cloud-networking",
+        "type": "component",
+        "title": "Cloud Networking"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:cloud-monitoring-and-logging",
+        "type": "component",
+        "title": "Cloud Monitoring and Logging"
+      }
+    ]
+  }
+}

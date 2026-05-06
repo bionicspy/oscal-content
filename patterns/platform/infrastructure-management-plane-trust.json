@@ -3,9 +3,9 @@
     "uuid": "urn:utoronto:security:pattern:infrastructure-management-plane-trust",
     "metadata": {
       "title": "Infrastructure Management Plane Trust",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T00:05:00Z",
+      "last-modified": "2026-05-06T04:55:00Z",
 
       "props": [
         {
@@ -27,131 +27,112 @@
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP248",
-          "remarks": "Pattern for governing trust and blast radius of infrastructure management and automation control planes."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0001",
-          "remarks": "Initial access to infrastructure via compromise of management tooling or automation pipelines."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0004",
-          "remarks": "Privilege escalation through abuse of infrastructure automation or management credentials."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0005",
-          "remarks": "Defense evasion by modifying infrastructure state through trusted automation channels."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0040",
-          "remarks": "High-impact systemic changes or outages resulting from compromised infrastructure control planes."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1078",
-          "remarks": "Abuse of valid accounts used by infrastructure automation or management systems."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1609",
-          "remarks": "Container or infrastructure administration command execution via compromised management tooling."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0004",
-          "remarks": "Privileged access management for accounts and identities used by infrastructure control planes."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0046",
-          "remarks": "Separation of duties and administrative role partitioning within infrastructure management systems."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0050",
-          "remarks": "Change control and verification for infrastructure state modifications."
+          "remarks": "Governs trust assumptions and blast radius for infrastructure management and automation control planes."
         }
       ],
 
-      "remarks": "Infrastructure Management Plane Trust defines the trust properties required to safely operate systems that create, modify, and destroy infrastructure platforms. This pattern exists to make the risk and blast radius of automation, configuration, and provisioning tooling explicit, recognizing that compromise at this layer can undermine all dependent platforms simultaneously."
+      "remarks": "Infrastructure Management Plane Trust defines trust properties required to safely operate systems that create, modify, and destroy infrastructure platforms. This pattern exists to make automation and management-plane risk explicit, recognizing that compromise at this layer can undermine all dependent platforms simultaneously."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:infrastructure-change-authority",
         "type": "capability",
         "title": "Infrastructure Change Authority",
-        "description": "Restricts and governs who or what may make authoritative changes to infrastructure state.",
+        "description": "Restriction and governance of who or what may make authoritative changes to infrastructure state.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid accounts used by infrastructure management or automation systems."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PrivilegedAccessManagement",
+            "remarks": "Strong governance of identities permitted to modify infrastructure state."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:infra-change-authority",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:infra-change-authority",
-                "control-id": "INFRA-CHANGE-AUTH",
-                "remarks": "Infrastructure modifications occur only through authorized and controlled management planes."
-              }
+              { "control-id": "AC-6", "remarks": "Least privilege for infrastructure modification roles." },
+              { "control-id": "CM-5", "remarks": "Restricted modification of infrastructure configuration." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:automation-blast-radius-control",
         "type": "capability",
         "title": "Automation Blast Radius Control",
-        "description": "Limits the scope and impact of automated actions performed by infrastructure management systems.",
+        "description": "Limitation of scope and impact of automated infrastructure management actions.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1609",
+            "remarks": "Execution of administrative commands or provisioning actions via compromised automation tooling."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ImpactLimitation",
+            "remarks": "Design of automation workflows to constrain blast radius and prevent cascading failure."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:automation-blast-radius",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:automation-blast-radius",
-                "control-id": "INFRA-BLAST-RADIUS",
-                "remarks": "Automation systems are structured to prevent uncontrolled, global, or cascading impact."
-              }
+              { "control-id": "SC-6",  "remarks": "Protection against resource or change exhaustion." },
+              { "control-id": "CP-10", "remarks": "Recovery and resilience planning for automation failures." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:management-plane-auditability",
         "type": "capability",
         "title": "Management Plane Auditability",
-        "description": "Ensures actions taken through infrastructure management systems are observable and attributable.",
+        "description": "Visibility and attribution of actions performed through infrastructure management systems.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1562",
+            "remarks": "Impairment or bypass of logging for infrastructure management actions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AuditLogging",
+            "remarks": "Comprehensive logging and attribution of management-plane activities."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:management-audit",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:management-audit",
-                "control-id": "INFRA-AUDIT",
-                "remarks": "Infrastructure management actions are logged and attributable to responsible identities or systems."
-              }
+              { "control-id": "AU-12", "remarks": "Audit logging of infrastructure management actions." },
+              { "control-id": "AU-6",  "remarks": "Review and analysis of management-plane audit events." }
             ]
           }
         ]

@@ -1,11 +1,12 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:hpc-core",
+
     "metadata": {
       "title": "High-Performance Computing Core",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T00:25:00Z",
+      "last-modified": "2026-05-06T01:30:00Z",
 
       "props": [
         {
@@ -13,21 +14,21 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC320",
-          "remarks": "Business capability for operating shared high-performance computing platforms in a manner that preserves isolation, integrity, and availability across diverse workloads."
+          "remarks": "Business capability for operating shared high‑performance computing platforms in a manner that preserves isolation, integrity, and availability across diverse workloads."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD129",
-          "remarks": "High-performance computing clusters, batch schedulers, shared accelerators, and tightly coupled compute fabrics."
+          "remarks": "High‑performance computing clusters, batch schedulers, shared accelerators, and tightly coupled compute fabrics."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP249",
-          "remarks": "Pattern for establishing baseline trust assumptions for shared and scheduler-mediated high-performance computing environments."
+          "remarks": "Establishes baseline trust assumptions for shared and scheduler‑mediated high‑performance computing environments."
         },
         {
           "name": "depends-on",
@@ -41,124 +42,112 @@
           "ns": "urn:utoronto:cae2:dependency",
           "class": "platform-pattern",
           "value": "bare-metal-core",
-          "remarks": "HPC platforms commonly rely on trusted bare-metal execution substrates."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0004",
-          "remarks": "Privilege escalation risks arising from scheduler abuse or shared compute context."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0008",
-          "remarks": "Lateral movement between jobs or users executing on shared compute nodes."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0040",
-          "remarks": "Impact to availability or integrity of shared compute resources."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1068",
-          "remarks": "Privilege escalation through exploitation of shared operating system or scheduler context."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1499",
-          "remarks": "Denial-of-service through exhaustion or monopolization of shared compute resources."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0001",
-          "remarks": "Execution isolation between workloads running on shared compute nodes."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0004",
-          "remarks": "Privileged access management for scheduler and platform administration."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0036",
-          "remarks": "Reduction of attack surface exposed by shared HPC platform services."
+          "remarks": "HPC platforms commonly rely on trusted bare‑metal execution substrates."
         }
       ],
 
-      "remarks": "High-Performance Computing Core defines the foundational trust properties required to operate shared, performance-oriented compute platforms. This pattern recognizes that HPC environments emphasize throughput and flexibility, and therefore makes scheduler-mediated execution, shared-resource risk, and platform-level isolation explicit."
+      "remarks": "High‑Performance Computing Core defines the foundational trust properties required to operate shared, performance‑oriented compute platforms. This pattern makes scheduler‑mediated execution, shared‑resource risk, and platform‑level isolation explicit, without asserting workload orchestration or application‑level controls."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:shared-node-isolation",
         "type": "capability",
         "title": "Shared Node Isolation",
         "description": "Prevents interference between concurrent workloads executing on shared compute nodes.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1068",
+            "remarks": "Privilege escalation through exploitation of shared operating system or node context."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ExecutionIsolation",
+            "remarks": "Isolation controls preventing one workload from impacting others on shared nodes."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:shared-node-isolation",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:shared-node-isolation",
-                "control-id": "HPC-NODE-ISOLATION",
-                "remarks": "Isolation mechanisms prevent one workload from impacting the execution of others on shared nodes."
-              }
+              { "control-id": "SC-7", "remarks": "Logical separation of execution contexts on shared compute nodes." },
+              { "control-id": "AC-4", "remarks": "Information flow control between node‑resident workloads." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:scheduler-mediated-execution-trust",
         "type": "capability",
-        "title": "Scheduler-Mediated Execution Trust",
-        "description": "Establishes trust boundaries enforced by batch and job schedulers.",
+        "title": "Scheduler‑Mediated Execution Trust",
+        "description": "Trust boundaries enforced by batch schedulers and job control systems.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of scheduler or job‑control privileges to affect other workloads."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PrivilegedAccessManagement",
+            "remarks": "Controlled and auditable access to scheduler and execution control planes."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:scheduler-trust",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:scheduler-trust",
-                "control-id": "HPC-SCHEDULER-TRUST",
-                "remarks": "Schedulers enforce workload separation, resource allocation, and execution constraints."
-              }
+              { "control-id": "AC-6", "remarks": "Least privilege enforced for scheduler and control‑plane roles." },
+              { "control-id": "CM-5", "remarks": "Restricted modification of scheduler configuration." }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:compute-resource-fairness",
         "type": "capability",
         "title": "Compute Resource Fairness",
-        "description": "Limits abusive or monopolizing use of shared compute resources.",
+        "description": "Prevents abusive or monopolizing consumption of shared compute resources.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1499",
+            "remarks": "Denial‑of‑service via exhaustion or monopolization of shared compute resources."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ResourceAllocation",
+            "remarks": "Enforced quotas, limits, and scheduling policies ensuring fair resource use."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:resource-fairness",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "uuid": "urn:utoronto:security:ir:resource-fairness",
-                "control-id": "HPC-RESOURCE-FAIRNESS",
-                "remarks": "Resource controls prevent single workloads or users from denying service to others."
-              }
+              { "control-id": "SC-6", "remarks": "Protection against resource exhaustion." },
+              { "control-id": "CP-10", "remarks": "Ensure availability through controlled resource allocation." }
             ]
           }
         ]

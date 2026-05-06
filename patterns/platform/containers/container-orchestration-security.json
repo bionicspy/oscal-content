@@ -1,0 +1,237 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:container-orchestration-security",
+
+    "metadata": {
+      "title": "Container Orchestration Security",
+      "version": "0.2.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T01:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC318",
+          "remarks": "Business capability for governing how containerized workloads are admitted, scheduled, authorized, isolated, and constrained by an orchestration control plane."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD127",
+          "remarks": "Container orchestration platforms, control planes, admission systems, workload metadata, and policy engines."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP247",
+          "remarks": "Establishes security, authorization, and policy enforcement at the container orchestration layer."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "secure-container-platform",
+          "remarks": "Orchestration security assumes the underlying container platform is trusted."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-190",
+          "class": "guidance-reference",
+          "value": "4.3",
+          "remarks": "Container orchestration security and control-plane threats."
+        }
+      ],
+
+      "remarks": "Container Orchestration Security defines trust properties enforced by orchestration control planes. It governs workload admission, authorization, placement, tenancy boundaries, and policy enforcement, without asserting container runtime or supply‑chain controls."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:workload-admission-control",
+        "type": "capability",
+        "title": "Workload Admission Control",
+        "description": "Validation of security, policy, and trust criteria before workloads are scheduled.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1195",
+            "remarks": "Admission of malicious or untrusted container artifacts into the orchestration environment."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PreExecutionValidation",
+            "remarks": "Validation of workload artifacts and metadata prior to execution."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "CM-5", "remarks": "Restrict and validate changes to workload deployment configuration." },
+              { "control-id": "SI-7", "remarks": "Integrity validation of workload definitions and inputs." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:orchestration-access-control",
+        "type": "capability",
+        "title": "Orchestration Access Control",
+        "description": "Governance of who may deploy, modify, or interact with orchestrated workloads.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid orchestration identities or roles."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AuthorizationManagement",
+            "remarks": "Role‑ and identity‑based access control for orchestration operations."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-2", "remarks": "Account and role management for orchestration control planes." },
+              { "control-id": "AC-6", "remarks": "Least privilege for users and service accounts interacting with the orchestrator." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:namespace-and-tenancy-governance",
+        "type": "capability",
+        "title": "Namespace and Tenancy Governance",
+        "description": "Isolation of workloads by logical tenancy, environment, and trust zone.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1021",
+            "remarks": "Lateral movement across improperly isolated namespaces or tenants."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkSegmentation",
+            "remarks": "Logical isolation of workload namespaces and tenancy boundaries."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SC-7", "remarks": "Boundary protection between workload namespaces." },
+              { "control-id": "AC-4", "remarks": "Information flow controls enforcing tenancy separation." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:workload-security-policy-enforcement",
+        "type": "capability",
+        "title": "Workload Security Policy Enforcement",
+        "description": "Application of centrally governed security policies to orchestrated workloads.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1562",
+            "remarks": "Bypass or weakening of orchestration‑level security policies."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PolicyEnforcement",
+            "remarks": "Consistent enforcement of security policies during workload scheduling and operation."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "PL-2", "remarks": "Security policies governing workload deployment and operation." },
+              { "control-id": "CA-7", "remarks": "Continuous monitoring of policy compliance across workloads." }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:workload-network-policy-enforcement",
+        "type": "capability",
+        "title": "Workload Network Policy Enforcement",
+        "description": "Controls and restricts east-west network communication between orchestrated workloads.",
+
+        "props": [
+          {
+            "name": "nist-guidance",
+            "ns": "urn:nist.gov:800-190",
+            "class": "guidance-reference",
+            "value": "4.3",
+            "remarks": "Network segmentation within container orchestration environments."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1021",
+            "remarks": "Lateral movement between containerized workloads via unrestricted east-west network paths."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkSegmentation",
+            "remarks": "Policy-based restriction of network communication paths between orchestrated workloads."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-7",
+                "remarks": "Boundary protection for east-west communication between orchestrated workloads."
+              },
+              {
+                "control-id": "AC-4",
+                "remarks": "Information flow control enforced via workload-level network policy."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

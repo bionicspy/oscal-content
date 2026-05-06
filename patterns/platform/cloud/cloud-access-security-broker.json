@@ -3,163 +3,194 @@
     "uuid": "urn:utoronto:security:pattern:cloud-access-security-broker",
 
     "metadata": {
-      "title": "Cloud Access Security Broker",
-      "version": "0.1.0",
+      "title": "Cloud Access Security Broker (CASB)",
+      "version": "1.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T04:00:00Z",
+      "last-modified": "2026-05-05T04:20:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
-          "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC332",
-          "remarks": "Business capability for discovering, governing, and securing access to cloud services, including sanctioned and unsanctioned SaaS usage."
+          "class": "platform-capability",
+          "value": "cloud-access-visibility-and-control",
+          "remarks": "Provides visibility, policy enforcement, and risk controls for access to cloud services."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
-          "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD141",
-          "remarks": "Cloud access security brokers, SaaS usage visibility systems, inline and API-based policy enforcement mechanisms."
+          "class": "technology-domain",
+          "value": "cloud-security",
+          "remarks": "SaaS, PaaS, cloud identity, API integrations, and cloud access control planes."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP261",
-          "remarks": "Pattern for governing cloud application access, shadow IT visibility, and policy enforcement through CASB capabilities."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "cloud-identity-and-access",
-          "remarks": "CASB capabilities depend on cloud-native identity and authentication mechanisms."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "cloud-monitoring-and-logging",
-          "remarks": "CASB capabilities rely on cloud activity visibility and telemetry."
-        },
-
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0006",
-          "remarks": "Credential access via unmanaged or poorly governed cloud applications."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0009",
-          "remarks": "Collection of sensitive data through unsanctioned or misused SaaS platforms."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0005",
-          "remarks": "Defense evasion by shifting activity to cloud services outside formal governance."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1078",
-          "remarks": "Use of valid accounts in cloud services to maintain access and evade detection."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1020",
-          "remarks": "Automated data exfiltration via legitimate cloud service APIs."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0011",
-          "remarks": "Data access control and policy enforcement for cloud applications."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0056",
-          "remarks": "Monitoring and alerting on risky or policy-violating cloud usage."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0063",
-          "remarks": "Application discovery and classification to surface shadow IT."
+          "value": "cloud-access-security-broker",
+          "remarks": "Pattern for mediating and governing access between users, devices, and cloud services."
         }
       ],
 
-      "remarks": "Cloud Access Security Broker defines the trust properties required to discover, govern, and enforce security policy over access to cloud applications. This pattern addresses shadow IT, unsanctioned SaaS usage, and data exposure risks that arise outside traditional infrastructure-centric security controls."
+      "remarks": "Cloud Access Security Broker defines institutional expectations for visibility, control, and risk management over cloud service usage. This pattern mediates access, monitors activity, and enforces policy across sanctioned and unsanctioned cloud services. It does not replace identity, endpoint, or data protection patterns and relies on them for foundational trust."
     },
 
     "components": [
+
       {
-        "uuid": "urn:utoronto:security:capability:cloud-application-discovery",
+        "uuid": "urn:utoronto:security:capability:cloud-service-discovery",
         "type": "capability",
-        "title": "Cloud Application Discovery",
-        "description": "Identifies and classifies cloud applications in use across the organization.",
+        "title": "Cloud Service Discovery",
+        "description": "Discovery and classification of cloud services accessed by users and workloads.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Use of valid credentials to access unsanctioned or high-risk cloud services."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AssetDiscovery",
+            "remarks": "Identification and classification of cloud services in use."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:cloud-app-discovery",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:cloud-app-discovery",
-                "control-id": "CLOUD-CASB-DISCOVERY",
-                "remarks": "Cloud application usage is identified to surface sanctioned and unsanctioned services."
+                "control-id": "CM-8",
+                "remarks": "Inventory and classification of cloud services and external system dependencies."
+              },
+              {
+                "control-id": "CA-7",
+                "remarks": "Ongoing monitoring of cloud service usage."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:cloud-access-policy-enforcement",
         "type": "capability",
         "title": "Cloud Access Policy Enforcement",
-        "description": "Applies security and data protection policies to cloud application access.",
+        "description": "Enforcement of access policies for cloud services based on identity, context, and risk.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1046",
+            "remarks": "Unauthorized access through exposed or misconfigured cloud services."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AccessControl",
+            "remarks": "Contextual enforcement of access control decisions."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:cloud-access-policy",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:cloud-access-policy",
-                "control-id": "CLOUD-CASB-POLICY",
-                "remarks": "Access to cloud applications is governed according to defined security policies."
+                "control-id": "AC-3",
+                "remarks": "Enforce approved authorizations for cloud service access."
+              },
+              {
+                "control-id": "AC-6",
+                "remarks": "Least privilege applied to cloud access."
               }
             ]
           }
         ]
       },
+
       {
-        "uuid": "urn:utoronto:security:capability:cloud-application-data-protection",
+        "uuid": "urn:utoronto:security:capability:cloud-activity-monitoring",
         "type": "capability",
-        "title": "Cloud Application Data Protection",
-        "description": "Protects sensitive data accessed or stored within cloud applications.",
+        "title": "Cloud Activity Monitoring",
+        "description": "Monitoring and analysis of user and workload activity within cloud services.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1071",
+            "remarks": "Command-and-control or data exchange over cloud-based application protocols."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:TelemetryCollection",
+            "remarks": "Collection and correlation of cloud activity telemetry."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:cloud-app-data-protection",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:cloud-app-data-protection",
-                "control-id": "CLOUD-CASB-DATA",
-                "remarks": "Sensitive data in cloud applications is monitored and protected against inappropriate exposure."
+                "control-id": "AU-12",
+                "remarks": "Generate audit records for cloud access and activity."
+              },
+              {
+                "control-id": "SI-4",
+                "remarks": "Monitor cloud activity for indicators of compromise or misuse."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:data-protection-in-the-cloud",
+        "type": "capability",
+        "title": "Data Protection in the Cloud",
+        "description": "Protection of institutional data accessed or stored in cloud services.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1020",
+            "remarks": "Unauthorized exfiltration of data from cloud services."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:DataLossPrevention",
+            "remarks": "Inspection and enforcement to prevent unauthorized data movement."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-7",
+                "remarks": "Protect data through cryptographic mechanisms and policy enforcement."
+              },
+              {
+                "control-id": "SC-12",
+                "remarks": "Cryptographic protection of data in cloud environments."
               }
             ]
           }

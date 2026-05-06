@@ -1,11 +1,12 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:container-runtime-and-isolation",
+
     "metadata": {
       "title": "Container Runtime and Isolation",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T23:00:00Z",
+      "last-modified": "2026-05-05T09:40:00Z",
 
       "props": [
         {
@@ -13,21 +14,21 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC315",
-          "remarks": "Business capability for enforcing strong isolation between containerized workloads and the underlying host through runtime and kernel-level controls."
+          "remarks": "Business capability for enforcing runtime confinement and isolation of containerized workloads through kernel- and runtime-level controls."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD124",
-          "remarks": "Container runtimes, shared-kernel execution environments, namespaces, cgroups, and orchestration-enforced isolation mechanisms."
+          "remarks": "Container runtimes, shared-kernel execution environments, namespaces, cgroups, seccomp, and runtime confinement mechanisms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP244",
-          "remarks": "Pattern for enforcing runtime confinement, kernel boundary protection, and isolation guarantees in container platforms."
+          "remarks": "Enforces runtime confinement, kernel boundary protection, and isolation guarantees in container platforms."
         },
         {
           "name": "depends-on",
@@ -36,122 +37,134 @@
           "value": "container-core",
           "remarks": "Runtime isolation builds on baseline container trust and shared-kernel risk assumptions."
         },
-
         {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0004",
-          "remarks": "Privilege escalation through kernel abuse or container runtime misconfiguration."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0005",
-          "remarks": "Defense evasion via namespace, capability, or seccomp bypass techniques."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0008",
-          "remarks": "Lateral movement between containers sharing a runtime or host kernel."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1611",
-          "remarks": "Escape to host from container through kernel or runtime exploitation."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1068",
-          "remarks": "Privilege escalation through exploitation of kernel-level vulnerabilities accessible to containers."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0001",
-          "remarks": "Execution isolation enforced through namespaces and cgroups."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0018",
-          "remarks": "Kernel attack surface reduction through capability restriction and syscall filtering."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0042",
-          "remarks": "Privileged execution control applied to container runtimes and workloads."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-190",
+          "class": "guidance-reference",
+          "value": "4.2, 4.4",
+          "remarks": "Shared-kernel execution risks and container host considerations."
         }
       ],
 
-      "remarks": "Container Runtime and Isolation defines the trust properties required to enforce confinement of containerized workloads at runtime. This pattern focuses on kernel interaction, namespace separation, and runtime enforcement mechanisms that prevent container escape, privilege escalation, and unintended lateral movement."
+      "remarks": "Container Runtime and Isolation defines the trust properties required to confine containerized workloads at runtime. This pattern addresses kernel interaction, namespace enforcement, and privilege restriction mechanisms that prevent container escape, privilege escalation, and unintended lateral movement, without covering orchestration policy or supply-chain controls."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:kernel-boundary-enforcement",
         "type": "capability",
         "title": "Kernel Boundary Enforcement",
-        "description": "Constrains containerized workloads to prevent unsafe interaction with the host kernel.",
+        "description": "Constrains container workloads to prevent unsafe interaction with the host kernel.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1611",
+            "remarks": "Container escape to host through kernel or runtime exploitation."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:KernelAttackSurfaceReduction",
+            "remarks": "Reduction of kernel interfaces and syscalls exposed to container workloads."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:kernel-boundary",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:kernel-boundary",
-                "control-id": "CONT-KERNEL-BOUNDARY",
-                "remarks": "Container workloads are prevented from invoking unsafe kernel interfaces or escaping confinement."
+                "control-id": "SI-7",
+                "remarks": "Protection of execution integrity for shared kernels."
+              },
+              {
+                "control-id": "CM-7",
+                "remarks": "Least functionality enforced for kernel interfaces exposed to containers."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:namespace-and-resource-isolation",
         "type": "capability",
         "title": "Namespace and Resource Isolation",
-        "description": "Enforces separation of process, network, filesystem, and resource namespaces between containers.",
+        "description": "Separation of process, network, filesystem, and resource namespaces between containers.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1068",
+            "remarks": "Privilege escalation via kernel vulnerabilities accessible through shared namespaces."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ExecutionIsolation",
+            "remarks": "Namespace and resource isolation preventing cross-container interference."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:namespace-isolation",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:namespace-isolation",
-                "control-id": "CONT-NAMESPACE-ISOLATION",
-                "remarks": "Namespace and resource isolation mechanisms prevent cross-container interference."
+                "control-id": "SC-7",
+                "remarks": "Logical separation of execution domains."
+              },
+              {
+                "control-id": "AC-4",
+                "remarks": "Information flow control between containerized processes."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:runtime-privilege-restriction",
         "type": "capability",
         "title": "Runtime Privilege Restriction",
-        "description": "Limits runtime privileges available to containers and containerized processes.",
+        "description": "Limits privileges and capabilities available to container workloads at runtime.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1068",
+            "remarks": "Elevation of privileges through excessive runtime capabilities."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PrivilegedExecutionControl",
+            "remarks": "Restriction of container runtime privileges and Linux capabilities."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:runtime-privilege",
-            "source": "urn:utoronto:cae2:architecture",
+            "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:runtime-privilege",
-                "control-id": "CONT-RUNTIME-PRIV",
-                "remarks": "Runtime enforcement prevents container workloads from acquiring excessive privileges."
+                "control-id": "AC-6",
+                "remarks": "Least privilege enforced for container runtime execution."
+              },
+              {
+                "control-id": "CM-5",
+                "remarks": "Restricted modification of privilege-related runtime configuration."
               }
             ]
           }
