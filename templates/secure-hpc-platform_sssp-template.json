@@ -1,0 +1,180 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:ssp:secure-hpc-platform:template",
+    "metadata": {
+      "title": "System Security and Privacy Plan – Secure High-Performance Computing Platform",
+      "published": "2026-05-06T14:00:00Z",
+      "last-modified": "2026-05-06T14:00:00Z",
+      "version": "0.2.0",
+      "oscal-version": "1.1.3",
+
+      "props": [
+        {
+          "name": "system-type",
+          "value": "high-performance-computing"
+        },
+        {
+          "name": "trust-pattern",
+          "value": "secure-hpc"
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-234",
+          "value": "2–6",
+          "remarks": "System architecture and governance are aligned to NIST SP 800-234 (High-Performance Computing Security Guide)."
+        }
+      ]
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure High-Performance Computing Platform",
+      "description": "A shared, scheduler-mediated high-performance computing platform supporting institutional and research workloads with explicit trust boundaries, job-centric security controls, governed performance trade-offs, and behavioral monitoring.",
+      "system-ids": [
+        {
+          "identifier-type": "internal",
+          "identifier": "HPC-PLATFORM-001"
+        }
+      ],
+      "system-type": "general-purpose",
+      "authorization-boundary": {
+        "description": "Includes all shared compute nodes, batch schedulers, login nodes, shared storage systems, accelerators, HPC fabrics, identity systems, and monitoring components used to deliver HPC services."
+      },
+      "security-sensitivity-level": "moderate"
+    },
+
+    "system-implementation": {
+      "users": [
+        {
+          "uuid": "urn:utoronto:ssp:hpc:user:platform-admin",
+          "title": "HPC Platform Administrator",
+          "description": "Responsible for operation and maintenance of HPC compute nodes, schedulers, operating systems, fabrics, and accelerators.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OM-SA",
+              "remarks": "Systems Administrator per NIST NICE Framework (SP 800-181)."
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:ssp:hpc:user:scheduler-operator",
+          "title": "HPC Scheduler Operator",
+          "description": "Manages scheduler configuration, queues, execution policies, and resource fairness controls.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OM-SA",
+              "remarks": "Scheduler operation aligns with Systems Administrator responsibilities."
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:ssp:hpc:user:security-operations",
+          "title": "HPC Security Operations",
+          "description": "Responsible for behavioral monitoring, anomaly detection, incident response, and insider misuse investigation within the HPC environment.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-SOC",
+              "remarks": "Security Operations Analyst per NIST NICE Framework."
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:ssp:hpc:user:end-user",
+          "title": "HPC User",
+          "description": "Authorized researcher or institutional user submitting non-interactive batch jobs to the HPC platform.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "SP-RS",
+              "remarks": "Research and Development Specialist per NIST NICE Framework."
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:ssp:hpc:user:federation-admin",
+          "title": "Federated Identity Administrator",
+          "description": "Manages federated identity relationships and external access to the HPC environment (if applicable).",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OM-IAM",
+              "remarks": "Identity and Access Management Specialist per NIST NICE Framework."
+            }
+          ]
+        }
+      ],
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:component:secure-hpc",
+          "type": "platform",
+          "title": "Secure High-Performance Computing",
+          "description": "Composite trust assertion for secure operation of shared high-performance computing environments.",
+          "props": [
+            {
+              "name": "trust-claim",
+              "value": "aggregate"
+            }
+          ],
+          "implemented-components": [
+            { "component-id": "hpc-core" },
+            { "component-id": "hpc-identity-and-access" },
+            { "component-id": "hpc-job-lifecycle-security" },
+            { "component-id": "hpc-data-protection" },
+            { "component-id": "hpc-fabric-and-accelerator-trust" },
+            { "component-id": "hpc-behavioral-monitoring" },
+            { "component-id": "hpc-performance-risk-governance" },
+            {
+              "component-id": "hpc-federated-access-trust",
+              "remarks": "Applicable only when external or cross-institution federation is enabled."
+            }
+          ]
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "NIST SP 800-53 Rev. 5 controls are satisfied through assertions in adopted HPC trust patterns. Detailed control implementations are defined in component-definitions and inherited by this SSP.",
+
+      "implemented-requirements": [
+        {
+          "uuid": "urn:utoronto:ssp:hpc:controls:ac",
+          "control-id": "AC",
+          "remarks": "Access control is satisfied via hpc-identity-and-access and scheduler-mediated job execution."
+        },
+        {
+          "uuid": "urn:utoronto:ssp:hpc:controls:au",
+          "control-id": "AU",
+          "remarks": "Audit and accountability are satisfied via scheduler logs and hpc-behavioral-monitoring."
+        },
+        {
+          "uuid": "urn:utoronto:ssp:hpc:controls:sc",
+          "control-id": "SC",
+          "remarks": "System and communication protection is satisfied via hpc-core and hpc-fabric-and-accelerator-trust."
+        },
+        {
+          "uuid": "urn:utoronto:ssp:hpc:controls:si",
+          "control-id": "SI",
+          "remarks": "System integrity is satisfied via job lifecycle enforcement and behavioral anomaly detection."
+        },
+        {
+          "uuid": "urn:utoronto:ssp:hpc:controls:cp",
+          "control-id": "CP",
+          "remarks": "Availability and resilience are satisfied via scheduler fairness and resource governance."
+        }
+      ]
+    }
+  }
+}
