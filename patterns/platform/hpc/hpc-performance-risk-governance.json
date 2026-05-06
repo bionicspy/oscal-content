@@ -1,0 +1,101 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:hpc-performance-risk-governance",
+
+    "metadata": {
+      "title": "HPC Performance Risk Governance",
+      "version": "0.2.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T09:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC328",
+          "remarks": "Business capability for explicitly governing security risk acceptance and trade-offs made to achieve performance objectives in high-performance computing environments."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD138",
+          "remarks": "HPC schedulers, performance tuning configurations, resource affinity controls, and platform-level optimization settings."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP268",
+          "remarks": "Pattern for governing intentional security–performance trade-offs in HPC platforms."
+        },
+
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "hpc-core",
+          "remarks": "Performance risk governance assumes established trust in scheduler-mediated HPC execution platforms."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-234",
+          "class": "guidance-reference",
+          "value": "2.3, 3.1, 5",
+          "remarks": "Explicit acknowledgement of performance-driven risk acceptance and trade-offs as described in NIST SP 800-234."
+        },
+
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1068",
+          "remarks": "Reduced isolation or disabled safeguards may amplify privilege escalation impact when vulnerabilities are exploited."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1499",
+          "remarks": "Performance-oriented configurations may increase susceptibility to denial-of-service conditions."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "RiskAcceptance",
+          "remarks": "Explicit documentation, review, and governance of accepted security risks."
+        }
+      ],
+
+      "remarks": "HPC Performance Risk Governance formalizes the trust assumptions, risk acceptance decisions, and documentation requirements associated with performance-driven reductions in security controls. This pattern does not implement mitigations; instead, it constrains how HPC platforms are configured and composed so that accepted risks are intentional, bounded, and reviewable."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-performance-risk-documentation",
+        "type": "capability",
+        "title": "Performance Risk Documentation",
+        "description": "Documented identification of security controls that are weakened or disabled to achieve performance targets."
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-performance-risk-acceptance",
+        "type": "capability",
+        "title": "Performance Risk Acceptance",
+        "description": "Formal acceptance of performance-driven security risks by designated institutional authorities."
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-performance-risk-review",
+        "type": "capability",
+        "title": "Performance Risk Review and Revalidation",
+        "description": "Periodic reassessment of accepted performance risks to validate continued necessity and appropriateness."
+      }
+    ]
+  }
+}

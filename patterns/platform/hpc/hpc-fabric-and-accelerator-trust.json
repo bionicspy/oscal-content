@@ -1,0 +1,182 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:hpc-fabric-and-accelerator-trust",
+
+    "metadata": {
+      "title": "HPC Fabric and Accelerator Trust",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T07:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC327",
+          "remarks": "Business capability for ensuring the secure and predictable use of high-performance interconnects and accelerators in shared HPC environments."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD137",
+          "remarks": "HPC interconnect fabrics, RDMA-capable networks, GPUs, TPUs, FPGAs, and other shared accelerators and memory systems."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP267",
+          "remarks": "Pattern for governing trust, isolation, and residual risk for performance-oriented fabrics and accelerators in HPC environments."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "hpc-core",
+          "remarks": "Fabric and accelerator trust assumes scheduler-mediated execution on shared HPC platforms."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "hpc-job-lifecycle-security",
+          "remarks": "Fabric and accelerator security relies on correct job lifecycle enforcement and cleanup."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-234",
+          "class": "guidance-reference",
+          "value": "3.4, 3.5, 4.3, 5",
+          "remarks": "Interconnect, accelerator, residual state, and performance–security trade-off considerations defined in NIST SP 800-234."
+        }
+      ],
+
+      "remarks": "HPC Fabric and Accelerator Trust defines trust properties for high-performance networking fabrics and shared accelerators that often bypass traditional OS controls in favor of performance. This pattern explicitly models isolation, residual state, and side-channel risks associated with RDMA, GPU contexts, and tightly coupled compute fabrics."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-interconnect-isolation",
+        "type": "capability",
+        "title": "HPC Interconnect Isolation",
+        "description": "Isolation and governance of high-performance interconnects used by concurrent HPC jobs.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1040",
+            "remarks": "Monitoring or interception of data traversing shared high-performance interconnects."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkSegmentation",
+            "remarks": "Segmentation and isolation of job traffic over RDMA and HPC fabrics."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-7",
+                "remarks": "Boundary protection for job traffic over HPC interconnects."
+              },
+              {
+                "control-id": "AC-4",
+                "remarks": "Information flow control between job-specific fabric endpoints."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-accelerator-context-isolation",
+        "type": "capability",
+        "title": "HPC Accelerator Context Isolation",
+        "description": "Isolation of accelerator execution contexts between concurrent or successive jobs.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1055",
+            "remarks": "Cross-context interference or data leakage via shared accelerator memory or execution state."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ExecutionIsolation",
+            "remarks": "Isolation of accelerator contexts and execution environments per job."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-2",
+                "remarks": "Separation of execution domains for shared accelerator resources."
+              },
+              {
+                "control-id": "AC-6",
+                "remarks": "Least privilege enforcement for access to accelerator devices."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-residual-state-mitigation",
+        "type": "capability",
+        "title": "HPC Residual State Mitigation",
+        "description": "Mitigation of residual execution state and side-channel risk following job completion.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1005",
+            "remarks": "Collection of residual data from shared memory, accelerator state, or caches after job completion."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:MemoryClearing",
+            "remarks": "Clearing and sanitization of memory and accelerator state between jobs."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "MP-7",
+                "remarks": "Controlled removal and sanitization of shared memory and accelerator state."
+              },
+              {
+                "control-id": "SI-7",
+                "remarks": "Integrity protection against unauthorized data persistence across jobs."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

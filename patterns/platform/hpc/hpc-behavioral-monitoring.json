@@ -1,0 +1,175 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:hpc-behavioral-monitoring",
+
+    "metadata": {
+      "title": "HPC Behavioral Monitoring",
+      "version": "0.2.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T08:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC329",
+          "remarks": "Business capability for detecting anomalous, abusive, or malicious behavior in HPC jobs and workloads that may otherwise comply with static policy."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD139",
+          "remarks": "HPC job telemetry, scheduler metrics, performance counters, resource utilization streams, and behavioral analytics."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP269",
+          "remarks": "Pattern for detecting anomalous or malicious behavior in scheduler-mediated HPC workloads."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "hpc-core",
+          "remarks": "Behavioral monitoring builds on trusted scheduler telemetry and execution metadata."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-234",
+          "class": "guidance-reference",
+          "value": "4.2, 6",
+          "remarks": "Behavioral monitoring, insider misuse detection, and anomaly analysis as described in NIST SP 800-234."
+        }
+      ],
+
+      "remarks": "HPC Behavioral Monitoring defines trust properties for detecting misuse in high-performance computing environments where threats often arise from legitimate users and jobs. This pattern focuses on runtime behavior rather than static configuration violations."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-job-behavior-anomaly-detection",
+        "type": "capability",
+        "title": "HPC Job Behavior Anomaly Detection",
+        "description": "Detection of anomalous HPC job behavior relative to expected execution patterns.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1036",
+            "remarks": "Masquerading or misuse through jobs that appear legitimate but behave abnormally."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:BehaviorAnalysis",
+            "remarks": "Analysis of job execution behavior to detect deviations from expected patterns."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-4",
+                "remarks": "Monitoring of HPC job execution for indicators of misuse."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Analysis of job execution logs and telemetry for suspicious behavior."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-resource-usage-anomaly-detection",
+        "type": "capability",
+        "title": "HPC Resource Usage Anomaly Detection",
+        "description": "Detection of abnormal resource consumption patterns indicating abuse or compromise.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1499",
+            "remarks": "Denial-of-service or covert misuse via abnormal resource consumption."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ResourceMonitoring",
+            "remarks": "Continuous monitoring of HPC resource utilization to detect anomalies."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-6",
+                "remarks": "Detection of resource exhaustion or misuse impacting availability."
+              },
+              {
+                "control-id": "CA-7",
+                "remarks": "Continuous monitoring of workload behavior and platform health."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-insider-misuse-detection",
+        "type": "capability",
+        "title": "HPC Insider Misuse Detection",
+        "description": "Identification of malicious or policy-violating activity by legitimate users or jobs.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid accounts to perform unauthorized or harmful actions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:UserBehaviorAnalytics",
+            "remarks": "Analysis of user and job behavior over time to detect misuse."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PM-12",
+                "remarks": "Insider threat monitoring for HPC environments."
+              },
+              {
+                "control-id": "AU-12",
+                "remarks": "Collection and correlation of telemetry relevant to insider threat detection."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

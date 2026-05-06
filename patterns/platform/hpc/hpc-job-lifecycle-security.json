@@ -1,0 +1,182 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:hpc-job-lifecycle-security",
+
+    "metadata": {
+      "title": "HPC Job Lifecycle Security",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T06:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC326",
+          "remarks": "Business capability for governing the security of high-performance computing jobs throughout submission, scheduling, execution, and completion."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD136",
+          "remarks": "HPC batch schedulers, job submission pipelines, execution environments, pre- and post-job hooks, and job state management systems."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP266",
+          "remarks": "Pattern for securing the lifecycle of scheduler-mediated HPC jobs, treating jobs as first-class security objects."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "hpc-core",
+          "remarks": "Job lifecycle security assumes trusted scheduler-mediated execution on shared HPC platforms."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "hpc-identity-and-access",
+          "remarks": "Job lifecycle security relies on correct attribution and authorization of job submitters and scheduler identities."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-234",
+          "class": "guidance-reference",
+          "value": "3.2, 4.1, 4.2",
+          "remarks": "HPC job lifecycle, scheduler abuse, and insider threat considerations as defined by NIST SP 800-234."
+        }
+      ],
+
+      "remarks": "HPC Job Lifecycle Security defines trust properties required to ensure that job submission, scheduling, execution, and teardown in high-performance computing environments do not become abuse paths. This pattern models jobs themselves as security-relevant objects, recognizing that legitimate jobs can be malicious without exploiting software vulnerabilities."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-job-submission-validation",
+        "type": "capability",
+        "title": "HPC Job Submission Validation",
+        "description": "Validation and constraint of job submission artifacts, parameters, and execution context.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1059",
+            "remarks": "Execution of unauthorized or malicious commands via job submission scripts or parameters."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:InputValidation",
+            "remarks": "Validation and restriction of job scripts, parameters, and submission metadata."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-5",
+                "remarks": "Restricted and reviewed modification of job submission mechanisms."
+              },
+              {
+                "control-id": "SI-10",
+                "remarks": "Input validation for job submission interfaces."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-job-execution-context-control",
+        "type": "capability",
+        "title": "HPC Job Execution Context Control",
+        "description": "Restriction and governance of environment variables, execution context, and runtime privileges associated with HPC jobs.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1574",
+            "remarks": "Hijacking of execution flow via manipulated environment variables or runtime context."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ExecutionEnvironmentIsolation",
+            "remarks": "Controlled and sanitized execution environments for scheduled HPC jobs."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-6",
+                "remarks": "Least privilege enforced for job execution contexts."
+              },
+              {
+                "control-id": "CM-7",
+                "remarks": "Least functionality enforced within job execution environments."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-job-state-and-transition-governance",
+        "type": "capability",
+        "title": "HPC Job State and Transition Governance",
+        "description": "Governance of job state transitions, chaining, dependencies, and completion semantics.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1098",
+            "remarks": "Abuse of scheduler state transitions or job dependencies to gain unauthorized execution."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:StateTransitionControl",
+            "remarks": "Controlled and auditable state transitions for scheduler-managed jobs."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-3",
+                "remarks": "Enforcement of authorized behavior through scheduler-managed state transitions."
+              },
+              {
+                "control-id": "AU-12",
+                "remarks": "Audit logging of job execution states and transitions."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

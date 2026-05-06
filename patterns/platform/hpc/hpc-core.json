@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "High-Performance Computing Core",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-06T01:30:00Z",
+      "last-modified": "2026-05-06T07:30:00Z",
 
       "props": [
         {
@@ -14,39 +14,46 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC320",
-          "remarks": "Business capability for operating shared high‑performance computing platforms in a manner that preserves isolation, integrity, and availability across diverse workloads."
+          "remarks": "Business capability for operating shared high-performance computing platforms in a manner that preserves isolation, integrity, and availability across diverse workloads."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD129",
-          "remarks": "High‑performance computing clusters, batch schedulers, shared accelerators, and tightly coupled compute fabrics."
+          "remarks": "High-performance computing clusters, batch schedulers, shared accelerators, and tightly coupled compute fabrics."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP249",
-          "remarks": "Establishes baseline trust assumptions for shared and scheduler‑mediated high‑performance computing environments."
+          "remarks": "Establishes baseline trust assumptions for shared and scheduler-mediated high-performance computing environments."
         },
         {
           "name": "depends-on",
           "ns": "urn:utoronto:cae2:dependency",
           "class": "platform-pattern",
           "value": "hosting-model-trust",
-          "remarks": "HPC trust assumptions depend on the physical and operational hosting environment."
+          "remarks": "HPC trust assumptions depend on the physical, jurisdictional, and operational hosting environment."
         },
         {
           "name": "depends-on",
           "ns": "urn:utoronto:cae2:dependency",
           "class": "platform-pattern",
           "value": "bare-metal-core",
-          "remarks": "HPC platforms commonly rely on trusted bare‑metal execution substrates."
+          "remarks": "HPC platforms commonly rely on trusted bare-metal execution substrates."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-234",
+          "class": "guidance-reference",
+          "value": "3.1, 3.3, 4.1",
+          "remarks": "Shared platform trust, scheduler authority, and resource contention considerations as defined in NIST SP 800-234."
         }
       ],
 
-      "remarks": "High‑Performance Computing Core defines the foundational trust properties required to operate shared, performance‑oriented compute platforms. This pattern makes scheduler‑mediated execution, shared‑resource risk, and platform‑level isolation explicit, without asserting workload orchestration or application‑level controls."
+      "remarks": "High-Performance Computing Core defines the foundational trust properties required to operate shared, performance-oriented compute platforms. This pattern establishes shared-node isolation, scheduler-mediated authority, and resource fairness as platform invariants, without asserting job lifecycle, accelerator, or application-level controls."
     },
 
     "components": [
@@ -78,8 +85,14 @@
           {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              { "control-id": "SC-7", "remarks": "Logical separation of execution contexts on shared compute nodes." },
-              { "control-id": "AC-4", "remarks": "Information flow control between node‑resident workloads." }
+              {
+                "control-id": "SC-7",
+                "remarks": "Logical separation of execution contexts on shared compute nodes."
+              },
+              {
+                "control-id": "AC-4",
+                "remarks": "Information flow control between node-resident workloads."
+              }
             ]
           }
         ]
@@ -88,7 +101,7 @@
       {
         "uuid": "urn:utoronto:security:capability:scheduler-mediated-execution-trust",
         "type": "capability",
-        "title": "Scheduler‑Mediated Execution Trust",
+        "title": "Scheduler-Mediated Execution Trust",
         "description": "Trust boundaries enforced by batch schedulers and job control systems.",
 
         "props": [
@@ -97,7 +110,7 @@
             "ns": "urn:mitre:attack",
             "class": "attack-technique",
             "value": "urn:mitre:attack:technique:T1078",
-            "remarks": "Abuse of scheduler or job‑control privileges to affect other workloads."
+            "remarks": "Abuse of scheduler or job-control privileges to affect other workloads."
           },
           {
             "name": "defense-technique",
@@ -112,8 +125,14 @@
           {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              { "control-id": "AC-6", "remarks": "Least privilege enforced for scheduler and control‑plane roles." },
-              { "control-id": "CM-5", "remarks": "Restricted modification of scheduler configuration." }
+              {
+                "control-id": "AC-6",
+                "remarks": "Least privilege enforced for scheduler and control-plane roles."
+              },
+              {
+                "control-id": "CM-5",
+                "remarks": "Restricted modification of scheduler configuration."
+              }
             ]
           }
         ]
@@ -131,7 +150,7 @@
             "ns": "urn:mitre:attack",
             "class": "attack-technique",
             "value": "urn:mitre:attack:technique:T1499",
-            "remarks": "Denial‑of‑service via exhaustion or monopolization of shared compute resources."
+            "remarks": "Denial-of-service via exhaustion or monopolization of shared compute resources."
           },
           {
             "name": "defense-technique",
@@ -146,8 +165,14 @@
           {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              { "control-id": "SC-6", "remarks": "Protection against resource exhaustion." },
-              { "control-id": "CP-10", "remarks": "Ensure availability through controlled resource allocation." }
+              {
+                "control-id": "SC-6",
+                "remarks": "Protection against resource exhaustion."
+              },
+              {
+                "control-id": "CP-10",
+                "remarks": "Ensure availability through controlled resource allocation."
+              }
             ]
           }
         ]

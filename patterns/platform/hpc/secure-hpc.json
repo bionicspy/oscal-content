@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Secure High-Performance Computing",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T01:20:00Z",
+      "last-modified": "2026-05-06T09:45:00Z",
 
       "props": [
         {
@@ -14,43 +14,29 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC323",
-          "remarks": "Business capability for operating high-performance computing platforms that preserve isolation, correct identity attribution, and data protection across shared research workloads."
+          "remarks": "Business capability for operating high-performance computing platforms that preserve isolation, attribution, data protection, and governed performance trade-offs across shared research and institutional workloads."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD132",
-          "remarks": "High-performance computing clusters, batch schedulers, shared accelerators, and associated storage and interconnect fabrics."
+          "remarks": "High-performance computing clusters, batch schedulers, shared accelerators, interconnect fabrics, and associated data platforms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
+          "class": "composite-pattern",
           "value": "urn:utoronto:cae2:arm:AP252",
-          "remarks": "Composite pattern asserting that foundational HPC platform, identity, and data protection trust requirements are satisfied."
+          "remarks": "Composite pattern asserting that all required platform, identity, job lifecycle, data protection, and governance trust requirements for HPC environments are satisfied."
         },
 
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "hpc-core",
-          "remarks": "Secure HPC assumes baseline trust in shared HPC platforms and scheduler-mediated execution."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "hpc-identity-and-access",
-          "remarks": "Secure HPC requires correct identity attribution and access control for users, jobs, and schedulers."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "hpc-data-protection",
-          "remarks": "Secure HPC requires protection of data used and produced by high-performance computing workloads."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-234",
+          "class": "guidance-reference",
+          "value": "2–6",
+          "remarks": "Aggregate alignment with NIST SP 800-234 covering platform trust, identity, job lifecycle, data protection, performance trade-offs, and monitoring in HPC environments."
         },
 
         {
@@ -58,35 +44,36 @@
           "ns": "urn:mitre:attack",
           "class": "tactic",
           "value": "TA0004",
-          "remarks": "Privilege escalation risks arising from shared scheduler or compute context."
+          "remarks": "Privilege escalation risks arising from shared scheduler, compute node, or performance-optimized execution contexts."
         },
         {
           "name": "attack-tactic",
           "ns": "urn:mitre:attack",
           "class": "tactic",
           "value": "TA0008",
-          "remarks": "Lateral movement across jobs, users, or shared nodes in HPC environments."
+          "remarks": "Lateral movement across jobs, users, nodes, fabrics, or accelerators in shared HPC environments."
         },
         {
           "name": "attack-tactic",
           "ns": "urn:mitre:attack",
           "class": "tactic",
           "value": "TA0009",
-          "remarks": "Unauthorized collection of sensitive or proprietary research data from shared HPC storage."
+          "remarks": "Unauthorized collection or inference of sensitive research data from shared HPC storage or residual execution state."
+        },
+
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1078",
+          "remarks": "Abuse of valid accounts, including federated and non-interactive scheduler identities."
         },
         {
           "name": "attack-technique",
           "ns": "urn:mitre:attack",
           "class": "technique",
           "value": "T1068",
-          "remarks": "Privilege escalation through exploitation of shared operating system or scheduler context."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1005",
-          "remarks": "Data collection via access to shared filesystem or scratch storage."
+          "remarks": "Privilege escalation via shared OS, scheduler, accelerator, or fabric execution contexts."
         },
 
         {
@@ -94,45 +81,68 @@
           "ns": "urn:mitre:d3fend",
           "class": "technique",
           "value": "D3FEND-0001",
-          "remarks": "Execution isolation across shared compute nodes and workloads."
+          "remarks": "Execution isolation across shared compute nodes, jobs, and accelerators."
         },
         {
           "name": "defense-technique",
           "ns": "urn:mitre:d3fend",
           "class": "technique",
-          "value": "D3FEND-0004",
-          "remarks": "Privileged access management for HPC administrators and scheduler services."
+          "value": "D3FEND-0046",
+          "remarks": "Separation of duties and explicit trust boundaries between users, schedulers, and administrators."
         },
         {
           "name": "defense-technique",
           "ns": "urn:mitre:d3fend",
           "class": "technique",
           "value": "D3FEND-0037",
-          "remarks": "Lifecycle management to reduce residual data exposure after workload completion."
+          "remarks": "Lifecycle management to reduce residual data and execution-state exposure after job completion."
         }
       ],
 
-      "remarks": "Secure High-Performance Computing is a composite pattern asserting that platform trust, identity and access control, and data protection requirements for shared HPC environments are collectively satisfied. It introduces no independent controls and exists solely as an aggregate trust claim for use in solution patterns and system security and privacy plans."
+      "remarks": "Secure High-Performance Computing is a composite trust pattern asserting that shared execution risk, scheduler-mediated authority, job lifecycle security, data protection, accelerator and fabric trust, behavioral monitoring, and explicit performance risk governance are collectively satisfied for HPC platforms. This pattern introduces no independent controls and exists solely as an aggregate trust claim for SSPPs, solution architectures, and institutional risk governance."
     },
 
     "components": [
       {
         "uuid": "urn:utoronto:security:pattern-ref:hpc-core",
         "type": "component",
-        "title": "High-Performance Computing Core",
-        "description": "Baseline trust assumptions for shared HPC platforms and scheduler-mediated execution."
+        "title": "High-Performance Computing Core"
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:hpc-identity-and-access",
         "type": "component",
-        "title": "HPC Identity and Access",
-        "description": "Correct identity attribution and access control for HPC users and workloads."
+        "title": "HPC Identity and Access"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:hpc-job-lifecycle-security",
+        "type": "component",
+        "title": "HPC Job Lifecycle Security"
       },
       {
         "uuid": "urn:utoronto:security:pattern-ref:hpc-data-protection",
         "type": "component",
-        "title": "HPC Data Protection",
-        "description": "Protection of data stored, processed, and produced by HPC workloads."
+        "title": "HPC Data Protection"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:hpc-fabric-and-accelerator-trust",
+        "type": "component",
+        "title": "HPC Fabric and Accelerator Trust"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:hpc-behavioral-monitoring",
+        "type": "component",
+        "title": "HPC Behavioral Monitoring"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:hpc-performance-risk-governance",
+        "type": "component",
+        "title": "HPC Performance Risk Governance"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern-ref:hpc-federated-access-trust",
+        "type": "component",
+        "title": "HPC Federated Access Trust",
+        "remarks": "Applicable only where external or cross-institution access is supported."
       }
     ]
   }

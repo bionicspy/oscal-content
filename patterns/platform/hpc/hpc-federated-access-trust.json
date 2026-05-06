@@ -1,0 +1,108 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:hpc-federated-access-trust",
+
+    "metadata": {
+      "title": "HPC Federated Access Trust",
+      "version": "0.3.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T09:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC330",
+          "remarks": "Business capability for governing federated and external identity access to high-performance computing platforms while preserving attribution, accountability, and trust boundaries."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD140",
+          "remarks": "Federated identity systems, external job submission interfaces, cross-institution HPC collaboration frameworks, and shared scheduling environments."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP270",
+          "remarks": "Pattern for defining trust boundaries and governance expectations when external or federated identities access HPC platforms."
+        },
+
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "hpc-identity-and-access",
+          "remarks": "Federated access relies on HPC-specific job attribution, scheduler-mediated authorization, and role separation."
+        },
+        {
+          "name": "depends-on",
+          "ns": "urn:utoronto:cae2:dependency",
+          "class": "platform-pattern",
+          "value": "secure-identity",
+          "remarks": "Federated access requires a trusted enterprise identity foundation for external identity verification, federation, and lifecycle governance."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-234",
+          "class": "guidance-reference",
+          "value": "3.2, 4.4",
+          "remarks": "Federated collaboration, external identity attribution, and access boundary considerations as defined in NIST SP 800-234."
+        },
+
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1078",
+          "remarks": "Federated users and external collaborators are valid accounts whose misuse represents a primary HPC threat model."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "technique",
+          "value": "T1098",
+          "remarks": "Persistence or privilege manipulation risks arising from federated account misconfiguration."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "technique",
+          "value": "IdentityBoundaryEnforcement",
+          "remarks": "Explicit enforcement of trust boundaries between internal and federated identities."
+        }
+      ],
+
+      "remarks": "HPC Federated Access Trust formalizes the trust assumptions and governance boundaries required when external or cross-institution identities access HPC resources. This pattern does not implement enforcement mechanisms itself; instead, it constrains how identity, job lifecycle, and monitoring patterns must be composed to preserve attribution, accountability, and risk awareness in federated HPC environments."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-federated-identity-attribution",
+        "type": "capability",
+        "title": "Federated Identity Attribution",
+        "description": "Ensures externally authenticated identities are mapped to durable, attributable HPC principals for job execution and accountability."
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-federated-trust-boundary-definition",
+        "type": "capability",
+        "title": "Federated Trust Boundary Definition",
+        "description": "Defines explicit boundaries between internal and federated identities, including scoped privileges, constrained access, and differentiated trust assumptions."
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:hpc-federated-accountability",
+        "type": "capability",
+        "title": "Federated Access Accountability",
+        "description": "Ensures federated users and jobs are subject to attribution, monitoring, and revocation equivalent to internal users."
+      }
+    ]
+  }
+}

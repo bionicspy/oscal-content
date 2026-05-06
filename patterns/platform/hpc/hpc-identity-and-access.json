@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "High-Performance Computing Identity and Access",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-06T02:25:00Z",
+      "last-modified": "2026-05-06T08:10:00Z",
 
       "props": [
         {
@@ -21,7 +21,7 @@
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD130",
-          "remarks": "HPC identity systems, batch schedulers, job submission interfaces, and non-interactive execution contexts."
+          "remarks": "HPC identity systems, batch schedulers, job submission interfaces, shared login nodes, and non-interactive execution contexts."
         },
         {
           "name": "architecture-pattern",
@@ -36,10 +36,17 @@
           "class": "platform-pattern",
           "value": "hpc-core",
           "remarks": "HPC identity and access builds on foundational trust in shared HPC execution platforms."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-234",
+          "class": "guidance-reference",
+          "value": "3.2, 4.1, 4.2",
+          "remarks": "Job attribution, scheduler-mediated identity, and insider threat considerations as defined in NIST SP 800-234."
         }
       ],
 
-      "remarks": "High‑Performance Computing Identity and Access defines the trust properties required to correctly attribute, authorize, and constrain users and workloads in scheduler-driven HPC environments. This pattern explicitly addresses non-interactive job execution, shared login infrastructure, and role separation between users, schedulers, and platform administrators."
+      "remarks": "High-Performance Computing Identity and Access defines the trust properties required to correctly attribute, authorize, and constrain users and workloads in scheduler-driven HPC environments. This pattern explicitly addresses non-interactive job execution, shared login infrastructure, and the fact that legitimate users and jobs are often the primary threat model in HPC systems."
     },
 
     "components": [
@@ -71,8 +78,14 @@
           {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              { "control-id": "IA-4", "remarks": "Lifecycle management of user and service identities." },
-              { "control-id": "AU-2", "remarks": "Traceability of job execution to initiating identities." }
+              {
+                "control-id": "IA-4",
+                "remarks": "Lifecycle management of user and service identities."
+              },
+              {
+                "control-id": "AU-2",
+                "remarks": "Traceability of job execution to initiating identities."
+              }
             ]
           }
         ]
@@ -105,8 +118,14 @@
           {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              { "control-id": "AC-2", "remarks": "Account and role management for scheduler access." },
-              { "control-id": "AC-6", "remarks": "Least privilege enforced for job submission and control." }
+              {
+                "control-id": "AC-2",
+                "remarks": "Account and role management for scheduler access."
+              },
+              {
+                "control-id": "AC-6",
+                "remarks": "Least privilege enforced for job submission and control."
+              }
             ]
           }
         ]
@@ -139,8 +158,14 @@
           {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              { "control-id": "AC-5", "remarks": "Separation of duties between HPC operational roles." },
-              { "control-id": "CM-5", "remarks": "Restriction on changes to identity and role configuration." }
+              {
+                "control-id": "AC-5",
+                "remarks": "Separation of duties between HPC operational roles."
+              },
+              {
+                "control-id": "CM-5",
+                "remarks": "Restriction on changes to identity and role configuration."
+              }
             ]
           }
         ]
