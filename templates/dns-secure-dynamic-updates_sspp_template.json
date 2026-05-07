@@ -1,0 +1,153 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:dns:secure-dynamic-update",
+
+    "metadata": {
+      "title": "SSPP – DNS Secure Dynamic Update",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T00:55:00Z",
+      "remarks": "System Security & Privacy Plan template defining institutional requirements for secure DNS dynamic update operations (RFC 2136 and equivalents)."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:profile:institutional-baseline",
+      "remarks": "Imports institutional baseline security, governance, and audit requirements applicable to privileged infrastructure services."
+    },
+
+    "system-characteristics": {
+      "system-name": "DNS Secure Dynamic Update",
+      "system-description": "Privileged DNS service enabling controlled and auditable modification of DNS records by authorized clients through dynamic update mechanisms.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "platform-capability",
+          "value": "dns-dynamic-update",
+          "remarks": "This SSPP governs DNS dynamic update operations that modify authoritative DNS state."
+        },
+        {
+          "name": "usage-constraint",
+          "value": "control-plane-only",
+          "remarks": "Dynamic updates are control-plane operations and MUST NOT be exposed as general DNS resolution capabilities."
+        },
+        {
+          "name": "non-equivalence-statement",
+          "value": "write-not-resolve",
+          "remarks": "Authorization to modify DNS records does not imply authority to resolve, transfer, or delegate DNS zones."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP defines governance, authentication, authorization, integrity, and audit expectations for DNS dynamic updates. It does not redefine DNS resolution, caching, or availability behaviors.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:dns-dynamic-update-core",
+          "type": "component",
+          "title": "DNS Dynamic Update Governance",
+          "description": "Defines policy, approval, and scope constraints for dynamic DNS writers.",
+          "links": [
+            {
+              "rel": "depends-on",
+              "href": "urn:utoronto:sspp:platform:secure-dns",
+              "text": "Relies on Secure-DNS for authoritative DNS behavior, zoning boundaries, and trust assertions."
+            },
+            {
+              "rel": "depends-on",
+              "href": "urn:utoronto:sspp:platform:secure-networking",
+              "text": "Relies on Secure-Networking for protected transport paths between DNS writers and authoritative servers."
+            },
+            {
+              "rel": "depends-on",
+              "href": "urn:utoronto:sspp:platform:secure-time",
+              "text": "Relies on Secure-Time for TTL calculation, change ordering, and audit correctness."
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:dns-dynamic-update-authz",
+          "type": "component",
+          "title": "Dynamic Update Authentication and Authorization",
+          "description": "Defines how DNS writers authenticate and what record scopes they are authorized to modify."
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:dns-dynamic-update-integrity",
+          "type": "component",
+          "title": "Dynamic Update Integrity and Validation",
+          "description": "Ensures updates are validated, constrained, and cannot corrupt authoritative DNS state."
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:dns-dynamic-update-audit",
+          "type": "component",
+          "title": "Dynamic Update Observability and Audit",
+          "description": "Defines logging, monitoring, and rollback support for DNS dynamic update activity."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-dns-ddns-policy",
+        "title": "DNS Dynamic Update Policy Authority",
+        "remarks": "Defines institutional policy, approval criteria, and risk tolerance for DNS write access via dynamic update.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-EXL",
+            "remarks": "Executive Cyber Leadership per NIST NICE Framework (SP 800-181)."
+          }
+        ]
+      },
+      {
+        "id": "role-dns-ddns-architect",
+        "title": "DNS Dynamic Update Architect",
+        "remarks": "Designs dynamic update models, authorization scopes, identity bindings, and containment strategies.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC",
+            "remarks": "Security Architect per NIST NICE Framework."
+          }
+        ]
+      },
+      {
+        "id": "role-dns-ddns-operations",
+        "title": "DNS Dynamic Update Operations",
+        "remarks": "Implements and operates approved dynamic update mechanisms, credentials, and lifecycle controls.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA",
+            "remarks": "Systems Administrator per NIST NICE Framework."
+          }
+        ]
+      },
+      {
+        "id": "role-dns-ddns-monitoring",
+        "title": "DNS Dynamic Update Monitoring and Assurance",
+        "remarks": "Monitors DNS write activity, detects misuse or drift, and supports investigation and rollback.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC",
+            "remarks": "Security Operations Analyst per NIST NICE Framework."
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction is achieved through strict authentication and authorization of DNS writers, validation of updates, bounded scope, and auditability. This SSPP introduces no compensating controls."
+    }
+  }
+}

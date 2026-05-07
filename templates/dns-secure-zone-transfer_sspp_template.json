@@ -1,0 +1,143 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:dns:secure-zone-transfer",
+
+    "metadata": {
+      "title": "SSPP – DNS Secure Zone Transfer",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T00:10:00Z",
+      "remarks": "System Security & Privacy Plan template defining security, governance, and assurance requirements for DNS zone transfer (AXFR/IXFR) operations."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:profile:institutional-baseline",
+      "remarks": "Imports institutional baseline security and governance requirements applicable to privileged infrastructure services."
+    },
+
+    "system-characteristics": {
+      "system-name": "DNS Secure Zone Transfer",
+      "system-description": "Privileged DNS service enabling controlled transfer of authoritative DNS zone data between primary and secondary DNS servers or authorized external providers.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "platform-capability",
+          "value": "dns-zone-transfer",
+          "remarks": "This SSPP governs DNS zone transfer operations (AXFR/IXFR)."
+        },
+        {
+          "name": "usage-constraint",
+          "value": "control-plane-only",
+          "remarks": "Zone transfer is strictly a control-plane function and MUST NOT be exposed for general resolution or application use."
+        },
+        {
+          "name": "non-equivalence-statement",
+          "value": "zone-data-not-resolution",
+          "remarks": "Authorization to receive DNS zone data does not imply authority to resolve or publish DNS responses."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP defines security and governance expectations for DNS zone transfer. It introduces no independent DNS resolution or caching behaviors.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:dns-zone-transfer-core",
+          "type": "component",
+          "title": "DNS Zone Transfer Governance",
+          "description": "Defines authorization, integrity, and audit requirements for DNS zone transfers.",
+          "links": [
+            {
+              "rel": "depends-on",
+              "href": "urn:utoronto:sspp:platform:secure-dns",
+              "text": "Relies on Secure-DNS for authoritative DNS behavior and trust boundaries."
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:dns-zone-transfer-authentication",
+          "type": "component",
+          "title": "Zone Transfer Authentication and Authorization",
+          "description": "Defines how zone transfer endpoints authenticate and authorize each other."
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:dns-zone-transfer-integrity",
+          "type": "component",
+          "title": "Zone Transfer Integrity and Replay Protection",
+          "description": "Ensures DNS zone data cannot be modified, replayed, or injected during transfer."
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:dns-zone-transfer-audit",
+          "type": "component",
+          "title": "Zone Transfer Observability and Audit",
+          "description": "Defines logging, monitoring, and audit requirements for zone transfer activity."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-dns-zone-policy",
+        "title": "DNS Zone Transfer Policy Authority",
+        "remarks": "Defines institutional policy, risk tolerance, and approval criteria for DNS zone transfer participation.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-EXL",
+            "remarks": "Executive Cyber Leadership per NIST NICE Framework (SP 800-181)."
+          }
+        ]
+      },
+      {
+        "id": "role-dns-zone-architect",
+        "title": "DNS Zone Transfer Architect",
+        "remarks": "Designs zone transfer topology, trust relationships, authentication mechanisms, and blast-radius boundaries.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC",
+            "remarks": "Security Architect per NIST NICE Framework."
+          }
+        ]
+      },
+      {
+        "id": "role-dns-zone-operations",
+        "title": "DNS Zone Transfer Operations",
+        "remarks": "Implements and operates approved zone transfer configurations, credentials, and lifecycle activities.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA",
+            "remarks": "Systems Administrator per NIST NICE Framework."
+          }
+        ]
+      },
+      {
+        "id": "role-dns-zone-monitoring",
+        "title": "DNS Zone Transfer Monitoring and Assurance",
+        "remarks": "Monitors zone transfer activity, detects anomalies, and supports investigations and assurance reviews.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC",
+            "remarks": "Security Operations Analyst per NIST NICE Framework."
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction is achieved through enforced authorization, protected transfer channels, integrity validation, and auditability of zone transfer operations. This SSPP introduces no compensating controls."
+    }
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:dns:secure-transport",
+
+    "metadata": {
+      "title": "SSPP – DNS Secure Transport (DoH / DoT)",
+      "version": "0.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T00:35:00Z",
+      "remarks": "System Security & Privacy Plan template defining institutional requirements for encrypted DNS transport using DNS over HTTPS (DoH) and/or DNS over TLS (DoT)."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:profile:institutional-baseline",
+      "remarks": "Imports institutional baseline security, privacy, and governance requirements applicable to networked services."
+    },
+
+    "system-characteristics": {
+      "system-name": "DNS Secure Transport Service",
+      "system-description": "DNS transport service providing encrypted and integrity-protected DNS query transport using DNS over HTTPS (DoH) and/or DNS over TLS (DoT) for authorized DNS clients.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "platform-capability",
+          "value": "dns-secure-transport",
+          "remarks": "This SSPP governs encrypted DNS transport for DNS consumers using DoH or DoT."
+        },
+        {
+          "name": "usage-constraint",
+          "value": "explicit-opt-in",
+          "remarks": "DoH/DoT usage MUST be explicitly approved. Encrypted DNS transport is not implied for all DNS consumers."
+        },
+        {
+          "name": "non-equivalence-statement",
+          "value": "transport-not-resolution",
+          "remarks": "Encrypted DNS transport does not alter DNS resolution semantics, validation behavior, or caching policy governed by Secure-DNS."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP defines policy, trust, and assurance requirements for DNS transport encryption. It does not redefine DNS resolution, caching, validation, or zoning behavior.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:dns-secure-transport-core",
+          "type": "component",
+          "title": "DNS Secure Transport Governance",
+          "description": "Defines policy, approval, and trust expectations for encrypted DNS transport.",
+          "links": [
+            {
+              "rel": "depends-on",
+              "href": "urn:utoronto:sspp:platform:secure-dns",
+              "text": "Relies on Secure-DNS for authoritative and resilient DNS behavior."
+            },
+            {
+              "rel": "depends-on",
+              "href": "urn:utoronto:sspp:platform:secure-networking",
+              "text": "Relies on Secure-Networking for transport integrity and routing correctness."
+            },
+            {
+              "rel": "depends-on",
+              "href": "urn:utoronto:sspp:platform:trusted-cloud",
+              "text": "Relies on Trusted-Cloud where DoH/DoT endpoints are provided as managed services."
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:dns-secure-transport-authentication",
+          "type": "component",
+          "title": "DNS Secure Transport Authentication",
+          "description": "Defines authentication and trust establishment between DNS clients and DoH/DoT endpoints."
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:dns-secure-transport-privacy",
+          "type": "component",
+          "title": "DNS Secure Transport Privacy and Policy",
+          "description": "Defines privacy guarantees, logging expectations, and policy constraints for encrypted DNS transport."
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:dns-secure-transport-audit",
+          "type": "component",
+          "title": "DNS Secure Transport Observability and Audit",
+          "description": "Defines monitoring and audit requirements specific to encrypted DNS transport without degrading privacy guarantees."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-dns-transport-policy",
+        "title": "DNS Secure Transport Policy Authority",
+        "remarks": "Defines institutional policy for use of encrypted DNS transport, including approval criteria and acceptable use.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-EXL",
+            "remarks": "Executive Cyber Leadership per NIST NICE Framework (SP 800-181)."
+          }
+        ]
+      },
+      {
+        "id": "role-dns-transport-architect",
+        "title": "DNS Secure Transport Architect",
+        "remarks": "Designs encrypted DNS transport architecture, trust relationships, and integration with Secure-DNS and network services.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC",
+            "remarks": "Security Architect per NIST NICE Framework."
+          }
+        ]
+      },
+      {
+        "id": "role-dns-transport-operations",
+        "title": "DNS Secure Transport Operations",
+        "remarks": "Implements and operates approved DoH/DoT endpoints and client configurations.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA",
+            "remarks": "Systems Administrator per NIST NICE Framework."
+          }
+        ]
+      },
+      {
+        "id": "role-dns-transport-monitoring",
+        "title": "DNS Secure Transport Monitoring and Assurance",
+        "remarks": "Monitors encrypted DNS transport endpoints, detects misuse or failure, and supports assurance reviews.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC",
+            "remarks": "Security Operations Analyst per NIST NICE Framework."
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction is achieved through enforced encryption, authenticated endpoints, transport policy, and controlled observability. This SSPP introduces no compensating controls."
+    }
+  }
+}
