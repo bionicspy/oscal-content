@@ -3,145 +3,157 @@
     "uuid": "urn:utoronto:security:pattern:platform-dns-resolver-availability-and-resilience",
 
     "metadata": {
-      "title": "Platform DNS Resolver Availability and Resilience",
-      "version": "0.1.0",
+      "title": "DNS Resolver Availability and Resilience",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T23:45:00Z",
+      "last-modified": "2026-05-06T23:05:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC424",
-          "remarks": "Business capability for ensuring DNS resolution remains available, resilient, and predictable under failure conditions."
+          "value": "urn:utoronto:cae2:brm:BC218",
+          "remarks": "Business capability for ensuring DNS resolvers remain available, resilient, and predictable under fault, load, or attack conditions."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD224",
-          "remarks": "DNS resolver redundancy, high availability design, fault tolerance, and recovery mechanisms."
+          "value": "urn:utoronto:cae2:trm:TD115",
+          "remarks": "DNS resolver infrastructure, redundancy mechanisms, failover behavior, and degraded-mode operation."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP344",
-          "remarks": "Pattern ensuring DNS resolution does not become a single point of failure for the platform."
+          "value": "urn:utoronto:cae2:arm:AP218",
+          "remarks": "Defines availability and resilience expectations for DNS resolvers to preserve platform trust during disruption."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-81r2",
+          "class": "guidance-reference",
+          "value": "6",
+          "remarks": "Referenced for operational guidance on DNS service continuity, failure handling, and recovery considerations as described in Section 6 (Operational Considerations). This guidance informs resolver survivability expectations, not performance architecture."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "platform-dns-zoning-and-views",
-          "remarks": "Resolver availability and resilience depend on correct zoning and view separation to maintain boundary integrity during failure."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "guidance-reference",
+          "value": "3.3, 4",
+          "remarks": "Referenced for cyber resiliency guidance related to Recovery objectives and Resiliency Techniques, emphasizing restoration of critical services without cascading failure, as described in Section 3.3 and Section 4."
         }
       ],
 
-      "remarks": "Platform DNS Resolver Availability and Resilience defines expectations for redundancy, failover, and predictable failure behavior of DNS resolvers. It ensures that DNS outages or degradation do not silently undermine platform trust."
+      "remarks": "DNS Resolver Availability and Resilience defines how DNS resolvers are designed and operated to maintain trusted name resolution during infrastructure failure, denial-of-service conditions, or dependency disruption. This pattern requires resolvers to fail predictably rather than silently undermine platform trust."
     },
 
     "components": [
+
       {
         "uuid": "urn:utoronto:security:capability:dns-resolver-redundancy",
         "type": "capability",
         "title": "DNS Resolver Redundancy",
-        "description": "Ensures multiple independent DNS resolvers are available to prevent single points of failure.",
+        "description": "Ensures multiple independent resolver instances are available to prevent single points of failure.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1499",
-            "remarks": "Denial of service caused by reliance on a single DNS resolution endpoint."
+            "remarks": "Denial-of-service attacks attempting to exhaust or disable DNS resolver infrastructure."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0037",
-            "remarks": "Redundant infrastructure components to preserve availability."
+            "value": "RedundantServiceProvisioning",
+            "remarks": "Provisioning of redundant DNS resolvers to maintain service availability."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:dns-resolver-redundancy",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-6",
+                "remarks": "DNS resolver services employ redundancy to maintain availability during component failure."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dns-resolver-failover-behavior",
+        "type": "capability",
+        "title": "DNS Resolver Failover Behavior",
+        "description": "Defines predictable resolver behavior when primary resolution paths or dependencies fail.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1499",
+            "remarks": "Inducing upstream dependency failure to trigger uncontrolled fallback behavior."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "FailSafeDefaults",
+            "remarks": "Resolvers transition to known-safe states under failure conditions rather than failing open."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-10",
+                "remarks": "DNS resolver failure modes are explicitly defined and exercised to preserve trust."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dns-degraded-mode-operation",
+        "type": "capability",
+        "title": "DNS Degraded-Mode Operation",
+        "description": "Defines acceptable resolver behavior when authoritative resolution cannot be maintained.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1498",
+            "remarks": "Network denial-of-service conditions impacting external DNS dependencies."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "GracefulDegradation",
+            "remarks": "Defined degraded behavior that preserves correctness guarantees even with reduced functionality."
+          }
+        ],
+
+        "control-implementations": [
+          {
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "CP-7",
-                "remarks": "Redundant DNS resolvers are deployed to support high availability."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:dns-failure-behavior",
-        "type": "capability",
-        "title": "DNS Failure Behavior",
-        "description": "Defines how DNS resolution behaves during partial or complete failure scenarios.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1565",
-            "remarks": "Integrity degradation through unpredictable or silent failure modes."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0046",
-            "remarks": "Deterministic failure behavior with defined recovery characteristics."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:dns-failure-behavior",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "SI-13",
-                "remarks": "DNS services fail in a predictable manner that preserves platform integrity."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:dns-dependency-resilience",
-        "type": "capability",
-        "title": "DNS Dependency Resilience",
-        "description": "Ensures DNS resolver dependencies do not introduce cascading or correlated failures.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1195",
-            "remarks": "Supply chain or dependency compromise impacting shared DNS resolution paths."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0008",
-            "remarks": "Isolation and diversification of critical dependencies."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:dns-dependency-resilience",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "SR-3",
-                "remarks": "External and internal DNS dependencies are managed to reduce correlated risk."
+                "remarks": "DNS resolution continues in a controlled degraded mode during extended disruption."
               }
             ]
           }

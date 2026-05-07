@@ -1,60 +1,85 @@
-## DNS (Platform Trust Plane)
+# Secure DNS (Platform Trust Plane)
 
-### Overview
+## Overview
 
-Within the Platform trust plane, the Domain Name System (DNS) is treated as a **foundational resolution service** that enables systems to reliably locate resources inside the trusted environment.
+Within the Platform trust plane, **DNS (Domain Name System)** is treated as a **foundational resolution and trust dependency**. DNS underpins identity resolution, service discovery, policy enforcement, and external access across the platform. A failure or compromise of DNS does not remain isolated; it immediately cascades into broader trust failure.
 
-At this layer, DNS is concerned with **correctness, availability, and boundary‑aware resolution behavior**, not naming semantics or exposure decisions. Platform DNS exists to ensure that when a name is resolved, it resolves **predictably, deterministically, and only where intended**.
+Secure‑DNS treats DNS not as a legacy networking utility, but as a **governed, security‑relevant platform service** whose behavior must be deterministic, bounded, observable, and resilient under both fault and adversarial conditions.
 
-DNS at the Platform plane answers a single trust question:
+Secure‑DNS answers a single trust question:
 
-> *Can systems within the trusted environment reliably resolve names to the correct destinations, without ambiguity or unintended visibility?*
-
----
-
-### Purpose
-
-The purpose of Platform DNS is to:
-
-- Provide reliable and deterministic name resolution  
-- Enforce resolution boundaries (internal, external, private, split‑horizon)  
-- Support availability and resilience of dependent systems  
-- Ensure DNS behaves as a governed platform service, not an ad‑hoc utility  
-
-Platform DNS enables higher‑level trust decisions made by Applications, Data governance, and External Access by ensuring that **resolution itself is trustworthy**.
+> *Can systems safely rely on DNS resolution results as authoritative, correct, resilient, and auditable, even under misconfiguration, attack, or partial failure?*
 
 ---
 
-### Scope
+## Purpose
 
-#### In Scope
+The purpose of Secure‑DNS is to ensure that:
 
-- Recursive DNS resolvers and forwarders  
-- Resolution control and upstream dependency management  
-- DNS caching behavior and TTL enforcement  
-- Split‑horizon DNS and private resolution views  
-- Availability, redundancy, and failover expectations  
-- Observability and telemetry suitable for Security Operations  
+- DNS resolution remains **authoritative and correct**
+- Resolution behavior is **deterministic and governed**
+- Failure conditions produce **predictable and safe behavior**
+- DNS integrity is preserved without silent degradation
+- DNS behavior is **observable and investigable**
+- Trust failures are **contained and do not cascade**
 
-#### Out of Scope
+Secure‑DNS enables higher‑level trust planes—Identity, Secure Email, External Access, Security Operations, and Workload Platforms—to rely on DNS **without re‑implementing DNS trust logic themselves**.
 
-- Authoritative DNS record ownership and lifecycle  
-- Service naming semantics and intent  
-- Application‑level service discovery contracts  
-- DNS filtering, blocking, or threat enforcement  
-- Exposure approval or external access decisions  
+---
 
-These concerns are owned by other trust planes:
+## Scope
 
-- **Data & Information Protection** governs authoritative DNS records  
-- **Applications** define naming intent  
-- **External Access & Boundary Enforcement** governs DNS filtering and boundary policy  
+### In Scope
+
+Secure‑DNS governs **platform‑level DNS behavior**, including:
+
+- DNS as a critical platform trust dependency
+- Controlled resolution and recursion behavior
+- Predictable caching and TTL semantics
+- Intentional zoning and split‑horizon views
+- Resolver availability, redundancy, and failover
+- Defined degraded‑mode behavior under disruption
+- DNS observability and security telemetry
+
+### Out of Scope
+
+Secure‑DNS explicitly does **not** define:
+
+- Application‑level naming semantics
+- Business logic tied to DNS responses
+- Identity authorization decisions
+- Network routing or transport enforcement
+- Cryptographic policy outside DNS context
+
+These responsibilities belong to consuming trust planes.
+
+---
+
+## DNSSEC as an Emergent Platform Property
+
+Secure‑DNS **does not model DNSSEC as a standalone feature or pattern**.
+
+Instead, cryptographic authenticity and integrity (e.g., DNSSEC) **emerge from correct platform behavior**, including:
+
+- Resolver‑side validation during resolution
+- Time‑bounded caching and TTL enforcement
+- Controlled recursion paths
+- Explicit fail‑closed resolver behavior
+- Intentional zoning and delegation boundaries
+- Visibility into validation success and failure
+
+This reflects operational reality and aligns with NIST SP 800‑81, which assumes—but does not formalize—these platform behaviors. DNSSEC correctness depends on **resolver, caching, availability, zoning, and observability behavior acting together**, not on zone signing alone.
 
 ---
 
 ## Decomposition
 
-Platform DNS is decomposed into discrete components, each representing a specific trust responsibility. Together, these components implement the authoritative Platform DNS capability.
+Secure‑DNS is decomposed into explicit platform patterns, each responsible for a specific trust concern.
+
+
+
+## Overview
+
 ```
 platform/
 └── dns/
@@ -66,197 +91,126 @@ platform/
     └── dns-observability-and-telemetry
     └── secure-dns (composite)
 ```
+
 ---
+
+## Component Descriptions
 
 ### dns-core
 
-Defines baseline trust assumptions for DNS as a governed Platform service.
+Establishes DNS as a **critical platform trust dependency**.
 
-#### Purpose  
-To establish DNS as intentional, accountable platform infrastructure rather than an implicit or ad‑hoc utility.
+- Frames DNS failure as cross‑plane failure
+- Defines ownership, accountability, and importance
+- Grounds DNS threat and resiliency expectations
 
-#### Scope  
-- Platform ownership and accountability for DNS resolution  
-- Baseline trust assumptions for resolvers  
-- Separation between resolution mechanics and higher‑level naming or policy concerns  
-
-#### Components  
-- **dns-core**  
-  - Establishes foundational trust expectations for Platform DNS  
-
-#### Answers the Question  
-“Is DNS treated as a governed Platform capability with explicit trust assumptions?”
+**Answers:**  
+*Is DNS intentionally governed as foundational trust infrastructure?*
 
 ---
 
 ### dns-resolution-and-recursion
 
-Controls how names are resolved within the trusted environment.
+Defines how DNS queries are resolved and how recursion is controlled.
 
-#### Purpose  
-To ensure DNS resolution paths are deterministic, controlled, and free from unintended delegation or open recursion.
+- Governs resolver behavior and upstream dependencies
+- Enforces validation at the point of resolution
+- Prevents untrusted intermediaries from influencing results
+- Requires fail‑closed behavior when validation or resolution fails
 
-#### Scope  
-- Recursive DNS resolvers  
-- Forwarding behavior  
-- Upstream resolution dependencies  
-- Restriction of unauthorized recursion  
-
-#### Components  
-- **dns-recursive-resolution**  
-  - Governs recursive DNS resolution behavior  
-- **dns-forwarding-control**  
-  - Governs upstream resolver dependencies  
-
-#### Answers the Question  
-“Are names resolved only through approved and controlled resolution paths?”
+**Answers:**  
+*Are DNS responses deterministically resolved and validated before trust is granted?*
 
 ---
 
 ### dns-caching-and-ttl-behavior
 
-Governs how DNS responses are cached and how long they remain valid.
+Defines how DNS responses are cached, refreshed, and expired.
 
-#### Purpose  
-To ensure DNS caching supports correctness, security, and recovery without introducing stale or inconsistent resolution behavior.
+- Treats TTL as a **time‑bounded trust guarantee**
+- Prevents stale, poisoned, or divergent cache state
+- Bounds negative caching to support safe recovery
+- Aligns DNS caching behavior with Secure Time
 
-#### Scope  
-- TTL enforcement  
-- Positive DNS caching behavior  
-- Negative caching behavior  
-- Cache consistency across platform resolvers  
-
-#### Components  
-- **dns-ttl-enforcement**  
-  - Ensures consistent TTL handling  
-- **dns-cache-consistency**  
-  - Prevents divergent or unsafe cache behavior  
-- **dns-negative-caching-behavior**  
-  - Bounds caching of failed or non‑existent resolutions  
-
-#### Answers the Question  
-“Does DNS caching behave predictably and safely under normal and failure conditions?”
+**Answers:**  
+*Does cached DNS data remain correct, fresh, and recoverable under failure?*
 
 ---
 
 ### dns-zoning-and-views
 
-Defines DNS resolution boundaries within the Platform.
+Defines DNS **trust boundaries** using zones and views.
 
-#### Purpose  
-To constrain name visibility appropriately across trust boundaries while avoiding implicit exposure.
+- Segments namespaces and limits visibility
+- Implements split‑horizon DNS intentionally
+- Governs delegation to constrain blast radius
+- Treats zones and views as security boundaries
 
-#### Scope  
-- Internal namespaces  
-- External/public namespaces  
-- Private zones  
-- Split‑horizon DNS views  
-
-#### Components  
-- **dns-zone-definition**  
-  - Defines resolution namespaces  
-- **dns-view-segmentation**  
-  - Controls split‑horizon visibility  
-
-#### Answers the Question  
-“Which names are resolvable from which parts of the Platform?”
+**Answers:**  
+*Are DNS resolution boundaries explicit and enforced to prevent cascading trust failure?*
 
 ---
 
 ### dns-resolver-availability-and-resilience
 
-Ensures DNS resolution remains available and predictable under failure conditions.
+Ensures resolver infrastructure remains trustworthy under disruption.
 
-#### Purpose  
-To prevent DNS from becoming a single point of failure for the trusted environment.
+- Provides redundancy and predictable failover
+- Defines degraded‑mode behavior that preserves correctness
+- Prevents fail‑open resolution under stress or attack
+- Maintains DNS availability without sacrificing trust
 
-#### Scope  
-- Resolver redundancy  
-- Failover behavior  
-- Fault tolerance and isolation  
-- Dependency resilience  
-
-#### Components  
-- **dns-resolver-redundancy**  
-  - Ensures multiple resolution paths exist  
-- **dns-failure-behavior**  
-  - Defines predictable failure characteristics  
-- **dns-dependency-resilience**  
-  - Reduces correlated or cascading dependency failures  
-
-#### Answers the Question  
-“Does DNS fail safely and predictably without undermining Platform trust?”
+**Answers:**  
+*Does DNS remain available and safe during faults, attacks, or partial outages?*
 
 ---
 
 ### dns-observability-and-telemetry
 
-Provides visibility into DNS behavior to support monitoring and investigation.
+Provides visibility into DNS behavior as **security‑relevant evidence**.
 
-#### Purpose  
-To enable Security Operations and platform owners to observe, analyze, and investigate DNS behavior without embedding enforcement at the Platform layer.
+- Captures DNS query and response telemetry
+- Exposes validation failures and anomalous behavior
+- Supports SOC detection, investigation, and assurance
+- Enables adaptation and learning from DNS incidents
 
-#### Scope  
-- DNS query and response logging expectations  
-- Operational telemetry and metrics  
-- Investigation and audit support  
-
-#### Components  
-- **dns-resolution-logging**  
-  - Records DNS activity for monitoring and investigation  
-- **dns-behavior-telemetry**  
-  - Emits signals describing DNS behavior and performance  
-- **dns-investigation-support**  
-  - Supports correlation and forensic analysis  
-
-#### Answers the Question  
-“Can DNS behavior be observed, analyzed, and investigated when trust assumptions are questioned?”
+**Answers:**  
+*Can DNS trust degradation be detected, investigated, and proven?*
 
 ---
 
-### Trust Boundaries
+## Secure‑DNS Composite
 
-While DNS enables discovery across the environment, Platform DNS must respect and enforce **resolution boundaries**, including:
+The **`secure-dns` composite** asserts that all required DNS trust properties are satisfied by composition of the platform DNS patterns.
 
-- Internal‑only namespaces  
-- Private zones  
-- Public resolution paths (where explicitly permitted)  
+The composite introduces **no controls of its own**. It exists to provide a **single trust assertion** that DNS behavior is:
 
-Defining *how* resolution works across boundaries remains a Platform responsibility; defining *whether* exposure is allowed belongs to boundary enforcement.
+- Authoritative
+- Deterministic
+- Bounded
+- Resilient
+- Observable
+- Governed
 
-Platform DNS must never introduce implicit exposure or bypass explicit trust controls.
-
----
-
-### Dependency and Relationships
-
-- **Consumed by:**  
-  - Applications  
-  - Integration & Messaging  
-  - Communication & Collaboration systems  
-
-- **Informed by:**  
-  - Data classification and handling rules (when DNS metadata is sensitive)  
-
-- **Monitored by:**  
-  - Security Operations for availability, abuse, and anomalous behavior  
-
-Platform DNS is a prerequisite dependency for higher‑level trust planes but does not assume their authority.
+Systems and SSPPs should reference **`secure-dns`** rather than redefining DNS requirements independently.
 
 ---
 
-### Secure DNS (Composite Trust Assertion)
+## Standards Alignment
 
-The **`secure-dns`** composite component asserts that DNS‑dependent trust decisions are supported by authoritative, bounded, observable, and resilient DNS.
+Secure‑DNS fully addresses:
 
-Platform DNS components collectively satisfy the Platform portion of the `secure-dns` trust assertion. Systems and SSPPs SHOULD reference `secure-dns` rather than redefining DNS controls independently.
+- **NIST SP 800‑81 (Secure DNS Deployment Guide)** through correct resolver behavior, validation, caching discipline, zoning, and operational monitoring.
+- **DNS‑relevant portions of NIST SP 800‑184 (Cyber Resiliency Engineering Framework)** by identifying DNS as a critical enabling service and ensuring DNS can withstand, recover, detect, and adapt under disruption.
+
+This alignment is implemented at the **pattern level**; no additional architectural changes are required.
 
 ---
 
-### Summary
+## Summary
 
-At the Platform trust plane, DNS is a **core infrastructure capability** whose responsibility is to make name resolution *boringly correct*. It does not decide naming intent, policy, or exposure. Instead, it ensures that resolution behaves exactly as expected so that higher‑level trust decisions can be enforced consistently and safely.
+Secure‑DNS treats DNS as a **first‑class trust dependency**, not a background service.
 
-For cross‑plane DNS trust responsibilities and governance rationale, see:
+Through deterministic resolution, bounded caching, intentional zoning, resilience under fault and attack, and security‑relevant observability, Secure‑DNS ensures DNS can safely support identity, access, policy enforcement, and operations across the platform.
 
-➡ `patterns/cross-cutting/dns/README.md`
+At this point, Secure‑DNS is **complete**. Remaining work is documentation clarity only; no further structural or pattern changes are required.

@@ -3,75 +3,85 @@
     "uuid": "urn:utoronto:security:pattern:platform-dns-zoning-and-views",
 
     "metadata": {
-      "title": "Platform DNS Zoning and Views",
-      "version": "0.1.0",
+      "title": "DNS Zoning and Views",
+      "version": "0.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T23:25:00Z",
+      "last-modified": "2026-05-06T23:20:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC423",
-          "remarks": "Business capability for defining and enforcing DNS resolution boundaries through zoning and view separation."
+          "value": "urn:utoronto:cae2:brm:BC216",
+          "remarks": "Business capability for defining intentional DNS resolution boundaries using zones and views to preserve trust, limit exposure, and constrain blast radius."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD223",
-          "remarks": "DNS zone management, namespace separation, and split-horizon resolution views."
+          "value": "urn:utoronto:cae2:trm:TD113",
+          "remarks": "DNS zones, views, split-horizon configurations, delegation boundaries, and namespace isolation."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP343",
-          "remarks": "Pattern for constraining DNS name visibility across trust boundaries without introducing implicit exposure."
+          "value": "urn:utoronto:cae2:arm:AP215",
+          "remarks": "Defines DNS zoning and view behavior as a trust boundary control rather than a naming convenience."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-81r2",
+          "class": "guidance-reference",
+          "value": "4.1, 6",
+          "remarks": "Referenced for guidance on DNS delegation, zone boundaries, and operational considerations that impact trust and failure behavior, as described in Section 4.1 (Signing Zones) and Section 6 (Operational Considerations). This guidance informs delegation risk and boundary design, not DNSSEC mechanics."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "platform-dns-caching-and-ttl-behavior",
-          "remarks": "DNS zoning and views depend on predictable caching and TTL enforcement to maintain boundary correctness."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "guidance-reference",
+          "value": "3.2, 4.2",
+          "remarks": "Referenced for cyber resiliency guidance related to Withstand objectives and segmentation techniques, emphasizing containment and blast-radius limitation through explicit boundaries, as described in Section 3.2 and Section 4.2."
         }
       ],
 
-      "remarks": "Platform DNS Zoning and Views defines how DNS namespaces are structured and resolved across different trust scopes. It ensures that name visibility is constrained appropriately without embedding naming semantics, exposure decisions, or enforcement policy into the platform."
+      "remarks": "DNS Zoning and Views defines how DNS namespaces are segmented and selectively exposed to constrain trust domains, prevent unintended resolution, and limit the impact of misconfiguration or compromise. This pattern treats zones and views as security boundaries, not merely administrative constructs."
     },
 
     "components": [
+
       {
-        "uuid": "urn:utoronto:security:capability:dns-zone-definition",
+        "uuid": "urn:utoronto:security:capability:dns-zone-boundary-definition",
         "type": "capability",
-        "title": "DNS Zone Definition",
-        "description": "Defines logical DNS namespaces used within the platform.",
+        "title": "DNS Zone Boundary Definition",
+        "description": "Defines explicit DNS zone boundaries to limit authority and resolution scope.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1596.001",
-            "remarks": "Discovery of internal infrastructure through misconfigured or overly broad DNS namespaces."
+            "value": "T1190",
+            "remarks": "Exploitation of overly broad DNS authority or misconfigured delegation to extend attacker influence."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0004",
-            "remarks": "Explicit namespace definition to constrain infrastructure discoverability."
+            "value": "BoundaryDefinition",
+            "remarks": "Explicit definition of trust boundaries to constrain the scope of DNS authority."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:dns-zone-definition",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "SC-7",
-                "remarks": "DNS namespaces are defined to enforce logical separation and prevent unintended discovery."
+                "remarks": "DNS authority and resolution boundaries are explicitly defined to limit exposure and unintended access."
               }
             ]
           }
@@ -79,34 +89,71 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:dns-view-segmentation",
+        "uuid": "urn:utoronto:security:capability:dns-view-isolation",
         "type": "capability",
-        "title": "DNS View Segmentation",
-        "description": "Constrains DNS resolution results based on request origin or trust context.",
+        "title": "DNS View Isolation",
+        "description": "Defines how different DNS responses are presented based on request context to preserve trust boundaries.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1071.004",
-            "remarks": "Use of DNS resolution paths to infer or bypass logical trust boundaries."
+            "value": "T1087",
+            "remarks": "Enumeration of internal resources through improperly isolated DNS views."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0016",
-            "remarks": "Policy-driven segmentation of resolution views across trust contexts."
+            "value": "InformationSegmentation",
+            "remarks": "Segmentation of DNS responses to limit information disclosure across contexts."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:dns-view-segmentation",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "AC-4",
-                "remarks": "Information flow through DNS resolution is constrained based on defined trust boundaries."
+                "remarks": "DNS views restrict information flow between trust contexts to prevent unintended disclosure."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dns-delegation-governance",
+        "type": "capability",
+        "title": "DNS Delegation Governance",
+        "description": "Governs creation, modification, and removal of DNS delegations to preserve trust boundaries.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1584",
+            "remarks": "Compromise of delegated infrastructure to propagate malicious resolution behavior."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "PrivilegeRestriction",
+            "remarks": "Restriction and governance of DNS delegation actions to limit blast radius."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-5",
+                "remarks": "DNS delegation changes are governed and controlled to prevent unauthorized expansion of trust."
               }
             ]
           }
