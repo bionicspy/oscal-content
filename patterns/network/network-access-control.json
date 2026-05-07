@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Network Access Control",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T20:45:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
@@ -14,7 +14,7 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC240",
-          "remarks": "Business capability for Network and Connectivity Services governing admission to institutional networks."
+          "remarks": "Business capability enabling controlled admission of systems, devices, and workloads to the institutional network."
         },
         {
           "name": "technology-domain",
@@ -28,39 +28,47 @@
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-platform",
           "value": "urn:utoronto:cae2:trm:TP042",
-          "remarks": "Network access control, admission, and posture evaluation platforms."
+          "remarks": "Network access control, identity-aware admission, and enforcement platforms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP062",
-          "remarks": "Identity‑aware network admission with conditional access enforcement."
+          "value": "urn:utoronto:cae2:arm:AP061",
+          "remarks": "Policy-driven network admission control enforcing identity, device, and context-aware access decisions."
         },
         {
           "name": "data-entity",
           "ns": "urn:utoronto:cae2:drm",
           "class": "data-entity",
           "value": "urn:utoronto:cae2:drm:DE382",
-          "remarks": "Network access requests, posture assessments, and admission decisions."
+          "remarks": "Network admission decisions, authentication context, posture signals, and access state metadata."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-principles",
+          "value": "§2, §3",
+          "remarks": "Network access decisions are identity-aware, context-sensitive, and independent of network location, consistent with Zero Trust Architecture principles."
         },
         {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1046",
-          "remarks": "Discovery of network services following unauthorized network admission."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "§3, §4",
+          "remarks": "Network Access Control implements policy-driven, dynamically evaluated admission consistent with Zero Trust Networking guidance."
         },
         {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "defensive-technique",
-          "value": "urn:mitre:d3fend:technique:d3f:NetworkAccessControl",
-          "remarks": "Enforcement of conditional admission to network resources."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-46",
+          "class": "remote-and-telework",
+          "value": "§3, §4",
+          "remarks": "Remote and non-local access admission aligns with SP 800-46 guidance modernized through identity-aware enforcement."
         }
       ],
 
-      "remarks": "Network Access Control defines the capability to decide whether a device, user, or workload may connect to the institutional network at all. Admission decisions are based on identity, device posture, context, and policy and occur before general network connectivity is granted.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to network admission decisions. Controls are scoped to access control sub‑capabilities to allow precise assessment of admission logic."
+      "remarks": "Network Access Control defines the capability responsible for determining whether a system, device, workload, or user session may be granted network connectivity. It evaluates identity, authentication context, device posture, and environmental signals prior to admission. This pattern does not define policy content, segmentation, or inspection logic, which are handled by dependent Secure Network patterns."
     },
 
     "components": [
@@ -69,13 +77,31 @@
         "type": "capability",
         "title": "Admission Decision",
         "description": "Evaluation of access requests to determine whether network connectivity may be granted.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Use of valid credentials to gain unauthorized network admission."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkAccessControl",
+            "remarks": "Conditional admission decisions restrict network access based on identity and context."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
-                "control-id": "ac-3",
-                "remarks": "Enforce approved authorizations for network access."
+                "control-id": "ac-17",
+                "remarks": "Authorize network access only after validating identity and context."
               }
             ]
           }
@@ -83,21 +109,35 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:device-and-identity-evaluation",
+        "uuid": "urn:utoronto:security:capability:posture-and-context-evaluation",
         "type": "capability",
-        "title": "Device and Identity Evaluation",
-        "description": "Assessment of identity and device attributes prior to granting network access.",
+        "title": "Posture and Context Evaluation",
+        "description": "Assessment of device posture, authentication strength, and environmental signals as part of admission decisions.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1200",
+            "remarks": "Exploitation of trusted devices lacking adequate posture validation."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:DevicePostureValidation",
+            "remarks": "Evaluation of device state prior to granting network access."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
                 "control-id": "ia-2",
-                "remarks": "Uniquely identify and authenticate users or devices prior to network access."
-              },
-              {
-                "control-id": "ia-7",
-                "remarks": "Apply enhanced authentication mechanisms where required."
+                "remarks": "Verify authentication and supporting contextual signals before access."
               }
             ]
           }
@@ -105,35 +145,35 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:posture-assessment",
+        "uuid": "urn:utoronto:security:capability:access-state-enforcement",
         "type": "capability",
-        "title": "Posture Assessment",
-        "description": "Evaluation of device security posture and compliance before network admission.",
-        "control-implementations": [
-          {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
-            "implemented-requirements": [
-              {
-                "control-id": "cm-7",
-                "remarks": "Allow only devices and services that meet defined configuration requirements."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Access State Enforcement",
+        "description": "Enforcement and maintenance of network access state following admission.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:enforcement-triggering",
-        "type": "capability",
-        "title": "Enforcement Triggering",
-        "description": "Activation or denial of network connectivity based on admission evaluation outcomes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1098",
+            "remarks": "Persistence through unauthorized modification of access states."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AccessControlEnforcement",
+            "remarks": "Continuous enforcement and reassessment of network access state."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
-                "control-id": "ac-4",
-                "remarks": "Control information flow into the network based on admission decisions."
+                "control-id": "ac-3",
+                "remarks": "Enforce approved access states and revoke access upon policy violation."
               }
             ]
           }

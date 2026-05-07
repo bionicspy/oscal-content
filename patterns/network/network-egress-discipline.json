@@ -1,0 +1,184 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:network-egress-discipline",
+
+    "metadata": {
+      "title": "Network Egress Discipline",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC240",
+          "remarks": "Business capability for controlling and governing outbound network connectivity to reduce data exfiltration and abuse."
+        },
+        {
+          "name": "security-discipline",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD004",
+          "remarks": "Network and Connectivity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP043",
+          "remarks": "Egress filtering, outbound proxying, and boundary enforcement platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP063",
+          "remarks": "Explicit, policy-governed outbound network access with no assumed trust."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE386",
+          "remarks": "Outbound traffic metadata, destination classification, and egress decision logs."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-principles",
+          "value": "§2, §3",
+          "remarks": "Outbound traffic is not implicitly trusted and must be explicitly authorized, consistent with Zero Trust Architecture principles."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "§3.3, §3.4",
+          "remarks": "Zero Trust Networking principles apply equally to ingress, lateral, and egress traffic paths."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "cyber-resiliency",
+          "value": "§3.2",
+          "remarks": "Explicit control of egress paths reduces blast radius and supports containment and recovery objectives."
+        }
+      ],
+
+      "remarks": "Network Egress Discipline defines the capability that governs outbound network connectivity. Unlike traditional perimeter models that implicitly allow egress, this pattern requires explicit authorization, classification, and monitoring of outbound traffic destinations. Egress discipline reduces data exfiltration risk, prevents abuse of trusted connectivity, and supports cyber resiliency by limiting adversary freedom of action."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:egress-policy-evaluation",
+        "type": "capability",
+        "title": "Egress Policy Evaluation",
+        "description": "Evaluation of outbound traffic requests against explicit egress policy and destination classification.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1041",
+            "remarks": "Data exfiltration over command-and-control or permitted outbound channels."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:EgressFiltering",
+            "remarks": "Evaluation and restriction of outbound traffic based on policy and destination."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "sc-7",
+                "remarks": "Control outbound network traffic to enforce explicit egress policy."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:destination-classification",
+        "type": "capability",
+        "title": "Destination Classification",
+        "description": "Classification of outbound destinations to inform egress trust and authorization decisions.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1567",
+            "remarks": "Exfiltration of data to external web services or cloud storage."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkTrafficFiltering",
+            "remarks": "Destination-based filtering restricts unauthorized outbound communication."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-4",
+                "remarks": "Restrict information flow based on approved external destinations."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:egress-enforcement",
+        "type": "capability",
+        "title": "Egress Enforcement",
+        "description": "Enforcement of approved outbound connectivity paths and denial of all others.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1071",
+            "remarks": "Abuse of allowed application-layer protocols for covert outbound communication."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkTrafficFiltering",
+            "remarks": "Strict enforcement of outbound traffic rules limits protocol abuse."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cm-7",
+                "remarks": "Permit only essential outbound network services and protocols."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

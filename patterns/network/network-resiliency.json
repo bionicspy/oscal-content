@@ -1,0 +1,213 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:network-resiliency",
+
+    "metadata": {
+      "title": "Network Resiliency",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC240",
+          "remarks": "Business capability ensuring network services remain available, degradable, and recoverable under adverse conditions."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD004",
+          "remarks": "Network and Connectivity technology domain."
+        },
+        {
+          "name": "technology-platform",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-platform",
+          "value": "urn:utoronto:cae2:trm:TP047",
+          "remarks": "Network availability, redundancy, failover, and recovery platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP068",
+          "remarks": "Resilient network architecture with fault containment, graceful degradation, and coordinated recovery."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE387",
+          "remarks": "Network health metrics, dependency mappings, fault indicators, and recovery telemetry."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "cyber-resiliency",
+          "value": "2, 3.1, 3.2, 3.3",
+          "remarks": "Network resiliency is implemented in accordance with SP 800-184 principles for anticipating, withstanding, recovering from, and adapting to adverse conditions."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-principles",
+          "value": "3.5",
+          "remarks": "Resiliency is a required property of Zero Trust architectures and must be preserved under partial failure."
+        }
+      ],
+
+      "remarks": "Network Resiliency defines how network services are designed, operated, and recovered to limit blast radius, preserve essential connectivity, and enable timely restoration following faults, attacks, or overload conditions. This pattern does not define access control or policy enforcement; it governs survivability, degradation behavior, and recovery coordination."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:fault-containment",
+        "type": "capability",
+        "title": "Fault Containment",
+        "description": "Isolation of failures and disruptions to prevent cascading network impact.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1499",
+            "remarks": "Denial-of-service attacks causing resource exhaustion and cascading failure."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ResourceIsolation",
+            "remarks": "Isolation of network resources to contain faults and prevent widespread impact."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cp-7",
+                "remarks": "Implement fault-tolerant and isolation mechanisms to contain network failures."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:graceful-degradation",
+        "type": "capability",
+        "title": "Graceful Degradation",
+        "description": "Controlled reduction of network functionality to preserve critical services under stress.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1498",
+            "remarks": "Network denial-of-service causing abrupt loss of availability."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:ServiceThrottling",
+            "remarks": "Prioritization and throttling preserve essential network services during overload."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cp-10",
+                "remarks": "Provide the capability to operate in a degraded mode while maintaining critical functions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dependency-isolation",
+        "type": "capability",
+        "title": "Dependency Isolation",
+        "description": "Separation of network control-plane and data-plane dependencies to reduce systemic risk.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1489",
+            "remarks": "Service disruption through manipulation of shared dependencies."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:DependencySeparation",
+            "remarks": "Isolation of critical dependencies prevents cascading service failures."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cp-8",
+                "remarks": "Implement redundancy and isolation for critical network components."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:recovery-coordination",
+        "type": "capability",
+        "title": "Recovery Coordination",
+        "description": "Coordinated restoration of network services following disruption.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1499",
+            "remarks": "Extended denial-of-service through delayed or disorganized recovery."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:OperationalRecovery",
+            "remarks": "Planned and coordinated recovery procedures reduce restoration time."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "cp-2",
+                "remarks": "Coordinate network recovery actions as part of contingency planning."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

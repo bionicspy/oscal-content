@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Network Wireless Access",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T21:45:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
@@ -14,7 +14,7 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC240",
-          "remarks": "Business capability for Network and Connectivity Services governing wireless and broadcast-based network access."
+          "remarks": "Business capability enabling secure wireless connectivity for institutional users, devices, and visitors."
         },
         {
           "name": "technology-domain",
@@ -27,47 +27,48 @@
           "name": "technology-platform",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-platform",
-          "value": "urn:utoronto:cae2:trm:TP045",
-          "remarks": "Wireless access points, controllers, and wireless network security platforms."
+          "value": "urn:utoronto:cae2:trm:TP041",
+          "remarks": "Wireless LAN controllers, access points, and identity-aware wireless enforcement platforms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP065",
-          "remarks": "Identity-aware wireless access with broadcast isolation and encrypted connectivity."
+          "value": "urn:utoronto:cae2:arm:AP066",
+          "remarks": "Network Wireless Access pattern defines a solution for secure wireless connectivity with explicit admission and context-aware enforcement."
         },
         {
           "name": "data-entity",
           "ns": "urn:utoronto:cae2:drm",
           "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE385",
-          "remarks": "Wireless session metadata, association records, and roaming context."
+          "value": "urn:utoronto:cae2:drm:DE390",
+          "remarks": "Wireless authentication events, device posture signals, session state, and access logs."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-principles",
+          "value": "§2, §3",
+          "remarks": "Wireless access does not imply trust based on location and must be explicitly evaluated and enforced."
         },
         {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1040",
-          "remarks": "Network sniffing and eavesdropping on wireless communications."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "§3.1, §3.3",
+          "remarks": "Wireless access is governed using identity-aware, policy-driven enforcement consistent with Zero Trust Networking guidance."
         },
         {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1557",
-          "remarks": "Adversary-in-the-middle attacks against wireless access mechanisms."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "defensive-technique",
-          "value": "urn:mitre:d3fend:technique:d3f:WirelessNetworkSegmentation",
-          "remarks": "Segmentation and protection of wireless network traffic."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-46",
+          "class": "wireless-and-remote",
+          "value": "§4",
+          "remarks": "Wireless access considerations align with SP 800-46 guidance for secure access at the network edge."
         }
       ],
 
-      "remarks": "Network Wireless Access defines the capability to provide safe and controlled network connectivity over broadcast media. Wireless access introduces increased exposure due to its shared medium and therefore requires strong admission controls, isolation, encryption, and continuous context awareness.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to wireless connectivity. Controls are scoped to wireless-specific sub-capabilities to reflect the unique risks of broadcast access."
+      "remarks": "Network Wireless Access defines how devices and users connect to the institutional network using wireless technologies. This pattern enforces explicit admission, authentication, and context evaluation while preventing implicit trust based on physical proximity. It does not define identity proofing, authorization policy, segmentation design, or resiliency mechanisms, which are handled by complementary Secure Identity and Secure Network patterns."
     },
 
     "components": [
@@ -75,76 +76,104 @@
         "uuid": "urn:utoronto:security:capability:wireless-admission",
         "type": "capability",
         "title": "Wireless Admission",
-        "description": "Controlled association of devices and identities to wireless networks.",
+        "description": "Controlled admission of devices and users onto the wireless network.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Use of valid or stolen credentials to gain unauthorized wireless access."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkAccessControl",
+            "remarks": "Identity-aware admission restricts wireless access to authorized entities."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ac-18",
+                "remarks": "Authorize and manage wireless access connections."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:wireless-device-posture-evaluation",
+        "type": "capability",
+        "title": "Wireless Device Posture Evaluation",
+        "description": "Assessment of device security posture and context prior to and during wireless access.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1200",
+            "remarks": "Exploitation of trusted but compromised wireless endpoints."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:DevicePostureValidation",
+            "remarks": "Evaluation of device state reduces risk from compromised or non-compliant endpoints."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
+              {
+                "control-id": "ia-2",
+                "remarks": "Authenticate users and validate contextual indicators for wireless access."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:wireless-access-enforcement",
+        "type": "capability",
+        "title": "Wireless Access Enforcement",
+        "description": "Enforcement and maintenance of approved wireless access states.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1098",
+            "remarks": "Persistence through unauthorized modification of wireless access permissions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AccessControlEnforcement",
+            "remarks": "Continuous enforcement ensures wireless access states remain compliant."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
                 "control-id": "ac-3",
-                "remarks": "Enforce approved authorizations for wireless network access."
-              },
-              {
-                "control-id": "ia-2",
-                "remarks": "Authenticate users or devices prior to wireless network access."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:broadcast-isolation",
-        "type": "capability",
-        "title": "Broadcast Isolation",
-        "description": "Isolation of wireless clients to prevent unauthorized peer-to-peer communication.",
-        "control-implementations": [
-          {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
-            "implemented-requirements": [
-              {
-                "control-id": "sc-7",
-                "remarks": "Isolate wireless clients to limit unintended data exposure."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:roaming-context",
-        "type": "capability",
-        "title": "Roaming Context",
-        "description": "Management of context and policy as devices move across wireless access points.",
-        "control-implementations": [
-          {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
-            "implemented-requirements": [
-              {
-                "control-id": "ac-17",
-                "remarks": "Maintain access controls across wireless roaming events."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:wireless-encryption",
-        "type": "capability",
-        "title": "Wireless Encryption",
-        "description": "Protection of wireless communications using approved cryptographic mechanisms.",
-        "control-implementations": [
-          {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
-            "implemented-requirements": [
-              {
-                "control-id": "sc-13",
-                "remarks": "Employ cryptographic mechanisms to protect wireless data in transit."
-              },
-              {
-                "control-id": "ia-7",
-                "remarks": "Use strong cryptographic protocols to establish secure wireless associations."
+                "remarks": "Enforce approved access states and revoke wireless access upon violation."
               }
             ]
           }

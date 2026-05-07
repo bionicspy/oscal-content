@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Secure Network",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T22:40:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
@@ -14,96 +14,113 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC240",
-          "remarks": "Business capability for Network and Connectivity Services, viewed holistically as an institutional trust posture."
+          "remarks": "Business capability providing secure, resilient, and governed institutional network connectivity."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD004",
-          "remarks": "Network and Connectivity technology domain encompassing all network trust capabilities."
+          "remarks": "Network and Connectivity technology domain."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "composite-pattern",
-          "value": "urn:utoronto:cae2:arm:AP070",
-          "remarks": "Composite trust pattern asserting that network connectivity is controlled, segmented, mediated, observable, and enforceable."
+          "value": "urn:utoronto:cae2:arm:AP059",
+          "remarks": "Composite Secure Network architecture composed of foundational transport, access control, segmentation, mediation, monitoring, egress discipline, and resiliency patterns."
         },
         {
           "name": "data-entity",
           "ns": "urn:utoronto:cae2:drm",
           "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE380",
-          "remarks": "Network connectivity, policy, and telemetry artifacts subject to trust evaluation."
+          "value": "urn:utoronto:cae2:drm:DE379",
+          "remarks": "Network configuration state, policy metadata, telemetry, and network security events."
+        },
+
+        {
+          "name": "dependency-class",
+          "class": "tier",
+          "value": "tier-0",
+          "remarks": "Secure Network is a Tier-0 institutional dependency; loss or compromise has cascading impact across services."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§2, §3",
+          "remarks": "Secure Network implements Zero Trust Architecture principles, eliminating implicit trust based on network location."
         },
         {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1021",
-          "remarks": "Lateral movement enabled by insufficient or poorly governed network controls."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "§2, §3, §4",
+          "remarks": "Secure Network aligns with Zero Trust Networking guidance, supporting identity-aware, policy-driven enforcement across all traffic paths."
         },
         {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "defensive-technique",
-          "value": "urn:mitre:d3fend:technique:d3f:NetworkTrafficFiltering",
-          "remarks": "Defense-in-depth network control through segmentation, mediation, and monitoring."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "cyber-resiliency",
+          "value": "§2, §3.1, §3.2, §3.3",
+          "remarks": "Secure Network resilience is designed to anticipate, withstand, recover from, and adapt to adverse conditions, preventing cascading institutional failures."
         }
       ],
 
-      "remarks": "Secure Network is a composite pattern expressing the institutional position that network connectivity is acceptably safe for use. This assertion is valid only when connectivity is intentionally established, segmented into trust zones, admission-controlled, policy-mediated, continuously monitored, and responsive to detected misuse.\n\nGovernance and Responsibility Anchor:\nThis pattern serves as the enterprise network trust statement. It introduces no new controls or technical mechanisms. A system may claim to operate on a secure network only if all referenced constituent network patterns are realized and assessed."
+      "remarks": "Secure Network is the composite architectural pattern defining how institutional network services are designed, governed, and assured. It establishes secure connectivity without implicit trust, binds network behavior to identity and policy, enforces segmentation and mediation, governs outbound access, provides continuous monitoring and response, and ensures network resiliency. This composite pattern does not implement controls directly; it serves as the authoritative governance and assurance anchor for Secure Network SSPPs and subordinate solution patterns."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:pattern-ref:network-core",
-        "type": "component",
-        "title": "Network Core",
-        "description": "Foundational network connectivity, addressability, routing, and baseline trust boundaries."
+        "uuid": "urn:utoronto:security:pattern:network-core",
+        "type": "pattern-reference",
+        "title": "Network Core"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:network-segmentation-and-zones",
-        "type": "component",
-        "title": "Network Segmentation and Zones",
-        "description": "Separation of network trust domains to limit exposure and lateral movement."
+        "uuid": "urn:utoronto:security:pattern:network-access-control",
+        "type": "pattern-reference",
+        "title": "Network Access Control"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:network-access-control",
-        "type": "component",
-        "title": "Network Access Control",
-        "description": "Admission control to the network based on identity, posture, and context."
+        "uuid": "urn:utoronto:security:pattern:network-segmentation-and-zones",
+        "type": "pattern-reference",
+        "title": "Network Segmentation and Zones"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:network-mediation-and-policy-enforcement",
-        "type": "component",
-        "title": "Network Mediation and Policy Enforcement",
-        "description": "Inspection and enforcement of permitted network communications."
+        "uuid": "urn:utoronto:security:pattern:network-mediation-and-policy-enforcement",
+        "type": "pattern-reference",
+        "title": "Network Mediation and Policy Enforcement"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:network-remote-access",
-        "type": "component",
-        "title": "Network Remote Access",
-        "description": "Controlled extension of network connectivity beyond institutional boundaries."
+        "uuid": "urn:utoronto:security:pattern:network-egress-discipline",
+        "type": "pattern-reference",
+        "title": "Network Egress Discipline"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:network-wireless-access",
-        "type": "component",
-        "title": "Network Wireless Access",
-        "description": "Secure use of broadcast and proximity-based network access."
+        "uuid": "urn:utoronto:security:pattern:network-monitoring-and-response",
+        "type": "pattern-reference",
+        "title": "Network Monitoring and Response"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:network-third-party-connectivity",
-        "type": "component",
-        "title": "Network Third-Party Connectivity",
-        "description": "Managed and bounded network access for external entities."
+        "uuid": "urn:utoronto:security:pattern:network-resiliency",
+        "type": "pattern-reference",
+        "title": "Network Resiliency"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:network-monitoring-and-response",
-        "type": "component",
-        "title": "Network Monitoring and Response",
-        "description": "Visibility, detection, containment, and response at the network layer."
+        "uuid": "urn:utoronto:security:pattern:network-remote-access",
+        "type": "pattern-reference",
+        "title": "Network Remote Access"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:network-wireless-access",
+        "type": "pattern-reference",
+        "title": "Network Wireless Access"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:network-third-party-connectivity",
+        "type": "pattern-reference",
+        "title": "Network Third-Party Connectivity"
       }
     ]
   }

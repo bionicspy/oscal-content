@@ -1,12 +1,13 @@
+
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:network-segmentation-and-zones",
 
     "metadata": {
       "title": "Network Segmentation and Zones",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T20:25:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
@@ -14,7 +15,7 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC240",
-          "remarks": "Business capability for Network and Connectivity Services that enforces separation of trust domains to limit exposure and lateral movement."
+          "remarks": "Business capability for enforcing separation of institutional network resources into distinct trust zones."
         },
         {
           "name": "technology-domain",
@@ -28,39 +29,40 @@
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-platform",
           "value": "urn:utoronto:cae2:trm:TP041",
-          "remarks": "Network segmentation, zoning, and isolation technologies."
+          "remarks": "Network segmentation, zoning, and isolation platforms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP061",
-          "remarks": "Explicit network zones with policy‑controlled inter‑zone traffic."
+          "value": "urn:utoronto:cae2:arm:AP062",
+          "remarks": "Policy-defined network trust zones with controlled inter-zone communication."
         },
         {
           "name": "data-entity",
           "ns": "urn:utoronto:cae2:drm",
           "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE381",
-          "remarks": "Network zone definitions, segmentation policies, and traffic rules."
+          "value": "urn:utoronto:cae2:drm:DE384",
+          "remarks": "Network zone definitions, segmentation rules, and inter-zone traffic metadata."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-principles",
+          "value": "§2, §3",
+          "remarks": "Network segmentation enforces explicit trust boundaries and eliminates implicit trust based on network location."
         },
         {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1021",
-          "remarks": "Lateral movement across insufficiently segmented network zones."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "defensive-technique",
-          "value": "urn:mitre:d3fend:technique:d3f:NetworkSegmentation",
-          "remarks": "Isolation of network zones to restrict unauthorized communication paths."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "§3.2, §3.3",
+          "remarks": "Dynamic segmentation and zone-based isolation support Zero Trust Networking principles."
         }
       ],
 
-      "remarks": "Network Segmentation and Zones defines the capability to partition the institutional network into discrete trust domains and to strictly control traffic between them. Segmentation reduces blast radius, limits lateral movement, and enforces differing trust assumptions across workloads, users, and environments.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to internal network trust boundaries. Controls are scoped to segmentation sub‑capabilities to enable precise assurance of zone definition and enforcement."
+      "remarks": "Network Segmentation and Zones defines how the institutional network is divided into explicitly governed trust zones. Each zone represents a bounded risk and trust context. This pattern enforces separation of workloads, systems, and environments without embedding identity or policy decision logic, which are handled by dependent Secure Network patterns."
     },
 
     "components": [
@@ -68,14 +70,32 @@
         "uuid": "urn:utoronto:security:capability:zone-definition",
         "type": "capability",
         "title": "Zone Definition",
-        "description": "Definition of discrete network zones representing differing trust levels and security requirements.",
+        "description": "Establishment and governance of discrete network trust zones.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1021",
+            "remarks": "Lateral movement enabled by insufficient or poorly defined segmentation."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkSegmentation",
+            "remarks": "Explicit zone definitions restrict lateral movement between trust domains."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
                 "control-id": "sc-7",
-                "remarks": "Define and document network boundaries and protection domains."
+                "remarks": "Define and enforce network segmentation to limit exposure."
               }
             ]
           }
@@ -83,57 +103,71 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:inter-zone-traffic",
+        "uuid": "urn:utoronto:security:capability:inter-zone-control",
         "type": "capability",
-        "title": "Inter‑Zone Traffic",
-        "description": "Control and restriction of network traffic crossing zone boundaries.",
+        "title": "Inter-Zone Traffic Control",
+        "description": "Control and governance of traffic flowing between network zones.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1046",
+            "remarks": "Discovery of services across insufficiently controlled zone boundaries."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkTrafficFiltering",
+            "remarks": "Controlled inter-zone filtering limits reconnaissance and unauthorized access."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
                 "control-id": "ac-4",
-                "remarks": "Enforce information flow control across network zones."
-              },
+                "remarks": "Restrict information flow between network zones."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:lateral-movement-restriction",
+        "type": "capability",
+        "title": "Lateral Movement Restriction",
+        "description": "Prevention of unauthorized movement of traffic within and across zones.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1021",
+            "remarks": "Unauthorized remote access and traversal between network segments."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkBoundaryDefense",
+            "remarks": "Boundary enforcement reduces unauthorized lateral traversal."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "implemented-requirements": [
               {
                 "control-id": "sc-7",
-                "remarks": "Restrict communications between zones to approved paths only."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:microsegmentation",
-        "type": "capability",
-        "title": "Microsegmentation",
-        "description": "Fine‑grained segmentation within zones to limit east‑west traffic between workloads.",
-        "control-implementations": [
-          {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
-            "implemented-requirements": [
-              {
-                "control-id": "ac-4",
-                "remarks": "Apply granular flow control to limit workload‑to‑workload communication."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:boundary-policy",
-        "type": "capability",
-        "title": "Boundary Policy",
-        "description": "Definition and enforcement of policies governing permissible communications between zones.",
-        "control-implementations": [
-          {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
-            "implemented-requirements": [
-              {
-                "control-id": "ac-1",
-                "remarks": "Establish and maintain policies governing inter‑zone network communication."
+                "remarks": "Enforce boundary protections to prevent lateral movement."
               }
             ]
           }

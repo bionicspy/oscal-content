@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Network Mediation and Policy Enforcement",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T21:05:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
@@ -14,7 +14,7 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC240",
-          "remarks": "Business capability for Network and Connectivity Services ensuring that network communications are mediated and enforced according to policy."
+          "remarks": "Business capability for enforcing institutional network access policies through mediation and controlled enforcement points."
         },
         {
           "name": "technology-domain",
@@ -27,88 +27,74 @@
           "name": "technology-platform",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-platform",
-          "value": "urn:utoronto:cae2:trm:TP043",
-          "remarks": "Network traffic mediation, inspection, and policy enforcement platforms."
+          "value": "urn:utoronto:cae2:trm:TP045",
+          "remarks": "Network policy decision, mediation, and enforcement platforms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP063",
-          "remarks": "Policy‑driven network mediation with centralized decision logic and distributed enforcement points."
+          "value": "urn:utoronto:cae2:arm:AP064",
+          "remarks": "Centralized policy decision with distributed network enforcement points."
         },
         {
           "name": "data-entity",
           "ns": "urn:utoronto:cae2:drm",
           "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE383",
-          "remarks": "Network flow metadata, policy evaluations, and enforcement decisions."
+          "value": "urn:utoronto:cae2:drm:DE385",
+          "remarks": "Network policy decisions, enforcement actions, and mediation audit records."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-principles",
+          "value": "§2, §3",
+          "remarks": "Policy decision and enforcement are separated, centrally evaluated, and continuously applied, consistent with Zero Trust Architecture principles."
         },
         {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1046",
-          "remarks": "Discovery and probing of network services that are insufficiently mediated or restricted."
-        },
-        {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1071",
-          "remarks": "Use of allowed application‑layer protocols to bypass weak network mediation."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "defensive-technique",
-          "value": "urn:mitre:d3fend:technique:d3f:NetworkTrafficFiltering",
-          "remarks": "Inspection and enforcement of permitted network communications."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "§3.1, §3.2",
+          "remarks": "Network mediation and enforcement implement identity-aware, policy-driven access control consistent with Zero Trust Networking guidance."
         }
       ],
 
-      "remarks": "Network Mediation and Policy Enforcement defines the capability to inspect, evaluate, and enforce which network communications are permitted after connectivity has been established. Admission to the network does not imply authorization to communicate. All allowed traffic is explicitly mediated according to policy.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to permitted network communications. Controls are scoped to mediation sub‑capabilities to enable precise assessment of inspection, decision, and enforcement behavior."
+      "remarks": "Network Mediation and Policy Enforcement defines how network traffic is evaluated against institutional policy and how those decisions are enforced. This pattern separates policy decision logic from enforcement mechanisms and enables dynamic, identity- and context-aware control of network flows. It does not define access policy content, segmentation design, or resiliency behavior, which are addressed by related Secure Network patterns."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:flow-inspection",
+        "uuid": "urn:utoronto:security:capability:policy-decision-point",
         "type": "capability",
-        "title": "Flow Inspection",
-        "description": "Inspection and classification of network traffic to support policy evaluation.",
-        "control-implementations": [
-          {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
-            "implemented-requirements": [
-              {
-                "control-id": "sc-7",
-                "remarks": "Inspect and control network communications at defined boundaries."
-              },
-              {
-                "control-id": "si-4",
-                "remarks": "Monitor network traffic to identify unauthorized or anomalous flows."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Policy Decision Point (PDP)",
+        "description": "Centralized evaluation of network access requests against institutional policy.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:policy-evaluation",
-        "type": "capability",
-        "title": "Policy Evaluation",
-        "description": "Evaluation of network policies to determine whether inspected traffic is permitted.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Abuse of valid credentials to influence or bypass policy decisions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PolicyDecisionPoint",
+            "remarks": "Centralized, authenticated policy decision prevents ad-hoc enforcement."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
                 "control-id": "ac-3",
-                "remarks": "Enforce approved authorizations to regulate network communications."
-              },
-              {
-                "control-id": "ac-4",
-                "remarks": "Apply information flow control policies to network traffic."
+                "remarks": "Evaluate access requests against defined policy before network enforcement."
               }
             ]
           }
@@ -116,17 +102,35 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:enforcement-points",
+        "uuid": "urn:utoronto:security:capability:policy-enforcement-point",
         "type": "capability",
-        "title": "Enforcement Points",
-        "description": "Logical or physical enforcement points where policy decisions are applied to traffic.",
+        "title": "Policy Enforcement Point (PEP)",
+        "description": "Distributed enforcement of policy decisions on network traffic.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1562",
+            "remarks": "Disabling or bypassing security enforcement mechanisms."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkTrafficFiltering",
+            "remarks": "Enforcement points ensure policy decisions are consistently applied."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
                 "control-id": "sc-7",
-                "remarks": "Enforce network boundary protection at designated enforcement points."
+                "remarks": "Enforce network boundary protection based on policy decisions."
               }
             ]
           }
@@ -134,21 +138,35 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:exception-handling",
+        "uuid": "urn:utoronto:security:capability:policy-mediation",
         "type": "capability",
-        "title": "Exception Handling",
-        "description": "Controlled management of exceptions and overrides to standard network policy.",
+        "title": "Policy Mediation",
+        "description": "Translation and coordination of policy decisions across heterogeneous enforcement points.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1557",
+            "remarks": "Traffic manipulation through inconsistent or incomplete policy enforcement."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:PolicyEnforcementCoordination",
+            "remarks": "Coordinated mediation ensures consistent enforcement across network controls."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
-                "control-id": "ac-1",
-                "remarks": "Define and govern processes for network policy exceptions."
-              },
-              {
-                "control-id": "au-2",
-                "remarks": "Log and audit network policy exceptions and overrides."
+                "control-id": "ac-4",
+                "remarks": "Ensure consistent information flow enforcement across policy domains."
               }
             ]
           }

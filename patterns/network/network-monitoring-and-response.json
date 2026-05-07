@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Network Monitoring and Response",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T22:25:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
@@ -14,79 +14,94 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC240",
-          "remarks": "Business capability for Network and Connectivity Services that provides visibility, detection, and response to network activity."
+          "remarks": "Network Monitoring and Response capability enables continuous observation and analysis of network security events and anomalous behavior." 
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD010",
-          "remarks": "Security monitoring and operations technology domain."
+          "value": "urn:utoronto:cae2:trm:TD004",
+          "remarks": "Network and Connectivity technology domain."
         },
         {
           "name": "technology-platform",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-platform",
-          "value": "urn:utoronto:cae2:trm:TP047",
-          "remarks": "Network telemetry, detection, and response platforms."
+          "value": "urn:utoronto:cae2:trm:TP046",
+          "remarks": "Network telemetry, detection, analytics, and response platforms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP067",
-          "remarks": "Continuous network visibility with coordinated detection and response."
+          "value": "urn:utoronto:cae2:arm:AP065",
+          "remarks": "Continuous network monitoring with coordinated detection and response capabilities."
         },
         {
           "name": "data-entity",
           "ns": "urn:utoronto:cae2:drm",
           "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE387",
-          "remarks": "Network telemetry, alerts, incident artifacts, and response actions."
+          "value": "urn:utoronto:cae2:drm:DE388",
+          "remarks": "Network telemetry, flow records, alerts, incidents, and response actions."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-principles",
+          "value": "§2, §3",
+          "remarks": "Continuous monitoring and reassessment of trust are required for Zero Trust Architecture."
         },
         {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1046",
-          "remarks": "Network service discovery conducted to map and exploit reachable services."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "§3.4, §3.5",
+          "remarks": "Network telemetry and automated response support continuous evaluation and adaptive enforcement."
         },
         {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1071",
-          "remarks": "Use of legitimate network protocols for command and control."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "defensive-technique",
-          "value": "urn:mitre:d3fend:technique:d3f:NetworkMonitoring",
-          "remarks": "Continuous observation and analysis of network activity for detection and response."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "cyber-resiliency",
+          "value": "§3.2, §3.3",
+          "remarks": "Monitoring and response capabilities support detection, containment, and recovery under cyber resiliency objectives."
         }
       ],
 
-      "remarks": "Network Monitoring and Response defines the capability to provide continuous visibility into network activity, detect anomalous or malicious behavior, and initiate containment or response actions. Monitoring completes the network trust chain by ensuring that allowed connectivity remains observable, attributable, and enforceable over time.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to network visibility, detection, and response. Controls are scoped to monitoring and response sub‑capabilities to enable precise assessment of detection and containment effectiveness."
+      "remarks": "Network Monitoring and Response defines how network activity is observed, analyzed, and acted upon to detect misuse, compromise, or degradation. This pattern provides visibility and response triggers that inform access control, policy enforcement, egress discipline, and resiliency mechanisms. It does not define access policy, segmentation rules, or recovery orchestration."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:flow-visibility",
+        "uuid": "urn:utoronto:security:capability:network-telemetry-collection",
         "type": "capability",
-        "title": "Flow Visibility",
-        "description": "Collection and analysis of network traffic metadata to establish visibility into communications.",
+        "title": "Network Telemetry Collection",
+        "description": "Collection of network flow data, logs, and telemetry for analysis.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1046",
+            "remarks": "Reconnaissance activity observable through abnormal network scanning patterns."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkTrafficAnalysis",
+            "remarks": "Analysis of collected telemetry enables early detection of anomalous behavior."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
-                "control-id": "si-4",
-                "remarks": "Monitor network traffic to detect unauthorized connections and activity."
-              },
-              {
                 "control-id": "au-12",
-                "remarks": "Provide centralized generation and management of network audit records."
+                "remarks": "Generate and collect network audit records sufficient for analysis."
               }
             ]
           }
@@ -97,14 +112,32 @@
         "uuid": "urn:utoronto:security:capability:anomaly-detection",
         "type": "capability",
         "title": "Anomaly Detection",
-        "description": "Identification of abnormal or suspicious patterns in network behavior.",
+        "description": "Identification of deviations from expected network behavior.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1071",
+            "remarks": "Abuse of application-layer protocols for covert communication."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:AnomalyDetection",
+            "remarks": "Behavioral analysis identifies deviations indicative of compromise."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
                 "control-id": "si-4",
-                "remarks": "Analyze network activity to identify anomalous or potentially malicious behavior."
+                "remarks": "Monitor network activity to detect indicators of attack."
               }
             ]
           }
@@ -112,43 +145,35 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:containment-actions",
+        "uuid": "urn:utoronto:security:capability:incident-response-triggering",
         "type": "capability",
-        "title": "Containment Actions",
-        "description": "Execution of network-level actions to contain or limit detected threats.",
-        "control-implementations": [
-          {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
-            "implemented-requirements": [
-              {
-                "control-id": "ir-4",
-                "remarks": "Implement coordinated containment actions in response to detected network incidents."
-              },
-              {
-                "control-id": "sc-7",
-                "remarks": "Restrict or block network communications to contain threats."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Incident Response Triggering",
+        "description": "Initiation of response actions based on detected network events.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:response-coordination",
-        "type": "capability",
-        "title": "Response Coordination",
-        "description": "Coordination of network response activities with security operations and incident response processes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1562",
+            "remarks": "Attempts to disable or evade detective controls."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:IntrusionResponse",
+            "remarks": "Coordinated response actions mitigate ongoing network threats."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
                 "control-id": "ir-4",
-                "remarks": "Coordinate network response actions with broader incident response procedures."
-              },
-              {
-                "control-id": "au-6",
-                "remarks": "Support review and analysis of network security events."
+                "remarks": "Initiate incident response actions upon detection of network security events."
               }
             ]
           }

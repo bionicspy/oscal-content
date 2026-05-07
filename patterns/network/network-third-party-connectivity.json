@@ -1,11 +1,12 @@
-{ "component-definition": {
+{
+  "component-definition": {
     "uuid": "urn:utoronto:security:pattern:network-third-party-connectivity",
 
     "metadata": {
       "title": "Network Third-Party Connectivity",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T22:05:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
@@ -13,7 +14,7 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC240",
-          "remarks": "Business capability for Network and Connectivity Services governing controlled connectivity for non-institutional entities."
+          "remarks": "Business capability enabling controlled, auditable network connectivity with external third parties such as vendors, partners, and service providers."
         },
         {
           "name": "technology-domain",
@@ -26,88 +27,81 @@
           "name": "technology-platform",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-platform",
-          "value": "urn:utoronto:cae2:trm:TP046",
-          "remarks": "Third-party connectivity, partner networking, and external access platforms."
+          "value": "urn:utoronto:cae2:trm:TP048",
+          "remarks": "Third-party access gateways, partner connectivity platforms, and inter-organization network integration services."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP066",
-          "remarks": "Explicitly bounded third-party network access with continuous oversight and revocation."
+          "value": "urn:utoronto:cae2:arm:AP069",
+          "remarks": "Explicit, contract-bound third-party network connectivity with no implicit trust."
         },
         {
           "name": "data-entity",
           "ns": "urn:utoronto:cae2:drm",
           "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE386",
-          "remarks": "Third-party connectivity sessions, access metadata, and monitoring records."
+          "value": "urn:utoronto:cae2:drm:DE389",
+          "remarks": "Third-party connectivity definitions, access scopes, session metadata, and audit records."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-principles",
+          "value": "§2, §3",
+          "remarks": "Third-party network access is explicitly authorized and continuously evaluated without implicit trust."
         },
         {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1199",
-          "remarks": "Exploitation of trusted relationships to gain unauthorized network access."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "§3.1, §3.4",
+          "remarks": "Identity-aware, policy-driven enforcement governs third-party network connectivity."
         },
         {
-          "name": "threat-technique",
-          "ns": "urn:mitre:attack",
-          "class": "attack-technique",
-          "value": "urn:mitre:attack:technique:T1078",
-          "remarks": "Abuse of valid third-party credentials or connections."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "defensive-technique",
-          "value": "urn:mitre:d3fend:technique:d3f:ThirdPartyAccessManagement",
-          "remarks": "Controlled, monitored, and revocable network access for external entities."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-46",
+          "class": "third-party-access",
+          "value": "§5",
+          "remarks": "Third-party and contractor remote access aligns with SP 800-46 guidance, modernized through Zero Trust Architecture."
         }
       ],
 
-      "remarks": "Network Third-Party Connectivity defines the capability to provide limited, bounded, and accountable network access for external entities such as vendors, partners, service providers, and affiliates. Third-party connectivity introduces elevated supply-chain and trust-transfer risk and therefore requires explicit boundary definition, continuous monitoring, and rapid revocation.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to third-party and external network connectivity. Controls are scoped to third-party sub‑capabilities to enable precise assessment of boundary enforcement and oversight."
+      "remarks": "Network Third-Party Connectivity defines how external organizations are granted network access in a controlled, limited, and auditable manner. This pattern assumes no inherent trust in third-party networks or personnel and requires explicit scoping, mediation, and continuous oversight. It does not define identity proofing, authorization policy, or resiliency behaviors, which are handled by complementary Secure Identity and Secure Network patterns."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:partner-connectivity",
+        "uuid": "urn:utoronto:security:capability:third-party-admission",
         "type": "capability",
-        "title": "Partner Connectivity",
-        "description": "Establishment of network connectivity with trusted partner organizations under defined agreements.",
-        "control-implementations": [
-          {
-            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
-            "implemented-requirements": [
-              {
-                "control-id": "sa-9",
-                "remarks": "Establish and manage external system connections under formal agreements."
-              },
-              {
-                "control-id": "sc-7",
-                "remarks": "Enforce boundary protection for partner network connections."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Third-Party Admission",
+        "description": "Controlled admission of third-party connections into the institutional network.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:vendor-access",
-        "type": "capability",
-        "title": "Vendor Access",
-        "description": "Provisioning of network access for vendors and service providers for support or integration purposes.",
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1078",
+            "remarks": "Use of valid partner or contractor credentials to gain unauthorized network access."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkAccessControl",
+            "remarks": "Admission of third-party connections only after explicit identity and context evaluation."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
                 "control-id": "ac-20",
-                "remarks": "Control and monitor external information system connections."
-              },
-              {
-                "control-id": "ac-17",
-                "remarks": "Authorize, restrict, and monitor remote vendor network access."
+                "remarks": "Restrict and explicitly authorize external information system connections."
               }
             ]
           }
@@ -115,21 +109,35 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:responsibility-boundaries",
+        "uuid": "urn:utoronto:security:capability:third-party-scope-restriction",
         "type": "capability",
-        "title": "Responsibility Boundaries",
-        "description": "Definition of responsibility, accountability, and trust boundaries between the institution and third parties.",
+        "title": "Third-Party Scope Restriction",
+        "description": "Limitation of third-party network access to explicitly approved systems and services.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1021",
+            "remarks": "Lateral movement by third-party access beyond authorized scope."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkSegmentation",
+            "remarks": "Segmentation constrains third-party connectivity to approved zones."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
-                "control-id": "pl-8",
-                "remarks": "Define and govern architecture for external network connections."
-              },
-              {
-                "control-id": "ac-1",
-                "remarks": "Establish policies governing third-party network access and responsibilities."
+                "control-id": "ac-3",
+                "remarks": "Enforce least-privilege access to network resources."
               }
             ]
           }
@@ -137,21 +145,35 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:monitoring-and-revocation",
+        "uuid": "urn:utoronto:security:capability:third-party-session-monitoring",
         "type": "capability",
-        "title": "Monitoring and Revocation",
-        "description": "Continuous monitoring of third-party activity and rapid revocation of access when required.",
+        "title": "Third-Party Session Monitoring",
+        "description": "Observation and logging of third-party network activity for detection and accountability.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "attack-technique",
+            "value": "urn:mitre:attack:technique:T1071",
+            "remarks": "Abuse of permitted application-layer protocols during third-party sessions."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "urn:mitre:d3fend:technique:d3f:NetworkTrafficAnalysis",
+            "remarks": "Continuous analysis of third-party traffic supports timely detection of misuse."
+          }
+        ],
+
         "control-implementations": [
           {
             "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
             "implemented-requirements": [
               {
-                "control-id": "si-4",
-                "remarks": "Monitor third-party network activity for misuse or compromise."
-              },
-              {
-                "control-id": "ac-2",
-                "remarks": "Disable or remove third-party access when no longer authorized."
+                "control-id": "au-12",
+                "remarks": "Generate audit records for third-party access activity."
               }
             ]
           }
