@@ -1,0 +1,145 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:institution:sspp:secure-identity-relying-party",
+    "metadata": {
+      "title": "Secure Identity Relying Party SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "Template for documenting how a system relies on Secure Identity assurance without independently implementing or evaluating identity services."
+    },
+
+    "import-profile": {
+      "href": "urn:institution:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline. This SSPP documents reliance on identity services rather than control implementation."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Identity Relying System",
+      "system-description": "System or platform that consumes identity assertions and assurance signals provided by Secure Identity to inform access and trust decisions.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-provider",
+          "remarks": "This system relies on an institutionally approved Secure Identity Provider SSPP for identity assertions."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-assurance",
+          "remarks": "This system consumes identity assurance as interpreted by the Secure Identity Assurance SSPP."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-federation",
+          "remarks": "Where applicable, this system relies on Secure Identity Federation SSPP for trust in externally asserted identities."
+        },
+
+        {
+          "name": "identity-consumption-model",
+          "class": "design-principle",
+          "value": "assertion-and-assurance",
+          "remarks": "The system consumes authenticated identity assertions together with dynamic assurance signals rather than static identity attributes."
+        },
+
+        {
+          "name": "assurance-requirement",
+          "class": "risk-posture",
+          "value": "context-dependent",
+          "remarks": "Required identity assurance varies based on access context, operation sensitivity, and user role."
+        },
+
+        {
+          "name": "authorization-separation",
+          "class": "design-principle",
+          "value": "authorization-local",
+          "remarks": "Authorization decisions remain local to the system and are not delegated to the identity provider."
+        },
+
+        {
+          "name": "lifecycle-dependence",
+          "class": "design-principle",
+          "value": "authoritative-lifecycle",
+          "remarks": "Access decisions depend on authoritative identity lifecycle state provided by Secure Identity."
+        },
+
+        {
+          "name": "trust-boundary",
+          "class": "architecture-boundary",
+          "value": "identity-external",
+          "remarks": "Identity proofing, authentication, and assurance computation occur outside this system."
+        },
+
+        {
+          "name": "delegation-consumption",
+          "class": "design-principle",
+          "value": "explicit-only",
+          "remarks": "Delegated access is honored only when explicitly asserted and auditable through Secure Identity."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-63",
+          "class": "reliance-alignment",
+          "value": "63A 2; 63B 2; 63C 2",
+          "remarks": "This system relies on identity assurance aligned to SP 800-63 authentication, proofing, and federation principles as interpreted by Secure Identity."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-principles",
+          "value": "2, 3",
+          "remarks": "The relying system enforces Zero Trust principles by continuously evaluating trust in supplied identity assertions and assurance context."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP does not implement identity controls. It documents reliance on externally provided identity and assurance signals.",
+
+      "components": [
+        {
+          "uuid": "urn:institution:component:identity-relying-party",
+          "type": "conceptual",
+          "title": "Identity Relying Party",
+          "description": "Conceptual component representing a system that consumes identity assertions from Secure Identity services."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-system-owner",
+        "title": "System Owner",
+        "remarks": "Accountable for defining how the system relies on identity assurance and authorizing acceptable risk thresholds.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-RSK"
+          }
+        ]
+      },
+      {
+        "id": "role-identity-architecture",
+        "title": "Identity Architecture Authority",
+        "remarks": "Ensures relying systems correctly interpret and consume Secure Identity assurance.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All identity-related controls are inherited from Secure Identity Provider, Federation, and Assurance SSPPs."
+    }
+  }
+}

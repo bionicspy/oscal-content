@@ -1,0 +1,131 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:institution:sspp:secure-identity-assurance",
+    "metadata": {
+      "title": "Secure Identity Assurance SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "Template for documenting how identity assurance is evaluated, composed, and relied upon across authentication, lifecycle state, federation trust, and context."
+    },
+
+    "import-profile": {
+      "href": "urn:institution:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline. This SSPP addresses assurance interpretation, not control implementation."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Identity Assurance",
+      "system-description": "Institutional capability defining how confidence in identity assertions is derived, evaluated, and consumed by relying systems using Secure Identity.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "depends-on-pattern",
+          "value": "secure-identity",
+          "remarks": "Assurance interpretation depends on the Secure Identity composite pattern."
+        },
+        {
+          "name": "depends-on-pattern",
+          "value": "identity-assurance",
+          "remarks": "Primary assurance computation and propagation logic is defined in the Identity Assurance pattern."
+        },
+        {
+          "name": "depends-on-pattern",
+          "value": "identity-authentication",
+          "remarks": "Authentication events contribute factor strength and session context to assurance evaluation."
+        },
+        {
+          "name": "depends-on-pattern",
+          "value": "identity-lifecycle",
+          "remarks": "Lifecycle state bounds the validity of proofing and prior assurance."
+        },
+        {
+          "name": "depends-on-pattern",
+          "value": "identity-device-binding",
+          "remarks": "Device and execution context signals contribute to assurance confidence where applicable."
+        },
+        {
+          "name": "depends-on-pattern",
+          "value": "identity-federation",
+          "remarks": "Federated identities contribute assurance based on trust relationship and upstream assertions."
+        },
+
+        {
+          "name": "assurance-model",
+          "class": "design-principle",
+          "value": "dynamic-contextual",
+          "remarks": "Identity assurance is evaluated dynamically at time of access using authentication strength, lifecycle state, context, and federation trust."
+        },
+        {
+          "name": "assurance-consumption",
+          "class": "design-principle",
+          "value": "risk-informed",
+          "remarks": "Relying systems consume assurance signals to inform access decisions in conjunction with authorization policy."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-63",
+          "class": "assurance-alignment",
+          "value": "63A 2, 4; 63B 2, 4; 63C 2",
+          "remarks": "This SSPP aligns with SP 800-63 by evaluating authentication (AAL), identity proofing confidence (IAL), and federation trust (FAL) contextually rather than assigning fixed assurance levels."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-principles",
+          "value": "2, 3",
+          "remarks": "Assurance evaluation supports Zero Trust principles through continuous verification, context awareness, and dynamic trust assessment."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP does not implement authentication or authorization controls. It documents the institutional assurance interpretation model applied by relying systems.",
+
+      "components": [
+        {
+          "uuid": "urn:institution:component:assurance-evaluation",
+          "type": "conceptual",
+          "title": "Identity Assurance Evaluation",
+          "description": "Conceptual component responsible for aggregating and interpreting assurance signals from Secure Identity patterns."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-identity-architecture",
+        "title": "Identity Architecture Authority",
+        "remarks": "Responsible for defining assurance interpretation rules and alignment with institutional risk policy.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-security-risk",
+        "title": "Security Risk Authority",
+        "remarks": "Defines acceptable assurance thresholds for classes of relying systems.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-RSK"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are implemented by Secure Identity Providers and consumed by applications. This SSPP documents assurance interpretation only."
+    }
+  }
+}
