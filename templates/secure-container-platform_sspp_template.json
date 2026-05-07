@@ -1,0 +1,177 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:secure-container",
+
+    "metadata": {
+      "title": "SSPP – Secure Container Platform",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T02:05:00Z",
+      "remarks": "System Security & Privacy Plan asserting institutional requirements for secure, resilient, and governed container runtime and orchestration platforms."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:profile:institutional-baseline",
+      "remarks": "Imports institutional baseline security, governance, and resiliency requirements applicable to shared container execution environments."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Container Platform",
+      "system-description": "Container platform providing orchestrated, isolated, observable, and resilient execution environments for workloads and platform services using a managed container runtime and scheduler.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "platform-capability",
+          "value": "secure-container",
+          "remarks": "This SSPP asserts secure and resilient container execution and orchestration as a foundational platform capability."
+        },
+        {
+          "name": "execution-scope",
+          "value": "orchestrated-multi-tenant",
+          "remarks": "Container workloads are scheduled and managed by a centralized control plane with enforced isolation and policy."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "guidance-reference",
+          "value": "3.3, 3.4",
+          "remarks": "Referenced for cyber resiliency guidance addressing recovery, adaptation, rapid reconfiguration, and workload restart under fault or attack conditions within orchestrated execution environments."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-190",
+          "class": "guidance-reference",
+          "value": "SP 800-190",
+          "remarks": "Referenced for container-specific security guidance addressing image integrity, runtime isolation, orchestration security, and container platform risk. This guidance informs Secure Container Platform design, while cyber-resiliency intent is provided by NIST SP 800-184."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP asserts Secure Container execution by composition of platform container patterns. It defines no workload-specific controls; compliance is achieved through satisfaction of the referenced container platform patterns.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:secure-container-composite",
+          "type": "component",
+          "title": "Secure Container Platform (Composite Assertion)",
+          "description": "Composite assertion that the container platform enforces isolation, integrity, availability, and resiliency for scheduled workloads.",
+          "links": [
+            {
+              "rel": "asserts",
+              "href": "urn:utoronto:security:pattern:secure-container-platform"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:container-core",
+          "type": "component",
+          "title": "Container Runtime and Orchestration Core",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-container-core"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:container-isolation",
+          "type": "component",
+          "title": "Container Isolation and Policy Enforcement",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-container-isolation-and-policy"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:container-availability",
+          "type": "component",
+          "title": "Container Availability and Recovery",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-container-availability-and-recovery"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:container-observability",
+          "type": "component",
+          "title": "Container Observability and Telemetry",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-container-observability-and-telemetry"
+            }
+          ]
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-container-policy",
+        "title": "Container Platform Governance Authority",
+        "remarks": "Defines institutional posture, risk tolerance, and resiliency expectations for container execution environments.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-EXL",
+            "remarks": "Executive Cyber Leadership per NIST NICE Framework (SP 800-181)."
+          }
+        ]
+      },
+      {
+        "id": "role-container-architect",
+        "title": "Container Platform Architect",
+        "remarks": "Designs container architecture, orchestration control planes, recovery strategies, and dependencies with Secure-Virtualization, Secure-Networking, and Secure-Time.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC",
+            "remarks": "Security Architect per NIST NICE Framework."
+          }
+        ]
+      },
+      {
+        "id": "role-container-operations",
+        "title": "Container Platform Operations",
+        "remarks": "Operates container runtimes, schedulers, admission controllers, and recovery mechanisms in accordance with platform patterns.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA",
+            "remarks": "Systems Administrator per NIST NICE Framework."
+          }
+        ]
+      },
+      {
+        "id": "role-container-monitoring",
+        "title": "Container Security Monitoring and Assurance",
+        "remarks": "Monitors container platform telemetry, detects policy violations or degradation, and supports incident response and resiliency assessment.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC",
+            "remarks": "Security Operations Analyst per NIST NICE Framework."
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction is achieved through inherited control implementations in Secure Container platform constituent patterns. This SSPP introduces no standalone or compensating controls."
+    }
+  }
+}

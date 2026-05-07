@@ -1,0 +1,177 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:secure-bare-metal",
+
+    "metadata": {
+      "title": "SSPP – Secure Bare-Metal Platform",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T01:45:00Z",
+      "remarks": "System Security & Privacy Plan asserting institutional requirements for secure, resilient, and governed bare‑metal execution environments."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:profile:institutional-baseline",
+      "remarks": "Imports institutional baseline security, governance, and resiliency requirements applicable to physical server infrastructure."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Bare-Metal Platform",
+      "system-description": "Physical server platform providing trusted execution, hardware-backed isolation, and recoverable operation for institutional workloads and platform services that do not rely on a hypervisor abstraction layer.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "platform-capability",
+          "value": "secure-bare-metal",
+          "remarks": "This SSPP asserts secure and resilient execution directly on physical hardware as a foundational platform capability."
+        },
+        {
+          "name": "execution-scope",
+          "value": "dedicated-or-shared-physical",
+          "remarks": "Bare‑metal servers may be dedicated or shared by policy, but always operate without virtualization isolation."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "guidance-reference",
+          "value": "2, 3.1, 3.2, 3.3",
+          "remarks": "Referenced for cyber resiliency guidance related to identification of critical physical infrastructure, prevention of cascading failure, and recovery of execution environments under disruption."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-193",
+          "class": "guidance-reference",
+          "value": "SP 800-193",
+          "remarks": "Referenced for platform firmware resiliency guidance addressing BIOS, UEFI, BMC, and management firmware integrity, detection of compromise, and recovery to a known-good state. This guidance informs Secure Bare-Metal platform trust below the operating system, while cyber-resiliency intent is provided by NIST SP 800-184."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP asserts Secure Bare‑Metal execution by composition of platform server patterns. It defines no workload‑specific or application‑specific controls.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:secure-bare-metal-core",
+          "type": "component",
+          "title": "Secure Bare-Metal (Composite Assertion)",
+          "description": "Composite assertion that physical servers provide trusted, observable, and recoverable execution.",
+          "links": [
+            {
+              "rel": "asserts",
+              "href": "urn:utoronto:security:pattern:secure-server"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:hardware-root-of-trust",
+          "type": "component",
+          "title": "Hardware Root of Trust",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-hardware-root-of-trust"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:server-os-integrity",
+          "type": "component",
+          "title": "Server OS and Firmware Integrity",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-server-os-integrity"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:server-availability-recovery",
+          "type": "component",
+          "title": "Bare-Metal Availability and Recovery",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-server-availability-and-recovery"
+            }
+          ]
+        },
+        {
+          "uuid": "urn:utoronto:sspp:component:server-observability",
+          "type": "component",
+          "title": "Bare-Metal Observability and Telemetry",
+          "links": [
+            {
+              "rel": "implements",
+              "href": "urn:utoronto:security:pattern-ref:platform-server-observability-and-telemetry"
+            }
+          ]
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-bare-metal-policy",
+        "title": "Bare-Metal Platform Governance Authority",
+        "remarks": "Defines institutional posture, risk tolerance, and resiliency expectations for physical server infrastructure.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-EXL",
+            "remarks": "Executive Cyber Leadership per NIST NICE Framework (SP 800-181)."
+          }
+        ]
+      },
+      {
+        "id": "role-bare-metal-architect",
+        "title": "Bare-Metal Platform Architect",
+        "remarks": "Designs physical server architecture, trust anchors, recovery strategies, and dependencies with Secure-Networking and Secure-Time.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC",
+            "remarks": "Security Architect per NIST NICE Framework."
+          }
+        ]
+      },
+      {
+        "id": "role-bare-metal-operations",
+        "title": "Bare-Metal Platform Operations",
+        "remarks": "Operates physical servers, firmware lifecycle, secure boot, and recovery mechanisms in accordance with platform patterns.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA",
+            "remarks": "Systems Administrator per NIST NICE Framework."
+          }
+        ]
+      },
+      {
+        "id": "role-bare-metal-monitoring",
+        "title": "Bare-Metal Security Monitoring and Assurance",
+        "remarks": "Monitors hardware and OS telemetry, detects integrity degradation, and supports incident response and recovery.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC",
+            "remarks": "Security Operations Analyst per NIST NICE Framework."
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction is achieved through inherited control implementations in Secure Server constituent patterns. This SSPP introduces no standalone or compensating controls."
+    }
+  }
+}
