@@ -1,0 +1,210 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:email-collaboration-platform",
+    "metadata": {
+      "title": "Email Collaboration Platform - LISTSERV SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T16:30:00Z",
+      "remarks": "System Security and Privacy Plan governing email-based collaboration platforms (e.g., LISTSERV) used for moderated, opt-in group discussion among institutional users."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security, privacy, records, and acceptable use baseline."
+    },
+
+    "system-characteristics": {
+      "system-name": "Email Collaboration Discussion List Service",
+      "system-description": "Institutional email collaboration platform supporting opt-in, invitation-based discussion lists for internal communities, projects, or interests, with two-way human communication and archived discussions.",
+      "security-sensitivity-level": "moderate",
+
+      "system-information": {
+        "information-type": [
+          {
+            "uuid": "info-list-message",
+            "title": "Discussion List Message Content",
+            "description": "Email messages posted to and distributed via discussion lists.",
+            "confidentiality-impact": { "base": "moderate" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          },
+          {
+            "uuid": "info-list-membership",
+            "title": "Discussion List Membership Data",
+            "description": "Invitation, subscription, and opt-out state for discussion list participants.",
+            "confidentiality-impact": { "base": "low" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          },
+          {
+            "uuid": "info-list-archive",
+            "title": "Discussion List Archives",
+            "description": "Archived discussion messages retained per configuration and records requirements.",
+            "confidentiality-impact": { "base": "moderate" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          }
+        ]
+      },
+
+      "props": [
+        {
+          "name": "depends-on-sspp",
+          "value": "individual-email",
+          "remarks": "Discussion list participation inherits Individual Email SSPP identity, monitoring, disclosure, and lifecycle constraints."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-email-platform",
+          "remarks": "Discussion lists are implemented on the Secure Email Platform."
+        },
+
+        {
+          "name": "depends-on-pattern",
+          "value": "email-collaboration-gateway",
+          "remarks": "This SSPP implements the Email Collaboration Gateway pattern for email-based workflows."
+        },
+        {
+          "name": "depends-on-pattern",
+          "value": "dns-secure-email",
+          "remarks": "Domain authentication, SPF, DKIM, and DMARC enforcement apply to discussion list traffic."
+        },
+
+        {
+          "name": "usage-intent",
+          "value": "email-collaboration-discussion",
+          "remarks": "Discussion lists support two-way collaborative email communication among internal participants."
+        },
+
+        {
+          "name": "membership-model",
+          "value": "invitation-and-opt-in",
+          "remarks": "Membership is invitation-based and optional; users are not automatically enrolled."
+        },
+
+        {
+          "name": "opt-out-requirement",
+          "value": "timely-required",
+          "remarks": "Participants MUST be able to opt out promptly and without undue burden."
+        },
+
+        {
+          "name": "membership-review",
+          "value": "periodic-attestation-required",
+          "remarks": "List owners MUST periodically review and attest to current membership appropriateness."
+        },
+
+        {
+          "name": "recipient-scope",
+          "value": "internal-only",
+          "remarks": "Discussion lists are restricted to institutional users (students, staff, faculty, librarians, affiliates); external participants are prohibited."
+        },
+
+        {
+          "name": "posting-model",
+          "value": "member-only-human-initiated",
+          "remarks": "Only subscribed members may post; automated posting and application integration are prohibited."
+        },
+
+        {
+          "name": "communication-model",
+          "value": "many-to-many",
+          "remarks": "Messages sent to the list are distributed to all subscribed members."
+        },
+
+        {
+          "name": "volume-constraint",
+          "value": "discussion-appropriate",
+          "remarks": "Discussion lists must not be used for campaigns, announcements at scale, or bulk messaging."
+        },
+
+        {
+          "name": "escalation-requirement",
+          "value": "distribution-or-campaign-required",
+          "remarks": "One-way announcements or large-scale messaging must use Distribution Groups or the Email Campaign Platform."
+        },
+
+        {
+          "name": "automation-constraint",
+          "value": "human-only",
+          "remarks": "Applications, scripts, and automated systems MUST NOT post to discussion lists."
+        },
+
+        {
+          "name": "data-classification-constraint",
+          "value": "level-3-max",
+          "remarks": "Discussion list content MUST NOT include or reference information classified at Level 4 or higher."
+        },
+
+        {
+          "name": "archive-policy",
+          "value": "configurable-and-governed",
+          "remarks": "Discussion archives must be explicitly configured and governed according to institutional records and retention policy."
+        },
+
+        {
+          "name": "auditability",
+          "value": "sender-attribution-required",
+          "remarks": "All discussion list posts MUST be attributable to the individual sender."
+        },
+
+        {
+          "name": "disclosure-authority",
+          "value": "legal-and-policy-bound",
+          "remarks": "Disclosure of discussion list content occurs only under lawful or formally authorized institutional processes."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "The email collaboration service enforces opt-in membership, authenticated posting, archive governance, and centralized monitoring.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:email-collaboration-list",
+          "type": "component",
+          "title": "Email Collaboration Discussion List",
+          "description": "Email-based discussion list supporting moderated, opt-in collaboration."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-list-owner",
+        "title": "Discussion List Owner",
+        "remarks": "Accountable for list purpose, membership invitations, reviews, moderation, and lifecycle.",
+        "props": [
+          { "name": "nice-work-role", "ns": "urn:nist.gov:nice", "class": "work-role", "value": "OV-EXL" }
+        ]
+      },
+      {
+        "id": "role-list-member",
+        "title": "Discussion List Member",
+        "remarks": "Subscribed participant authorized to post to and receive discussion messages.",
+        "props": [
+          { "name": "nice-work-role", "ns": "urn:nist.gov:nice", "class": "work-role", "value": "OM-NET" }
+        ]
+      },
+      {
+        "id": "role-email-operations",
+        "title": "Email Platform Operations",
+        "props": [
+          { "name": "nice-work-role", "ns": "urn:nist.gov:nice", "class": "work-role", "value": "OM-SA" }
+        ]
+      },
+      {
+        "id": "role-email-security",
+        "title": "Email Security Monitoring",
+        "props": [
+          { "name": "nice-work-role", "ns": "urn:nist.gov:nice", "class": "work-role", "value": "PR-SOC" }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All controls are inherited from Individual Email SSPP and Secure Email Platform SSPP, with additional constraints for collaboration, membership governance, and archives."
+    }
+  }
+}

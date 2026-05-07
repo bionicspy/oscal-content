@@ -1,17 +1,17 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:email-collaboration-relay",
+    "version": "0.2.0",
+    "oscal-version": "1.1.3",
+    "last-modified": "2026-05-04T09:20:00Z",
 
     "metadata": {
       "title": "Email Collaboration Relay",
-      "version": "0.1.0",
-      "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T07:30:00Z",
 
       "props": [
         {
           "name": "capability",
-          "ns": "urn:utoronto:cae2:brm",
+          "ns": "urn:utoronto:security:pattern",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC345",
           "remarks": "Business capability for using email as a trusted relay in collaborative and workflow-driven processes requiring clear authority and integrity."
@@ -21,7 +21,7 @@
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD155",
-          "remarks": "Workflow and collaboration systems that use email for approvals, task notifications, and inter-system coordination."
+          "remarks": "Workflow and collaboration systems that use email for approvals, task coordination, and inter-system signaling."
         },
         {
           "name": "architecture-pattern",
@@ -36,10 +36,39 @@
           "class": "platform-pattern",
           "value": "email-core",
           "remarks": "Email collaboration relay assumes baseline delivery assurance, identity binding, and accountability."
+        },
+        {
+          "name": "data-object",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "information-object",
+          "value": "urn:utoronto:cae2:drm:DO122",
+          "remarks": "Workflow-related email messages and decision artifacts treated as authoritative coordination records."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-177r1",
+          "class": "guidance-reference",
+          "value": "3, 5",
+          "remarks": "Referenced for trustworthy email guidance related to sender authority, accountability, and evidentiary support in decision workflows."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-45r2",
+          "class": "guidance-reference",
+          "value": "4",
+          "remarks": "Referenced for guidance on maintaining integrity and administrative discipline in email-based coordination."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "guidance-reference",
+          "value": "3.1, 3.3",
+          "remarks": "Referenced to emphasize integrity, survivability, and recovery of workflow signaling under disruption."
         }
       ],
 
-      "remarks": "Email Collaboration Relay defines trust properties required to safely use email as a control and coordination channel in collaborative workflows. This pattern addresses authority confusion, workflow manipulation, and integrity risks when email messages are treated as implicit approvals or task triggers."
+      "remarks": "Email Collaboration Relay defines trust properties required to use email as a control and coordination channel in collaborative workflows. It addresses authority confusion, workflow manipulation, and message integrity when email messages are treated as implicit approvals or triggers."
     },
 
     "components": [
@@ -48,32 +77,33 @@
         "type": "capability",
         "title": "Workflow Authority Assertion",
         "description": "Ensures that email messages used in workflows reflect explicit and authorized decision-making authority.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "technique",
+            "class": "tactic-technique",
             "value": "T1566",
-            "remarks": "Phishing or deceptive email content used to induce unauthorized actions."
+            "remarks": "Deceptive email content used to induce unauthorized workflow actions."
           },
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "technique",
+            "class": "tactic-technique",
             "value": "T1078",
             "remarks": "Abuse of legitimate accounts to manipulate workflow outcomes."
           },
           {
-            "name": "defense-technique",
+            "name": "defensive-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0065",
-            "remarks": "Binding authorization decisions to authenticated and verified identities."
+            "class": "defensive-technique",
+            "value": "AuthorizationBinding",
+            "remarks": "Binding workflow decisions to authenticated and authorized identities."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:workflow-authority",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
@@ -94,25 +124,26 @@
         "type": "capability",
         "title": "Email Workflow Integrity",
         "description": "Protects email messages used in workflows from unauthorized modification, replay, or misuse.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "technique",
+            "class": "tactic-technique",
             "value": "T1565.001",
             "remarks": "Manipulation of stored or in-transit workflow communications."
           },
           {
-            "name": "defense-technique",
+            "name": "defensive-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0050",
-            "remarks": "Integrity checks to ensure workflow content is not altered."
+            "class": "defensive-technique",
+            "value": "IntegrityVerification",
+            "remarks": "Verification mechanisms ensure workflow message integrity."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:email-workflow-integrity",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
@@ -133,25 +164,26 @@
         "type": "capability",
         "title": "Email Workflow Auditability",
         "description": "Ensures email-based workflow actions are traceable and reviewable.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "technique",
+            "class": "tactic-technique",
             "value": "T1107",
             "remarks": "Deletion or suppression of evidence related to workflow decisions."
           },
           {
-            "name": "defense-technique",
+            "name": "defensive-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0061",
-            "remarks": "Audit logging to support accountability and investigation."
+            "class": "defensive-technique",
+            "value": "AuditLogging",
+            "remarks": "Audit logging to support accountability and investigation of workflow actions."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:email-workflow-audit",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
@@ -160,7 +192,7 @@
               },
               {
                 "control-id": "AU-6",
-                "remarks": "Review of audit records supports detection of workflow misuse."
+                "remarks": "Audit review supports detection of workflow misuse or abuse."
               }
             ]
           }

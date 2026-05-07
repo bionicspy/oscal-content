@@ -1,0 +1,210 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:emergency-notification",
+    "metadata": {
+      "title": "Emergency Notification System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T17:00:00Z",
+      "remarks": "System Security and Privacy Plan governing institution-wide emergency notification across email, SMS, and voice channels for life-safety and critical operational events."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security, privacy, resiliency, and life-safety baseline."
+    },
+
+    "system-characteristics": {
+      "system-name": "Emergency Notification System",
+      "system-description": "Institutionally governed, multi-channel emergency notification capability used to disseminate time-critical alerts related to life safety, security incidents, or essential operational continuity.",
+      "security-sensitivity-level": "high",
+
+      "system-information": {
+        "information-type": [
+          {
+            "uuid": "info-emergency-message",
+            "title": "Emergency Notification Content",
+            "description": "Time-sensitive emergency alert messages distributed across one or more channels.",
+            "confidentiality-impact": { "base": "low" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "high" }
+          },
+          {
+            "uuid": "info-emergency-recipient",
+            "title": "Emergency Recipient Lists",
+            "description": "Authoritative institutional population data used for emergency alert distribution.",
+            "confidentiality-impact": { "base": "moderate" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "high" }
+          },
+          {
+            "uuid": "info-emergency-audit",
+            "title": "Emergency Notification Audit Events",
+            "description": "Audit trails for message authorization, dispatch, delivery outcomes, and suppression decisions.",
+            "confidentiality-impact": { "base": "low" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          }
+        ]
+      },
+
+      "props": [
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-email-platform",
+          "remarks": "Email delivery relies on Secure Email Platform protections and monitoring."
+        },
+
+        {
+          "name": "depends-on-pattern",
+          "value": "email-notification-gateway",
+          "remarks": "Email channel uses the Application Notification pattern with emergency-specific constraints."
+        },
+        {
+          "name": "depends-on-pattern",
+          "value": "dns-secure-email",
+          "remarks": "Dedicated emergency email domains enforce strict SPF, DKIM, and DMARC."
+        },
+
+        {
+          "name": "usage-intent",
+          "value": "life-safety-and-critical-operations",
+          "remarks": "This system is restricted to life-safety incidents and critical institutional emergencies."
+        },
+
+        {
+          "name": "authority-scope",
+          "value": "institution-wide-only",
+          "remarks": "Emergency notifications may only be issued by designated authorities with institution-wide responsibility."
+        },
+
+        {
+          "name": "authorized-sender-groups",
+          "value": "campus-police,emergency-management,senior-operations-leadership",
+          "remarks": "Only formally designated emergency authorities may initiate notifications."
+        },
+
+        {
+          "name": "communication-model",
+          "value": "one-way-broadcast",
+          "remarks": "Emergency notifications are one-way alerts; replies are not supported."
+        },
+
+        {
+          "name": "directionality",
+          "value": "send-only",
+          "remarks": "Email is used strictly for outbound emergency alerts; inbound processing is prohibited."
+        },
+
+        {
+          "name": "reply-capability",
+          "value": "none",
+          "remarks": "Replies, delegation, and conversational use are prohibited."
+        },
+
+        {
+          "name": "email-recipient-policy",
+          "value": "internal-and-external-allowed",
+          "remarks": "Emergency email may be sent to both institutional and external email addresses as required for safety."
+        },
+
+        {
+          "name": "recipient-source",
+          "value": "authoritative-institutional-feeds",
+          "remarks": "Recipient populations are derived from authoritative institutional data sources."
+        },
+
+        {
+          "name": "subdomain-isolation",
+          "value": "dedicated-emergency-subdomain",
+          "remarks": "Emergency email uses a dedicated subdomain with isolated reputation and DMARC enforcement."
+        },
+
+        {
+          "name": "dmarc-policy",
+          "value": "strict-enforcement",
+          "remarks": "DMARC enforcement is mandatory for emergency email to prevent impersonation."
+        },
+
+        {
+          "name": "automation-constraint",
+          "value": "system-triggered-only",
+          "remarks": "Notifications may be initiated only through authorized emergency workflows or systems."
+        },
+
+        {
+          "name": "opt-out-policy",
+          "value": "not-permitted",
+          "remarks": "Opt-out from emergency notifications is not permitted."
+        },
+
+        {
+          "name": "escalation-and-priority",
+          "value": "highest",
+          "remarks": "Emergency notifications may override standard throttling and suppression controls."
+        },
+
+        {
+          "name": "data-classification-constraint",
+          "value": "level-2-max",
+          "remarks": "Emergency notifications must not include information classified above Level 2."
+        },
+
+        {
+          "name": "auditability",
+          "value": "mandatory",
+          "remarks": "All emergency notification actions must be fully logged and reviewable."
+        },
+
+        {
+          "name": "misuse-prohibition",
+          "value": "strict",
+          "remarks": "Use of the emergency notification system for non-emergency purposes is prohibited."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "The Emergency Notification System operates as a dedicated, high-priority alerting capability with multi-channel delivery and strong sender authority enforcement.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:emergency-notification-platform",
+          "type": "component",
+          "title": "Emergency Notification Platform",
+          "description": "Multi-channel emergency alerting platform integrating email, voice, and SMS delivery."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-emergency-authority",
+        "title": "Emergency Notification Authority",
+        "remarks": "Authorized to initiate institution-wide emergency notifications.",
+        "props": [
+          { "name": "nice-work-role", "ns": "urn:nist.gov:nice", "class": "work-role", "value": "OV-EXL" }
+        ]
+      },
+      {
+        "id": "role-emergency-operations",
+        "title": "Emergency Communications Operations",
+        "remarks": "Operates and validates emergency notification tooling and workflows.",
+        "props": [
+          { "name": "nice-work-role", "ns": "urn:nist.gov:nice", "class": "work-role", "value": "OM-SA" }
+        ]
+      },
+      {
+        "id": "role-emergency-security",
+        "title": "Emergency Security Monitoring",
+        "props": [
+          { "name": "nice-work-role", "ns": "urn:nist.gov:nice", "class": "work-role", "value": "PR-SOC" }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All security and privacy controls are inherited from Secure Email Platform SSPP and Emergency Notification System-specific governance and authority constraints."
+    }
+  }
+}

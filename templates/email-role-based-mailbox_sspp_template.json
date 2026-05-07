@@ -1,0 +1,225 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:role-based-mailbox",
+    "metadata": {
+      "title": "Role-Based Mailbox SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T13:30:00Z",
+      "remarks": "System Security and Privacy Plan defining trust boundaries, authority semantics, lifecycle governance, and accountability for role-based institutional email mailboxes."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security, privacy, identity, records, and regulatory baseline."
+    },
+
+    "system-characteristics": {
+      "system-name": "Role-Based Email Mailbox Service",
+      "system-description": "Institutional email service providing mailboxes bound to formal organizational roles or offices rather than individual people, supporting continuity of authority across personnel changes.",
+      "security-sensitivity-level": "moderate",
+
+      "system-information": {
+        "information-type": [
+          {
+            "uuid": "info-role-email-message",
+            "title": "Role-Based Email Content",
+            "description": "Email messages sent or received by a mailbox representing an institutional role or office.",
+            "confidentiality-impact": { "base": "moderate" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          },
+          {
+            "uuid": "info-role-assignment",
+            "title": "Role Assignment and Delegation State",
+            "description": "Records defining which individuals are authorized to act on behalf of a role-based mailbox and for what duration.",
+            "confidentiality-impact": { "base": "low" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          },
+          {
+            "uuid": "info-role-mailbox-audit",
+            "title": "Role Mailbox Audit Events",
+            "description": "Audit trails binding mailbox actions to individual actors and role authority context.",
+            "confidentiality-impact": { "base": "low" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          }
+        ]
+      },
+
+      "props": [
+        {
+          "name": "depends-on-sspp",
+          "value": "shared-mailbox",
+          "remarks": "Role-Based Mailbox Service inherits Shared Mailbox SSPP constraints and models with additional authority and lifecycle semantics."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-email-platform",
+          "remarks": "Role-Based Mailbox Service is implemented on the Secure Email Platform."
+        },
+
+        {
+          "name": "usage-intent",
+          "value": "institutional-role-communication",
+          "remarks": "Role-based mailboxes exist to represent formal institutional roles or offices, not individual persons or casual shared use."
+        },
+
+        {
+          "name": "identity-scope",
+          "value": "role-bound",
+          "remarks": "The mailbox identity is bound to an institutional role or office and persists across personnel changes."
+        },
+
+        {
+          "name": "role-definition-requirement",
+          "value": "formal-governed",
+          "remarks": "Each role-based mailbox MUST correspond to a formally defined institutional role with documented authority."
+        },
+
+        {
+          "name": "role-assignment-model",
+          "value": "explicit-and-time-bound",
+          "remarks": "Assignment of individuals to act on behalf of a role-based mailbox MUST be explicit, time-bound, and independently revocable."
+        },
+
+        {
+          "name": "volume-constraint",
+          "value": "non-bulk",
+          "remarks": "Role-based mailboxes MUST NOT be used for bulk, mass, or campaign-style messaging."
+        },
+
+        {
+          "name": "automation-constraint",
+          "value": "human-operated-only",
+          "remarks": "Role-based mailboxes MUST NOT be used as application inboxes or automated messaging endpoints."
+        },
+
+        {
+          "name": "external-forwarding",
+          "value": "prohibited",
+          "remarks": "External forwarding from role-based mailboxes is prohibited under all circumstances."
+        },
+
+        {
+          "name": "authority-scope",
+          "value": "role-representative-only",
+          "remarks": "Email sent from a role-based mailbox represents the authority of the role, not the personal authority of the acting individual."
+        },
+
+        {
+          "name": "auditability",
+          "value": "per-actor-attribution-required",
+          "remarks": "All actions taken via a role-based mailbox MUST be attributable to the individual actor and the role context."
+        },
+
+        {
+          "name": "data-classification-constraint",
+          "value": "level-3-max",
+          "remarks": "Role-based mailboxes MUST NOT be used to transmit or store information classified at Level 4 or higher."
+        },
+
+        {
+          "name": "information-use-constraint",
+          "value": "communication-not-repository",
+          "remarks": "Role-based mailboxes are not authorized as repositories for long-term record storage."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "value": "role-driven",
+          "remarks": "Mailbox existence, access, and retention are governed by the lifecycle of the institutional role, not the individuals assigned."
+        },
+
+        {
+          "name": "disclosure-authority",
+          "value": "legal-and-policy-bound",
+          "remarks": "Disclosure of role-based mailbox content occurs only under lawful or formally authorized institutional processes."
+        },
+
+        {
+          "name": "external-correspondence-constraint",
+          "value": "institutional-address-only",
+          "remarks": "Official correspondence conducted via role-based mailboxes MUST use institutional email addresses exclusively."
+        },
+        {
+          "name": "access-model",
+          "value": "delegation-only",
+          "remarks": "Shared and role-based mailboxes do not support direct login or authentication; all access occurs via delegated Send-As or Send-On-Behalf."
+        }
+
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Role-based mailbox trust is enforced through role-governed assignment, strict delegation boundaries, per-actor attribution, and centralized monitoring.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:role-based-mailbox",
+          "type": "component",
+          "title": "Role-Based Email Mailbox",
+          "description": "Mailbox representing an institutional role or office with controlled assignment and auditable authority."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-role-owner",
+        "title": "Role Owner",
+        "remarks": "Accountable authority for defining the role, approving mailbox use, and assigning personnel.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-EXL"
+          }
+        ]
+      },
+      {
+        "id": "role-role-operator",
+        "title": "Role-Based Mailbox Operator",
+        "remarks": "Authorized individual acting on behalf of the institutional role.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-NET"
+          }
+        ]
+      },
+      {
+        "id": "role-email-operations",
+        "title": "Email Platform Operations",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-email-security",
+        "title": "Email Security Monitoring",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All controls applicable to role-based mailboxes are inherited from the Shared Mailbox SSPP and Secure Email Platform SSPP, with added authority and lifecycle constraints."
+    }
+  }
+}

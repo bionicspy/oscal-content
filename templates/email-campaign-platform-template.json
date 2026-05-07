@@ -1,23 +1,22 @@
 {
   "system-security-plan": {
-    "uuid": "uuid-sspp-template-email-campaign",
-
+    "uuid": "urn:utoronto:sspp:platform:email-campaign",
     "metadata": {
-      "title": "SSPP Template - Email Campaign Platform",
-      "version": "1.0.0",
+      "title": "Secure Email Campaign Platform SSPP",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-03T02:30:00Z",
-      "remarks": "Architecture-driven SSPP template defining trust boundaries, consent and opt-out guarantees, data minimization, regulatory obligations, and auditable enforcement for an institutional Email Campaign Platform."
+      "last-modified": "2026-05-04T11:15:00Z",
+      "remarks": "System Security and Privacy Plan defining trust boundaries, consent guarantees, enforcement invariants, and accountability for the institutional Email Campaign Platform."
     },
 
     "import-profile": {
-      "href": "urn:utoronto:profile:institutional-baseline",
-      "remarks": "Institutional baseline covering security, privacy, data governance, and regulatory overlays."
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Imports the institutional security, privacy, records, and regulatory control baseline."
     },
 
     "system-characteristics": {
       "system-name": "Email Campaign Platform",
-      "system-description": "Institutional outbound email campaign service used for authorized, high-volume communications to students, staff, faculty, and public stakeholders.",
+      "system-description": "Institutional platform for authorized, high-volume outbound email campaigns to students, staff, faculty, and public stakeholders, with mandatory consent enforcement, opt-out guarantees, and auditability.",
       "security-sensitivity-level": "moderate",
 
       "system-information": {
@@ -25,7 +24,7 @@
           {
             "uuid": "info-email-address",
             "title": "Email Address",
-            "description": "Individual electronic mail address used for message delivery.",
+            "description": "Individual electronic mail address used for campaign delivery.",
             "confidentiality-impact": { "base": "moderate" },
             "integrity-impact": { "base": "moderate" },
             "availability-impact": { "base": "low" }
@@ -59,69 +58,41 @@
 
       "props": [
         {
+          "name": "depends-on-sspp",
+          "value": "secure-email-platform",
+          "remarks": "Email Campaign Platform is a consumption SSPP layered on the Secure Email Platform SSPP."
+        },
+        {
           "name": "primary-pattern",
           "value": "email-bulk-messaging-gateway",
-          "remarks": "This system implements the Email Bulk Messaging Gateway solution pattern."
+          "remarks": "This platform implements the Email Bulk Messaging Gateway pattern."
         },
-
-        { "name": "trust-assertion", "value": "secure-identity" },
-        { "name": "trust-assertion", "value": "secure-time" },
-        { "name": "trust-assertion", "value": "secure-dns" },
-        { "name": "trust-assertion", "value": "trusted-cloud" },
-        { "name": "trust-assertion", "value": "secure-endpoint" },
-        { "name": "trust-assertion", "value": "secure-sdlc" },
-        { "name": "trust-assertion", "value": "regulated-digital-service" },
-        { "name": "trust-assertion", "value": "trusted-data" },
 
         {
           "name": "usage-constraint",
           "value": "campaign-only",
-          "remarks": "The system is approved only for planned, authorized outbound email campaigns and MUST NOT be used for ad-hoc, emergency, transactional, or personal messaging."
+          "remarks": "The platform MUST NOT be used for ad-hoc, emergency, transactional, notification, or personal messaging."
         },
-
         {
           "name": "recipient-scope",
           "value": "students,staff,faculty,public-stakeholders",
-          "remarks": "Campaigns may target students, staff, faculty, and public stakeholders only."
+          "remarks": "Campaigns may target students, staff, faculty, and approved public stakeholders only."
         },
         {
           "name": "recipient-constraint",
           "value": "individual-address-only",
-          "remarks": "Recipients MUST be individual email addresses. Distribution lists, shared, role-based, or application mailboxes are prohibited."
+          "remarks": "Recipients MUST be individual email addresses. Distribution lists, shared mailboxes, role accounts, and application mailboxes are prohibited."
         },
-
         {
           "name": "content-classification-constraint",
           "value": "level-1-only",
-          "remarks": "Email content MUST contain Level-1 (public) information only."
-        },
-
-        {
-          "name": "data-minimization",
-          "value": "ingestion-enforced",
-          "remarks": "Only minimal recipient data (email address and consent/opt-out status) is retained; extended attributes are explicitly excluded."
+          "remarks": "Campaign content MUST be restricted to publicly distributable (Level 1) information."
         },
 
         {
           "name": "consent-authority",
           "value": "external-authoritative",
-          "remarks": "Consent eligibility originates from authoritative external systems and is ingested as certified state under data exchange agreements."
-        },
-
-        {
-          "name": "opt-out-availability",
-          "value": "single-multi-global",
-          "remarks": "Opt-out MUST support single-scope (unsubscribe link), multi-scope, and global opt-out."
-        },
-        {
-          "name": "opt-out-single-scope",
-          "value": "message-embedded",
-          "remarks": "Every email MUST include an unsubscribe mechanism enabling unauthenticated single-scope opt-out."
-        },
-        {
-          "name": "opt-out-preference-management",
-          "value": "centralized-view",
-          "remarks": "Users MUST have an authoritative view of all consented communications and be able to manage preferences holistically."
+          "remarks": "Consent eligibility originates from authoritative external systems under formal data sharing agreements."
         },
         {
           "name": "opt-out-enforcement",
@@ -133,46 +104,70 @@
           "value": "true",
           "remarks": "Opt-out decisions MUST NOT be overridden by campaign logic, targeting rules, or sender preference."
         },
-        {
-          "name": "opt-out-auditability",
-          "value": "required",
-          "remarks": "All opt-out actions and enforcement decisions MUST be auditable."
-        },
 
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-177r1",
+          "class": "guidance-reference",
+          "value": "4, 5",
+          "remarks": "Referenced for trustworthy email guidance related to policy enforcement, consent handling, monitoring, and accountability."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-45r2",
+          "class": "guidance-reference",
+          "value": "3, 4",
+          "remarks": "Referenced for secure handling of high-volume outbound email and abuse prevention."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "guidance-reference",
+          "value": "3.2, 3.3",
+          "remarks": "Referenced to emphasize abuse-at-scale, reputational impact, and recovery as cyber resiliency concerns."
+        },
         {
           "name": "branding-constraint",
           "value": "approved-sender-only",
           "remarks": "Sender identities and templates require institutional branding approval prior to use."
         },
-
         {
           "name": "tenant-isolation",
           "value": "logical-account-boundary",
           "remarks": "Campaign data, recipient information, audit logs, and sender identities are logically isolated per account."
         },
-
         {
           "name": "audit-evidence-availability",
           "value": "institutional-retention",
           "remarks": "Campaign, opt-out, and delivery records are retained per authoritative records and retention requirements."
-        }
+        },
+
+        { "name": "trust-assertion", "value": "secure-identity" },
+        { "name": "trust-assertion", "value": "secure-time" },
+        { "name": "trust-assertion", "value": "secure-dns" },
+        { "name": "trust-assertion", "value": "trusted-cloud" },
+        { "name": "trust-assertion", "value": "secure-endpoint" },
+        { "name": "trust-assertion", "value": "secure-sdlc" },
+        { "name": "trust-assertion", "value": "regulated-digital-service" },
+        { "name": "trust-assertion", "value": "trusted-data" }
+
       ]
     },
 
     "system-implementation": {
-      "remarks": "Data flows are expressed through authority declarations, information types, enforcement assertions, and directional links rather than procedural sequencing.",
+      "remarks": "The Email Campaign Platform enforces trust through invariant guarantees (authorization, consent, suppression, auditability) rather than procedural controls.",
 
       "components": [
         {
-          "uuid": "component-email-campaign-platform",
-          "type": "logical",
+          "uuid": "urn:utoronto:sspp:component:email-campaign-platform",
+          "type": "component",
           "title": "Email Campaign Platform",
           "description": "Consumes certified consent state, enforces opt-out decisions, filters recipients at send time, and produces auditable campaign and delivery records.",
           "links": [
             {
               "rel": "consumes-certified-data-from",
               "href": "urn:external:system:authoritative-consent-source",
-              "text": "Consumes certified consent and eligibility data via data exchange agreement."
+              "text": "Consumes certified consent and communication eligibility data."
             },
             {
               "rel": "publishes-authoritative-state-to",
@@ -182,102 +177,70 @@
             {
               "rel": "forwards-audit-events-to",
               "href": "urn:institutional:siem",
-              "text": "Forwards campaign execution and suppression events for centralized audit correlation."
+              "text": "Forwards enforcement and campaign execution events for centralized audit correlation."
             }
           ]
         }
       ]
     },
 
-    "control-implementation": {
-      "remarks": "Control satisfaction is demonstrated through declared authority boundaries, invariant enforcement guarantees, and retained audit evidence rather than procedural descriptions."
-    },
-
     "roles": [
       {
         "id": "role-account-owner",
-        "title": "Account Owner",
-        "description": "Accountable for lifecycle, governance, access attestations, sender requests, decommissioning, and cost responsibility.",
+        "title": "Campaign Platform Owner",
+        "remarks": "Accountable for governance, lifecycle, access attestation, cost responsibility, and compliance.",
         "props": [
           {
             "name": "nice-work-role",
             "ns": "urn:nist.gov:nice",
             "class": "work-role",
-            "value": "OV-EXL",
-            "remarks": "Executive Cyber Leadership per NIST NICE Framework (SP 800-181)."
+            "value": "OV-EXL"
           }
         ]
       },
       {
-        "id": "role-author",
+        "id": "role-campaign-author",
         "title": "Campaign Author",
-        "description": "Creates draft campaign content and defines target audiences.",
+        "remarks": "Authors campaign content and proposes recipient targeting.",
         "props": [
           {
             "name": "nice-work-role",
             "ns": "urn:nist.gov:nice",
             "class": "work-role",
-            "value": "SP-CMD",
-            "remarks": "Content Developer per NIST NICE Framework; authors non-security campaign content."
+            "value": "SP-CMD"
           }
         ]
       },
       {
-        "id": "role-approver",
-        "title": "Campaign Manager",
-        "description": "Approves campaign intent and content for institutional compliance.",
+        "id": "role-campaign-approver",
+        "title": "Campaign Approver",
+        "remarks": "Approves campaign intent and compliance with institutional and regulatory requirements.",
         "props": [
           {
             "name": "nice-work-role",
             "ns": "urn:nist.gov:nice",
             "class": "work-role",
-            "value": "SP-RSK",
-            "remarks": "Risk Management Specialist per NIST NICE Framework."
+            "value": "SP-RSK"
           }
         ]
       },
       {
-        "id": "role-sender-approver",
-        "title": "Branding / Communications Approver",
-        "description": "Approves sender identities and branding assets.",
+        "id": "role-platform-operations",
+        "title": "Email Platform Operations",
+        "remarks": "Operates platform infrastructure, enforcement, and integration points.",
         "props": [
           {
             "name": "nice-work-role",
             "ns": "urn:nist.gov:nice",
             "class": "work-role",
-            "value": "OV-EXL",
-            "remarks": "Executive Cyber Leadership per NIST NICE Framework."
-          }
-        ]
-      },
-      {
-        "id": "role-sender",
-        "title": "Campaign Sender",
-        "description": "Releases approved campaigns.",
-        "props": [
-          {
-            "name": "nice-work-role",
-            "ns": "urn:nist.gov:nice",
-            "class": "work-role",
-            "value": "OM-SA",
-            "remarks": "Systems Administrator per NIST NICE Framework; executes approved release operations."
-          }
-        ]
-      },
-      {
-        "id": "role-admin",
-        "title": "Platform Administrator (ITS)",
-        "description": "Performs centralized platform configuration and enforcement; not delegated to tenants.",
-        "props": [
-          {
-            "name": "nice-work-role",
-            "ns": "urn:nist.gov:nice",
-            "class": "work-role",
-            "value": "OM-SA",
-            "remarks": "Systems Administrator per NIST NICE Framework."
+            "value": "OM-SA"
           }
         ]
       }
-    ]
+    ],
+
+    "control-implementation": {
+      "remarks": "All security and privacy controls are inherited from the Secure Email Platform SSPP and its underlying patterns; no controls are implemented directly by this SSPP."
+    }
   }
 }

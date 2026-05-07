@@ -1,0 +1,374 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:individual-email",
+    "metadata": {
+      "title": "Individual Email SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T11:45:00Z",
+      "remarks": "System Security and Privacy Plan defining trust boundaries, data handling, and accountability for individual human email mailboxes."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional baseline covering security, privacy, identity, records, and acceptable use requirements."
+    },
+
+    "system-characteristics": {
+      "system-name": "Individual Email Service",
+      "system-description": "Institutional email service providing individual human mailboxes for staff, faculty, and students for day-to-day communication, collaboration, and official correspondence.",
+      "security-sensitivity-level": "moderate",
+
+      "system-information": {
+        "information-type": [
+          {
+            "uuid": "info-email-message",
+            "title": "Email Message Content",
+            "description": "Content of email messages sent or received by an individual mailbox, including headers, body text, and inline elements.",
+            "confidentiality-impact": { "base": "moderate" },
+            "integrity-impact": { "base": "moderate" },
+            "availability-impact": { "base": "moderate" }
+          },
+          {
+            "uuid": "info-email-metadata",
+            "title": "Email Metadata",
+            "description": "Envelope, header, routing, timestamp, and authentication metadata associated with email messages.",
+            "confidentiality-impact": { "base": "low" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          },
+          {
+            "uuid": "info-mailbox-state",
+            "title": "Mailbox State",
+            "description": "Mailbox folders, message status (read/unread), retention state, and user-controlled organization.",
+            "confidentiality-impact": { "base": "moderate" },
+            "integrity-impact": { "base": "moderate" },
+            "availability-impact": { "base": "moderate" }
+          },
+          {
+            "uuid": "info-authentication-events",
+            "title": "Authentication and Access Events",
+            "description": "Records of authentication, access, delegation, and security-relevant mailbox activity.",
+            "confidentiality-impact": { "base": "low" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          }
+        ]
+      },
+
+      "props": [
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-email-platform",
+          "remarks": "Individual Email Service inherits all platform trust, security, and resiliency guarantees from the Secure Email Platform SSPP."
+        },
+        {
+          "name": "usage-class",
+          "value": "human-mailbox",
+          "remarks": "This SSPP applies only to human-operated individual email mailboxes."
+        },
+        {
+          "name": "prohibited-usage",
+          "value": "bulk-email,system-notification,application-inbox,campaigns",
+          "remarks": "Individual mailboxes MUST NOT be used for bulk messaging, automated notifications, application inboxing, or campaign delivery."
+        },
+        {
+          "name": "usage-intent",
+          "value": "individual-human-communication",
+          "remarks": "This service is intended for human-initiated, conversational email communication conducted by an individual mailbox owner."
+        },
+        {
+          "name": "volume-constraint",
+          "value": "non-bulk",
+          "remarks": "Individual mailboxes are not authorized for bulk, mass, or campaign-style messaging. High-volume outbound email must use the Email Campaign Platform."
+        },
+        {
+          "name": "automation-constraint",
+          "value": "human-initiated-only",
+          "remarks": "Individual mailboxes MUST NOT be used as application senders or automated notification sources."
+        },
+        {
+          "name": "implicit-authority-constraint",
+          "value": "non-authoritative",
+          "remarks": "Email messages from individual mailboxes MUST NOT be treated as implicit approvals, authorizations, or system-of-record transactions."
+        },
+        {
+          "name": "escalation-requirement",
+          "value": "required-for-scale",
+          "remarks": "When communication scope, frequency, or impact exceeds individual messaging norms, users MUST transition to an approved platform (campaign, collaboration relay, or notification gateway)."
+        },
+        {
+          "name": "monitoring-requirement",
+          "value": "mandatory",
+          "remarks": "All individual email activity is subject to institutional security monitoring, inspection, and investigation regardless of forwarding configuration."
+        },
+        {
+          "name": "forwarding-monitoring-constraint",
+          "value": "monitoring-retained",
+          "remarks": "Forwarding to external email destinations does not remove institutional monitoring, detection, quarantine, or investigative authority."
+        },
+        {
+          "name": "external-forwarding",
+          "value": "allowed-students-only",
+          "remarks": "External forwarding is permitted only for users with an active student role, subject to monitoring and security enforcement."
+        },
+        {
+          "name": "external-forwarding",
+          "value": "prohibited-non-student",
+          "remarks": "External forwarding is prohibited for staff, faculty, librarians, and affiliates due to institutional accountability and identity assurance requirements."
+        },
+        {
+          "name": "external-correspondence-constraint",
+          "value": "institutional-address-only",
+          "remarks": "Once an institutional email address is established for an individual, official institutional correspondence including helpdesk support, administrative communication, and security-related interaction MUST occur only via the institutional email address. External email addresses cannot be validated for identity or authority and MUST NOT be used for official correspondence."
+        },
+        {
+          "name": "support-interaction-constraint",
+          "value": "identity-verified-only",
+          "remarks": "Helpdesk and support functions MUST NOT validate, act on, or continue official cases initiated or conducted exclusively via external email addresses once an institutional email address exists."
+        },
+        {
+          "name": "access-termination",
+          "value": "employment-ending",
+          "remarks": "Access to individual email terminates immediately upon employment or affiliation end unless a concurrent student role exists."
+        },
+        {
+          "name": "post-termination-retention",
+          "value": "policy-governed",
+          "remarks": "Mailbox contents are retained and disposed of in accordance with institutional retention policy following role termination."
+        },
+        {
+          "name": "student-access-termination",
+          "value": "academic-status-based",
+          "remarks": "Student access to individual email terminates immediately upon academic termination and within 90 days of graduation unless a new non-student relationship is established."
+        },
+        {
+          "name": "student-role-transition",
+          "value": "role-continuity-required",
+          "remarks": "Continued email access beyond student eligibility requires an active, formally established non-student role."
+        },
+        {
+          "name": "email-protection-mode",
+          "value": "pre-and-post-delivery",
+          "remarks": "Email protections MAY filter, block, quarantine, recall, or remove malicious or deceptive content both before and after delivery."
+        },
+        {
+          "name": "user-override-constraint",
+          "value": "security-controls-authoritative",
+          "remarks": "End users cannot override institutional email security actions including quarantine, recall, or removal of messages."
+        },
+        {
+          "name": "authority-scope",
+          "value": "individual-only",
+          "remarks": "Email sent from an individual mailbox represents only the individual sender and MUST NOT be treated as institutional authorization unless validated through an approved workflow."
+        },
+        {
+          "name": "mailbox-reuse",
+          "value": "prohibited",
+          "remarks": "Individual mailboxes MUST NOT be repurposed, reassigned, or recycled for new users."
+        },
+        {
+          "name": "credential-sharing",
+          "value": "prohibited",
+          "remarks": "Credentials for individual email accounts MUST NOT be shared or embedded in scripts or tools."
+        },
+        {
+          "name": "delegation-constraint",
+          "value": "explicit-auditable-time-bound",
+          "remarks": "All access delegation must be explicit, auditable, and time bounded; blanket or undocumented delegation is prohibited."
+        },
+        {
+          "value": "communication-not-repository",
+          "name": "information-use-constraint",
+          "remarks": "Individual email mailboxes are intended for communication and coordination, not as primary repositories for documents, records, or long-term data storage."
+        },
+        {
+          "name": "attachment-handling-intent",
+          "value": "transient",
+          "remarks": "Email attachments are treated as transient delivery mechanisms and must be stored in approved repositories if they require ongoing retention or sharing."
+        },
+        {
+          "name": "retention-authority",
+          "value": "institutional-policy",
+          "remarks": "Retention and disposition of individual email content are governed by institutional retention policy and legal obligations, not user preference."
+        },
+        {
+          "name": "deletion-semantics",
+          "value": "logical-not-authoritative",
+          "remarks": "User deletion of email messages does not constitute authoritative destruction and may not remove messages from institutional archives or legal holds."
+        },
+        {
+          "name": "long-term-storage-constraint",
+          "value": "prohibited",
+          "remarks": "Users must not use individual email mailboxes as long-term storage for operational, academic, or administrative records."
+        },
+        {
+          "name": "repository-escalation",
+          "value": "required-for-retention",
+          "remarks": "Content requiring ongoing access, collaboration, or archival must be moved to an approved document or records repository."
+        },
+        {
+          "name": "system-of-record-constraint",
+          "value": "email-not-authoritative",
+          "remarks": "Individual email mailboxes must not be treated as authoritative systems of record."
+        },
+        {
+          "name": "disclosure-default",
+          "value": "non-disclosed",
+          "remarks": "Individual email content is not disclosed to third parties by default and is protected from routine access or review."
+        },
+        {
+          "name": "disclosure-authority",
+          "value": "legal-and-policy-bound",
+          "remarks": "Disclosure of individual email content occurs only under documented legal, regulatory, or institutional authority."
+        },
+        {
+          "name": "disclosure-bases",
+          "value": "legal-process,foi,records-obligation,security-investigation",
+          "remarks": "Permissible disclosure bases include lawful process, freedom-of-information requests, records obligations, or authorized security investigations."
+        },
+        {
+          "name": "disclosure-policy-reference",
+          "value": "institutional-data-disclosure-policy",
+          "remarks": "Email disclosure conditions, limitations, and procedures are governed by the authoritative institutional data and information disclosure policy."
+        },
+        {
+          "name": "user-privacy-expectation",
+          "value": "limited",
+          "remarks": "Users should not expect absolute confidentiality of individual email where lawful or policy-mandated disclosure applies."
+        },
+        {
+          "name": "disclosure-auditability",
+          "value": "required",
+          "remarks": "All access and disclosures of individual email content must be logged, reviewable, and attributable."
+        },
+
+        {
+          "name": "data-classification-constraint",
+          "value": "level-3-max",
+          "remarks": "Individual email mailboxes MUST NOT be used to transmit, store, or process information classified at Level 4 or higher."
+        },
+
+        {
+          "name": "classification-exception",
+          "value": "not-permitted",
+          "remarks": "Individual email MUST NOT be used to temporarily transmit or stage higher-classification data pending transfer to an approved system."
+        },
+
+        {
+          "name": "classification-escalation",
+          "value": "approved-platform-required",
+          "remarks": "Information classified at Level 4 or higher MUST be handled using approved secure storage, file transfer, or managed collaboration platforms."
+        },
+
+        {
+          "name": "discovery-constraint",
+          "value": "does-not-authorize-use",
+          "remarks": "Discovery of higher-classification information in email does not authorize its continued presence or use within individual mailboxes."
+        },
+
+        { "name": "trust-assertion", "value": "secure-identity" },
+        { "name": "trust-assertion", "value": "secure-time" },
+        { "name": "trust-assertion", "value": "secure-dns" },
+        { "name": "trust-assertion", "value": "trusted-cloud" },
+        { "name": "trust-assertion", "value": "secure-endpoint" },
+        { "name": "trust-assertion", "value": "secure-sdlc" },
+        { "name": "trust-assertion", "value": "trusted-data" }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Individual Email Service trust is realized through explicit authority boundaries, authenticated identity, centralized platform enforcement, and retained audit evidence.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:individual-mailbox",
+          "type": "component",
+          "title": "Individual Email Mailbox",
+          "description": "Per-user mailbox enabling authenticated sending, receiving, storage, and retrieval of email messages.",
+          "links": [
+            {
+              "rel": "receives-message-from",
+              "href": "urn:external:internet:email",
+              "text": "Receives inbound email from external and internal senders via the Secure Email Platform."
+            },
+            {
+              "rel": "sends-message-to",
+              "href": "urn:external:internet:email",
+              "text": "Sends outbound email through the Secure Email Platform with authenticated identity."
+            },
+            {
+              "rel": "persists-data-in",
+              "href": "urn:utoronto:system:email-archive",
+              "text": "Persists messages and metadata subject to records and retention policy."
+            },
+            {
+              "rel": "forwards-audit-events-to",
+              "href": "urn:institutional:siem",
+              "text": "Generates authentication, access, and mailbox events for centralized audit and investigation."
+            }
+          ]
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-mailbox-owner",
+        "title": "Mailbox Owner",
+        "remarks": "The individual user accountable for appropriate use of their mailbox under institutional policy.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-NET"
+          }
+        ]
+      },
+      {
+        "id": "role-email-platform-operations",
+        "title": "Email Platform Operations",
+        "remarks": "Operates email infrastructure, identity enforcement, monitoring, and recovery.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-email-security-monitoring",
+        "title": "Email Security Monitoring",
+        "remarks": "Monitors mailbox activity, phishing indicators, and security events.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC"
+          }
+        ]
+      },
+      {
+        "id": "role-records-management",
+        "title": "Records and Compliance Authority",
+        "remarks": "Defines retention obligations, legal holds, and evidentiary requirements for email communications.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "IN-LGL"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All security and privacy controls applicable to individual email mailboxes are satisfied through inherited Secure Email Platform implementations and associated patterns. This SSPP introduces no independent controls."
+    }
+  }
+}

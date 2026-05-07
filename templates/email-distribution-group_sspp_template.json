@@ -1,0 +1,211 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:distribution-group",
+    "metadata": {
+      "title": "Distribution Group SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T16:00:00Z",
+      "remarks": "System Security and Privacy Plan governing institutional distribution groups used for controlled one-to-many human email communication."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security, privacy, records, and acceptable use baseline."
+    },
+
+    "system-characteristics": {
+      "system-name": "Email Distribution Group Service",
+      "system-description": "Institutional email distribution groups supporting controlled one-to-many message delivery to defined internal audiences, with strict posting and membership governance.",
+      "security-sensitivity-level": "moderate",
+
+      "system-information": {
+        "information-type": [
+          {
+            "uuid": "info-dg-message",
+            "title": "Distribution Group Email Content",
+            "description": "Email messages distributed to group members.",
+            "confidentiality-impact": { "base": "moderate" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          },
+          {
+            "uuid": "info-dg-membership",
+            "title": "Distribution Group Membership Data",
+            "description": "Membership rosters defining recipients of distributed messages.",
+            "confidentiality-impact": { "base": "low" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          },
+          {
+            "uuid": "info-dg-posting",
+            "title": "Posting Authorization and Audit Data",
+            "description": "Records of who is authorized to post and all posting events.",
+            "confidentiality-impact": { "base": "low" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          }
+        ]
+      },
+
+      "props": [
+        {
+          "name": "depends-on-sspp",
+          "value": "individual-email",
+          "remarks": "Distribution groups inherit Individual Email SSPP constraints for sender identity, monitoring, disclosure, and data classification."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-email-platform",
+          "remarks": "Distribution groups are implemented on the Secure Email Platform."
+        },
+
+        {
+          "name": "usage-intent",
+          "value": "controlled-internal-broadcast",
+          "remarks": "Distribution groups provide controlled internal broadcast messaging by humans to defined audiences."
+        },
+
+        {
+          "name": "communication-model",
+          "value": "one-to-many",
+          "remarks": "Messages originate from an individual sender and are delivered to multiple recipients."
+        },
+
+        {
+          "name": "posting-model",
+          "value": "restricted-authorized-only",
+          "remarks": "Posting is restricted to explicitly authorized senders; open posting is prohibited."
+        },
+
+        {
+          "name": "membership-governance",
+          "value": "owner-managed",
+          "remarks": "Distribution group membership must be explicitly managed and reviewed by an assigned group owner."
+        },
+
+        {
+          "name": "volume-constraint",
+          "value": "non-bulk",
+          "remarks": "Distribution groups MUST NOT be used for bulk, mass, or campaign-style messaging."
+        },
+
+        {
+          "name": "escalation-requirement",
+          "value": "campaign-required-for-scale",
+          "remarks": "When message scope or frequency exceeds distribution group norms, escalation to the Email Campaign Platform is required."
+        },
+
+        {
+          "name": "automation-constraint",
+          "value": "human-initiated-only",
+          "remarks": "Distribution groups MUST NOT be used by applications or automated systems."
+        },
+
+        {
+          "name": "external-recipient-policy",
+          "value": "internal-only",
+          "remarks": "Distribution groups MUST contain only institutional recipients; external recipients are prohibited."
+        },
+
+        {
+          "name": "external-forwarding",
+          "value": "not-applicable",
+          "remarks": "Forwarding rules are enforced at individual mailbox level; distribution groups do not control forwarding behavior."
+        },
+
+        {
+          "name": "data-classification-constraint",
+          "value": "level-3-max",
+          "remarks": "Distribution groups MUST NOT be used for information classified at Level 4 or higher."
+        },
+
+        {
+          "name": "authority-scope",
+          "value": "message-only",
+          "remarks": "Distribution group messages do not convey institutional approval or decision authority unless validated via a separate workflow."
+        },
+
+        {
+          "name": "auditability",
+          "value": "sender-attribution-required",
+          "remarks": "All messages distributed via distribution groups MUST be attributable to the originating individual sender."
+        },
+
+        {
+          "name": "disclosure-authority",
+          "value": "legal-and-policy-bound",
+          "remarks": "Disclosure of distribution group content occurs only under lawful or formally authorized institutional processes."
+        },
+        {
+          "name": "recipient-scope",
+          "value": "internal-only",
+          "remarks": "Distribution groups are restricted to institutional recipients only, including students, staff, faculty, librarians, and affiliates. External recipients are explicitly prohibited."
+        },
+
+        {
+          "name": "membership-constraint",
+          "value": "institutional-identities-only",
+          "remarks": "Distribution group membership MUST consist solely of institutional identities associated with students, staff, faculty, librarians, or affiliates. External addresses, contacts, or mail-enabled guests are not permitted."
+        },
+
+        {
+          "name": "nesting-constraint",
+          "value": "internal-groups-only",
+          "remarks": "Distribution groups may only contain other distribution groups that themselves meet the internal-only membership requirement."
+        }
+
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Distribution group trust is enforced through posting restrictions, membership governance, sender attribution, and centralized monitoring.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:distribution-group",
+          "type": "component",
+          "title": "Email Distribution Group",
+          "description": "Institutional one-to-many email distribution group with restricted posting and managed membership."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-dg-owner",
+        "title": "Distribution Group Owner",
+        "remarks": "Accountable for group purpose, membership, posting authorization, and lifecycle.",
+        "props": [
+          { "name": "nice-work-role", "ns": "urn:nist.gov:nice", "class": "work-role", "value": "OV-EXL" }
+        ]
+      },
+      {
+        "id": "role-dg-authorized-sender",
+        "title": "Authorized Distribution Group Sender",
+        "remarks": "Individual authorized to post to the distribution group.",
+        "props": [
+          { "name": "nice-work-role", "ns": "urn:nist.gov:nice", "class": "work-role", "value": "OM-NET" }
+        ]
+      },
+      {
+        "id": "role-email-operations",
+        "title": "Email Platform Operations",
+        "props": [
+          { "name": "nice-work-role", "ns": "urn:nist.gov:nice", "class": "work-role", "value": "OM-SA" }
+        ]
+      },
+      {
+        "id": "role-email-security",
+        "title": "Email Security Monitoring",
+        "props": [
+          { "name": "nice-work-role", "ns": "urn:nist.gov:nice", "class": "work-role", "value": "PR-SOC" }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All security and privacy controls are inherited from Individual Email SSPP and Secure Email Platform SSPP, with additional posting and membership constraints."
+    }
+  }
+}

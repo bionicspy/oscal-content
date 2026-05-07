@@ -1,0 +1,218 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:delegated-send",
+    "metadata": {
+      "title": "Delegated Send‑As / Send‑On‑Behalf SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T14:00:00Z",
+      "remarks": "System Security and Privacy Plan defining trust boundaries, authority semantics, and accountability controls for delegated email sending (Send‑As and Send‑On‑Behalf)."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security, privacy, identity, records, and regulatory baseline."
+    },
+
+    "system-characteristics": {
+      "system-name": "Delegated Email Sending Service",
+      "system-description": "Institutional email capability allowing permitted individuals to send email on behalf of another mailbox or role under explicit, auditable, and time‑bound delegation.",
+      "security-sensitivity-level": "high",
+
+      "system-information": {
+        "information-type": [
+          {
+            "uuid": "info-delegated-email-message",
+            "title": "Delegated Email Message Content",
+            "description": "Messages sent using Send‑As or Send‑On‑Behalf delegation, including identity and authority context.",
+            "confidentiality-impact": { "base": "moderate" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          },
+          {
+            "uuid": "info-delegation-state",
+            "title": "Delegation State and Authority Records",
+            "description": "Records defining who is authorized to send on behalf of which mailbox or role and under what conditions.",
+            "confidentiality-impact": { "base": "low" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          },
+          {
+            "uuid": "info-delegated-audit",
+            "title": "Delegated Send Audit Events",
+            "description": "Audit records binding each delegated message to both the acting individual and the represented mailbox or role.",
+            "confidentiality-impact": { "base": "low" },
+            "integrity-impact": { "base": "high" },
+            "availability-impact": { "base": "moderate" }
+          }
+        ]
+      },
+
+      "props": [
+        {
+          "name": "depends-on-sspp",
+          "value": "role-based-mailbox",
+          "remarks": "Delegated sending inherits authority and lifecycle semantics from Role‑Based Mailbox SSPP."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "shared-mailbox",
+          "remarks": "Delegated sending extends Shared Mailbox attribution and audit constraints."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-email-platform",
+          "remarks": "Delegated sending is implemented on the Secure Email Platform."
+        },
+
+        {
+          "name": "usage-intent",
+          "value": "explicit-human-delegation",
+          "remarks": "Delegated Send‑As and Send‑On‑Behalf are intended for explicit human delegation scenarios only."
+        },
+
+        {
+          "name": "delegation-model",
+          "value": "explicit-approved",
+          "remarks": "Delegation MUST be explicitly requested, approved, and documented prior to use."
+        },
+
+        {
+          "name": "delegation-scope",
+          "value": "least-privilege",
+          "remarks": "Delegated sending authority MUST be limited to the minimum scope required."
+        },
+
+        {
+          "name": "delegation-duration",
+          "value": "time-bound",
+          "remarks": "Delegated sending authority MUST be time‑bounded and automatically expire unless renewed."
+        },
+
+        {
+          "name": "delegation-review",
+          "value": "periodic-required",
+          "remarks": "All delegated sending permissions MUST be periodically reviewed and re‑attested."
+        },
+
+        {
+          "name": "send-as-constraint",
+          "value": "exception-only",
+          "remarks": "Send‑As delegation is permitted only where Send‑On‑Behalf is insufficient and requires elevated approval."
+        },
+
+        {
+          "name": "send-on-behalf-preference",
+          "value": "default",
+          "remarks": "Send‑On‑Behalf is the preferred delegation mode to preserve identity transparency."
+        },
+
+        {
+          "name": "identity-transparency",
+          "value": "mandatory",
+          "remarks": "Recipients MUST be able to determine both the acting sender and the represented mailbox or role."
+        },
+
+        {
+          "name": "external-forwarding",
+          "value": "prohibited",
+          "remarks": "Delegated sending MUST NOT be combined with external forwarding under any circumstance."
+        },
+
+        {
+          "name": "automation-constraint",
+          "value": "human-operated-only",
+          "remarks": "Delegated Send‑As and Send‑On‑Behalf MUST NOT be used by applications, scripts, or automated processes."
+        },
+
+        {
+          "name": "auditability",
+          "value": "dual-attribution-required",
+          "remarks": "All delegated messages MUST be auditable with attribution to both the acting individual and the delegated identity."
+        },
+
+        {
+          "name": "data-classification-constraint",
+          "value": "level-3-max",
+          "remarks": "Delegated sending MUST NOT be used for information classified at Level 4 or higher."
+        },
+
+        {
+          "name": "disclosure-authority",
+          "value": "legal-and-policy-bound",
+          "remarks": "Disclosure of delegated email content occurs only under lawful or formally authorized institutional processes."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Delegated sending trust is enforced through explicit approval workflows, strong identity binding, dual attribution logging, and centralized monitoring.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:delegated-sending",
+          "type": "component",
+          "title": "Delegated Email Sending Capability",
+          "description": "Capability enabling controlled Send‑As and Send‑On‑Behalf email under strict governance."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-delegation-authority",
+        "title": "Delegation Approving Authority",
+        "remarks": "Authorizes and revokes delegated sending authority.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-EXL"
+          }
+        ]
+      },
+      {
+        "id": "role-delegated-sender",
+        "title": "Delegated Sender",
+        "remarks": "Individual authorized to send email on behalf of another mailbox or role.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-NET"
+          }
+        ]
+      },
+      {
+        "id": "role-email-operations",
+        "title": "Email Platform Operations",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-email-security",
+        "title": "Email Security Monitoring",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All controls applicable to delegated sending are inherited from Role‑Based Mailbox SSPP, Shared Mailbox SSPP, and Secure Email Platform SSPP with added approval, attribution, and lifecycle constraints."
+    }
+  }
+}

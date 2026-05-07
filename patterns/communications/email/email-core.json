@@ -1,125 +1,109 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:email-core",
+    "version": "2026.05",
+    "oscal-version": "1.1.3",
+    "last-modified": "2026-05-04T06:30:00Z",
 
     "metadata": {
       "title": "Email Core",
-      "version": "0.1.0",
-      "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T05:00:00Z",
-
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:security:pattern",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC340",
-          "remarks": "Business capability for operating email as a trusted, identity-bearing, and accountable communication channel."
+          "remarks": "Business capability for operating email as a trusted, identity-bearing, and accountable institutional communication channel."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD150",
-          "remarks": "Email infrastructure, mail transfer systems, mailboxes, routing services, and client access mechanisms."
+          "remarks": "Email infrastructure including mail transfer systems, routing services, mailboxes, gateways, and client access mechanisms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
           "value": "urn:utoronto:cae2:arm:AP270",
-          "remarks": "Pattern for establishing baseline trust assumptions for institutional email systems."
+          "remarks": "Pattern for establishing baseline trust assumptions and centralized enforcement for institutional email systems."
+        },
+        {
+          "name": "data-object",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "information-object",
+          "value": "urn:utoronto:cae2:drm:DO120",
+          "remarks": "Email messages as managed institutional information objects subject to protection, audit, and records requirements."
         },
 
         {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0001",
-          "remarks": "Initial access attempts initiated through email communication."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-177r1",
+          "class": "guidance-reference",
+          "value": "3, 4, 5",
+          "remarks": "Referenced for trustworthy email principles including sender authentication, policy enforcement, and monitoring expectations."
         },
         {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0006",
-          "remarks": "Credential access via email-based phishing and social engineering."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-45r2",
+          "class": "guidance-reference",
+          "value": "3, 4",
+          "remarks": "Referenced for foundational email transport, routing, and gateway security principles."
         },
         {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0005",
-          "remarks": "Defense evasion by abusing trusted email channels."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1566",
-          "remarks": "Phishing via email messages and attachments."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1114",
-          "remarks": "Email collection or abuse of mailbox contents following compromise."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0045",
-          "remarks": "Strong authentication for mail access and submission."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0011",
-          "remarks": "Access control enforcement to protect email content."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0009",
-          "remarks": "Message monitoring and inspection to detect malicious or abusive activity."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "guidance-reference",
+          "value": "2, 3.1",
+          "remarks": "Referenced to establish institutional email as a critical enabling service whose disruption or misconfiguration may cause cascading organizational impact."
         }
       ],
 
-      "remarks": "Email Core defines the foundational trust properties required to operate email as a reliable institutional communication channel. This pattern establishes baseline assumptions about identity binding, message delivery, and accountability, without addressing advanced threat protection or data governance."
+      "remarks": "Email Core defines the foundational trust properties required to operate email as a reliable institutional communication channel. It establishes baseline assumptions for authenticated delivery, centralized enforcement, and accountability."
     },
+
     "components": [
       {
-        "type": "capability",
         "uuid": "urn:utoronto:security:capability:email-identity-binding",
+        "type": "capability",
         "title": "Email Identity Binding",
         "description": "Binds email messages to authenticated and accountable sender identities.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "tactic-technique",
+            "value": "T1566",
+            "remarks": "Phishing attempts relying on unauthenticated or spoofed email identities."
+          },
+          {
+            "name": "defensive-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "MessageAuthentication",
+            "remarks": "Authentication and cryptographic verification of email sender identity."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:email-identity-binding",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:email-ia-2",
                 "control-id": "IA-2",
                 "remarks": "Email access and submission are tied to authenticated user or service identities."
               },
               {
-                "uuid": "urn:utoronto:security:ir:email-ia-5",
                 "control-id": "IA-5",
                 "remarks": "Credential management supports accountable use of email identities."
               },
               {
-                "uuid": "urn:utoronto:security:ir:email-ia-7",
                 "control-id": "IA-7",
-                "remarks": "Cryptographic mechanisms may be used to bind identity assertions to email messages."
+                "remarks": "Cryptographic mechanisms bind identity assertions to email messages."
               },
               {
-                "uuid": "urn:utoronto:security:ir:email-ac-2",
                 "control-id": "AC-2",
                 "remarks": "Email accounts are provisioned and managed to maintain accurate identity association."
               }
@@ -127,59 +111,89 @@
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:email-delivery-assurance",
         "type": "capability",
         "title": "Email Delivery Assurance",
         "description": "Ensures email messages are routed, transmitted, and delivered without unauthorized modification.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "tactic-technique",
+            "value": "T1071",
+            "remarks": "Abuse of email transport as a command-and-control channel."
+          },
+          {
+            "name": "defensive-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "PolicyEnforcement",
+            "remarks": "Policy-enforced routing and delivery of institutional email."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:email-delivery-assurance",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:email-sc-8",
+                "control-id": "SC-7",
+                "remarks": "Boundary protection mechanisms constrain exposure of institutional email services."
+              },
+              {
                 "control-id": "SC-8",
                 "remarks": "Transmission confidentiality and integrity protect email in transit."
               },
               {
-                "uuid": "urn:utoronto:security:ir:email-sc-16",
                 "control-id": "SC-16",
                 "remarks": "Email routing mechanisms prevent unauthorized redirection or alteration."
-              },
-              {
-                "uuid": "urn:utoronto:security:ir:email-sc-7",
-                "control-id": "SC-7",
-                "remarks": "Boundary protection mechanisms constrain exposure of email services."
               }
             ]
           }
         ]
       },
+
       {
         "uuid": "urn:utoronto:security:capability:email-accountability",
         "type": "capability",
         "title": "Email Accountability",
         "description": "Provides auditability and traceability of email usage and message handling.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "tactic-technique",
+            "value": "T1114",
+            "remarks": "Unauthorized access to or collection of email content following compromise."
+          },
+          {
+            "name": "defensive-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "defensive-technique",
+            "value": "AuditLogging",
+            "remarks": "Logging and review of email activity to support investigation and accountability."
+          }
+        ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:email-accountability",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "uuid": "urn:utoronto:security:ir:email-au-2",
                 "control-id": "AU-2",
                 "remarks": "Email-related events are defined and captured for audit purposes."
               },
               {
-                "uuid": "urn:utoronto:security:ir:email-au-12",
-                "control-id": "AU-12",
-                "remarks": "Email audit records are generated for significant security-relevant events."
-              },
-              {
-                "uuid": "urn:utoronto:security:ir:email-au-6",
                 "control-id": "AU-6",
                 "remarks": "Audit review supports investigation and accountability for email activity."
+              },
+              {
+                "control-id": "AU-12",
+                "remarks": "Email audit records are generated for significant security-relevant events."
               }
             ]
           }

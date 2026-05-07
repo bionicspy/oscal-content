@@ -1,16 +1,19 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:email-records",
+    "version": "0.2.0",
+    "oscal-version": "1.1.3",
+    "last-modified": "2026-05-04T08:00:00Z",
+
     "metadata": {
       "title": "Email Records",
-      "version": "0.1.0",
-      "oscal-version": "1.1.3",
-      "description": "Defines trust properties required to treat email as an institutional record subject to retention, disposition, and legal obligations. This pattern addresses classification, legal holds, auditability, and defensibility, and does not address phishing, identity spoofing, or data loss prevention.",
+
+      "description": "Defines trust properties required to treat email as an institutional record subject to retention, disposition, and legal obligations. This pattern addresses classification, legal holds, auditability, and evidentiary defensibility, and does not address phishing, identity spoofing, or data loss prevention.",
 
       "props": [
         {
           "name": "capability",
-          "ns": "urn:utoronto:cae2:brm",
+          "ns": "urn:utoronto:security:pattern",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC344",
           "remarks": "Business capability for managing email as an institutional record subject to retention, disposition, and legal obligations."
@@ -34,11 +37,40 @@
           "ns": "urn:utoronto:cae2:dependency",
           "class": "platform-pattern",
           "value": "email-core",
-          "remarks": "Email records assume baseline delivery, identity binding, and accountability exist."
+          "remarks": "Email records assume baseline delivery assurance, identity binding, and accountability are in place."
+        },
+        {
+          "name": "data-object",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "information-object",
+          "value": "urn:utoronto:cae2:drm:DO120",
+          "remarks": "Email messages and associated metadata preserved as evidentiary institutional records."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-177r1",
+          "class": "guidance-reference",
+          "value": "5",
+          "remarks": "Referenced for guidance on accountability, auditability, and evidentiary support expectations for trustworthy email."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-45r2",
+          "class": "guidance-reference",
+          "value": "4",
+          "remarks": "Referenced for guidance on email system auditability, retention, and defensible administration."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "guidance-reference",
+          "value": "3.3",
+          "remarks": "Referenced to emphasize survivability, integrity, and recoverability of institutional records under disruption or legal obligation."
         }
       ],
 
-      "remarks": "Email Records defines trust properties required to treat email as an institutional record rather than transient communication. This pattern addresses retention classification, legal holds, auditability, and defensibility, and does not address phishing, identity spoofing, or data loss prevention."
+      "remarks": "Email Records defines trust properties required to treat email as an institutional record rather than transient communication. It governs retention classification, legal holds, auditability, and defensibility."
     },
 
     "components": [
@@ -47,25 +79,26 @@
         "type": "capability",
         "title": "Email Record Classification",
         "description": "Determines when email content constitutes an institutional record subject to governance.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "technique",
+            "class": "tactic-technique",
             "value": "T1005",
-            "remarks": "Collection of sensitive information via retained email records."
+            "remarks": "Collection or exposure of sensitive information via retained email records."
           },
           {
-            "name": "defense-technique",
+            "name": "defensive-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0061",
-            "remarks": "Audit logging and record identification to support accountability."
+            "class": "defensive-technique",
+            "value": "AuditLogging",
+            "remarks": "Identification and logging of records to support classification and accountability."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:email-record-classification",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
@@ -86,34 +119,35 @@
         "type": "capability",
         "title": "Retention and Disposition Control",
         "description": "Ensures email records are retained and disposed of in accordance with policy and legal requirements.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "technique",
+            "class": "tactic-technique",
             "value": "T1107",
             "remarks": "Unauthorized deletion or destruction of email records."
           },
           {
-            "name": "defense-technique",
+            "name": "defensive-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0037",
-            "remarks": "Lifecycle management controls to enforce record retention and deletion."
+            "class": "defensive-technique",
+            "value": "LifecycleManagement",
+            "remarks": "Lifecycle controls enforcing retention and authorized disposition of records."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:email-retention",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "AU-11",
-                "remarks": "Email records are retained for periods consistent with legal and institutional requirements."
+                "remarks": "Email records are retained for durations consistent with legal and institutional requirements."
               },
               {
                 "control-id": "SI-12",
-                "remarks": "Disposition mechanisms prevent unauthorized removal of required records."
+                "remarks": "Mechanisms prevent unauthorized destruction or removal of required email records."
               }
             ]
           }
@@ -125,25 +159,26 @@
         "type": "capability",
         "title": "Legal Hold and eDiscovery Support",
         "description": "Supports preservation and production of email records under legal or regulatory obligation.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "technique",
+            "class": "tactic-technique",
             "value": "T1565.001",
-            "remarks": "Data manipulation or tampering with stored records."
+            "remarks": "Unauthorized modification or tampering with retained email records."
           },
           {
-            "name": "defense-technique",
+            "name": "defensive-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0061",
-            "remarks": "Integrity protection and auditability of retained records."
+            "class": "defensive-technique",
+            "value": "IntegrityVerification",
+            "remarks": "Integrity protection and verification of retained email records."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:email-legal-hold",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
@@ -152,7 +187,7 @@
               },
               {
                 "control-id": "AU-6",
-                "remarks": "Audit review supports verification of record preservation and production."
+                "remarks": "Audit review supports verification of record preservation and legal production."
               }
             ]
           }
