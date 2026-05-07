@@ -201,8 +201,7 @@ Platform Time does **not**:
 
 Those interpretations belong to consuming trust planes.
 
----
-
+--- 
 ### Dependency and Relationships
 
 - **Consumed by:**  
@@ -229,12 +228,16 @@ SSPPs SHOULD reference `secure-time` rather than redefining time controls indepe
 
 ---
 
-### Summary
+##Time as a Resiliency Dependency
+Secure‑Time treats time as a critical enabling service per NIST SP 800‑184.
+
+Time correctness, availability, and observability are required to support detection, recovery, evidence integrity, and coordinated response under disruption.
+
+## Summary
 
 At the Platform trust plane, Time is a **core infrastructure capability** whose responsibility is to make trusted time *boringly correct*.
 
 Secure Time ensures:
-
 - time is correct, stable, and defensible  
 - cryptographic systems can correctly interpret time for validity and evidence  
 
