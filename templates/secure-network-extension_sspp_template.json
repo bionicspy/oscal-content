@@ -1,0 +1,158 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:secure-network-logical-extension",
+    "metadata": {
+      "title": "Secure Network Logical Extension SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan governing logical network extensions (e.g., VPNs, VLANs, overlays, tunnels, and peering) as constrained transport mechanisms that must not extend trust beyond Secure Network controls."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security, privacy, and resiliency baseline."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Network Logical Extension",
+      "system-description": "Institutional capability governing logical network extensions that virtually extend network reach without extending trust, authority, or security boundaries.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "Logical network extensions inherit governance, assurance, and trust from the Secure Network Platform SSPP."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-gateway",
+          "remarks": "Logical extensions terminate at or traverse Secure Network Gateways and do not bypass policy enforcement."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-resiliency",
+          "remarks": "Resiliency characteristics of logical extensions are inherited from Network Resiliency patterns and controls."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-assurance",
+          "remarks": "Where identity is used for extension establishment or session control, assurance is consumed from Secure Identity."
+        },
+
+        {
+          "name": "extension-scope",
+          "class": "governance-constraint",
+          "value": "transport-only",
+          "remarks": "Logical network extensions provide transport reach only and must not create or imply new trust boundaries."
+        },
+        {
+          "name": "trust-extension",
+          "class": "governance-constraint",
+          "value": "prohibited",
+          "remarks": "Logical extensions must not extend institutional trust, authorization, or segmentation implicitly."
+        },
+        {
+          "name": "policy-bypass",
+          "class": "governance-constraint",
+          "value": "disallowed",
+          "remarks": "Logical extensions must not bypass Secure Network gateways, access control, segmentation, egress discipline, or monitoring."
+        },
+        {
+          "name": "lifecycle-control",
+          "class": "governance-constraint",
+          "value": "explicit-and-revocable",
+          "remarks": "Logical extensions must be explicitly approved, monitored, and revocable according to institutional policy."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "2, 3",
+          "remarks": "Logical network extensions do not imply trust and must be governed as transport mechanisms within a Zero Trust Architecture."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "3",
+          "remarks": "Overlays and tunnels function as enforcement substrates and must not replace policy-driven access control."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-46",
+          "class": "remote-and-telework",
+          "value": "3, 4, 5",
+          "remarks": "VPNs and remote connectivity mechanisms are governed as logical extensions subject to explicit controls."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure Network Logical Extensions are implemented as constrained transport constructs that terminate within Secure Network control planes and are continuously monitored.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:component:logical-extension-endpoint",
+          "type": "component",
+          "title": "Logical Extension Endpoint",
+          "description": "Termination point for logical network extensions where Secure Network controls are enforced."
+        },
+        {
+          "uuid": "urn:utoronto:security:component:logical-extension-transport",
+          "type": "component",
+          "title": "Logical Extension Transport",
+          "description": "Underlying transport mechanism (e.g., VPN, tunnel, overlay) carrying network traffic without defining trust."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-network-architecture",
+        "title": "Network Architecture Authority",
+        "remarks": "Defines approved use, scope, and constraints for logical network extensions.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-network-operations",
+        "title": "Network Operations",
+        "remarks": "Operates logical extensions in accordance with Secure Network constraints.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-NET"
+          }
+        ]
+      },
+      {
+        "id": "role-network-security",
+        "title": "Network Security Monitoring",
+        "remarks": "Monitors logical extension usage and enforces revocation where required.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Logical extensions inherit security, monitoring, and resiliency controls from Secure Network Platform and Gateway SSPPs. This SSPP documents constraints and assurance only."
+    }
+  }
+}

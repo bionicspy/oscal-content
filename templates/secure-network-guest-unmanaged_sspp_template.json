@@ -1,0 +1,169 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:access:secure-network-guest-unmanaged",
+    "metadata": {
+      "title": "Secure Network Guest & Unmanaged Access SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan governing guest, BYOD, residence, and other unmanaged device access to institutional network services."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security, privacy, and acceptable-use baseline."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Network Guest & Unmanaged Access",
+      "system-description": "Capability providing constrained, auditable network access for unmanaged devices and non-institutionally managed endpoints, including guests, residents, and BYOD users.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "Guest and unmanaged access inherits network governance and assurance from the Secure Network Platform SSPP."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-gateway",
+          "remarks": "All guest and unmanaged access is mediated by Secure Network Gateways."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-logical-extension",
+          "remarks": "Wireless, residence, and guest access operate as logical network extensions and do not extend trust boundaries."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-assurance",
+          "remarks": "User authentication and assurance signals are consumed from Secure Identity services where applicable."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-federation",
+          "remarks": "External identity assertions (e.g., eduroam) may be accepted via Secure Identity Federation."
+        },
+
+        {
+          "name": "device-trust",
+          "class": "assumption",
+          "value": "unmanaged",
+          "remarks": "Devices connecting via this SSPP are assumed to be unmanaged and potentially compromised."
+        },
+        {
+          "name": "authentication-scope",
+          "class": "constraint",
+          "value": "user-only",
+          "remarks": "Authentication applies to users only; device identity or posture is not trusted."
+        },
+        {
+          "name": "authorization-scope",
+          "class": "constraint",
+          "value": "limited",
+          "remarks": "Access is limited to internet connectivity and explicitly approved public-facing services."
+        },
+        {
+          "name": "lateral-access",
+          "class": "constraint",
+          "value": "prohibited",
+          "remarks": "Guest and unmanaged access must not allow lateral movement or internal network reachability."
+        },
+        {
+          "name": "trust-inheritance",
+          "class": "constraint",
+          "value": "none",
+          "remarks": "Authentication does not imply trust level, device trust, or authorization beyond defined scope."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "2, 3",
+          "remarks": "Unmanaged and guest access aligns with Zero Trust principles: identity does not equate to trust, and access is explicitly constrained."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "3",
+          "remarks": "Identity-aware networking principles apply even for unmanaged endpoints, with enforced policy boundaries."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-46",
+          "class": "remote-and-telework",
+          "value": "3, 4, 5",
+          "remarks": "Guest, residence, and BYOD access align with SP 800-46 guidance for unmanaged and remote connectivity."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Guest and unmanaged access is implemented through constrained network segments, controlled gateways, and explicit egress policies. No internal systems or privileged services are directly reachable.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:component:guest-access-segment",
+          "type": "component",
+          "title": "Guest and Unmanaged Access Segment",
+          "description": "Network segment dedicated to unmanaged and guest devices with restricted connectivity."
+        },
+        {
+          "uuid": "urn:utoronto:security:component:guest-access-gateway",
+          "type": "component",
+          "title": "Guest Access Gateway",
+          "description": "Gateway enforcing identity-based admission, segmentation, and egress controls for guest traffic."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-network-architecture",
+        "title": "Network Architecture Authority",
+        "remarks": "Defines scope, constraints, and approved use cases for guest and unmanaged access.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-network-operations",
+        "title": "Network Operations",
+        "remarks": "Operates guest and unmanaged access services in accordance with security constraints.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-NET"
+          }
+        ]
+      },
+      {
+        "id": "role-network-security",
+        "title": "Network Security Monitoring",
+        "remarks": "Monitors guest and unmanaged access for abuse, misuse, and policy violations.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Network, identity, monitoring, and resiliency controls are inherited from Secure Network Platform, Gateway, Logical Extension, and Identity SSPPs. This SSPP defines scope and constraints only."
+    }
+  }
+}

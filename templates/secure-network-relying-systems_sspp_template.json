@@ -1,0 +1,127 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:relying-system:secure-network",
+    "metadata": {
+      "title": "Secure Network Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan template for systems and platforms that rely on Secure Network services for connectivity, isolation, and protection."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security, privacy, and assurance baseline."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Network Relying System",
+      "system-description": "System or platform that consumes Secure Network services for protected connectivity, segmentation, and policy enforcement without implementing network controls directly.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "This system relies on the Secure Network Platform SSPP as the Tier-0 network governance and assurance anchor."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-gateway",
+          "remarks": "This system relies on Secure Network Gateways for mediated ingress, egress, and inter-zone traffic control."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-assurance",
+          "remarks": "This system consumes identity assurance signals that may influence network access outcomes."
+        },
+
+        {
+          "name": "network-consumption-model",
+          "class": "design-principle",
+          "value": "inherited-protection",
+          "remarks": "Network protection is inherited from Secure Network services rather than implemented locally within the system."
+        },
+        {
+          "name": "trust-boundary",
+          "class": "architecture-boundary",
+          "value": "externalized-network-control",
+          "remarks": "Network trust decisions, segmentation, and enforcement occur outside the relying system."
+        },
+        {
+          "name": "authorization-separation",
+          "class": "design-principle",
+          "value": "application-local",
+          "remarks": "Authorization logic remains local to the system and is not delegated to network services."
+        },
+        {
+          "name": "resiliency-dependence",
+          "class": "design-principle",
+          "value": "platform-inherited",
+          "remarks": "Network resiliency characteristics are inherited from the Secure Network Platform and Network Resiliency patterns."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-reliance",
+          "value": "2, 3",
+          "remarks": "The relying system operates within a Zero Trust Architecture by consuming network protections without assuming implicit trust."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "3",
+          "remarks": "Identity-aware, policy-driven Secure Network services provide networking protections consumed by the relying system."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP documents reliance on Secure Network capabilities and does not implement network security controls directly.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:component:network-reliant-application",
+          "type": "conceptual",
+          "title": "Network-Reliant System Component",
+          "description": "Logical representation of a system component that depends on Secure Network services for connectivity and protection."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-system-owner",
+        "title": "System Owner",
+        "remarks": "Defines network reliance expectations and acceptable risk for the system.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-RSK"
+          }
+        ]
+      },
+      {
+        "id": "role-network-architecture",
+        "title": "Network Architecture Authority",
+        "remarks": "Ensures relying systems correctly consume Secure Network protections.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All network security controls are inherited from Secure Network Platform and Gateway SSPPs. This SSPP documents reliance and assurance only."
+    }
+  }
+}

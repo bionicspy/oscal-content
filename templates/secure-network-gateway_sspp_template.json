@@ -1,0 +1,157 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:secure-network-gateway",
+    "metadata": {
+      "title": "Secure Network Gateway SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan governing Secure Network Gateways that mediate, enforce, and monitor network traffic at trust boundaries, including ingress, egress, and inter-zone gateways."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security, privacy, and resiliency baseline."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Network Gateway",
+      "system-description": "Institutional network gateway capability enforcing identity-aware, policy-driven control of network traffic across trust boundaries.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "Secure Network Gateway inherits governance and assurance from the Secure Network Platform SSPP."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-identity-provider",
+          "remarks": "Gateway enforcement relies on Secure Identity Providers for identity assertions and authentication context."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-identity-assurance",
+          "remarks": "Gateway decisions consume identity assurance signals evaluated by the Secure Identity Assurance SSPP."
+        },
+
+        {
+          "name": "implements-pattern",
+          "value": "network-mediation-and-policy-enforcement",
+          "remarks": "Gateway functions as a primary Policy Enforcement Point (PEP) for network traffic."
+        },
+        {
+          "name": "implements-pattern",
+          "value": "network-egress-discipline",
+          "remarks": "Gateway enforces explicit outbound connectivity and destination controls."
+        },
+        {
+          "name": "implements-pattern",
+          "value": "network-monitoring-and-response",
+          "remarks": "Gateway generates telemetry and supports automated response actions."
+        },
+
+        {
+          "name": "gateway-role",
+          "class": "traffic-scope",
+          "value": "ingress-egress-and-interzone",
+          "remarks": "Secure Network Gateways may operate at ingress, egress, or inter-zone boundaries."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "2, 3",
+          "remarks": "Network gateways enforce Zero Trust Architecture principles through explicit policy evaluation and enforcement."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "3.1, 3.3, 3.4",
+          "remarks": "Gateway enforcement aligns with Zero Trust Networking guidance, mediating identity-aware ingress, lateral, and egress traffic."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "cyber-resiliency",
+          "value": "3.2",
+          "remarks": "Gateway placement and policy enforcement support containment and reduction of blast radius during incidents."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure Network Gateways provide mediated enforcement of network policy decisions, generate security telemetry, and execute response actions. They do not define policy logic or identity proofing, which are handled by dependent SSPPs.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:component:gateway-ingress",
+          "type": "component",
+          "title": "Network Ingress Gateway",
+          "description": "Mediates inbound traffic entering institutional trust zones."
+        },
+        {
+          "uuid": "urn:utoronto:security:component:gateway-egress",
+          "type": "component",
+          "title": "Network Egress Gateway",
+          "description": "Enforces outbound traffic policy and destination constraints."
+        },
+        {
+          "uuid": "urn:utoronto:security:component:gateway-interzone",
+          "type": "component",
+          "title": "Inter-Zone Gateway",
+          "description": "Controls and monitors traffic moving between internal network zones."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-network-gateway-architecture",
+        "title": "Network Gateway Architecture Authority",
+        "remarks": "Defines gateway placement, trust boundaries, and enforcement responsibilities.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-network-gateway-operations",
+        "title": "Network Gateway Operations",
+        "remarks": "Operates gateway infrastructure and ensures continuous enforcement.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-NET"
+          }
+        ]
+      },
+      {
+        "id": "role-network-gateway-security",
+        "title": "Network Gateway Security Monitoring",
+        "remarks": "Monitors gateway telemetry and coordinates incident response.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Security controls for gateways are implemented through inherited Secure Network patterns and platform controls. This SSPP documents enforcement scope and assurance, not control design."
+    }
+  }
+}

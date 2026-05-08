@@ -1,0 +1,175 @@
+{
+  "system-security-plan": {
+   "uuid": "urn:utoronto:sspp:platform:secure-network",
+  
+    "metadata": {
+      "title": "Secure Network Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "This System Security Plan and Profile (SSPP) template defines the security and privacy posture for the institutional Secure Network platform, which provides governed, identity-aware, policy-driven, and resilient network connectivity across all environments and access scenarios. The SSPP is structured to align with the NIST SP 800-18 SSP format and includes references to relevant NIST guidance on Zero Trust Architecture, Zero Trust Networking, and Cyber Resiliency. This template serves as a foundational reference for implementing a secure network platform that supports institutional security objectives while enabling secure and seamless connectivity for users, applications, and services."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security, privacy, resiliency, and operational baseline."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Network Platform",
+      "system-description": "Institutional Secure Network platform providing governed, identity-aware, policy-driven, and resilient network connectivity across all environments and access scenarios.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "platform-role",
+          "class": "tier-classification",
+          "value": "tier-0",
+          "remarks": "Secure Network is a Tier-0 institutional dependency; compromise or outage has cascading impact across identity, applications, and communications."
+        },
+
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-identity-provider",
+          "remarks": "Secure Network relies on Secure Identity Providers for identity assertions and authentication context."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-identity-assurance",
+          "remarks": "Secure Network consumes identity assurance signals to inform network access and enforcement decisions."
+        },
+
+        {
+          "name": "implements-pattern",
+          "value": "secure-network",
+          "remarks": "This SSPP is the authoritative implementation and assurance anchor for the Secure Network composite pattern."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "2, 3",
+          "remarks": "Secure Network enforces Zero Trust Architecture principles by eliminating implicit trust and relying on identity-, context-, and policy-based decisions."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-215",
+          "class": "zero-trust-networking",
+          "value": "2, 3, 4",
+          "remarks": "Secure Network aligns with Zero Trust Networking guidance, supporting identity-aware, policy-mediated ingress, lateral, and egress control."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "cyber-resiliency",
+          "value": "2, 3.1, 3.2, 3.3",
+          "remarks": "Secure Network resiliency is designed to anticipate, withstand, recover from, and adapt to adverse conditions, preventing cascading institutional failures."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure Network is implemented as a composition of governed network capabilities including core transport, access control, segmentation, policy mediation, monitoring and response, egress discipline, remote and third-party access, and network resiliency.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:network-core",
+          "type": "pattern-reference",
+          "title": "Network Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:network-access-control",
+          "type": "pattern-reference",
+          "title": "Network Access Control"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:network-segmentation-and-zones",
+          "type": "pattern-reference",
+          "title": "Network Segmentation and Zones"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:network-mediation-and-policy-enforcement",
+          "type": "pattern-reference",
+          "title": "Network Mediation and Policy Enforcement"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:network-egress-discipline",
+          "type": "pattern-reference",
+          "title": "Network Egress Discipline"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:network-monitoring-and-response",
+          "type": "pattern-reference",
+          "title": "Network Monitoring and Response"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:network-resiliency",
+          "type": "pattern-reference",
+          "title": "Network Resiliency"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:network-remote-access",
+          "type": "pattern-reference",
+          "title": "Network Remote Access"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:network-wireless-access",
+          "type": "pattern-reference",
+          "title": "Network Wireless Access"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:network-third-party-connectivity",
+          "type": "pattern-reference",
+          "title": "Network Third-Party Connectivity"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-network-architecture",
+        "title": "Network Architecture Authority",
+        "remarks": "Accountable for Secure Network architecture integrity, pattern alignment, and assurance.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-network-operations",
+        "title": "Network Operations",
+        "remarks": "Operates and maintains Secure Network services in accordance with platform governance.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-NET"
+          }
+        ]
+      },
+      {
+        "id": "role-network-security",
+        "title": "Network Security Monitoring",
+        "remarks": "Monitors Secure Network telemetry, detects threats, and coordinates response.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All network security and privacy controls are implemented by subordinate Secure Network patterns and inherited SSPPs. This SSPP serves as the authoritative governance and assurance anchor."
+    }
+  }
+}
