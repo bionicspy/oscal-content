@@ -45,6 +45,12 @@
           "class": "guidance-reference",
           "value": "2, 3.1, 3.2, 3.3",
           "remarks": "Referenced to frame email as a mission-critical enabling service with resiliency concerns including misuse, abuse at scale, recovery, and continuity."
+        },
+        {
+          "name": "email-crypto-dependency",
+          "class": "mandatory-reliance",
+          "value": "key-management-and-pki-platforms",
+          "remarks": "All encryption, signing, and TLS certificates used by email services must be managed and validated by the Key Management and PKI Platforms."
         }
       ]
     },
@@ -142,7 +148,7 @@
     ],
 
     "control-implementation": {
-      "remarks": "All applicable security and privacy controls are satisfied through inherited implementations provided by the Secure Email platform patterns. No controls are implemented directly by this SSPP."
+      "remarks": "All applicable security and privacy controls are satisfied through inherited implementations provided by the Secure Email platform patterns. No controls are implemented directly by this SSPP. Email systems must not manage private keys locally or trust certificates outside the institutional PKI. All cryptographic operations are inherited and audited centrally."
     }
   }
 }

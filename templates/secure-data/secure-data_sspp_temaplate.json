@@ -91,6 +91,18 @@
           "class": "interconnecting-systems",
           "value": "§2–§3",
           "remarks": "Institutional data frequently crosses system boundaries and requires explicit trust and responsibility definition."
+        },
+        {
+          "name": "cryptographic-dependency",
+          "class": "mandatory-reliance",
+          "value": "key-management-platform",
+          "remarks": "All encryption, signing, and cryptographic operations protecting institutional data must use keys managed by the Key Management Platform. Application-managed cryptographic keys are prohibited."
+        },
+        {
+          "name": "trust-establishment",
+          "class": "mandatory-reliance",
+          "value": "pki-platform",
+          "remarks": "All cryptographic trust relationships for data access, transport, or sharing must be established and validated using the institutional PKI Platform."
         }
       ]
     },
@@ -185,7 +197,7 @@
     ],
 
     "control-implementation": {
-      "remarks": "Security and privacy controls for data are implemented through Secure Data patterns and inherited by applications. This SSPP documents governance scope, dependencies, and assurance only."
+      "remarks": "Security and privacy controls for data are implemented through Secure Data patterns and inherited by applications. This SSPP documents governance scope, dependencies, and assurance only.  Cryptographic controls for data protection are enforced exclusively through the Key Management and PKI Platforms. No system may generate, store, or distribute cryptographic keys or certificates outside these platforms."
     }
   }
 }

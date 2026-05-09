@@ -1,0 +1,155 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:pki",
+
+    "metadata": {
+      "title": "Public Key Infrastructure (PKI) Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan governing the institutional Public Key Infrastructure, establishing authoritative cryptographic trust, certificate lifecycle governance, and revocation enforcement."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "Public Key Infrastructure Platform",
+      "system-description": "The PKI Platform provides centralized issuance, validation, and revocation of digital certificates for institutional identities, systems, and services, enabling cryptographically verifiable trust at scale.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "platform-role",
+          "class": "tier-classification",
+          "value": "tier-1",
+          "remarks": "Public Key Infrastructure is a Tier-1 institutional platform underpinning identity, secure communication, and cryptographic trust for all services."
+        },
+
+        {
+          "name": "implements-pattern",
+          "value": "public-key-infrastructure",
+          "remarks": "This SSPP is the authoritative implementation and assurance anchor for the Public Key Infrastructure security pattern."
+        },
+
+        {
+          "name": "depends-on-sspp",
+          "value": "key-management-platform",
+          "remarks": "PKI relies on the Key Management Platform for secure generation, protection, rotation, and destruction of asymmetric keys."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-identity-platform",
+          "remarks": "Certificate issuance and binding rely on Secure Identity for identity proofing and authorization."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "PKI services rely on Secure Network for protected communication and monitoring."
+        },
+
+        {
+          "name": "cryptographic-compliance",
+          "class": "non-negotiable-requirement",
+          "value": "fips-140-3-only",
+          "remarks": "All cryptographic modules supporting certificate issuance, signing, storage, and validation must be FIPS 140-3 validated."
+        },
+
+        {
+          "name": "ca-key-protection",
+          "class": "mandatory-architecture",
+          "value": "hsm-backed",
+          "remarks": "Root and subordinate Certificate Authority private keys must be generated, stored, and operated within HSMs."
+        },
+
+        {
+          "name": "device-identity-model",
+          "class": "mandatory-architecture",
+          "value": "tpm-backed",
+          "remarks": "Device and server identity certificates must be backed by TPM-protected private keys where supported."
+        },
+
+        {
+          "name": "certificate-issuance-model",
+          "class": "mandatory-architecture",
+          "value": "centralized-and-governed",
+          "remarks": "All institutional certificates must be issued through the PKI Platform; application-managed or self-signed certificates are prohibited unless explicitly exempted."
+        },
+
+        {
+          "name": "revocation-enforcement",
+          "class": "non-negotiable-requirement",
+          "value": "mandatory",
+          "remarks": "Certificate revocation checking (OCSP and/or CRL) is mandatory for all trust decisions; revocation bypass is prohibited."
+        },
+
+        {
+          "name": "certificate-lifespan",
+          "class": "design-principle",
+          "value": "short-lived-preferred",
+          "remarks": "Certificates should be short-lived where technically feasible to limit blast radius and simplify revocation."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "The PKI Platform enforces institutionally controlled certificate issuance, validation, and revocation for users, devices, services, and infrastructure.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:key-management",
+          "type": "pattern-reference",
+          "title": "Key Management"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-ca-operator",
+        "title": "Certificate Authority Operator",
+        "remarks": "Operates root and intermediate certificate authorities, including ceremonies, issuance, and revocation.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      },
+      {
+        "id": "role-pki-architect",
+        "title": "PKI Architecture Authority",
+        "remarks": "Defines certificate policies, trust models, lifetimes, and acceptable cryptographic profiles.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-pki-operations",
+        "title": "PKI Operations",
+        "remarks": "Manages certificate services, revocation infrastructure, and trust validation services.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-INF"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All certificate issuance, validation, and revocation controls are enforced by the PKI Platform and inherited by applications and services. Applications are prohibited from acting as certificate authorities or from bypassing PKI validation."
+    }
+  }
+}

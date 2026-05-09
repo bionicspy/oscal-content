@@ -69,6 +69,18 @@
           "class": "control-inheritance",
           "value": "PL, AC, IA, AU, SC, MP",
           "remarks": "Data-related security and privacy controls are inherited from the Secure Data Platform SSPP."
+        },
+        {
+          "name": "crypto-restriction",
+          "class": "explicit-prohibition",
+          "value": "application-managed-keys",
+          "remarks": "The relying system must not generate, store, or manage cryptographic keys outside the Key Management Platform."
+        },
+        {
+          "name": "certificate-restriction",
+          "class": "explicit-prohibition",
+          "value": "self-signed-and-local-certs",
+          "remarks": "The relying system must not issue, store, or trust self-signed or locally managed certificates. All certificates must be issued and validated by the PKI Platform."
         }
       ]
     },
@@ -116,7 +128,7 @@
     ],
 
     "control-implementation": {
-      "remarks": "All data classification, protection, loss prevention, and retention controls are inherited from the Secure Data Platform SSPP. This SSPP documents reliance and boundary conditions only."
+      "remarks": "All data classification, protection, loss prevention, and retention controls are inherited from the Secure Data Platform SSPP. This SSPP documents reliance and boundary conditions only. All cryptographic operations, including encryption, signing, and trust validation, are inherited from the Key Management and PKI Platforms. The relying system is prohibited from implementing local cryptographic trust mechanisms."
     }
   }
 }

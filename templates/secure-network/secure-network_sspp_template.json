@@ -65,6 +65,18 @@
           "class": "cyber-resiliency",
           "value": "2, 3.1, 3.2, 3.3",
           "remarks": "Secure Network resiliency is designed to anticipate, withstand, recover from, and adapt to adverse conditions, preventing cascading institutional failures."
+        },
+        {
+          "name": "network-crypto-trust",
+          "class": "mandatory-reliance",
+          "value": "pki-platform",
+          "remarks": "All TLS, mutual TLS, VPN, and internal service authentication must rely on certificates issued and validated by the PKI Platform."
+        },
+        {
+          "name": "network-key-management",
+          "class": "mandatory-reliance",
+          "value": "key-management-platform",
+          "remarks": "Private keys used for network services must be generated, stored, and protected within HSMs or TPMs governed by the Key Management Platform."
         }
       ]
     },
@@ -169,7 +181,7 @@
     ],
 
     "control-implementation": {
-      "remarks": "All network security and privacy controls are implemented by subordinate Secure Network patterns and inherited SSPPs. This SSPP serves as the authoritative governance and assurance anchor."
+      "remarks": "All network security and privacy controls are implemented by subordinate Secure Network patterns and inherited SSPPs. This SSPP serves as the authoritative governance and assurance anchor. Network services must not accept unvalidated certificates, disable certificate verification, or use embedded or application-generated private keys."
     }
   }
 }

@@ -1,0 +1,155 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:key-management",
+
+    "metadata": {
+      "title": "Key Management Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan governing the institutional Key Management Platform, establishing authoritative cryptographic key lifecycle management and eliminating unmanaged or ad-hoc key material."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "Key Management Platform",
+      "system-description": "The Key Management Platform provides centralized, governed lifecycle management for all institutional cryptographic keys, ensuring strong protection, controlled use, auditable rotation, and defensible destruction.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "platform-role",
+          "class": "tier-classification",
+          "value": "tier-1",
+          "remarks": "Key Management is a Tier-1 institutional platform required for all encryption, signing, and cryptographic trust operations."
+        },
+
+        {
+          "name": "implements-pattern",
+          "value": "key-management",
+          "remarks": "This SSPP is the authoritative implementation and assurance anchor for the Key Management security pattern."
+        },
+
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-identity-platform",
+          "remarks": "Key usage and administration rely on Secure Identity for strong authentication and role separation."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "Key services rely on Secure Network for protected communication, segmentation, and monitoring."
+        },
+
+        {
+          "name": "cryptographic-compliance",
+          "class": "non-negotiable-requirement",
+          "value": "fips-140-3-only",
+          "remarks": "All cryptographic modules, libraries, and hardware used for key generation, storage, and cryptographic operations must be FIPS 140-3 validated."
+        },
+
+        {
+          "name": "key-storage-model",
+          "class": "mandatory-architecture",
+          "value": "hardware-rooted",
+          "remarks": "Cryptographic keys must be protected using hardware-backed mechanisms such as HSMs or TPMs; file-based or software-only key storage is prohibited."
+        },
+
+        {
+          "name": "endpoint-key-protection",
+          "class": "mandatory-architecture",
+          "value": "tpm-backed",
+          "remarks": "Keys on endpoints and servers must be generated and protected using TPM-backed mechanisms where available."
+        },
+
+        {
+          "name": "shared-key-protection",
+          "class": "mandatory-architecture",
+          "value": "hsm-backed",
+          "remarks": "Keys used for shared services, signing authorities, or sensitive data protection must be generated and stored in HSM-backed key stores."
+        },
+
+        {
+          "name": "prohibited-key-practices",
+          "class": "explicit-prohibition",
+          "value": "raw-key-files",
+          "remarks": "Storage or distribution of unprotected private keys in files (e.g., .pem, .pfx, .key) is explicitly prohibited."
+        },
+
+        {
+          "name": "cryptographic-agility",
+          "class": "design-principle",
+          "value": "mandatory",
+          "remarks": "Key management must support controlled algorithm transition and revocation without application redesign."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "The Key Management Platform enforces centralized generation, protection, usage control, rotation, and destruction of cryptographic keys across institutional systems.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:data-encryption",
+          "type": "pattern-reference",
+          "title": "Data Encryption"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:public-key-infrastructure",
+          "type": "pattern-reference",
+          "title": "Public Key Infrastructure"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-key-custodian",
+        "title": "Key Custodian",
+        "remarks": "Manages cryptographic key lifecycle operations, including generation, rotation, and destruction.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      },
+      {
+        "id": "role-cryptography-architect",
+        "title": "Cryptography Architecture Authority",
+        "remarks": "Defines approved cryptographic algorithms, key sizes, lifecycles, and storage models.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-key-operations",
+        "title": "Key Management Operations",
+        "remarks": "Operates HSMs, TPM integration, and key management services.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-INF"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All cryptographic key lifecycle controls are enforced by the Key Management Platform and inherited by applications. Applications are prohibited from generating, storing, or managing cryptographic keys outside this platform."
+    }
+  }
+}
