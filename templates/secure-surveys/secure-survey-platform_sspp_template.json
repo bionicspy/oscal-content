@@ -1,0 +1,169 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:secure-survey",
+
+    "metadata": {
+      "title": "Secure Survey Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan governing the institutional Secure Survey Platform, providing controlled, ethical, and accountable survey capabilities."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Survey Platform",
+      "system-description": "The Secure Survey Platform supports institutional surveys used for research, administration, assessment, and engagement, ensuring participant consent, identity handling, response integrity, and data protection.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "platform-role",
+          "class": "tier-classification",
+          "value": "tier-2",
+          "remarks": "Secure Survey is a Tier-2 institutional capability with elevated privacy, ethical, and reputational impact."
+        },
+
+        {
+          "name": "implements-pattern",
+          "value": "secure-survey",
+          "remarks": "This SSPP is the authoritative implementation and assurance anchor for the Secure Survey composite pattern."
+        },
+
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-identity-platform",
+          "remarks": "Secure Survey relies on Secure Identity for respondent authentication, eligibility determination, and identity separation where required."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "Secure Survey relies on Secure Network for trusted transport, availability, and monitoring."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-email-platform",
+          "remarks": "Secure Survey relies on Secure Email for controlled distribution and notification, using application-based send-only mechanisms."
+        },
+
+        {
+          "name": "survey-trust-model",
+          "class": "design-principle",
+          "value": "purpose-bound-and-consent-driven",
+          "remarks": "Survey interactions are explicitly bound to stated purpose, consent terms, and ethical commitments."
+        },
+        {
+          "name": "identity-handling",
+          "class": "design-principle",
+          "value": "explicit-and-declared",
+          "remarks": "Whether responses are anonymous, pseudonymous, or identifiable must be declared prior to participation and consistently enforced."
+        },
+        {
+          "name": "response-integrity",
+          "class": "design-principle",
+          "value": "tamper-resistant",
+          "remarks": "Survey responses must be protected against manipulation, duplicate submission, and unauthorized modification."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-baseline",
+          "value": "PL, IA, AC, AU, PT",
+          "remarks": "Survey platform controls align with the NIST SP 800-53 control families relevant to privacy, identity, access, and auditability."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "§2-§3",
+          "remarks": "Survey platforms frequently interact with external respondents and systems, requiring explicit trust boundaries."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "resilience",
+          "value": "§3",
+          "remarks": "Survey capability may be required during institutional disruption or emergencies and must remain available without compromising ethics."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "The Secure Survey Platform composes multiple survey concerns under unified governance, including consent enforcement, identity handling, survey execution, and post-collection data protection.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:survey-core",
+          "type": "pattern-reference",
+          "title": "Survey Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:survey-consent-and-ethics",
+          "type": "pattern-reference",
+          "title": "Survey Consent and Ethics"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:survey-identity-and-anonymity",
+          "type": "pattern-reference",
+          "title": "Survey Identity and Anonymity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:survey-data-protection",
+          "type": "pattern-reference",
+          "title": "Survey Data Protection"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-survey-owner",
+        "title": "Survey Owner",
+        "remarks": "Defines survey purpose, audience, consent terms, and ethical commitments.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-GOV"
+          }
+        ]
+      },
+      {
+        "id": "role-survey-ethics",
+        "title": "Survey Ethics Authority",
+        "remarks": "Ensures surveys comply with ethical standards, consent requirements, and applicable regulations.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-RSK"
+          }
+        ]
+      },
+      {
+        "id": "role-survey-security",
+        "title": "Survey Security Monitoring",
+        "remarks": "Monitors survey operation, detects abuse, and supports investigation.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Security and privacy controls are implemented through inherited Secure Identity, Secure Network, and Secure Email SSPPs, combined with survey-specific governance constraints enforced by the Secure Survey patterns."
+    }
+  }
+}

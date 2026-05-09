@@ -307,7 +307,8 @@ flowchart TB
 
     %% Life‑safety
     EMERG["Emergency Notification System SSPP"] -.-> APPN
-
+    SYS["System Notifications/Alerts"] -.-> |internal recipients only|APPN
+    SURV["Applications & Surveys"] -.-> APPN
 
 
 
@@ -322,7 +323,7 @@ flowchart TB
     class IND,DEL,SHR,ROLE,EXT human;
     class DG,LIST broadcast;
     class APPN,APPB,CAMP app;
-    class EMERG critical;
+    class EMERG,SYS,SURV critical;
 ```
 
 ---

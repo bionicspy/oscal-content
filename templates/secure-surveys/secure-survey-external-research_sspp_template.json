@@ -1,0 +1,160 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:external-research-survey",
+
+    "metadata": {
+      "title": "Secure Survey External / Research SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan governing external-facing and research-oriented survey activities involving non-institutional respondents."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "External and Research Survey Services",
+      "system-description": "Survey capability supporting external populations, research participants, and community respondents under explicit consent, ethics, and data protection constraints.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-survey-platform",
+          "remarks": "External and research surveys inherit baseline governance, purpose limitation, and consent enforcement from the Secure Survey Platform SSPP."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-platform",
+          "remarks": "External surveys consume institutional and federated identity services only where identity is explicitly required and disclosed."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "Survey access and response submission rely on Secure Network transport protections and monitoring."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-email-platform",
+          "remarks": "Survey distribution relies on Secure Email application-based send-only mechanisms with explicit consent and purpose declarations."
+        },
+
+        {
+          "name": "external-survey-trust-model",
+          "class": "design-principle",
+          "value": "consent-first-and-non-transitive",
+          "remarks": "Trust with external respondents is established through informed consent and does not imply institutional or account-based trust."
+        },
+        {
+          "name": "identity-collection",
+          "class": "governance-constraint",
+          "value": "explicitly-justified",
+          "remarks": "Any collection or linkage of respondent identity must be explicitly justified, disclosed, and approved."
+        },
+        {
+          "name": "anonymity-default",
+          "class": "design-principle",
+          "value": "preferred",
+          "remarks": "Anonymity or pseudonymity is the default for external survey respondents unless identification is essential to the stated purpose."
+        },
+        {
+          "name": "data-retention",
+          "class": "governance-constraint",
+          "value": "purpose-limited",
+          "remarks": "Survey data retention must be limited to the stated research or administrative purpose and reviewed for continued necessity."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "§2-§3",
+          "remarks": "External survey activities align with SP 800-47 guidance for inter-system trust and responsibility definition."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "privacy-and-security-controls",
+          "value": "PL, IA, PT, AC, AU",
+          "remarks": "External surveys invoke additional privacy and security controls due to participant risk and sensitivity."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "External and research surveys are implemented through the Secure Survey Platform under heightened consent, ethics, and data protection constraints.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:survey-core",
+          "type": "pattern-reference",
+          "title": "Survey Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:survey-consent-and-ethics",
+          "type": "pattern-reference",
+          "title": "Survey Consent and Ethics"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:survey-identity-and-anonymity",
+          "type": "pattern-reference",
+          "title": "Survey Identity and Anonymity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:survey-data-protection",
+          "type": "pattern-reference",
+          "title": "Survey Data Protection"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-research-survey-owner",
+        "title": "Research Survey Owner",
+        "remarks": "Defines research purpose, consent terms, participant eligibility, and data handling commitments.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-GOV"
+          }
+        ]
+      },
+      {
+        "id": "role-research-ethics-authority",
+        "title": "Research Ethics Authority",
+        "remarks": "Approves survey protocols involving human participants and oversees compliance with ethical requirements.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-RSK"
+          }
+        ]
+      },
+      {
+        "id": "role-survey-security",
+        "title": "Survey Security Monitoring",
+        "remarks": "Monitors external survey activity, detects misuse, and supports incident response.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "External survey security and privacy controls are inherited from Secure Survey Platform, Secure Identity, Secure Network, and Secure Email SSPPs, with additional ethical and consent-related constraints defined here."
+    }
+  }
+}

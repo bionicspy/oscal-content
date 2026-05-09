@@ -4,157 +4,158 @@
 
     "metadata": {
       "title": "Secure Survey",
-      "version": "0.2.0",
+      "version": "1.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-04T22:35:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC366",
-          "remarks": "Business capability for conducting surveys and feedback collection in a manner that is trustworthy, privacy‑respecting, ethically governed, and institutionally defensible."
+          "value": "urn:utoronto:cae2:brm:BC360",
+          "remarks": "Business capability for conducting surveys in a manner that preserves informed consent, privacy, ethical commitments, and institutional trust."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD176",
-          "remarks": "Survey platforms, feedback systems, response storage, anonymization controls, data protection mechanisms, and ethics oversight processes."
+          "value": "urn:utoronto:cae2:trm:TD170",
+          "remarks": "Survey platforms, questionnaire systems, response collection services, and survey data management environments."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP296",
-          "remarks": "Composite pattern asserting that all trust requirements for secure, ethical survey operations are satisfied."
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:AP300",
+          "remarks": "Composite Secure Survey architecture composed of survey trust foundations, consent and ethics governance, identity and anonymity handling, and post-collection data protection."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE410",
+          "remarks": "Survey instruments, consent artifacts, respondent metadata, responses, audit logs, and lifecycle management records."
         },
 
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "survey-core"
+          "name": "dependency-class",
+          "class": "tier",
+          "value": "tier-2",
+          "remarks": "Secure Survey is a Tier-2 institutional capability with high privacy, ethical, and reputational impact."
+        },
+
+        {
+          "name": "depends-on-pattern",
+          "value": "survey-core",
+          "remarks": "Secure Survey inherits baseline survey trust properties from Survey Core."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "survey-identity-and-anonymity"
+          "name": "depends-on-pattern",
+          "value": "secure-identity",
+          "remarks": "Secure Survey relies on Secure Identity for respondent eligibility, authentication where required, and identity separation controls."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "survey-data-protection"
+          "name": "depends-on-pattern",
+          "value": "secure-network",
+          "remarks": "Secure Survey relies on Secure Network for protected transport, availability, and monitoring."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "survey-consent-and-ethics"
+          "name": "depends-on-pattern",
+          "value": "secure-email",
+          "remarks": "Secure Survey relies on Secure Email for controlled survey distribution and notifications."
+        },
+
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "rationale",
+          "value": "T1078",
+          "remarks": "Use of valid accounts or access mechanisms to improperly influence or deanonymize survey participation."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "rationale",
+          "value": "T1565",
+          "remarks": "Manipulation or falsification of survey responses undermines institutional decision-making and trust."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "rationale",
+          "value": "T1213",
+          "remarks": "Collection and misuse of sensitive information through improperly governed surveys."
+        },
+
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "rationale",
+          "value": "D3FEND-0045",
+          "remarks": "Clear identity binding and separation prevents unintended association between respondents and responses."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "rationale",
+          "value": "D3FEND-0037",
+          "remarks": "Lifecycle governance reduces residual risk from retained survey instruments and data."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "rationale",
+          "value": "D3FEND-0061",
+          "remarks": "Auditability and traceability support accountability and investigation of survey misuse."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "security-and-privacy-controls",
+          "value": "PL, PT, IA, AC, AU",
+          "remarks": "Secure Survey aligns with NIST SP 800-53 security and privacy control families relevant to surveys involving human participants."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "2, 3",
+          "remarks": "Surveys frequently cross organizational and system boundaries, requiring explicit trust and responsibility definition."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "resilience",
+          "value": "3",
+          "remarks": "Survey capabilities may be required during institutional disruption and must remain ethical and available under stress."
         }
       ],
 
-      "remarks": "Secure Survey is a composite trust pattern asserting that surveys are conducted as intentional, ethical, and defensible institutional activities. It introduces no independent controls and exists solely as an aggregate trust claim for solution architecture, risk analysis, and SSPP inheritance."
+      "remarks": "Secure Survey is the composite governance pattern defining why surveys are treated as a distinct security, privacy, and ethics domain. ATT&CK and D3FEND references in this pattern are included solely to justify institutional controls and do not represent implementation-level threat mitigation. Detailed enforcement is defined in Survey Core and associated constraint patterns."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:survey-core",
-        "type": "component",
-        "title": "Survey Core",
-        "description": "Baseline trust assumptions for survey solicitation and response collection.",
-
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1589",
-            "remarks": "Improper collection of personal or identifying information via deceptive survey solicitation."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:PolicyEnforcement",
-            "remarks": "Enforcement of approved survey purposes, scope, and solicitation rules."
-          }
-        ]
+        "uuid": "urn:utoronto:security:pattern:survey-core",
+        "type": "pattern-reference",
+        "title": "Survey Core"
       },
-
       {
-        "uuid": "urn:utoronto:security:capability:survey-identity-and-anonymity",
-        "type": "component",
-        "title": "Survey Identity and Anonymity",
-        "description": "Defensible handling of respondent identity, anonymity guarantees, and re‑identification risk.",
-
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1005",
-            "remarks": "Inference or exposure of individual responses through linkage or re‑identification."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:Anonymization",
-            "remarks": "Separation, aggregation, and suppression mechanisms reducing re‑identification risk."
-          }
-        ]
+        "uuid": "urn:utoronto:security:pattern:survey-consent-and-ethics",
+        "type": "pattern-reference",
+        "title": "Survey Consent and Ethics"
       },
-
       {
-        "uuid": "urn:utoronto:security:capability:survey-data-protection",
-        "type": "component",
-        "title": "Survey Data Protection",
-        "description": "Protection of collected survey responses against misuse, disclosure, and inappropriate secondary use.",
-
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1020",
-            "remarks": "Exfiltration or unauthorized reuse of collected survey data."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:DataProtection",
-            "remarks": "Access controls, encryption, and lifecycle restrictions for survey responses."
-          }
-        ]
+        "uuid": "urn:utoronto:security:pattern:survey-identity-and-anonymity",
+        "type": "pattern-reference",
+        "title": "Survey Identity and Anonymity"
       },
-
       {
-        "uuid": "urn:utoronto:security:capability:survey-consent-and-ethics",
-        "type": "component",
-        "title": "Survey Consent and Ethics",
-        "description": "Informed consent, voluntariness, withdrawal rights, and ethical oversight.",
-
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1565",
-            "remarks": "Manipulation or suppression of consent, opt‑out, or withdrawal mechanisms."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:Auditability",
-            "remarks": "Transparent, auditable enforcement of consent and ethics requirements."
-          }
-        ]
+        "uuid": "urn:utoronto:security:pattern:survey-data-protection",
+        "type": "pattern-reference",
+        "title": "Survey Data Protection"
       }
     ]
   }

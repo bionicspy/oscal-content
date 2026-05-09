@@ -1,0 +1,132 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:relying-system:secure-survey",
+
+    "metadata": {
+      "title": "Secure Survey Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan template for systems that create, embed, trigger, or depend on Secure Survey services."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Survey Relying System",
+      "system-description": "An application or service that relies on the Secure Survey Platform to conduct surveys without implementing survey consent, identity, or data protection mechanisms directly.",
+      "security-sensitivity-level": "moderate-high",
+
+      "props": [
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-survey-platform",
+          "remarks": "This system relies on the Secure Survey Platform SSPP for survey execution, consent enforcement, identity handling, and response integrity."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "external-research-survey",
+          "remarks": "Where surveys involve external or research participants, this system relies on the External / Research Survey SSPP constraints."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-platform",
+          "remarks": "This system consumes identity services only for survey eligibility or access control, never for response analysis unless explicitly declared."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "This system relies on Secure Network for protected transport, availability, and monitoring."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-email-platform",
+          "remarks": "This system relies on Secure Email application send-only mechanisms for survey invitations and notifications."
+        },
+
+        {
+          "name": "survey-consumption-model",
+          "class": "design-principle",
+          "value": "externalized-survey-trust",
+          "remarks": "Survey consent, anonymity enforcement, and data protection are implemented by the Secure Survey Platform and are not re-implemented locally."
+        },
+        {
+          "name": "application-responsibility",
+          "class": "design-principle",
+          "value": "context-and-purpose-definition",
+          "remarks": "The relying system remains responsible for defining survey purpose, audience, and justification."
+        },
+        {
+          "name": "data-governance-boundary",
+          "class": "architecture-boundary",
+          "value": "survey-system-owned",
+          "remarks": "Survey responses and metadata are governed by the Secure Survey Platform, not by the relying application, unless explicitly transferred under policy."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "§2",
+          "remarks": "Relying systems invoke survey services while preserving defined trust and responsibility boundaries."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-inheritance",
+          "value": "PL, IA, PT, AC, AU",
+          "remarks": "Survey-related privacy and security controls are inherited from the Secure Survey SSPP stack."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP documents reliance on Secure Survey services and prohibits local implementation of survey trust semantics within the relying system.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:component:survey-reliant-application",
+          "type": "conceptual",
+          "title": "Survey-Reliant Application Component",
+          "description": "Logical representation of an application that initiates or embeds survey functionality."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-application-owner",
+        "title": "Application Owner",
+        "remarks": "Defines survey purpose, timing, and integration points within the application context.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-GOV"
+          }
+        ]
+      },
+      {
+        "id": "role-survey-architecture",
+        "title": "Survey Architecture Authority",
+        "remarks": "Ensures correct inheritance of Secure Survey controls and prevents survey logic duplication.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All survey security, privacy, consent, and data protection controls are inherited from the Secure Survey Platform and related SSPPs. This SSPP documents reliance and boundary conditions only."
+    }
+  }
+}
