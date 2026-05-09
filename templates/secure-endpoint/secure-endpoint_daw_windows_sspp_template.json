@@ -1,0 +1,185 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:daw:windows",
+
+    "metadata": {
+      "title": "Dedicated Access Workstation (DAW) Windows SSPP",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T11:00:00Z",
+      "remarks": "Operating system–specific System Security and Privacy Plan defining how Microsoft Windows endpoints implement the Dedicated Access Workstation (DAW) trust tier."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "DAW Windows Managed Endpoint",
+      "system-description": "A Microsoft Windows Dedicated Access Workstation configured as a single-purpose, maximal-assurance execution environment for privileged operations and Level 4 data access.",
+      "security-sensitivity-level": "very-high",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "daw",
+          "remarks": "This Windows SSPP inherits all DAW requirements, including all COBO L2 and COBO L1 inherited constraints."
+        },
+
+        {
+          "name": "operating-system",
+          "class": "platform",
+          "value": "windows",
+          "remarks": "Microsoft Windows operating system."
+        },
+
+        {
+          "name": "supported-versions",
+          "class": "constraint",
+          "value": "windows-11-current",
+          "remarks": "Only currently supported Windows 11 releases approved for DAW use are permitted."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "DAW Windows endpoint is owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "DAW Windows endpoint is centrally enrolled, governed, and monitored."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "explicit-prohibition",
+          "value": "single-purpose-only",
+          "remarks": "General productivity applications (email, web browsing, collaboration, office suites) are prohibited."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "tpm-backed-device-cert-attested",
+          "remarks": "Windows DAW identity must use TPM-backed non-exportable keys, PKI-issued device certificates, and hardware attestation."
+        },
+
+        {
+          "name": "cryptographic-compliance",
+          "class": "mandatory-requirement",
+          "value": "fips-140-3",
+          "remarks": "All cryptographic operations must use FIPS 140-3 validated modules."
+        },
+
+        {
+          "name": "secure-boot-and-measurement",
+          "class": "mandatory-requirement",
+          "value": "enabled-measured-attested",
+          "remarks": "UEFI Secure Boot, measured boot, and attestation enforcement are mandatory."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "cis-level-2-plus-stigs",
+          "remarks": "Windows DAW configuration applies CIS Windows Benchmarks Level 2 and applicable DISA STIG requirements."
+        },
+
+        {
+          "name": "credential-protection",
+          "class": "mandatory-requirement",
+          "value": "vbs-credential-guard-hvci",
+          "remarks": "Virtualization-Based Security, Credential Guard, and Hypervisor-Enforced Code Integrity (HVCI) must be enabled."
+        },
+
+        {
+          "name": "defender-advanced-protection",
+          "class": "mandatory-requirement",
+          "value": "advanced-edr-isolation",
+          "remarks": "Advanced Microsoft Defender features including endpoint isolation and tamper protection must be enabled."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "restricted-brokered",
+          "remarks": "Network connectivity is restricted to approved admin endpoints, brokers, and control planes only."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-4",
+          "remarks": "Windows DAW endpoints are required for workflows involving Level 4 data."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "device-not-data",
+          "remarks": "DAW status does not confer automatic entitlement to Level 4 data; all access remains governed by Secure Data policies."
+        },
+
+        {
+          "name": "privileged-workloads-only",
+          "class": "constraint",
+          "value": "true",
+          "remarks": "DAWs may be used only for privileged administration, security operations, and high-risk institutional workflows."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "governance-requirement",
+          "value": "strict-and-audited",
+          "remarks": "Enrollment, suspension, recovery, and retirement require elevated approval and enhanced auditability for DAWs."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP defines how Windows implements the DAW trust tier through maximal isolation, strict configuration baselines, strong hardware-backed identity, and continuous posture assurance.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-identity-and-posture",
+          "type": "pattern-reference",
+          "title": "Endpoint Identity and Posture"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "Windows DAW security baselines, Group Policy/MDM configurations, Defender policies, and attestation workflows implement this SSPP and are maintained as controlled, versioned artifacts."
+    }
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cobo-l2:linux",
+
+    "metadata": {
+      "title": "COBO L2 Linux Endpoint SSPP",
+      "version": "1.2.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T12:15:00Z",
+      "remarks": "Operating system–specific System Security and Privacy Plan defining how Linux endpoints implement the COBO L2 enhanced-assurance endpoint trust tier."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COBO L2 Linux Managed Endpoint",
+      "system-description": "A Linux workstation configured to meet enhanced COBO L2 requirements for sensitive data handling, elevated assurance, and privileged institutional workloads.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "cobo-l2",
+          "remarks": "This Linux SSPP inherits all COBO L2 requirements and all underlying COBO L1 Linux requirements."
+        },
+
+        {
+          "name": "operating-system",
+          "class": "platform",
+          "value": "linux",
+          "remarks": "Linux operating system (workstation use only)."
+        },
+
+        {
+          "name": "supported-distributions",
+          "class": "constraint",
+          "value": "vendor-supported-lts-only",
+          "remarks": "Only institution-approved, vendor-supported LTS Linux distributions are permitted."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Linux endpoint is owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Linux endpoint is centrally enrolled, governed, and monitored via institutional endpoint management tooling."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "tpm-backed-device-cert-attested",
+          "remarks": "Linux endpoint identity must use TPM-backed non-exportable private keys, PKI-issued device certificates, and hardware-backed attestation."
+        },
+
+        {
+          "name": "cryptographic-compliance",
+          "class": "mandatory-requirement",
+          "value": "fips-140-3",
+          "remarks": "Linux cryptographic subsystems must operate using FIPS 140-3 validated cryptographic modules."
+        },
+
+        {
+          "name": "secure-boot-and-measurement",
+          "class": "mandatory-requirement",
+          "value": "uefi-secure-boot-and-measured",
+          "remarks": "UEFI Secure Boot and measured boot must be enabled and integrated with attestation mechanisms."
+        },
+
+        {
+          "name": "full-disk-encryption",
+          "class": "mandatory-requirement",
+          "value": "enabled-and-protected",
+          "remarks": "Full disk encryption must be enabled with keys protected by TPM-backed mechanisms."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "cis-linux-level-2",
+          "remarks": "Linux configuration applies CIS Linux Benchmark Level 2 settings appropriate for enhanced-assurance workstation use."
+        },
+
+        {
+          "name": "mandatory-access-controls",
+          "class": "mandatory-requirement",
+          "value": "enforcing-and-locked",
+          "remarks": "Mandatory access control frameworks (SELinux or AppArmor) must be enabled, enforcing, and protected against runtime disablement."
+        },
+
+        {
+          "name": "kernel-and-driver-hardening",
+          "class": "mandatory-requirement",
+          "value": "strict",
+          "remarks": "Kernel hardening features, module signing, and restricted driver loading must be enforced."
+        },
+
+        {
+          "name": "malware-and-threat-protection",
+          "class": "mandatory-requirement",
+          "value": "enhanced-runtime-protection",
+          "remarks": "Institution-approved endpoint threat detection, integrity monitoring, and runtime containment tooling must be enabled."
+        },
+
+        {
+          "name": "posture-and-health-reporting",
+          "class": "mandatory-requirement",
+          "value": "continuous-and-high-assurance",
+          "remarks": "Linux endpoints continuously report posture and compliance signals with higher assurance guarantees than COBO L1."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-1,level-2,level-3",
+          "remarks": "Linux COBO L2 endpoints may participate in workflows involving Data Classification Levels 1, 2, and 3."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "device-not-data",
+          "remarks": "Endpoint assurance does not confer automatic entitlement to any data classification."
+        },
+
+        {
+          "name": "privileged-workload-support",
+          "class": "eligibility",
+          "value": "permitted",
+          "remarks": "Linux COBO L2 endpoints may be used for privileged and administrative workflows where explicitly authorized."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "mandatory-requirement",
+          "value": "heightened",
+          "remarks": "Linux COBO L2 endpoints are subject to heightened lifecycle governance, including stricter suspension, recovery, and audit requirements."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP defines how Linux endpoints implement COBO L2 trust through stronger hardware-backed identity, stricter configuration baselines, kernel protections, and enhanced runtime threat detection.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-identity-and-posture",
+          "type": "pattern-reference",
+          "title": "Endpoint Identity and Posture"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "Linux configuration management, bootloader policies, TPM integration, CIS Level 2 hardening, and endpoint protection tooling implement this SSPP and are maintained as controlled, versioned implementation artifacts."
+    }
+  }
+}

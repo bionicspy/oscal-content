@@ -81,6 +81,18 @@
           "class": "explicit-prohibition",
           "value": "self-signed-and-local-certs",
           "remarks": "The relying system must not issue, store, or trust self-signed or locally managed certificates. All certificates must be issued and validated by the PKI Platform."
+        },
+        {
+          "name": "endpoint-tier-enforcement",
+          "class": "mandatory-reliance",
+          "value": "secure-endpoint-daw",
+          "remarks": "Relying systems that handle Data Classification Level 4 must verify that access originates from a Secure Endpoint DAW-tier device."
+        },
+        {
+          "name": "prohibited-practice",
+          "class": "explicit-prohibition",
+          "value": "non-daw-level-4-access",
+          "remarks": "Access to Level 4 data from non-DAW endpoint tiers (including COBO L1 and COBO L2) is explicitly prohibited, regardless of authentication strength."
         }
       ]
     },
@@ -128,7 +140,7 @@
     ],
 
     "control-implementation": {
-      "remarks": "All data classification, protection, loss prevention, and retention controls are inherited from the Secure Data Platform SSPP. This SSPP documents reliance and boundary conditions only. All cryptographic operations, including encryption, signing, and trust validation, are inherited from the Key Management and PKI Platforms. The relying system is prohibited from implementing local cryptographic trust mechanisms."
+      "remarks": "All data classification, protection, loss prevention, and retention controls are inherited from the Secure Data Platform SSPP. This SSPP documents reliance and boundary conditions only. All cryptographic operations, including encryption, signing, and trust validation, are inherited from the Key Management and PKI Platforms. The relying system is prohibited from implementing local cryptographic trust mechanisms. Endpoint trust tier verification is mandatory for data access decisions. Relying systems must not implement local endpoint classification logic and must consume DAW eligibility signals from Secure Endpoint."
     }
   }
 }

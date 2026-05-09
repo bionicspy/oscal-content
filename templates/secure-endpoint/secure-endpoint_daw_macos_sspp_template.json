@@ -1,0 +1,192 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:daw:macos",
+
+    "metadata": {
+      "title": "Dedicated Access Workstation (DAW) macOS SSPP",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T11:45:00Z",
+      "remarks": "Operating system–specific System Security and Privacy Plan defining how Apple macOS endpoints implement the Dedicated Access Workstation (DAW) trust tier."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "DAW macOS Managed Endpoint",
+      "system-description": "An Apple macOS Dedicated Access Workstation configured as a single-purpose, maximal-assurance execution environment for privileged access and Level 4 data workflows.",
+      "security-sensitivity-level": "very-high",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "daw",
+          "remarks": "This macOS SSPP inherits all DAW requirements, including all COBO L2 and COBO L1 inherited constraints."
+        },
+
+        {
+          "name": "operating-system",
+          "class": "platform",
+          "value": "macos",
+          "remarks": "Apple macOS operating system."
+        },
+
+        {
+          "name": "supported-versions",
+          "class": "constraint",
+          "value": "macos-current-only",
+          "remarks": "Only the current, vendor-supported macOS release approved for DAW use is permitted."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "DAW macOS endpoint is owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "DAW macOS endpoint is centrally enrolled, governed, and monitored using institutional MDM services."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "explicit-prohibition",
+          "value": "single-purpose-only",
+          "remarks": "General productivity workloads (email, web browsing, messaging, collaboration, office applications) are prohibited on DAW macOS endpoints."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "secure-enclave-backed-device-cert-attested",
+          "remarks": "macOS DAW identity must use Secure Enclave–backed non-exportable private keys, PKI-issued device certificates, and support hardware-backed attestation."
+        },
+
+        {
+          "name": "cryptographic-compliance",
+          "class": "mandatory-requirement",
+          "value": "fips-140-3-platform-services",
+          "remarks": "macOS cryptographic operations must rely on platform cryptographic services operating in FIPS 140-3 validated modes where applicable."
+        },
+
+        {
+          "name": "secure-boot-and-platform-integrity",
+          "class": "mandatory-requirement",
+          "value": "enabled-measured-and-enforced",
+          "remarks": "Apple Secure Boot, sealed system volume, and platform integrity protections must be enabled and enforced."
+        },
+
+        {
+          "name": "system-integrity-protection",
+          "class": "mandatory-requirement",
+          "value": "enabled-strict",
+          "remarks": "System Integrity Protection (SIP) must be enabled at the strictest supported configuration."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "cis-macos-level-2-plus-daw-overlays",
+          "remarks": "macOS DAW configuration applies CIS macOS Benchmark Level 2 with additional DAW-specific hardening overlays."
+        },
+
+        {
+          "name": "credential-and-secret-protection",
+          "class": "mandatory-requirement",
+          "value": "secure-enclave-keychain-hardened",
+          "remarks": "Credentials and secrets must be confined to Secure Enclave–backed Keychain with restricted access policies."
+        },
+
+        {
+          "name": "malware-and-threat-protection",
+          "class": "mandatory-requirement",
+          "value": "enhanced-and-restrictive",
+          "remarks": "Apple XProtect, Gatekeeper, notarization enforcement, and institution-approved advanced endpoint threat protection must be enabled."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "restricted-and-brokered",
+          "remarks": "DAW macOS endpoints may communicate only with approved administrative brokers, management services, and control planes."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-4",
+          "remarks": "DAW macOS endpoints are required for workflows involving Level 4 data."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "device-not-data",
+          "remarks": "DAW endpoint status does not confer automatic entitlement to Level 4 data; all access remains governed by Secure Data policies."
+        },
+
+        {
+          "name": "privileged-workloads-only",
+          "class": "constraint",
+          "value": "true",
+          "remarks": "DAW macOS endpoints are limited to privileged administration and high-risk institutional workflows."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "governance-requirement",
+          "value": "strict-and-audited",
+          "remarks": "Enrollment, suspension, recovery, and retirement of DAW macOS endpoints require elevated approval and enhanced auditability."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP defines how macOS implements the DAW trust tier using Apple hardware security features, strict configuration baselines, strong cryptographic identity, and continuous posture assurance.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-identity-and-posture",
+          "type": "pattern-reference",
+          "title": "Endpoint Identity and Posture"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "macOS configuration profiles, MDM enforcement, CIS Level 2 baselines, notarization controls, and endpoint protection tooling implement this SSPP and are maintained as strictly controlled, versioned artifacts."
+    }
+  }
+}

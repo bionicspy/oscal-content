@@ -1,0 +1,186 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:library-catalog",
+
+    "metadata": {
+      "title": "COSU Library Catalog Terminal SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T16:00:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Library Catalog Terminals as constrained endpoint execution environments for discovery and lookup of library resources."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Library Catalog Terminal",
+      "system-description": "A corporate-owned, single-use endpoint dedicated to the discovery, lookup, and availability checking of library collections and public academic resources, with no general-purpose computing capability.",
+      "security-sensitivity-level": "low",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Library Catalog Terminals inherit foundational endpoint trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-library-catalog-terminal",
+          "remarks": "Single-use COSU endpoint for library catalog discovery and lookup."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "catalog-and-discovery-only",
+          "remarks": "Execution is restricted to approved library catalog, discovery, and resource availability applications."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "none-or-transient",
+          "remarks": "Library Catalog Terminals do not require persistent user authentication; interactions are anonymous or transient."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Library Catalog Terminals are owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Library Catalog Terminals are centrally enrolled, configured, monitored, and reset."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound",
+          "remarks": "Device identity is used for management, integrity verification, and controlled access to catalog services."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "catalog-terminal-locked-down",
+          "remarks": "Operating system configuration disables shell access, removable media, file downloads, local storage, and non-catalog applications."
+        },
+
+        {
+          "name": "session-isolation",
+          "class": "mandatory-requirement",
+          "value": "strict-and-ephemeral",
+          "remarks": "Each interaction session is isolated and automatically cleared after inactivity or session end."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "library-services-only",
+          "remarks": "Network access is limited to approved library catalogs, discovery platforms, authentication brokers (where applicable), and management services."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "explicit-prohibition",
+          "value": "no-local-user-data",
+          "remarks": "Search history, credentials, and user-entered data must not be persisted locally."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-0,level-1",
+          "remarks": "Library Catalog Terminals may interact only with public or minimally sensitive bibliographic and availability data."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "discovery-terminal-not-working-station",
+          "remarks": "A discovery-focused COSU endpoint does not imply trust as a workstation or eligibility for higher-classification data."
+        },
+
+        {
+          "name": "availability-requirement",
+          "class": "requirement",
+          "value": "high-availability",
+          "remarks": "Library Catalog Terminals must prioritize uptime and rapid recovery to support user discovery and access."
+        },
+
+        {
+          "name": "monitoring-and-integrity-signals",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Device health, catalog service availability, and tamper or misuse events are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "managed-reset-and-reimage",
+          "remarks": "Library Catalog Terminals support automated reset, routine reimage, and auditable retirement workflows."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Library Catalog Terminals implement Secure Endpoint patterns with emphasis on privacy-preserving discovery, minimal attack surface, and high availability.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-library-technology-operations",
+        "title": "Library Technology Operations",
+        "remarks": "Responsible for deployment, configuration, monitoring, and availability of Library Catalog Terminals."
+      },
+      {
+        "id": "role-library-governance",
+        "title": "Library Services Governance",
+        "remarks": "Approves catalog platforms, discovery integrations, and content scope."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Library Catalog Terminal implementations may use kiosk-mode operating systems or embedded platforms and are maintained as tightly controlled, versioned configuration baselines aligned with this SSPP."
+    }
+  }
+}

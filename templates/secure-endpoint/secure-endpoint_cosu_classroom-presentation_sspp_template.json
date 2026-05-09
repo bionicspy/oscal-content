@@ -1,0 +1,186 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:classroom-presentation",
+
+    "metadata": {
+      "title": "COSU Classroom Presentation Endpoint SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T15:15:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Classroom Presentation endpoints as shared, presentation-focused execution environments in instructional spaces."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Classroom Presentation Terminal",
+      "system-description": "A corporate-owned, single-use endpoint dedicated to in-room presentation and audiovisual control for instructional delivery, with constrained functionality and shared usage.",
+      "security-sensitivity-level": "low-moderate",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Classroom Presentation Terminals inherit foundational endpoint trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-classroom-presentation",
+          "remarks": "Single-use COSU endpoint for classroom presentation and AV control."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "presentation-and-av-control-only",
+          "remarks": "Execution is restricted to presentation software, approved browsers for instructional display, and audiovisual control interfaces."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "session-based-instructor-access",
+          "remarks": "Instructors authenticate per session; no persistent local user profiles are retained."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Classroom Presentation Terminals are owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Endpoints are centrally enrolled, configured, and monitored."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound",
+          "remarks": "Device identity is used for management integrity, monitoring, and service trust, not for user or data entitlement."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "presentation-terminal-locked-down",
+          "remarks": "Operating system configuration restricts administrative tools, development environments, removable media, and unauthorized applications."
+        },
+
+        {
+          "name": "session-isolation",
+          "class": "mandatory-requirement",
+          "value": "enforced",
+          "remarks": "Instructor sessions are isolated and cleared at logoff or session end to prevent cross-user data exposure."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "instructional-platforms-only",
+          "remarks": "Network access is limited to approved instructional platforms, presentation sources, AV systems, and management services."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "constraint",
+          "value": "temporary-and-session-bound",
+          "remarks": "Local data storage is permitted only temporarily for presentation caching and is cleared automatically."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-0,level-1",
+          "remarks": "Classroom Presentation Terminals may only participate in workflows involving public or minimally sensitive instructional data."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "presentation-device-not-workstation",
+          "remarks": "A presentation-focused COSU endpoint does not imply trust as a general workstation or eligibility for higher-classification data."
+        },
+
+        {
+          "name": "availability-requirement",
+          "class": "requirement",
+          "value": "high-availability",
+          "remarks": "Classroom Presentation Terminals must prioritize uptime and rapid recovery to support scheduled instruction."
+        },
+
+        {
+          "name": "monitoring-and-integrity-signals",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Endpoint health, configuration drift, and misuse attempts are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "managed-reset-and-reimage",
+          "remarks": "Classroom Presentation Terminals support automated session reset, periodic reimage, and auditable retirement workflows."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Classroom Presentation Terminals implement Secure Endpoint patterns with emphasis on session isolation, limited execution scope, and instructional availability.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-classroom-technology-operations",
+        "title": "Classroom Technology Operations",
+        "remarks": "Responsible for deployment, configuration, monitoring, and recovery of Classroom Presentation Terminals."
+      },
+      {
+        "id": "role-instructional-technology-governance",
+        "title": "Instructional Technology Governance",
+        "remarks": "Approves presentation platforms, allowed software, and exception handling."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Classroom Presentation Terminal implementations are platform-specific (Windows podium builds, macOS presentation accounts, or Linux kiosk configurations) and maintained as controlled, versioned baselines."
+    }
+  }
+}

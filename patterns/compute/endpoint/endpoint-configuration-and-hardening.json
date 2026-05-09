@@ -6,164 +6,92 @@
       "title": "Endpoint Configuration and Hardening",
       "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-04T14:10:00Z",
+      "last-modified": "2026-05-04T07:00:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC260",
-          "remarks": "Business capability ensuring endpoints are securely configured and restrict what software may execute."
+          "value": "urn:utoronto:cae2:brm:BC451",
+          "remarks": "Business capability for enforcing preventive configuration and hardening controls that reduce endpoint attack surface and constrain execution."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD020",
-          "remarks": "Endpoint and user-operated compute technology domain."
-        },
-        {
-          "name": "technology-platform",
-          "ns": "urn:utoronto:cae2:trm",
-          "class": "trm-platform",
-          "value": "urn:utoronto:cae2:trm:TP062",
-          "remarks": "Endpoint configuration management, application control, and system hardening platforms."
+          "value": "urn:utoronto:cae2:trm:TD240",
+          "remarks": "Endpoint operating systems, firmware, configuration baselines, hardening policies, and execution control mechanisms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP092",
-          "remarks": "Secure-by-default endpoint execution environment with enforced configuration baselines and application allowlisting."
+          "class": "constraint-pattern",
+          "value": "urn:utoronto:cae2:arm:AP341",
+          "remarks": "Constraint pattern defining preventive controls that harden endpoints against known classes of exploitation prior to runtime."
+        },
+
+        {
+          "name": "depends-on-pattern",
+          "value": "endpoint-core",
+          "remarks": "Configuration and hardening apply only to endpoints that satisfy Endpoint Core enrollment and trust requirements."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "foundational-hardening",
+          "value": "SP 800-53 Rev. 5; SP 800-171 Rev. 3; SP 800-92",
+          "remarks": "Endpoint configuration and hardening align with NIST guidance for secure configuration, least functionality, and control baselining."
         },
         {
-          "name": "data-entity",
-          "ns": "urn:utoronto:cae2:drm",
-          "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE422",
-          "remarks": "Endpoint configuration baselines, application allow/deny policies, and hardening artifacts."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "os-hardening",
+          "value": "SP 800-70; SP 800-123",
+          "remarks": "Operating system configuration and baselining guidance."
         }
       ],
 
-      "remarks": "Endpoint Configuration and Hardening defines preventive controls that establish a secure endpoint execution environment. These controls reduce attack surface and restrict execution paths through enforced configuration baselines and application control. This pattern is preventive by design and does not rely on runtime detection or response.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to endpoint secure configuration and application execution control."
+      "remarks": "Endpoint Configuration and Hardening defines preventive, baseline controls that reduce endpoint exploitability and execution risk. This pattern enforces configuration discipline and attack surface reduction but does not evaluate posture, respond to active threats, or manage lifecycle state."
     },
 
     "components": [
-
       {
-        "uuid": "urn:utoronto:security:capability:configuration-baselines",
+        "uuid": "urn:utoronto:security:capability:endpoint-secure-baseline",
         "type": "capability",
-        "title": "Configuration Baselines",
-        "description": "Definition and enforcement of approved operating system configuration baselines for endpoints.",
+        "title": "Secure Configuration Baseline",
+        "description": "Requires endpoints to conform to an approved and versioned secure configuration baseline.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1562",
-            "remarks": "Defense impairment via modification or disabling of endpoint security configuration."
+            "class": "technique",
+            "value": "T1082",
+            "remarks": "System information discovery exploiting insecure or default configurations."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:SystemHardening",
-            "remarks": "Establishes hardened configuration states to reduce attack surface."
+            "class": "technique",
+            "value": "D3FEND-0027",
+            "remarks": "Secure configuration baselines reduce exposure to known exploitation paths."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:endpoint-baseline",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "CM-2",
-                "remarks": "Develop, document, and maintain endpoint configuration baselines."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:application-control",
-        "type": "capability",
-        "title": "Application Control",
-        "description": "Allowlisting and restriction of applications, scripts, and binaries permitted to execute on endpoints.",
-
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1059",
-            "remarks": "Command and scripting interpreter abuse for arbitrary code execution."
-          },
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1204",
-            "remarks": "User execution of malicious files."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:ExecutionPrevention",
-            "remarks": "Prevents execution of unapproved code through allowlisting."
-          }
-        ],
-
-        "control-implementations": [
-          {
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "CM-7",
-                "remarks": "Restrict execution to approved applications and scripts."
+                "remarks": "Baseline configurations are defined, documented, and maintained."
               },
               {
-                "control-id": "SI-7",
-                "remarks": "Prevent execution of unauthorized or tampered software."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:user-installed-software-policy",
-        "type": "capability",
-        "title": "User-Installed Software Policy",
-        "description": "Controls governing whether and how users may install software on endpoints.",
-
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1078",
-            "remarks": "Abuse of valid accounts to install or execute unauthorized software."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:PrivilegedAccountManagement",
-            "remarks": "Restricts administrative rights required for installing software."
-          }
-        ],
-
-        "control-implementations": [
-          {
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "AC-6",
-                "remarks": "Limit administrative privileges required for software installation."
+                "control-id": "CM-6",
+                "remarks": "Configuration settings enforce least functionality."
               }
             ]
           }
@@ -174,32 +102,33 @@
         "uuid": "urn:utoronto:security:capability:attack-surface-reduction",
         "type": "capability",
         "title": "Attack Surface Reduction",
-        "description": "Reduction of exposed services, interpreters, and optional OS features on endpoints.",
+        "description": "Disables or constrains services, features, and interfaces not required for endpoint function.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1068",
-            "remarks": "Exploitation of exposed local services or components."
+            "class": "technique",
+            "value": "T1059",
+            "remarks": "Command and script execution via unnecessary interpreters or services."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:AttackSurfaceReduction",
-            "remarks": "Eliminates unnecessary execution paths and services."
+            "class": "technique",
+            "value": "D3FEND-0018",
+            "remarks": "Attack surface reduction limits available execution paths."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:attack-surface",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "CM-7",
-                "remarks": "Disable unnecessary endpoint services, features, and execution paths."
+                "remarks": "The endpoint environment enforces least functionality."
               }
             ]
           }
@@ -207,35 +136,73 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:configuration-protection",
+        "uuid": "urn:utoronto:security:capability:endpoint-exploit-mitigation",
         "type": "capability",
-        "title": "Configuration Protection",
-        "description": "Protection of endpoint configuration and application control settings from unauthorized modification.",
+        "title": "Exploit Mitigation and Memory Protection",
+        "description": "Applies operating system protections to limit memory corruption and exploit techniques.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1562",
-            "remarks": "Impairment of defenses by altering configuration or policy enforcement."
+            "class": "technique",
+            "value": "T1203",
+            "remarks": "Exploitation of client software vulnerabilities."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:ConfigurationProtection",
-            "remarks": "Prevents unauthorized modification of hardened endpoint configuration."
+            "class": "technique",
+            "value": "D3FEND-0046",
+            "remarks": "Exploit mitigations reduce reliability of memory corruption attacks."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:exploit-mitigation",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "CM-5",
-                "remarks": "Restrict, monitor, and audit changes to endpoint configuration and application control policies."
+                "control-id": "SI-16",
+                "remarks": "Address space randomization and execution protections are enforced."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:privilege-hardening",
+        "type": "capability",
+        "title": "Privilege and Execution Hardening",
+        "description": "Restricts administrative privilege and enforces controlled elevation and execution.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1068",
+            "remarks": "Privilege escalation through misconfiguration or excess rights."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0055",
+            "remarks": "Privilege hardening limits attacker lateral escalation."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:privilege-hardening",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-6",
+                "remarks": "Endpoint enforces least privilege for users and processes."
               }
             ]
           }

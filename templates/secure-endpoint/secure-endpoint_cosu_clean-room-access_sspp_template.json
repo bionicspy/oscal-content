@@ -1,0 +1,191 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:clean-room-access",
+
+    "metadata": {
+      "title": "COSU Clean-Room / Facility Access Terminal SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T17:30:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Clean-Room and Facility Access Terminals as constrained, access-enforcement endpoint execution environments."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Clean-Room / Facility Access Terminal",
+      "system-description": "A corporate-owned, single-use endpoint dedicated to verifying authorization, enforcing access conditions, and logging entry into controlled environments such as clean rooms, secure labs, and regulated facilities.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Clean-Room and Facility Access Terminals inherit foundational endpoint trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-clean-room-access-terminal",
+          "remarks": "Single-use COSU endpoint for physical access enforcement and environmental entry control."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "access-verification-and-logging-only",
+          "remarks": "Execution is restricted to approved access control, identity verification, badge, biometric, and environmental compliance applications."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "access-subject-authentication",
+          "remarks": "Users authenticate for access verification (e.g., badge, biometric, PIN, or federated identity) without persistent local sessions."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Clean-Room and Facility Access Terminals are owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Access Terminals are centrally enrolled, configured, monitored, and recovered."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound",
+          "remarks": "Device identity is used to establish trust with access control systems, logging services, and management platforms."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "access-terminal-locked-down",
+          "remarks": "Operating system configuration disables shell access, general applications, removable media, and unauthorized interfaces."
+        },
+
+        {
+          "name": "environmental-compliance-checks",
+          "class": "mandatory-requirement",
+          "value": "enforced-where-applicable",
+          "remarks": "Where required, terminals enforce entry conditions such as training status, certification validity, gowning acknowledgements, or safety confirmations."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "access-control-systems-only",
+          "remarks": "Network access is restricted to physical access control systems, identity verification services, logging platforms, and management endpoints."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "constraint",
+          "value": "access-events-and-audit-logs-only",
+          "remarks": "Local persistence is limited to encrypted, transient access events or logs required for continuity and troubleshooting."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-1",
+          "remarks": "Access Terminals may process limited operational and identity metadata but no research, administrative, or regulated datasets."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "access-enforcement-not-system-privilege",
+          "remarks": "Authorization to enter controlled spaces does not imply eligibility for system administration, data access, or elevated endpoint trust tiers."
+        },
+
+        {
+          "name": "availability-requirement",
+          "class": "requirement",
+          "value": "high-availability",
+          "remarks": "Access Terminals must prioritize uptime and rapid recovery to avoid disrupting facility operations."
+        },
+
+        {
+          "name": "monitoring-and-integrity-signals",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Terminal health, authentication attempts, access decisions, and tamper events are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "managed-and-audited",
+          "remarks": "Provisioning, maintenance, reset, and retirement of Access Terminals are auditable and subject to change control."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Clean-Room and Facility Access Terminals implement Secure Endpoint patterns with emphasis on access integrity, auditability, and operational continuity.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-facility-access-operations",
+        "title": "Facility Access Operations",
+        "remarks": "Responsible for daily operation, monitoring, and response involving Access Terminals."
+      },
+      {
+        "id": "role-facility-governance",
+        "title": "Facility Governance Authority",
+        "remarks": "Approves access conditions, identity requirements, and compliance dependencies for controlled environments."
+      },
+      {
+        "id": "role-endpoint-security",
+        "title": "Endpoint Security Operations",
+        "remarks": "Ensures security posture, monitoring, and lifecycle governance for Access Terminals."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Clean-Room and Facility Access Terminal implementations may use hardened workstations, industrial touch panels, or embedded controllers and are maintained as tightly controlled configuration baselines."
+    }
+  }
+}

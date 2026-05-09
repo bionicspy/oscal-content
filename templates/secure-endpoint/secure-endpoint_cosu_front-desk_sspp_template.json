@@ -1,0 +1,186 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:front-desk",
+
+    "metadata": {
+      "title": "COSU Front-Desk / Service Counter Endpoint SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T14:45:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Front‑Desk and Service Counter Terminals as shared, role-bound endpoint execution environments."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Front-Desk / Service Counter Terminal",
+      "system-description": "A corporate-owned, single-use endpoint supporting front-line institutional service workflows such as student services, registrar functions, library circulation, and IT service desks.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Front‑Desk Terminals inherit foundational endpoint trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-front-desk-terminal",
+          "remarks": "Single-use COSU endpoint for shared service counter workflows."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "line-of-business-apps-only",
+          "remarks": "Execution is restricted to approved line‑of‑business service applications and tightly scoped browser access."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "shared-device-individual-login",
+          "remarks": "Users authenticate with individual identities on a shared device; no persistent local profiles are retained."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Front‑Desk Terminals are owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Front‑Desk Terminals are centrally enrolled, configured, and monitored."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound",
+          "remarks": "Device identity is used for management, integrity verification, and network trust only."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "service-counter-locked-down",
+          "remarks": "Operating system configuration restricts general productivity tools, removable media, local storage, and unauthorized applications."
+        },
+
+        {
+          "name": "session-isolation",
+          "class": "mandatory-requirement",
+          "value": "enforced",
+          "remarks": "User sessions are isolated and cleared on logout to prevent cross-user data exposure."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "service-systems-only",
+          "remarks": "Network access is limited to approved institutional service platforms, authentication services, and management endpoints."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "constraint",
+          "value": "no-local-user-data",
+          "remarks": "Local storage of user or customer data is prohibited; all records reside in authorized backend systems."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-1,level-2",
+          "remarks": "Front‑Desk Terminals may participate in workflows involving Data Classification Levels 1 and 2 only."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "shared-service-not-high-trust",
+          "remarks": "Shared service counter usage does not imply eligibility for higher-classification data or privileged operations."
+        },
+
+        {
+          "name": "availability-requirement",
+          "class": "requirement",
+          "value": "high-availability",
+          "remarks": "Front‑Desk Terminals must prioritize availability and rapid recovery to support continuous service delivery."
+        },
+
+        {
+          "name": "monitoring-and-integrity-signals",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Terminal health, configuration drift, and security-relevant events are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "managed-reset-and-reimage",
+          "remarks": "Front‑Desk Terminals support routine reset, periodic reimage, and auditable retirement workflows."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Front‑Desk Terminals implement Secure Endpoint patterns with emphasis on shared‑use isolation, workflow integrity, and availability.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-service-desk-operations",
+        "title": "Service Desk Operations",
+        "remarks": "Responsible for deployment, availability, and day-to-day operation of Front‑Desk Terminals."
+      },
+      {
+        "id": "role-administrative-governance",
+        "title": "Administrative Governance Authority",
+        "remarks": "Approves business workflows, data access scope, and exception handling for Front‑Desk Terminals."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Front‑Desk Terminal implementations are OS‑specific and realized through kiosk modes, controlled user profiles, or hardened workstation configurations maintained as versioned artifacts."
+    }
+  }
+}

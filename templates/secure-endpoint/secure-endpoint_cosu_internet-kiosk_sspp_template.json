@@ -1,0 +1,172 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:internet-kiosk",
+
+    "metadata": {
+      "title": "COSU Internet Kiosk Endpoint SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T13:00:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Internet Kiosks as restricted-purpose endpoint execution environments."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Internet Kiosk",
+      "system-description": "A corporate-owned, single-use endpoint designed exclusively for controlled internet access or public-facing web interactions, with no general-purpose computing or institutional data handling capabilities.",
+      "security-sensitivity-level": "low",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Internet Kiosks inherit foundational trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-internet-kiosk",
+          "remarks": "Single-use, function-bound COSU endpoint."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "single-application",
+          "remarks": "Execution is restricted to a locked-down browser or approved kiosk application set."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "anonymous-or-transient",
+          "remarks": "Kiosk usage does not rely on persistent individual user identity."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Internet Kiosk endpoints are owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Internet Kiosk endpoints are centrally managed, monitored, and reset."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-only",
+          "remarks": "Device identity may be established for management and integrity purposes but is not used for data entitlement."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "kiosk-locked-down",
+          "remarks": "Operating system and application configuration are locked down to remove shell access, local storage, removable media, and unauthorized interfaces."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "restricted-egress-only",
+          "remarks": "Network access is limited to approved internet destinations and management services; no lateral access to institutional networks is permitted."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "explicit-prohibition",
+          "value": "none",
+          "remarks": "Local data persistence is prohibited; sessions are ephemeral and cleared automatically."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-0,level-1",
+          "remarks": "Internet Kiosks may only interact with public or minimally sensitive institutional data."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "locked-down-does-not-equal-high-trust",
+          "remarks": "A locked-down COSU endpoint does not imply high data trust or eligibility beyond its defined purpose."
+        },
+
+        {
+          "name": "posture-and-health-monitoring",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Kiosk integrity, availability, and configuration drift are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "mandatory-reset-and-reimage",
+          "remarks": "Kiosks support rapid reset, reimage, and retirement workflows under Secure Endpoint lifecycle governance."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Internet Kiosks implement Secure Endpoint patterns with emphasis on function restriction, attack surface minimization, and rapid recovery.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-kiosk-operations",
+        "title": "Kiosk Operations",
+        "remarks": "Responsible for deployment, configuration enforcement, monitoring, and reset of Internet Kiosks."
+      },
+      {
+        "id": "role-endpoint-governance",
+        "title": "Endpoint Governance Authority",
+        "remarks": "Approves kiosk purposes, network restrictions, and lifecycle actions."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Internet Kiosk implementations are OS-specific (Windows kiosk mode, Linux kiosk shells, macOS single-app mode) and are maintained as controlled configuration artifacts aligned with this SSPP."
+    }
+  }
+}

@@ -103,6 +103,12 @@
           "class": "mandatory-reliance",
           "value": "pki-platform",
           "remarks": "All cryptographic trust relationships for data access, transport, or sharing must be established and validated using the institutional PKI Platform."
+        },
+        {
+          "name": "data-execution-environment-requirement",
+          "class": "non-negotiable-requirement",
+          "value": "daw-required-for-level-4",
+          "remarks": "Workflows involving Data Classification Level 4 must be executed only from Dedicated Access Workstations (DAW) as defined by the Secure Endpoint Platform."
         }
       ]
     },
@@ -197,7 +203,7 @@
     ],
 
     "control-implementation": {
-      "remarks": "Security and privacy controls for data are implemented through Secure Data patterns and inherited by applications. This SSPP documents governance scope, dependencies, and assurance only.  Cryptographic controls for data protection are enforced exclusively through the Key Management and PKI Platforms. No system may generate, store, or distribute cryptographic keys or certificates outside these platforms."
+      "remarks": "Security and privacy controls for data are implemented through Secure Data patterns and inherited by applications. This SSPP documents governance scope, dependencies, and assurance only.  Cryptographic controls for data protection are enforced exclusively through the Key Management and PKI Platforms. No system may generate, store, or distribute cryptographic keys or certificates outside these platforms. Execution environment eligibility is a mandatory constraint for data protection. For Level 4 data, Secure Endpoint DAW-tier devices are required. COBO L2 and lower endpoint tiers are not eligible, regardless of user role or authorization."
     }
   }
 }

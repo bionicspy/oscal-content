@@ -1,0 +1,179 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:lab-instrument",
+
+    "metadata": {
+      "title": "COSU Lab Instrument Terminal SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T14:00:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Lab Instrument Terminals as constrained, high-integrity endpoint execution environments dedicated to scientific instrumentation."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Lab Instrument Terminal",
+      "system-description": "A corporate-owned, single-use endpoint dedicated to the control, operation, or monitoring of laboratory instruments, with restricted functionality and tightly controlled data flows.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Lab Instrument Terminals inherit foundational endpoint trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-lab-instrument-terminal",
+          "remarks": "Single-use COSU endpoint dedicated to laboratory instrumentation."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "vendor-application-only",
+          "remarks": "Execution is restricted to vendor-supplied instrument control and monitoring software."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "role-or-session-based",
+          "remarks": "Access may be shared among authorized lab users via session-based or role-based controls."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Lab Instrument Terminals are owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed-with-exceptions",
+          "remarks": "Endpoints are centrally managed, with documented exceptions for vendor-imposed constraints."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound",
+          "remarks": "Device identity is established for integrity, management, and network trust, not user or data entitlement."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "lab-locked-down",
+          "remarks": "Operating system configuration restricts background services, removable media, unauthorized interfaces, and non-instrument software."
+        },
+
+        {
+          "name": "anti-tamper-controls",
+          "class": "mandatory-requirement",
+          "value": "instrument-integrity-focused",
+          "remarks": "Controls protect against configuration drift, unauthorized software installation, and manipulation that could affect instrument operation or results."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "instrument-and-storage-only",
+          "remarks": "Network access is restricted to the instrument, required storage targets, management services, and explicitly approved research systems."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "constraint",
+          "value": "controlled-and-purpose-bound",
+          "remarks": "Local data persistence is permitted only as required for instrument operation and is governed by retention and transfer workflows."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-1,level-2",
+          "remarks": "Lab Instrument Terminals may participate only in workflows involving Data Classification Levels 1 and 2 unless separately approved."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "instrument-integrity-not-data-privilege",
+          "remarks": "High instrument integrity requirements do not imply eligibility for higher-classification institutional data."
+        },
+
+        {
+          "name": "monitoring-and-integrity-signals",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Terminal integrity, availability, and critical state changes are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "controlled-and-documented",
+          "remarks": "Provisioning, maintenance, reset, and retirement of Lab Instrument Terminals are documented and auditable under Secure Endpoint lifecycle governance."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Lab Instrument Terminals implement Secure Endpoint patterns with emphasis on stability, integrity of scientific operation, and constrained data flows.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-lab-operations",
+        "title": "Laboratory Operations",
+        "remarks": "Responsible for instrument availability, approved software use, and coordination with endpoint security."
+      },
+      {
+        "id": "role-endpoint-security",
+        "title": "Endpoint Security Operations",
+        "remarks": "Ensures security posture, monitoring, and lifecycle governance for Lab Instrument Terminals."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Lab Instrument Terminal implementations are OS- and vendor-specific and are maintained as documented, exception-aware configuration baselines aligned with this SSPP."
+    }
+  }
+}

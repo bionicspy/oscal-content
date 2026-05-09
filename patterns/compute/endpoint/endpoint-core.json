@@ -6,81 +6,86 @@
       "title": "Endpoint Core",
       "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-04T14:40:00Z",
+      "last-modified": "2026-05-04T07:15:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC260",
-          "remarks": "Business capability establishing institutional trust in user-operated endpoint devices."
+          "value": "urn:utoronto:cae2:brm:BC450",
+          "remarks": "Business capability for defining the baseline trust requirements that establish an endpoint as an acceptable execution environment."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD020",
-          "remarks": "Endpoint and user-operated compute technology domain."
-        },
-        {
-          "name": "technology-platform",
-          "ns": "urn:utoronto:cae2:trm",
-          "class": "trm-platform",
-          "value": "urn:utoronto:cae2:trm:TP060",
-          "remarks": "User-operated endpoint devices, operating systems, and execution environments."
+          "value": "urn:utoronto:cae2:trm:TD240",
+          "remarks": "Endpoint devices, operating systems, firmware, enrollment services, and hardware roots of trust."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP090",
-          "remarks": "Managed endpoint execution environment with explicit enrollment and governance."
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP340",
+          "remarks": "Foundational pattern defining non-negotiable trust invariants required for an endpoint to participate in institutional systems."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "endpoint-foundation",
+          "value": "SP 800-53 Rev. 5; SP 800-207",
+          "remarks": "Endpoint Core aligns with NIST guidance on foundational security controls and Zero Trust principles."
         },
         {
-          "name": "data-entity",
-          "ns": "urn:utoronto:cae2:drm",
-          "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE420",
-          "remarks": "Endpoint identity, classification, and execution environment metadata."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "endpoint-trust",
+          "value": "SP 800-63; SP 800-193",
+          "remarks": "Endpoint identity, integrity, and resilience align with digital identity and platform firmware resilience guidance."
         }
       ],
 
-      "remarks": "Endpoint Core defines the foundational capability that establishes whether a device is recognized as an institutional endpoint. It defines enrollment requirements, classification boundaries, execution environment legitimacy, and baseline trust assumptions independently of configuration hardening, health evaluation, or threat detection.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to endpoint identity, recognition, and baseline trust. Advanced controls (hardening, health, detection) are composed separately to preserve clean security semantics."
+      "remarks": "Endpoint Core defines the immutable trust properties that must be satisfied before an endpoint can be considered an acceptable execution environment. This pattern establishes enrollment, identity binding, baseline integrity, and observability requirements but does not define configuration hardening, posture evaluation, threat response, or lifecycle transitions."
     },
 
     "components": [
-
       {
-        "uuid": "urn:utoronto:security:capability:endpoint-enrollment",
+        "uuid": "urn:utoronto:security:capability:endpoint-enrollment-and-accountability",
         "type": "capability",
-        "title": "Endpoint Enrollment",
-        "description": "Formal enrollment and registration of devices into institutional endpoint management and trust systems.",
+        "title": "Endpoint Enrollment and Accountability",
+        "description": "Ensures endpoints are formally enrolled, uniquely identifiable, and attributable to an owner or custodian.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1078",
-            "remarks": "Abuse of unmanaged or fraudulently registered devices using valid credentials."
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Use of unmanaged or improperly enrolled devices to access institutional systems."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:EndpointManagement",
-            "remarks": "Formal device registration and lifecycle governance."
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Formal enrollment and identity binding prevent anonymous or unmanaged endpoint access."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:endpoint-enrollment",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "IA-4",
-                "remarks": "Establish and manage unique identities for endpoint devices."
+                "control-id": "IA-3",
+                "remarks": "Devices are uniquely identified and authenticated prior to system access."
+              },
+              {
+                "control-id": "CM-8",
+                "remarks": "An inventory of authorized endpoints is maintained."
               }
             ]
           }
@@ -88,35 +93,36 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:endpoint-classification",
+        "uuid": "urn:utoronto:security:capability:endpoint-identity-binding",
         "type": "capability",
-        "title": "Endpoint Classification",
-        "description": "Classification of endpoints by ownership, role, and permitted institutional usage.",
+        "title": "Endpoint Identity Binding",
+        "description": "Binds endpoint identity to cryptographic and hardware-backed identifiers.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1036",
-            "remarks": "Masquerading of untrusted or non-compliant devices as legitimate endpoints."
+            "class": "technique",
+            "value": "T1552",
+            "remarks": "Spoofing or reuse of endpoint identity through exposed or copied credentials."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:AssetClassification",
-            "remarks": "Explicit classification and policy binding based on endpoint type."
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Hardware-backed identity binding prevents cloning or reuse."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:endpoint-identity",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "AC-1",
-                "remarks": "Define and enforce policies governing endpoint use and classification."
+                "control-id": "IA-5",
+                "remarks": "Endpoint identity mechanisms are protected against compromise."
               }
             ]
           }
@@ -124,35 +130,36 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:execution-boundaries",
+        "uuid": "urn:utoronto:security:capability:endpoint-baseline-integrity",
         "type": "capability",
-        "title": "Execution Boundaries",
-        "description": "Definition of trust and execution boundaries between endpoint environments and institutional services.",
+        "title": "Baseline Integrity Assurance",
+        "description": "Establishes baseline integrity for firmware, boot chain, and operating system.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1059",
-            "remarks": "Execution of user-controlled code crossing assumed trust boundaries."
+            "class": "technique",
+            "value": "T1542",
+            "remarks": "Persistence through modification of firmware or boot components."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:BoundaryDefense",
-            "remarks": "Explicit enforcement of execution and trust boundaries."
+            "class": "technique",
+            "value": "D3FEND-0067",
+            "remarks": "Secure boot and measured boot protect baseline integrity."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:baseline-integrity",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "SC-7",
-                "remarks": "Define and enforce boundaries between endpoint execution environments and institutional systems."
+                "control-id": "SI-7",
+                "remarks": "Mechanisms are in place to detect unauthorized changes to system components."
               }
             ]
           }
@@ -160,35 +167,40 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:baseline-trust",
+        "uuid": "urn:utoronto:security:capability:endpoint-observability",
         "type": "capability",
-        "title": "Baseline Trust",
-        "description": "Establishment of minimum trust assumptions required for endpoint participation in institutional services.",
+        "title": "Endpoint Observability",
+        "description": "Ensures endpoint actions, state changes, and security-relevant events are observable.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1190",
-            "remarks": "Exploitation of externally facing services via untrusted endpoints."
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Deletion or suppression of endpoint evidence to evade detection."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:ZeroTrustAccess",
-            "remarks": "Require explicit baseline trust before endpoint participation."
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit and telemetry ensure accountability and investigation."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:endpoint-observability",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "CM-7",
-                "remarks": "Allow only approved endpoint services and execution behaviors."
+                "control-id": "AU-2",
+                "remarks": "Endpoint security-relevant events are logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit events are reviewed to identify anomalies."
               }
             ]
           }

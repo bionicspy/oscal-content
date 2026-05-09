@@ -4,126 +4,97 @@
 
     "metadata": {
       "title": "Endpoint Threat Protection",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-04T16:55:00Z",
+      "last-modified": "2026-05-04T08:15:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC260",
-          "remarks": "Business capability enabling endpoints to detect, prevent, and contain active malicious activity."
+          "value": "urn:utoronto:cae2:brm:BC455",
+          "remarks": "Business capability for detecting, containing, and responding to active threats on endpoints during runtime."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD020",
-          "remarks": "Endpoint and user-operated compute technology domain."
-        },
-        {
-          "name": "technology-platform",
-          "ns": "urn:utoronto:cae2:trm",
-          "class": "trm-platform",
-          "value": "urn:utoronto:cae2:trm:TP064",
-          "remarks": "Endpoint threat detection, malware protection, and local containment platforms."
+          "value": "urn:utoronto:cae2:trm:TD240",
+          "remarks": "Endpoint detection and response agents, runtime monitoring engines, isolation mechanisms, and local response tooling."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP094",
-          "remarks": "Runtime endpoint threat detection and containment with local enforcement."
+          "class": "constraint-pattern",
+          "value": "urn:utoronto:cae2:arm:AP345",
+          "remarks": "Constraint pattern defining runtime threat detection and containment on endpoints independent of baseline configuration or posture evaluation."
+        },
+
+        {
+          "name": "depends-on-pattern",
+          "value": "endpoint-core",
+          "remarks": "Threat protection operates only on endpoints that satisfy Endpoint Core trust requirements."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "incident-response",
+          "value": "SP 800-61 Rev. 2",
+          "remarks": "Endpoint threat detection and response align with NIST Computer Security Incident Handling Guide."
         },
         {
-          "name": "data-entity",
-          "ns": "urn:utoronto:cae2:drm",
-          "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE424",
-          "remarks": "Malware detections, behavioral alerts, threat telemetry, and containment actions."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "malware-defense",
+          "value": "SP 800-83",
+          "remarks": "Malware detection, prevention, and containment guidance."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "zero-trust-runtime",
+          "value": "SP 800-207",
+          "remarks": "Zero Trust assumes compromise and requires continuous runtime monitoring and containment."
         }
       ],
 
-      "remarks": "Endpoint Threat Protection defines the capability for endpoints to defend themselves against active threats through runtime detection, prevention, and local containment. This pattern addresses malicious activity that evades preventive configuration controls and health baselines.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to endpoint threat detection and response. Controls are scoped to detection and local enforcement and exclude configuration management, posture evaluation, and centralized incident response."
+      "remarks": "Endpoint Threat Protection defines how actively executing threats are detected and contained on endpoints. This pattern provides runtime defense-in-depth but does not replace configuration hardening, posture evaluation, or lifecycle governance."
     },
 
     "components": [
-
       {
-        "uuid": "urn:utoronto:security:capability:malware-detection",
+        "uuid": "urn:utoronto:security:capability:runtime-threat-detection",
         "type": "capability",
-        "title": "Malware Detection",
-        "description": "Detection and prevention of known malicious software on endpoints.",
+        "title": "Runtime Threat Detection",
+        "description": "Detects malicious or suspicious activity occurring on the endpoint during operation.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1204",
-            "remarks": "Execution of malicious files through user interaction."
+            "class": "technique",
+            "value": "T1059",
+            "remarks": "Execution of malicious scripts or commands during runtime."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:MalwarePrevention",
-            "remarks": "Identification and blocking of known malware."
+            "class": "technique",
+            "value": "D3FEND-0035",
+            "remarks": "Behavioral monitoring detects active malicious behavior."
           }
         ],
 
         "control-implementations": [
           {
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "SI-3",
-                "remarks": "Employ malicious code protection mechanisms."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:behavioral-protection",
-        "type": "capability",
-        "title": "Behavioral Protection",
-        "description": "Detection of malicious activity based on anomalous or unsafe behavior.",
-
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1059",
-            "remarks": "Abuse of command and scripting interpreters."
-          },
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1055",
-            "remarks": "Process injection to execute malicious code."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:BehavioralAnalysis",
-            "remarks": "Detection of malicious activity through behavioral monitoring."
-          }
-        ],
-
-        "control-implementations": [
-          {
+            "uuid": "urn:utoronto:security:ci:runtime-detection",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "SI-4",
-                "remarks": "Monitor endpoint activity to detect malicious behavior."
+                "remarks": "The endpoint monitors system activity to detect potential security incidents."
               }
             ]
           }
@@ -131,35 +102,110 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:local-containment",
+        "uuid": "urn:utoronto:security:capability:runtime-containment",
         "type": "capability",
-        "title": "Local Containment Actions",
-        "description": "Autonomous containment of threats to prevent spread or further compromise.",
+        "title": "Runtime Threat Containment",
+        "description": "Constrains or isolates the endpoint or processes to prevent spread or escalation.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1021",
-            "remarks": "Lateral movement from compromised endpoints."
+            "class": "technique",
+            "value": "T1105",
+            "remarks": "Lateral movement or command-and-control following initial compromise."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:IsolateSystem",
-            "remarks": "Local endpoint isolation to contain active threats."
+            "class": "technique",
+            "value": "D3FEND-0047",
+            "remarks": "Containment measures prevent propagation and escalation."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:runtime-containment",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "IR-4",
-                "remarks": "Contain and mitigate incidents at the endpoint level."
+                "remarks": "Incident response includes containment of malicious activity."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:endpoint-isolation",
+        "type": "capability",
+        "title": "Endpoint Isolation",
+        "description": "Enforces network or system isolation of compromised endpoints during investigation.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1021",
+            "remarks": "Remote service exploitation or lateral access expansion."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0047",
+            "remarks": "Isolation controls restrict endpoint interaction with other systems."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:endpoint-isolation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-7",
+                "remarks": "Boundary protection mechanisms restrict communication for compromised endpoints."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:threat-response-telemetry",
+        "type": "capability",
+        "title": "Threat Response Telemetry",
+        "description": "Captures forensic and response telemetry to support investigation and coordinated response.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Deletion or suppression of evidence following compromise."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Telemetry preservation supports investigation and accountability."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:threat-telemetry",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-6",
+                "remarks": "Security-relevant events are analyzed to detect and respond to threats."
               }
             ]
           }

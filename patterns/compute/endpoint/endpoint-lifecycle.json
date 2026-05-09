@@ -6,81 +6,95 @@
       "title": "Endpoint Lifecycle",
       "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-04T16:15:00Z",
+      "last-modified": "2026-05-04T08:00:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC260",
-          "remarks": "Business capability governing how endpoints enter, transition within, reset, and exit institutional trust."
+          "value": "urn:utoronto:cae2:brm:BC454",
+          "remarks": "Business capability for governing the full lifecycle of endpoint trust, including enrollment, transition, suspension, recovery, and retirement."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD020",
-          "remarks": "Endpoint and user-operated compute technology domain."
-        },
-        {
-          "name": "technology-platform",
-          "ns": "urn:utoronto:cae2:trm",
-          "class": "trm-platform",
-          "value": "urn:utoronto:cae2:trm:TP065",
-          "remarks": "Endpoint provisioning, reset, rebuild, and retirement platforms."
+          "value": "urn:utoronto:cae2:trm:TD240",
+          "remarks": "Endpoint provisioning systems, asset lifecycle management, decommissioning workflows, and trust state management."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP095",
-          "remarks": "Managed endpoint lifecycle with explicit trust entry, transition, reset, and exit points."
+          "class": "governance-pattern",
+          "value": "urn:utoronto:cae2:arm:AP344",
+          "remarks": "Governance pattern defining how endpoint trust is established, transitioned, suspended, and terminated over time."
+        },
+
+        {
+          "name": "depends-on-pattern",
+          "value": "endpoint-core",
+          "remarks": "Endpoint lifecycle governance applies only to endpoints that satisfy Endpoint Core trust requirements."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "system-lifecycle",
+          "value": "SP 800-53 Rev. 5; SP 800-37",
+          "remarks": "Endpoint lifecycle governance aligns with system lifecycle management and continuous authorization principles."
         },
         {
-          "name": "data-entity",
-          "ns": "urn:utoronto:cae2:drm",
-          "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE425",
-          "remarks": "Endpoint lifecycle state, ownership history, recovery events, and disposition records."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "trust-and-decommissioning",
+          "value": "SP 800-88; SP 800-193",
+          "remarks": "Endpoint retirement, reset, and integrity restoration align with media sanitization and platform resilience guidance."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "zero-trust",
+          "value": "SP 800-207",
+          "remarks": "Zero Trust requires explicit management of device trust entry, suspension, and reauthorization."
         }
       ],
 
-      "remarks": "Endpoint Lifecycle defines the capability to deliberately manage endpoint trust over time. It governs how endpoints are introduced into institutional trust, how trust is preserved or reset during ownership and role changes, and how trust is explicitly terminated. Proper lifecycle management ensures that software, credentials, and access do not persist beyond their intended trust boundaries.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to endpoint lifecycle and trust transitions. Configuration enforcement, health evaluation, and threat detection are intentionally excluded."
+      "remarks": "Endpoint Lifecycle defines how endpoint trust is consciously managed over time. This pattern governs when endpoints enter trust, how trust transitions occur, when trust is suspended, how recovery is handled, and how trust is permanently terminated. It does not configure endpoints, detect threats, or evaluate compliance."
     },
 
     "components": [
-
       {
-        "uuid": "urn:utoronto:security:capability:initial-provisioning",
+        "uuid": "urn:utoronto:security:capability:lifecycle-enrollment",
         "type": "capability",
-        "title": "Initial Provisioning",
-        "description": "Introduction of new endpoints into institutional management and baseline trust.",
+        "title": "Endpoint Trust Enrollment",
+        "description": "Establishes initial endpoint trust through controlled enrollment and identity binding.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1098",
-            "remarks": "Unauthorized addition of devices or identities during provisioning."
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Unauthorized or unmanaged devices attempting to enter trusted state."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:AssetProvisioning",
-            "remarks": "Controlled and auditable provisioning of endpoint assets."
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Formal enrollment prevents unauthorized trust entry."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:trust-enrollment",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "IA-4",
-                "remarks": "Create and manage endpoint identity records during initial provisioning."
+                "control-id": "PL-2",
+                "remarks": "Endpoint trust objectives and enrollment procedures are defined and approved."
               }
             ]
           }
@@ -88,35 +102,36 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:ownership-and-role-transition",
+        "uuid": "urn:utoronto:security:capability:lifecycle-transition",
         "type": "capability",
-        "title": "Ownership and Role Transition",
-        "description": "Controlled reassignment of endpoints between users, roles, or operational purposes.",
+        "title": "Trust State Transition",
+        "description": "Controls transitions between endpoint trust levels (e.g., COBO L1 to L2).",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1078",
-            "remarks": "Residual access through endpoints not properly re-associated after role changes."
+            "class": "technique",
+            "value": "T1601",
+            "remarks": "Manipulation of device state to illicitly gain higher trust."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:AssetReassignment",
-            "remarks": "Explicit reassignment and revalidation of endpoint trust during transitions."
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Governed transition processes prevent unauthorized trust escalation."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:trust-transition",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "AC-2",
-                "remarks": "Update endpoint ownership, associations, and access during reassignment."
+                "control-id": "CA-3",
+                "remarks": "Interconnections and trust relationships are explicitly authorized."
               }
             ]
           }
@@ -124,35 +139,36 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:trust-reset-and-recovery",
+        "uuid": "urn:utoronto:security:capability:lifecycle-suspension",
         "type": "capability",
-        "title": "Trust Reset and Recovery",
-        "description": "Reset and restoration of endpoint trust following compromise, misuse, or suspected integrity loss.",
+        "title": "Trust Suspension",
+        "description": "Temporarily suspends endpoint trust in response to compromise, health degradation, or investigation.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1565",
-            "remarks": "Persistence via manipulation of endpoint state after compromise."
+            "class": "technique",
+            "value": "T1562",
+            "remarks": "Persistence of access despite degraded or compromised endpoint state."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:AssetRestoration",
-            "remarks": "Re-establishment of endpoint trust through rebuild or validated recovery."
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Trust suspension removes endpoint eligibility without destruction."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:trust-suspension",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "IR-4",
-                "remarks": "Restore endpoint integrity and trust following incident or compromise."
+                "remarks": "Security incidents result in controlled suspension of endpoint trust."
               }
             ]
           }
@@ -160,39 +176,73 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:retirement-and-disposition",
+        "uuid": "urn:utoronto:security:capability:lifecycle-recovery",
         "type": "capability",
-        "title": "Retirement and Disposition",
-        "description": "Permanent removal of endpoints from institutional trust and eradication of residual access and software.",
+        "title": "Trust Recovery and Reauthorization",
+        "description": "Restores endpoint trust following remediation and verification.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1078",
-            "remarks": "Persistence through devices that are improperly retired or sanitized."
+            "class": "technique",
+            "value": "T1565",
+            "remarks": "Persistence of corrupted state following incomplete recovery."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:AssetDecommissioning",
-            "remarks": "Secure removal of endpoints from service and institutional trust."
+            "class": "technique",
+            "value": "D3FEND-0062",
+            "remarks": "Verified re‑enrollment ensures clean trust restoration."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:trust-recovery",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "CM-8",
-                "remarks": "Remove retired endpoints from institutional inventory."
-              },
+                "control-id": "CP-10",
+                "remarks": "Endpoint recovery procedures enable trusted restoration."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:lifecycle-retirement",
+        "type": "capability",
+        "title": "Endpoint Trust Retirement",
+        "description": "Permanently terminates endpoint trust and ensures secure decommissioning.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1485",
+            "remarks": "Residual data or credentials remaining after endpoint retirement."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0062",
+            "remarks": "Definitive decommissioning and sanitization prevent reuse."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:trust-retirement",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
               {
                 "control-id": "MP-7",
-                "remarks": "Sanitize endpoint storage media prior to disposal or reuse."
+                "remarks": "Endpoint components and data are securely sanitized upon retirement."
               }
             ]
           }

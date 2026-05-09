@@ -1,0 +1,123 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:relying-system:secure-endpoint",
+
+    "metadata": {
+      "title": "Secure Endpoint Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T09:00:00Z",
+      "remarks": "System Security and Privacy Plan template for systems that rely on Secure Endpoint to determine whether endpoint devices are acceptable execution environments."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Endpoint Relying System",
+      "system-description": "An application or service that consumes endpoint trust, posture, and lifecycle signals from the Secure Endpoint Platform to make access, execution, or data handling decisions.",
+      "security-sensitivity-level": "moderate-high",
+
+      "props": [
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "This system relies on the Secure Endpoint Platform SSPP as the authoritative source of endpoint trust."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-platform",
+          "remarks": "Endpoint trust signals are combined with identity context provided by Secure Identity."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "Network enforcement of endpoint trust and posture is performed by Secure Network."
+        },
+
+        {
+          "name": "endpoint-trust-consumption",
+          "class": "design-principle",
+          "value": "signal-based-and-inherited",
+          "remarks": "The system consumes endpoint trust, posture, and tier signals and must not implement its own endpoint trust logic."
+        },
+
+        {
+          "name": "endpoint-tier-awareness",
+          "class": "eligibility-constraint",
+          "value": "required",
+          "remarks": "The system must be capable of consuming endpoint tier classification (e.g., COBO L1, COBO L2) to determine eligibility."
+        },
+
+        {
+          "name": "prohibited-practice",
+          "class": "explicit-prohibition",
+          "value": "local-endpoint-assessment",
+          "remarks": "The system must not perform independent endpoint compliance checks, posture evaluation, or trust determination."
+        },
+
+        {
+          "name": "cryptographic-reliance",
+          "class": "mandatory-reliance",
+          "value": "pki-and-key-management",
+          "remarks": "Endpoint identity assertions relied upon by the system must be cryptographically validated using institutional PKI and Key Management services."
+        },
+
+        {
+          "name": "zero-trust-alignment",
+          "class": "design-principle",
+          "value": "sp-800-207",
+          "remarks": "Endpoint trust signals are treated as conditional inputs to authorization decisions."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP defines relying system responsibilities and boundaries only. Endpoint trust establishment, enforcement, posture evaluation, and lifecycle governance are externalized to Secure Endpoint.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:component:endpoint-trust-consumer",
+          "type": "conceptual",
+          "title": "Endpoint Trust Consumer",
+          "description": "Logical representation of an application component that consumes endpoint trust and posture signals."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-application-owner",
+        "title": "System Owner",
+        "remarks": "Defines how the application consumes endpoint trust signals and what endpoint tiers are acceptable.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-GOV"
+          }
+        ]
+      },
+      {
+        "id": "role-endpoint-architecture",
+        "title": "Endpoint Architecture Authority",
+        "remarks": "Approves endpoint eligibility requirements and ensures correct reliance on Secure Endpoint.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All endpoint trust, posture evaluation, cryptographic identity, and lifecycle controls are inherited from the Secure Endpoint Platform SSPP. This relying system SSPP documents consumption and boundary conditions only."
+    }
+  }
+}

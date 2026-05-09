@@ -1,0 +1,198 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:clinical-exam-room",
+
+    "metadata": {
+      "title": "COSU Clinical / Medical Exam Room Terminal SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T18:00:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Clinical and Medical Exam Room Terminals as purpose-bound endpoint execution environments supporting in-room clinical workflows."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Clinical / Medical Exam Room Terminal",
+      "system-description": "A corporate-owned, single-use endpoint dedicated to clinical examination room workflows such as chart review, order entry, imaging display, and patient interaction, with shared use and strict purpose constraints.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Clinical Exam Room Terminals inherit foundational endpoint trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-clinical-exam-room-terminal",
+          "remarks": "Single-use COSU endpoint for in-room clinical workflows."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "clinical-workflows-only",
+          "remarks": "Execution is restricted to approved clinical applications such as EHR viewers, order entry, imaging review, and medical device interfaces."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "shared-device-individual-clinician-authentication",
+          "remarks": "Clinicians authenticate individually on a shared device; no persistent local user profiles are retained."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Clinical Exam Room Terminals are owned by the institution or affiliated clinical entity."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Terminals are centrally enrolled, configured, monitored, and updated."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound",
+          "remarks": "Device identity is used for secure communication with clinical platforms and endpoint management, not for data entitlement."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "clinical-room-locked-down",
+          "remarks": "Operating system configuration disables general productivity software, removable media, local storage, and non-clinical applications."
+        },
+
+        {
+          "name": "session-isolation",
+          "class": "mandatory-requirement",
+          "value": "strict-and-ephemeral",
+          "remarks": "Clinician sessions are isolated and cleared at logout or inactivity timeout to prevent cross-patient data exposure."
+        },
+
+        {
+          "name": "medical-peripheral-integration",
+          "class": "requirement",
+          "value": "permitted-and-controlled",
+          "remarks": "Integration with approved medical peripherals (e.g., vitals, imaging) is permitted under controlled configurations."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "clinical-systems-only",
+          "remarks": "Network access is limited to approved EHR systems, clinical imaging platforms, medical device interfaces, identity services, and management endpoints."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "explicit-prohibition",
+          "value": "no-local-clinical-data",
+          "remarks": "Patient data must not be stored locally beyond transient, encrypted in-memory use."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-2,level-3",
+          "remarks": "Clinical Exam Room Terminals may participate in workflows involving regulated health and clinical data as governed by Secure Data and clinical policy."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "clinical-workstation-not-admin-or-daw",
+          "remarks": "Clinical examination authority does not imply eligibility for IT administration, security investigation, or DAW-level trust."
+        },
+
+        {
+          "name": "availability-requirement",
+          "class": "requirement",
+          "value": "high-availability",
+          "remarks": "Clinical Exam Room Terminals must prioritize uptime and rapid recovery to support patient care."
+        },
+
+        {
+          "name": "monitoring-and-integrity-signals",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Terminal health, authentication events, configuration drift, and tamper attempts are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "managed-and-audited",
+          "remarks": "Provisioning, update, reset, and retirement workflows are auditable and aligned with clinical governance requirements."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Clinical Exam Room Terminals implement Secure Endpoint patterns with emphasis on patient privacy, session isolation, regulated data handling, and clinical availability.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-clinical-operations",
+        "title": "Clinical Operations",
+        "remarks": "Responsible for clinical use, availability, and integrity of Exam Room Terminals."
+      },
+      {
+        "id": "role-clinical-governance",
+        "title": "Clinical Governance Authority",
+        "remarks": "Defines authorized workflows, data handling requirements, and compliance obligations."
+      },
+      {
+        "id": "role-endpoint-security",
+        "title": "Endpoint Security Operations",
+        "remarks": "Ensures security posture, monitoring, and lifecycle governance of Clinical Exam Room Terminals."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Clinical Exam Room Terminal implementations are OS- and platform-specific and are maintained as tightly controlled, versioned baselines aligned with healthcare regulatory requirements."
+    }
+  }
+}

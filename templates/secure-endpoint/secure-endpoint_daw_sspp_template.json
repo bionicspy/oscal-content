@@ -1,0 +1,182 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:daw",
+
+    "metadata": {
+      "title": "Dedicated Access Workstation (DAW) Endpoint SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T10:15:00Z",
+      "remarks": "System Security and Privacy Plan defining the Dedicated Access Workstation (DAW), the highest-assurance endpoint execution environment for institutional privileged and Level 4 data access."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "Dedicated Access Workstation (DAW)",
+      "system-description": "A single-purpose, institution-owned endpoint designed exclusively for privileged operations and access to the most sensitive institutional data and control planes.",
+      "security-sensitivity-level": "very-high",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "cobo-l2",
+          "remarks": "DAW endpoints inherit all COBO L2 requirements and add maximal assurance constraints."
+        },
+
+        {
+          "name": "endpoint-trust-tier",
+          "class": "trust-level",
+          "value": "daw",
+          "remarks": "Dedicated Access Workstation trust tier."
+        },
+
+        {
+          "name": "assurance-model",
+          "class": "assurance-level",
+          "value": "maximal",
+          "remarks": "Provides the highest level of endpoint assurance available."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "single-purpose",
+          "remarks": "DAW endpoints are restricted to access-only and administrative workflows; general-purpose usage is prohibited."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-4",
+          "remarks": "DAW endpoints are required for workflows involving Level 4 data."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "device-not-data",
+          "remarks": "DAW status does not confer automatic entitlement to Level 4 data; all data access remains governed by Secure Data policies."
+        },
+
+        {
+          "name": "privileged-access-only",
+          "class": "constraint",
+          "value": "true",
+          "remarks": "DAWs are intended solely for privileged administration and high-risk workflows."
+        },
+
+        {
+          "name": "general-productivity",
+          "class": "explicit-prohibition",
+          "value": "disallowed",
+          "remarks": "Email, web browsing, collaboration tools, and general productivity workloads are prohibited."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "tpm-backed-pki-issued-attested",
+          "remarks": "Endpoint identity must be TPM-backed, PKI-issued, and support hardware attestation of boot and security state."
+        },
+
+        {
+          "name": "cryptographic-compliance",
+          "class": "mandatory-requirement",
+          "value": "fips-140-3",
+          "remarks": "All cryptographic operations must use FIPS 140-3 validated modules."
+        },
+
+        {
+          "name": "implementation-baseline",
+          "class": "mandatory-requirement",
+          "value": "cis-benchmarks-plus-stigs",
+          "remarks": "DAW implementations must meet applicable CIS Benchmarks and DISA STIG requirements at the highest feasible severity level."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "restricted-and-brokered",
+          "remarks": "DAW network access is tightly constrained, segmented, and brokered to approved control planes only."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "governance-requirement",
+          "value": "strict",
+          "remarks": "DAW enrollment, suspension, recovery, and retirement require elevated approval and enhanced auditability."
+        },
+
+        {
+          "name": "zero-trust-alignment",
+          "class": "design-principle",
+          "value": "strict-and-continuous",
+          "remarks": "DAW posture and identity are continuously evaluated and required for all privileged and Level 4 access decisions."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "DAW endpoints implement Secure Endpoint trust by inheriting COBO L2 controls and applying maximal isolation and assurance constraints.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-identity-and-posture",
+          "type": "pattern-reference",
+          "title": "Endpoint Identity and Posture"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-daw-user",
+        "title": "DAW Authorized User",
+        "remarks": "Authorized operator permitted to use DAWs for privileged and sensitive workflows."
+      },
+      {
+        "id": "role-endpoint-operations",
+        "title": "Endpoint Security Operations",
+        "remarks": "Responsible for DAW configuration, monitoring, incident response, and lifecycle enforcement."
+      },
+      {
+        "id": "role-endpoint-governance",
+        "title": "Endpoint Governance Authority",
+        "remarks": "Approves DAW eligibility, access scope, and lifecycle transitions."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "DAW endpoints inherit all Secure Endpoint and COBO L2 trust requirements and apply additional maximal assurance constraints. OS-specific DAW implementations (Windows, Linux) define concrete CIS and STIG-aligned configurations."
+    }
+  }
+}

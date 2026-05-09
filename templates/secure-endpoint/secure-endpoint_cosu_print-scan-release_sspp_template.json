@@ -1,0 +1,186 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:print-scan-release",
+
+    "metadata": {
+      "title": "COSU Print / Scan Release Station SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T15:45:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Print and Scan Release Stations as constrained endpoint execution environments supporting secure document release workflows."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Print / Scan Release Station",
+      "system-description": "A corporate-owned, single-use endpoint dedicated to authentication, authorization, and release of print and scan jobs at managed multifunction devices (MFDs), with no general-purpose computing capability.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Print / Scan Release Stations inherit foundational endpoint trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-print-scan-release",
+          "remarks": "Single-use COSU endpoint for secure print and scan job release."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "print-scan-release-only",
+          "remarks": "Execution is restricted to approved print management and scan release applications."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "transient-user-authentication",
+          "remarks": "Users authenticate transiently (e.g., badge, PIN, or federated identity) for job release without persistent local sessions."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Print / Scan Release Stations are owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Stations are centrally enrolled, configured, monitored, and updated."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound",
+          "remarks": "Device identity is used for secure communication with print services and management platforms, not for data entitlement."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "release-station-locked-down",
+          "remarks": "Operating system configuration disables shell access, removable media, local storage, and non-release applications."
+        },
+
+        {
+          "name": "session-isolation",
+          "class": "mandatory-requirement",
+          "value": "strict-and-ephemeral",
+          "remarks": "Each authentication session is isolated and fully cleared after job release or timeout."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "print-services-only",
+          "remarks": "Network access is limited to approved print management systems, directory services, PKI services, and device management endpoints."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "explicit-prohibition",
+          "value": "no-local-document-storage",
+          "remarks": "Print and scan content must not be stored locally on the release station."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-1,level-2",
+          "remarks": "Print / Scan Release Stations may participate in workflows involving Data Classification Levels 1 and 2 only."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "transaction-device-not-workstation",
+          "remarks": "A secure transaction device does not imply trust as a general workstation or eligibility for higher-classification data."
+        },
+
+        {
+          "name": "availability-requirement",
+          "class": "requirement",
+          "value": "high-availability",
+          "remarks": "Release Stations must prioritize uptime and rapid recovery to support institutional printing and scanning services."
+        },
+
+        {
+          "name": "monitoring-and-integrity-signals",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Station health, authentication events, configuration drift, and misuse attempts are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "managed-reset-and-reimage",
+          "remarks": "Print / Scan Release Stations support automated reset, periodic reimage, and auditable retirement workflows."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Print / Scan Release Stations implement Secure Endpoint patterns with emphasis on transactional integrity, identity binding for release operations, and data minimization.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-print-services-operations",
+        "title": "Print Services Operations",
+        "remarks": "Responsible for deployment, availability, and day-to-day operation of Print / Scan Release Stations."
+      },
+      {
+        "id": "role-information-governance",
+        "title": "Information Governance Authority",
+        "remarks": "Approves data classification scope, print policies, and exception handling."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Print / Scan Release Station implementations are OS- and vendor-specific (dedicated appliances, embedded OS, or hardened endpoints) and are maintained as controlled, versioned configuration baselines."
+    }
+  }
+}

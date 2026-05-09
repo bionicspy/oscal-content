@@ -6,81 +6,88 @@
       "title": "Endpoint Health and Compliance",
       "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-04T15:05:00Z",
+      "last-modified": "2026-05-04T07:30:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC260",
-          "remarks": "Business capability that evaluates whether endpoints continue to meet required security, configuration, and software posture expectations."
+          "value": "urn:utoronto:cae2:brm:BC452",
+          "remarks": "Business capability for continuously evaluating endpoint health and compliance and emitting posture signals used in access and policy decisions."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD020",
-          "remarks": "Endpoint and user-operated compute technology domain."
-        },
-        {
-          "name": "technology-platform",
-          "ns": "urn:utoronto:cae2:trm",
-          "class": "trm-platform",
-          "value": "urn:utoronto:cae2:trm:TP063",
-          "remarks": "Endpoint health, compliance, and posture assessment platforms."
+          "value": "urn:utoronto:cae2:trm:TD240",
+          "remarks": "Endpoint telemetry, compliance assessment, configuration state assessment, and monitoring services."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP093",
-          "remarks": "Continuous endpoint posture evaluation with health and compliance signaling."
+          "class": "constraint-pattern",
+          "value": "urn:utoronto:cae2:arm:AP342",
+          "remarks": "Constraint pattern defining continuous evaluation of endpoint health and compliance as posture signals, without performing enforcement actions."
+        },
+
+        {
+          "name": "depends-on-pattern",
+          "value": "endpoint-core",
+          "remarks": "Health and compliance evaluation applies only to endpoints that satisfy Endpoint Core trust requirements."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "continuous-monitoring",
+          "value": "SP 800-137; SP 800-92",
+          "remarks": "Endpoint health and compliance align with NIST guidance on continuous monitoring and log management."
         },
         {
-          "name": "data-entity",
-          "ns": "urn:utoronto:cae2:drm",
-          "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE423",
-          "remarks": "Endpoint health status, software inventory, and compliance assessment results."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "zero-trust-posture",
+          "value": "SP 800-207",
+          "remarks": "Endpoint posture is a core input signal in Zero Trust access decisions."
         }
       ],
 
-      "remarks": "Endpoint Health and Compliance defines the capability to continuously evaluate endpoint state against required security, configuration, and software posture expectations. Health reflects current conditions and is used as an input to access control, policy enforcement, and risk decisions. This pattern evaluates trust and posture but does not enforce configuration, remediate issues, or respond to threats.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to endpoint posture evaluation and signaling. Enforcement and response capabilities are intentionally excluded to preserve clear architectural boundaries."
+      "remarks": "Endpoint Health and Compliance defines how endpoint state is continuously evaluated and signaled to other systems. This pattern intentionally does not enforce configuration, remediate issues, block access, or initiate response. It exists solely to produce authoritative posture signals."
     },
 
     "components": [
-
       {
-        "uuid": "urn:utoronto:security:capability:health-monitoring",
+        "uuid": "urn:utoronto:security:capability:endpoint-health-assessment",
         "type": "capability",
-        "title": "Health Monitoring",
-        "description": "Collection and evaluation of runtime endpoint health indicators.",
+        "title": "Endpoint Health Assessment",
+        "description": "Continuously evaluates endpoint operational health, including security agent status and core service integrity.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1082",
-            "remarks": "System information discovery used to identify vulnerable or degraded endpoint states."
+            "class": "technique",
+            "value": "T1562",
+            "remarks": "Impairing defenses to evade detection or compliance checks."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:ConfigurationMonitoring",
-            "remarks": "Ongoing evaluation of endpoint runtime state and security posture."
+            "class": "technique",
+            "value": "D3FEND-0035",
+            "remarks": "Continuous health monitoring detects loss of protective capability."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:endpoint-health",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "SI-4",
-                "remarks": "Monitor endpoint state to identify degraded or unsafe conditions."
+                "remarks": "The endpoint environment is monitored to detect changes in security-relevant state."
               }
             ]
           }
@@ -88,111 +95,77 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:software-state-compliance",
+        "uuid": "urn:utoronto:security:capability:endpoint-compliance-evaluation",
         "type": "capability",
-        "title": "Software State Compliance",
-        "description": "Evaluation of installed software and versions against approved application and patch baselines.",
+        "title": "Endpoint Compliance Evaluation",
+        "description": "Assesses endpoint configuration state against defined compliance expectations.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1518",
-            "remarks": "Discovery of installed software and versions to identify exploitable conditions."
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Use of endpoints that silently drift out of compliance to maintain access."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:SoftwareInventory",
-            "remarks": "Maintenance and evaluation of authoritative software inventory."
+            "class": "technique",
+            "value": "D3FEND-0028",
+            "remarks": "Configuration state assessment detects compliance drift."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:endpoint-compliance",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-4",
+                "remarks": "Endpoint configuration state is monitored for unauthorized or unintended changes."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:posture-signal-emission",
+        "type": "capability",
+        "title": "Posture Signal Emission",
+        "description": "Emits normalized posture signals to identity, network, and application control planes.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1564",
+            "remarks": "Concealment of non-compliant state to evade enforcement."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Verified telemetry and signal integrity prevent spoofed posture assertions."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:posture-signals",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "CA-7",
-                "remarks": "Perform ongoing assessment of endpoint software compliance."
+                "remarks": "Security state is continuously assessed and reported."
               },
               {
-                "control-id": "CM-8",
-                "remarks": "Maintain accurate inventory of installed endpoint software."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:drift-detection",
-        "type": "capability",
-        "title": "Drift Detection",
-        "description": "Detection of deviation from approved configuration and software baselines.",
-
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1622",
-            "remarks": "Modification of system configurations to evade security controls or policy."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:ConfigurationDriftDetection",
-            "remarks": "Identification of unapproved changes relative to baseline state."
-          }
-        ],
-
-        "control-implementations": [
-          {
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "CM-3",
-                "remarks": "Detect configuration and software changes that cause drift."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:health-and-compliance-signaling",
-        "type": "capability",
-        "title": "Health and Compliance Signaling",
-        "description": "Secure propagation of endpoint health and compliance assessment results to relying systems.",
-
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1552",
-            "remarks": "Credential or token access through interception or tampering with posture signals."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:SecureChannel",
-            "remarks": "Integrity-protected and authenticated signaling of endpoint posture."
-          }
-        ],
-
-        "control-implementations": [
-          {
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "IA-7",
-                "remarks": "Protect the transmission of endpoint health and compliance assertions."
+                "control-id": "AU-12",
+                "remarks": "Posture and compliance signals are traceable and auditable."
               }
             ]
           }

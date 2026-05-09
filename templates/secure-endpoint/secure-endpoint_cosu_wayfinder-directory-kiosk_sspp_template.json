@@ -1,0 +1,186 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:wayfinding-directory",
+
+    "metadata": {
+      "title": "COSU Wayfinding / Directory Kiosk SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T16:30:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Wayfinding and Directory Kiosks as highly constrained, public-facing endpoint execution environments for navigation and informational discovery."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Wayfinding / Directory Kiosk",
+      "system-description": "A corporate-owned, single-use endpoint dedicated to providing interactive maps, directories, and navigation assistance within institutional spaces, with no general-purpose computing capability.",
+      "security-sensitivity-level": "low",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Wayfinding and Directory Kiosks inherit foundational endpoint trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-wayfinding-directory-kiosk",
+          "remarks": "Single-use COSU endpoint for navigation and directory services."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "wayfinding-and-directory-only",
+          "remarks": "Execution is restricted to approved wayfinding, directory lookup, and navigation applications."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "none",
+          "remarks": "Wayfinding and Directory Kiosks do not require user authentication and do not support personalized sessions."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Wayfinding and Directory Kiosks are owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Kiosks are centrally enrolled, configured, monitored, and recovered."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound",
+          "remarks": "Device identity is used for integrity validation, content delivery trust, and centralized management."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "wayfinding-kiosk-locked-down",
+          "remarks": "Operating system configuration disables shell access, file browsing, downloads, removable media, and unauthorized applications."
+        },
+
+        {
+          "name": "input-restriction",
+          "class": "mandatory-requirement",
+          "value": "touch-or-limited-input-only",
+          "remarks": "Input is limited to touch interfaces or constrained controls as required for wayfinding functionality."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "directory-and-map-services-only",
+          "remarks": "Network access is limited to approved directory databases, mapping services, content distribution systems, and management endpoints."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "explicit-prohibition",
+          "value": "no-history-or-user-data",
+          "remarks": "Search queries, navigation history, and user interaction data must not be persisted locally."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-0",
+          "remarks": "Wayfinding and Directory Kiosks may interact only with public, non-sensitive information."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "navigation-device-not-trusted-endpoint",
+          "remarks": "A navigation-focused kiosk does not imply eligibility for institutional systems or access to protected data."
+        },
+
+        {
+          "name": "availability-requirement",
+          "class": "requirement",
+          "value": "high-availability",
+          "remarks": "Wayfinding and Directory Kiosks must prioritize uptime and rapid recovery to support visitors and campus operations."
+        },
+
+        {
+          "name": "monitoring-and-integrity-signals",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Device health, application availability, content integrity, and tamper events are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "managed-reset-and-reimage",
+          "remarks": "Wayfinding and Directory Kiosks support automated reset, periodic reimage, and auditable retirement workflows."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Wayfinding and Directory Kiosks implement Secure Endpoint patterns with emphasis on public usability, minimal attack surface, and display integrity.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-facilities-digital-services",
+        "title": "Facilities Digital Services",
+        "remarks": "Responsible for deployment, availability, content coordination, and recovery of Wayfinding and Directory Kiosks."
+      },
+      {
+        "id": "role-campus-communications-governance",
+        "title": "Campus Communications Governance",
+        "remarks": "Approves directory content, mapping data sources, and public information scope."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Wayfinding and Directory Kiosk implementations may use kiosk-mode operating systems or specialized hardware platforms and are maintained as tightly controlled configuration baselines."
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:digital-signage",
+
+    "metadata": {
+      "title": "COSU Digital Signage Endpoint SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T15:00:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Digital Signage endpoints as display-only execution environments for institutional communications."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Digital Signage Endpoint",
+      "system-description": "A corporate-owned, single-use endpoint dedicated exclusively to rendering approved digital signage, announcements, and wayfinding content with no interactive or general-purpose computing capability.",
+      "security-sensitivity-level": "low",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Digital Signage endpoints inherit foundational endpoint trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-digital-signage",
+          "remarks": "Single-use COSU endpoint for display-only institutional messaging."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "display-only",
+          "remarks": "Execution is restricted to a locked digital signage player or rendering service; no user interaction or application switching is permitted."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "none",
+          "remarks": "Digital Signage endpoints do not support interactive user authentication."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Digital Signage endpoints are owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Digital Signage endpoints are centrally enrolled, managed, and monitored."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound",
+          "remarks": "Device identity is used for management, integrity validation, and content delivery trust, not data entitlement."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "signage-locked-down",
+          "remarks": "Operating system configuration disables shell access, local input devices, removable media, local storage, and any non-signage software."
+        },
+
+        {
+          "name": "anti-tamper-controls",
+          "class": "mandatory-requirement",
+          "value": "display-integrity-focused",
+          "remarks": "Controls prevent unauthorized content injection, application switching, and local manipulation of display output."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "content-distribution-only",
+          "remarks": "Network access is limited to approved content distribution services, management endpoints, and update repositories."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "constraint",
+          "value": "none-or-cache-only",
+          "remarks": "No persistent institutional data is stored locally beyond transient content caching."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-0",
+          "remarks": "Digital Signage endpoints may display only public, non-sensitive information."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "display-device-not-trusted-workstation",
+          "remarks": "A highly locked display device does not imply trust as a workstation or eligibility for institutional data access."
+        },
+
+        {
+          "name": "availability-requirement",
+          "class": "requirement",
+          "value": "high-availability",
+          "remarks": "Digital Signage endpoints must prioritize uptime and rapid recovery to support institutional communications."
+        },
+
+        {
+          "name": "monitoring-and-integrity-signals",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Device health, display status, content rendering, and tamper events are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "managed-reset-and-reimage",
+          "remarks": "Digital Signage endpoints support rapid reset, automated reimage, and auditable retirement workflows."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Digital Signage endpoints implement Secure Endpoint patterns with emphasis on integrity of displayed content, minimal attack surface, and high availability.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-digital-signage-operations",
+        "title": "Digital Signage Operations",
+        "remarks": "Responsible for deployment, content delivery integration, monitoring, and recovery of Digital Signage endpoints."
+      },
+      {
+        "id": "role-communications-governance",
+        "title": "Institutional Communications Governance",
+        "remarks": "Approves content distribution platforms, display use cases, and exception handling."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Digital Signage implementations may use specialized hardware or OS kiosk modes and are maintained as tightly controlled, versioned configuration artifacts aligned with this SSPP."
+    }
+  }
+}

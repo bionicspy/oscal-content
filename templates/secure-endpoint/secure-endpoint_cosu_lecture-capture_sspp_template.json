@@ -1,0 +1,186 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:lecture-capture",
+
+    "metadata": {
+      "title": "COSU Lecture Capture Console SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T14:30:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Lecture Capture Consoles as purpose-bound endpoint execution environments for classroom recording and presentation control."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Lecture Capture Console",
+      "system-description": "A corporate-owned, single-use endpoint dedicated to lecture recording, audiovisual control, and presentation capture functions in instructional spaces.",
+      "security-sensitivity-level": "low-moderate",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Lecture Capture Consoles inherit foundational endpoint trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-lecture-capture-console",
+          "remarks": "Single-use COSU endpoint dedicated to lecture capture and audiovisual control."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "av-and-capture-only",
+          "remarks": "Execution is restricted to approved lecture capture, presentation, and audiovisual control applications."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "role-based-or-session-based",
+          "remarks": "Usage is shared among instructors or operators via role-based or session-based access without persistent local profiles."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Lecture Capture Consoles are owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Lecture Capture Consoles are centrally enrolled, managed, and monitored."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound",
+          "remarks": "Device identity is used for management, integrity, and service trust, not for user or data entitlement."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "capture-console-locked-down",
+          "remarks": "Operating system configuration disables shell access, general productivity software, removable media, and unauthorized interfaces."
+        },
+
+        {
+          "name": "anti-tamper-controls",
+          "class": "mandatory-requirement",
+          "value": "console-integrity-focused",
+          "remarks": "Controls prevent application switching, unauthorized software installation, and runtime manipulation of capture workflows."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "capture-platform-and-management-only",
+          "remarks": "Network access is restricted to approved lecture capture platforms, streaming endpoints, storage destinations, and management services."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "constraint",
+          "value": "temporary-and-purpose-bound",
+          "remarks": "Local data persistence is permitted only as required for buffering or capture workflows and is cleared automatically."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-0,level-1",
+          "remarks": "Lecture Capture Consoles may participate only in workflows involving public or minimally sensitive instructional data."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "instructional-function-not-data-privilege",
+          "remarks": "Instructional recording functionality does not imply eligibility for higher-classification institutional data."
+        },
+
+        {
+          "name": "availability-requirement",
+          "class": "requirement",
+          "value": "high-availability",
+          "remarks": "Lecture Capture Consoles must prioritize availability and rapid recovery to support scheduled instructional activities."
+        },
+
+        {
+          "name": "monitoring-and-integrity-signals",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Console health, capture service status, and integrity events are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "managed-reset-and-reimage",
+          "remarks": "Lecture Capture Consoles support rapid reset, automated reimage, and auditable retirement workflows."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Lecture Capture Consoles implement Secure Endpoint patterns with emphasis on availability, functional integrity, and constrained data handling.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-classroom-technology-operations",
+        "title": "Classroom Technology Operations",
+        "remarks": "Responsible for deployment, configuration, monitoring, and availability of Lecture Capture Consoles."
+      },
+      {
+        "id": "role-instructional-technology-governance",
+        "title": "Instructional Technology Governance",
+        "remarks": "Approves capture platforms, data flows, and exception handling for Lecture Capture Consoles."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Lecture Capture Console implementations are platform-specific (Windows, Linux, or embedded OS) and maintained as controlled configuration baselines aligned with this SSPP."
+    }
+  }
+}

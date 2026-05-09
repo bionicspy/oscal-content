@@ -1,0 +1,191 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:enrollment-registration",
+
+    "metadata": {
+      "title": "COSU Enrollment / Registration Kiosk SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T16:15:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Enrollment and Registration Kiosks as constrained endpoint execution environments for student onboarding and registration workflows."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Enrollment / Registration Kiosk",
+      "system-description": "A corporate-owned, single-use endpoint dedicated to enrollment, registration, and onboarding workflows, enabling students or participants to complete approved self-service transactions in a controlled environment.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Enrollment and Registration Kiosks inherit foundational endpoint trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-enrollment-registration-kiosk",
+          "remarks": "Single-use COSU endpoint for enrollment and registration transactions."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "enrollment-and-registration-workflows-only",
+          "remarks": "Execution is restricted to approved enrollment, registration, onboarding, and identity verification applications."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "transient-user-authentication",
+          "remarks": "Users authenticate transiently (e.g., application number, one-time credentials, or federated login) without persistent local accounts."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Enrollment and Registration Kiosks are owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Kiosks are centrally enrolled, configured, monitored, and reset between sessions."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound",
+          "remarks": "Device identity is used for management integrity, secure communication, and workflow trust, not for granting endpoint privilege."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "enrollment-kiosk-locked-down",
+          "remarks": "Operating system configuration disables shell access, general productivity software, removable media, local file access, and unauthorized applications."
+        },
+
+        {
+          "name": "session-isolation",
+          "class": "mandatory-requirement",
+          "value": "strict-and-ephemeral",
+          "remarks": "User sessions are fully isolated and automatically cleared at logout, completion, or timeout."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "enrollment-and-identity-services-only",
+          "remarks": "Network access is limited to approved enrollment systems, identity verification services, secure storage endpoints, and management services."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "explicit-prohibition",
+          "value": "no-local-retention",
+          "remarks": "Personally identifiable or registration data must not be persisted locally beyond transient, encrypted in-memory use."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-1,level-2",
+          "remarks": "Enrollment and Registration Kiosks may participate only in workflows involving Data Classification Levels 1 and 2."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "transaction-kiosk-not-administrative-workstation",
+          "remarks": "Enrollment and registration functionality does not imply trust as an administrative workstation or eligibility for higher-classification data."
+        },
+
+        {
+          "name": "availability-requirement",
+          "class": "requirement",
+          "value": "high-availability",
+          "remarks": "Enrollment and Registration Kiosks must prioritize uptime and rapid recovery during enrollment and onboarding periods."
+        },
+
+        {
+          "name": "monitoring-and-integrity-signals",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Kiosk health, transaction state, configuration drift, and misuse attempts are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "managed-reset-and-audit",
+          "remarks": "Enrollment and Registration Kiosks support deterministic reset, periodic reimage, and auditable lifecycle workflows."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Enrollment and Registration Kiosks implement Secure Endpoint patterns with emphasis on transactional integrity, privacy protection, and minimal data exposure.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-enrollment-operations",
+        "title": "Enrollment Operations",
+        "remarks": "Responsible for deployment, configuration, availability, and workflow support of Enrollment and Registration Kiosks."
+      },
+      {
+        "id": "role-enrollment-governance",
+        "title": "Admissions and Registration Governance",
+        "remarks": "Approves enrollment workflows, identity verification mechanisms, and exception handling."
+      },
+      {
+        "id": "role-endpoint-security",
+        "title": "Endpoint Security Operations",
+        "remarks": "Ensures security posture, monitoring, and lifecycle governance for Enrollment and Registration Kiosks."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Enrollment and Registration Kiosk implementations are OS- and platform-specific (kiosk-mode Windows/macOS/Linux or dedicated appliances) and are maintained as tightly controlled, versioned configuration baselines."
+    }
+  }
+}

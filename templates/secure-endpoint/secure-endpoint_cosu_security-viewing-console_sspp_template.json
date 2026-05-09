@@ -1,0 +1,191 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:security-viewing-console",
+
+    "metadata": {
+      "title": "COSU Security Viewing / Monitoring Console SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T17:00:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Security Viewing and Monitoring Consoles used for non-administrative situational awareness and security observation."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Security Viewing / Monitoring Console",
+      "system-description": "A corporate-owned, single-use endpoint dedicated to viewing and monitoring security-related information such as camera feeds, alarms, and access events, without administrative or configuration privileges.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Security Viewing Consoles inherit foundational endpoint trust governance from the Secure Endpoint Platform SSPP."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-security-viewing-console",
+          "remarks": "Single-use COSU endpoint for non-administrative security monitoring."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "view-only-security-applications",
+          "remarks": "Execution is restricted to approved security monitoring, video viewing, and alert dashboards with read-only access."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "role-based-operator-authentication",
+          "remarks": "Authorized security personnel authenticate by role; no persistent local user profiles are retained."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Security Viewing Consoles are owned by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed",
+          "remarks": "Security Viewing Consoles are centrally enrolled, configured, monitored, and recovered."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound",
+          "remarks": "Device identity is used for network trust, integrity verification, and secure communications with security platforms."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "security-viewing-console-locked-down",
+          "remarks": "Operating system configuration disables administrative tools, shell access, removable media, web browsing, and non-security applications."
+        },
+
+        {
+          "name": "privilege-boundary",
+          "class": "explicit-prohibition",
+          "value": "no-security-administration",
+          "remarks": "Security Viewing Consoles must not support configuration, system administration, user management, or forensic extraction functions."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "security-monitoring-networks-only",
+          "remarks": "Network access is restricted to approved security monitoring platforms, camera systems, alarm systems, logging endpoints, and management services."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "constraint",
+          "value": "no-local-recording",
+          "remarks": "Video, logs, and security event data must not be stored locally on the console beyond transient display buffers."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-1,level-2",
+          "remarks": "Security Viewing Consoles may interact with limited operational security data but not sensitive investigative or classified datasets."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "monitoring-console-not-admin-workstation",
+          "remarks": "A security viewing console does not imply eligibility for security system administration or higher endpoint trust tiers."
+        },
+
+        {
+          "name": "availability-requirement",
+          "class": "requirement",
+          "value": "high-availability",
+          "remarks": "Security Viewing Consoles must prioritize uninterrupted operation and rapid recovery to maintain situational awareness."
+        },
+
+        {
+          "name": "monitoring-and-integrity-signals",
+          "class": "requirement",
+          "value": "continuous",
+          "remarks": "Console health, access attempts, configuration drift, and tamper events are continuously monitored."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "requirement",
+          "value": "managed-reset-and-change-control",
+          "remarks": "Security Viewing Consoles support auditable provisioning, reset, and retirement workflows."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Security Viewing Consoles implement Secure Endpoint patterns with emphasis on read-only access, integrity of situational awareness, and strong privilege separation.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-health-and-compliance",
+          "type": "pattern-reference",
+          "title": "Endpoint Health and Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-threat-protection",
+          "type": "pattern-reference",
+          "title": "Endpoint Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-security-operations",
+        "title": "Security Operations",
+        "remarks": "Responsible for monitoring, response coordination, and situational awareness using Security Viewing Consoles."
+      },
+      {
+        "id": "role-physical-security-governance",
+        "title": "Physical Security Governance",
+        "remarks": "Approves monitoring scope, data visibility boundaries, and console use policies."
+      },
+      {
+        "id": "role-endpoint-security",
+        "title": "Endpoint Security Operations",
+        "remarks": "Ensures security posture, monitoring, and lifecycle governance for Security Viewing Consoles."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Security Viewing Console implementations may use hardened workstations, dedicated video wall controllers, or embedded appliances and are maintained as controlled configuration baselines aligned with this SSPP."
+    }
+  }
+}
