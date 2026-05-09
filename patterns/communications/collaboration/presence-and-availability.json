@@ -4,9 +4,9 @@
 
     "metadata": {
       "title": "Presence and Availability",
-      "version": "0.1.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T09:50:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
@@ -14,141 +14,86 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC352",
-          "remarks": "Business capability for exposing user presence and availability signals in a manner that minimizes inference, targeting, and social engineering risk."
+          "remarks": "Business capability for signaling participant availability, status, and engagement within collaboration environments."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD162",
-          "remarks": "Presence services, availability indicators, status metadata, calendar-derived signals, and real-time activity awareness mechanisms."
+          "value": "urn:utoronto:cae2:trm:TD160",
+          "remarks": "Presence services, availability indicators, and collaboration signaling backplanes."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP282",
-          "remarks": "Pattern for governing exposure, interpretation, and control of presence and availability signals in collaboration platforms."
+          "value": "urn:utoronto:cae2:arm:AP283",
+          "remarks": "Pattern for controlled signaling of participant availability and engagement state without exposing unnecessary contextual detail."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE398",
+          "remarks": "Presence states, timestamps, availability indicators, client activity signals, and visibility metadata."
+        },
+
+        {
+          "name": "depends-on-pattern",
           "value": "collaboration-core",
-          "remarks": "Presence and availability trust depends on baseline collaboration identity, boundaries, and accountability."
+          "remarks": "Presence and availability inherit baseline collaboration trust, identity context, and accountability from Collaboration Core."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-46",
+          "class": "remote-and-telework",
+          "value": "3",
+          "remarks": "Presence and availability signals often reflect remote work patterns and must be governed to avoid overexposure of user context."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "2",
+          "remarks": "Presence visibility across organizational or federated boundaries must respect defined trust relationships and information sharing agreements."
         }
       ],
 
-      "remarks": "Presence and Availability defines trust properties required to safely expose workload and activity signals in collaboration systems. This pattern treats presence metadata as sensitive contextual information that can enable targeting, inference, and social engineering if not governed."
+      "remarks": "Presence and Availability defines how collaboration systems signal a participant’s availability and engagement state. While presence is not a communication channel itself, it materially influences trust decisions, targeting, and social engineering risk. This pattern governs visibility, accuracy, and contextual restraint of presence information while inheriting identity, boundary, and accountability guarantees from Collaboration Core."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:presence-signal-scope-control",
+        "uuid": "urn:utoronto:security:capability:presence-identity-binding",
         "type": "capability",
-        "title": "Presence Signal Scope Control",
-        "description": "Constrains which presence and availability signals are visible and to whom.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1595",
-            "remarks": "Active scanning and observation to infer availability or responsiveness."
-          },
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1598",
-            "remarks": "Phishing for information based on awareness of target availability."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0016",
-            "remarks": "Policy-based restriction of sensitive metadata exposure."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:presence-scope",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "AC-6",
-                "remarks": "Presence visibility follows least privilege principles."
-              },
-              {
-                "control-id": "PL-8",
-                "remarks": "Policies define allowable exposure of presence and availability information."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Presence Identity Binding",
+        "description": "Ensures presence status is consistently and correctly bound to the authenticated participant identity.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:presence-inference-risk-reduction",
-        "type": "capability",
-        "title": "Presence Inference Risk Reduction",
-        "description": "Reduces the ability to infer sensitive patterns from presence and availability signals.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1589",
-            "remarks": "Gathering information about targets to enable social engineering."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0034",
-            "remarks": "Obfuscation or minimization of sensitive activity indicators."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:presence-inference",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "PT-7",
-                "remarks": "Controls limit unnecessary disclosure of activity and availability patterns."
-              },
-              {
-                "control-id": "CM-7",
-                "remarks": "Configuration management reduces exposure of sensitive presence metadata."  
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:presence-identity-integrity",
-        "type": "capability",
-        "title": "Presence Identity Integrity",
-        "description": "Ensures presence and availability signals are correctly bound to authenticated identities.",
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1036",
-            "remarks": "Masquerading via false or misleading presence information."
+            "remarks": "Misleading or spoofed presence indicators used to masquerade as another participant."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Abuse of valid accounts to manipulate presence signals and misrepresent availability or authority."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0045",
-            "remarks": "Identity assurance for presence signal attribution."
+            "remarks": "Strong identity binding ensures presence accurately reflects the authenticated participant."
           }
         ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:presence-identity",
@@ -156,11 +101,11 @@
             "implemented-requirements": [
               {
                 "control-id": "IA-2",
-                "remarks": "Presence signals are associated with authenticated identities."
+                "remarks": "Presence data is attributable to an authenticated identity."
               },
               {
                 "control-id": "IA-4",
-                "remarks": "Identity attributes support accurate presence attribution."
+                "remarks": "Identity attributes are managed to ensure correct presence representation."
               }
             ]
           }
@@ -168,26 +113,69 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:presence-observability-and-accountability",
+        "uuid": "urn:utoronto:security:capability:presence-visibility-control",
         "type": "capability",
-        "title": "Presence Observability and Accountability",
-        "description": "Provides oversight into how presence and availability signals are used and exposed.",
+        "title": "Presence Visibility Control",
+        "description": "Restricts who may view presence and availability information and at what level of detail.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1087",
+            "remarks": "Account discovery and targeting through unrestricted visibility of presence or availability."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Access control over presence visibility limits reconnaissance and targeting risk."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:presence-visibility",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-2",
+                "remarks": "Visibility of presence information is explicitly managed."
+              },
+              {
+                "control-id": "AC-3",
+                "remarks": "Enforcement mechanisms restrict unauthorized observation of presence."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:presence-auditability",
+        "type": "capability",
+        "title": "Presence Accountability and Observability",
+        "description": "Provides traceability of changes to presence state for governance, incident review, and misuse investigation.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1107",
-            "remarks": "Suppression of evidence related to misuse of presence signals."
+            "remarks": "Suppression or removal of evidence related to presence manipulation or misuse."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0061",
-            "remarks": "Audit logging to support accountability and misuse detection."
+            "remarks": "Audit logging of presence changes supports oversight and accountability."
           }
         ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:presence-audit",
@@ -195,11 +183,11 @@
             "implemented-requirements": [
               {
                 "control-id": "AU-2",
-                "remarks": "Presence-related events are defined and captured."
+                "remarks": "Presence state changes are defined and logged."
               },
               {
                 "control-id": "AU-6",
-                "remarks": "Audit review supports oversight and investigation of presence misuse."
+                "remarks": "Audit review supports detection of anomalous or abusive presence behavior."
               }
             ]
           }

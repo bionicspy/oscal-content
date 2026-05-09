@@ -4,85 +4,108 @@
 
     "metadata": {
       "title": "File Sharing and Sync",
-      "version": "0.1.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T10:35:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC354",
-          "remarks": "Business capability for sharing, synchronizing, and collaboratively managing files while preserving access control, integrity, and lifecycle governance."
+          "value": "urn:utoronto:cae2:brm:BC355",
+          "remarks": "Business capability for controlled sharing, synchronization, and collaborative access to digital content."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD164",
-          "remarks": "Collaborative file storage, synchronization clients, sharing links, version control, and cloud-based document repositories."
+          "value": "urn:utoronto:cae2:trm:TD160",
+          "remarks": "Cloud file storage, file synchronization services, and collaborative document platforms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP284",
-          "remarks": "Pattern for governing collaborative file access, sharing, synchronization, and lifecycle control."
+          "value": "urn:utoronto:cae2:arm:AP286",
+          "remarks": "Pattern for governed file sharing and synchronization with explicit access scope, lifecycle control, and auditability."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE401",
+          "remarks": "Shared files, folders, permissions, access tokens, version history, synchronization state, and sharing audit metadata."
+        },
+
+        {
+          "name": "depends-on-pattern",
           "value": "collaboration-core",
-          "remarks": "File sharing and sync trust depends on baseline collaboration identity, boundary control, and accountability."
+          "remarks": "File Sharing and Sync inherit baseline collaboration trust, identity context, and lifecycle governance from Collaboration Core."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-46",
+          "class": "remote-and-telework",
+          "value": "3, 4",
+          "remarks": "File sharing frequently involves unmanaged endpoints and off‑network access, requiring controls aligned with SP 800-46."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "2, 3",
+          "remarks": "External file sharing and collaboration across organizational boundaries must align with SP 800-47 trust‑boundary guidance."
         }
       ],
 
-      "remarks": "File Sharing and Sync defines trust properties required to safely share and synchronize files in collaborative environments. This pattern addresses access scope, link-based sharing, version integrity, external access, and residual risk from cached or orphaned content."
+      "remarks": "File Sharing and Sync defines the collaboration modality through which digital content is exchanged, synchronized, and co‑authored. This capability presents elevated risk due to persistent access, external sharing, and automated synchronization. The pattern governs access scope, sharing semantics, lifecycle control, and auditability while inheriting collaboration trust invariants from Collaboration Core."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:file-access-and-sharing-scope-control",
+        "uuid": "urn:utoronto:security:capability:fs-access-scope-and-sharing-control",
         "type": "capability",
-        "title": "File Access and Sharing Scope Control",
-        "description": "Constrains who may access shared files and the scope of permissions granted.",
+        "title": "Access Scope and Sharing Control",
+        "description": "Constrains who may access shared content and how sharing permissions are granted, delegated, and revoked.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1078",
-            "remarks": "Abuse of valid accounts to access shared files."
+            "value": "T1199",
+            "remarks": "Abuse of trusted relationships through overly permissive or unintended file sharing."
           },
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1199",
-            "remarks": "Misuse of trusted sharing relationships for unauthorized access."
+            "value": "T1078",
+            "remarks": "Use of valid accounts or sharing links to gain unauthorized access to shared content."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0004",
-            "remarks": "Role-based access control to limit file sharing permissions."
+            "remarks": "Explicit access control and scoped sharing permissions limit unauthorized content access."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:file-access-scope",
+            "uuid": "urn:utoronto:security:ci:fs-sharing",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "AC-2",
-                "remarks": "Access to shared files is explicitly managed and reviewed."
+                "remarks": "Access to shared content is explicitly managed and reviewed."
               },
               {
-                "control-id": "AC-6",
-                "remarks": "File sharing permissions follow least privilege."
+                "control-id": "AC-3",
+                "remarks": "Enforcement mechanisms restrict unauthorized content access."
               }
             ]
           }
@@ -90,38 +113,47 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:link-based-sharing-risk-management",
+        "uuid": "urn:utoronto:security:capability:fs-data-exposure-and-exfiltration",
         "type": "capability",
-        "title": "Link-Based Sharing Risk Management",
-        "description": "Controls risk introduced by public or semi-public file sharing links.",
+        "title": "Data Exposure and Exfiltration Prevention",
+        "description": "Protects shared content from unauthorized disclosure through misuse of sharing or synchronization mechanisms.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1030",
-            "remarks": "Data transfer via shared links outside intended controls."
+            "value": "T1567",
+            "remarks": "Exfiltration of sensitive data via web services and cloud storage sharing."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1041",
+            "remarks": "Use of established collaboration channels for data exfiltration."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0016",
-            "remarks": "Policy enforcement to constrain inappropriate sharing mechanisms."
+            "value": "D3FEND-0033",
+            "remarks": "Content inspection, classification, and sharing policy enforcement reduce exfiltration risk."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:link-sharing",
+            "uuid": "urn:utoronto:security:ci:fs-exfiltration",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "PL-8",
-                "remarks": "Policies define acceptable use of link-based file sharing."
+                "control-id": "SC-7",
+                "remarks": "Boundary protection and policy enforcement govern content movement."
               },
               {
-                "control-id": "MP-7",
-                "remarks": "Controls reduce the risk of sensitive data exposure through sharing links."
+                "control-id": "SI-4",
+                "remarks": "Monitoring detects anomalous content access and sharing behavior."
               }
             ]
           }
@@ -129,77 +161,40 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:file-version-integrity-and-conflict-management",
+        "uuid": "urn:utoronto:security:capability:fs-lifecycle-and-persistence",
         "type": "capability",
-        "title": "File Version Integrity and Conflict Management",
-        "description": "Preserves integrity of files as they are edited, synchronized, and versioned.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1565.001",
-            "remarks": "Unauthorized modification of shared or synchronized files."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0050",
-            "remarks": "Integrity checking and version control to prevent silent modification."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:file-integrity",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "SI-7",
-                "remarks": "Integrity mechanisms protect shared file content."
-              },
-              {
-                "control-id": "CM-7",
-                "remarks": "Unnecessary synchronization features are disabled to reduce conflict and drift."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Lifecycle Management and Persistence Control",
+        "description": "Manages creation, versioning, retention, and retirement of shared content to reduce residual risk.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:sync-client-and-residual-data-risk",
-        "type": "capability",
-        "title": "Sync Client and Residual Data Risk Management",
-        "description": "Manages risk introduced by offline copies and synchronized endpoints.",
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1005",
-            "remarks": "Collection of data from synced or cached file copies."
+            "value": "T1213",
+            "remarks": "Unauthorized persistence and collection of information through long‑lived shared repositories."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0037",
-            "remarks": "Lifecycle controls to reduce residual risk from cached or orphaned content."
+            "remarks": "Lifecycle governance reduces exposure from abandoned or unmanaged shared content."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:sync-client-risk",
+            "uuid": "urn:utoronto:security:ci:fs-lifecycle",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "CM-7",
-                "remarks": "File synchronization features are constrained to reduce data sprawl."
+                "remarks": "Unnecessary or unmanaged sharing functionality is reduced."
               },
               {
                 "control-id": "PL-8",
-                "remarks": "Policies define expectations for local copies of shared files."
+                "remarks": "Policies define lifecycle expectations for shared content."
               }
             ]
           }
@@ -207,38 +202,40 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:file-sharing-observability-and-accountability",
+        "uuid": "urn:utoronto:security:capability:fs-auditability-and-traceability",
         "type": "capability",
-        "title": "File Sharing Observability and Accountability",
-        "description": "Provides visibility into file access, sharing actions, and lifecycle events.",
+        "title": "Auditability and Traceability",
+        "description": "Provides visibility into access, sharing, modification, and synchronization events for accountability and investigation.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1107",
-            "remarks": "Deletion or suppression of evidence related to file misuse."
+            "remarks": "Deletion or suppression of audit evidence related to shared content misuse."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0061",
-            "remarks": "Audit logging to support investigation and accountability."
+            "remarks": "Comprehensive logging and version history support accountability and forensic analysis."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:file-sharing-audit",
+            "uuid": "urn:utoronto:security:ci:fs-audit",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "AU-2",
-                "remarks": "File access and sharing events are captured."
+                "remarks": "File access, sharing, and modification events are defined and logged."
               },
               {
                 "control-id": "AU-6",
-                "remarks": "Audit review supports oversight of file sharing behavior."
+                "remarks": "Audit review supports detection and investigation of inappropriate access or sharing."
               }
             ]
           }

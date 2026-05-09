@@ -1,0 +1,174 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:secure-collaboration",
+    
+    "metadata": {
+      "title": "Secure Collaboration Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan governing the institutional Secure Collaboration Platform, providing unified governance, trust assurance, and lifecycle control for all digital collaboration services."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Collaboration Platform",
+      "system-description": "The Secure Collaboration Platform provides institutionally governed digital collaboration services, including messaging, conferencing, presence, file sharing, and persistent workspaces, with consistent identity attribution, boundary control, and accountability.",
+      "security-sensitivity-level": "moderate-high",
+
+      "props": [
+        {
+          "name": "platform-role",
+          "class": "tier-classification",
+          "value": "tier-1",
+          "remarks": "Secure Collaboration is a Tier-1 institutional platform supporting instruction, research, and operational coordination."
+        },
+
+        {
+          "name": "implements-pattern",
+          "value": "secure-collaboration",
+          "remarks": "This SSPP is the authoritative implementation and assurance anchor for the Secure Collaboration composite pattern."
+        },
+
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-identity-platform",
+          "remarks": "Secure Collaboration relies on Secure Identity for authentication, attribution, delegation, and identity lifecycle management."
+        },
+        {
+          "name": "depends-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "Secure Collaboration relies on Secure Network for trusted transport, session protection, segmentation, monitoring, and resiliency."
+        },
+
+        {
+          "name": "collaboration-trust-model",
+          "class": "design-principle",
+          "value": "explicit-and-contextual",
+          "remarks": "Collaboration trust is explicit, identity-bound, session-scoped, and does not persist beyond defined membership or lifecycle boundaries."
+        },
+
+        {
+          "name": "external-participation",
+          "class": "governance-constraint",
+          "value": "explicitly-scoped",
+          "remarks": "External or federated participants may be permitted only where explicitly authorized and observable."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-58",
+          "class": "voice-and-video-security",
+          "value": "§2-§4",
+          "remarks": "The Secure Collaboration Platform aligns with NIST SP 800-58 guidance for securing real-time voice and multimedia communication."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-46",
+          "class": "remote-and-telework",
+          "value": "§3-§4",
+          "remarks": "Remote and unmanaged endpoints participating in collaboration services are governed in accordance with SP 800-46."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "§2-§3",
+          "remarks": "Cross-organizational and federated collaboration scenarios align with SP 800-47 trust-boundary and responsibility guidance."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "The Secure Collaboration Platform composes multiple collaboration modalities under a unified governance, identity, and observability framework.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:collaboration-core",
+          "type": "pattern-reference",
+          "title": "Collaboration Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:instant-messaging",
+          "type": "pattern-reference",
+          "title": "Instant Messaging"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:real-time-messaging",
+          "type": "pattern-reference",
+          "title": "Real-Time Messaging"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:presence-and-availability",
+          "type": "pattern-reference",
+          "title": "Presence and Availability"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:conference-bridges",
+          "type": "pattern-reference",
+          "title": "Conference Bridges"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:file-sharing-and-sync",
+          "type": "pattern-reference",
+          "title": "File Sharing and Sync"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:shared-collaborative-workspaces",
+          "type": "pattern-reference",
+          "title": "Shared Collaborative Workspaces"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-collaboration-architecture",
+        "title": "Collaboration Architecture Authority",
+        "remarks": "Defines collaboration platform architecture, trust boundaries, and SSPP inheritance rules.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-collaboration-operations",
+        "title": "Collaboration Operations",
+        "remarks": "Operates collaboration services in accordance with platform governance.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-NET"
+          }
+        ]
+      },
+      {
+        "id": "role-collaboration-security",
+        "title": "Collaboration Security Monitoring",
+        "remarks": "Monitors collaboration activity, detects misuse, and coordinates response.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Security and privacy controls are implemented through inherited Secure Identity, Secure Network, and collaboration modality SSPPs. This SSPP documents governance, scope, and assurance only."
+    }
+  }
+}

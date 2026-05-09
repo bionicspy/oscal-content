@@ -4,174 +4,182 @@
 
     "metadata": {
       "title": "Secure Collaboration",
-      "version": "0.1.0",
+      "version": "1.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T11:15:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC356",
-          "remarks": "Business capability for operating digital collaboration systems that preserve trust, safety, accountability, and appropriate boundaries between participants."
+          "value": "urn:utoronto:cae2:brm:BC350",
+          "remarks": "Business capability for enabling trusted, accountable, and appropriately bounded digital collaboration across institutional and external participants."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD166",
-          "remarks": "Collaborative messaging platforms, presence services, conferencing systems, file sharing and synchronization, and real-time communication tools."
+          "value": "urn:utoronto:cae2:trm:TD160",
+          "remarks": "Collaboration platforms, messaging systems, conferencing services, persistent workspaces, and collaborative content environments."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP286",
-          "remarks": "Composite pattern asserting that all foundational collaboration trust requirements are satisfied."
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:AP281",
+          "remarks": "Composite Secure Collaboration architecture composed of baseline collaboration trust, messaging, conferencing, presence signaling, content sharing, and persistent workspaces."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE396",
+          "remarks": "Collaboration conversations, workspace state, presence indicators, shared artifacts, recordings, automation bindings, and collaboration audit metadata."
         },
 
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
+          "name": "dependency-class",
+          "class": "tier",
+          "value": "tier-1",
+          "remarks": "Secure Collaboration services are Tier-1 institutional dependencies supporting instruction, research, and operations."
+        },
+
+        {
+          "name": "depends-on-pattern",
           "value": "collaboration-core",
-          "remarks": "Secure collaboration assumes baseline identity, boundary control, accountability, and lifecycle awareness."
+          "remarks": "Secure Collaboration inherits baseline collaboration trust properties from Collaboration Core."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "instant-messaging",
-          "remarks": "Secure collaboration requires governance of informal, high-velocity messaging."
+          "name": "depends-on-pattern",
+          "value": "secure-identity",
+          "remarks": "Secure Collaboration relies on Secure Identity for authentication, attribution, role context, and delegation."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "presence-and-availability",
-          "remarks": "Secure collaboration requires controlled exposure of presence and availability signals."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "conference-bridges",
-          "remarks": "Secure collaboration requires safe conduct of meetings, lectures, and live sessions."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "file-sharing-and-sync",
-          "remarks": "Secure collaboration requires governed sharing and lifecycle control of collaborative files."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "real-time-messaging",
-          "remarks": "Secure collaboration requires safe use of ad-hoc live communication."
+          "name": "depends-on-pattern",
+          "value": "secure-network",
+          "remarks": "Secure Collaboration relies on Secure Network for trusted transport, segmentation, monitoring, and resiliency."
         },
 
         {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0006",
-          "remarks": "Social engineering and identity abuse through collaboration platforms."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0009",
-          "remarks": "Collection and exfiltration of information through shared collaboration spaces."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0040",
-          "remarks": "Harassment, disruption, or reputational harm arising from misuse of collaboration systems."
-        },
-        {
           "name": "attack-technique",
           "ns": "urn:mitre:attack",
-          "class": "technique",
+          "class": "rationale",
           "value": "T1078",
-          "remarks": "Abuse of valid collaboration accounts."
+          "remarks": "Valid accounts are a primary attack vector against collaboration environments, enabling misuse, impersonation, and unauthorized persistence."
         },
         {
           "name": "attack-technique",
           "ns": "urn:mitre:attack",
-          "class": "technique",
+          "class": "rationale",
           "value": "T1036",
-          "remarks": "Masquerading through misleading identity presentation."
+          "remarks": "Masquerading and misleading identity representation undermine trust in collaboration contexts."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "rationale",
+          "value": "T1199",
+          "remarks": "Collaboration inherently relies on trusted relationships, which may be abused through external or over-scoped participation."
+        },
+        {
+          "name": "attack-technique",
+          "ns": "urn:mitre:attack",
+          "class": "rationale",
+          "value": "T1102",
+          "remarks": "Collaboration services may be abused as legitimate platforms for covert communication or data exfiltration."
         },
 
         {
           "name": "defense-technique",
           "ns": "urn:mitre:d3fend",
-          "class": "technique",
+          "class": "rationale",
           "value": "D3FEND-0045",
-          "remarks": "Strong identity binding across collaboration contexts."
+          "remarks": "Strong identity binding and attribution are essential to maintaining trust across collaboration modalities."
         },
         {
           "name": "defense-technique",
           "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0016",
-          "remarks": "Policy enforcement to constrain inappropriate behavior and data sharing."
+          "class": "rationale",
+          "value": "D3FEND-0004",
+          "remarks": "Explicit boundary and membership enforcement mitigate unauthorized or unintended collaboration access."
         },
         {
           "name": "defense-technique",
           "ns": "urn:mitre:d3fend",
-          "class": "technique",
+          "class": "rationale",
           "value": "D3FEND-0061",
-          "remarks": "Audit logging and traceability to support accountability and investigation."
+          "remarks": "Observability and auditability support accountability and detection of collaboration misuse."
+        },
+        {
+          "name": "defense-technique",
+          "ns": "urn:mitre:d3fend",
+          "class": "rationale",
+          "value": "D3FEND-0037",
+          "remarks": "Lifecycle governance reduces residual risk from abandoned or unmanaged collaboration spaces and artifacts."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-58",
+          "class": "voice-and-video-security",
+          "value": "2, 3, 4",
+          "remarks": "Secure Collaboration services involving real-time voice and video align with NIST SP 800-58 guidance for securing VoIP and multimedia communication."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-46",
+          "class": "remote-and-telework",
+          "value": "3, 4",
+          "remarks": "Collaboration commonly involves remote and unmanaged endpoints, requiring controls consistent with NIST SP 800-46."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "2, 3",
+          "remarks": "Federated and cross-organizational collaboration scenarios align with NIST SP 800-47 trust-boundary guidance."
         }
       ],
 
-      "remarks": "Secure Collaboration is a composite pattern asserting that all foundational trust properties required for digital collaboration environments are collectively satisfied. It introduces no independent controls and exists solely as an aggregate trust claim for solution patterns, risk analysis, and system security and privacy plans."
+      "remarks": "Secure Collaboration is the composite governance pattern defining why digital collaboration is treated as a distinct security domain. The ATT&CK and D3FEND references in this pattern serve as systemic rationale for institutional controls and do not represent implementation-level threat mitigation. Detailed threat handling and control mappings are defined in Collaboration Core and modality-specific patterns."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:pattern-ref:collaboration-core",
-        "type": "component",
-        "title": "Collaboration Core",
-        "description": "Baseline trust assumptions for shared collaboration environments."
+        "uuid": "urn:utoronto:security:pattern:collaboration-core",
+        "type": "pattern-reference",
+        "title": "Collaboration Core"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:instant-messaging",
-        "type": "component",
-        "title": "Instant Messaging",
-        "description": "Governance of conversational, high-velocity messaging."
+        "uuid": "urn:utoronto:security:pattern:instant-messaging",
+        "type": "pattern-reference",
+        "title": "Instant Messaging"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:presence-and-availability",
-        "type": "component",
-        "title": "Presence and Availability",
-        "description": "Controlled exposure of availability and activity signals."
+        "uuid": "urn:utoronto:security:pattern:real-time-messaging",
+        "type": "pattern-reference",
+        "title": "Real-Time Messaging"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:conference-bridges",
-        "type": "component",
-        "title": "Conference Bridges",
-        "description": "Safe conduct of meetings, lectures, and live sessions."
+        "uuid": "urn:utoronto:security:pattern:presence-and-availability",
+        "type": "pattern-reference",
+        "title": "Presence and Availability"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:file-sharing-and-sync",
-        "type": "component",
-        "title": "File Sharing and Sync",
-        "description": "Governed sharing and lifecycle management of collaborative files."
+        "uuid": "urn:utoronto:security:pattern:conference-bridges",
+        "type": "pattern-reference",
+        "title": "Conference Bridges"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:real-time-messaging",
-        "type": "component",
-        "title": "Real-Time Messaging",
-        "description": "Safe use of ad-hoc live communication."
+        "uuid": "urn:utoronto:security:pattern:file-sharing-and-sync",
+        "type": "pattern-reference",
+        "title": "File Sharing and Sync"
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:shared-collaborative-workspaces",
+        "type": "pattern-reference",
+        "title": "Shared Collaborative Workspaces"
       }
     ]
   }

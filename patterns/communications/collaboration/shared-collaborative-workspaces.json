@@ -1,0 +1,194 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:shared-collaborative-workspaces",
+
+    "metadata": {
+      "title": "Shared Collaborative Workspaces",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC356",
+          "remarks": "Business capability for persistent, multi-modal digital collaboration spaces supporting teams, projects, courses, and communities."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD160",
+          "remarks": "Collaborative workspaces, team-based collaboration platforms, persistent digital rooms, and shared collaboration containers."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP287",
+          "remarks": "Pattern for persistent collaboration environments that aggregate messaging, file sharing, meetings, and automation under a governed lifecycle."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE402",
+          "remarks": "Workspace membership, channels, messages, shared files, automation bindings, activity history, and lifecycle metadata."
+        },
+
+        {
+          "name": "depends-on-pattern",
+          "value": "collaboration-core",
+          "remarks": "Shared workspaces inherit baseline collaboration trust, accountability, and lifecycle guarantees from Collaboration Core."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "2, 3",
+          "remarks": "Shared workspaces frequently span organizational and trust boundaries, requiring explicit definition of roles, access, and responsibilities."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-46",
+          "class": "remote-and-telework",
+          "value": "3, 4",
+          "remarks": "Workspaces routinely include remote participants operating from unmanaged environments."
+        }
+      ],
+
+      "remarks": "Shared Collaborative Workspaces define persistent collaboration environments that combine communication, content, and coordination over time. Unlike individual chats or meetings, workspaces accumulate institutional knowledge and risk through persistence, automation, and long-lived membership. This pattern governs membership, scope, lifecycle, and accountability while composing other Secure Collaboration modalities."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:workspace-membership-governance",
+        "type": "capability",
+        "title": "Workspace Membership Governance",
+        "description": "Controls who may create, join, invite others to, or administer collaborative workspaces.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1199",
+            "remarks": "Abuse of trusted relationships through unmanaged or over-permissive workspace membership."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Use of valid accounts to persist within shared workspaces beyond intended authorization."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Explicit role-based membership control constrains workspace access."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:workspace-membership",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-2",
+                "remarks": "Workspace membership is explicitly defined and periodically reviewed."
+              },
+              {
+                "control-id": "AC-3",
+                "remarks": "Enforcement mechanisms restrict unauthorized workspace access."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:workspace-scope-and-boundaries",
+        "type": "capability",
+        "title": "Workspace Scope and Boundary Control",
+        "description": "Constrains how a workspace may be used and limits unintended expansion of scope or exposure.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1213",
+            "remarks": "Collection of information from long-lived or broadly scoped collaboration workspaces."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Boundary definition and lifecycle controls reduce unintended workspace persistence."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:workspace-scope",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Policies define permitted workspace scope and lifecycle expectations."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:workspace-activity-observability",
+        "type": "capability",
+        "title": "Workspace Activity Observability",
+        "description": "Provides visibility into activity across workspace modalities for governance and investigation.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Deletion or suppression of evidence within collaboration workspaces."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging and cross-modality traceability support accountability."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:workspace-audit",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Workspace activity events are defined and logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports investigation of collaboration misuse."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:external-collaboration",
+
+    "metadata": {
+      "title": "Secure Collaboration External / Federated SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan governing external, guest, and federated collaboration scenarios involving non-institutional identities and systems."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "External Collaboration Services",
+      "system-description": "External and federated collaboration capability enabling interaction with non-institutional participants while preserving institutional trust boundaries, accountability, and lifecycle control.",
+      "security-sensitivity-level": "moderate-high",
+
+      "props": [
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-collaboration-platform",
+          "remarks": "External collaboration inherits baseline collaboration governance and trust guarantees from the Secure Collaboration Platform SSPP."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-platform",
+          "remarks": "External collaboration consumes institutional and federated identity assertions governed by Secure Identity SSPPs."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "External collaboration relies on Secure Network boundary enforcement, segmentation, and monitoring."
+        },
+
+        {
+          "name": "external-trust-model",
+          "class": "design-principle",
+          "value": "explicit-and-non-transitive",
+          "remarks": "Trust extended to external collaborators is explicit, scoped, non-transitive, and time-bounded."
+        },
+        {
+          "name": "identity-assurance",
+          "class": "design-principle",
+          "value": "context-aware",
+          "remarks": "External identities are accepted only through approved federation or guest identity mechanisms with known assurance levels."
+        },
+        {
+          "name": "membership-persistence",
+          "class": "governance-constraint",
+          "value": "time-bounded",
+          "remarks": "External participation must expire or be explicitly reviewed to prevent residual access."
+        },
+        {
+          "name": "data-exposure",
+          "class": "governance-constraint",
+          "value": "least-privilege",
+          "remarks": "External collaborators may access only explicitly approved collaboration contexts, content, and modalities."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "§2-§3",
+          "remarks": "External collaboration aligns with SP 800-47 guidance for system interconnection, trust boundary definition, and responsibility assignment."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-46",
+          "class": "remote-and-telework",
+          "value": "§3-§4",
+          "remarks": "External collaborators commonly participate from unmanaged environments consistent with telework and BYOD threat models."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-58",
+          "class": "communication-security",
+          "value": "§2-§3",
+          "remarks": "Real-time external collaboration inherits the identity and trust risks described in secure voice and multimedia communication systems."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "External collaboration is implemented via scoped participation in collaboration modalities under explicit boundary enforcement and observability.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:conference-bridges",
+          "type": "pattern-reference",
+          "title": "Conference Bridges"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:real-time-messaging",
+          "type": "pattern-reference",
+          "title": "Real-Time Messaging"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:instant-messaging",
+          "type": "pattern-reference",
+          "title": "Instant Messaging"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:file-sharing-and-sync",
+          "type": "pattern-reference",
+          "title": "File Sharing and Sync"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:shared-collaborative-workspaces",
+          "type": "pattern-reference",
+          "title": "Shared Collaborative Workspaces"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-external-collaboration-owner",
+        "title": "External Collaboration Owner",
+        "remarks": "Defines scope, purpose, and duration for external collaboration engagements.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-GOV"
+          }
+        ]
+      },
+      {
+        "id": "role-collaboration-security",
+        "title": "Collaboration Security Monitoring",
+        "remarks": "Monitors and responds to misuse or policy violations involving external collaborators.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-SOC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Security and privacy controls are inherited from the Secure Collaboration Platform, Secure Identity, and Secure Network SSPPs. This SSPP defines additional constraints specific to external participation."
+    }
+  }
+}

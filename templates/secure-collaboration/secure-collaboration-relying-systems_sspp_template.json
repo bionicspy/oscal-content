@@ -1,0 +1,127 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:relying-system:secure-collaboration",
+
+    "metadata": {
+      "title": "Secure Collaboration Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan template for systems that embed, integrate with, or depend on Secure Collaboration services."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Collaboration Relying System",
+      "system-description": "A system or service that relies on Secure Collaboration platforms for messaging, conferencing, file sharing, or workspace functionality without implementing collaboration trust controls directly.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-collaboration-platform",
+          "remarks": "This system relies on the Secure Collaboration Platform SSPP for collaboration trust, governance, and lifecycle controls."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "external-collaboration",
+          "remarks": "Where external or federated collaborators are involved, this system relies on the External Collaboration SSPP constraints."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-platform",
+          "remarks": "This system consumes identity, attribution, and delegation services from Secure Identity."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "This system relies on Secure Network for transport protection, segmentation, and monitoring."
+        },
+
+        {
+          "name": "collaboration-consumption-model",
+          "class": "design-principle",
+          "value": "inherited-services",
+          "remarks": "Collaboration functionality is consumed as a governed service and is not re-implemented locally within the relying system."
+        },
+        {
+          "name": "trust-boundary",
+          "class": "architecture-boundary",
+          "value": "externalized-collaboration-trust",
+          "remarks": "Identity attribution, membership enforcement, and observability occur in the Secure Collaboration platform, not in the relying system."
+        },
+        {
+          "name": "data-handling-responsibility",
+          "class": "design-principle",
+          "value": "application-contextual",
+          "remarks": "The relying system remains responsible for classifying and governing its own data, even when collaboration services are used."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "2",
+          "remarks": "Relying systems participate in collaboration workflows while preserving defined trust boundaries."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-inheritance",
+          "value": "PL, AC, IA, AU",
+          "remarks": "The relying system inherits collaboration-related controls from Secure Collaboration while implementing application-specific governance."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP documents reliance on Secure Collaboration services for messaging, conferencing, file sharing, and workspace functionality.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:component:collaboration-reliant-application",
+          "type": "conceptual",
+          "title": "Collaboration-Reliant Application Component",
+          "description": "Logical representation of an application or service that embeds or integrates collaboration capabilities."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-application-owner",
+        "title": "System Owner",
+        "remarks": "Defines acceptable collaboration use and data sensitivity for the relying system.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-RSK"
+          }
+        ]
+      },
+      {
+        "id": "role-collaboration-architecture",
+        "title": "Collaboration Architecture Authority",
+        "remarks": "Ensures correct inheritance and use of Secure Collaboration services.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All collaboration security controls are inherited from Secure Collaboration, Secure Identity, and Secure Network SSPPs. This SSPP documents reliance and boundary conditions only."
+    }
+  }
+}

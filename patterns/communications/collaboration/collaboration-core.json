@@ -1,10 +1,12 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:collaboration-core",
+
     "metadata": {
-      "version": "0.1.0",
+      "title": "Collaboration Core",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-30T09:00:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
@@ -19,18 +21,40 @@
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD160",
-          "remarks": "Collaboration platforms, shared workspaces, messaging backplanes, and collaborative content services."
+          "remarks": "Collaboration platforms, shared workspaces, messaging backplanes, conferencing services, and collaborative content systems."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
+          "class": "foundational-pattern",
           "value": "urn:utoronto:cae2:arm:AP280",
-          "remarks": "Pattern for establishing baseline trust assumptions for shared collaboration systems before applying modality-specific controls."
+          "remarks": "Foundational pattern defining baseline trust assumptions required for any collaboration system, independent of modality."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "2, 3",
+          "remarks": "Collaboration systems frequently interconnect participants, identities, and content across organizational and trust boundaries, requiring explicit responsibility and trust definition."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-46",
+          "class": "remote-and-telework",
+          "value": "3",
+          "remarks": "Collaboration commonly involves remote and unmanaged endpoints, requiring identity, boundary, and accountability guarantees."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-58",
+          "class": "communication-security",
+          "value": "2",
+          "remarks": "Real-time and near-real-time collaboration inherits many of the same identity and trust risks present in voice and multimedia communication systems."
         }
       ],
 
-      "remarks": "Collaboration Core defines the foundational trust properties required for shared digital collaboration environments. This pattern establishes identity awareness, boundary control, accountability, and lifecycle awareness without addressing specific collaboration modalities such as chat, meetings, or file sharing."
+      "remarks": "Collaboration Core defines the universal trust properties required for shared digital collaboration environments. These invariants apply regardless of modality (messaging, meetings, file sharing, or workspaces) and establish identity context, participation boundaries, observability, and lifecycle awareness as non-negotiable foundations. This pattern exists to prevent collaboration tools from becoming ungoverned trust zones."
     },
 
     "components": [
@@ -38,31 +62,32 @@
         "uuid": "urn:utoronto:security:capability:collaboration-identity-context-awareness",
         "type": "capability",
         "title": "Collaboration Identity Context Awareness",
-        "description": "Ensures participant identities and roles are consistently visible and interpretable within collaboration contexts.",
+        "description": "Ensures participant identities, roles, and authority signals are consistently visible and interpretable in collaboration contexts.",
+
         "props": [
           {
-            "title": "Collaboration Core",
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1036",
-            "remarks": "Masquerading through misleading identity presentation in collaboration platforms."
+            "remarks": "Masquerading through misleading identity presentation in collaboration environments."
           },
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1078",
-            "remarks": "Abuse of valid accounts to misrepresent authority or presence."
+            "remarks": "Use of valid accounts to misrepresent authority or intent during collaboration."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0045",
-            "remarks": "Strong identity binding for participant authentication and attribution."
+            "remarks": "Strong identity binding and attribution mitigate impersonation across collaboration modalities."
           }
         ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:collaboration-identity-awareness",
@@ -85,23 +110,25 @@
         "uuid": "urn:utoronto:security:capability:collaboration-boundary-and-membership-control",
         "type": "capability",
         "title": "Collaboration Boundary and Membership Control",
-        "description": "Constrains who may join, observe, or participate in a collaboration space.",
+        "description": "Constrains who may join, observe, or persist within collaboration spaces.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1199",
-            "remarks": "Abuse of trusted relationships through unauthorized or external collaboration access."
+            "remarks": "Abuse of trusted relationships through unauthorized or over-extended collaboration membership."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0004",
-            "remarks": "Privileged and role-based access control to collaboration membership."
+            "remarks": "Membership and role-based access control enforce collaboration boundaries."
           }
         ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:collaboration-membership-control",
@@ -109,7 +136,7 @@
             "implemented-requirements": [
               {
                 "control-id": "AC-2",
-                "remarks": "Access to collaboration spaces is explicitly managed and reviewed."
+                "remarks": "Access to collaboration environments is explicitly managed and reviewed."
               },
               {
                 "control-id": "AC-3",
@@ -125,6 +152,7 @@
         "type": "capability",
         "title": "Collaboration Accountability and Observability",
         "description": "Provides visibility and traceability into collaboration activity for governance and investigation.",
+
         "props": [
           {
             "name": "attack-technique",
@@ -138,9 +166,10 @@
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0061",
-            "remarks": "Audit logging and activity tracing to support accountability."
+            "remarks": "Audit logging and activity tracing support accountability across collaboration systems."
           }
         ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:collaboration-auditability",
@@ -164,22 +193,24 @@
         "type": "capability",
         "title": "Collaboration Lifecycle Awareness",
         "description": "Manages creation, evolution, and retirement of collaboration spaces and artifacts.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1213",
-            "remarks": "Persistence through abandoned or unmanaged collaboration spaces."
+            "remarks": "Persistence and information collection through abandoned or unmanaged collaboration spaces."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0037",
-            "remarks": "Lifecycle management to reduce residual risk from stale collaboration assets."
+            "remarks": "Lifecycle governance reduces residual risk from stale collaboration resources."
           }
         ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:collaboration-lifecycle",
@@ -191,7 +222,7 @@
               },
               {
                 "control-id": "PL-8",
-                "remarks": "Policies define lifecycle expectations for collaboration spaces."
+                "remarks": "Policies define lifecycle expectations for collaboration environments."
               }
             ]
           }
