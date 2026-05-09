@@ -1,0 +1,122 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:backup-and-recovery",
+
+    "metadata": {
+      "title": "Backup and Recovery (Secure‑Resilience Aligned)",
+      "version": "2.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T21:40:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC340",
+          "remarks": "Business capability for preserving and restoring data and system state when explicitly permitted by Secure‑Resilience."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD060",
+          "remarks": "Data backup, system snapshotting, restoration mechanisms, and recovery tooling."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP100",
+          "remarks": "Solution pattern implementing backup and restore operations subject to Secure‑Resilience eligibility."
+        },
+        {
+          "name": "secure-resilience-dependency",
+          "class": "foundational-dependency",
+          "value": "secure-resilience-core",
+          "remarks": "Backup and Recovery actions are governed by Secure‑Resilience eligibility decisions."
+        }
+      ],
+
+      "remarks": "Backup and Recovery provides technical capability to preserve and restore system state. Restoration is permitted only when Secure‑Resilience determines the state is reversible, safe‑halt is not required, no recall is active, and resume eligibility is explicitly granted."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:backup-availability",
+        "type": "capability",
+        "title": "Backup Availability",
+        "description": "Creation and protection of backups for data and system state.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-9",
+                "remarks": "Backups are created and protected."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:restore-eligibility-gate",
+        "type": "capability",
+        "title": "Restore Eligibility Gate",
+        "description": "Permits restore only when Secure‑Resilience determines restoration is safe and permitted.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-10",
+                "remarks": "System recovery is gated by eligibility and safety context."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:restore-suppression",
+        "type": "capability",
+        "title": "Restore Suppression",
+        "description": "Suppresses restore actions when state is irreversible, recall is active, or safe‑halt is required.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-8",
+                "remarks": "Recovery mechanisms do not permit unsafe restoration."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:backup-non-equivalence",
+        "type": "capability",
+        "title": "Backup Non‑Equivalence Constraints",
+        "description": "Explicitly defines what backups do not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-9",
+                "remarks": "Availability of backups does not imply permission to restore or resume."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

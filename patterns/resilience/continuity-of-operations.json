@@ -1,0 +1,189 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:continuity-of-operations",
+
+    "metadata": {
+      "title": "Continuity of Operations (Secure‑Resilience Aligned)",
+      "version": "2.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T22:50:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC340",
+          "remarks": "Business capability for maintaining essential functions during disruption when explicitly permitted by Secure‑Resilience."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD060",
+          "remarks": "Continuity planning, degraded operation modes, mission‑essential processes, and alternate execution paths."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP130",
+          "remarks": "Solution pattern implementing continuity operations subject to Secure‑Resilience eligibility and safety constraints."
+        },
+        {
+          "name": "secure-resilience-dependency",
+          "class": "foundational-dependency",
+          "value": "secure-resilience-core",
+          "remarks": "Continuity actions are governed by Secure‑Resilience state classification, recall status, and resume eligibility."
+        }
+      ],
+
+      "remarks": "Continuity of Operations provides capability to maintain essential functions during disruption. Continuity does not imply full functionality, safety, or permission to resume normal operations."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:mission-essential-function-identification",
+        "type": "capability",
+        "title": "Mission‑Essential Function Identification",
+        "description": "Identification of functions permitted to continue during disruption.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-2",
+                "remarks": "Mission-essential functions are identified and prioritized."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:degraded-operation-modes",
+        "type": "capability",
+        "title": "Degraded Operation Modes",
+        "description": "Explicitly defined reduced functionality modes permitted under continuity.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-3",
+                "remarks": "Alternate and degraded operational modes are supported."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:continuity-eligibility-gate",
+        "type": "capability",
+        "title": "Continuity Eligibility Gate",
+        "description": "Permits continuity actions only when Secure‑Resilience determines they are safe.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-8",
+                "remarks": "Continuity arrangements are gated by safety and eligibility context."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:continuity-suppression",
+        "type": "capability",
+        "title": "Continuity Suppression",
+        "description": "Suppresses continuity when recall, irreversible state, or safety constraints exist.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-7",
+                "remarks": "Alternate processing excludes unsafe components or operations."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:continuity-non-equivalence",
+        "type": "capability",
+        "title": "Continuity Non‑Equivalence Constraints",
+        "description": "Explicitly defines what continuity capability does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-8",
+                "remarks": "Continuity does not imply safety, correctness, or permission to operate normally."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+
+    "threat-model": {
+      "framework": "MITRE ATT&CK",
+      "domain": "Enterprise",
+      "tactics": [
+        {
+          "tactic-id": "TA0040",
+          "name": "Impact",
+          "description": "Adversary actions intended to disrupt operations or availability."
+        }
+      ],
+      "techniques": [
+        {
+          "technique-id": "T1486",
+          "name": "Data Encrypted for Impact"
+        },
+        {
+          "technique-id": "T1499",
+          "name": "Endpoint Denial of Service"
+        },
+        {
+          "technique-id": "T1565",
+          "name": "Data Manipulation"
+        }
+      ]
+    },
+
+    "defensive-model": {
+      "framework": "MITRE D3FEND",
+      "categories": [
+        {
+          "technique-id": "D3-DEGRADE",
+          "name": "Degrade",
+          "description": "Operating systems with intentionally reduced capability."
+        },
+        {
+          "technique-id": "D3-ALT",
+          "name": "Alternate Processing",
+          "description": "Providing essential functions via alternate pathways."
+        },
+        {
+          "technique-id": "D3-ISOLATE",
+          "name": "Isolate",
+          "description": "Preventing unsafe components from participating in continuity."
+        }
+      ]
+    }
+  }
+}
+``

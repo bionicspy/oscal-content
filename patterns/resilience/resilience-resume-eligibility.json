@@ -1,0 +1,157 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:resilience-resume-eligibility",
+
+    "metadata": {
+      "title": "Resume Eligibility",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T21:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC340",
+          "remarks": "Business capability for determining whether a system may safely resume operation following disruption, recovery, or halt."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD060",
+          "remarks": "Resilience decision gating, restart authorization, execution suppression, and safe resumption control."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP960",
+          "remarks": "Foundational Zero Trust pattern defining explicit eligibility criteria for resuming system operation."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "resume-eligibility-data",
+          "value": "urn:utoronto:cae2:drm:DP960",
+          "remarks": "Defines resume eligibility as trust-relevant resilience decision data."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-family",
+          "value": "CP",
+          "remarks": "Continuity and recovery controls (CP-3, CP-7, CP-8, CP-10) are constrained by resume eligibility."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2–3.3",
+          "remarks": "Zero Trust guidance requiring explicit authorization before resumption of operation."
+        }
+      ],
+
+      "remarks": "Resume Eligibility defines whether resumption of execution is permitted following disruption, restore, degradation, or halt. This pattern establishes non-equivalence between technical recovery and permission to operate."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:resume-eligibility-criteria",
+        "type": "capability",
+        "title": "Resume Eligibility Criteria",
+        "description": "Defines required conditions that must be satisfied before resumption is permitted.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-3",
+                "remarks": "Resumption of operations is explicitly governed."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:resume-suppression",
+        "type": "capability",
+        "title": "Resume Suppression",
+        "description": "Prevents resumption when eligibility conditions are not met.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-8",
+                "remarks": "Continuity plans prevent unsafe resumption."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:explicit-resume-authorization",
+        "type": "capability",
+        "title": "Explicit Resume Authorization",
+        "description": "Requires explicit authorization signal before resuming execution.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-2",
+                "remarks": "Resilience governance defines who may approve resumption."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:resume-non-equivalence",
+        "type": "capability",
+        "title": "Resume Non‑Equivalence Constraints",
+        "description": "Explicitly defines what successful recovery or restoration does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-10",
+                "remarks": "Ability to recover does not imply permission to resume operations."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:resume-eligibility-signaling",
+        "type": "capability",
+        "title": "Resume Eligibility Signaling",
+        "description": "Emission of explicit resume‑permitted or resume‑prohibited signals.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-7",
+                "remarks": "Alternate and suppressed operational states are visible."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,11 +1,12 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:operational-resilience",
+
     "metadata": {
-      "title": "Operational Resilience",
-      "version": "1.1.0",
+      "title": "Operational Resilience (Secure‑Resilience Aligned)",
+      "version": "2.0.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T04:55:00Z",
+      "last-modified": "2026-05-06T23:15:00Z",
 
       "props": [
         {
@@ -13,51 +14,94 @@
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
           "value": "urn:utoronto:cae2:brm:BC340",
-          "remarks": "Business capability for sustaining and recovering institutional operations through significant disruption."
+          "remarks": "Business capability for surviving disruption while preventing unsafe recovery, unauthorized resumption, or concealment of harm."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD060",
-          "remarks": "Resilience, recovery, disaster recovery, and continuity technologies."
+          "remarks": "Resilience, recovery, continuity, degradation, halt, isolation, recall handling, and resumption gating across all domains."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "composite-pattern",
-          "value": "urn:utoronto:cae2:arm:AP180",
-          "remarks": "Composite pattern asserting institutional operational resilience and continuity capability."
+          "value": "urn:utoronto:cae2:arm:AP200",
+          "remarks": "Composite pattern assembling Secure‑Resilience semantics and solution patterns into a coherent operational resilience architecture."
+        },
+        {
+          "name": "resilience-model",
+          "class": "foundational-assumption",
+          "value": "safety-before-recovery",
+          "remarks": "Operational resilience prioritizes safe outcomes over availability, speed of recovery, or service continuity."
         }
       ],
 
-      "remarks": "Operational Resilience is a composite pattern asserting that the institution can withstand, recover from, and continue operating through disruptive events. This pattern introduces no independent controls and may be claimed only when all constituent resilience and continuity patterns are realized."
+      "remarks": "Operational Resilience composes foundational resilience semantics with recovery and continuity solution patterns. It defines when backup, recovery, disaster recovery, ransomware response, and continuity actions are permitted, degraded, suppressed, or forbidden."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:pattern-ref:backup-and-recovery",
-        "type": "component",
+        "uuid": "urn:utoronto:security:pattern:secure-resilience-core",
+        "type": "component-reference",
+        "title": "Secure‑Resilience Core",
+        "description": "Defines resilience eligibility, non‑equivalence, and permitted recovery outcomes."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:resilience-state-reversibility",
+        "type": "component-reference",
+        "title": "Reversible vs Irreversible State",
+        "description": "Classifies whether state may be safely restored or replayed."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:resilience-safe-halt-vs-restore",
+        "type": "component-reference",
+        "title": "Safe‑Halt vs Restore",
+        "description": "Determines when halting execution is safer than restoration."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:resilience-degradation-vs-continuity",
+        "type": "component-reference",
+        "title": "Degradation vs Continuity",
+        "description": "Determines when reduced operation is safer than full continuity."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:resilience-recall-driven-recovery",
+        "type": "component-reference",
+        "title": "Recall‑Driven Recovery",
+        "description": "Enforces authority‑driven suppression of restore and resume."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:resilience-resume-eligibility",
+        "type": "component-reference",
+        "title": "Resume Eligibility",
+        "description": "Defines explicit criteria and authorization for resuming operation."
+      },
+
+      {
+        "uuid": "urn:utoronto:security:pattern:backup-and-recovery",
+        "type": "component-reference",
         "title": "Backup and Recovery",
-        "description": "Backup creation, protection, and recovery of data and systems following loss or corruption."
+        "description": "Provides backup and restore capability subject to Secure‑Resilience eligibility."
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:ransomware-resilience",
-        "type": "component",
-        "title": "Ransomware Resilience",
-        "description": "Ability to recover from ransomware and destructive malware without attacker cooperation."
-      },
-      {
-        "uuid": "urn:utoronto:security:pattern-ref:disaster-recovery",
-        "type": "component",
+        "uuid": "urn:utoronto:security:pattern:disaster-recovery",
+        "type": "component-reference",
         "title": "Disaster Recovery",
-        "description": "Recovery of systems and services following large-scale outages or catastrophic disruptions."
+        "description": "Provides alternate processing and failover subject to Secure‑Resilience gating."
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:continuity-of-operations",
-        "type": "component",
+        "uuid": "urn:utoronto:security:pattern:ransomware-resilience",
+        "type": "component-reference",
+        "title": "Ransomware Resilience",
+        "description": "Provides ransomware containment and recovery actions subject to Secure‑Resilience eligibility."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:continuity-of-operations",
+        "type": "component-reference",
         "title": "Continuity of Operations",
-        "description": "Sustaining essential institutional functions during prolonged or systemic disruption."
+        "description": "Provides degraded or limited continuity subject to Secure‑Resilience constraints."
       }
     ]
   }

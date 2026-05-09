@@ -1,0 +1,172 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:disaster-recovery",
+
+    "metadata": {
+      "title": "Disaster Recovery (Secure‑Resilience Aligned)",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T22:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC340",
+          "remarks": "Business capability for reconstituting systems following disruptive events when explicitly permitted by Secure‑Resilience."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD060",
+          "remarks": "Disaster recovery infrastructure, alternate sites, replication, and failover mechanisms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP110",
+          "remarks": "Solution pattern implementing disaster recovery operations subject to Secure‑Resilience eligibility."
+        },
+        {
+          "name": "secure-resilience-dependency",
+          "class": "foundational-dependency",
+          "value": "secure-resilience-core",
+          "remarks": "Disaster Recovery actions are governed by Secure‑Resilience state classification and resume eligibility."
+        }
+      ],
+
+      "remarks": "Disaster Recovery provides technical capability to reconstitute services at alternate locations. Failover and resumption are permitted only when Secure‑Resilience determines recovery is safe, recall-free, and resume-eligible."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:alternate-processing",
+        "type": "capability",
+        "title": "Alternate Processing Capability",
+        "description": "Technical capability to operate systems from alternate locations or infrastructure.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-7",
+                "remarks": "Alternate processing capability exists."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:failover-eligibility-gate",
+        "type": "capability",
+        "title": "Failover Eligibility Gate",
+        "description": "Permits disaster recovery failover only when resume eligibility is explicitly granted.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-10",
+                "remarks": "System recovery is gated by eligibility and safety context."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dr-suppression",
+        "type": "capability",
+        "title": "Disaster Recovery Suppression",
+        "description": "Suppresses failover when safe-halt, recall, or non-resume conditions exist.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-8",
+                "remarks": "Continuity mechanisms do not permit unsafe reconstitution."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:dr-non-equivalence",
+        "type": "capability",
+        "title": "Disaster Recovery Non‑Equivalence Constraints",
+        "description": "Explicitly defines what disaster recovery capability does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-7",
+                "remarks": "Ability to fail over does not imply safety or permission to resume."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+
+    "threat-model": {
+      "framework": "MITRE ATT&CK",
+      "domain": "Enterprise",
+      "tactics": [
+        {
+          "tactic-id": "TA0040",
+          "name": "Impact",
+          "description": "Adversary actions intended to disrupt availability, integrity, or operations."
+        }
+      ],
+      "techniques": [
+        {
+          "technique-id": "T1486",
+          "name": "Data Encrypted for Impact",
+          "remarks": "DR may be invoked following encryption events."
+        },
+        {
+          "technique-id": "T1485",
+          "name": "Data Destruction",
+          "remarks": "DR may be required but restore eligibility must be evaluated."
+        },
+        {
+          "technique-id": "T1490",
+          "name": "Inhibit System Recovery",
+          "remarks": "DR must not be assumed effective without integrity verification."
+        }
+      ]
+    },
+
+    "defensive-model": {
+      "framework": "MITRE D3FEND",
+      "categories": [
+        {
+          "technique-id": "D3-REC",
+          "name": "Recover",
+          "description": "Reconstituting operations following disruptive impact."
+        },
+        {
+          "technique-id": "D3-RST",
+          "name": "Restore",
+          "description": "Restoring system state when permitted by resilience eligibility."
+        },
+        {
+          "technique-id": "D3-ALT",
+          "name": "Alternate Processing",
+          "description": "Operating systems from alternate infrastructure."
+        }
+      ]
+    }
+  }
+}

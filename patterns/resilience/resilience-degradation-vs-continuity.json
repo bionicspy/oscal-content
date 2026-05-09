@@ -1,0 +1,157 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:resilience-degradation-vs-continuity",
+
+    "metadata": {
+      "title": "Degradation vs Continuity",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T20:30:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC340",
+          "remarks": "Business capability for determining when degraded operation is safer than full continuity or halt."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD060",
+          "remarks": "Resilience decision logic governing partial operation, constrained modes, and mission-essential continuity."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP940",
+          "remarks": "Foundational Zero Trust pattern defining when degraded operation is permitted and when full continuity is unsafe."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "degradation-vs-continuity-data",
+          "value": "urn:utoronto:cae2:drm:DP940",
+          "remarks": "Defines degradation eligibility and continuity constraints as trust-relevant resilience data."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-family",
+          "value": "CP",
+          "remarks": "Continuity Planning controls (CP-2, CP-3, CP-7, CP-8) are constrained by degradation eligibility."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2–3.3",
+          "remarks": "Zero Trust guidance requiring contextual evaluation for continued operation."
+        }
+      ],
+
+      "remarks": "Degradation vs Continuity defines when partial or constrained operation is safer than full continuity or restoration. This pattern establishes non-equivalence between system availability and safe operational capability."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:degradation-eligible-state",
+        "type": "capability",
+        "title": "Degradation‑Eligible State",
+        "description": "State in which reduced or constrained functionality can be provided without introducing new harm.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-3",
+                "remarks": "Essential functions may continue in alternate or degraded modes."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:continuity-exclusion",
+        "type": "capability",
+        "title": "Continuity Exclusion",
+        "description": "Conditions under which full continuity must not be pursued despite availability capability.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-2",
+                "remarks": "Continuity strategies consider unsafe or ineligible operating conditions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:degraded-mode-definition",
+        "type": "capability",
+        "title": "Degraded Mode Definition",
+        "description": "Explicit definition of reduced functionality modes and operational constraints.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-7",
+                "remarks": "Alternate processing modes are explicitly bounded."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:continuity-non-equivalence",
+        "type": "capability",
+        "title": "Degradation vs Continuity Non‑Equivalence Constraints",
+        "description": "Explicitly defines what continuity capability does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-8",
+                "remarks": "Continuity does not imply safety, correctness, or permission to operate normally."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:degradation-signaling",
+        "type": "capability",
+        "title": "Degradation Signaling",
+        "description": "Emission of signals indicating degraded operation requirements or restrictions.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-3",
+                "remarks": "Degraded operational states are visible and enforceable."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

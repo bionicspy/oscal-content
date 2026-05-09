@@ -1,0 +1,157 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:resilience-safe-halt-vs-restore",
+
+    "metadata": {
+      "title": "Safe‑Halt vs Restore",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T20:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC340",
+          "remarks": "Business capability for determining when halting execution is safer than restoration or resumption."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD060",
+          "remarks": "Resilience decision-making, safe-halt mechanisms, recovery gating, and execution suppression."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP930",
+          "remarks": "Foundational Zero Trust pattern defining when safe halt is required instead of restore."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "halt-vs-restore-decision-data",
+          "value": "urn:utoronto:cae2:drm:DP930",
+          "remarks": "Defines safe-halt and restore eligibility as trust-relevant resilience decision data."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-family",
+          "value": "CP",
+          "remarks": "Continuity and recovery controls are constrained by safe-halt versus restore eligibility."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2–3.3",
+          "remarks": "Zero Trust guidance requiring explicit authorization for resumption and continued operation."
+        }
+      ],
+
+      "remarks": "Safe‑Halt vs Restore defines when cessation of execution is safer than system restoration or resumption. This pattern establishes non-equivalence between recoverability and safe operation."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:safe-halt-condition",
+        "type": "capability",
+        "title": "Safe Halt Condition",
+        "description": "Conditions under which execution must be halted to prevent further harm or unsafe outcomes.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-2",
+                "remarks": "Plans include explicit conditions requiring cessation of operation."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:restore-eligibility",
+        "type": "capability",
+        "title": "Restore Eligibility",
+        "description": "Determines when system restoration would not introduce new risk or conceal harm.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-10",
+                "remarks": "Recovery is permitted only when restoration does not increase risk."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:halt-as-default-on-uncertainty",
+        "type": "capability",
+        "title": "Halt as Default on Uncertainty",
+        "description": "Defaults to halting execution when safety, correctness, or integrity cannot be conclusively established.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-7",
+                "remarks": "Alternate processing includes safe-halt states."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:restore-non-equivalence",
+        "type": "capability",
+        "title": "Halt vs Restore Non‑Equivalence Constraints",
+        "description": "Explicitly defines what restoration capability does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-8",
+                "remarks": "Ability to restore does not imply safety or permission to resume."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:halt-signaling",
+        "type": "capability",
+        "title": "Safe Halt Signaling",
+        "description": "Emission of halt-required signals to suppress restore, resume, or replay actions.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-3",
+                "remarks": "Resumption decisions are explicitly controlled."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

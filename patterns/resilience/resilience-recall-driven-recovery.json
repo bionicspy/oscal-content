@@ -1,0 +1,157 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:resilience-recall-driven-recovery",
+
+    "metadata": {
+      "title": "Recall‑Driven Recovery",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T20:55:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC340",
+          "remarks": "Business capability for governing recovery actions when recall, safety withdrawal, or authority-driven removal from service has occurred."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD060",
+          "remarks": "Resilience, recall handling, halt, isolation, decommissioning, and authority-driven recovery suppression."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP950",
+          "remarks": "Foundational Zero Trust pattern defining recall as an overriding constraint on recovery and resumption."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "recall-governance-data",
+          "value": "urn:utoronto:cae2:drm:DP950",
+          "remarks": "Defines recall status as trust-relevant resilience data that suppresses restore and resume actions."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-family",
+          "value": "CP",
+          "remarks": "Continuity and recovery controls are overridden by recall and safety withdrawal conditions."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2–3.3",
+          "remarks": "Zero Trust guidance asserting that authority and context may revoke trust and operation eligibility."
+        }
+      ],
+
+      "remarks": "Recall‑Driven Recovery defines how recovery and resilience actions are constrained when a system, device, or component is subject to recall or authority-driven withdrawal. Restore and resume are explicitly prohibited while recall conditions are in effect."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:recall-authority-signal",
+        "type": "capability",
+        "title": "Recall Authority Signal",
+        "description": "Recognition of authoritative recall, safety withdrawal, or mandated removal from service.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-2",
+                "remarks": "Resilience planning incorporates authoritative withdrawal and recall conditions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:restore-suppression-on-recall",
+        "type": "capability",
+        "title": "Restore Suppression on Recall",
+        "description": "Explicit suppression of restore, rollback, or replay actions for recalled entities.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-10",
+                "remarks": "Recovery actions are prohibited when recall conditions exist."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mandatory-halt-or-isolation",
+        "type": "capability",
+        "title": "Mandatory Halt or Isolation",
+        "description": "Enforced halt or isolation of recalled systems to prevent further operation.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-7",
+                "remarks": "Alternate processing excludes recalled components."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:recall-driven-decommission",
+        "type": "capability",
+        "title": "Recall‑Driven Decommissioning",
+        "description": "Permanent removal from service when recall conditions are irreversible or unresolved.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-8",
+                "remarks": "Continuity arrangements do not permit operation of withdrawn systems."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:recall-non-equivalence",
+        "type": "capability",
+        "title": "Recall Non‑Equivalence Constraints",
+        "description": "Explicitly defines what recall handling does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-9",
+                "remarks": "Availability of backups does not permit restoration of recalled entities."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

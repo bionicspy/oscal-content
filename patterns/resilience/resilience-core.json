@@ -1,0 +1,164 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-resilience-core",
+
+    "metadata": {
+      "title": "Secure Resilience Core",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T19:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC340",
+          "remarks": "Business capability for ensuring systems can survive, degrade, halt, or recover without introducing new harm or unsafe conditions."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD060",
+          "remarks": "Resilience, continuity, recovery, degradation, isolation, and safe-halt mechanisms across IT, integration, and cyber-physical domains."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP910",
+          "remarks": "Foundational Zero Trust pattern defining resilience eligibility, reversibility boundaries, and permitted recovery outcomes."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "resilience-trust-data",
+          "value": "urn:utoronto:cae2:drm:DP910",
+          "remarks": "Defines resilience state, reversibility, and resume eligibility as trust-relevant signal data."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-family",
+          "value": "CP",
+          "remarks": "Continuity Planning controls (CP-2 through CP-10) are interpreted through Secure-Resilience eligibility constraints."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2–3.3",
+          "remarks": "Zero Trust guidance asserting that recovery and resumption must be explicitly authorized and context-aware."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-184",
+          "class": "incident-coordination-guidance",
+          "value": "Cyber Incident Coordination",
+          "remarks": "Provides guidance on coordinating resilience decisions and recovery activities across stakeholders. Does not define recovery eligibility or safety."
+        }
+      ],
+
+      "remarks": "Secure Resilience Core defines when recovery, restoration, continuation, or halt actions are permissible. This pattern does not perform backup, recovery, failover, or continuity operations. It establishes non-equivalence between resilience mechanisms and safe outcomes."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:state-reversibility-classification",
+        "type": "capability",
+        "title": "State Reversibility Classification",
+        "description": "Classification of system and process state as reversible, partially reversible, or irreversible.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-2",
+                "remarks": "Resilience planning considers reversibility of system state."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:recovery-eligibility",
+        "type": "capability",
+        "title": "Recovery Eligibility Determination",
+        "description": "Determines whether restoration or reconstitution is safe to perform given current state.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-10",
+                "remarks": "Recovery actions are conditioned on eligibility and safety context."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:permitted-resilience-outcomes",
+        "type": "capability",
+        "title": "Permitted Resilience Outcomes",
+        "description": "Defines allowable outcomes such as restore, degrade, halt, isolate, or decommission.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-7",
+                "remarks": "Alternate processing outcomes are defined and bounded."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:resume-eligibility",
+        "type": "capability",
+        "title": "Resume Eligibility",
+        "description": "Determines when a system may safely return to operational service.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-3",
+                "remarks": "Resumption of operations is explicitly governed."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:resilience-non-equivalence",
+        "type": "capability",
+        "title": "Resilience Non‑Equivalence Constraints",
+        "description": "Explicitly defines what resilience mechanisms do not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-8",
+                "remarks": "Backup, recovery, or continuity does not imply safety, correctness, or authorization to resume."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

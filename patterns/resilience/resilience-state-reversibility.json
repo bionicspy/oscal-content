@@ -1,0 +1,157 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:resilience-state-reversibility",
+
+    "metadata": {
+      "title": "Reversible vs Irreversible State",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T19:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC340",
+          "remarks": "Business capability for classifying system and process state by reversibility to ensure safe resilience outcomes."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD060",
+          "remarks": "Resilience, recovery, continuity, rollback, degradation, halt, isolation, and decommissioning behaviors."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP920",
+          "remarks": "Foundational Zero Trust pattern defining when system state may be safely reversed, and when it must not be."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "state-reversibility-data",
+          "value": "urn:utoronto:cae2:drm:DP920",
+          "remarks": "Defines state reversibility classification as trust-relevant data governing resilience decisions."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-family",
+          "value": "CP",
+          "remarks": "Continuity and recovery controls are constrained by state reversibility classification."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2–3.3",
+          "remarks": "Zero Trust guidance requiring explicit authorization for resumption based on context and risk."
+        }
+      ],
+
+      "remarks": "Reversible vs Irreversible State defines whether system, integration, or device state may be safely restored, resumed, or replayed. This pattern establishes non-equivalence between technical recoverability and safe recovery."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:reversible-state",
+        "type": "capability",
+        "title": "Reversible State",
+        "description": "State in which restoration or rollback does not invalidate reality or introduce new harm.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-9",
+                "remarks": "Reversible state supports backup restoration without semantic conflict."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:partially-reversible-state",
+        "type": "capability",
+        "title": "Partially Reversible State",
+        "description": "State in which restoration is technically possible but requires reconciliation or compensation.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-7",
+                "remarks": "Alternate processing may be required to safely continue operations."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:irreversible-state",
+        "type": "capability",
+        "title": "Irreversible State",
+        "description": "State in which restoration, replay, or resume would conceal harm, violate safety, or compound risk.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-10",
+                "remarks": "Recovery must not conflict with safety or mission constraints."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:state-classification-signaling",
+        "type": "capability",
+        "title": "State Classification Signaling",
+        "description": "Emission of reversibility classification as a resilience eligibility signal.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-2",
+                "remarks": "Resilience planning incorporates state classification."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:state-non-equivalence",
+        "type": "capability",
+        "title": "State Reversibility Non‑Equivalence Constraints",
+        "description": "Explicitly defines what reversibility does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-8",
+                "remarks": "Restorability does not imply safety, authorization, or permission to resume."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

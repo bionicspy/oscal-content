@@ -1,0 +1,193 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:ransomware-resilience",
+
+    "metadata": {
+      "title": "Ransomware Resilience (Secure‑Resilience Aligned)",
+      "version": "2.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T22:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC340",
+          "remarks": "Business capability for responding to ransomware events without introducing unsafe recovery or unauthorized resumption."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD060",
+          "remarks": "Ransomware containment, eradication, recovery tooling, and resilience decision gating."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP120",
+          "remarks": "Solution pattern implementing ransomware response actions subject to Secure‑Resilience eligibility."
+        },
+        {
+          "name": "secure-resilience-dependency",
+          "class": "foundational-dependency",
+          "value": "secure-resilience-core",
+          "remarks": "Ransomware recovery and resume actions are governed by Secure‑Resilience state classification and resume eligibility."
+        }
+      ],
+
+      "remarks": "Ransomware Resilience provides capability to contain, eradicate, and recover from ransomware attacks. Restoration and resumption are explicitly prohibited unless Secure‑Resilience determines state is reversible, no recall is active, safe‑halt is not required, and resume eligibility is granted."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:ransomware-containment",
+        "type": "capability",
+        "title": "Ransomware Containment",
+        "description": "Containment of ransomware impact to prevent further spread or execution.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-8",
+                "remarks": "Continuity arrangements prevent further harm during incident containment."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:clean-state-verification",
+        "type": "capability",
+        "title": "Clean State Verification",
+        "description": "Verification that a putative clean state is uncompromised and valid.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-4",
+                "remarks": "Recovery testing validates integrity of restored components."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:ransomware-recovery-eligibility-gate",
+        "type": "capability",
+        "title": "Ransomware Recovery Eligibility Gate",
+        "description": "Permits restoration only when Secure‑Resilience determines recovery will not introduce new risk.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-10",
+                "remarks": "Recovery actions are gated by safety and eligibility context."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:ransomware-restore-suppression",
+        "type": "capability",
+        "title": "Restore Suppression Under Ransomware Conditions",
+        "description": "Prevents restore or resume when recall, irreversible state, or safety risk is present.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-9",
+                "remarks": "Availability of backups does not imply restore permission during ransomware events."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:ransomware-non-equivalence",
+        "type": "capability",
+        "title": "Ransomware Resilience Non‑Equivalence Constraints",
+        "description": "Explicitly defines what ransomware remediation does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-8",
+                "remarks": "Removal of ransomware does not imply permission to restore or resume."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+
+    "threat-model": {
+      "framework": "MITRE ATT&CK",
+      "domain": "Enterprise",
+      "tactics": [
+        {
+          "tactic-id": "TA0040",
+          "name": "Impact",
+          "description": "Adversary actions intended to disrupt availability or destroy data."
+        }
+      ],
+      "techniques": [
+        {
+          "technique-id": "T1486",
+          "name": "Data Encrypted for Impact"
+        },
+        {
+          "technique-id": "T1485",
+          "name": "Data Destruction"
+        },
+        {
+          "technique-id": "T1490",
+          "name": "Inhibit System Recovery"
+        }
+      ]
+    },
+
+    "defensive-model": {
+      "framework": "MITRE D3FEND",
+      "categories": [
+        {
+          "technique-id": "D3-ISOLATE",
+          "name": "Isolate",
+          "description": "Separating compromised systems to prevent propagation."
+        },
+        {
+          "technique-id": "D3-CLEAN",
+          "name": "Clean",
+          "description": "Removing malicious artifacts."
+        },
+        {
+          "technique-id": "D3-RESTORE",
+          "name": "Restore",
+          "description": "Restoring systems only when explicitly permitted."
+        },
+        {
+          "technique-id": "D3-RECOVER",
+          "name": "Recover",
+          "description": "Recovering service functionality under resilience constraints."
+        }
+      ]
+    }
+  }
+}
