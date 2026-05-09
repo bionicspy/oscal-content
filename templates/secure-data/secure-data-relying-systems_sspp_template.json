@@ -1,0 +1,122 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:relying-system:secure-data",
+
+    "metadata": {
+      "title": "Secure Data Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-04T00:00:00Z",
+      "remarks": "System Security and Privacy Plan template for systems that produce, consume, store, or process institutional data under the Trusted Data architecture."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Institutional security and privacy baseline profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Data Relying System",
+      "system-description": "An application or service that relies on the Secure Data Platform for data classification, protection, lifecycle governance, and loss prevention without implementing data trust controls independently.",
+      "security-sensitivity-level": "moderate-high",
+
+      "props": [
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-data-platform",
+          "remarks": "This system relies on the Secure Data Platform SSPP for authoritative data trust, protection, and lifecycle enforcement."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-identity-platform",
+          "remarks": "The system consumes Secure Identity for access enforcement and attribution related to data use."
+        },
+        {
+          "name": "relies-on-sspp",
+          "value": "secure-network-platform",
+          "remarks": "The system relies on Secure Network for protected data transport, segmentation, and monitoring."
+        },
+
+        {
+          "name": "data-consumption-model",
+          "class": "design-principle",
+          "value": "inherited-trust-and-obligations",
+          "remarks": "The system consumes data trust, classification, and protection requirements defined by Secure Data and does not define its own data protection semantics."
+        },
+        {
+          "name": "data-governance-boundary",
+          "class": "architecture-boundary",
+          "value": "externalized",
+          "remarks": "Classification, encryption, loss prevention, and retention are enforced by the Secure Data Platform, not by the relying system."
+        },
+        {
+          "name": "application-responsibility",
+          "class": "design-principle",
+          "value": "context-and-functionality",
+          "remarks": "The relying system defines business context and function but must operate within Secure Data constraints."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "§2",
+          "remarks": "Relying systems participate in data workflows while preserving defined trust and responsibility boundaries."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-inheritance",
+          "value": "PL, AC, IA, AU, SC, MP",
+          "remarks": "Data-related security and privacy controls are inherited from the Secure Data Platform SSPP."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "This SSPP documents reliance on Secure Data services and explicitly prohibits local reimplementation of data trust controls.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:component:data-reliant-application",
+          "type": "conceptual",
+          "title": "Data-Reliant Application Component",
+          "description": "Logical representation of an application that produces, accesses, processes, or stores institutional data."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-application-owner",
+        "title": "System Owner",
+        "remarks": "Defines business context, acceptable data use, and integration points with Secure Data.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-GOV"
+          }
+        ]
+      },
+      {
+        "id": "role-data-architecture",
+        "title": "Data Architecture Authority",
+        "remarks": "Ensures correct inheritance, use, and enforcement of Secure Data patterns.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "All data classification, protection, loss prevention, and retention controls are inherited from the Secure Data Platform SSPP. This SSPP documents reliance and boundary conditions only."
+    }
+  }
+}

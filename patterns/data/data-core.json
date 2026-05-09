@@ -4,67 +4,88 @@
 
     "metadata": {
       "title": "Data Core",
-      "version": "0.1.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T17:05:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC400",
-          "remarks": "Business capability for defining institutional data, establishing accountability, and setting baseline trust expectations before protection or use."
+          "value": "urn:utoronto:cae2:brm:BC370",
+          "remarks": "Business capability for defining authoritative ownership, accountability, and baseline trust properties for institutional data."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD200",
-          "remarks": "Institutional data assets including primary data, derived data, metadata, and records across all storage and processing environments."
+          "value": "urn:utoronto:cae2:trm:TD180",
+          "remarks": "Enterprise data assets, datasets, records, data services, and data-producing systems."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP320",
-          "remarks": "Pattern establishing baseline trust assumptions for institutional data independent of applications, integrations, or platforms."
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP310",
+          "remarks": "Foundational pattern defining non-negotiable trust invariants that apply to all institutional data, regardless of storage location or use case."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "core-controls",
+          "value": "PL, IA, AC, AU",
+          "remarks": "Data Core aligns with NIST SP 800-53 controls governing ownership, accountability, access, and auditability."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "2",
+          "remarks": "Institutional data frequently crosses system and organizational boundaries and requires explicit authority and responsibility definition."
         }
       ],
 
-      "remarks": "Data Core defines the foundational trust properties required to identify what constitutes institutional data and who is responsible for it. This pattern establishes data legitimacy, ownership, scope, and baseline trust assumptions without defining application-level data use or access decisions."
+      "remarks": "Data Core defines the baseline trust properties required for any institutional data. These invariants ensure that all data is attributable to an owner, limited to an authorized scope, protected against unauthorized manipulation, and observable for governance and investigation. This pattern deliberately excludes data classification, encryption, loss prevention, consent, and retention mechanics, which are defined by complementary Secure Data patterns."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:data-definition",
+        "uuid": "urn:utoronto:security:capability:data-ownership-and-accountability",
         "type": "capability",
-        "title": "Data Definition",
-        "description": "Defines what constitutes institutional data, including primary data, derived data, and metadata.",
+        "title": "Data Ownership and Accountability",
+        "description": "Ensures each dataset has an accountable owner responsible for its accuracy, protection, and authorized use.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1567",
-            "remarks": "Misclassification or omission of institutional data to evade protection requirements."
+            "value": "T1036",
+            "remarks": "Masquerading or misrepresentation of data authority or ownership."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0016",
-            "remarks": "Policy enforcement establishing authoritative definitions of institutional data."
+            "value": "D3FEND-0045",
+            "remarks": "Strong identity binding ensures clear accountability for data ownership."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:data-definition",
+            "uuid": "urn:utoronto:security:ci:data-ownership",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "PL-8",
-                "remarks": "Policies define what constitutes institutional data and associated obligations."
+                "control-id": "PL-1",
+                "remarks": "Policies define data ownership and accountability responsibilities."
+              },
+              {
+                "control-id": "IA-2",
+                "remarks": "Data ownership is attributable to authenticated identities."
               }
             ]
           }
@@ -72,104 +93,114 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:data-ownership-and-stewardship",
+        "uuid": "urn:utoronto:security:capability:data-authoritative-scope",
         "type": "capability",
-        "title": "Data Ownership and Stewardship",
-        "description": "Assigns accountability for data governance, protection, and lifecycle decisions.",
+        "title": "Authoritative Scope and Purpose",
+        "description": "Defines the intended scope, context, and authoritative use of data prior to protection or dissemination.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1213",
-            "remarks": "Persistence of unmanaged data assets due to unclear ownership."
+            "remarks": "Collection or use of data outside its legitimate or approved scope."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0037",
-            "remarks": "Lifecycle governance assigning clear stewardship and accountability."
+            "remarks": "Explicit scope definition and governance prevent unauthorized use or expansion."
           }
         ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:data-stewardship",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "PM-9",
-                "remarks": "Institutional roles are assigned responsibility for data assets."
-              }
-            ]
-          }
-        ]
-      },
 
-      {
-        "uuid": "urn:utoronto:security:capability:data-scope-and-boundaries",
-        "type": "capability",
-        "title": "Data Scope and Boundaries",
-        "description": "Defines where institutional data exists and the trust boundaries it crosses.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1046",
-            "remarks": "Discovery and exploitation of data outside assumed trust boundaries."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0004",
-            "remarks": "Boundary definition and access controls aligned to data scope."
-          }
-        ],
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:data-boundaries",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "SC-7",
-                "remarks": "Trust boundaries for institutional data are defined and enforced."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:baseline-data-trust-assumptions",
-        "type": "capability",
-        "title": "Baseline Data Trust Assumptions",
-        "description": "Establishes minimum expectations for data handling and protection across the institution.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1078",
-            "remarks": "Abuse of implicit trust in poorly defined data handling assumptions."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0016",
-            "remarks": "Policy-defined baseline expectations for data protection."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:data-baseline",
+            "uuid": "urn:utoronto:security:ci:data-scope",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "PL-8",
-                "remarks": "Baseline trust assumptions for data handling are formally defined."
+                "remarks": "Data is used only for defined and approved purposes."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:data-integrity-baseline",
+        "type": "capability",
+        "title": "Baseline Data Integrity",
+        "description": "Protects data against unauthorized modification, corruption, or loss prior to application of classification or encryption controls.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1565",
+            "remarks": "Unauthorized modification or corruption of institutional data."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0053",
+            "remarks": "Integrity validation and protection preserve baseline data trustworthiness."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:data-integrity",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-7",
+                "remarks": "Integrity mechanisms detect and prevent unauthorized data modification."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:data-observability",
+        "type": "capability",
+        "title": "Data Activity Observability",
+        "description": "Provides auditability of data creation, modification, access, and authorized dissemination.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Deletion or suppression of evidence related to unauthorized data activity."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Audit logging and review enable accountability and investigation."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:data-observability",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Data-related events are defined and logged."
+              },
+              {
+                "control-id": "AU-6",
+                "remarks": "Audit review supports detection of inappropriate data use."
               }
             ]
           }

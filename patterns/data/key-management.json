@@ -4,74 +4,107 @@
 
     "metadata": {
       "title": "Key Management",
-      "version": "0.1.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T18:40:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC404",
-          "remarks": "Business capability for governing the lifecycle, protection, and authorized use of cryptographic keys."
+          "value": "urn:utoronto:cae2:brm:BC375",
+          "remarks": "Business capability for securely managing cryptographic keys throughout their lifecycle to support data protection and system trust."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD204",
-          "remarks": "Key management systems, hardware security modules, cryptographic key stores, and lifecycle automation."
+          "value": "urn:utoronto:cae2:trm:TD180",
+          "remarks": "Key management systems, hardware security modules, software key vaults, and cryptographic lifecycle services."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP324",
-          "remarks": "Pattern for governing cryptographic keys as long-lived institutional assets."
+          "class": "constraint-pattern",
+          "value": "urn:utoronto:cae2:arm:AP315",
+          "remarks": "Constraint pattern governing generation, storage, use, rotation, and retirement of cryptographic keys."
+        },
+
+        {
+          "name": "depends-on-pattern",
+          "value": "data-core",
+          "remarks": "Key management supports protection of data whose ownership and scope are defined by Data Core."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
+          "name": "depends-on-pattern",
           "value": "data-encryption",
-          "remarks": "Key management supports and underpins institutional encryption requirements."
+          "remarks": "Key management enables encryption operations defined by Data Encryption."
+        },
+        {
+          "name": "depends-on-pattern",
+          "value": "public-key-infrastructure",
+          "remarks": "Key management integrates with PKI for certificate-bound and asymmetric key usage."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-57",
+          "class": "key-management-lifecycle",
+          "value": "Part 1–3",
+          "remarks": "Key lifecycle management aligns with NIST SP 800-57 guidance."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-130",
+          "class": "cryptographic-agility",
+          "value": "General",
+          "remarks": "Key management supports cryptographic agility and algorithm transition as described in NIST SP 800-130."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "cryptographic-controls",
+          "value": "IA, SC, KM",
+          "remarks": "Key management aligns with NIST SP 800-53 controls governing cryptographic services and key handling."
         }
       ],
 
-      "remarks": "Key Management defines trust properties required to ensure cryptographic keys remain protected, trustworthy, and appropriately used throughout their lifecycle. This pattern does not define encryption policy or application-level key usage logic."
+      "remarks": "Key Management defines enforceable requirements for the secure lifecycle handling of cryptographic keys. This pattern ensures keys are generated, protected, rotated, revoked, and destroyed in a manner that preserves the confidentiality and integrity of encrypted data while supporting cryptographic agility."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:key-generation",
+        "uuid": "urn:utoronto:security:capability:key-generation-and-registration",
         "type": "capability",
-        "title": "Key Generation",
-        "description": "Controls the secure creation of cryptographic keys.",
+        "title": "Key Generation and Registration",
+        "description": "Ensures cryptographic keys are generated using approved mechanisms and registered for controlled use.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1552",
-            "remarks": "Compromise of weakly generated or predictable cryptographic keys."
+            "remarks": "Exposure or compromise of cryptographic keys through insecure generation or handling."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0027",
-            "remarks": "Use of cryptographically strong and approved key generation processes."
+            "value": "D3FEND-0048",
+            "remarks": "Approved key generation and registration processes prevent weak or exposed keys."
           }
         ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:key-generation",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "KM-1",
-                "remarks": "Cryptographic keys are generated using approved algorithms and randomness."
+                "control-id": "SC-12",
+                "remarks": "Cryptographic keys are generated using approved algorithms and processes."
               }
             ]
           }
@@ -82,31 +115,33 @@
         "uuid": "urn:utoronto:security:capability:key-storage-and-protection",
         "type": "capability",
         "title": "Key Storage and Protection",
-        "description": "Ensures cryptographic keys are securely stored and shielded from unauthorized access.",
+        "description": "Protects cryptographic keys from unauthorized access, extraction, or misuse.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1005",
-            "remarks": "Unauthorized access to stored cryptographic keys."
+            "value": "T1552.004",
+            "remarks": "Extraction of cryptographic keys from local or memory-based storage."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0047",
-            "remarks": "Hardware-backed or logically isolated secure key storage."
+            "value": "D3FEND-0058",
+            "remarks": "Protected storage using HSMs or secure vaults prevents key compromise."
           }
         ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:key-storage",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "KM-2",
-                "remarks": "Keys are stored in secure, access-controlled repositories."
+                "control-id": "IA-7",
+                "remarks": "Cryptographic keys are stored and protected against unauthorized disclosure."
               }
             ]
           }
@@ -114,104 +149,110 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:key-rotation-and-renewal",
+        "uuid": "urn:utoronto:security:capability:key-use-and-access-control",
         "type": "capability",
-        "title": "Key Rotation and Renewal",
-        "description": "Defines when and how cryptographic keys are rotated or renewed.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1210",
-            "remarks": "Long-term exploitation of compromised but unrotated keys."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0037",
-            "remarks": "Automated and policy-driven key rotation."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:key-rotation",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "KM-3",
-                "remarks": "Keys are rotated or renewed according to defined schedules or risk thresholds."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Key Use and Access Control",
+        "description": "Restricts use of cryptographic keys to authorized processes, roles, and purposes.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:key-revocation-and-destruction",
-        "type": "capability",
-        "title": "Key Revocation and Destruction",
-        "description": "Invalidates and securely destroys obsolete or compromised keys.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1552",
-            "remarks": "Reuse of revoked or compromised cryptographic keys."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0037",
-            "remarks": "Controlled revocation and secure destruction of keys."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:key-destruction",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "KM-4",
-                "remarks": "Keys are revoked and destroyed when no longer authorized for use."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:key-access-governance",
-        "type": "capability",
-        "title": "Key Access Governance",
-        "description": "Governs who may access or use cryptographic keys and for what purposes.",
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1078",
-            "remarks": "Abuse of legitimate permissions to misuse cryptographic keys."
+            "remarks": "Use of valid access to misuse cryptographic keys for unauthorized operations."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0004",
-            "remarks": "Role-based and policy-driven control of key usage."
+            "remarks": "Access enforcement and usage controls restrict key operations."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:key-access",
+            "uuid": "urn:utoronto:security:ci:key-usage",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "KM-5",
-                "remarks": "Access to cryptographic keys is restricted and audited."
+                "control-id": "AC-3",
+                "remarks": "Access enforcement governs cryptographic key usage."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:key-rotation-and-revocation",
+        "type": "capability",
+        "title": "Key Rotation and Revocation",
+        "description": "Ensures cryptographic keys are rotated, revoked, or retired according to policy and risk posture.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1552.001",
+            "remarks": "Continued use of compromised or outdated cryptographic keys."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0037",
+            "remarks": "Lifecycle governance ensures timely key rotation and revocation."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:key-rotation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "KM-1",
+                "remarks": "Key management policies define rotation and revocation requirements."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:key-destruction-and-retirement",
+        "type": "capability",
+        "title": "Key Destruction and Retirement",
+        "description": "Ensures cryptographic keys are securely destroyed when no longer required.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1485",
+            "remarks": "Improper destruction leading to key reuse or unauthorized recovery."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0062",
+            "remarks": "Verified destruction processes prevent residual key exposure."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:key-destruction",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "MP-7",
+                "remarks": "Cryptographic keys are securely destroyed when no longer needed."
               }
             ]
           }

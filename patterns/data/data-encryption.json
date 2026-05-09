@@ -4,74 +4,107 @@
 
     "metadata": {
       "title": "Data Encryption",
-      "version": "0.1.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T18:20:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC403",
-          "remarks": "Business capability for enforcing cryptographic protection of institutional data independent of application or platform."
+          "value": "urn:utoronto:cae2:brm:BC372",
+          "remarks": "Business capability for protecting the confidentiality of data through cryptographic mechanisms during storage, processing, and transmission."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD203",
-          "remarks": "Cryptographic mechanisms protecting data at rest, in transit, and during use."
+          "value": "urn:utoronto:cae2:trm:TD180",
+          "remarks": "Cryptographic libraries, encryption services, secure storage mechanisms, and encrypted transport protocols."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP323",
-          "remarks": "Pattern for protecting institutional data confidentiality and integrity through mandatory encryption."
+          "class": "constraint-pattern",
+          "value": "urn:utoronto:cae2:arm:AP312",
+          "remarks": "Constraint pattern enforcing confidentiality of data using approved cryptographic algorithms and configurations."
+        },
+
+        {
+          "name": "depends-on-pattern",
+          "value": "data-core",
+          "remarks": "Encryption protects data whose authority and scope are defined by Data Core."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
+          "name": "depends-on-pattern",
           "value": "data-classification",
-          "remarks": "Encryption requirements are derived from data sensitivity and classification."
+          "remarks": "Data classification determines when and where encryption is mandatory."
+        },
+        {
+          "name": "depends-on-pattern",
+          "value": "key-management",
+          "remarks": "Encryption relies on approved cryptographic keys governed under Key Management."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-111",
+          "class": "data-at-rest",
+          "value": "General",
+          "remarks": "Encryption of data at rest aligns with NIST SP 800-111 guidance."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-52",
+          "class": "data-in-transit",
+          "value": "TLS Guidelines",
+          "remarks": "Encryption of data in transit aligns with NIST SP 800-52 guidance."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-175b",
+          "class": "cryptographic-policy",
+          "value": "Approved Algorithms",
+          "remarks": "Cryptographic algorithm selection aligns with NIST SP 800-175B."
         }
       ],
 
-      "remarks": "Data Encryption defines trust properties required to ensure institutional data is cryptographically protected wherever it is stored, processed, or transmitted. These protections are invariant and must be enforced by platforms and consumed by applications without redefining policy."
+      "remarks": "Data Encryption defines cryptographic requirements to preserve data confidentiality across storage, processing, and transmission. This pattern ensures encryption is applied consistently when required by classification and policy, while delegating key lifecycle and trust establishment to Key Management and PKI."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:encryption-at-rest",
+        "uuid": "urn:utoronto:security:capability:data-encryption-at-rest",
         "type": "capability",
-        "title": "Encryption at Rest",
-        "description": "Protects stored data from unauthorized access through cryptographic controls.",
+        "title": "Encryption of Data at Rest",
+        "description": "Ensures stored data is protected from unauthorized access through strong cryptographic mechanisms.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1005",
-            "remarks": "Access to sensitive data stored without encryption."
+            "remarks": "Collection of unencrypted sensitive data from storage media."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0047",
-            "remarks": "Encryption mechanisms protecting stored data."
+            "value": "D3FEND-0053",
+            "remarks": "Encryption prevents disclosure of data accessed from storage."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:encryption-at-rest",
+            "uuid": "urn:utoronto:security:ci:data-encryption-rest",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "SC-28",
-                "remarks": "Data at rest is protected by cryptographic mechanisms."
+                "control-id": "SC-12",
+                "remarks": "Cryptographic mechanisms protect data at rest."
               }
             ]
           }
@@ -79,34 +112,36 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:encryption-in-transit",
+        "uuid": "urn:utoronto:security:capability:data-encryption-in-transit",
         "type": "capability",
-        "title": "Encryption in Transit",
-        "description": "Protects data while being transmitted across networks or trust boundaries.",
+        "title": "Encryption of Data in Transit",
+        "description": "Protects data confidentiality and integrity during transmission across networks.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1040",
-            "remarks": "Eavesdropping on unencrypted data transmissions."
+            "remarks": "Eavesdropping on unencrypted network communications."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0047",
-            "remarks": "Transport encryption preventing interception."
+            "value": "D3FEND-0053",
+            "remarks": "Encrypted transport protects data against interception."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:encryption-in-transit",
+            "uuid": "urn:utoronto:security:ci:data-encryption-transit",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "SC-16",
-                "remarks": "Data in transit is encrypted to maintain confidentiality and integrity."
+                "remarks": "Transmission confidentiality and integrity are enforced."
               }
             ]
           }
@@ -114,69 +149,36 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:encryption-in-use",
+        "uuid": "urn:utoronto:security:capability:data-encryption-configuration",
         "type": "capability",
-        "title": "Encryption in Use",
-        "description": "Protects sensitive data during active processing where supported.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1552",
-            "remarks": "Exposure of sensitive data during processing in memory."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0047",
-            "remarks": "Cryptographic isolation of data during execution."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:encryption-in-use",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "SC-12",
-                "remarks": "Cryptographic mechanisms protect sensitive data during processing where feasible."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Approved Cryptographic Configuration",
+        "description": "Ensures encryption implementations use approved algorithms, protocols, and configurations.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:algorithm-and-strength-requirements",
-        "type": "capability",
-        "title": "Algorithm and Strength Requirements",
-        "description": "Defines approved cryptographic algorithms and minimum strength requirements.",
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1596",
-            "remarks": "Exploitation of weak or deprecated cryptographic algorithms."
+            "value": "T1600",
+            "remarks": "Use of weak or deprecated cryptographic algorithms or configurations."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0027",
-            "remarks": "Cryptographic agility and standards enforcement."
+            "value": "D3FEND-0048",
+            "remarks": "Cryptographic policy enforcement ensures use of strong, approved configurations."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:crypto-standards",
+            "uuid": "urn:utoronto:security:ci:data-encryption-config",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "SC-12",
-                "remarks": "Approved cryptographic algorithms and key sizes are enforced."
+                "control-id": "SC-13",
+                "remarks": "Cryptographic mechanisms employ approved algorithms and parameters."
               }
             ]
           }

@@ -4,81 +4,100 @@
 
     "metadata": {
       "title": "Records and Retention",
-      "version": "0.1.0",
+      "version": "1.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T19:40:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC407",
-          "remarks": "Business capability for governing data retention, preservation, and lawful disposal as institutional obligations."
+          "value": "urn:utoronto:cae2:brm:BC377",
+          "remarks": "Business capability for governing the lifecycle, retention, legal hold, and defensible disposal of institutional data and records."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD207",
-          "remarks": "Records management systems, retention controls, legal hold mechanisms, and secure destruction processes."
+          "value": "urn:utoronto:cae2:trm:TD180",
+          "remarks": "Records management systems, retention policy engines, archival platforms, and secure destruction mechanisms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP327",
-          "remarks": "Pattern for ensuring institutional data is retained, preserved, and disposed of in compliance with obligations."
+          "class": "constraint-pattern",
+          "value": "urn:utoronto:cae2:arm:AP317",
+          "remarks": "Constraint pattern governing retention periods, legal holds, archival treatment, and secure disposal of data."
+        },
+
+        {
+          "name": "depends-on-pattern",
+          "value": "data-core",
+          "remarks": "Records and retention apply to data with defined ownership, authority, and scope."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
+          "name": "depends-on-pattern",
           "value": "data-classification",
-          "remarks": "Retention and records obligations depend on data classification and regulatory context."
+          "remarks": "Classification informs retention duration, archival protection, and disposal requirements."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "regulation-pattern",
-          "value": "urn:utoronto:security:pattern:data-retention",
-          "remarks": "Retention schedules and minimum retention obligations are defined by authoritative regulatory and institutional sources and implemented through this pattern."
+          "name": "depends-on-pattern",
+          "value": "data-handling-and-use",
+          "remarks": "Permitted uses influence whether data must be retained as a record of action or decision."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "records-and-lifecycle",
+          "value": "MP, CP, PL, AU",
+          "remarks": "Records management and retention align with NIST SP 800-53 controls for media protection, contingency planning, planning, and auditability."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-92",
+          "class": "log-management",
+          "value": "General",
+          "remarks": "Retention of audit and activity records aligns with NIST SP 800-92 guidance on log management."
         }
       ],
 
-      "remarks": "Records and Retention defines trust properties required to identify institutional records, apply retention schedules, enforce legal holds, and ensure defensible destruction of data. These obligations apply independently of application or platform lifecycle."
+      "remarks": "Records and Retention defines enforceable requirements for how long institutional data must be retained, when legal or policy holds apply, and how data is defensibly disposed of when no longer required. This pattern ensures retention decisions are deliberate, reviewable, and aligned with legal, regulatory, and institutional obligations."
     },
 
     "components": [
       {
         "uuid": "urn:utoronto:security:capability:records-identification",
         "type": "capability",
-        "title": "Records Identification",
-        "description": "Determines which data qualifies as an institutional record and under what conditions.",
+        "title": "Record Identification and Classification",
+        "description": "Identifies which data assets constitute institutional records and maps them to retention requirements.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1213",
-            "remarks": "Failure to identify data as a record to evade retention obligations."
+            "value": "T1485",
+            "remarks": "Loss or destruction of records due to failure to identify or classify them correctly."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0016",
-            "remarks": "Policy enforcement defining record status and applicability."
+            "value": "D3FEND-0062",
+            "remarks": "Governance-driven identification prevents premature deletion or unmanaged retention."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:records-identification",
+            "uuid": "urn:utoronto:security:ci:record-identification",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "PL-2",
-                "remarks": "Data is evaluated to determine whether it constitutes an institutional record."
+                "remarks": "Records management plans define which data constitutes official records."
               }
             ]
           }
@@ -86,69 +105,36 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:retention-schedules",
+        "uuid": "urn:utoronto:security:capability:retention-and-hold-management",
         "type": "capability",
-        "title": "Retention Schedules",
-        "description": "Defines how long records and data must be retained.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1070",
-            "remarks": "Premature deletion of data to avoid legal or regulatory exposure."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0037",
-            "remarks": "Lifecycle management enforcing minimum retention periods."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:retention-schedules",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "SI-12",
-                "remarks": "Retention schedules govern how long data and records are preserved."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Retention Period and Legal Hold Management",
+        "description": "Enforces retention schedules and applies legal or policy holds where required.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:legal-holds-and-preservation",
-        "type": "capability",
-        "title": "Legal Holds and Preservation",
-        "description": "Prevents deletion or alteration of data subject to legal or regulatory holds.",
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1107",
-            "remarks": "Destruction or modification of data under legal hold."
+            "remarks": "Unauthorized deletion of data subject to legal or policy holds."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0037",
-            "remarks": "Preservation controls preventing alteration or deletion."
+            "remarks": "Lifecycle governance enforces retention schedules and hold conditions."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:legal-holds",
+            "uuid": "urn:utoronto:security:ci:retention-hold",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "SI-12",
-                "remarks": "Legal holds prevent deletion or alteration of protected data."
+                "control-id": "MP-7",
+                "remarks": "Retention and hold requirements prevent unauthorized destruction of records."
               }
             ]
           }
@@ -156,69 +142,73 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:secure-destruction-and-disposal",
+        "uuid": "urn:utoronto:security:capability:archival-and-preservation",
         "type": "capability",
-        "title": "Secure Destruction and Disposal",
-        "description": "Ensures irreversible deletion of data at the end of its approved lifecycle.",
+        "title": "Archival Storage and Preservation",
+        "description": "Manages long-term preservation of records requiring extended retention.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1552",
-            "remarks": "Recovery of data that was improperly or incompletely destroyed."
+            "value": "T1490",
+            "remarks": "Inaccessibility or corruption of archival data through improper storage or degradation."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0047",
-            "remarks": "Cryptographically or physically secure data destruction."
+            "value": "D3FEND-0070",
+            "remarks": "Controlled archival storage preserves availability and integrity over time."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:secure-destruction",
+            "uuid": "urn:utoronto:security:ci:archival",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CP-9",
+                "remarks": "Archived records are preserved and recoverable for required retention periods."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:defensible-disposal",
+        "type": "capability",
+        "title": "Defensible Disposal and Destruction",
+        "description": "Ensures records and data are securely destroyed when retention obligations expire.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1485",
+            "remarks": "Residual data exposure due to improper or incomplete destruction."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0062",
+            "remarks": "Verified destruction processes ensure data cannot be recovered."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:disposal",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "MP-6",
-                "remarks": "Data and records are securely destroyed when no longer required."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:audit-and-attestation-of-compliance",
-        "type": "capability",
-        "title": "Audit and Attestation of Compliance",
-        "description": "Provides evidence that retention and disposal obligations are met.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1107",
-            "remarks": "Lack of evidence to prove compliance with retention obligations."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0061",
-            "remarks": "Audit logging and attestation of records compliance."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:records-audit",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "AU-6",
-                "remarks": "Audit records demonstrate compliance with records retention requirements."
+                "remarks": "Media and data are sanitized or destroyed in accordance with retention policy."
               }
             ]
           }

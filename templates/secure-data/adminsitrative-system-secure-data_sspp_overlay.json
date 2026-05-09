@@ -1,0 +1,55 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:overlay:admin-data",
+
+    "metadata": {
+      "title": "Administrative Systems – Data SSPP Overlay",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "remarks": "Secure Data overlay governing administrative, financial, and personnel data systems."
+    },
+
+    "system-characteristics": {
+      "system-name": "Administrative Systems – Data Overlay",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-data-platform"
+        },
+
+        {
+          "name": "primary-data-types",
+          "class": "data-scope",
+          "value": "personnel-records, financial-data, case-files, audit-logs"
+        },
+
+        {
+          "name": "data-classification-assumption",
+          "class": "constraint",
+          "value": "highly-sensitive",
+          "remarks": "Administrative data is assumed to require the highest level of protection by default."
+        },
+
+        {
+          "name": "sharing-restriction",
+          "class": "constraint",
+          "value": "rare-and-controlled",
+          "remarks": "External data sharing is exceptional and requires explicit authorization."
+        },
+
+        {
+          "name": "legal-hold-priority",
+          "class": "constraint",
+          "value": "mandatory",
+          "remarks": "Legal holds override automated retention and disposal."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "Administrative systems strictly inherit Secure Data classification, encryption, DLP, and retention requirements."
+    }
+  }
+}

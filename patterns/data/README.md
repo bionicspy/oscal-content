@@ -1,296 +1,167 @@
-# Data & Information Protection - Trust Plane Overview
-
-The Data & Information Protection trust plane defines how data itself is governed as an institutional asset, independent of:
-* where the data is stored,
-* which application processes it,
-* which integration transports it,
-* or which user or system accesses it.
-
-This plane treats data as having intrinsic properties—sensitivity, classification, retention obligations, and protection requirements—that persist across systems and over time.
-Where applications decide whether to use data in a given context, the Data trust plane defines what the data is, what rules attach to it, and what obligations exist regardless of context.
-
-In this model, data is not passive; it carries policy, enforceable constraints, and institutional responsibility wherever it flows.
+# Secure Data Architecture — README
 
 ## Purpose
-The purpose of the Data & Information Protection trust plane is to:
-* Establish data as a first‑class institutional asset
-* Define classification, sensitivity, and governance policies that apply everywhere
-* Ensure protection requirements (e.g., encryption, key management) are consistent and non‑optional
 
-Support legal, regulatory, and institutional obligations such as:
-* retention,
-* disposition,
-* records management,
-* and defensible deletion
+**Secure Data** defines how institutional data is governed, protected, and trusted so that information can be **used confidently, shared appropriately, and retained defensibly** without eroding privacy, security, or institutional credibility.
 
-Provide a stable trust foundation that:
-* Applications consume,
-* Integrations transport,
-* Platforms enforce
+Data is treated as a **first‑class security domain**, not merely as a by‑product of applications or infrastructure. Secure Data exists to prevent common failure modes such as:
 
-This plane deliberately does not decide when or how data is used in a specific transaction—that responsibility belongs to the Applications trust plane.
+- data being used outside its intended purpose,
+- sensitive information leaking through trusted channels,
+- cryptographic protections being inconsistently applied,
+- records being retained too long or destroyed too early,
+- loss of accountability over who owns and governs data.
+
+---
 
 ## Scope
-### In Scope
-* Data identity and ownership
-* Data classification and sensitivity
-* Allowable uses and handling constraints
-* Cryptographic protection requirements
-* Key management and trust anchors
-* Loss prevention and exfiltration controls
-* Records designation, retention, and disposition
 
-### Out of Scope
-* Application business logic
-* Authorization decisions at runtime
-* Input interpretation and output shaping
-* Transport mechanics (events, queues, APIs)
-*Compute or storage execution environments
+The Secure Data architecture governs **what must be true about data**, regardless of:
+- where the data is stored,
+- which application produced it,
+- whether it is at rest, in motion, or in use.
 
+It applies to:
+- transactional data,
+- records,
+- survey data,
+- collaboration artifacts,
+- research data,
+- administrative and operational datasets.
 
-## Position in the Overall Trust Model
-The Data trust plane sits above platforms and storage, and alongside applications, governing both without being subsumed by either.
-```mermaid
+It explicitly does **not** govern:
+- specific storage platforms,
+- databases or analytics engines,
+- backup tooling,
+- application business logic.
 
-flowchart TB
-    Data["Data & Information Trust<br/>(classification, protection,<br/>retention, obligations)"]
+Those are **relying systems**, not trust foundations.
 
-    Platform["Platform & Storage<br/>(DB, NAS, Object Storage)"]
-    Applications["Applications<br/>(decide when/how data is<br/>accessed and exposed)"]
+---
 
-    Data -- governs --> Applications
-    Data -- governs --> Platform
+## Core Design Principles
 
-    Applications -- accesses --> Platform
-```
-* Platforms enforce protection mechanisms
-* Applications decide context‑specific use
-* Data trust plane defines invariant rules and obligations
+### 1. Data Has an Owner
+All institutional data is attributable to an accountable authority responsible for its accuracy, protection, and appropriate use.
 
+### 2. Meaning Comes Before Protection
+Data must first be understood (purpose, sensitivity, obligation) before encryption, DLP, or retention can be correctly applied.
 
-## Trust Plan Decomposition
-```
-data/
-├── data-core
-├── data-classification
-├── data-handling-and-use
-├── data-encryption
-├── key-management
-├── public-key-infrastructure (PKI)
-├── data-loss-prevention
-├── records-and-retention
-└── trusted-data (composite)
-```
+### 3. Purpose Is Binding
+Data may only be accessed, processed, shared, or retained in ways consistent with its declared and approved purpose.
 
-### 1. data-core
-Defines what constitutes institutional data and who is accountable for it.
-#### Purpose
-To establish data legitimacy, ownership, and stewardship as intrinsic properties of data, before protection mechanisms or application use are considered.
+### 4. Protection Is Layered
+No single mechanism is sufficient. Classification, handling rules, cryptography, DLP, and retention each play distinct roles.
 
-✅ **Clarification:**
-* This pattern defines what data is and who is accountable for it, not how data is accessed or used in specific execution contexts.
-#### Scope
-* Definition of institutional data
-* Ownership and stewardship roles
-* Data boundaries and lifecycle scope
-#### Components
-* data-definition
-  * Defines what constitutes institutional data, including derived data and metadata
-* data-ownership-and-stewardship
-  * Assigns accountability for data governance and protection
-* data-scope-and-boundaries
-  * Defines where data exists and its trust boundaries
-* baseline-data-trust-assumptions
-  * Establishes minimum expectations for data handling
-#### Answers the Question
-“What data is the institution responsible for protecting?”
+### 5. Lifecycle Discipline Is Required
+Data must be retained **no longer and no shorter** than required, with defensible holds and verified disposal.
 
-### 2. data-classification
-Determines the sensitivity and obligations associated with data.
-#### Purpose
-To ensure protections and handling requirements are risk‑appropriate and consistent.
-#### Scope
-* Classification schemes
-* Impact and risk mapping
-* Regulatory and contractual obligations
-* Classification labeling and propagation
-#### Components
-* classification-scheme
-  * Defines standard data sensitivity levels
-* impact-and-risk-mapping
-  * Maps data classes to CIA impact
-* regulatory-and-contractual-obligations
-  * Captures applicable external requirements
-* classification-assertion-and-labeling
-  * Specifies how classification is represented and conveyed
-#### Answers the Question
-“How sensitive is this data and what obligations apply?”
+---
 
-### 3. data-handling-and-use
-Defines permitted and prohibited behaviors involving data.
-#### Purpose
-To establish institution‑wide rules governing how data may be accessed, processed, transformed, and shared.
+## Secure Data Pattern Structure
 
-✅ **Clarification:**
-* These rules define what is allowable in principle.
-* Enforcement of these rules in specific transactions occurs within the Applications trust plane.
-#### Scope
-* Authorized access contexts
-* Processing and transformation rules
-* Sharing and disclosure constraints
-* Purpose limitation
-#### Components
-* access-and-use-rules
-  * Defines who may access data and under what conditions
-* processing-and-transformation-rules
-  * Governs permitted processing and analytics
-* sharing-and-disclosure-rules
-  * Defines internal and external sharing constraints
-* purpose-limitation
-  * Restricts data use to approved purposes
-#### Answers the Question
-“What is allowed to be done with this data?”
+Secure Data is decomposed into a **composite trust assertion**, a **foundational core**, and a set of **orthogonal constraint patterns**.
 
-### 4. data-encryption
-Applies cryptographic protection directly to data content.
-#### Purpose
-To protect data confidentiality and integrity through encryption.
-#### Scope
-* Encryption at rest
-* Encryption in transit
-* Encryption in use (where applicable)
-* Algorithm and strength requirements
-#### Components
-* encryption-at-rest
-  * Protects stored data
-* encryption-in-transit
-  * Protects data in motion
-* encryption-in-use
-  * Protects data during processing where supported
-* algorithm-and-strength-requirements
-  * Defines approved cryptographic standards
-#### Answers the Question
-“How is this data protected cryptographically?”
+### Composite Pattern
+- **`trusted-data`**  
+  The governance and assurance anchor asserting institutional trust in data.
 
-### 5. key-management
-Governs the lifecycle of cryptographic keys.
-#### Purpose
-To ensure cryptographic protections remain trustworthy over time.
-#### Scope
-* Key generation
-* Secure storage
-* Rotation and renewal
-* Revocation and destruction
-* Access governance
-#### Components
-* key-generation
-  * Controls secure key creation
-* key-storage-and-protection
-  * Ensures keys are securely stored and access‑controlled
-* key-rotation-and-renewal
-  * Defines required rotation practices
-* key-revocation-and-destruction
-  * Invalidates and destroys obsolete or compromised keys
-* key-access-governance
-  * Governs who may use keys and for what purposes
-#### Answers the Question
-“How are cryptographic keys governed and protected?”
+### Foundational Pattern
+- **`data-core`**  
+  Defines non‑negotiable data invariants:
+  - ownership and accountability  
+  - authoritative scope and purpose  
+  - baseline integrity  
+  - observability and auditability  
 
-### 6. public-key-infrastructure (PKI)
-Establishes certificate‑based trust and identity‑bound cryptography.
-#### Purpose
-To enable cryptographically verifiable trust relationships.
-#### Scope
-* Certificate authorities
-* Trust anchors
-* Issuance and validation
-* Revocation and federation
-#### Components
-* certificate-authorities-and-trust-anchors
-  * Defines trusted roots and intermediates
-* certificate-issuance
-  * Governs enrollment and issuance processes
-* certificate-validation
-  * Ensures trust chains are validated
-* certificate-revocation
-  * Manages revocation mechanisms
-* cross-domain-and-federated-trust
-  * Enables inter‑organizational trust
-#### Answers the Question
-“How is cryptographic trust established and validated?”
+### Constraint Patterns
 
-### 7. data-loss-prevention
-Prevents unauthorized disclosure or exfiltration of data.
-#### Purpose
-To detect and enforce controls against data misuse or leakage.
-#### Scope
-* Egress monitoring
-* Content inspection
-* Policy enforcement
-* Incident escalation
-#### Components
-* egress-monitoring-and-control
-  * Monitors outbound data flows
-* content-inspection-and-classification
-  * Detects sensitive data in motion
-* policy-enforced-restrictions
-  * Enforces blocking or conditional handling
-* incident-signaling-and-escalation
-  * Triggers alerts and response actions
-#### Answers the Question
-“How do we prevent data from leaving inappropriately?”
+| Pattern | Role |
+|------|-----|
+| **`data-classification`** | Defines sensitivity, criticality, and protection obligations |
+| **`data-handling-and-use`** | Governs how data may be accessed, processed, and shared |
+| **`data-encryption`** | Enforces confidentiality through approved cryptography |
+| **`key-management`** | Governs cryptographic key lifecycle |
+| **`public-key-infrastructure`** | Establishes trust anchors and certificate validation |
+| **`data-loss-prevention`** | Prevents unauthorized data egress |
+| **`records-and-retention`** | Governs lifecycle, legal holds, archival, and disposal |
 
-### 8. records-and-retention
-Ensures compliance with legal and institutional record obligations.
-#### Purpose
-To fulfill retention, preservation, and disposal requirements.
-#### Scope
-* Records identification
-* Retention schedules
-* Legal holds
-* Secure destruction
-* Compliance evidence
-#### Components
-* records-identification – Determines what qualifies as a record
-* retention-schedules – Defines required retention periods
-* legal-holds-and-preservation – Prevents deletion when legally required
-* secure-destruction-and-disposal – Ensures irreversible deletion at end of life
-* audit-and-attestation-of-compliance – Provides evidence of compliance
-#### Answers the Question
-“How long must this data exist and how is it disposed of?”
+Each pattern addresses **one dimension** of trust and deliberately avoids overlapping responsibilities.
 
-### 9. trusted-data (Composite)
-Asserts holistic trust in institutional data governance and protection.
-#### Purpose
-To serve as the enterprise‑level data trust assertion.
-#### Scope
-* Composition only
-* No independent controls
-#### Components (References)
-```
-data-core
-data-classification
-data-handling-and-use
-data-encryption
-key-management
-public-key-infrastructure
-data-loss-prevention
-records-and-retention
-```
-#### Answers the Question
-“Can the institution assert that its data is properly protected and governed?”
+---
 
-## Relationship to Other Trust Planes
-### Depends on
-* Platform & Infrastructure (for enforcement)
-* Cryptographic trust anchors (PKI, KMS)
+## SSPP Stack (Data)
 
-### Informs
-* Applications (how data may be used)
-* Integration & Messaging (what may be transported)
-* Communications (what may be shared)
+Secure Data assurance is delivered via a layered SSPP model:
 
-### Distinct from
-* Application‑level data handling decisions
-* Runtime authorization and context
-* Transport and delivery semantics
+1. **Trusted Data Platform SSPP**  
+   Tier‑1 governance and assurance anchor
+
+2. **Secure Data Platform SSPP**  
+   Documents how Secure Data patterns are implemented institutionally
+
+3. **Secure Data Relying System SSPP**  
+   Template for applications and services that consume data (LMS, research platforms, admin systems)
+
+This mirrors the SSPP structures used for:
+- Secure Survey
+- Secure Collaboration
+- Secure Email
+
+---
+
+## Cross‑Domain Alignment
+
+### Secure Survey
+- Survey responses are **data with promises**
+- Classification, handling, encryption, and retention must respect consent and ethics
+- Secure Data underpins survey trust
+
+### Secure Collaboration
+- Messages, files, recordings, and transcripts are all data
+- Secure Data governs their classification, DLP, encryption, and retention
+
+### Secure Email
+- Email content is data in motion
+- Encryption, DLP, and retention are driven by Secure Data
+
+### Secure Identity & Secure Network
+- Identity answers *who*
+- Network answers *how*
+- Secure Data answers *what* and *under what obligation*
+
+---
+
+## Standards Alignment
+
+Secure Data is aligned at an **architectural level** with:
+
+- **NIST SP 800‑53** — security and privacy control foundations  
+- **NIST SP 800‑60** — information categorization  
+- **NIST SP 800‑57 / 800‑130** — cryptographic key management and agility  
+- **NIST SP 800‑52 / 800‑111** — encryption in transit and at rest  
+- **NIST SP 800‑137** — continuous monitoring  
+- **NIST SP 800‑47** — interconnecting systems  
+- **NIST Privacy Framework** — purpose limitation and minimization  
+
+ATT&CK and D3FEND references appear only to justify Secure Data as a domain and to explain systemic risks, not to prescribe product‑level controls.
+
+---
+
+## What Secure Data Is *Not*
+
+Secure Data is not:
+- a storage architecture,
+- a database design standard,
+- a backup strategy,
+- a data science methodology,
+- an analytics or reporting platform.
+
+Those concerns are governed elsewhere.
+
+---
+
+## Architectural Invariant
+
+> **Secure Data provides trust in what information is, how it may be used, and how it is protected.  
+> Applications consume that trust — they do not define it.**

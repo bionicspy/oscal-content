@@ -1,0 +1,56 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:overlay:lms-data",
+
+    "metadata": {
+      "title": "Learning Management System (LMS) – Data SSPP Overlay",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "remarks": "Application-specific Secure Data overlay defining constraints for educational data handled by Learning Management Systems."
+    },
+
+    "system-characteristics": {
+      "system-name": "Learning Management System – Data Overlay",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-data-platform",
+          "remarks": "LMS data handling inherits all Secure Data protections and lifecycle governance."
+        },
+
+        {
+          "name": "primary-data-types",
+          "class": "data-scope",
+          "value": "student-records, assessments, instructional-content, course-artifacts"
+        },
+
+        {
+          "name": "data-classification-assumption",
+          "class": "constraint",
+          "value": "pii-and-regulated",
+          "remarks": "Student academic records and submissions are treated as regulated personal data by default."
+        },
+
+        {
+          "name": "retention-boundary",
+          "class": "constraint",
+          "value": "academic-lifecycle",
+          "remarks": "Retention aligns with academic, accreditation, and legal requirements."
+        },
+
+        {
+          "name": "analytics-constraint",
+          "class": "constraint",
+          "value": "purpose-limited",
+          "remarks": "Learning analytics must not reuse data beyond declared instructional and assessment purposes."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "The LMS relies on Secure Data for classification, encryption, DLP, and retention. The LMS may not redefine data governance rules."
+    }
+  }
+}

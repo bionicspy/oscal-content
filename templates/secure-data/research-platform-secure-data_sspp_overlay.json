@@ -1,0 +1,55 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:overlay:research-data",
+
+    "metadata": {
+      "title": "Research Platform – Data SSPP Overlay",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "remarks": "Secure Data overlay governing research datasets, including regulated, sensitive, and externally shared data."
+    },
+
+    "system-characteristics": {
+      "system-name": "Research Platform – Data Overlay",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-data-platform"
+        },
+
+        {
+          "name": "primary-data-types",
+          "class": "data-scope",
+          "value": "research-datasets, survey-data, experimental-results, collaboration-artifacts"
+        },
+
+        {
+          "name": "external-sharing",
+          "class": "constraint",
+          "value": "allowed-with-controls",
+          "remarks": "External sharing permitted only under classification, DLP, encryption, and contractual constraints."
+        },
+
+        {
+          "name": "identity-relation",
+          "class": "constraint",
+          "value": "consent-and-ethics-bound",
+          "remarks": "Linkage between data and identity must respect consent, anonymization, and ethics approvals."
+        },
+
+        {
+          "name": "retention-boundary",
+          "class": "constraint",
+          "value": "research-lifecycle",
+          "remarks": "Retention aligns with research ethics, funding agreements, and regulatory obligations."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "Research systems inherit Secure Data enforcement and may not bypass classification, encryption, DLP, or retention controls."
+    }
+  }
+}

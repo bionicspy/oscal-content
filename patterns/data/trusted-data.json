@@ -4,193 +4,173 @@
 
     "metadata": {
       "title": "Trusted Data",
-      "version": "0.1.0",
+      "version": "1.2.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T20:00:00Z",
+      "last-modified": "2026-05-04T00:00:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC408",
-          "remarks": "Business capability for asserting that institutional data is properly governed, protected, retained, and disposed of in accordance with policy and obligation."
+          "value": "urn:utoronto:cae2:brm:BC375",
+          "remarks": "Business capability for asserting institutional trust in data through consistent ownership, protection, governance, and lifecycle management."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD208",
-          "remarks": "Data governance, protection, cryptography, loss prevention, and records management technologies."
+          "value": "urn:utoronto:cae2:trm:TD180",
+          "remarks": "Enterprise data assets, data services, records, cryptographic trust mechanisms, and data governance platforms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP328",
-          "remarks": "Composite pattern asserting holistic institutional trust in data governance and protection."
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:AP309",
+          "remarks": "Composite Secure Data architecture composed of data trust foundations, classification semantics, handling constraints, cryptographic protection, loss prevention, and lifecycle governance."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE420",
+          "remarks": "Institutional datasets, records, transactional data, content artifacts, metadata, cryptographic material, and audit traces."
         },
 
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
+          "name": "dependency-class",
+          "class": "tier",
+          "value": "tier-1",
+          "remarks": "Trusted Data is a Tier-1 institutional dependency underpinning all digital services, decision‑making, and compliance obligations."
+        },
+
+        {
+          "name": "depends-on-pattern",
           "value": "data-core",
-          "remarks": "Trusted data assumes clear definition, ownership, scope, and baseline trust assumptions."
+          "remarks": "Trusted Data inherits baseline data trust invariants from Data Core."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "data-classification",
-          "remarks": "Trusted data requires sensitivity classification and obligation mapping."
+          "name": "depends-on-pattern",
+          "value": "secure-identity",
+          "remarks": "Trusted Data relies on Secure Identity for attribution, accountability, and access enforcement."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "data-handling-and-use",
-          "remarks": "Trusted data requires explicit rules governing permitted and prohibited data behaviors."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "data-encryption",
-          "remarks": "Trusted data requires mandatory cryptographic protection based on classification."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "key-management",
-          "remarks": "Trusted data requires governed lifecycle and protection of cryptographic keys."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "public-key-infrastructure",
-          "remarks": "Trusted data requires certificate-based trust anchors and validation."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "data-loss-prevention",
-          "remarks": "Trusted data requires enforcement against unauthorized disclosure or exfiltration."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "records-and-retention",
-          "remarks": "Trusted data requires compliance with retention, legal hold, and disposal obligations."
+          "name": "depends-on-pattern",
+          "value": "secure-network",
+          "remarks": "Trusted Data relies on Secure Network for protected transport, segmentation, and monitoring."
         },
 
         {
-          "name": "attack-tactic",
+          "name": "attack-technique",
           "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0006",
-          "remarks": "Credential access and misuse impacting protected data."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0009",
-          "remarks": "Unauthorized collection or exfiltration of institutional data."
+          "class": "rationale",
+          "value": "T1078",
+          "remarks": "Misuse of valid access to improperly access, modify, or exfiltrate institutional data."
         },
         {
           "name": "attack-technique",
           "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1005",
-          "remarks": "Collection of data from unsecured or improperly governed repositories."
+          "class": "rationale",
+          "value": "T1213",
+          "remarks": "Collection or secondary use of sensitive data beyond authorized purpose or scope."
         },
         {
           "name": "attack-technique",
           "ns": "urn:mitre:attack",
-          "class": "technique",
+          "class": "rationale",
           "value": "T1041",
-          "remarks": "Exfiltration of data via unauthorized communication channels."
+          "remarks": "Exfiltration of institutional data through trusted or permitted channels."
         },
 
         {
           "name": "defense-technique",
           "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0016",
-          "remarks": "Policy enforcement governing data classification, handling, and disclosure."
+          "class": "rationale",
+          "value": "D3FEND-0037",
+          "remarks": "Lifecycle governance ensures data is retained, protected, and disposed of according to obligation."
         },
         {
           "name": "defense-technique",
           "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0047",
-          "remarks": "Cryptographic protection of data confidentiality and integrity."
+          "class": "rationale",
+          "value": "D3FEND-0004",
+          "remarks": "Access and flow enforcement prevent unauthorized data use and movement."
         },
         {
           "name": "defense-technique",
           "ns": "urn:mitre:d3fend",
-          "class": "technique",
+          "class": "rationale",
           "value": "D3FEND-0061",
-          "remarks": "Audit logging and oversight supporting accountability and compliance."
+          "remarks": "Auditability and observability support accountability and investigation."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "security-and-privacy-controls",
+          "value": "PL, AC, IA, AU, SC, SI, MP",
+          "remarks": "Trusted Data aligns with NIST SP 800-53 security and privacy control families covering data protection, access, monitoring, and lifecycle management."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-47",
+          "class": "interconnecting-systems",
+          "value": "§2, §3",
+          "remarks": "Institutional data frequently crosses system and organizational boundaries and requires explicit trust and responsibility definition."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:privacy-framework",
+          "class": "privacy-governance",
+          "value": "GV, CT, DM, DS",
+          "remarks": "Trusted Data aligns with Privacy Framework principles for purpose limitation, minimization, and lifecycle discipline."
         }
       ],
 
-      "remarks": "Trusted Data is a composite pattern asserting that institutional data is properly defined, classified, governed, protected, retained, and defensibly disposed of. It introduces no independent controls and exists solely as an aggregate trust claim for system security plans, audits, and architectural risk analysis."
+      "remarks": "Trusted Data is the composite governance pattern asserting institutional trust in data assets. The ATT&CK and D3FEND references in this pattern serve as systemic rationale for treating data as a first‑class security domain. Detailed enforcement is defined in Data Core and associated Secure Data constraint patterns."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:pattern-ref:data-core",
-        "type": "component",
-        "title": "Data Core",
-        "description": "Definition, ownership, scope, and baseline trust assumptions for institutional data."
+        "uuid": "urn:utoronto:security:pattern:data-core",
+        "type": "pattern-reference",
+        "title": "Data Core"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:data-classification",
-        "type": "component",
-        "title": "Data Classification",
-        "description": "Sensitivity classification and obligation mapping for data."
+        "uuid": "urn:utoronto:security:pattern:data-classification",
+        "type": "pattern-reference",
+        "title": "Data Classification"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:data-handling-and-use",
-        "type": "component",
-        "title": "Data Handling and Use",
-        "description": "Permitted and prohibited behaviors governing data use."
+        "uuid": "urn:utoronto:security:pattern:data-handling-and-use",
+        "type": "pattern-reference",
+        "title": "Data Handling and Use"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:data-encryption",
-        "type": "component",
-        "title": "Data Encryption",
-        "description": "Mandatory cryptographic protection of data."
+        "uuid": "urn:utoronto:security:pattern:data-encryption",
+        "type": "pattern-reference",
+        "title": "Data Encryption"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:key-management",
-        "type": "component",
-        "title": "Key Management",
-        "description": "Lifecycle governance of cryptographic keys."
+        "uuid": "urn:utoronto:security:pattern:key-management",
+        "type": "pattern-reference",
+        "title": "Key Management"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:public-key-infrastructure",
-        "type": "component",
-        "title": "Public Key Infrastructure",
-        "description": "Certificate-based trust anchors and validation."
+        "uuid": "urn:utoronto:security:pattern:public-key-infrastructure",
+        "type": "pattern-reference",
+        "title": "Public Key Infrastructure"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:data-loss-prevention",
-        "type": "component",
-        "title": "Data Loss Prevention",
-        "description": "Enforcement against unauthorized data disclosure."
+        "uuid": "urn:utoronto:security:pattern:data-loss-prevention",
+        "type": "pattern-reference",
+        "title": "Data Loss Prevention"
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:records-and-retention",
-        "type": "component",
-        "title": "Records and Retention",
-        "description": "Retention schedules, legal holds, and defensible disposition."
+        "uuid": "urn:utoronto:security:pattern:records-and-retention",
+        "type": "pattern-reference",
+        "title": "Records and Retention"
       }
     ]
   }
