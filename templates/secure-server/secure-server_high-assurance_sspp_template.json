@@ -1,0 +1,181 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-server:high-assurance",
+
+    "metadata": {
+      "title": "High-Assurance / Regulated Server SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T09:40:00Z",
+      "remarks": "System Security and Privacy Plan defining elevated trust, governance, and lifecycle requirements for high-assurance and regulated server execution environments."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-server:platform",
+      "remarks": "This SSPP inherits all Secure-Server Platform trust semantics and introduces stricter constraints appropriate for regulated and high-assurance workloads."
+    },
+
+    "system-characteristics": {
+      "system-name": "High-Assurance Server Execution Environment",
+      "system-description": "High-Assurance Server environments host regulated, sensitive, security-critical or public facing workloads. These servers operate under stricter execution trust boundaries, mandatory attestation, constrained administrative access, and rebuild-first lifecycle expectations.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "execution-trust-tier",
+          "class": "trust-classification",
+          "value": "high-assurance",
+          "remarks": "Indicates a server execution tier requiring elevated trust, integrity validation, and governance oversight."
+        },
+        {
+          "name": "attestation-requirement",
+          "class": "mandatory-requirement",
+          "value": "continuous",
+          "remarks": "Platform and workload attestation must be evaluated continuously or at defined short intervals."
+        },
+        {
+          "name": "configuration-drift-tolerance",
+          "class": "risk-constraint",
+          "value": "minimal",
+          "remarks": "Configuration drift tolerance is minimal; deviations trigger trust degradation or revocation."
+        },
+        {
+          "name": "vulnerability-risk-threshold",
+          "class": "admission-constraint",
+          "value": "low",
+          "remarks": "Only low residual vulnerability risk is acceptable for continued execution."
+        },
+        {
+          "name": "runtime-risk-tolerance",
+          "class": "execution-constraint",
+          "value": "strict",
+          "remarks": "Runtime anomalies or suspicious behavior immediately degrade execution trust."
+        },
+        {
+          "name": "lifecycle-policy",
+          "class": "mandatory-governance",
+          "value": "rebuild-first",
+          "remarks": "Rebuild is the default corrective action; in-place remediation requires explicit governance approval."
+        },
+        {
+          "name": "administrative-access-model",
+          "class": "explicit-constraint",
+          "value": "constrained-and-audited",
+          "remarks": "Administrative access is highly constrained, time-bound, fully audited, and never implied by execution trust."
+        },
+        {
+          "name": "data-classification-ceiling",
+          "class": "data-governance",
+          "value": "regulated-high",
+          "remarks": "Servers in this class may process regulated data subject to enhanced safeguards and assurance requirements."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "High-Assurance Server environments rely on the full Secure-Server signal stack with stricter interpretation, tighter thresholds, and reduced tolerance for risk or drift. This SSPP does not define remediation mechanisms or tooling.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:server-core",
+          "type": "pattern-inheritance",
+          "title": "Server Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-attestation-and-trust",
+          "type": "pattern-inheritance",
+          "title": "Server Attestation and Trust"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-configuration-and-baseline",
+          "type": "pattern-inheritance",
+          "title": "Server Configuration and Baseline"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-patch-and-vulnerability-posture",
+          "type": "pattern-inheritance",
+          "title": "Server Patch and Vulnerability Posture"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-runtime-protection",
+          "type": "pattern-inheritance",
+          "title": "Server Runtime Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-monitoring-and-response",
+          "type": "pattern-inheritance",
+          "title": "Server Monitoring and Response"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-lifecycle-signaling",
+          "type": "pattern-inheritance",
+          "title": "Server Lifecycle Signaling"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-telemetry-normalization",
+          "type": "pattern-inheritance",
+          "title": "Server Telemetry Normalization"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-high-assurance-architecture",
+        "title": "High-Assurance Server Architecture",
+        "remarks": "Defines and maintains elevated trust architecture and execution constraints for regulated server environments.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-high-assurance-governance",
+        "title": "High-Assurance Server Governance",
+        "remarks": "Approves trust exceptions, remediation decisions, and risk acceptance for regulated server workloads.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-high-assurance-operations",
+        "title": "High-Assurance Server Operations",
+        "remarks": "Operates servers under strict execution, lifecycle, and audit requirements.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-high-assurance-monitoring",
+        "title": "High-Assurance Server Security Monitoring",
+        "remarks": "Monitors high-assurance trust, integrity, runtime, and lifecycle signals and escalates deviations.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through inheritance from Secure-Server patterns with stricter trust interpretation. This SSPP introduces no new control implementations."
+    }
+  }
+}

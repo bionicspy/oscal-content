@@ -1,0 +1,129 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:server-telemetry-normalization",
+
+    "metadata": {
+      "title": "Server Telemetry Normalization",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T08:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC570",
+          "remarks": "Business capability for normalizing diverse server telemetry into consistent trust and risk signals."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD370",
+          "remarks": "Server telemetry aggregation, correlation, normalization pipelines, and signal abstraction services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "supporting-pattern",
+          "value": "urn:utoronto:cae2:arm:AP570",
+          "remarks": "Supporting Zero Trust pattern translating raw telemetry into bounded, decision‑grade signals."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "normalized-signal-data",
+          "value": "urn:utoronto:cae2:drm:DP380",
+          "remarks": "Defines normalized server signals as abstracted trust and risk data decoupled from raw telemetry."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Controls governing audit record content, correlation, and risk communication (AU, RA families)."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-92",
+          "class": "logging-and-monitoring",
+          "value": "§§2–4",
+          "remarks": "Defines log aggregation, normalization, and analysis concepts."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2",
+          "remarks": "Zero Trust guidance requiring normalized, contextual signals for access decisions."
+        }
+      ],
+
+      "remarks": "Server Telemetry Normalization defines how raw server telemetry is transformed into normalized security signals. This pattern does not retain raw logs, perform analysis, or enforce policy."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:telemetry-normalization",
+        "type": "capability",
+        "title": "Telemetry Normalization",
+        "description": "Transformation of heterogeneous telemetry into standardized signal representations.",
+
+        "props": [
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Normalized telemetry enables consistent interpretation."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:telemetry-normalization",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-3",
+                "remarks": "Audit records contain standardized fields."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:signal-abstraction",
+        "type": "capability",
+        "title": "Signal Abstraction",
+        "description": "Abstraction of normalized telemetry into high‑level trust and risk signals.",
+
+        "props": [
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Abstraction prevents over‑trust of raw telemetry."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:signal-abstraction",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "RA-7",
+                "remarks": "Abstracted signals inform trust decisions."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

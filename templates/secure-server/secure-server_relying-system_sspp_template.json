@@ -1,0 +1,165 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-server:relying-system",
+
+    "metadata": {
+      "title": "Secure-Server Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T09:10:00Z",
+      "remarks": "System Security and Privacy Plan defining how institutional systems rely on Secure-Server trust, posture, and lifecycle signals when making workload admission and execution decisions."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-server:platform",
+      "remarks": "This SSPP inherits all execution-trust semantics, prohibitions, and lifecycle expectations from the Secure-Server Platform SSPP."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure-Server Relying System",
+      "system-description": "The Secure-Server Relying System defines the contract by which orchestrators, schedulers, control planes, and admission systems consume normalized server trust signals. It ensures signals are interpreted in a bounded, non-transitive manner without granting implicit privilege or persistent trust.",
+      "security-sensitivity-level": "moderate-to-high",
+
+      "props": [
+        {
+          "name": "relying-role",
+          "class": "decision-consumer",
+          "value": "server-trust-signals",
+          "remarks": "Consumes normalized server execution, posture, runtime, vulnerability, and lifecycle signals."
+        },
+        {
+          "name": "trust-consumption-model",
+          "class": "enforcement-constraint",
+          "value": "non-transitive",
+          "remarks": "Server trust signals must not be cached, inherited, or reused beyond the current decision context."
+        },
+        {
+          "name": "execution-assumption",
+          "class": "explicit-denial",
+          "value": "no-privilege-inference",
+          "remarks": "Execution eligibility does not imply administrative, privileged, or emergency authority."
+        },
+        {
+          "name": "signal-authority",
+          "class": "binding-requirement",
+          "value": "platform-defined-only",
+          "remarks": "Only signals produced and normalized by the Secure-Server Platform may be consumed."
+        },
+        {
+          "name": "lifecycle-sensitivity",
+          "class": "mandatory-enforcement",
+          "value": "required",
+          "remarks": "Lifecycle state signals must be evaluated for admission, continuation, and termination decisions."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure-Server Relying Systems evaluate server trust exclusively through normalized signals provided by the Secure-Server Platform. They must not generate independent trust assertions, perform remediation actions, or override platform-defined trust semantics.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:server-core",
+          "type": "pattern-consumption",
+          "title": "Server Core Signals",
+          "remarks": "Execution eligibility and non-equivalence signals."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-attestation-and-trust",
+          "type": "pattern-consumption",
+          "title": "Server Attestation and Trust Signals",
+          "remarks": "Cryptographic integrity and provenance signals."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-configuration-and-baseline",
+          "type": "pattern-consumption",
+          "title": "Configuration Drift Signals",
+          "remarks": "Desired-state conformance signals."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-patch-and-vulnerability-posture",
+          "type": "pattern-consumption",
+          "title": "Vulnerability and Patch Posture Signals",
+          "remarks": "Exposure and remediation-state signals."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-runtime-protection",
+          "type": "pattern-consumption",
+          "title": "Runtime Risk Signals",
+          "remarks": "Behavioral and anomaly signals."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-lifecycle-signaling",
+          "type": "pattern-consumption",
+          "title": "Lifecycle State Signals",
+          "remarks": "Provisioning, revocation, rebuild, and termination signals."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-telemetry-normalization",
+          "type": "pattern-consumption",
+          "title": "Normalized Trust Signals",
+          "remarks": "Decision-grade abstracted signal representations."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-server-trust-architecture",
+        "title": "Server Trust Architecture",
+        "remarks": "Defines how server trust signals are consumed by relying systems and ensures architectural alignment.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-server-trust-governance",
+        "title": "Server Trust Governance",
+        "remarks": "Approves reliance rules, trust ceilings, and signal interpretation policies.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-server-admission-operations",
+        "title": "Server Admission Operations",
+        "remarks": "Operates schedulers, orchestrators, and admission control systems that consume server trust signals.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-server-security-monitoring",
+        "title": "Server Security Signal Monitoring",
+        "remarks": "Monitors server trust and lifecycle signals for anomalies and escalation support.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction is achieved through correct consumption of Secure-Server trust signals. This SSPP does not implement controls directly."
+    }
+  }
+}

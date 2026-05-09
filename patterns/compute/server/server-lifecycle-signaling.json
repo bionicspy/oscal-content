@@ -1,0 +1,129 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:server-lifecycle-signaling",
+
+    "metadata": {
+      "title": "Server Lifecycle Signaling",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T08:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC560",
+          "remarks": "Business capability for producing authoritative lifecycle state signals for server execution environments."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD360",
+          "remarks": "Server provisioning systems, decommissioning workflows, rebuild pipelines, and state management services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "supporting-pattern",
+          "value": "urn:utoronto:cae2:arm:AP560",
+          "remarks": "Supporting Zero Trust pattern defining lifecycle state as an explicit trust input."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "lifecycle-state-data",
+          "value": "urn:utoronto:cae2:drm:DP370",
+          "remarks": "Defines server lifecycle status as authoritative control data used to permit, restrict, or revoke execution trust."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Control catalog governing system lifecycle, revocation, and secure termination (PL, CM, MP families)."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-137",
+          "class": "continuous-monitoring",
+          "value": "§§2–3",
+          "remarks": "Continuous monitoring guidance establishing lifecycle state changes as security‑relevant signals."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.3",
+          "remarks": "Zero Trust principles asserting that trust must be revocable based on lifecycle state."
+        }
+      ],
+
+      "remarks": "Server Lifecycle Signaling defines authoritative lifecycle states for server execution environments. This pattern emits lifecycle signals only and does not perform provisioning, rebuild, remediation, or destruction actions."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:server-lifecycle-state-detection",
+        "type": "capability",
+        "title": "Server Lifecycle State Detection",
+        "description": "Determination of the current lifecycle state of a server or workload instance.",
+
+        "props": [
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Explicit lifecycle signaling prevents stale trust assumptions."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:server-lifecycle-detection",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Lifecycle considerations are integrated into system security planning."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:lifecycle-trust-signaling",
+        "type": "capability",
+        "title": "Lifecycle Trust Signaling",
+        "description": "Propagation of lifecycle state signals to downstream trust and admission systems.",
+
+        "props": [
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Clear signaling enables deterministic trust revocation."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:lifecycle-signaling",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "RA-7",
+                "remarks": "Lifecycle state informs risk‑based trust decisions."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

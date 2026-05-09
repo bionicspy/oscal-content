@@ -1,0 +1,175 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-server:platform",
+
+    "metadata": {
+      "title": "Secure-Server Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T08:45:00Z",
+      "remarks": "System Security and Privacy Plan establishing the Secure-Server Platform as the authoritative trust framework governing server execution environments."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:secure-server",
+      "remarks": "This SSPP inherits and enforces the Secure-Server composite pattern and all constituent server trust patterns."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure-Server Platform",
+      "system-description": "The Secure-Server Platform defines when and how server execution environments may run institutional workloads under Zero Trust principles. It establishes execution eligibility, trust boundaries, lifecycle expectations, and signal consumption rules, without granting implicit privilege or permanent trust.",
+      "security-sensitivity-level": "moderate-to-high",
+
+      "props": [
+        {
+          "name": "platform-role",
+          "class": "authoritative-trust-plane",
+          "value": "server-execution",
+          "remarks": "Authoritative trust plane governing server execution eligibility and trust signaling."
+        },
+        {
+          "name": "trust-model",
+          "class": "foundational-constraint",
+          "value": "signal-based-zero-trust",
+          "remarks": "Server execution trust is conditional, revocable, and derived from normalized signals."
+        },
+        {
+          "name": "execution-trust",
+          "class": "governance-assertion",
+          "value": "explicitly-bounded",
+          "remarks": "Execution trust allows workloads to run but does not imply administrative, privileged, or emergency authority."
+        },
+        {
+          "name": "implicit-trust",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Trust signals must not be cached, inherited, or assumed beyond the current decision context."
+        },
+        {
+          "name": "admin-context",
+          "class": "explicit-prohibition",
+          "value": "not-granted",
+          "remarks": "The Secure-Server Platform does not grant administrative, break-glass, or DAW-equivalent privileges."
+        },
+        {
+          "name": "lifecycle-expectation",
+          "class": "execution-governance",
+          "value": "rebuild-preferred-remediate-conditional",
+          "remarks": "Servers are expected to be rebuilt when integrity or configuration trust is compromised; remediation is conditional and SSPP-specific."
+        },
+        {
+          "name": "trust-revocation",
+          "class": "mandatory-capability",
+          "value": "immediate",
+          "remarks": "Execution trust may be revoked immediately based on lifecycle, integrity, posture, or runtime signals."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "The Secure-Server Platform is implemented by composing independent server trust patterns that produce normalized, decision-grade signals. This platform does not perform enforcement, orchestration, remediation, or lifecycle actions.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:server-core",
+          "type": "pattern-reference",
+          "title": "Server Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-attestation-and-trust",
+          "type": "pattern-reference",
+          "title": "Server Attestation and Trust"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-configuration-and-baseline",
+          "type": "pattern-reference",
+          "title": "Server Configuration and Baseline"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-patch-and-vulnerability-posture",
+          "type": "pattern-reference",
+          "title": "Server Patch and Vulnerability Posture"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-runtime-protection",
+          "type": "pattern-reference",
+          "title": "Server Runtime Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-monitoring-and-response",
+          "type": "pattern-reference",
+          "title": "Server Monitoring and Response"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-lifecycle-signaling",
+          "type": "pattern-reference",
+          "title": "Server Lifecycle Signaling"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:server-telemetry-normalization",
+          "type": "pattern-reference",
+          "title": "Server Telemetry Normalization"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-server-security-architecture",
+        "title": "Server Security Architecture",
+        "remarks": "Defines server execution trust architecture, signal boundaries, and SSPP inheritance model for Secure‑Server.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-server-security-governance",
+        "title": "Server Security Governance",
+        "remarks": "Oversees Secure‑Server policy alignment, risk acceptance, trust ceilings, and SSPP approval.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-server-platform-operations",
+        "title": "Server Platform Operations",
+        "remarks": "Operates server platforms and execution environments in compliance with Secure‑Server trust and lifecycle requirements.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-server-security-monitoring",
+        "title": "Server Security Monitoring",
+        "remarks": "Monitors server trust, posture, runtime, telemetry, and lifecycle signals; analyzes anomalies and supports incident coordination.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Security and privacy controls are satisfied through inheritance from Secure-Server patterns and downstream SSPPs. This Platform SSPP does not restate individual control implementations."
+    }
+  }
+}

@@ -4,119 +4,112 @@
 
     "metadata": {
       "title": "Server Attestation and Trust",
-      "version": "1.1.0",
+      "version": "2.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-05-04T20:35:00Z",
+      "last-modified": "2026-05-05T06:40:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC260",
-          "remarks": "Business capability establishing verifiable trust in server and workload integrity."
+          "value": "urn:utoronto:cae2:brm:BC520",
+          "remarks": "Business capability for cryptographically attesting server platform and workload integrity to establish execution‑trust eligibility."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD021",
-          "remarks": "Server, workload, and platform execution technology domain."
-        },
-        {
-          "name": "technology-platform",
-          "ns": "urn:utoronto:cae2:trm",
-          "class": "trm-platform",
-          "value": "urn:utoronto:cae2:trm:TP067",
-          "remarks": "Hardware roots of trust, secure boot, measured boot, and workload attestation services."
+          "value": "urn:utoronto:cae2:trm:TD320",
+          "remarks": "Server firmware, boot chains, hypervisors, host operating systems, workload identity, and attestation services."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP101",
-          "remarks": "Cryptographically verifiable server and workload integrity using attestation mechanisms."
+          "class": "supporting-pattern",
+          "value": "urn:utoronto:cae2:arm:AP520",
+          "remarks": "Supporting pattern providing cryptographic trust signals to inform Zero Trust execution decisions."
         },
         {
-          "name": "data-entity",
+          "name": "data-pattern",
           "ns": "urn:utoronto:cae2:drm",
-          "class": "data-entity",
-          "value": "urn:utoronto:cae2:drm:DE431",
-          "remarks": "Attestation measurements, integrity claims, and trust verification results."
+          "class": "trust-assertion-data",
+          "value": "urn:utoronto:cae2:drm:DP330",
+          "remarks": "Defines attestation artifacts and measurements as authoritative trust data, not as credentials or entitlements."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Control authority for integrity, identification, and trust establishment (IA, SI, PL families)."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2–3.3",
+          "remarks": "Defines that attestation produces conditional, revocable trust signals within a Zero Trust architecture."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-193",
+          "class": "platform-resilience",
+          "value": "§§1.1, 2.1–2.4",
+          "remarks": "Establishes firmware and platform integrity expectations underpinning server attestation trust."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-147",
+          "class": "firmware-boot-integrity",
+          "value": "§§2–3",
+          "remarks": "Defines BIOS and boot integrity principles informing measured and authenticated boot."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-147B",
+          "class": "authenticated-boot",
+          "value": "§§2–3",
+          "remarks": "Extends firmware integrity guidance with authenticated boot requirements for modern platforms."
         }
       ],
 
-      "remarks": "Server Attestation and Trust defines the capability to establish cryptographic and measurable confidence in the integrity of servers and workloads. This includes verification of firmware, boot process, host platform state, and workload execution context. Attestation provides a stronger trust signal than configuration or monitoring alone.\n\nGovernance and Responsibility Anchor:\nThis pattern is the authoritative anchor for SSPPs, standards, procedures, guidelines, and assurance related to server and workload trust establishment. Controls are scoped to trust verification only and intentionally exclude configuration enforcement, patch management, and runtime threat detection."
+      "remarks": "Server Attestation and Trust defines mechanisms to cryptographically assert the integrity and provenance of server platforms and workloads. This pattern produces trust signals only and does not grant persistent trust, perform enforcement, or define lifecycle or remediation actions."
     },
 
     "components": [
-
       {
-        "uuid": "urn:utoronto:security:capability:hardware-root-of-trust",
+        "uuid": "urn:utoronto:security:capability:server-platform-attestation",
         "type": "capability",
-        "title": "Hardware Root of Trust",
-        "description": "Use of hardware-based mechanisms to anchor trust in server platforms.",
+        "title": "Server Platform Attestation",
+        "description": "Cryptographic attestation of server firmware, boot chain, and host platform integrity.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1601",
-            "remarks": "Manipulation or compromise of platform firmware to undermine trust."
+            "class": "technique",
+            "value": "T1542",
+            "remarks": "Persistence via firmware or boot‑level compromise."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:RootOfTrust",
-            "remarks": "Anchor trust in hardware-backed cryptographic roots."
+            "class": "technique",
+            "value": "D3FEND-0067",
+            "remarks": "Measured and verified boot anchor platform integrity."
           }
         ],
 
         "control-implementations": [
           {
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "IA-7",
-                "remarks": "Use cryptographic mechanisms to establish trusted execution foundations."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:boot-attestation",
-        "type": "capability",
-        "title": "Boot Attestation",
-        "description": "Verification of server boot integrity, including firmware, bootloader, and kernel stages.",
-
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1542",
-            "remarks": "Pre-boot manipulation to persist malicious code."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:BootIntegrityVerification",
-            "remarks": "Cryptographic verification of boot components."
-          }
-        ],
-
-        "control-implementations": [
-          {
+            "uuid": "urn:utoronto:security:ci:server-platform-attestation",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "SI-7",
-                "remarks": "Verify software and firmware integrity during system startup."
+                "remarks": "Integrity mechanisms detect unauthorized modification of platform components."
               }
             ]
           }
@@ -124,35 +117,36 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:host-and-platform-integrity",
+        "uuid": "urn:utoronto:security:capability:server-workload-attestation",
         "type": "capability",
-        "title": "Host and Platform Integrity",
-        "description": "Measurement and verification of server host platform state beyond initial boot.",
+        "title": "Server Workload Attestation",
+        "description": "Attestation of workload identity, provenance, and execution context on the server platform.",
 
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1565",
-            "remarks": "Tampering with system measurements or integrity data."
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Execution of unauthorized workloads under assumed trust."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:PlatformIntegrityVerification",
-            "remarks": "Ongoing verification of host integrity measurements."
+            "class": "technique",
+            "value": "D3FEND-0045",
+            "remarks": "Strong workload identity binding prevents spoofing of execution context."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:server-workload-attestation",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "SI-7",
-                "remarks": "Continuously or periodically verify host platform integrity measurements."
+                "control-id": "IA-5",
+                "remarks": "Cryptographic mechanisms protect workload identity assertions."
               }
             ]
           }
@@ -160,35 +154,29 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:workload-attestation",
+        "uuid": "urn:utoronto:security:capability:attestation-trust-signaling",
         "type": "capability",
-        "title": "Workload Attestation",
-        "description": "Verification that workloads are executing on trusted hosts and in approved execution contexts.",
+        "title": "Attestation Trust Signaling",
+        "description": "Generation of execution‑trust signals based on attestation results for downstream consumption.",
 
         "props": [
           {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "attack-technique",
-            "value": "urn:mitre:attack:technique:T1611",
-            "remarks": "Execution of workloads in untrusted or modified runtime environments."
-          },
-          {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
-            "class": "defensive-technique",
-            "value": "urn:mitre:d3fend:technique:d3f:WorkloadIntegrityVerification",
-            "remarks": "Validation of workload identity and execution context prior to authorization."
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Explicit trust signaling prevents over‑trust or ambiguous interpretation of attestation results."
           }
         ],
 
         "control-implementations": [
           {
+            "uuid": "urn:utoronto:security:ci:attestation-signaling",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "AC-3",
-                "remarks": "Use attestation results to authorize workload execution or access."
+                "control-id": "RA-7",
+                "remarks": "Execution‑trust signals inform risk‑based decisions."
               }
             ]
           }
