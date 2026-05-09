@@ -1,0 +1,162 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:endpoint:cosu:mobile-international-travel",
+
+    "metadata": {
+      "title": "COSU Mobile International Travel Device SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T05:25:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned Single-Use (COSU) Mobile Devices issued for international travel to high-risk jurisdictions."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "This COSU SSPP inherits baseline controls from the Secure Endpoint Platform profile."
+    },
+
+    "system-characteristics": {
+      "system-name": "COSU Mobile – International Travel Device",
+      "system-description": "A stripped-down, corporate-owned, single-use mobile device issued temporarily for international travel to high-risk jurisdictions. The device is designed to minimize data exposure, credential persistence, and post-travel risk through enforced reset or decommissioning.",
+      "security-sensitivity-level": "high-risk-environment",
+
+      "props": [
+        {
+          "name": "inherits-from-sspp",
+          "value": "secure-endpoint-platform",
+          "remarks": "COSU Mobile Travel Devices inherit endpoint governance but are not treated as standard mobile endpoints."
+        },
+
+        {
+          "name": "endpoint-class",
+          "class": "endpoint-category",
+          "value": "cosu-mobile-travel",
+          "remarks": "Single-use COSU mobile endpoint for travel to high-risk jurisdictions."
+        },
+
+        {
+          "name": "execution-model",
+          "class": "constraint",
+          "value": "minimal-communications-only",
+          "remarks": "Execution is restricted to a minimal set of approved communication and authentication applications."
+        },
+
+        {
+          "name": "user-authentication-model",
+          "class": "constraint",
+          "value": "temporary-identity-session",
+          "remarks": "Authentication sessions are ephemeral and do not persist credentials beyond immediate use."
+        },
+
+        {
+          "name": "ownership-model",
+          "class": "constraint",
+          "value": "institution-owned",
+          "remarks": "Device is owned, issued, and reclaimed by the institution."
+        },
+
+        {
+          "name": "management-model",
+          "class": "constraint",
+          "value": "centrally-managed-travel-mode",
+          "remarks": "Device operates under a special travel-mode management profile."
+        },
+
+        {
+          "name": "cryptographic-identity",
+          "class": "mandatory-requirement",
+          "value": "device-bound-minimal",
+          "remarks": "Device identity is used solely for management, not service entitlement."
+        },
+
+        {
+          "name": "baseline-hardening",
+          "class": "mandatory-requirement",
+          "value": "extreme-minimalism",
+          "remarks": "OS build disables app installation, backups, developer modes, cloud sync, and non-essential sensors."
+        },
+
+        {
+          "name": "network-access-model",
+          "class": "constraint",
+          "value": "restricted-and-inspected",
+          "remarks": "Network access is limited to approved services using hardened transport and assumes hostile networks."
+        },
+
+        {
+          "name": "data-persistence",
+          "class": "explicit-prohibition",
+          "value": "none",
+          "remarks": "No institutional data is permitted to persist locally beyond in-memory session buffers."
+        },
+
+        {
+          "name": "eligible-data-classifications",
+          "class": "eligibility",
+          "value": "level-0,level-1",
+          "remarks": "Device may only be used for low-sensitivity communications and coordination."
+        },
+
+        {
+          "name": "non-equivalence-statement",
+          "class": "safety-rail",
+          "value": "travel-device-not-mobile-platform",
+          "remarks": "A COSU Travel Device is not a Secure-Mobile platform and must not be used as a personal or managed smartphone."
+        },
+
+        {
+          "name": "inspection-assumption",
+          "class": "threat-assumption",
+          "value": "device-compromise-likely",
+          "remarks": "Device inspection or seizure is assumed possible, informing design and controls."
+        },
+
+        {
+          "name": "lifecycle-governance",
+          "class": "mandatory-requirement",
+          "value": "mandatory-reset-or-destruction",
+          "remarks": "Device must be factory reset, reimaged, or destroyed after travel."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COSU Mobile International Travel Devices implement Secure Endpoint patterns with an extreme least-capability posture designed for hostile environments.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-core",
+          "type": "pattern-reference",
+          "title": "Endpoint Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-configuration-and-hardening",
+          "type": "pattern-reference",
+          "title": "Endpoint Configuration and Hardening"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:endpoint-lifecycle",
+          "type": "pattern-reference",
+          "title": "Endpoint Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-international-travel-operations",
+        "title": "International Travel Security Operations",
+        "remarks": "Responsible for issuance, monitoring, and post-travel handling of COSU Mobile Travel Devices."
+      },
+      {
+        "id": "role-information-security-governance",
+        "title": "Information Security Governance",
+        "remarks": "Defines eligibility, approved applications, and jurisdictional risk thresholds."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are enforced through extreme device hardening, data minimization, and lifecycle destruction workflows rather than trust assertion."
+    }
+  }
+}
