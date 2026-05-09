@@ -1,0 +1,162 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:solution:secure-print-release",
+    "metadata": {
+      "title": "Secure Print Release SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-08T13:00:00Z",
+      "remarks": "Solution-level System Security and Privacy Plan asserting secure, authenticated, and accountable release of printed output at physical devices."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Imports the institutional security baseline. Secure Print Release inherits applicable controls through the Secure Print Platform and Secure Printing SSPPs."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Print Release",
+      "system-description": "Secure Print Release ensures that printed output is released only to authorised users at the point of device interaction, enforcing physical presence, identity binding, and accountability controls to prevent unauthorised disclosure of printed materials.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "solution-capability",
+          "value": "secure-print-release",
+          "remarks": "Secure Print Release is a solution capability enforcing authenticated, authorised, and auditable release of printed output at physical printing devices."
+        },
+        {
+          "name": "inherits-from",
+          "class": "platform-sspp",
+          "value": "urn:utoronto:sspp:platform:secure-print",
+          "remarks": "Secure Print Release inherits platform governance, device integration, and security foundations from the Secure Print Platform SSPP."
+        },
+        {
+          "name": "inherits-from",
+          "class": "solution-sspp",
+          "value": "urn:utoronto:sspp:solution:secure-printing",
+          "remarks": "Secure Print Release builds on Secure Printing to provide controlled, in-person release of printed output."
+        },
+        {
+          "name": "nist-guidance",
+          "class": "guidance-reference",
+          "ns": "urn:nist:sp800-53",
+          "value": "PE-5",
+          "remarks": "Secure Print Release enforces controlled access to output devices to ensure only authorised individuals obtain printed output."
+        },
+        {
+          "name": "nist-guidance",
+          "class": "guidance-reference",
+          "ns": "urn:nist:sp800-53",
+          "value": "IA-2",
+          "remarks": "Secure Print Release requires user authentication at the device prior to releasing print jobs."
+        },
+        {
+          "name": "nist-guidance",
+          "class": "guidance-reference",
+          "ns": "urn:nist:sp800-53",
+          "value": "AU-10",
+          "remarks": "Print release actions are associated with individual identities to support non-repudiation."
+        },
+        {
+          "name": "nist-guidance",
+          "class": "guidance-reference",
+          "ns": "urn:nist:sp800-171",
+          "value": "3.1.1",
+          "remarks": "Access to print release functionality is restricted to authorised users acting on behalf of approved roles."
+        },
+
+        {
+          "name": "capability",
+          "class": "business-capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "value": "urn:utoronto:cae2:brm:BIM201",
+          "remarks": "Secure Print Release supports institutional information management by preventing unauthorised access to physical output."
+        },
+        {
+          "name": "architecture-pattern",
+          "class": "application-capability",
+          "ns": "urn:utoronto:cae2:arm",
+          "value": "urn:utoronto:cae2:arm:AR108",
+          "remarks": "Identity and access services enable authentication and authorisation during print release at devices."
+        },
+        {
+          "name": "data-pattern",
+          "class": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "value": "urn:utoronto:cae2:drm:TD405",
+          "remarks": "Print release events and associated metadata may form records subject to retention and audit requirements."
+        },
+        {
+          "name": "technology-domain",
+          "class": "trm-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "value": "urn:utoronto:cae2:trm:TF611",
+          "remarks": "Secure Print Release is supported by printing device technologies capable of authenticated user interaction."
+        },
+        {
+          "name": "mitre-attack",
+          "class": "threat-reference",
+          "ns": "urn:mitre:attack:enterprise",
+          "value": "T1078",
+          "remarks": "Secure Print Release mitigates the risk of adversaries abusing valid credentials to retrieve printed output."
+        },
+        {
+          "name": "mitre-attack",
+          "class": "threat-reference",
+          "ns": "urn:mitre:attack:enterprise",
+          "value": "T1119",
+          "remarks": "Controls reduce the risk of automated collection of printed materials via unattended output devices."
+        },
+        {
+          "name": "mitre-d3fend",
+          "class": "defensive-reference",
+          "ns": "urn:mitre:d3fend",
+          "value": "D3-AUTHN",
+          "remarks": "Authentication at the device ensures print jobs are released only to verified users."
+        },
+        {
+          "name": "mitre-d3fend",
+          "class": "defensive-reference",
+          "ns": "urn:mitre:d3fend",
+          "value": "D3-AC",
+          "remarks": "Access control mechanisms limit release actions to authorised users and sessions."
+        },
+        {
+          "name": "mitre-d3fend",
+          "class": "defensive-reference",
+          "ns": "urn:mitre:d3fend",
+          "value": "D3-LOG",
+          "remarks": "Logging of print release actions supports accountability, investigation, and non-repudiation."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure Print Release is realised through approved secure-print-release architectural patterns operating on the Secure Print Platform.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:secure-print-release-pattern",
+          "type": "component",
+          "title": "Secure Print Release Pattern Assertion",
+          "description": "Asserts that secure release of printed output is implemented using approved institutional security patterns.",
+          "links": [
+            {
+              "rel": "asserts",
+              "href": "urn:utoronto:security:pattern:secure-print-release"
+            },
+            {
+              "rel": "depends-on",
+              "href": "urn:utoronto:sspp:platform:secure-print"
+            }
+          ]
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "All applicable security and privacy controls are inherited from the Secure Print Platform SSPP and Secure Printing SSPP. No controls are implemented directly at the Secure Print Release solution level."
+    }
+  }
+}

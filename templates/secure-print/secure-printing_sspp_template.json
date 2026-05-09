@@ -1,0 +1,148 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:solution:secure-printing",
+    "metadata": {
+      "title": "Secure Printing SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-08T13:00:00Z",
+      "remarks": "Solution-level System Security and Privacy Plan asserting secure printing behaviors and protections implemented using the Secure Print Platform."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Imports the institutional security and privacy baseline. Secure Printing inherits controls through the Secure Print Platform SSPP and approved architectural patterns."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Printing",
+      "system-description": "Secure Printing provides authenticated, authorised, auditable, and accountable printing services built on the Secure Print Platform, ensuring protection of documents, controlled print release, and governance of printed output across institutional environments.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "solution-capability",
+          "value": "secure-printing",
+          "remarks": "Secure Printing is a solution capability that ensures documents are printed only by authorised users, released securely, and governed as institutional information assets."
+        },
+        {
+          "name": "inherits-from",
+          "class": "platform-sspp",
+          "value": "urn:utoronto:sspp:platform:secure-print",
+          "remarks": "Secure Printing inherits platform-level governance, trust, and technical foundations from the Secure Print Platform SSPP."
+        },
+        {
+          "name": "nist-guidance",
+          "class": "guidance-reference",
+          "ns": "urn:nist:sp800-53",
+          "value": "PE-5",
+          "remarks": "Secure Printing enforces access control over output devices to prevent unauthorised disclosure of printed information."
+        },
+        {
+          "name": "nist-guidance",
+          "class": "guidance-reference",
+          "ns": "urn:nist:sp800-53",
+          "value": "IA-2",
+          "remarks": "User authentication is required to submit and release print jobs."
+        },
+        {
+          "name": "nist-guidance",
+          "class": "guidance-reference",
+          "ns": "urn:nist:sp800-53",
+          "value": "AU-2",
+          "remarks": "Printing activities generate auditable events supporting accountability and investigation."
+        },
+        {
+          "name": "nist-guidance",
+          "class": "guidance-reference",
+          "ns": "urn:nist:sp800-171",
+          "value": "3.8.1",
+          "remarks": "Printed output containing CUI is handled as controlled media within the Secure Printing solution."
+        },
+        {
+          "name": "capability",
+          "class": "business-capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "value": "urn:utoronto:cae2:brm:BIM201",
+          "remarks": "Secure Printing supports institutional information management through controlled physical output."
+        },
+        {
+          "name": "architecture-pattern",
+          "class": "application-capability",
+          "ns": "urn:utoronto:cae2:arm",
+          "value": "urn:utoronto:cae2:arm:AR214",
+          "remarks": "Secure Printing relies on document handling and print workflow orchestration services."
+        },
+        {
+          "name": "data-pattern",
+          "class": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "value": "urn:utoronto:cae2:drm:TD102",
+          "remarks": "Secure Printing processes governed digital document data prior to physical rendering."
+        },
+        {
+          "name": "technology-domain",
+          "class": "trm-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "value": "urn:utoronto:cae2:trm:TF611",
+          "remarks": "Secure Printing is implemented using printing and scanning technology domains."
+        },
+        {
+          "name": "mitre-attack",
+          "class": "threat-reference",
+          "ns": "urn:mitre:attack:enterprise",
+          "value": "T1005",
+          "remarks": "Secure Printing addresses risks of sensitive data access via print spooling and cached print jobs."
+        },
+        {
+          "name": "mitre-attack",
+          "class": "threat-reference",
+          "ns": "urn:mitre:attack:enterprise",
+          "value": "T1078",
+          "remarks": "Controls mitigate misuse of valid credentials to abuse printing and release mechanisms."
+        },
+        {
+          "name": "mitre-d3fend",
+          "class": "defensive-reference",
+          "ns": "urn:mitre:d3fend",
+          "value": "D3-AUTHN",
+          "remarks": "Authentication ensures print jobs are bound to verified identities."
+        },
+        {
+          "name": "mitre-d3fend",
+          "class": "defensive-reference",
+          "ns": "urn:mitre:d3fend",
+          "value": "D3-LOG",
+          "remarks": "Logging supports accountability and investigation of printing activities."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure Printing is realised via approved architectural patterns and inherits all technical controls from the Secure Print Platform.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:secure-printing-pattern",
+          "type": "component",
+          "title": "Secure Printing Pattern Assertion",
+          "description": "Asserts that Secure Printing capabilities are implemented using approved institutional security patterns.",
+          "links": [
+            {
+              "rel": "asserts",
+              "href": "urn:utoronto:security:pattern:secure-printing"
+            },
+            {
+              "rel": "depends-on",
+              "href": "urn:utoronto:sspp:platform:secure-print"
+            }
+          ]
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "All applicable security and privacy controls are inherited from the Secure Print Platform SSPP and supporting security patterns. No controls are implemented directly at the Secure Printing solution level."
+    }
+  }
+}

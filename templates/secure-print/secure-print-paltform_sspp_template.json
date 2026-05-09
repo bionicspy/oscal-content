@@ -1,0 +1,215 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:platform:secure-print",
+    "metadata": {
+      "title": "Secure Print Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-08T13:00:00Z",
+      "remarks": "Platform-level System Security and Privacy Plan asserting institutional trust, governance, and responsibility for Secure Print services."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:profile:institutional-baseline",
+      "remarks": "Imports the institutional security and privacy baseline. Secure Print inherits applicable controls through approved platform patterns."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Print Platform",
+      "system-description": "The Secure Print Platform provides institutionally governed, authenticated, auditable, and accountable printing services, supporting secure job submission, controlled release, output handling, retention, and evidentiary logging across managed printing infrastructure.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "platform-capability",
+          "value": "secure-print",
+          "remarks": "Secure Print is a foundational institutional platform service enabling controlled generation of physical output from digital information systems."
+        },
+        {
+          "name": "nist-guidance",
+          "class": "guidance-reference",
+          "ns": "urn:nist:sp800-53",
+          "value": "PE-5",
+          "remarks": "Printers and multifunction devices are treated as output devices requiring controlled access to prevent unauthorized disclosure of printed information."
+        },
+        {
+          "name": "nist-guidance",
+          "class": "guidance-reference",
+          "ns": "urn:nist:sp800-171",
+          "value": "3.8.1",
+          "remarks": "Printed output containing CUI is classified as controlled media and must be physically protected and handled appropriately."
+        },
+        {
+          "name": "nist-guidance",
+          "class": "guidance-reference",
+          "ns": "urn:nist:sp800-88",
+          "value": "2.4",
+          "remarks": "Printers and multifunction devices may retain copies of print jobs on internal storage and must be sanitized prior to reuse, return, or disposal."
+        },
+        {
+          "name": "nist-guidance",
+          "class": "guidance-reference",
+          "ns": "urn:nist:csf:2.0",
+          "value": "PR.DS-02",
+          "remarks": "Printing workflows fall within the scope of protecting data in use, transit, and at rest."
+        },
+        {
+          "name": "capability",
+          "class": "business-capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "value": "urn:utoronto:cae2:brm:BIM201",
+          "remarks": "Secure Print supports institutional information management by enabling controlled physical output of business information."
+        },
+        {
+          "name": "capability",
+          "class": "business-capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "value": "urn:utoronto:cae2:brm:BRS305",
+          "remarks": "Printed output may constitute official institutional records subject to retention and disposition requirements."
+        },
+        {
+          "name": "architecture-pattern",
+          "class": "application-capability",
+          "ns": "urn:utoronto:cae2:arm",
+          "value": "urn:utoronto:cae2:arm:AR214",
+          "remarks": "Secure Print is realised through document handling and rendering application services managing print job lifecycle."
+        },
+        {
+          "name": "architecture-pattern",
+          "class": "solution-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "value": "urn:utoronto:cae2:arm:AR108",
+          "remarks": "Identity and access services authenticate users and authorize secure print release."
+        },
+        {
+          "name": "data-patttern",
+          "class": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "value": "urn:utoronto:cae2:drm:TD102",
+          "remarks": "Secure Print processes digital documents as governed data assets prior to physical rendering."
+        },
+        {
+          "name": "data-pattern",
+          "class": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "value": "urn:utoronto:cae2:drm:TD405",
+          "remarks": "Printed output and associated audit logs may become records subject to records classification and retention."
+        },
+        {
+          "name": "technology-domain",
+          "class": "trm-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "value": "urn:utoronto:cae2:trm:TF611",
+          "remarks": "Printing and scanning technologies provide the technical foundation for Secure Print services."
+        },
+        {
+          "name": "technology-domain",
+          "class": "trm-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "value": "urn:utoronto:cae2:trm:TF402",
+          "remarks": "Identity and authentication technologies enable secure user binding and controlled print release."
+        },
+        {
+          "name": "technology-domain",
+          "class": "trm-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "value": "urn:utoronto:cae2:trm:TF709",
+          "remarks": "Logging and monitoring technologies support accountability, auditability, and incident response for printing activities."
+        },
+        {
+          "name": "mitre-attack",
+          "class": "threat-reference",
+          "ns": "urn:mitre:attack:enterprise",
+          "value": "T1005",
+          "remarks": "Adversaries may access sensitive information via print spooling, cached print jobs, or unsecured output trays."
+        },
+        {
+          "name": "mitre-attack",
+          "class": "threat-reference",
+          "ns": "urn:mitre:attack:enterprise",
+          "value": "T1041",
+          "remarks": "Printed output can be used as an alternative data exfiltration channel bypassing digital monitoring controls."
+        },
+        {
+          "name": "mitre-attack-tactic",
+          "class": "threat-category",
+          "ns": "urn:mitre:attack:enterprise:tactic",
+          "value": "TA0009",
+          "remarks": "Collection activities related to print job harvesting and output exposure."
+        },
+        {
+          "name": "mitre-attack",
+          "class": "threat-reference",
+          "ns": "urn:mitre:attack:enterprise",
+          "value": "T1078",
+          "remarks": "Valid credentials may be abused to authenticate to secure print release mechanisms or print management systems."
+        },
+        {
+          "name": "mitre-attack",
+          "class": "threat-reference",
+          "ns": "urn:mitre:attack:enterprise",
+          "value": "T1119",
+          "remarks": "Automated collection techniques may target queued print jobs or printer-resident storage."
+        },
+        {
+          "name": "mitre-d3fend",
+          "class": "defensive-reference",
+          "ns": "urn:mitre:d3fend",
+          "value": "D3-AUTHN",
+          "remarks": "Strong user authentication and identity binding for print submission and secure release mitigates unauthorized access and misuse."
+        },
+        {
+          "name": "mitre-d3fend",
+          "class": "defensive-reference",
+          "ns": "urn:mitre:d3fend",
+          "value": "D3-AC",
+          "remarks": "Access control mechanisms restrict who can submit, release, and retrieve printed output."
+        },
+        {
+          "name": "mitre-d3fend",
+          "class": "defensive-reference",
+          "ns": "urn:mitre:d3fend",
+          "value": "D3-LOG",
+          "remarks": "Logging of print activity supports detection, investigation, and accountability for misuse or data exposure."
+        },
+        {
+          "name": "mitre-d3fend",
+          "class": "defensive-reference",
+          "ns": "urn:mitre:d3fend",
+          "value": "D3-MON",
+          "remarks": "Monitoring of printing systems and workflows enables detection of anomalous or policy-violating behavior."
+        },
+        {
+          "name": "mitre-d3fend",
+          "class": "defensive-reference",
+          "ns": "urn:mitre:d3fend",
+          "value": "D3-DLP",
+          "remarks": "Controls governing print release and output handling reduce the risk of unauthorized disclosure through printed materials."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure Print is implemented through composition of approved institutional security patterns. This SSPP introduces no standalone or compensating controls.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:component:secure-print-composite",
+          "type": "component",
+          "title": "Secure Print (Composite Trust Assertion)",
+          "description": "Composite architectural assertion that confidentiality, accountability, governance, and lifecycle protections for institutional printing are satisfied.",
+          "links": [
+            {
+              "rel": "asserts",
+              "href": "urn:utoronto:security:pattern:secure-printing"
+            }
+          ]
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "remarks": "All applicable security and privacy controls are inherited through Secure Print platform patterns. No controls are implemented directly by this SSPP."
+    }
+  }
+}
