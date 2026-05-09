@@ -1,0 +1,184 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-device:platform",
+
+    "metadata": {
+      "title": "Secure-Device Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T17:10:00Z",
+      "remarks": "System Security and Privacy Plan establishing the Secure-Device Platform as the authoritative trust and execution framework for cyber-physical and connected devices."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:secure-device",
+      "remarks": "This SSPP inherits the Secure-Device composite pattern and governs how foundational device execution, control, and safety patterns are interpreted across the institution."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure-Device Platform",
+      "system-description": "The Secure-Device Platform defines institutional expectations for device execution, identity, integrity, lifecycle, command handling, change, access, segmentation, and safety. It applies to all devices capable of executing instructions that affect the physical or operational environment.",
+      "security-sensitivity-level": "moderate-to-high",
+
+      "props": [
+        {
+          "name": "platform-role",
+          "class": "authoritative-trust-plane",
+          "value": "device-execution",
+          "remarks": "Authoritative trust plane governing execution of cyber-physical and connected devices."
+        },
+        {
+          "name": "trust-model",
+          "class": "foundational-constraint",
+          "value": "signal-based-zero-trust",
+          "remarks": "Device trust is derived from identity, integrity, lifecycle, command, telemetry, and safety signals; it is contextual and revocable."
+        },
+        {
+          "name": "implicit-authorization",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Device identity, attestation, connectivity, or command validity must not be interpreted as authorization or safety approval."
+        },
+        {
+          "name": "execution-impact-awareness",
+          "class": "mandatory-consideration",
+          "value": "required",
+          "remarks": "All device execution is assumed to have real-world impact and must be treated accordingly."
+        },
+        {
+          "name": "safety-precedence-model",
+          "class": "governance-principle",
+          "value": "overlay-driven",
+          "remarks": "Safety precedence is enforced via overlays (e.g., OT, IoMT) and not assumed at the foundational layer."
+        },
+        {
+          "name": "lifecycle-revocation",
+          "class": "mandatory-capability",
+          "value": "required",
+          "remarks": "Device trust may be degraded or revoked based on lifecycle state, integrity loss, or safety context."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "The Secure-Device Platform is implemented by composing foundational device execution patterns with domain-specific safety overlays. This SSPP does not authorize commands, approve changes, or assert regulatory compliance.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:device-core",
+          "type": "pattern-reference",
+          "title": "Device Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-identity",
+          "type": "pattern-reference",
+          "title": "Device Identity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-attestation",
+          "type": "pattern-reference",
+          "title": "Device Attestation"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-lifecycle",
+          "type": "pattern-reference",
+          "title": "Device Lifecycle"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-telemetry-and-command-data-protection",
+          "type": "pattern-reference",
+          "title": "Telemetry and Command Data Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-command-integrity",
+          "type": "pattern-reference",
+          "title": "Command Integrity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-change-management",
+          "type": "pattern-reference",
+          "title": "Change Management"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-engineering-access-control",
+          "type": "pattern-reference",
+          "title": "Engineering Access Control"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-safety-zones-and-conduits",
+          "type": "pattern-reference",
+          "title": "Safety Zones and Conduits"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-ot-safety-overlay",
+          "type": "pattern-reference",
+          "title": "OT Safety Overlay"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-iomt-patient-safety-overlay",
+          "type": "pattern-reference",
+          "title": "IoMT Patient Safety Overlay"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-device-security-architecture",
+        "title": "Device Security Architecture",
+        "remarks": "Defines Secure-Device execution architecture, trust semantics, and SSPP inheritance.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-device-security-governance",
+        "title": "Device Security Governance",
+        "remarks": "Approves device trust policies, safety overlay applicability, risk tolerances, and lifecycle revocation criteria.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-device-platform-operations",
+        "title": "Device Platform Operations",
+        "remarks": "Operates device fleets and infrastructure in accordance with Secure-Device trust and safety expectations.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-device-security-monitoring",
+        "title": "Device Security Monitoring",
+        "remarks": "Monitors device execution integrity, lifecycle violations, command misuse, and safety-relevant signals.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Security and privacy controls are satisfied through inheritance from Secure-Device patterns and downstream SSPPs. This Platform SSPP does not restate control implementations."
+    }
+  }
+}

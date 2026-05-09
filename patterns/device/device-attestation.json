@@ -1,0 +1,145 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-attestation",
+
+    "metadata": {
+      "title": "Device Attestation",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T12:50:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC720",
+          "remarks": "Business capability for producing verifiable evidence of device integrity and execution state to support trust evaluation."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD620",
+          "remarks": "Embedded platforms, firmware stacks, secure boot chains, hardware roots of trust, and device integrity measurement mechanisms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP820",
+          "remarks": "Foundational Zero Trust pattern defining device attestation as integrity evidence, not trust, authorization, or safety assurance."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "device-attestation-data",
+          "value": "urn:utoronto:cae2:drm:DP620",
+          "remarks": "Defines attestation outputs as integrity evidence data used to inform downstream trust decisions."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-193",
+          "class": "platform-resilience",
+          "value": "§§1–3",
+          "remarks": "Establishes expectations for firmware integrity, secure boot, and platform trust anchors."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:ir-8425",
+          "class": "iot-baseline",
+          "value": "Device Software & Configuration Integrity",
+          "remarks": "Defines baseline expectations for device software integrity and configuration state."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2",
+          "remarks": "Zero Trust guidance asserting that integrity evidence must be continuously evaluated and is not equivalent to trust."
+        }
+      ],
+
+      "remarks": "Device Attestation defines how devices produce verifiable evidence of platform and execution integrity. This pattern does not assert device correctness, safety, authorization, mission suitability, or regulatory compliance."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:device-integrity-measurement",
+        "type": "capability",
+        "title": "Device Integrity Measurement",
+        "description": "Measurement of firmware, configuration, and execution state for integrity assessment.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-193",
+            "implemented-requirements": [
+              {
+                "control-id": "PLATFORM-INTEGRITY",
+                "remarks": "Platform components are measured and protected against unauthorized modification."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:device-attestation-evidence",
+        "type": "capability",
+        "title": "Device Attestation Evidence",
+        "description": "Production of cryptographically verifiable integrity evidence consumable by relying systems.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:ir-8425",
+            "implemented-requirements": [
+              {
+                "control-id": "SOFTWARE-INTEGRITY",
+                "remarks": "Device software integrity and configuration state are attestable."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:attestation-freshness",
+        "type": "capability",
+        "title": "Attestation Freshness",
+        "description": "Ensures attestation evidence reflects current or recent device state.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-207",
+            "implemented-requirements": [
+              {
+                "control-id": "CONTEXTUAL-EVIDENCE",
+                "remarks": "Attestation evidence is time‑bound and contextually valid."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:device-attestation-non-equivalence",
+        "type": "capability",
+        "title": "Device Attestation Non‑Equivalence Constraints",
+        "description": "Explicitly defines what successful device attestation does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-7",
+                "remarks": "Attestation does not imply authorization, safety, correctness, or mission approval."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-device:relying-system",
+
+    "metadata": {
+      "title": "Secure-Device Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T17:35:00Z",
+      "remarks": "System Security and Privacy Plan defining how applications, control systems, automation, and operators may rely on Secure-Device trust signals without over-trusting or endangering safety."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-device:platform",
+      "remarks": "This SSPP inherits all Secure-Device Platform trust semantics and prohibits unsafe or implicit reliance on device signals."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure-Device Relying System",
+      "system-description": "A Secure-Device Relying System consumes device identity, integrity, lifecycle, command, telemetry, and safety signals when making decisions. This SSPP prevents device signals from being misinterpreted as authorization, safety assurance, or regulatory compliance.",
+      "security-sensitivity-level": "moderate-to-high",
+
+      "props": [
+        {
+          "name": "relying-role",
+          "class": "decision-consumer",
+          "value": "device-trust-signals",
+          "remarks": "Consumes device trust and safety signals produced by the Secure-Device Platform."
+        },
+        {
+          "name": "trust-consumption-model",
+          "class": "enforcement-constraint",
+          "value": "non-transitive",
+          "remarks": "Device trust signals are contextual and must not be cached, inherited, or reused outside the immediate decision."
+        },
+        {
+          "name": "implicit-authority",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Device identity, attestation, or command validity must not be treated as authorization or permission to act."
+        },
+        {
+          "name": "safety-awareness",
+          "class": "mandatory-consideration",
+          "value": "required",
+          "remarks": "Relying systems must evaluate applicable safety overlays (OT, IoMT) before acting on device signals."
+        },
+        {
+          "name": "override-restriction",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Relying systems may not override device safety constraints or fail-safe behavior."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure-Device Relying Systems interpret device trust signals as inputs to decision-making, not as final determinations. Relying systems must never infer operational safety, clinical suitability, or authorization solely from device state.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:device-core",
+          "type": "pattern-consumption",
+          "title": "Device Execution Eligibility Signals",
+          "remarks": "Indicates whether a device is eligible to execute instructions."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-identity",
+          "type": "pattern-consumption",
+          "title": "Device Identity Signals",
+          "remarks": "Provides attribution of telemetry and command sources."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-attestation",
+          "type": "pattern-consumption",
+          "title": "Device Integrity Signals",
+          "remarks": "Provides evidence of device firmware and execution state."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-lifecycle",
+          "type": "pattern-consumption",
+          "title": "Device Lifecycle Signals",
+          "remarks": "Indicates provisioning, operational, modification, recall, or decommissioning state."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-telemetry-and-command-data-protection",
+          "type": "pattern-consumption",
+          "title": "Telemetry and Command Data Protection Signals",
+          "remarks": "Indicates confidentiality, integrity, and availability of device communications."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-command-integrity",
+          "type": "pattern-consumption",
+          "title": "Command Integrity Signals",
+          "remarks": "Indicates authenticity and validity of device commands."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-change-management",
+          "type": "pattern-consumption",
+          "title": "Device Change Signals",
+          "remarks": "Indicates change events, state transitions, and modification context."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-engineering-access-control",
+          "type": "pattern-consumption",
+          "title": "Engineering Access Signals",
+          "remarks": "Indicates presence of privileged access or maintenance activity."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-safety-zones-and-conduits",
+          "type": "pattern-consumption",
+          "title": "Zone and Conduit Signals",
+          "remarks": "Indicates device segmentation and communication boundaries."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-ot-safety-overlay",
+          "type": "pattern-consumption",
+          "title": "OT Safety Constraints",
+          "remarks": "Indicates OT safety constraints that must gate operational action."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-iomt-patient-safety-overlay",
+          "type": "pattern-consumption",
+          "title": "IoMT Patient Safety Constraints",
+          "remarks": "Indicates clinical safety constraints that must gate patient-impacting actions."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-device-trust-architecture",
+        "title": "Device Trust Architecture",
+        "remarks": "Defines how device trust signals are consumed without creating unsafe dependencies.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-device-trust-governance",
+        "title": "Device Trust Governance",
+        "remarks": "Approves reliance rules, safety overlay enforcement, and signal interpretation policies.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-device-control-operations",
+        "title": "Device Control Operations",
+        "remarks": "Operates systems that issue commands or depend on device telemetry under strict reliance constraints.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-device-safety-monitoring",
+        "title": "Device Safety and Security Monitoring",
+        "remarks": "Monitors misuse, over-trust, lifecycle violations, and safety-relevant device conditions.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction occurs through correct interpretation and constrained use of Secure-Device trust and safety signals. This SSPP does not implement enforcement logic or operational procedures."
+    }
+  }
+}

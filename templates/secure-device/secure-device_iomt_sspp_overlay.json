@@ -1,0 +1,191 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-device:iomt",
+
+    "metadata": {
+      "title": "Secure-Device IoMT SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T18:30:00Z",
+      "remarks": "System Security and Privacy Plan governing Internet of Medical Things (IoMT) devices under patient-safety-first medical regulatory requirements."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-device:platform",
+      "remarks": "This SSPP inherits all Secure-Device Platform trust semantics and applies medical-device-specific patient safety and regulatory constraints."
+    },
+
+    "system-characteristics": {
+      "system-name": "Internet of Medical Things (IoMT) Device Environment",
+      "system-description": "IoMT devices include network-connected or programmable medical devices used in diagnosis, monitoring, treatment, or life-sustaining functions. This SSPP enforces patient safety as the dominant priority and ensures cybersecurity controls do not compromise clinical effectiveness or care delivery.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "device-class",
+          "class": "execution-domain",
+          "value": "internet-of-medical-things",
+          "remarks": "Applies to medical devices with networked or programmable functionality."
+        },
+        {
+          "name": "safety-priority",
+          "class": "foundational-constraint",
+          "value": "patient-safety-over-all",
+          "remarks": "Patient safety supersedes availability, automation, performance, and cybersecurity optimization."
+        },
+        {
+          "name": "authoritative-regulation",
+          "class": "primary-authority",
+          "value": "US FDA Medical Device Cybersecurity Guidance",
+          "remarks": "Primary regulatory authority for medical device cybersecurity in the United States."
+        },
+        {
+          "name": "authoritative-regulation",
+          "class": "primary-authority",
+          "value": "EU MDR (2017/745)",
+          "remarks": "European regulatory framework governing medical device safety and risk management."
+        },
+        {
+          "name": "authoritative-standard",
+          "class": "risk-management-standard",
+          "value": "IEC 80001-1",
+          "remarks": "Risk management for IT-networks incorporating medical devices."
+        },
+        {
+          "name": "governance-standard",
+          "class": "quality-management",
+          "value": "ISO 13485",
+          "remarks": "Quality management system requirements applicable to medical devices."
+        },
+        {
+          "name": "implicit-authorization",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Device identity, attestation, or command validity must not be interpreted as clinical approval or authorization."
+        },
+        {
+          "name": "fail-safe-expectation",
+          "class": "mandatory-requirement",
+          "value": "clinical-safe-state",
+          "remarks": "Devices must maintain or transition to a clinically safe state during failures or cyber events."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "IoMT devices operate under patient-safety-first constraints enforced through medical regulatory frameworks. This SSPP does not prescribe device design, clinical workflow, or regulatory submission processes.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:device-core",
+          "type": "pattern-inheritance",
+          "title": "Device Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-identity",
+          "type": "pattern-inheritance",
+          "title": "Device Identity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-attestation",
+          "type": "pattern-inheritance",
+          "title": "Device Attestation"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-lifecycle",
+          "type": "pattern-inheritance",
+          "title": "Device Lifecycle"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-telemetry-and-command-data-protection",
+          "type": "pattern-inheritance",
+          "title": "Telemetry and Command Data Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-command-integrity",
+          "type": "pattern-inheritance",
+          "title": "Command Integrity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-change-management",
+          "type": "pattern-inheritance",
+          "title": "Change Management"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-engineering-access-control",
+          "type": "pattern-inheritance",
+          "title": "Engineering Access Control"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-safety-zones-and-conduits",
+          "type": "pattern-inheritance",
+          "title": "Safety Zones and Conduits"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-iomt-patient-safety-overlay",
+          "type": "pattern-inheritance",
+          "title": "IoMT Patient Safety Overlay"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-iomt-architecture",
+        "title": "IoMT Security Architecture",
+        "remarks": "Defines patient-safety constraints, device segmentation, and reliance rules for medical devices.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-iomt-governance",
+        "title": "IoMT Governance and Compliance",
+        "remarks": "Approves safety constraints, risk acceptability, recall criteria, and regulatory alignment.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-iomt-clinical-operations",
+        "title": "Clinical Device Operations",
+        "remarks": "Operates IoMT devices under patient-safety-first execution and change constraints.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-iomt-safety-monitoring",
+        "title": "IoMT Safety and Security Monitoring",
+        "remarks": "Monitors device integrity, misuse, unsafe transitions, and patient-safety-relevant conditions.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through medical-device regulatory compliance, patient safety risk management, and constrained interpretation of Secure-Device trust signals. This SSPP introduces no new control catalog."
+    }
+  }
+}

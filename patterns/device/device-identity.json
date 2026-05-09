@@ -1,0 +1,145 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-identity",
+
+    "metadata": {
+      "title": "Device Identity",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T12:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC710",
+          "remarks": "Business capability for uniquely identifying devices and binding identity to execution context and lifecycle."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD610",
+          "remarks": "Embedded systems, autonomous devices, cyber‑physical platforms, sensors, actuators, and device identity mechanisms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP810",
+          "remarks": "Foundational Zero Trust pattern defining device identity as a prerequisite to trust evaluation, not as proof of correctness or safety."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "device-identity-data",
+          "value": "urn:utoronto:cae2:drm:DP610",
+          "remarks": "Defines device identity as attribution and binding data, not as authorization or permission."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:ir-8425",
+          "class": "iot-baseline",
+          "value": "Device Identification",
+          "remarks": "Establishes identification capabilities for IoT and device classes."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-213",
+          "class": "iot-cybersecurity-guidance",
+          "value": "§§3.1–3.3",
+          "remarks": "Guidance for device identity, enrollment, and ownership binding."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-193",
+          "class": "platform-resilience",
+          "value": "§§2–3",
+          "remarks": "Defines integrity‑anchored identity expectations for platforms and devices."
+        }
+      ],
+
+      "remarks": "Device Identity defines how devices are uniquely identified and bound to an execution and lifecycle context. This pattern does not assert device correctness, safety, authorization, or mission suitability."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:device-unique-identification",
+        "type": "capability",
+        "title": "Device Unique Identification",
+        "description": "Assignment of a persistent, non‑ambiguous identity to a device instance.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:ir-8425",
+            "implemented-requirements": [
+              {
+                "control-id": "ID-1",
+                "remarks": "Each device is uniquely identifiable."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:identity-to-device-binding",
+        "type": "capability",
+        "title": "Identity‑to‑Device Binding",
+        "description": "Binding of identity to physical or logical device attributes and execution context.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-193",
+            "implemented-requirements": [
+              {
+                "control-id": "PLATFORM-ID-BINDING",
+                "remarks": "Device identity is bound to platform and integrity anchors."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:device-identity-lifecycle",
+        "type": "capability",
+        "title": "Device Identity Lifecycle",
+        "description": "Governance of identity from provisioning through decommissioning.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-213",
+            "implemented-requirements": [
+              {
+                "control-id": "ID-LIFECYCLE",
+                "remarks": "Device identity is managed throughout its lifecycle."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:device-identity-non-equivalence",
+        "type": "capability",
+        "title": "Device Identity Non‑Equivalence Constraints",
+        "description": "Explicitly defines what possession of a device identity does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-3",
+                "remarks": "Device identity does not imply authorization, correctness, safety, or trustworthiness."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

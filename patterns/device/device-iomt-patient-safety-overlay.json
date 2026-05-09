@@ -1,0 +1,192 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-iomt-patient-safety-overlay",
+
+    "metadata": {
+      "title": "IoMT Patient Safety Overlay",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T16:20:00Z",
+
+      "props": [
+        {
+          "name": "overlay-scope",
+          "class": "specialization",
+          "value": "internet-of-medical-things",
+          "remarks": "Specialization overlay applying to networked and programmable medical devices used in diagnosis, treatment, or patient care."
+        },
+        {
+          "name": "authoritative-regulation",
+          "ns": "urn:fda.gov",
+          "class": "regulatory-authority",
+          "value": "FDA Medical Device Cybersecurity Guidance",
+          "remarks": "Primary U.S. regulatory authority governing medical device cybersecurity and patient safety."
+        },
+        {
+          "name": "authoritative-regulation",
+          "ns": "urn:europa.eu",
+          "class": "regulatory-authority",
+          "value": "EU MDR (2017/745)",
+          "remarks": "European regulatory framework governing medical device safety and risk management."
+        },
+        {
+          "name": "authoritative-standard",
+          "ns": "urn:iec.ch",
+          "class": "safety-standard",
+          "value": "IEC 80001-1",
+          "remarks": "Risk management standard for IT-networks incorporating medical devices."
+        },
+        {
+          "name": "authoritative-standard",
+          "ns": "urn:iso.org",
+          "class": "quality-standard",
+          "value": "ISO 13485",
+          "remarks": "Quality management system requirements for medical devices."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "overlay-pattern",
+          "value": "urn:utoronto:cae2:arm:AP890",
+          "remarks": "Patient safety overlay constraining device execution, change, command, data, and lifecycle behaviors to prevent patient harm."
+        }
+      ],
+
+      "remarks": "The IoMT Patient Safety Overlay constrains Secure-Device foundational and control patterns to ensure cybersecurity controls, failures, or operational decisions do not introduce unacceptable patient risk. In IoMT environments, patient safety overrides availability, automation, and cybersecurity optimization."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:overlay:iomt-safety-supremacy",
+        "type": "constraint",
+        "title": "Patient Safety Supremacy Constraint",
+        "description": "Defines patient safety as the dominant operational priority over availability, performance, or cybersecurity optimization.",
+        "applies-to": [
+          "device-command-integrity",
+          "device-change-management",
+          "device-engineering-access-control",
+          "device-telemetry-and-command-data-protection"
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:fda.gov:cybersecurity",
+            "implemented-requirements": [
+              {
+                "control-id": "SAFETY-FIRST",
+                "remarks": "Cybersecurity controls must not compromise essential clinical performance."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:overlay:iomt-command-safety",
+        "type": "constraint",
+        "title": "Clinical Command Safety Constraint",
+        "description": "Requires command paths to support patient-safe operation and clinical intent validation.",
+        "applies-to": [
+          "device-command-integrity"
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:iec.ch:80001-1",
+            "implemented-requirements": [
+              {
+                "control-id": "RISK-CONTROL",
+                "remarks": "Commands must not introduce unacceptable patient risk."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:overlay:iomt-change-safety",
+        "type": "constraint",
+        "title": "Clinical Change Safety Constraint",
+        "description": "Constrains change introduction, updates, and configuration modifications to preserve patient safety and clinical effectiveness.",
+        "applies-to": [
+          "device-change-management",
+          "device-lifecycle"
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:fda.gov:premarket",
+            "implemented-requirements": [
+              {
+                "control-id": "CHANGE-SAFETY",
+                "remarks": "Device changes must be assessed for patient safety impact."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:overlay:iomt-engineering-access-safety",
+        "type": "constraint",
+        "title": "Clinical Engineering Access Constraint",
+        "description": "Restricts engineering and service access modes to prevent unsafe clinical manipulation.",
+        "applies-to": [
+          "device-engineering-access-control"
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:iso.org:13485",
+            "implemented-requirements": [
+              {
+                "control-id": "SERVICE-CONTROL",
+                "remarks": "Service access must preserve safety and quality of care."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:overlay:iomt-zone-risk-management",
+        "type": "constraint",
+        "title": "Clinical Risk Zoning Constraint",
+        "description": "Requires clinical risk-based segmentation of medical devices and networks.",
+        "applies-to": [
+          "device-safety-zones-and-conduits"
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:iec.ch:80001-1",
+            "implemented-requirements": [
+              {
+                "control-id": "IT-NETWORK-RISK",
+                "remarks": "Medical IT networks are segmented to manage clinical risk."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:overlay:iomt-fail-safe-care",
+        "type": "constraint",
+        "title": "Fail-Safe Clinical Behavior Requirement",
+        "description": "Defines expected behavior during cybersecurity events to preserve continuity of care and patient safety.",
+        "applies-to": [
+          "device-core",
+          "device-attestation",
+          "device-lifecycle"
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:europa.eu:mrd",
+            "implemented-requirements": [
+              {
+                "control-id": "FAIL-SAFE",
+                "remarks": "Medical devices must maintain safe state or degrade safely under abnormal conditions."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

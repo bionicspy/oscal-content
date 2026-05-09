@@ -1,0 +1,164 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-lifecycle",
+
+    "metadata": {
+      "title": "Device Lifecycle",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T13:15:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC730",
+          "remarks": "Business capability for governing device state transitions across provisioning, operation, modification, and decommissioning."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD630",
+          "remarks": "Connected devices, embedded systems, cyber‑physical platforms, and autonomous devices throughout their operational lifespan."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP830",
+          "remarks": "Foundational Zero Trust pattern defining device lifecycle states and transitions as auditable trust signals."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "device-lifecycle-data",
+          "value": "urn:utoronto:cae2:drm:DP630",
+          "remarks": "Defines lifecycle state as authoritative signal data describing device eligibility, not permission or safety approval."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:ir-8425",
+          "class": "iot-baseline",
+          "value": "Device Lifecycle Management",
+          "remarks": "Defines baseline lifecycle expectations for devices, including onboarding and disposition."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-213",
+          "class": "iot-cybersecurity-guidance",
+          "value": "§§3.4–3.6",
+          "remarks": "Guidance for managing device lifecycle, updates, and end‑of‑life conditions."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.3",
+          "remarks": "Zero Trust guidance asserting that trust changes over time and must reflect lifecycle state."
+        }
+      ],
+
+      "remarks": "Device Lifecycle defines the states and transitions a device may undergo from provisioning through decommissioning. This pattern emits lifecycle signals only and does not authorize changes, approve updates, or assert device safety or correctness."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:device-provisioning-state",
+        "type": "capability",
+        "title": "Device Provisioning State",
+        "description": "Defines the initial onboarding and commissioning state of a device.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:ir-8425",
+            "implemented-requirements": [
+              {
+                "control-id": "LC-1",
+                "remarks": "Device provisioning and onboarding states are explicitly defined."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:device-operational-state",
+        "type": "capability",
+        "title": "Device Operational State",
+        "description": "Defines the normal operational execution state of a device.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-213",
+            "implemented-requirements": [
+              {
+                "control-id": "LC-OP",
+                "remarks": "Operational lifecycle state is maintained and observable."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:device-modification-state",
+        "type": "capability",
+        "title": "Device Modification State",
+        "description": "Defines lifecycle transitions involving update, patching, configuration change, or maintenance.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-213",
+            "implemented-requirements": [
+              {
+                "control-id": "LC-MOD",
+                "remarks": "Device modification states are distinguishable from normal operation."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:device-decommissioning-state",
+        "type": "capability",
+        "title": "Device Decommissioning State",
+        "description": "Defines end‑of‑life, retirement, or removal from service states.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:ir-8425",
+            "implemented-requirements": [
+              {
+                "control-id": "LC-RET",
+                "remarks": "Device retirement and decommissioning states are explicitly managed."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:device-lifecycle-non-equivalence",
+        "type": "capability",
+        "title": "Device Lifecycle Non‑Equivalence Constraints",
+        "description": "Explicitly defines what being in a lifecycle state does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-3",
+                "remarks": "Lifecycle state does not imply authorization, safety assurance, or mission approval."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

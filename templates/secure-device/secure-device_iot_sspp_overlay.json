@@ -1,0 +1,180 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-device:iot",
+
+    "metadata": {
+      "title": "Secure-Device IoT SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T18:55:00Z",
+      "remarks": "System Security and Privacy Plan governing Internet of Things (IoT) devices with limited assurance, external management, or reduced visibility."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-device:platform",
+      "remarks": "This SSPP inherits Secure-Device Platform trust semantics and applies conservative trust constraints appropriate for IoT devices."
+    },
+
+    "system-characteristics": {
+      "system-name": "Internet of Things (IoT) Device Environment",
+      "system-description": "IoT devices include commodity, consumer-grade, externally managed, or purpose-built devices that execute instructions but may lack strong integrity or lifecycle guarantees. This SSPP assumes minimal inherent trust and emphasizes containment, attribution, and revocation.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "device-class",
+          "class": "execution-domain",
+          "value": "internet-of-things",
+          "remarks": "Applies to commodity and non-safety-critical IoT devices."
+        },
+        {
+          "name": "trust-assumption",
+          "class": "foundational-constraint",
+          "value": "minimal",
+          "remarks": "IoT devices are treated as minimally trusted by default."
+        },
+        {
+          "name": "authoritative-standard",
+          "class": "baseline-standard",
+          "value": "NIST IR 8425",
+          "remarks": "Defines the authoritative baseline capabilities for IoT devices."
+        },
+        {
+          "name": "supporting-guidance",
+          "class": "implementation-guidance",
+          "value": "NIST SP 800-213",
+          "remarks": "Provides interpretive guidance for applying IoT security capabilities."
+        },
+        {
+          "name": "implicit-authorization",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "IoT device connectivity or telemetry must not imply authorization or operational trust."
+        },
+        {
+          "name": "lifecycle-bias",
+          "class": "operational-principle",
+          "value": "replace-over-remediate",
+          "remarks": "IoT devices are preferentially replaced rather than deeply remediated when trust degrades."
+        },
+        {
+          "name": "fail-behavior",
+          "class": "expected-behavior",
+          "value": "fail-closed-or-isolated",
+          "remarks": "IoT devices should default to isolation when integrity or lifecycle signals degrade."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "IoT devices operate under constrained trust assumptions and are governed primarily through segmentation, telemetry attribution, and rapid revocation. This SSPP does not assume device updateability or vendor responsiveness.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:device-core",
+          "type": "pattern-inheritance",
+          "title": "Device Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-identity",
+          "type": "pattern-inheritance",
+          "title": "Device Identity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-attestation",
+          "type": "pattern-inheritance",
+          "title": "Device Attestation"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-lifecycle",
+          "type": "pattern-inheritance",
+          "title": "Device Lifecycle"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-telemetry-and-command-data-protection",
+          "type": "pattern-inheritance",
+          "title": "Telemetry and Command Data Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-command-integrity",
+          "type": "pattern-inheritance",
+          "title": "Command Integrity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-change-management",
+          "type": "pattern-inheritance",
+          "title": "Change Management"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-engineering-access-control",
+          "type": "pattern-inheritance",
+          "title": "Engineering Access Control"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-safety-zones-and-conduits",
+          "type": "pattern-inheritance",
+          "title": "Safety Zones and Conduits"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-iot-architecture",
+        "title": "IoT Security Architecture",
+        "remarks": "Defines IoT trust constraints, segmentation requirements, and lifecycle limitations.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-iot-governance",
+        "title": "IoT Governance",
+        "remarks": "Approves IoT device onboarding, acceptable risk levels, and replacement criteria.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-iot-operations",
+        "title": "IoT Operations",
+        "remarks": "Operates IoT devices under constrained trust, limited change tolerance, and high replacement bias.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-iot-monitoring",
+        "title": "IoT Security Monitoring",
+        "remarks": "Monitors IoT telemetry, integrity degradation, abnormal behavior, and revocation triggers.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through alignment with NIST IR 8425 baseline capabilities and conservative interpretation of Secure-Device trust signals. This SSPP does not introduce additional control catalogs."
+    }
+  }
+}

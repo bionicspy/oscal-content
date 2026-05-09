@@ -1,0 +1,164 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-command-integrity",
+
+    "metadata": {
+      "title": "Command Integrity",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T13:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC740",
+          "remarks": "Business capability for ensuring that commands received by a device are authentic, intact, attributable, and bounded prior to execution."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD640",
+          "remarks": "Command channels, control interfaces, embedded controllers, actuators, robotics, autonomous systems, and cyber‑physical command paths."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP840",
+          "remarks": "Foundational Zero Trust pattern defining integrity expectations for device commands independent of safety or authorization."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "device-command-data",
+          "value": "urn:utoronto:cae2:drm:DP640",
+          "remarks": "Defines command integrity signals as execution‑relevant data, not as permission, intent, or safety approval."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:ir-8425",
+          "class": "iot-baseline",
+          "value": "Software & Command Integrity",
+          "remarks": "Establishes baseline expectations for integrity of device commands and software interactions."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-213",
+          "class": "iot-cybersecurity-guidance",
+          "value": "§§3.2–3.4",
+          "remarks": "Guidance for protecting device command paths and preventing unauthorized control."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2",
+          "remarks": "Zero Trust guidance asserting that all command execution must be explicitly mediated and verified."
+        }
+      ],
+
+      "remarks": "Command Integrity defines the baseline expectations for command authenticity, integrity, and attribution prior to execution by a device. This pattern does not determine whether a command is authorized, safe, appropriate, or permitted within a given operational context."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:command-authenticity",
+        "type": "capability",
+        "title": "Command Authenticity",
+        "description": "Ensures commands received by a device originate from a verifiable source.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:ir-8425",
+            "implemented-requirements": [
+              {
+                "control-id": "CMD-AUTH",
+                "remarks": "Commands are cryptographically or logically bound to an identifiable source."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:command-integrity-protection",
+        "type": "capability",
+        "title": "Command Integrity Protection",
+        "description": "Detection of command modification or tampering between source and device execution.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-193",
+            "implemented-requirements": [
+              {
+                "control-id": "CMD-INTEGRITY",
+                "remarks": "Command data is protected against unauthorized modification."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:command-attribution",
+        "type": "capability",
+        "title": "Command Attribution",
+        "description": "Ability to attribute executed commands to a specific device identity, controller, or origin.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-213",
+            "implemented-requirements": [
+              {
+                "control-id": "CMD-ATTR",
+                "remarks": "Executed commands are attributable for audit and analysis."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:command-bounding",
+        "type": "capability",
+        "title": "Command Bounding",
+        "description": "Constrains commands to expected syntax, structure, timing, or declared interface.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-207",
+            "implemented-requirements": [
+              {
+                "control-id": "CMD-BOUND",
+                "remarks": "Commands are bounded to defined interfaces and execution contexts."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:command-integrity-non-equivalence",
+        "type": "capability",
+        "title": "Command Integrity Non‑Equivalence Constraints",
+        "description": "Explicitly defines what a valid or well‑formed command does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-3",
+                "remarks": "Command integrity does not imply authorization, safety, correctness, or operational approval."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

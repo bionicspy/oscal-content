@@ -1,0 +1,164 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-telemetry-and-command-data-protection",
+
+    "metadata": {
+      "title": "Device Telemetry and Command Data Protection",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T14:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC735",
+          "remarks": "Business capability for protecting telemetry and command data exchanged between devices and their control environments."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD635",
+          "remarks": "Device telemetry channels, command links, control networks, wireless interfaces, and cyber‑physical communication paths."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP835",
+          "remarks": "Foundational Zero Trust pattern defining confidentiality, integrity, and availability expectations for device telemetry and command data."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "device-telemetry-and-command-data",
+          "value": "urn:utoronto:cae2:drm:DP635",
+          "remarks": "Defines telemetry and command data as execution‑relevant information requiring protection, not as authorization or safety signals."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:ir-8425",
+          "class": "iot-baseline",
+          "value": "Data Protection",
+          "remarks": "Establishes baseline expectations for protecting device‑generated and device‑consumed data."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-213",
+          "class": "iot-cybersecurity-guidance",
+          "value": "§§3.1–3.5",
+          "remarks": "Guidance for protecting telemetry and command data across device interfaces."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2",
+          "remarks": "Zero Trust guidance asserting that all device communications must be explicitly protected and contextually evaluated."
+        }
+      ],
+
+      "remarks": "Device Telemetry and Command Data Protection defines baseline protections for telemetry and command data exchanged by devices. This pattern does not assert command authorization, safety, correctness, or regulatory compliance."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:telemetry-confidentiality",
+        "type": "capability",
+        "title": "Telemetry Confidentiality",
+        "description": "Protection of device telemetry against unauthorized disclosure.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:ir-8425",
+            "implemented-requirements": [
+              {
+                "control-id": "DATA-C",
+                "remarks": "Telemetry data is protected against unauthorized access."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:telemetry-integrity",
+        "type": "capability",
+        "title": "Telemetry Integrity",
+        "description": "Protection of telemetry data against tampering or manipulation.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-213",
+            "implemented-requirements": [
+              {
+                "control-id": "DATA-I",
+                "remarks": "Telemetry data integrity is protected end‑to‑end."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:command-data-protection",
+        "type": "capability",
+        "title": "Command Data Protection",
+        "description": "Protection of command data against interception, modification, or replay.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-193",
+            "implemented-requirements": [
+              {
+                "control-id": "CMD-DATA-PROTECT",
+                "remarks": "Command data paths are protected against compromise."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:data-availability-protection",
+        "type": "capability",
+        "title": "Telemetry and Command Data Availability",
+        "description": "Protection of telemetry and command channels against disruption or loss.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-207",
+            "implemented-requirements": [
+              {
+                "control-id": "DATA-A",
+                "remarks": "Telemetry and command channels maintain availability appropriate to device role."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:data-protection-non-equivalence",
+        "type": "capability",
+        "title": "Telemetry and Command Data Non‑Equivalence Constraints",
+        "description": "Explicitly defines what protected telemetry or command data does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-16",
+                "remarks": "Protected data does not imply authorization, safety, correctness, or approval."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

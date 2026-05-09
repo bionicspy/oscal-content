@@ -1,0 +1,179 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-device:ot",
+
+    "metadata": {
+      "title": "Secure-Device OT SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T18:05:00Z",
+      "remarks": "System Security and Privacy Plan governing operational technology devices under IEC 62443-aligned safety and security requirements."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-device:platform",
+      "remarks": "This SSPP inherits all Secure-Device Platform trust semantics and applies IEC 62443 safety constraints for operational technology environments."
+    },
+
+    "system-characteristics": {
+      "system-name": "Operational Technology Device Environment",
+      "system-description": "Operational Technology (OT) devices include systems that monitor or control physical processes where failure or misuse may cause physical harm, environmental damage, or infrastructure disruption. This SSPP enforces safety-first constraints over device execution, command, change, access, and lifecycle behaviors.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "device-class",
+          "class": "execution-domain",
+          "value": "operational-technology",
+          "remarks": "Applies to OT and cyber-physical control systems."
+        },
+        {
+          "name": "safety-priority",
+          "class": "foundational-constraint",
+          "value": "safety-over-availability",
+          "remarks": "Physical and process safety supersede availability, automation, and performance."
+        },
+        {
+          "name": "authoritative-standard",
+          "class": "control-catalog",
+          "value": "IEC 62443",
+          "remarks": "IEC 62443 is the authoritative control framework for OT security and safety."
+        },
+        {
+          "name": "supporting-guidance",
+          "class": "implementation-guidance",
+          "value": "NIST SP 800-82 Rev.3",
+          "remarks": "Provides interpretive guidance aligning IEC 62443 with NIST frameworks."
+        },
+        {
+          "name": "implicit-authorization",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "OT device execution, connectivity, or command validity must not imply authorization or safety approval."
+        },
+        {
+          "name": "fail-safe-expectation",
+          "class": "mandatory-requirement",
+          "value": "required",
+          "remarks": "OT devices must transition to a defined safe state during cyber, fault, or control-loss events."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "OT devices operate under strict safety constraints enforced through IEC 62443-aligned controls. This SSPP does not prescribe tooling or vendor solutions.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:device-core",
+          "type": "pattern-inheritance",
+          "title": "Device Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-identity",
+          "type": "pattern-inheritance",
+          "title": "Device Identity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-attestation",
+          "type": "pattern-inheritance",
+          "title": "Device Attestation"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-lifecycle",
+          "type": "pattern-inheritance",
+          "title": "Device Lifecycle"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-telemetry-and-command-data-protection",
+          "type": "pattern-inheritance",
+          "title": "Telemetry and Command Data Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-command-integrity",
+          "type": "pattern-inheritance",
+          "title": "Command Integrity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-change-management",
+          "type": "pattern-inheritance",
+          "title": "Change Management"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-engineering-access-control",
+          "type": "pattern-inheritance",
+          "title": "Engineering Access Control"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-safety-zones-and-conduits",
+          "type": "pattern-inheritance",
+          "title": "Safety Zones and Conduits"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:device-ot-safety-overlay",
+          "type": "pattern-inheritance",
+          "title": "OT Safety Overlay"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-ot-architecture",
+        "title": "OT Security Architecture",
+        "remarks": "Defines OT-specific trust, zoning, and safety constraints.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-ot-governance",
+        "title": "OT Security Governance",
+        "remarks": "Approves safety constraints, change tolerances, and risk acceptance for OT systems.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-ot-operations",
+        "title": "OT Operations",
+        "remarks": "Operates OT systems under safety-first execution and change constraints.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-ot-monitoring",
+        "title": "OT Safety and Security Monitoring",
+        "remarks": "Monitors integrity, misuse, unsafe transitions, and safety-relevant device conditions.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through IEC 62443-aligned implementations and constrained interpretation of Secure-Device trust signals. This SSPP does not redefine control implementations."
+    }
+  }
+}

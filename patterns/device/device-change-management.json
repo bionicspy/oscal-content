@@ -1,0 +1,164 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-change-management",
+
+    "metadata": {
+      "title": "Change Management",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T14:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC750",
+          "remarks": "Business capability for governing how changes to device software, configuration, or operational state are introduced, tracked, and bounded."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD650",
+          "remarks": "Embedded software, firmware, device configuration, calibration parameters, and operational state transitions."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP850",
+          "remarks": "Foundational Zero Trust pattern defining how device changes are controlled, observable, and attributable, independent of safety or authorization."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "device-change-management-data",
+          "value": "urn:utoronto:cae2:drm:DP650",
+          "remarks": "Defines device change events and state transitions as auditable trust‑relevant signal data."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:ir-8425",
+          "class": "iot-baseline",
+          "value": "Device Software Update",
+          "remarks": "Defines baseline expectations for managing device software and configuration updates."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-213",
+          "class": "iot-cybersecurity-guidance",
+          "value": "§§3.4–3.6",
+          "remarks": "Guidance on device update mechanisms, rollback, and state visibility."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.3",
+          "remarks": "Zero Trust guidance asserting that change introduces new risk and must be explicitly governed."
+        }
+      ],
+
+      "remarks": "Change Management defines how modifications to a device are introduced and tracked across its lifecycle. This pattern does not approve changes, assert safety, authorize operators, or determine mission suitability."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:change-classification",
+        "type": "capability",
+        "title": "Change Classification",
+        "description": "Classification of device changes by type, scope, and impact.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:ir-8425",
+            "implemented-requirements": [
+              {
+                "control-id": "CHG-CLASS",
+                "remarks": "Changes are distinguishable by type and scope."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:change-attribution",
+        "type": "capability",
+        "title": "Change Attribution",
+        "description": "Ability to attribute changes to a specific identity, process, or automation.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-213",
+            "implemented-requirements": [
+              {
+                "control-id": "CHG-ATTR",
+                "remarks": "Device changes are attributable for audit and analysis."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:change-state-management",
+        "type": "capability",
+        "title": "Change State Management",
+        "description": "Explicit lifecycle state transitions during modification, update, or maintenance.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-207",
+            "implemented-requirements": [
+              {
+                "control-id": "CHG-STATE",
+                "remarks": "Device state during change is explicitly managed and observable."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:change-observability",
+        "type": "capability",
+        "title": "Change Observability",
+        "description": "Visibility into when and how device changes occur.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-3",
+                "remarks": "Device changes are logged and observable."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:change-non-equivalence",
+        "type": "capability",
+        "title": "Change Management Non‑Equivalence Constraints",
+        "description": "Explicitly defines what a valid or tracked change does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-5",
+                "remarks": "Change approval does not imply safety, authorization, or mission approval."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-core",
+
+    "metadata": {
+      "title": "Device Core",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T12:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC700",
+          "remarks": "Business capability for establishing baseline execution trust, identity scope, and non‑equivalence for physical and cyber‑physical devices."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD600",
+          "remarks": "Connected devices, embedded systems, cyber‑physical systems, sensors, actuators, controllers, and autonomous platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP800",
+          "remarks": "Foundational Zero Trust pattern defining what it means for a device to execute instructions under bounded trust."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "device-execution-trust-data",
+          "value": "urn:utoronto:cae2:drm:DP600",
+          "remarks": "Defines device execution trust as data describing eligibility and boundaries, not as authorization or permission."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:ir-8425",
+          "class": "iot-baseline",
+          "value": "Device Cybersecurity Capability Baseline",
+          "remarks": "Authoritative baseline for basic device cybersecurity capabilities."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-213",
+          "class": "iot-cybersecurity-guidance",
+          "value": "§§2–4",
+          "remarks": "Guidance for interpreting and applying IoT cybersecurity capabilities across device classes."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-193",
+          "class": "platform-resilience",
+          "value": "§§1–3",
+          "remarks": "Establishes firmware integrity and platform resilience expectations applicable to devices."
+        }
+      ],
+
+      "remarks": "Device Core defines the baseline conditions under which a device may execute instructions within an environment. This pattern establishes execution boundaries and non‑equivalence only. It does not assert safety, mission suitability, authorization, or regulatory compliance."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:device-execution-eligibility",
+        "type": "capability",
+        "title": "Device Execution Eligibility",
+        "description": "Defines the minimum conditions under which a device is eligible to execute instructions.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:ir-8425",
+            "implemented-requirements": [
+              {
+                "control-id": "DE-1",
+                "remarks": "Device execution eligibility is explicitly defined and enforceable."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:device-trust-boundary",
+        "type": "capability",
+        "title": "Device Trust Boundary",
+        "description": "Establishes an explicit trust boundary between a device and its environment.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-207",
+            "implemented-requirements": [
+              {
+                "control-id": "ZT-BOUNDARY",
+                "remarks": "Device interactions are mediated and explicitly bounded."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:device-non-equivalence",
+        "type": "capability",
+        "title": "Device Non‑Equivalence Constraints",
+        "description": "Explicitly defines what device execution eligibility does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-3",
+                "remarks": "Device execution does not imply authorization, safety, correctness, or mission approval."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

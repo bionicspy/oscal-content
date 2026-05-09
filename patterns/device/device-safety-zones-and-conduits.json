@@ -1,0 +1,157 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:device-safety-zones-and-conduits",
+
+    "metadata": {
+      "title": "Safety Zones and Conduits",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T15:30:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC770",
+          "remarks": "Business capability for defining, segmenting, and mediating device interactions using explicit safety and trust boundaries."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD670",
+          "remarks": "Cyber‑physical networks, device groupings, control paths, telemetry paths, and mediated communication conduits."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP870",
+          "remarks": "Foundational Zero Trust pattern defining safety and trust segmentation using zones and controlled conduits."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "device-segmentation-data",
+          "value": "urn:utoronto:cae2:drm:DP670",
+          "remarks": "Defines zone membership and conduit mediation as trust‑relevant data, not as authorization or safety approval."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 2.4, 3.2",
+          "remarks": "Zero Trust guidance establishing segmentation and mediated communication as trust boundaries."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-213",
+          "class": "iot-cybersecurity-guidance",
+          "value": "§§3.1–3.5",
+          "remarks": "Guidance for segmenting devices and constraining device communications."
+        }
+      ],
+
+      "remarks": "Safety Zones and Conduits defines how devices are grouped into zones and how communications between those zones are explicitly mediated. This pattern does not assert that zoned devices are safe, authorized, compliant, or suitable for operation."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:device-zone-definition",
+        "type": "capability",
+        "title": "Device Zone Definition",
+        "description": "Explicit definition of zones grouping devices by trust, function, or safety impact.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-207",
+            "implemented-requirements": [
+              {
+                "control-id": "ZONE-DEF",
+                "remarks": "Device groupings are explicitly defined and enforceable."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:device-zone-membership",
+        "type": "capability",
+        "title": "Device Zone Membership",
+        "description": "Assignment of devices to one or more zones based on role and risk.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-213",
+            "implemented-requirements": [
+              {
+                "control-id": "ZONE-MEMBER",
+                "remarks": "Devices are explicitly assigned to zones based on defined criteria."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:conduit-definition",
+        "type": "capability",
+        "title": "Conduit Definition",
+        "description": "Definition of controlled communication paths between zones.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-207",
+            "implemented-requirements": [
+              {
+                "control-id": "CONDUIT-DEF",
+                "remarks": "Inter‑zone communications occur only through defined conduits."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:conduit-mediation",
+        "type": "capability",
+        "title": "Conduit Mediation",
+        "description": "Mediation and monitoring of communication across zone boundaries.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-4",
+                "remarks": "Information flows between zones are explicitly controlled and observable."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:zone-non-equivalence",
+        "type": "capability",
+        "title": "Zone and Conduit Non‑Equivalence Constraints",
+        "description": "Explicitly defines what zone membership or conduit access does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-3",
+                "remarks": "Zone membership or conduit access does not imply safety, authorization, or compliance."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
