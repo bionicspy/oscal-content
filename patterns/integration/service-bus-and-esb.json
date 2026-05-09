@@ -4,78 +4,98 @@
 
     "metadata": {
       "title": "Service Bus and ESB",
-      "version": "0.1.0",
+      "version": "2.0.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T12:35:00Z",
+      "last-modified": "2026-05-06T03:55:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC374",
-          "remarks": "Business capability for centralized integration, orchestration, and mediation of system-to-system messaging."
+          "value": "urn:utoronto:cae2:brm:BC650",
+          "remarks": "Business capability for governing centralized integration mediation while constraining privilege concentration and systemic risk."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD184",
-          "remarks": "Enterprise service buses, integration hubs, orchestration engines, message routers, and protocol mediation layers."
+          "value": "urn:utoronto:cae2:trm:TD460",
+          "remarks": "Enterprise service buses, integration hubs, mediation engines, message routing and transformation infrastructure."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP304",
-          "remarks": "Pattern for governing centralized orchestration, transformation, and policy enforcement in integration architectures."
+          "class": "supporting-pattern",
+          "value": "urn:utoronto:cae2:arm:AP660",
+          "remarks": "Supporting pattern defining centralized mediation as a high‑impact trust surface requiring explicit boundaries and non‑equivalence."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "integration-core",
-          "remarks": "Service bus trust assumes baseline integration identity, ownership, boundary control, and accountability."
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "mediation-decision-data",
+          "value": "urn:utoronto:cae2:drm:DP460",
+          "remarks": "Defines routing, transformation, and mediation decisions as operational data, not as authorization or business trust."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Controls governing system interconnections, privilege management, and auditability in centralized platforms (AC, PL, AU families)."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 2.4, 3.2–3.3",
+          "remarks": "Zero Trust guidance asserting that mediation and aggregation increase risk and require explicit trust boundaries."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-92",
+          "class": "logging-and-monitoring",
+          "value": "§§2–3",
+          "remarks": "Guidance for logging and auditing mediation, routing, and transformation decisions."
         }
       ],
 
-      "remarks": "Service Bus and ESB defines trust properties required when integration logic is centralized. This pattern addresses invisible routing logic, semantic transformation risk, privilege concentration, and governance blind spots inherent in ESB-style architectures."
+      "remarks": "Service Bus and ESB governs centralized integration architectures where routing, transformation, or orchestration is performed by an intermediary. This pattern explicitly recognizes the bus as a privilege concentration point and does not grant authorization, correctness, or trust inheritance to mediated messages."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:centralized-routing-and-orchestration-control",
+        "uuid": "urn:utoronto:security:capability:central-mediation-boundary",
         "type": "capability",
-        "title": "Centralized Routing and Orchestration Control",
-        "description": "Ensures routing and orchestration logic is explicit, authorized, and observable.",
+        "title": "Central Mediation Boundary",
+        "description": "Defines the service bus or ESB as a distinct trust boundary between integrating systems.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1565.001",
-            "remarks": "Manipulation of routing or orchestration logic to alter system behavior."
+            "value": "T1190",
+            "remarks": "Exploitation of implicit trust in centralized mediation infrastructure."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0004",
-            "remarks": "Access control restricting who may define orchestration behavior."
+            "value": "D3FEND-0042",
+            "remarks": "Explicit trust boundary declaration prevents silent privilege escalation."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:esb-routing-control",
+            "uuid": "urn:utoronto:security:ci:mediation-boundary",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "AC-3",
-                "remarks": "Enforcement mechanisms restrict modification of routing and orchestration logic."
-              },
-              {
-                "control-id": "PL-8",
-                "remarks": "Policies define approved use of centralized routing and orchestration."
+                "control-id": "AC-4",
+                "remarks": "Information flow is explicitly controlled at mediation points."
               }
             ]
           }
@@ -83,69 +103,29 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:message-transformation-and-semantic-integrity",
+        "uuid": "urn:utoronto:security:capability:privilege-concentration-control",
         "type": "capability",
-        "title": "Message Transformation and Semantic Integrity",
-        "description": "Prevents unintended semantic changes during message transformation or mediation.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1071",
-            "remarks": "Injection of malformed or semantically altered messages through mediation layers."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0011",
-            "remarks": "Validation of transformed messages against authoritative contracts."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:esb-transformation-integrity",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "SI-7",
-                "remarks": "Integrity mechanisms ensure message transformations do not violate contracts."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Privilege Concentration Control",
+        "description": "Constrains the accumulation of authority within centralized integration platforms.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:privilege-concentration-and-scope-reduction",
-        "type": "capability",
-        "title": "Privilege Concentration and Scope Reduction",
-        "description": "Limits accumulated authority and blast radius of centralized integration components.",
         "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1199",
-            "remarks": "Abuse of trusted integration hubs to access multiple downstream systems."
-          },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0045",
-            "remarks": "Identity and privilege isolation for centralized integration components."
+            "value": "D3FEND-0070",
+            "remarks": "Explicit privilege constraints prevent implicit elevation through aggregation."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:esb-scope-control",
+            "uuid": "urn:utoronto:security:ci:privilege-concentration",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
                 "control-id": "AC-6",
-                "remarks": "Centralized integration components operate under least privilege."
+                "remarks": "Least privilege is enforced for mediation and routing functions."
               }
             ]
           }
@@ -153,38 +133,59 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:esb-observability-and-auditability",
+        "uuid": "urn:utoronto:security:capability:mediation-transparency",
         "type": "capability",
-        "title": "Service Bus Observability and Auditability",
-        "description": "Provides visibility into routing decisions, transformations, and policy enforcement.",
+        "title": "Mediation Transparency",
+        "description": "Provides visibility into routing, transformation, and orchestration decisions.",
+
         "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1107",
-            "remarks": "Suppression of evidence related to orchestration or mediation behavior."
-          },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0061",
-            "remarks": "Audit logging and full traceability of integration decisions."
+            "remarks": "Transparency enables detection of misuse or misconfiguration."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:esb-audit",
+            "uuid": "urn:utoronto:security:ci:mediation-transparency",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "AU-2",
-                "remarks": "Service bus routing and transformation activities are logged."
-              },
+                "control-id": "AU-12",
+                "remarks": "Mediation and routing actions are auditable."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:bus-non-equivalence",
+        "type": "capability",
+        "title": "Bus Non‑Equivalence Constraints",
+        "description": "Explicitly defines what mediation by a service bus does not grant or imply.",
+
+        "props": [
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Non‑equivalence guarantees prevent over‑trust of centralized mediation."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:bus-non-equivalence",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
               {
-                "control-id": "AU-6",
-                "remarks": "Audit review supports investigation of integration-layer behavior."
+                "control-id": "AC-3",
+                "remarks": "Routing or transformation by a bus does not imply authorization, correctness, or approval."
               }
             ]
           }

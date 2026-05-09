@@ -1,0 +1,99 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:integration-lifecycle-signaling",
+
+    "metadata": {
+      "title": "Integration Lifecycle Signaling",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T04:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC660",
+          "remarks": "Business capability for producing authoritative lifecycle state signals for system-to-system integrations."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD470",
+          "remarks": "Integration registries, ownership records, decommissioning workflows, and lifecycle state management systems."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "supporting-pattern",
+          "value": "urn:utoronto:cae2:arm:AP670",
+          "remarks": "Supporting Zero Trust pattern defining lifecycle state as an explicit trust input for integrations."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "integration-lifecycle-data",
+          "value": "urn:utoronto:cae2:drm:DP470",
+          "remarks": "Defines integration lifecycle state as authoritative control data governing continued trust and participation."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Controls governing system lifecycle, ownership, and termination (PL, CM, MP families)."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.3",
+          "remarks": "Zero Trust guidance asserting that trust is revocable based on context and lifecycle."
+        }
+      ],
+
+      "remarks": "Integration Lifecycle Signaling defines authoritative lifecycle states for integrations and emits trust signals based on those states. This pattern does not perform decommissioning, disablement, or enforcement actions."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:integration-lifecycle-state-detection",
+        "type": "capability",
+        "title": "Integration Lifecycle State Detection",
+        "description": "Determines the current lifecycle status of an integration.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Integration lifecycle states and responsibilities are formally defined."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:lifecycle-trust-signaling",
+        "type": "capability",
+        "title": "Lifecycle Trust Signaling",
+        "description": "Signals lifecycle-driven trust degradation or revocation to downstream consumers.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "RA-7",
+                "remarks": "Lifecycle state informs integration trust decisions."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

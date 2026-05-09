@@ -1,0 +1,197 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-integration:external",
+
+    "metadata": {
+      "title": "External / Federated Integration SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T06:25:00Z",
+      "remarks": "System Security and Privacy Plan defining trust, governance, and lifecycle constraints for external and federated system-to-system integrations involving third-party organizations."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-integration:platform",
+      "remarks": "This SSPP inherits all Secure-Integration Platform trust semantics and introduces stricter constraints for integrations with external or federated entities."
+    },
+
+    "system-characteristics": {
+      "system-name": "External / Federated Integration Environment",
+      "system-description": "External or Federated Integration environments enable system-to-system interactions across organizational boundaries. These integrations operate under reduced trust assumptions, explicit contractual controls, strict lifecycle governance, and elevated monitoring.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "integration-trust-tier",
+          "class": "trust-classification",
+          "value": "external-federated",
+          "remarks": "Indicates integrations that cross institutional or organizational trust boundaries."
+        },
+        {
+          "name": "trust-assumption",
+          "class": "foundational-constraint",
+          "value": "minimal",
+          "remarks": "External systems are treated as untrusted by default and must continuously earn trust through explicit signals."
+        },
+        {
+          "name": "identity-model",
+          "class": "mandatory-governance",
+          "value": "federated-non-human",
+          "remarks": "Federated non-human identities must be explicitly bound, scoped, and attributable."
+        },
+        {
+          "name": "authorization-scope",
+          "class": "explicit-constraint",
+          "value": "narrow-and-purpose-bound",
+          "remarks": "External integrations are authorized for narrowly scoped, contractually defined purposes only."
+        },
+        {
+          "name": "replay-policy",
+          "class": "execution-constraint",
+          "value": "disabled-or-extraordinary",
+          "remarks": "Replay of external integration data is prohibited unless explicitly approved and time-bound."
+        },
+        {
+          "name": "retention-tolerance",
+          "class": "risk-constraint",
+          "value": "minimal",
+          "remarks": "Retention of externally sourced integration data is minimized to reduce downstream risk."
+        },
+        {
+          "name": "fan-out-policy",
+          "class": "amplification-constraint",
+          "value": "strongly-restricted",
+          "remarks": "External data must not be fan-out distributed without explicit approval."
+        },
+        {
+          "name": "lifecycle-policy",
+          "class": "mandatory-governance",
+          "value": "explicit-entry-and-exit",
+          "remarks": "External integrations require explicit onboarding, periodic re-approval, and deterministic revocation."
+        },
+        {
+          "name": "business-authorization",
+          "class": "explicit-prohibition",
+          "value": "never-derived-from-integration",
+          "remarks": "External integration trust signals must never be interpreted as business or policy authorization."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "External / Federated Integration environments rely on the full Secure-Integration signal stack with reduced trust assumptions and elevated governance. This SSPP does not define contractual terms, legal agreements, or remediation actions.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:integration-core",
+          "type": "pattern-inheritance",
+          "title": "Integration Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:message-security-and-integrity",
+          "type": "pattern-inheritance",
+          "title": "Message Security and Integrity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:message-queuing",
+          "type": "pattern-inheritance",
+          "title": "Message Queuing"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:event-streaming",
+          "type": "pattern-inheritance",
+          "title": "Event Streaming"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:replay-and-retention",
+          "type": "pattern-inheritance",
+          "title": "Replay and Retention"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:schema-and-contract-governance",
+          "type": "pattern-inheritance",
+          "title": "Schema and Contract Governance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:service-bus-and-esb",
+          "type": "pattern-inheritance",
+          "title": "Service Bus and ESB"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:integration-lifecycle-signaling",
+          "type": "pattern-inheritance",
+          "title": "Integration Lifecycle Signaling"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:integration-telemetry-normalization",
+          "type": "pattern-inheritance",
+          "title": "Integration Telemetry Normalization"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:trusted-integration",
+          "type": "pattern-inheritance",
+          "title": "Trusted Integration"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-external-integration-architecture",
+        "title": "External Integration Architecture",
+        "remarks": "Defines architectural patterns and constraints for federated and third-party integrations.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-external-integration-governance",
+        "title": "External Integration Governance",
+        "remarks": "Approves onboarding, reauthorization, trust scope, and termination of external integrations.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-external-integration-operations",
+        "title": "External Integration Operations",
+        "remarks": "Operates externally facing integration platforms under strict trust and monitoring constraints.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-external-integration-monitoring",
+        "title": "External Integration Security Monitoring",
+        "remarks": "Monitors external integration traffic, trust degradation, replay attempts, and lifecycle violations.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through inheritance from Secure-Integration patterns and stricter interpretation of trust signals. This SSPP introduces no new control implementations."
+    }
+  }
+}

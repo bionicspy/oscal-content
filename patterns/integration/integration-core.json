@@ -4,156 +4,102 @@
 
     "metadata": {
       "title": "Integration Core",
-      "version": "0.1.0",
+      "version": "1.0.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T10:30:00Z",
+      "last-modified": "2026-05-06T01:15:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC370",
-          "remarks": "Business capability for operating system-to-system integration channels that are attributable, intentional, and governable."
+          "value": "urn:utoronto:cae2:brm:BC590",
+          "remarks": "Business capability for establishing baseline trust, accountability, and eligibility for system-to-system integrations."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD180",
-          "remarks": "Asynchronous messaging substrates including events, queues, and buses that connect producer and consumer systems."
+          "value": "urn:utoronto:cae2:trm:TD400",
+          "remarks": "Integration platforms, message brokers, service meshes, non-human identities, and inter-system trust boundaries."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP300",
-          "remarks": "Pattern establishing baseline trust assumptions for machine-to-machine, message-driven integration."
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP600",
+          "remarks": "Foundational pattern defining trust eligibility and non-equivalence for system-to-system integrations within a Zero Trust architecture."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "integration-trust-data",
+          "value": "urn:utoronto:cae2:drm:DP400",
+          "remarks": "Defines integration trust as data assertions governing propagation of effects across systems, not as permission or authority."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Primary control catalog governing non-human identity, access control, auditability, and system interconnection (AC, IA, AU, PL families)."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 2.3, 3.2–3.3",
+          "remarks": "Zero Trust Architecture principles asserting that trust between systems is conditional, contextual, and explicitly mediated."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-92",
+          "class": "logging-and-monitoring",
+          "value": "§§2–3",
+          "remarks": "Establishes expectations for auditability and accountability of system-to-system interactions."
         }
       ],
 
-      "remarks": "Integration Core defines the foundational trust properties required for system-generated messages to be treated as authoritative. This pattern establishes machine identity, ownership, lifecycle, and accountability for integration channels, without addressing transport semantics, schemas, or message security."
+      "remarks": "Integration Core defines when and how systems may participate in trusted integrations. This pattern establishes baseline eligibility, identity, and trust boundaries but does not authorize message formats, delivery semantics, business logic, or trust amplification."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:integration-identity-and-attribution",
+        "uuid": "urn:utoronto:security:capability:integration-identity-and-ownership",
         "type": "capability",
-        "title": "Integration Identity and Attribution",
-        "description": "Binds integration messages to accountable producer and consumer system identities.",
+        "title": "Integration Identity and Ownership",
+        "description": "Ensures integrations have explicit non-human identities, ownership, and accountability.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1078",
-            "remarks": "Abuse of valid service or application accounts to emit unauthorized messages."
-          },
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1036",
-            "remarks": "Masquerading as a trusted producer system."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0045",
-            "remarks": "Strong identity binding for non-human actors."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:integration-identity",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "IA-2",
-                "remarks": "Integration endpoints and producers are authenticated."
-              },
-              {
-                "control-id": "IA-4",
-                "remarks": "Identity attributes support correct attribution of integration activity."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:integration-ownership-and-lifecycle",
-        "type": "capability",
-        "title": "Integration Ownership and Lifecycle",
-        "description": "Defines ownership, purpose, and lifecycle for integration channels.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1213",
-            "remarks": "Persistence through abandoned or undocumented integration channels."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0037",
-            "remarks": "Lifecycle management to reduce residual and orphaned integration risk."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:integration-lifecycle",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "PL-8",
-                "remarks": "Policies define ownership, purpose, and lifecycle of integration channels."
-              },
-              {
-                "control-id": "CM-7",
-                "remarks": "Unnecessary or obsolete integrations are disabled."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:integration-boundary-and-scope-control",
-        "type": "capability",
-        "title": "Integration Boundary and Scope Control",
-        "description": "Enforces explicit trust relationships and access control for integration participation.", 
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1199",
-            "remarks": "Abuse of trusted relationships between integrated systems."
+            "remarks": "Use of unmanaged or anonymous system identities to invoke downstream effects."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0004",
-            "remarks": "Access control restricting integration participation."
+            "remarks": "Explicit non-human identity binding establishes accountability."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:integration-boundary",
+            "uuid": "urn:utoronto:security:ci:integration-identity",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "AC-2",
-                "remarks": "Systems participating in integrations are explicitly authorized."
+                "control-id": "IA-3",
+                "remarks": "Non-human system entities are uniquely identified and authenticated."
               },
               {
-                "control-id": "AC-3",
-                "remarks": "Enforcement mechanisms prevent unauthorized integration access."
+                "control-id": "PL-8",
+                "remarks": "Integration ownership and responsibility are formally defined."
               }
             ]
           }
@@ -161,38 +107,66 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:integration-observability-and-accountability",
+        "uuid": "urn:utoronto:security:capability:integration-trust-boundary",
         "type": "capability",
-        "title": "Integration Observability and Accountability",
-        "description": "Provides traceability of integration activity for governance and investigation.",
+        "title": "Integration Trust Boundary",
+        "description": "Defines explicit trust boundaries between producing and consuming systems.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1107",
-            "remarks": "Deletion or suppression of evidence related to integration misuse."
+            "value": "T1190",
+            "remarks": "Exploitation of implicit trust across system boundaries."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0061",
-            "remarks": "Audit logging for accountability and investigation."
+            "value": "D3FEND-0042",
+            "remarks": "Explicit boundary declaration prevents trust overreach."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:integration-audit",
+            "uuid": "urn:utoronto:security:ci:integration-boundary",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "AU-2",
-                "remarks": "Integration events are defined and logged."
-              },
+                "control-id": "AC-3",
+                "remarks": "Authorization is explicitly enforced at system integration boundaries."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:integration-non-equivalence",
+        "type": "capability",
+        "title": "Integration Non-Equivalence Constraints",
+        "description": "Explicitly defines what integration participation does not grant or imply.",
+
+        "props": [
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Non-equivalence guarantees prevent over-trust of integration effects."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:integration-non-equivalence",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
               {
-                "control-id": "AU-6",
-                "remarks": "Audit review supports oversight and investigation of integration activity."
+                "control-id": "AC-19",
+                "remarks": "Integration participation does not imply privilege, authorization, or entitlement."
               }
             ]
           }

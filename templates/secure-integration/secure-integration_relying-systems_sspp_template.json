@@ -1,0 +1,183 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-integration:relying-system",
+
+    "metadata": {
+      "title": "Secure-Integration Relying System SSPP Template",
+      "last-modified": "2026-05-06T05:50:00Z",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "remarks": "System Security and Privacy Plan template for systems that consume trust signals from the Secure-Integration Platform without generating independent trust assertions."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-integration:platform",
+      "remarks": "This SSPP inherits all trust semantics, amplification constraints, and non-equivalence rules from the Secure-Integration Platform SSPP."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure-Integration Relying System",
+      "system-description": "The Secure-Integration Relying System defines the contractual rules under which applications, processors, control planes, and downstream consumers may interpret and act upon integration trust signals. It prevents signal overreach, trust persistence, and implicit authorization.",
+      "security-sensitivity-level": "moderate-to-high",
+
+      "props": [
+        {
+          "name": "relying-role",
+          "class": "decision-consumer",
+          "value": "integration-trust-signals",
+          "remarks": "Consumes bounded, normalized integration trust and risk signals."
+        },
+        {
+          "name": "trust-consumption-model",
+          "class": "enforcement-constraint",
+          "value": "non-transitive",
+          "remarks": "Integration trust signals must not be cached, inherited, or reused beyond the immediate decision context."
+        },
+        {
+          "name": "business-authorization",
+          "class": "explicit-prohibition",
+          "value": "not-derived-from-integration",
+          "remarks": "Integration trust signals must not be interpreted as business authorization or approval."
+        },
+        {
+          "name": "signal-authority",
+          "class": "binding-requirement",
+          "value": "platform-defined-only",
+          "remarks": "Only signals produced and normalized by the Secure-Integration Platform may be consumed."
+        },
+        {
+          "name": "amplification-sensitive-consumption",
+          "class": "mandatory-consideration",
+          "value": "required",
+          "remarks": "Event fan-out, replay, mediation, and retention signals must be evaluated prior to downstream action."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure-Integration Relying Systems evaluate integration trust exclusively through normalized signals provided by the Secure-Integration Platform. They must not generate independent trust assertions, override non-equivalence constraints, or infer authorization from integration state.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:integration-core",
+          "type": "pattern-consumption",
+          "title": "Integration Core Signals",
+          "remarks": "Eligibility, identity, and trust boundary signals."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:message-security-and-integrity",
+          "type": "pattern-consumption",
+          "title": "Message Authenticity and Integrity Signals",
+          "remarks": "Cryptographic validity and bounded replay signals."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:message-queuing",
+          "type": "pattern-consumption",
+          "title": "Delivery and Failure Signals",
+          "remarks": "Asynchronous delivery, poison handling, and failure containment signals."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:event-streaming",
+          "type": "pattern-consumption",
+          "title": "Amplification and Fan-Out Signals",
+          "remarks": "Producer authorization, consumer scope, and blast-radius signals."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:replay-and-retention",
+          "type": "pattern-consumption",
+          "title": "Temporal Risk Signals",
+          "remarks": "Replay authorization and retention-based trust degradation signals."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:schema-and-contract-governance",
+          "type": "pattern-consumption",
+          "title": "Semantic Validity Signals",
+          "remarks": "Schema conformance and contract compatibility signals."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:service-bus-and-esb",
+          "type": "pattern-consumption",
+          "title": "Mediation Risk Signals",
+          "remarks": "Central mediation and privilege concentration indicators."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:integration-lifecycle-signaling",
+          "type": "pattern-consumption",
+          "title": "Integration Lifecycle Signals",
+          "remarks": "Active, deprecated, retired, and revoked integration states."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:integration-telemetry-normalization",
+          "type": "pattern-consumption",
+          "title": "Normalized Trust Signals",
+          "remarks": "Decision-grade integration trust and risk abstractions."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:trusted-integration",
+          "type": "pattern-consumption",
+          "title": "Aggregate Integration Trust Signals",
+          "remarks": "Bounded, revocable trust assertions computed from multiple contributing signals."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-integration-trust-architecture",
+        "title": "Integration Trust Architecture",
+        "remarks": "Defines how integration trust signals may be consumed and ensures alignment with Secure-Integration architecture.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-integration-trust-governance",
+        "title": "Integration Trust Governance",
+        "remarks": "Approves reliance rules, amplification thresholds, and trust interpretation policies.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-integration-consumer-operations",
+        "title": "Integration Consumer Operations",
+        "remarks": "Operates applications, processors, and services that consume integration trust signals.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-integration-security-monitoring",
+        "title": "Integration Security Monitoring",
+        "remarks": "Monitors trust degradation, amplification effects, replay activity, and lifecycle events for escalation.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction is achieved through correct consumption and interpretation of Secure-Integration trust signals. This SSPP does not implement enforcement or business logic."
+    }
+  }
+}

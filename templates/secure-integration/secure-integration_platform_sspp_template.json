@@ -1,0 +1,179 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-integration:platform",
+
+    "metadata": {
+      "title": "Secure-Integration Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T05:30:00Z",
+      "remarks": "System Security and Privacy Plan establishing the Secure-Integration Platform as the authoritative trust framework for system-to-system integrations."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:secure-integration",
+      "remarks": "This SSPP inherits and enforces the Secure-Integration composite pattern and all constituent integration security patterns."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure-Integration Platform",
+      "system-description": "The Secure-Integration Platform defines how trust is established, propagated, amplified, constrained, and revoked across system-to-system integrations. It governs integration eligibility, signal interpretation, lifecycle expectations, and trust revocation under Zero Trust principles.",
+      "security-sensitivity-level": "moderate-to-high",
+
+      "props": [
+        {
+          "name": "platform-role",
+          "class": "authoritative-trust-plane",
+          "value": "integration",
+          "remarks": "Authoritative trust plane governing all institutional system-to-system integrations."
+        },
+        {
+          "name": "trust-model",
+          "class": "foundational-constraint",
+          "value": "signal-based-zero-trust",
+          "remarks": "Integration trust is derived from multiple signals, continuously evaluated, and revocable."
+        },
+        {
+          "name": "trust-propagation",
+          "class": "explicit-governance",
+          "value": "bounded-and-mediated",
+          "remarks": "Trust propagation across systems is explicitly constrained and never implicit."
+        },
+        {
+          "name": "implicit-authorization",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Authenticated, delivered, schema-valid, or trusted integrations do not imply business authorization."
+        },
+        {
+          "name": "amplification-awareness",
+          "class": "mandatory-consideration",
+          "value": "required",
+          "remarks": "Fan-out, replay, mediation, and retention are treated as amplification surfaces requiring stricter governance."
+        },
+        {
+          "name": "lifecycle-revocation",
+          "class": "mandatory-capability",
+          "value": "required",
+          "remarks": "Integration trust may be degraded or revoked based on lifecycle state, posture, or aggregated signals."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "The Secure-Integration Platform is implemented by composing independent integration security patterns that produce normalized, decision-grade trust signals. This SSPP does not perform business authorization, message enforcement, or remediation.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:integration-core",
+          "type": "pattern-reference",
+          "title": "Integration Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:message-security-and-integrity",
+          "type": "pattern-reference",
+          "title": "Message Security and Integrity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:message-queuing",
+          "type": "pattern-reference",
+          "title": "Message Queuing"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:event-streaming",
+          "type": "pattern-reference",
+          "title": "Event Streaming"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:replay-and-retention",
+          "type": "pattern-reference",
+          "title": "Replay and Retention"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:schema-and-contract-governance",
+          "type": "pattern-reference",
+          "title": "Schema and Contract Governance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:service-bus-and-esb",
+          "type": "pattern-reference",
+          "title": "Service Bus and ESB"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:integration-lifecycle-signaling",
+          "type": "pattern-reference",
+          "title": "Integration Lifecycle Signaling"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:integration-telemetry-normalization",
+          "type": "pattern-reference",
+          "title": "Integration Telemetry Normalization"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:trusted-integration",
+          "type": "pattern-reference",
+          "title": "Trusted Integration"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-integration-security-architecture",
+        "title": "Integration Security Architecture",
+        "remarks": "Defines Secure-Integration trust architecture, signal dependencies, and SSPP inheritance model.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-integration-security-governance",
+        "title": "Integration Security Governance",
+        "remarks": "Approves integration trust policies, amplification thresholds, lifecycle rules, and risk acceptance.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-integration-platform-operations",
+        "title": "Integration Platform Operations",
+        "remarks": "Operates integration platforms in accordance with Secure-Integration trust and lifecycle requirements.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-integration-security-monitoring",
+        "title": "Integration Security Monitoring",
+        "remarks": "Monitors integration trust, amplification, replay, and lifecycle signals; supports incident coordination.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Security and privacy controls are satisfied through inheritance from Secure-Integration patterns and downstream SSPPs. This Platform SSPP does not restate individual control implementations."
+    }
+  }
+}

@@ -4,113 +4,98 @@
 
     "metadata": {
       "title": "Message Security and Integrity",
-      "version": "0.1.0",
+      "version": "2.0.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T12:55:00Z",
+      "last-modified": "2026-05-06T01:45:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC375",
-          "remarks": "Business capability for ensuring integration messages are authentic, authorized, and protected against tampering."
+          "value": "urn:utoronto:cae2:brm:BC600",
+          "remarks": "Business capability for ensuring authenticity, integrity, and bounded replay protection of messages exchanged between systems."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD185",
-          "remarks": "Message authentication, authorization, signing, integrity validation, and confidentiality mechanisms for integration messaging."
+          "value": "urn:utoronto:cae2:trm:TD410",
+          "remarks": "Message signing, verification, cryptographic validation, and secure message handling for system-to-system integrations."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP305",
-          "remarks": "Pattern for enforcing message authenticity, authorization, and integrity across integration channels."
+          "class": "supporting-pattern",
+          "value": "urn:utoronto:cae2:arm:AP610",
+          "remarks": "Supporting pattern establishing mechanical trust properties of messages without implying authorization or business correctness."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "integration-core",
-          "remarks": "Message security assumes baseline integration identity, ownership, boundary control, and accountability."
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "message-trust-assertion-data",
+          "value": "urn:utoronto:cae2:drm:DP410",
+          "remarks": "Defines message-level trust assertions as cryptographic facts, not as permissions or entitlements."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Controls governing message authentication, integrity, and cryptographic protections (IA, SC, SI families)."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2–3.3",
+          "remarks": "Zero Trust principles asserting that authenticated data does not equate to authorization or business trust."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-92",
+          "class": "logging-and-monitoring",
+          "value": "§§2–3",
+          "remarks": "Guidance for auditability and accountability of message processing and security-relevant events."
         }
       ],
 
-      "remarks": "Message Security and Integrity defines trust properties required to ensure that integration messages are sent by authorized producers, assert permitted claims, and are not modified in transit. This pattern focuses on assertion-level trust rather than transport delivery guarantees."
+      "remarks": "Message Security and Integrity establishes cryptographic authenticity, integrity, and limited replay protection for individual messages. This pattern does not authorize message semantics, delivery effects, replay beyond bounded windows, or downstream business actions."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:message-producer-authentication",
+        "uuid": "urn:utoronto:security:capability:message-authentication",
         "type": "capability",
-        "title": "Message Producer Authentication",
-        "description": "Verifies the identity of the system emitting a message.",
+        "title": "Message Authentication",
+        "description": "Cryptographic verification of the sending system’s identity for each message.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1078",
-            "remarks": "Abuse of valid service credentials to impersonate an authorized producer."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0045",
-            "remarks": "Strong authentication for non-human message senders."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:message-authentication",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "IA-2",
-                "remarks": "Message producers are authenticated prior to message acceptance."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "uuid": "urn:utoronto:security:capability:message-authorization-and-assertion-control",
-        "type": "capability",
-        "title": "Message Authorization and Assertion Control",
-        "description": "Ensures producers are authorized to assert specific message types, topics, or claims.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1199",
-            "remarks": "Abuse of trusted integration paths to assert unauthorized commands or facts."
+            "remarks": "Use of stolen or spoofed system credentials to inject messages."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0004",
-            "remarks": "Authorization controls that restrict what assertions a producer may emit."
+            "remarks": "Strong non-human authentication establishes message provenance."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:message-authorization",
+            "uuid": "urn:utoronto:security:ci:message-authentication",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "AC-3",
-                "remarks": "Authorization checks validate whether a producer may emit a given message."
-              },
-              {
-                "control-id": "AC-6",
-                "remarks": "Message assertion privileges follow least privilege principles."
+                "control-id": "IA-3",
+                "remarks": "System-to-system entities are authenticated prior to message acceptance."
               }
             ]
           }
@@ -121,23 +106,25 @@
         "uuid": "urn:utoronto:security:capability:message-integrity-protection",
         "type": "capability",
         "title": "Message Integrity Protection",
-        "description": "Prevents unauthorized modification of messages during transmission or handling.",
+        "description": "Detection of message tampering or modification during transmission or handling.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1565.001",
-            "remarks": "Tampering with message content to alter meaning or side effects."
+            "value": "T1040",
+            "remarks": "Modification of message contents in transit to alter downstream effects."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0050",
-            "remarks": "Integrity validation to detect message modification."
+            "value": "D3FEND-0021",
+            "remarks": "Cryptographic integrity checks detect unauthorized modification."
           }
         ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:message-integrity",
@@ -145,7 +132,7 @@
             "implemented-requirements": [
               {
                 "control-id": "SI-7",
-                "remarks": "Integrity mechanisms detect unauthorized modification of messages."
+                "remarks": "Mechanisms detect unauthorized modification of message data."
               }
             ]
           }
@@ -153,34 +140,36 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:message-confidentiality-where-required",
+        "uuid": "urn:utoronto:security:capability:bounded-replay-protection",
         "type": "capability",
-        "title": "Message Confidentiality (Where Required)",
-        "description": "Protects message contents from unauthorized disclosure when confidentiality is required.",
+        "title": "Bounded Replay Protection",
+        "description": "Prevention of immediate or near-term replay of individual messages within defined delivery windows.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1040",
-            "remarks": "Eavesdropping on message contents in transit."
+            "value": "T1110",
+            "remarks": "Replay of recently observed messages to induce duplicated effects."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0047",
-            "remarks": "Encryption of messages in transit or at rest."
+            "value": "D3FEND-0070",
+            "remarks": "Nonce, timestamp, or sequence validation bounds replay risk."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:message-confidentiality",
+            "uuid": "urn:utoronto:security:ci:bounded-replay",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "SC-12",
-                "remarks": "Cryptographic mechanisms protect message confidentiality where required."
+                "control-id": "SC-16",
+                "remarks": "Mechanisms prevent unauthorized replay of transmitted information within defined windows."
               }
             ]
           }
@@ -188,38 +177,29 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:message-security-observability",
+        "uuid": "urn:utoronto:security:capability:message-non-equivalence",
         "type": "capability",
-        "title": "Message Security Observability",
-        "description": "Provides visibility into message security decisions and violations for monitoring and investigation.",
+        "title": "Message Non-Equivalence Constraints",
+        "description": "Explicitly defines what message authenticity and integrity do not grant or imply.",
+
         "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1107",
-            "remarks": "Suppression of evidence related to message security violations."
-          },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0061",
-            "remarks": "Audit logging of security decisions for integration messages."
+            "value": "D3FEND-0070",
+            "remarks": "Non-equivalence guarantees prevent over-trust of valid messages."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:message-security-audit",
+            "uuid": "urn:utoronto:security:ci:message-non-equivalence",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "AU-2",
-                "remarks": "Message security decisions are logged."
-              },
-              {
-                "control-id": "AU-6",
-                "remarks": "Audit review supports investigation of unauthorized message activity."
+                "control-id": "AC-3",
+                "remarks": "Authenticated or intact messages do not imply authorization to perform business actions."
               }
             ]
           }

@@ -4,85 +4,98 @@
 
     "metadata": {
       "title": "Event Streaming",
-      "version": "0.1.0",
+      "version": "2.0.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T11:00:00Z",
+      "last-modified": "2026-05-06T02:45:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC371",
-          "remarks": "Business capability for emitting and consuming high-volume, append-only event streams as authoritative system-to-system signals."
+          "value": "urn:utoronto:cae2:brm:BC620",
+          "remarks": "Business capability for governing high‑fan‑out, publish–subscribe event distribution while constraining trust amplification and systemic risk."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD181",
-          "remarks": "Event streaming platforms supporting high-throughput publication, subscription, partitioning, and fan-out consumption."
+          "value": "urn:utoronto:cae2:trm:TD430",
+          "remarks": "Event brokers, publish–subscribe platforms, stream processors, and event distribution infrastructure."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP301",
-          "remarks": "Pattern for governing trust, amplification, and semantic stability in event-driven architectures."
+          "class": "supporting-pattern",
+          "value": "urn:utoronto:cae2:arm:AP630",
+          "remarks": "Supporting pattern defining controlled event distribution as a high‑assurance integration surface with explicit non‑equivalence guarantees."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "integration-core",
-          "remarks": "Event streaming trust assumes baseline integration identity, ownership, boundary, and accountability guarantees."
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "event-propagation-data",
+          "value": "urn:utoronto:cae2:drm:DP430",
+          "remarks": "Defines events as propagation data whose distribution may amplify trust effects across systems and time."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Controls governing access control, auditability, and system interconnection in high‑fan‑out architectures (AC, AU, PL families)."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 2.4, 3.2–3.3",
+          "remarks": "Zero Trust guidance asserting that broad distribution of authenticated data requires stricter trust mediation."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-92",
+          "class": "logging-and-monitoring",
+          "value": "§§2–3",
+          "remarks": "Guidance for monitoring and auditing of distributed event consumption and propagation."
         }
       ],
 
-      "remarks": "Event Streaming defines trust properties required for high-volume, fan-out event systems where downstream consumers implicitly trust emitted events. This pattern addresses amplification risk, ordering assumptions, consumer isolation, and event lifecycle without addressing schemas or message authentication."
+      "remarks": "Event Streaming governs publish–subscribe integrations that distribute events to multiple consumers. This pattern explicitly addresses trust amplification risk and does not imply that event production authorizes downstream actions, replay, or data persistence."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:event-producer-authority",
+        "uuid": "urn:utoronto:security:capability:event-producer-authorization",
         "type": "capability",
-        "title": "Event Producer Authority",
-        "description": "Ensures only authorized systems may emit events on a given stream or topic.",
+        "title": "Event Producer Authorization",
+        "description": "Controls which systems are permitted to publish events into a stream.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1078",
-            "remarks": "Abuse of valid service identities to publish unauthorized events."
-          },
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1036",
-            "remarks": "Masquerading as a trusted event producer."
+            "remarks": "Unauthorized systems publishing events to induce downstream effects."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0045",
-            "remarks": "Strong non-human identity binding for event producers."
+            "value": "D3FEND-0042",
+            "remarks": "Explicit producer authorization constrains event injection."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:event-producer-auth",
+            "uuid": "urn:utoronto:security:ci:event-producer-authz",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "control-id": "IA-2",
-                "remarks": "Producer systems emitting events are authenticated."
-              },
               {
                 "control-id": "AC-3",
-                "remarks": "Enforcement mechanisms prevent unauthorized event publication."
+                "remarks": "Only authorized producers may publish events into streams."
               }
             ]
           }
@@ -90,108 +103,36 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:event-fanout-and-amplification-control",
+        "uuid": "urn:utoronto:security:capability:event-consumer-authorization",
         "type": "capability",
-        "title": "Fan-Out and Amplification Control",
-        "description": "Constrains uncontrolled amplification of events across multiple downstream consumers.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1565.001",
-            "remarks": "Manipulation of event flow to trigger disproportionate downstream effects."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0004",
-            "remarks": "Access and subscription control for event consumers."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:event-fanout",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "AC-2",
-                "remarks": "Consumers subscribing to event streams are explicitly authorized."
-              },
-              {
-                "control-id": "PL-8",
-                "remarks": "Policies define permissible fan-out and consumer scope."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Event Consumer Authorization",
+        "description": "Controls which systems may subscribe to or consume events.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:event-ordering-and-time-assumptions",
-        "type": "capability",
-        "title": "Event Ordering and Time Assumptions",
-        "description": "Manages assumptions about event ordering, delivery timing, and temporal correctness.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1071",
-            "remarks": "Abuse of event delivery timing or ordering assumptions."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0037",
-            "remarks": "Lifecycle and temporal controls to reduce unsafe ordering assumptions."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:event-ordering",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "CM-7",
-                "remarks": "Event streaming features are constrained to reduce unsafe temporal assumptions."
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-
-        "type": "capability",
-        "title": "Event Stream Lifecycle Governance",
-        "description": "Defines creation, evolution, and decommissioning of event streams.",
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
             "value": "T1213",
-            "remarks": "Persistence through abandoned or undocumented event streams."
+            "remarks": "Unauthorized data collection through event subscription."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0037",
-            "remarks": "Lifecycle management to reduce residual and orphaned event streams."
+            "value": "D3FEND-0042",
+            "remarks": "Explicit subscription authorization constrains event exposure."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:event-lifecycle",
+            "uuid": "urn:utoronto:security:ci:event-consumer-authz",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "PL-8",
-                "remarks": "Policies define ownership and lifecycle of event streams."
+                "control-id": "AC-6",
+                "remarks": "Consumer access to event streams is restricted to least privilege."
               }
             ]
           }
@@ -199,38 +140,66 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:event-stream-observability",
+        "uuid": "urn:utoronto:security:capability:fan-out-control",
         "type": "capability",
-        "title": "Event Stream Observability",
-        "description": "Provides visibility into event publication, subscription, and consumption.",
+        "title": "Fan‑Out Control",
+        "description": "Management of event distribution breadth to limit amplification and blast radius.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1107",
-            "remarks": "Suppression of evidence related to event misuse or propagation."
+            "value": "T1499",
+            "remarks": "Abuse of broadcast mechanisms to induce widespread downstream impact."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0061",
-            "remarks": "Audit logging and traceability of event flow."
+            "value": "D3FEND-0058",
+            "remarks": "Controlled fan‑out limits amplification risk."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:event-observability",
+            "uuid": "urn:utoronto:security:ci:fan-out-control",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "AU-2",
-                "remarks": "Event publication and consumption activities are logged."
-              },
+                "control-id": "PL-8",
+                "remarks": "Event distribution scope is governed and reviewable."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:event-non-equivalence",
+        "type": "capability",
+        "title": "Event Non-Equivalence Constraints",
+        "description": "Explicitly defines what receipt or emission of events does not grant or imply.",
+
+        "props": [
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Non‑equivalence guarantees prevent over‑trust of event effects."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:event-non-equivalence",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
               {
-                "control-id": "AU-6",
-                "remarks": "Audit review supports investigation of event-driven behavior."
+                "control-id": "AC-19",
+                "remarks": "Events do not imply authorization, correctness, or entitlement for downstream actions."
               }
             ]
           }

@@ -35,6 +35,7 @@ graph TD
     subgraph TRUST["Trusted Environment"]
         subgraph Compute["Compute"]
             CE["Endpoints"]
+            CM["Mobile"]
             CS["Servers"]
         end
 

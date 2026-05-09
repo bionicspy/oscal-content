@@ -4,84 +4,98 @@
 
     "metadata": {
       "title": "Message Queuing",
-      "version": "0.1.0",
+      "version": "2.0.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T11:30:00Z",
+      "last-modified": "2026-05-06T02:15:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC372",
-          "remarks": "Business capability for reliable, bounded, asynchronous message delivery between producer and consumer systems."
+          "value": "urn:utoronto:cae2:brm:BC610",
+          "remarks": "Business capability for governing reliable asynchronous message delivery while constraining operational and security risks."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD182",
-          "remarks": "Asynchronous message queues supporting delivery guarantees, retries, acknowledgements, and dead-letter handling."
+          "value": "urn:utoronto:cae2:trm:TD420",
+          "remarks": "Message brokers, queues, delivery acknowledgements, dead-letter queues, and asynchronous processing systems."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP302",
-          "remarks": "Pattern for governing trust, reliability, and failure handling in point-to-point asynchronous messaging."
+          "class": "supporting-pattern",
+          "value": "urn:utoronto:cae2:arm:AP620",
+          "remarks": "Supporting pattern defining controlled asynchronous delivery semantics without implying authorization or business correctness."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "integration-core",
-          "remarks": "Message queuing trust assumes baseline integration identity, ownership, boundary, and accountability guarantees."
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "delivery-state-data",
+          "value": "urn:utoronto:cae2:drm:DP420",
+          "remarks": "Defines message delivery state and failure handling data as operational signals, not as business trust assertions."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Controls governing system communications, error handling, availability, and fault tolerance (CP, SI, AU families)."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2–3.3",
+          "remarks": "Zero Trust guidance asserting that reliable delivery does not imply authorization or correctness."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-92",
+          "class": "logging-and-monitoring",
+          "value": "§§2–3",
+          "remarks": "Guidance for logging, auditing, and analyzing asynchronous message handling events."
         }
       ],
-      "remarks": "This pattern captures security-relevant aspects of message queuing systems, including producer and consumer authorization, delivery guarantees, duplication management, poison message handling, and observability. It focuses on how these features shape system behavior and security assumptions without prescribing specific schemas or cryptographic protections."
+
+      "remarks": "Message Queuing defines asynchronous delivery mechanisms that provide reliability and fault isolation. This pattern does not validate message semantics, authorize resulting actions, permit replay beyond bounded delivery windows, or imply downstream business trust."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:queue-producer-and-consumer-authorization",
+        "uuid": "urn:utoronto:security:capability:queued-delivery-semantics",
         "type": "capability",
-        "title": "Producer and Consumer Authorization",
-        "description": "Ensures only authorized producers may enqueue messages and only authorized consumers may dequeue them.",
+        "title": "Queued Delivery Semantics",
+        "description": "Controlled asynchronous delivery semantics such as at-least-once or at-most-once delivery.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1078",
-            "remarks": "Abuse of valid service identities to enqueue or dequeue unauthorized messages."
-          },
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1036",
-            "remarks": "Masquerading as an authorized producer or consumer."
+            "value": "T1499",
+            "remarks": "Resource exhaustion or denial via message flooding."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0045",
-            "remarks": "Strong identity binding for non-human queue participants."
+            "value": "D3FEND-0058",
+            "remarks": "Flow control and delivery semantics limit overload and loss."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:queue-authz",
+            "uuid": "urn:utoronto:security:ci:queued-delivery",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "IA-2",
-                "remarks": "Queue producers and consumers are authenticated."
-              },
-              {
-                "control-id": "AC-3",
-                "remarks": "Enforcement mechanisms restrict enqueue and dequeue operations."
+                "control-id": "CP-10",
+                "remarks": "System communication mechanisms support resilience and recovery."
               }
             ]
           }
@@ -89,38 +103,36 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:delivery-guarantee-and-duplication-management",
+        "uuid": "urn:utoronto:security:capability:poison-message-isolation",
         "type": "capability",
-        "title": "Delivery Guarantees and Duplication Management",
-        "description": "Manages delivery semantics to prevent unintended duplicate processing or message loss.",
+        "title": "Poison Message Isolation",
+        "description": "Isolation and containment of malformed or harmful messages.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1565.001",
-            "remarks": "Manipulation of message handling to cause duplicate or inconsistent processing."
+            "value": "T1565",
+            "remarks": "Injection of malformed data to disrupt processing."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0037",
-            "remarks": "Lifecycle and retry controls to manage delivery semantics safely."
+            "value": "D3FEND-0048",
+            "remarks": "Isolation prevents repeated failure and cascading effects."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:queue-delivery",
+            "uuid": "urn:utoronto:security:ci:poison-isolation",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "CM-7",
-                "remarks": "Queue features are constrained to reduce unsafe delivery behaviors."
-              },
-              {
-                "control-id": "PL-8",
-                "remarks": "Policies define acceptable delivery and retry semantics."
+                "control-id": "SI-11",
+                "remarks": "Error handling prevents system crashes or indefinite failure."
               }
             ]
           }
@@ -128,73 +140,59 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:poison-message-and-dead-letter-handling",
+        "uuid": "urn:utoronto:security:capability:dead-letter-handling",
         "type": "capability",
-        "title": "Poison Message and Dead-Letter Handling",
-        "description": "Prevents repeated processing failures from causing indefinite retries or cascading failure.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1213",
-            "remarks": "Persistence through poison messages that block or destabilize consumers."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0037",
-            "remarks": "Lifecycle controls to isolate and remediate failed messages."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:queue-deadletter",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "SI-12",
-                "remarks": "Mechanisms prevent indefinite retention or reprocessing of failed messages."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Dead-Letter Handling",
+        "description": "Explicit handling of messages that fail repeated delivery or processing.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:queue-observability-and-accountability",
-        "type": "capability",
-        "title": "Queue Observability and Accountability",
-        "description": "Provides visibility into enqueue, dequeue, retry, and dead-letter activity.",
         "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1107",
-            "remarks": "Suppression of evidence related to queue misuse or failure."
-          },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0061",
-            "remarks": "Audit logging and traceability of queue activity."
+            "value": "D3FEND-0070",
+            "remarks": "Explicit failure paths prevent silent or unsafe retries."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:queue-observability",
+            "uuid": "urn:utoronto:security:ci:dead-letter",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
-              {
-                "control-id": "AU-2",
-                "remarks": "Queue operations are defined and logged."
-              },
               {
                 "control-id": "AU-6",
-                "remarks": "Audit review supports investigation of queue-related behavior."
+                "remarks": "Processing failures are logged and reviewable."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:queue-non-equivalence",
+        "type": "capability",
+        "title": "Queue Non-Equivalence Constraints",
+        "description": "Explicitly defines what reliable delivery does not grant or imply.",
+
+        "props": [
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Prevents over-trust of delivery outcomes."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:queue-non-equivalence",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-3",
+                "remarks": "Successful message delivery does not imply authorization or correctness."
               }
             ]
           }

@@ -1,0 +1,123 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-integration",
+
+    "metadata": {
+      "title": "Secure Integration",
+      "version": "2.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T05:05:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC690",
+          "remarks": "Business capability for enabling secure, accountable, and bounded system-to-system integrations under Zero Trust principles."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD500",
+          "remarks": "Integration platforms, messaging systems, event streams, mediation layers, telemetry pipelines, and trust evaluators."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:AP700",
+          "remarks": "Composite Zero Trust pattern governing trust propagation, amplification, and revocation across system-to-system integrations."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "integration-trust-plane",
+          "value": "urn:utoronto:cae2:drm:DP500",
+          "remarks": "Defines system-to-system integration as a trust propagation plane composed of mechanical, semantic, temporal, lifecycle, and aggregate trust signals."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Authoritative control catalog governing non-human access control, auditability, risk evaluation, and system interconnections."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 2.4, 3.2–3.3",
+          "remarks": "Zero Trust Architecture principles asserting that trust between systems must be explicitly mediated, continuously evaluated, and revocable."
+        }
+      ],
+
+      "remarks": "Secure Integration composes all integration security patterns into a coherent Zero Trust model. It defines how trust is established, propagated, amplified, constrained, and revoked across system-to-system interactions without granting implicit authorization or business trust."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern:integration-core",
+        "type": "component-reference",
+        "title": "Integration Core",
+        "description": "Defines baseline integration eligibility, identity, and trust boundaries."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:message-security-and-integrity",
+        "type": "component-reference",
+        "title": "Message Security and Integrity",
+        "description": "Provides cryptographic authenticity, integrity, and bounded replay protection."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:message-queuing",
+        "type": "component-reference",
+        "title": "Message Queuing",
+        "description": "Defines reliable asynchronous delivery semantics and failure isolation."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:event-streaming",
+        "type": "component-reference",
+        "title": "Event Streaming",
+        "description": "Constrains trust amplification and blast radius in publish–subscribe systems."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:replay-and-retention",
+        "type": "component-reference",
+        "title": "Replay and Retention",
+        "description": "Governs time-based trust risks, retention, and replay authorization."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:schema-and-contract-governance",
+        "type": "component-reference",
+        "title": "Schema and Contract Governance",
+        "description": "Prevents semantic over-trust through schema ownership and compatibility governance."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:service-bus-and-esb",
+        "type": "component-reference",
+        "title": "Service Bus and ESB",
+        "description": "Constrains privilege concentration and mediation risk in centralized integration platforms."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:integration-lifecycle-signaling",
+        "type": "component-reference",
+        "title": "Integration Lifecycle Signaling",
+        "description": "Emits lifecycle state signals to enable trust degradation and revocation."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:integration-telemetry-normalization",
+        "type": "component-reference",
+        "title": "Integration Telemetry Normalization",
+        "description": "Normalizes heterogeneous integration telemetry into decision-grade trust and risk signals."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:trusted-integration",
+        "type": "component-reference",
+        "title": "Trusted Integration",
+        "description": "Aggregates multiple signals into a bounded, revocable trust assertion."
+      }
+    ]
+  }
+}

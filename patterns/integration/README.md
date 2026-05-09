@@ -1,193 +1,182 @@
-# Application Integration & Messaging - Trust Plane Overview
+# Secure‑Integration
 
-The Application Integration & Messaging trust plane explores how trust is established, preserved, and defended when systems communicate with other systems asynchronously through events, messages, queues, and buses.
+## Overview
 
-Unlike human communications, integration messaging is:
-* machine‑initiated,
-* schema‑driven, and
-* often implicitly trusted by downstream systems.
+**Secure‑Integration** defines the enterprise reference architecture for **system‑to‑system integration** under **Zero Trust principles**. It governs how trust is **established, propagated, amplified, constrained, and revoked** when systems exchange messages, events, or data — **without a human in the loop**.
 
-Messages and events frequently represent authoritative facts or commands that trigger automated behavior without human review. As a result, failures or abuse in this plane tend to be silent, cascading, and high‑impact, rather than visible or interactive.
+Secure‑Integration applies to:
 
-This trust plane focuses on whether systems can safely:
-* assert information,
-* consume asserted information,
-* interpret meaning consistently,
-* withstand replay and misuse,
-* and remain governable over time.
+- message queues and brokers  
+- event streaming platforms  
+- service buses and ESBs  
+- asynchronous and synchronous system integrations  
+- integration control planes and trust evaluators  
 
-## Purpose
-The purpose of the Application Integration & Messaging trust plane is to:
-* Establish baseline trust assumptions for machine‑to‑machine communication
-* Separate transport guarantees from semantic correctness
-* Make implicit integration trust explicit
+It deliberately does **not** define application logic, business authorization, network security, or data classification. Secure‑Integration provides the **integration trust plane** that those domains depend on.
 
-Address systemic risks such as:
-* fan‑out amplification,
-* replay attacks,
-* schema drift,
-* hidden orchestration logic,
-* and accumulated privilege in integration layers
+---
 
-Enable consistent reasoning about:
-* who may emit messages,
-* what those messages mean,
-* how long messages persist,
-* and what happens when messages are reprocessed
+## Core Principles
 
-This plane does not prescribe technologies (e.g., Kafka, Service Bus, MQ) and does not model synchronous APIs or business logic. It defines capability‑level trust properties that can be composed into solutions and SSPs.
+Secure‑Integration is built on the following architectural invariants:
 
-## Scope
-### In Scope
-* Event streaming and fan‑out systems
-* Message queues and asynchronous delivery
-* Service buses and ESB‑style mediation
-* Integration contracts and schemas
-* Message authenticity, authorization, and integrity
-* Replay, reprocessing, and temporal risk
+- **Integration is a trust‑propagation plane**  
+  Integrations do not merely transport data — they propagate effects, authority, and risk across systems and time.
 
-## Out of Scope
-* Human communications (Section 5)
-* Synchronous APIs and API gateways
-* DNS resolution mechanics
-* Application business logic
-* Data ownership and semantics
+- **Signals do not equal permission**  
+  Authentication, delivery, schema validity, or even “trusted” integration status **do not** authorize business actions.
 
+- **Trust amplification must be constrained**  
+  Fan‑out, replay, retention, and mediation all increase blast radius and must be explicitly governed.
 
-## Section Decomposition
-```
-integration/
-├── integration-core
-├── event-streaming
-├── message-queuing
-├── service-bus-and-esb
-├── schema-and-contract-governance
-├── message-security-and-integrity
-├── replay-and-retention
-└── trusted-integration (composite)
-```
+- **Time is a security dimension**  
+  Retained or replayed messages reintroduce past trust into new contexts and must be treated as privileged actions.
 
-## 6.1 Integration Core
-Defines the foundational trust assumptions for system‑to‑system messaging environments.
-#### Purpose
-To establish whether machine‑generated messages can be treated as authoritative, attributable, and governable at all.
-#### Scope
-* Machine identities
-* Integration ownership and lifecycle
-* Responsibility boundaries
-#### Components
-* integration-core
-  * Baseline trust for machine‑to‑machine integration channels.
-#### Answers the Question
-Can systems exchange messages in a way that is attributable, intentional, and governable?
+- **Trust is always revocable**  
+  Integration trust degrades or expires based on lifecycle, posture, and aggregated signals.
 
-### 6.2 Event Streaming
-Models high‑volume, append‑only, fan‑out messaging where events are consumed by many downstream systems.
-#### Purpose
-To manage risk introduced by implicit trust, amplification, and ordering assumptions.
-#### Scope
-* Event emission
-* Subscription and fan‑out
-* Event ordering and delivery semantics
-#### Components
-* event-streaming
-  * Trust properties for high‑volume event‑driven architectures.
-#### Answers the Question
-Can events be emitted and consumed at scale without unintended amplification or semantic drift?
+---
 
-### 6.3 Message Queuing
-Models bounded, point‑to‑point asynchronous communication with delivery guarantees.
-#### Purpose
-To ensure queued messages are processed exactly as intended, without duplication, poisoning, or silent loss.
-#### Scope
-* Producer/consumer relationships
-* Retry and dead‑letter behavior
-* Delivery guarantees
-#### Components
-* message-queuing
-  * Trust properties for asynchronous point‑to‑point messaging.
-#### Answers the Question
-Can queued messages be delivered and processed reliably without creating hidden failure modes?
+## Secure‑Integration Pattern Stack
 
-### 6.4 Service Bus and ESB
-Models centralized integration layers that perform orchestration, mediation, and transformation.
-#### Purpose
-To manage risk concentrated in centralized logic, policy enforcement, and privilege accumulation.
-#### Scope
-* Message transformation
-* Protocol mediation
-* Centralized routing and orchestration
-#### Components
-* service-bus-and-esb
-  * Trust properties for centralized integration and mediation layers.
-#### Answers the Question
-Can centralized integration logic be used without becoming an invisible control plane or privilege bottleneck?
+Secure‑Integration is composed of the following patterns, each addressing a distinct integration risk surface.
 
-### 6.5 Schema and Contract Governance
-Models semantic trust by governing schemas, contracts, and message meaning.
-#### Purpose
-To prevent silent incompatibility, schema drift, and semantic misinterpretation between producers and consumers.
-#### Scope
-* Schema definition and versioning
-* Compatibility management
-* Contract ownership
-#### Components
-* schema-and-contract-governance
-  * Governance of meaning, not transport.
-#### Answers the Question
-Do producers and consumers interpret messages consistently and safely over time?
+### Foundational Trust
 
-### 6.6 Message Security and Integrity
-Ensures messages are authentic, authorized, and unmodified.
-#### Purpose
-To prevent forged producers, tampered messages, and unauthorized assertions.
-#### Scope
-* Message authentication
-* Authorization to emit
-* Integrity protection
-#### Components
-* message-security-and-integrity
-  * Protection of message authenticity and authorization.
-#### Answers the Question
-Can systems trust who sent a message and that it has not been altered?
+- **Integration Core**  
+  Establishes baseline integration eligibility, non‑human identity, ownership, and explicit trust boundaries.
 
-### 6.7 Replay and Retention
-Models time as a security‑relevant dimension of integration.
-#### Purpose
-To prevent replay abuse while enabling safe reprocessing and recovery.
-#### Scope
-* Message retention
-* Replay behavior
-* Side‑effect safety
-#### Components
-* replay-and-retention — Control of temporal risk in integration systems.
-#### Answers the Question
-Can historical messages be replayed or retained without re‑triggering unintended consequences?
+---
 
-### 6.8 Trusted Integration (Composite)
-A composite trust assertion that all integration requirements are satisfied.
-#### Purpose
-To provide a single, defensible trust claim for system‑to‑system messaging.
-#### Scope
-* Composition only
-* No new controls
-#### Components
-* trusted-integration
-  * Aggregate integration trust assertion.
-#### Answers the Question
-Can system‑to‑system integration be treated as secure, reliable, and governable as a whole?
+### Message‑Level Guarantees
 
-## Relationship to Other Trust Planes
+- **Message Security and Integrity**  
+  Provides cryptographic authenticity, integrity, and *bounded* replay protection for individual messages.
 
-### Depends on
-* Platform & Infrastructure (compute, networking, DNS resolution)
-* Identity (machine identities)
+- **Message Queuing**  
+  Governs reliable asynchronous delivery, poison message handling, and failure isolation.
 
-### Feeds
-* Applications (business logic)
-* Data (persistence and analytics)
+---
 
-### Distinct from
-* Human communications
-* Synchronous APIs
-* Application authorization
+### Amplification and Time‑Based Risk
+
+- **Event Streaming**  
+  Manages high fan‑out publish–subscribe systems and constrains systemic trust amplification.
+
+- **Replay and Retention**  
+  Governs message/event retention, replay authorization, and time‑based trust abuse.
+
+---
+
+### Semantic Trust
+
+- **Schema and Contract Governance**  
+  Prevents semantic over‑trust by governing schema ownership, compatibility, and interpretation.
+
+---
+
+### Centralized Mediation
+
+- **Service Bus and ESB**  
+  Constrains privilege concentration and risk introduced by centralized routing and transformation platforms.
+
+---
+
+### Cross‑Cutting Signals
+
+- **Integration Lifecycle Signaling**  
+  Produces lifecycle state signals (active, deprecated, retired) to enable trust revocation.
+
+- **Integration Telemetry Normalization**  
+  Normalizes heterogeneous integration telemetry into decision‑grade trust and risk signals.
+
+---
+
+### Trust Aggregation
+
+- **Trusted Integration**  
+  Aggregates signals from all other integration patterns into a **bounded, revocable trust assertion** usable by relying systems.
+
+---
+
+These patterns are assembled by the **Secure‑Integration Composite Pattern**, which defines ordering, scope, and non‑equivalence at the domain level.
+
+---
+
+## Integration Trust Model
+
+Secure‑Integration explicitly distinguishes between **mechanical trust** and **business trust**:
+
+| Signal | What it Means | What it Does *Not* Mean |
+|------|---------------|--------------------------|
+| Message authenticated | Sender identity is verified | Action is authorized |
+| Message delivered | Transport succeeded | Data is correct |
+| Schema valid | Structure is correct | Business intent is approved |
+| Event published | Producer emitted event | Consumer is entitled to act |
+| Message replayed | Replay permitted | Outcome is still valid |
+| Integration trusted | Aggregate posture acceptable | Blanket authorization |
+
+These non‑equivalence rules are **structural**, not advisory.
+
+---
+
+## Trust Amplification and High‑Assurance Integrations
+
+Some integrations **amplify trust and risk** far beyond point‑to‑point messaging. These require stricter governance and are treated as **high‑assurance integration surfaces**.
+
+High‑assurance integrations include:
+
+- event streaming platforms with many consumers  
+- enterprise or campus‑wide service buses  
+- integrations crossing trust boundaries or zones  
+- integrations exposed to untrusted or external systems  
+
+These integrations demand:
+
+- stricter producer and consumer authorization  
+- tighter replay and retention policies  
+- reduced tolerance for schema and semantic drift  
+- stronger observability and lifecycle control  
+
+Secure‑Integration makes this distinction explicit so that **amplification surfaces are never treated as “just plumbing.”**
+
+---
+
+## Secure‑Integration SSPPs
+
+Secure‑Integration is realized through the following System Security and Privacy Plans (SSPPs):
+
+| SSPP | Purpose |
+|----|----|
+| **Secure‑Integration Platform SSPP** | Defines baseline trust semantics for all integrations |
+| **Secure‑Integration Relying System SSPP** | Governs how systems may consume integration trust signals |
+| **High‑Assurance / Amplifying Integration SSPP** | Applies stricter controls to amplification surfaces |
+| *(Optional)* External / Federated Integration SSPP | Governs partner or cross‑organization integrations |
+
+SSPPs **inherit** from the Secure‑Integration Platform SSPP and **only add constraints**. No SSPP weakens the integration trust model.
+
+---
+
+## What Secure‑Integration Does *Not* Do
+
+Secure‑Integration deliberately does **not**:
+
+- define application‑level authorization or business logic  
+- enforce network controls or transport encryption  
+- validate data meaning beyond schema conformance  
+- perform remediation or operational actions  
+- select vendors or integration tooling  
+
+Those responsibilities belong to **Application SSPPs**, **Secure‑Network**, **Secure‑Data**, or **Operational Procedures**.
+
+---
+
+## Key Takeaways
+
+- **Integration propagates trust — it does not just move data**
+- **Delivery, validity, and trust are not permissions**
+- **Event streaming and replay are high‑assurance surfaces**
+- **Time and amplification are first‑class security dimensions**
+- **Integration trust is explicit, bounded, and revocable**
+
+Secure‑Integration ensures that system‑to‑system interactions remain **auditable, defensible, and safe** as complexity and scale increase.

@@ -4,78 +4,98 @@
 
     "metadata": {
       "title": "Replay and Retention",
-      "version": "0.1.0",
+      "version": "2.0.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T13:10:00Z",
+      "last-modified": "2026-05-06T03:10:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC376",
-          "remarks": "Business capability for governing message retention, replay, and reprocessing without enabling abuse or unintended side effects."
+          "value": "urn:utoronto:cae2:brm:BC630",
+          "remarks": "Business capability for governing message retention, replay authorization, and time‑based trust risks in system‑to‑system integrations."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD186",
-          "remarks": "Message retention stores, offsets, checkpoints, replay mechanisms, and reprocessing tooling in integration platforms."
+          "value": "urn:utoronto:cae2:trm:TD440",
+          "remarks": "Integration storage layers, event logs, message retention mechanisms, and replay controls."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP306",
-          "remarks": "Pattern for managing time as an attack surface in system-to-system integration."
+          "class": "supporting-pattern",
+          "value": "urn:utoronto:cae2:arm:AP640",
+          "remarks": "Supporting Zero Trust pattern defining time‑based integration risk and explicit replay authority."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "integration-core",
-          "remarks": "Replay and retention trust assumes baseline integration identity, ownership, boundary control, and accountability."
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "temporal-trust-data",
+          "value": "urn:utoronto:cae2:drm:DP440",
+          "remarks": "Defines retained messages and events as time‑bound trust data whose reuse may amplify or reintroduce risk."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Controls governing data retention, reuse, and access restrictions (IA, SC, MP, PL families)."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2–3.3",
+          "remarks": "Zero Trust guidance asserting that past trust does not imply future authorization and must be re‑evaluated."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-92",
+          "class": "logging-and-monitoring",
+          "value": "§§2–3",
+          "remarks": "Guidance for logging, auditing, and monitoring message replay and retention activity."
         }
       ],
 
-      "remarks": "Replay and Retention defines trust properties required to safely retain and replay integration messages. This pattern addresses replay abuse, side-effect re-triggering, retention scope, and temporal authorization without redefining delivery semantics or message authenticity."
+      "remarks": "Replay and Retention governs how messages and events persist over time and when they may be reused. This pattern treats replay as a privileged, policy‑controlled action and does not authorize message semantics, business effects, or lifecycle decisions."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:capability:message-retention-governance",
+        "uuid": "urn:utoronto:security:capability:retention-policy-enforcement",
         "type": "capability",
-        "title": "Message Retention Governance",
-        "description": "Defines how long messages are retained and for what purposes.",
+        "title": "Retention Policy Enforcement",
+        "description": "Definition and enforcement of how long integration messages or events are retained.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1005",
-            "remarks": "Collection or misuse of sensitive information from retained messages."
+            "value": "T1074",
+            "remarks": "Abuse of retained data to reintroduce outdated or sensitive events."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0037",
-            "remarks": "Lifecycle management to constrain retention duration and scope."
+            "value": "D3FEND-0031",
+            "remarks": "Retention governance limits temporal attack surface."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:message-retention",
+            "uuid": "urn:utoronto:security:ci:retention-policy",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "PL-8",
-                "remarks": "Policies define message retention duration and purpose."
-              },
-              {
-                "control-id": "DM-2",
-                "remarks": "Retention and disposition of messages align with governance requirements."
+                "control-id": "MP-7",
+                "remarks": "Retention periods for system data are defined and enforced."
               }
             ]
           }
@@ -83,26 +103,28 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:replay-authorization-and-control",
+        "uuid": "urn:utoronto:security:capability:replay-authorization",
         "type": "capability",
-        "title": "Replay Authorization and Control",
-        "description": "Restricts who may initiate message replay and under what conditions.",
+        "title": "Replay Authorization",
+        "description": "Explicit control over who may replay retained messages or events and under what conditions.",
+
         "props": [
           {
             "name": "attack-technique",
             "ns": "urn:mitre:attack",
             "class": "technique",
-            "value": "T1199",
-            "remarks": "Abuse of trusted integration controls to trigger unauthorized replay."
+            "value": "T1110",
+            "remarks": "Unauthorized replay of legitimate messages to induce repeated effects."
           },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
-            "value": "D3FEND-0004",
-            "remarks": "Access control restricting replay operations to authorized roles."
+            "value": "D3FEND-0042",
+            "remarks": "Explicit replay authorization prevents unintended reuse of trust."
           }
         ],
+
         "control-implementations": [
           {
             "uuid": "urn:utoronto:security:ci:replay-authorization",
@@ -110,11 +132,7 @@
             "implemented-requirements": [
               {
                 "control-id": "AC-3",
-                "remarks": "Replay actions are authorized before execution."
-              },
-              {
-                "control-id": "AC-6",
-                "remarks": "Replay privileges follow least privilege principles."
+                "remarks": "Only explicitly authorized entities may initiate replay of retained integration data."
               }
             ]
           }
@@ -122,73 +140,59 @@
       },
 
       {
-        "uuid": "urn:utoronto:security:capability:side-effect-safety-and-idempotency",
+        "uuid": "urn:utoronto:security:capability:temporal-abuse-detection",
         "type": "capability",
-        "title": "Side-Effect Safety and Idempotency",
-        "description": "Ensures message reprocessing does not re-trigger unsafe side effects.",
-        "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1565.001",
-            "remarks": "Replay of messages to cause duplicate or repeated system actions."
-          },
-          {
-            "name": "defense-technique",
-            "ns": "urn:mitre:d3fend",
-            "class": "technique",
-            "value": "D3FEND-0037",
-            "remarks": "Controls ensuring replay-safe and idempotent processing."
-          }
-        ],
-        "control-implementations": [
-          {
-            "uuid": "urn:utoronto:security:ci:replay-safety",
-            "source": "urn:nist.gov:800-53:r5",
-            "implemented-requirements": [
-              {
-                "control-id": "SI-7",
-                "remarks": "Integrity and safety checks prevent harmful side effects during replay."
-              }
-            ]
-          }
-        ]
-      },
+        "title": "Temporal Abuse Detection",
+        "description": "Detection of misuse or anomalous patterns in replay or retention usage.",
 
-      {
-        "uuid": "urn:utoronto:security:capability:temporal-observability-and-audit",
-        "type": "capability",
-        "title": "Temporal Observability and Audit",
-        "description": "Provides traceability of retention and replay actions over time.",
         "props": [
-          {
-            "name": "attack-technique",
-            "ns": "urn:mitre:attack",
-            "class": "technique",
-            "value": "T1107",
-            "remarks": "Suppression of evidence related to replay or retention misuse."
-          },
           {
             "name": "defense-technique",
             "ns": "urn:mitre:d3fend",
             "class": "technique",
             "value": "D3FEND-0061",
-            "remarks": "Audit logging of retention policy enforcement and replay actions."
+            "remarks": "Monitoring identifies replay misuse and time‑based anomalies."
           }
         ],
+
         "control-implementations": [
           {
-            "uuid": "urn:utoronto:security:ci:temporal-audit",
+            "uuid": "urn:utoronto:security:ci:temporal-monitoring",
             "source": "urn:nist.gov:800-53:r5",
             "implemented-requirements": [
               {
-                "control-id": "AU-2",
-                "remarks": "Retention and replay events are logged."
-              },
-              {
                 "control-id": "AU-6",
-                "remarks": "Audit review supports investigation of temporal misuse."
+                "remarks": "Replay and retention activity is monitored and reviewed."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:temporal-non-equivalence",
+        "type": "capability",
+        "title": "Temporal Non-Equivalence Constraints",
+        "description": "Explicitly defines what message retention or replay does not grant or imply.",
+
+        "props": [
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Non‑equivalence guarantees prevent over‑trust of historic data."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:temporal-non-equivalence",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-19",
+                "remarks": "Retention or replay of messages does not imply validity, authorization, or correctness."
               }
             ]
           }

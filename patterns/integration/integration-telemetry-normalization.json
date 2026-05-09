@@ -1,0 +1,106 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:integration-telemetry-normalization",
+
+    "metadata": {
+      "title": "Integration Telemetry Normalization",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T04:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC670",
+          "remarks": "Business capability for normalizing heterogeneous integration telemetry into consistent trust and risk signals."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD480",
+          "remarks": "Integration logs, metrics, events, correlation mechanisms, and signal abstraction pipelines."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "supporting-pattern",
+          "value": "urn:utoronto:cae2:arm:AP680",
+          "remarks": "Supporting pattern translating raw integration telemetry into bounded, decision-grade signals."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "normalized-integration-signal-data",
+          "value": "urn:utoronto:cae2:drm:DP480",
+          "remarks": "Defines normalized integration signals as abstract trust and risk data decoupled from implementation specifics."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-92",
+          "class": "logging-and-monitoring",
+          "value": "§§2–4",
+          "remarks": "Guidance on aggregation, normalization, and analysis of security-relevant logs."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Controls governing audit record content and risk communication (AU, RA families)."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 3.2",
+          "remarks": "Zero Trust guidance requiring normalized, contextual signals for decision-making."
+        }
+      ],
+
+      "remarks": "Integration Telemetry Normalization defines how raw integration telemetry is converted into normalized trust and risk signals. This pattern does not retain raw logs, perform analysis, or enforce policy."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:integration-telemetry-aggregation",
+        "type": "capability",
+        "title": "Integration Telemetry Aggregation",
+        "description": "Collection of security-relevant telemetry across integration mechanisms.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-12",
+                "remarks": "Audit records are aggregated for analysis."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "urn:utoronto:security:capability:signal-normalization-and-abstraction",
+        "type": "capability",
+        "title": "Signal Normalization and Abstraction",
+        "description": "Normalization of heterogeneous integration telemetry into standardized trust signals.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "RA-7",
+                "remarks": "Normalized signals inform risk-based integration decisions."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

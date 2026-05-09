@@ -4,180 +4,138 @@
 
     "metadata": {
       "title": "Trusted Integration",
-      "version": "0.1.0",
+      "version": "2.0.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-28T13:30:00Z",
+      "last-modified": "2026-05-06T04:40:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC377",
-          "remarks": "Business capability for operating system-to-system integration mechanisms that are secure, semantically stable, and governable at institutional scale."
+          "value": "urn:utoronto:cae2:brm:BC680",
+          "remarks": "Business capability for evaluating and asserting aggregate trust posture for system-to-system integrations based on multiple contributing signals."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD187",
-          "remarks": "Event streaming systems, message queues, service buses, schema governance tooling, message security controls, and replay mechanisms."
+          "value": "urn:utoronto:cae2:trm:TD490",
+          "remarks": "Integration control planes, trust evaluators, policy engines, and signal aggregation mechanisms."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
-          "class": "solution-pattern",
-          "value": "urn:utoronto:cae2:arm:AP307",
-          "remarks": "Composite pattern asserting that all trust requirements for application integration and messaging are satisfied."
+          "class": "bridge-pattern",
+          "value": "urn:utoronto:cae2:arm:AP690",
+          "remarks": "Bridge pattern aggregating multiple integration trust signals into bounded, revocable assertions without granting implicit authority."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "aggregate-trust-signal-data",
+          "value": "urn:utoronto:cae2:drm:DP490",
+          "remarks": "Defines trusted integration state as derived signal data, not a static credential or entitlement."
         },
 
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "integration-core",
-          "remarks": "Trusted integration assumes baseline identity, ownership, boundary control, and accountability."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-catalog-reference",
+          "value": "Rev.5 §§3–4",
+          "remarks": "Controls governing trust evaluation, authorization decisions, and risk assessment (AC, IA, RA families)."
         },
         {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "event-streaming",
-          "remarks": "Trusted integration requires governed use of high-volume, fan-out event streams."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "message-queuing",
-          "remarks": "Trusted integration requires reliable and bounded asynchronous message delivery."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "service-bus-and-esb",
-          "remarks": "Trusted integration requires explicit governance of centralized orchestration and mediation."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "schema-and-contract-governance",
-          "remarks": "Trusted integration requires semantic stability and shared interpretation of messages."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "message-security-and-integrity",
-          "remarks": "Trusted integration requires that messages are authentic, authorized, and unmodified."
-        },
-        {
-          "name": "depends-on",
-          "ns": "urn:utoronto:cae2:dependency",
-          "class": "platform-pattern",
-          "value": "replay-and-retention",
-          "remarks": "Trusted integration requires explicit control of message retention and replay."
-        },
-
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0005",
-          "remarks": "Defense evasion via manipulation of integration paths."
-        },
-        {
-          "name": "attack-tactic",
-          "ns": "urn:mitre:attack",
-          "class": "tactic",
-          "value": "TA0009",
-          "remarks": "Collection and misuse of data through integration channels."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1199",
-          "remarks": "Abuse of trusted system-to-system relationships."
-        },
-        {
-          "name": "attack-technique",
-          "ns": "urn:mitre:attack",
-          "class": "technique",
-          "value": "T1565.001",
-          "remarks": "Manipulation of data or messages in transit or replay."
-        },
-
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0045",
-          "remarks": "Strong non-human identity binding across integration systems."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0011",
-          "remarks": "Validation and enforcement of message and contract integrity."
-        },
-        {
-          "name": "defense-technique",
-          "ns": "urn:mitre:d3fend",
-          "class": "technique",
-          "value": "D3FEND-0061",
-          "remarks": "Audit logging and traceability supporting accountability and investigation."
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-207",
+          "class": "zero-trust-architecture",
+          "value": "§§2.1, 2.4, 3.2–3.3",
+          "remarks": "Zero Trust guidance stating that trust must be continuously evaluated and never implicitly granted."
         }
       ],
 
-      "remarks": "Trusted Integration is a composite pattern asserting that system-to-system integration mechanisms are secure, semantically correct, and governable. It introduces no independent controls and exists solely as an aggregate trust claim for solution patterns, risk analysis, and system security and privacy plans."
+      "remarks": "Trusted Integration aggregates trust-related signals from multiple integration patterns to produce a bounded, revocable trust assertion. This pattern does not grant authorization, approve business actions, or override downstream policy or governance."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:pattern-ref:integration-core",
-        "type": "component",
-        "title": "Integration Core",
-        "description": "Baseline trust assumptions for machine-to-machine integration."
+        "uuid": "urn:utoronto:security:capability:integration-trust-aggregation",
+        "type": "capability",
+        "title": "Integration Trust Aggregation",
+        "description": "Aggregation of multiple integration trust signals into a single evaluative posture.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:integration-trust-aggregation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "RA-7",
+                "remarks": "Multiple risk and trust indicators inform security decisions."
+              }
+            ]
+          }
+        ]
       },
+
       {
-        "uuid": "urn:utoronto:security:pattern-ref:event-streaming",
-        "type": "component",
-        "title": "Event Streaming",
-        "description": "Governed fan-out and amplification of system events."
+        "uuid": "urn:utoronto:security:capability:integration-trust-assertion",
+        "type": "capability",
+        "title": "Integration Trust Assertion",
+        "description": "Emission of a bounded trust assertion consumable by relying systems.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:integration-trust-assertion",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-5",
+                "remarks": "Trust assertions are generated using protected mechanisms."
+              }
+            ]
+          }
+        ]
       },
+
       {
-        "uuid": "urn:utoronto:security:pattern-ref:message-queuing",
-        "type": "component",
-        "title": "Message Queuing",
-        "description": "Reliable point-to-point asynchronous messaging."
+        "uuid": "urn:utoronto:security:capability:trust-revocation-signaling",
+        "type": "capability",
+        "title": "Trust Revocation Signaling",
+        "description": "Identification and signaling of conditions under which integration trust must be degraded or revoked.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:integration-trust-revocation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-19",
+                "remarks": "Trust assertions may be withdrawn based on changing conditions."
+              }
+            ]
+          }
+        ]
       },
+
       {
-        "uuid": "urn:utoronto:security:pattern-ref:service-bus-and-esb",
-        "type": "component",
-        "title": "Service Bus and ESB",
-        "description": "Explicitly governed centralized orchestration and mediation."
-      },
-      {
-        "uuid": "urn:utoronto:security:pattern-ref:schema-and-contract-governance",
-        "type": "component",
-        "title": "Schema and Contract Governance",
-        "description": "Semantic stability and shared interpretation of messages."
-      },
-      {
-        "uuid": "urn:utoronto:security:pattern-ref:message-security-and-integrity",
-        "type": "component",
-        "title": "Message Security and Integrity",
-        "description": "Authentication, authorization, and protection of integration messages."
-      },
-      {
-        "uuid": "urn:utoronto:security:pattern-ref:replay-and-retention",
-        "type": "component",
-        "title": "Replay and Retention",
-        "description": "Controlled message retention and replay without unsafe side effects."
+        "uuid": "urn:utoronto:security:capability:trusted-integration-non-equivalence",
+        "type": "capability",
+        "title": "Trusted Integration Non‑Equivalence Constraints",
+        "description": "Explicitly defines what a trusted integration assertion does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:trusted-integration-non-equivalence",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-3",
+                "remarks": "Trusted integration status does not imply authorization, correctness, or approval of downstream actions."
+              }
+            ]
+          }
+        ]
       }
     ]
   }

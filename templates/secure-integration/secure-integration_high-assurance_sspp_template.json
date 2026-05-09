@@ -1,0 +1,185 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-integration:high-assurance",
+
+    "metadata": {
+      "title": "High-Assurance / Amplifying Integration SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-06T06:10:00Z",
+      "remarks": "System Security and Privacy Plan defining elevated trust, governance, and lifecycle requirements for high-assurance and amplifying system-to-system integrations."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-integration:platform",
+      "remarks": "This SSPP inherits all Secure-Integration Platform trust semantics and introduces stricter constraints for integrations that amplify trust, risk, or impact."
+    },
+
+    "system-characteristics": {
+      "system-name": "High-Assurance Integration Environment",
+      "system-description": "High-Assurance Integration environments include integrations that amplify trust, effects, or blast radius across systems and time. These integrations require stricter authorization, reduced replay tolerance, constrained fan-out, and explicit lifecycle revocation.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "integration-trust-tier",
+          "class": "trust-classification",
+          "value": "high-assurance",
+          "remarks": "Indicates an integration class with elevated systemic impact and amplification risk."
+        },
+        {
+          "name": "amplification-scope",
+          "class": "mandatory-constraint",
+          "value": "explicitly-limited",
+          "remarks": "Producer scope, consumer scope, and fan-out must be explicitly bounded and approved."
+        },
+        {
+          "name": "replay-policy",
+          "class": "execution-constraint",
+          "value": "strictly-controlled",
+          "remarks": "Replay of retained messages or events requires explicit authorization and heightened scrutiny."
+        },
+        {
+          "name": "retention-tolerance",
+          "class": "risk-constraint",
+          "value": "minimal",
+          "remarks": "Message and event retention is minimized to reduce temporal attack surface."
+        },
+        {
+          "name": "schema-drift-tolerance",
+          "class": "semantic-constraint",
+          "value": "near-zero",
+          "remarks": "Schema and contract changes require strict compatibility and governance review."
+        },
+        {
+          "name": "lifecycle-policy",
+          "class": "mandatory-governance",
+          "value": "explicit-revocation",
+          "remarks": "Integration trust must be explicitly revoked upon deprecation, ownership change, or misuse."
+        },
+        {
+          "name": "non-equivalence-enforcement",
+          "class": "explicit-requirement",
+          "value": "strict",
+          "remarks": "Relying systems must strictly enforce non-equivalence between integration trust and business authorization."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "High-Assurance Integration environments rely on the full Secure-Integration signal stack with stricter interpretation thresholds and reduced tolerance for amplification, replay, or semantic ambiguity. This SSPP does not define remediation, tooling, or operational procedures.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:integration-core",
+          "type": "pattern-inheritance",
+          "title": "Integration Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:message-security-and-integrity",
+          "type": "pattern-inheritance",
+          "title": "Message Security and Integrity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:message-queuing",
+          "type": "pattern-inheritance",
+          "title": "Message Queuing"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:event-streaming",
+          "type": "pattern-inheritance",
+          "title": "Event Streaming"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:replay-and-retention",
+          "type": "pattern-inheritance",
+          "title": "Replay and Retention"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:schema-and-contract-governance",
+          "type": "pattern-inheritance",
+          "title": "Schema and Contract Governance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:service-bus-and-esb",
+          "type": "pattern-inheritance",
+          "title": "Service Bus and ESB"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:integration-lifecycle-signaling",
+          "type": "pattern-inheritance",
+          "title": "Integration Lifecycle Signaling"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:integration-telemetry-normalization",
+          "type": "pattern-inheritance",
+          "title": "Integration Telemetry Normalization"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:trusted-integration",
+          "type": "pattern-inheritance",
+          "title": "Trusted Integration"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-high-assurance-integration-architecture",
+        "title": "High-Assurance Integration Architecture",
+        "remarks": "Defines elevated trust architecture and constraints for amplifying integration surfaces.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-high-assurance-integration-governance",
+        "title": "High-Assurance Integration Governance",
+        "remarks": "Approves amplification scope, replay authorization, retention limits, and trust revocation decisions.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-high-assurance-integration-operations",
+        "title": "High-Assurance Integration Operations",
+        "remarks": "Operates high-impact integration platforms under stricter trust and lifecycle constraints.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-high-assurance-integration-monitoring",
+        "title": "High-Assurance Integration Security Monitoring",
+        "remarks": "Monitors amplification, replay misuse, lifecycle violations, and trust degradation events.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through inheritance from Secure-Integration patterns with stricter trust interpretation and governance. This SSPP introduces no new control implementations."
+    }
+  }
+}
