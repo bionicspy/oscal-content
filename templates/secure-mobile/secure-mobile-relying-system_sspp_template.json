@@ -1,0 +1,130 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-mobile:relying-system",
+
+    "metadata": {
+      "title": "Secure-Mobile Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T04:05:00Z",
+      "remarks": "System Security and Privacy Plan defining how institutional relying systems consume Secure-Mobile trust signals to make access and authorization decisions."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-mobile:platform",
+      "remarks": "This SSPP inherits all constraints, prohibitions, and trust semantics from the Secure-Mobile Platform SSPP."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure-Mobile Relying System",
+      "system-description": "The Secure-Mobile Relying System defines the contract by which institutional applications, APIs, and services evaluate mobile device, application, posture, and threat signals provided by the Secure-Mobile Platform. It ensures consistent, bounded, and non-escalating use of mobile trust signals.",
+
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "relying-role",
+          "class": "decision-consumer",
+          "value": "mobile-trust-signals",
+          "remarks": "Consumes normalized mobile trust signals for access and authorization decisions."
+        },
+        {
+          "name": "trust-consumption-model",
+          "class": "enforcement-rule",
+          "value": "non-transitive",
+          "remarks": "Mobile trust signals are not transitive and must not be cached or reused beyond the decision context."
+        },
+        {
+          "name": "execution-assumption",
+          "class": "explicit-denial",
+          "value": "no-execution-trust",
+          "remarks": "Relying systems must not assume execution trust for mobile devices or applications."
+        },
+        {
+          "name": "privilege-escalation",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Relying systems must not use mobile trust signals to enable administrative, privileged, or break-glass access."
+        },
+        {
+          "name": "data-classification-enforcement",
+          "class": "mandatory-enforcement",
+          "value": "required",
+          "remarks": "Relying systems must enforce data classification ceilings and policies independently of mobile trust signals."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure-Mobile Relying Systems integrate with identity providers, policy engines, and data services to evaluate mobile trust signals alongside user identity, device posture, and data sensitivity. Relying systems do not generate mobile signals and must not reinterpret or override Secure-Mobile Platform semantics.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-core",
+          "type": "pattern-consumption",
+          "title": "Mobile Core Signals",
+          "remarks": "Eligibility signals determining whether a mobile device may participate in access decisions."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-application-trust",
+          "type": "pattern-consumption",
+          "title": "Mobile Application Trust Signals",
+          "remarks": "Signals validating the identity and approval status of mobile applications."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-data-containment",
+          "type": "pattern-consumption",
+          "title": "Mobile Data Containment Signals",
+          "remarks": "Signals restricting how institutional data may be accessed or shared on mobile platforms."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-posture-compliance",
+          "type": "pattern-consumption",
+          "title": "Mobile Posture & Compliance Signals",
+          "remarks": "Risk and compliance signals used to adjust access decisions."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-threat-protection",
+          "type": "pattern-consumption",
+          "title": "Mobile Threat Signals",
+          "remarks": "Threat indicators affecting mobile access eligibility."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-telemetry-normalization",
+          "type": "pattern-consumption",
+          "title": "Normalized Telemetry Signals",
+          "remarks": "Canonical signal representations used for policy evaluation."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-privacy-boundaries",
+          "type": "pattern-consumption",
+          "title": "Privacy Boundary Constraints",
+          "remarks": "Limits governing how relying systems may use mobile-derived information."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-admin-breakglass-clarifier",
+          "type": "pattern-consumption",
+          "title": "Admin / Break-Glass Limits",
+          "remarks": "Explicit prohibitions preventing privileged workflows from being enabled via mobile."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-relying-system-owner",
+        "title": "Relying System Owner",
+        "remarks": "Ensures applications and services correctly consume Secure-Mobile trust signals and enforce platform constraints."
+      },
+      {
+        "id": "role-access-policy-owner",
+        "title": "Access Policy Authority",
+        "remarks": "Defines and approves access policies that incorporate mobile trust signals without violating architectural guardrails."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction is inherited from the Secure-Mobile Platform and evaluated at the application and data access layers. Relying systems are responsible for correct signal consumption, not control enforcement."
+    }
+  }
+}

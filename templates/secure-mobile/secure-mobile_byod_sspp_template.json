@@ -1,0 +1,156 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-mobile:byod",
+
+    "metadata": {
+      "title": "BYOD Mobile SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T05:05:00Z",
+      "remarks": "System Security and Privacy Plan defining Personally-Owned, Institution-Managed (BYOD) Mobile devices within the Secure-Mobile architecture."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-mobile:platform",
+      "remarks": "This SSPP inherits all constraints, guardrails, and trust semantics from the Secure-Mobile Platform SSPP."
+    },
+
+    "system-characteristics": {
+      "system-name": "BYOD Mobile",
+      "system-description": "BYOD Mobile devices are personally owned mobile devices that participate in limited institutional workflows using strict application-centric access, strong privacy boundaries, and minimal institutional control. BYOD Mobile operates exclusively under signal-based Zero Trust and never grants execution, administrative, or DAW-equivalent privileges.",
+      "security-sensitivity-level": "moderate-low",
+
+      "props": [
+        {
+          "name": "ownership-model",
+          "class": "mobile-ownership",
+          "value": "personally-owned",
+          "remarks": "The mobile hardware is owned by the individual user."
+        },
+        {
+          "name": "use-model",
+          "class": "mobile-use",
+          "value": "personal-primary",
+          "remarks": "The device is primarily used for personal purposes with limited institutional access."
+        },
+        {
+          "name": "management-authority",
+          "class": "device-control",
+          "value": "minimal-and-consensual",
+          "remarks": "Institutional management authority is limited, opt-in, and constrained to managed application contexts."
+        },
+        {
+          "name": "container-model",
+          "class": "data-boundary",
+          "value": "managed-apps-only",
+          "remarks": "Institutional data and controls are confined to managed applications or secure app containers."
+        },
+        {
+          "name": "privacy-boundary",
+          "class": "mandatory-constraint",
+          "value": "strictly-enforced",
+          "remarks": "Institutional visibility, telemetry, and control are limited to managed applications only."
+        },
+        {
+          "name": "execution-trust",
+          "class": "explicit-prohibition",
+          "value": "not-granted",
+          "remarks": "BYOD Mobile devices are never treated as trusted execution environments."
+        },
+        {
+          "name": "daw-eligibility",
+          "class": "explicit-prohibition",
+          "value": "never",
+          "remarks": "BYOD Mobile devices may not be used for DAW or privileged access workflows."
+        },
+        {
+          "name": "admin-context",
+          "class": "explicit-prohibition",
+          "value": "not-supported",
+          "remarks": "Administrative and break-glass contexts are forbidden on BYOD Mobile."
+        },
+        {
+          "name": "data-classification-ceiling",
+          "class": "eligibility-constraint",
+          "value": "level-1",
+          "remarks": "BYOD Mobile devices may access data up to Classification Level 1, subject to Secure-Mobile containment and consent."
+        },
+        {
+          "name": "remote-wipe-scope",
+          "class": "lifecycle-constraint",
+          "value": "managed-apps-only",
+          "remarks": "Institutional data removal is limited to managed applications; no full-device wipe authority exists."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "BYOD Mobile is implemented by applying the Secure-Mobile pattern stack with maximum privacy preservation. Access is strictly limited to approved applications with strong data containment. Enforcement actions are confined to managed app contexts and may be withdrawn by user consent revocation.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-core",
+          "type": "pattern-reference",
+          "title": "Mobile Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-application-trust",
+          "type": "pattern-reference",
+          "title": "Mobile Application Trust"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-data-containment",
+          "type": "pattern-reference",
+          "title": "Mobile Data Containment"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-posture-compliance",
+          "type": "pattern-reference",
+          "title": "Mobile Posture & Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-threat-protection",
+          "type": "pattern-reference",
+          "title": "Mobile Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-telemetry-normalization",
+          "type": "pattern-reference",
+          "title": "Mobile Telemetry Normalization"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-privacy-boundaries",
+          "type": "pattern-reference",
+          "title": "Mobile Privacy Boundaries"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-admin-breakglass-clarifier",
+          "type": "pattern-reference",
+          "title": "Mobile Admin / Break-Glass Clarifier"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-lifecycle",
+          "type": "pattern-reference",
+          "title": "Mobile Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-byod-mobile-owner",
+        "title": "BYOD Mobile Service Owner",
+        "remarks": "Owns the BYOD Mobile service and ensures privacy-first enforcement of Secure-Mobile constraints."
+      },
+      {
+        "id": "role-byod-mobile-operations",
+        "title": "BYOD Mobile Operations",
+        "remarks": "Operates BYOD Mobile access, posture evaluation, and lifecycle actions within strict consent and privacy boundaries."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through inheritance from Secure-Mobile patterns with stricter privacy and lifecycle constraints. This SSPP intentionally limits institutional authority and does not restate control implementations."
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-mobile:cope",
+
+    "metadata": {
+      "title": "COPE Mobile SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T04:45:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned, Personally-Enabled (COPE) Mobile devices within the Secure-Mobile architecture."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-mobile:platform",
+      "remarks": "This SSPP inherits all constraints, guardrails, and trust semantics from the Secure-Mobile Platform SSPP."
+    },
+
+    "system-characteristics": {
+      "system-name": "COPE Mobile",
+      "system-description": "COPE Mobile devices are institution-owned mobile devices that permit limited personal use while enforcing strong security and explicit privacy boundaries. COPE Mobile operates under strict signal-based trust and never grants execution, administrative, or DAW-equivalent privileges.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "ownership-model",
+          "class": "mobile-ownership",
+          "value": "corporate-owned",
+          "remarks": "The institution owns the mobile hardware."
+        },
+        {
+          "name": "use-model",
+          "class": "mobile-use",
+          "value": "personally-enabled",
+          "remarks": "COPE Mobile devices support both institutional and limited personal use."
+        },
+        {
+          "name": "management-authority",
+          "class": "device-control",
+          "value": "full-with-boundaries",
+          "remarks": "The institution retains management authority constrained by explicit privacy and scope boundaries."
+        },
+        {
+          "name": "container-model",
+          "class": "data-boundary",
+          "value": "managed-and-personal-separated",
+          "remarks": "Institutional applications and data are isolated in managed containers separate from personal data."
+        },
+        {
+          "name": "privacy-boundary",
+          "class": "mandatory-constraint",
+          "value": "enforced",
+          "remarks": "Institutional visibility and control are restricted to managed application containers only."
+        },
+        {
+          "name": "execution-trust",
+          "class": "explicit-prohibition",
+          "value": "not-granted",
+          "remarks": "COPE Mobile devices are never treated as trusted execution environments."
+        },
+        {
+          "name": "daw-eligibility",
+          "class": "explicit-prohibition",
+          "value": "never",
+          "remarks": "COPE Mobile devices may not be used for DAW or privileged access workflows."
+        },
+        {
+          "name": "baseline-security-posture",
+          "class": "requirement",
+          "value": "preventive-monitored-and-contained",
+          "remarks": "COPE Mobile enforces baseline hardening (CIS L1), continuous health evaluation, and runtime threat protection."
+        },
+        {
+          "name": "admin-context",
+          "class": "explicit-prohibition",
+          "value": "not-supported",
+          "remarks": "Administrative and break-glass contexts are forbidden on COPE Mobile."
+        },
+        {
+          "name": "data-classification-ceiling",
+          "class": "eligibility-constraint",
+          "value": "level-2",
+          "remarks": "COPE Mobile devices may access data up to Classification Level 2, subject to Secure-Mobile containment and privacy rules."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COPE Mobile is implemented by applying the Secure-Mobile pattern stack with additional privacy boundary enforcement. Unlike COBO Mobile, COPE Mobile explicitly limits telemetry scope, administrative actions, and data remediation to managed containers only.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-core",
+          "type": "pattern-reference",
+          "title": "Mobile Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-application-trust",
+          "type": "pattern-reference",
+          "title": "Mobile Application Trust"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-data-containment",
+          "type": "pattern-reference",
+          "title": "Mobile Data Containment"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-posture-compliance",
+          "type": "pattern-reference",
+          "title": "Mobile Posture & Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-threat-protection",
+          "type": "pattern-reference",
+          "title": "Mobile Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-telemetry-normalization",
+          "type": "pattern-reference",
+          "title": "Mobile Telemetry Normalization"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-privacy-boundaries",
+          "type": "pattern-reference",
+          "title": "Mobile Privacy Boundaries"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-admin-breakglass-clarifier",
+          "type": "pattern-reference",
+          "title": "Mobile Admin / Break-Glass Clarifier"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-lifecycle",
+          "type": "pattern-reference",
+          "title": "Mobile Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-cope-mobile-owner",
+        "title": "COPE Mobile Service Owner",
+        "remarks": "Owns the COPE Mobile service offering and ensures enforcement of Secure-Mobile and privacy guardrails."
+      },
+      {
+        "id": "role-cope-mobile-operations",
+        "title": "COPE Mobile Operations",
+        "remarks": "Operates COPE Mobile devices, posture evaluation, telemetry, and lifecycle actions within defined privacy boundaries."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Security and privacy controls are inherited from the Secure-Mobile Platform SSPP and associated patterns. This SSPP relies on container isolation and selective management to enforce privacy boundaries without restating control implementations."
+    }
+  }
+}

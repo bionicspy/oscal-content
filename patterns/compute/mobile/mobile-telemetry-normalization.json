@@ -1,0 +1,211 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:mobile-telemetry-normalization",
+
+    "metadata": {
+      "title": "Mobile Telemetry Normalization",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T03:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC485",
+          "remarks": "Business capability for producing consistent, decision-grade mobile telemetry to support Zero Trust access and risk evaluation."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD280",
+          "remarks": "Mobile telemetry collection, normalization pipelines, signal abstraction layers, and policy consumption interfaces."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP430",
+          "remarks": "Foundational Zero Trust pattern for translating heterogeneous telemetry into normalized and bounded security signals."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "telemetry-and-monitoring",
+          "value": "SP 800-53 Rev.5; SP 800-92; SP 800-207",
+          "remarks": "Mobile Telemetry Normalization aligns with NIST guidance on security logging, monitoring, and Zero Trust decision inputs."
+        }
+      ],
+
+      "remarks": "Mobile Telemetry Normalization defines how raw mobile telemetry is transformed into normalized, privacy-bounded signals suitable for risk-based access decisions. This pattern ensures telemetry supports trust decisions without enabling surveillance or excessive data retention."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-telemetry-collection-scope",
+        "type": "capability",
+        "title": "Scoped Mobile Telemetry Collection",
+        "description": "Ensures only security-relevant mobile telemetry is collected, excluding personal or non-essential data.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1082",
+            "remarks": "System and device information discovery beyond legitimate security needs."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0073",
+            "remarks": "Telemetry scoping enforces collection minimization."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-telemetry-scope",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-12",
+                "remarks": "Information collection is limited to authorized purposes."
+              },
+              {
+                "control-id": "PL-8",
+                "remarks": "Security safeguards explicitly constrain monitoring scope."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-telemetry-normalization",
+        "type": "capability",
+        "title": "Mobile Telemetry Normalization",
+        "description": "Transforms heterogeneous mobile telemetry into standardized signal categories usable by policy and access systems.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1562",
+            "remarks": "Manipulation or suppression of security telemetry."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Standardized telemetry representation ensures consistent interpretation."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-telemetry-normalization",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-12",
+                "remarks": "Mobile telemetry events are generated in a consistent and interpretable format."
+              },
+              {
+                "control-id": "AU-3",
+                "remarks": "Audit records include standardized fields."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-telemetry-signal-abstraction",
+        "type": "capability",
+        "title": "Mobile Telemetry Signal Abstraction",
+        "description": "Abstracts normalized telemetry into high-level posture and risk signals for consumption by Zero Trust systems.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Exploitation of over-trusted context due to ambiguous signals."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Signal abstraction prevents raw telemetry from being over-trusted."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-telemetry-abstraction",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "RA-7",
+                "remarks": "Risk signals are derived from telemetry for access decisions."
+              },
+              {
+                "control-id": "AC-19",
+                "remarks": "Mobile access decisions incorporate abstracted device risk."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-telemetry-retention-boundary",
+        "type": "capability",
+        "title": "Mobile Telemetry Retention Boundary",
+        "description": "Constrains retention and downstream use of mobile telemetry to prevent secondary use or mission creep.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1074",
+            "remarks": "Collection and retention of excessive historical data."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0074",
+            "remarks": "Retention controls enforce data lifecycle boundaries."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-telemetry-retention",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-11",
+                "remarks": "Audit record retention is defined and limited."
+              },
+              {
+                "control-id": "SI-12",
+                "remarks": "Information handling is restricted to approved uses."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

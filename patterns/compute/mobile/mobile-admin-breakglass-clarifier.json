@@ -1,0 +1,170 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:mobile-admin-breakglass-clarifier",
+
+    "metadata": {
+      "title": "Mobile Admin / Break-Glass Clarifier",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T03:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC490",
+          "remarks": "Business capability for explicitly restricting administrative and break-glass access models from mobile platforms."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD285",
+          "remarks": "Mobile platforms, device management controls, access revocation, and emergency access boundaries."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP440",
+          "remarks": "Foundational pattern asserting strict separation between mobile access and privileged or break-glass administrative operations."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "privileged-access-boundary",
+          "value": "SP 800-53 Rev.5; SP 800-207",
+          "remarks": "Mobile Admin / Break-Glass Clarifier aligns with least privilege and Zero Trust guidance forbidding implicit administrative trust."
+        }
+      ],
+
+      "remarks": "This pattern explicitly declares that mobile platforms do not support administrative or break-glass access models. All privileged, emergency, or override access must be brokered through Secure Endpoint environments, typically DAWs."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-no-admin-context",
+        "type": "capability",
+        "title": "No Mobile Administrative Context",
+        "description": "Explicitly prohibits administrative or privileged execution contexts on mobile platforms.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Abuse of trusted accounts or contexts to gain administrative access."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Strict privilege boundaries prevent over-trust of mobile contexts."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-no-admin",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-6",
+                "remarks": "Least privilege is enforced by prohibiting administrative roles on mobile platforms."
+              },
+              {
+                "control-id": "AC-19",
+                "remarks": "Mobile access is restricted to non-privileged use cases."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-no-breakglass",
+        "type": "capability",
+        "title": "No Mobile Break‑Glass Access",
+        "description": "Explicitly forbids break‑glass, emergency override, or bypass mechanisms on mobile platforms.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1550",
+            "remarks": "Use of emergency or bypass credentials outside intended circumstances."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Elimination of emergency override paths from mobile contexts."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-no-breakglass",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-2",
+                "remarks": "Emergency and privileged accounts are not accessible from mobile platforms."
+              },
+              {
+                "control-id": "PL-8",
+                "remarks": "Security architecture explicitly excludes mobile break-glass paths."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-admin-redirection",
+        "type": "capability",
+        "title": "Administrative Access Redirection",
+        "description": "Ensures any workflow requiring administrative or emergency access is redirected to Secure Endpoint environments.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1068",
+            "remarks": "Privilege escalation through unintended execution context."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0042",
+            "remarks": "Explicit workflow routing enforces correct execution environment."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-admin-redirection",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-3",
+                "remarks": "Access enforcement ensures administrative actions require approved endpoints."
+              },
+              {
+                "control-id": "IA-11",
+                "remarks": "Re-authentication and stronger assurance are required for privileged access paths."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

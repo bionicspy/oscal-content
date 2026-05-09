@@ -1,0 +1,211 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:mobile-data-containment",
+
+    "metadata": {
+      "title": "Mobile Data Containment",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T01:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC460",
+          "remarks": "Business capability for constraining the storage, movement, and sharing of institutional data within mobile environments."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD255",
+          "remarks": "Mobile application containers, operating system data isolation mechanisms, clipboard controls, file systems, and offline storage."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP380",
+          "remarks": "Foundational Zero Trust data protection pattern enforcing contextual, least‑privilege data exposure on mobile platforms."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "mobile-data-protection",
+          "value": "SP 800-53 Rev.5; SP 800-124 Rev.2; SP 800-207",
+          "remarks": "Mobile Data Containment aligns with NIST guidance on information flow control, mobile data protection, and Zero Trust."
+        }
+      ],
+
+      "remarks": "Mobile Data Containment defines the mandatory capabilities that restrict how institutional data is stored, accessed, and shared on mobile devices. This pattern assumes devices are hostile environments and enforces data-centric controls independent of device ownership."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-application-container-isolation",
+        "type": "capability",
+        "title": "Mobile Application Container Isolation",
+        "description": "Ensures institutional data is confined to managed application containers and isolated from unmanaged or personal applications.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1413",
+            "remarks": "Abuse of application permissions to access or exfiltrate sensitive data."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0047",
+            "remarks": "Application containerization enforces data isolation between trust boundaries."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-container-isolation",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-4",
+                "remarks": "Information flow control restricts data movement between managed and unmanaged application contexts."
+              },
+              {
+                "control-id": "SC-7",
+                "remarks": "Boundary protection enforced between application containers."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-clipboard-and-share-control",
+        "type": "capability",
+        "title": "Mobile Clipboard and Data Sharing Control",
+        "description": "Restricts copying, pasting, and sharing of institutional data from managed mobile applications to unauthorized destinations.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1537",
+            "remarks": "Transfer of data to external or unauthorized applications."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0057",
+            "remarks": "Content control policies prevent unauthorized data transfer."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-clipboard-control",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-16",
+                "remarks": "Security attributes are enforced to regulate data sharing."
+              },
+              {
+                "control-id": "MP-7",
+                "remarks": "Restrictions on data transfer via mobile interfaces."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-offline-data-protection",
+        "type": "capability",
+        "title": "Mobile Offline Data Protection",
+        "description": "Controls the storage, encryption, and lifetime of institutional data stored locally on mobile devices.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1417",
+            "remarks": "Access to sensitive data on lost or stolen mobile devices."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0021",
+            "remarks": "Encrypted storage and controlled caching protect offline data."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-offline-protection",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-28",
+                "remarks": "Institutional data is encrypted at rest on mobile devices."
+              },
+              {
+                "control-id": "CP-9",
+                "remarks": "Data recovery and loss prevention controls address mobile offline risk."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-remote-data-disposal",
+        "type": "capability",
+        "title": "Mobile Remote Data Disposal",
+        "description": "Ensures institutional data can be selectively or fully removed from mobile devices upon risk triggers or lifecycle events.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Retention of sensitive data after authorization revocation."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0018",
+            "remarks": "Remote wipe and selective wipe eliminate residual data."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-data-disposal",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "MP-6",
+                "remarks": "Media sanitization applied to mobile data stores."
+              },
+              {
+                "control-id": "CM-2",
+                "remarks": "Baseline configuration includes enforced data removal mechanisms."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

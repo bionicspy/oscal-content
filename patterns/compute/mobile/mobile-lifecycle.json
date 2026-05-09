@@ -1,0 +1,207 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:mobile-lifecycle",
+
+    "metadata": {
+      "title": "Mobile Lifecycle",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T02:15:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC475",
+          "remarks": "Business capability for governing the lifecycle states of mobile devices accessing institutional services, including enrollment, suspension, and retirement."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD270",
+          "remarks": "Mobile device lifecycle management, enrollment systems, selective wipe, full wipe, and access revocation mechanisms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP410",
+          "remarks": "Foundational Zero Trust pattern defining controlled lifecycle transitions for mobile devices without conferring execution trust."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "mobile-lifecycle",
+          "value": "SP 800-53 Rev.5; SP 800-124 Rev.2; SP 800-207",
+          "remarks": "Mobile Lifecycle aligns with NIST guidance on lifecycle management, access control, and Zero Trust revocation."
+        }
+      ],
+
+      "remarks": "Mobile Lifecycle defines the permitted lifecycle states and transitions for mobile devices. This pattern ensures mobile access is explicitly granted, reviewable, and revocable, and that institutional data can be securely removed as risk or ownership changes."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-device-enrollment",
+        "type": "capability",
+        "title": "Mobile Device Enrollment",
+        "description": "Controls the initial onboarding of mobile devices into institutional trust frameworks.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Use of unauthorized or unmanaged devices to gain access."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Formal enrollment ensures devices are known and attributable."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-enrollment",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IA-3",
+                "remarks": "Devices are identified and authenticated prior to access."
+              },
+              {
+                "control-id": "CM-8",
+                "remarks": "An inventory of authorized mobile devices is maintained."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-access-suspension",
+        "type": "capability",
+        "title": "Mobile Access Suspension",
+        "description": "Allows rapid suspension of mobile access when devices become non‑compliant or high‑risk.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1550",
+            "remarks": "Continued access using stale or revoked trust contexts."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Access revocation prevents over‑reliance on outdated posture."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-suspension",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-2",
+                "remarks": "Access can be disabled when conditions change."
+              },
+              {
+                "control-id": "AC-19",
+                "remarks": "Mobile access is restricted based on dynamic risk."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-data-remediation",
+        "type": "capability",
+        "title": "Mobile Data Remediation",
+        "description": "Ensures institutional data can be selectively or fully removed from mobile devices as part of lifecycle transitions.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Retention of sensitive data after loss of authorization."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0018",
+            "remarks": "Selective and full wipe capabilities eliminate residual data."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-wipe",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "MP-6",
+                "remarks": "Mobile media sanitization is enforced."
+              },
+              {
+                "control-id": "CM-2",
+                "remarks": "Baseline configurations include data removal mechanisms."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-decommissioning",
+        "type": "capability",
+        "title": "Mobile Device Decommissioning",
+        "description": "Controls the formal retirement of mobile devices from institutional access.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1537",
+            "remarks": "Data exfiltration during ownership transition."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0021",
+            "remarks": "Secure wipe and access revocation prevent residual access."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-retirement",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Security safeguards cover system lifecycle termination."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

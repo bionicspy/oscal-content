@@ -1,0 +1,214 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:mobile-threat-protection",
+
+    "metadata": {
+      "title": "Mobile Threat Protection",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T01:55:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC470",
+          "remarks": "Business capability for detecting and signaling active threats affecting mobile devices, applications, and data exposure."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD265",
+          "remarks": "Mobile threat detection, behavioral analysis, network monitoring, and runtime threat intelligence for mobile platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP400",
+          "remarks": "Foundational Zero Trust pattern for continuous threat detection and risk signal generation without granting execution or administrative trust."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "mobile-threat-detection",
+          "value": "SP 800-53 Rev.5; SP 800-207; SP 800-124 Rev.2",
+          "remarks": "Mobile Threat Protection aligns with NIST guidance on threat detection, continuous monitoring, and Zero Trust architectures."
+        }
+      ],
+
+      "remarks": "Mobile Threat Protection defines the capabilities required to detect malicious behavior affecting mobile devices and applications. This pattern produces threat signals only and does not include remediation, containment, or lifecycle actions."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-malicious-application-detection",
+        "type": "capability",
+        "title": "Malicious Mobile Application Detection",
+        "description": "Detects malicious, trojanized, or high‑risk mobile applications that threaten institutional data or services.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1475",
+            "remarks": "Malicious mobile application distributed through unofficial channels."
+          },
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1413",
+            "remarks": "Mobile application abusing permissions to exfiltrate data."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0052",
+            "remarks": "Behavioral analysis and app reputation detect malicious applications."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-malware-detection",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-3",
+                "remarks": "Malicious code is detected on mobile devices and applications."
+              },
+              {
+                "control-id": "RA-5",
+                "remarks": "Mobile application vulnerabilities and threats are assessed."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-platform-compromise-detection",
+        "type": "capability",
+        "title": "Mobile Platform Compromise Detection",
+        "description": "Detects indicators of mobile operating system compromise, rooting, or bypass of platform security controls.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1625",
+            "remarks": "Impairment of mobile OS security defenses."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0062",
+            "remarks": "Runtime integrity monitoring detects platform compromise."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-platform-compromise",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-7",
+                "remarks": "Unauthorized mobile platform changes are detected."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-network-based-threat-detection",
+        "type": "capability",
+        "title": "Mobile Network‑Based Threat Detection",
+        "description": "Detects malicious or high‑risk network activity affecting mobile devices and applications.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1437",
+            "remarks": "Network‑based interception or manipulation of mobile traffic."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0044",
+            "remarks": "Network traffic analysis detects adversary‑in‑the‑middle attacks."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-network-threats",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-7",
+                "remarks": "Boundary protections monitor mobile network activity."
+              },
+              {
+                "control-id": "SI-4",
+                "remarks": "Mobile communications are monitored for malicious activity."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-threat-signal-generation",
+        "type": "capability",
+        "title": "Mobile Threat Signal Generation",
+        "description": "Generates structured threat signals to inform posture evaluation and risk‑based access decisions.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression or manipulation of threat telemetry to evade detection."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Threat telemetry reporting enables informed Zero Trust decisions."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-threat-signals",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "RA-7",
+                "remarks": "Threat signals are incorporated into access decisions."
+              },
+              {
+                "control-id": "AU-12",
+                "remarks": "Threat events are generated and reported."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

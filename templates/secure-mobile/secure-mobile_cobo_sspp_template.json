@@ -1,0 +1,145 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-mobile:cobo",
+
+    "metadata": {
+      "title": "COBO Mobile SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T04:25:00Z",
+      "remarks": "System Security and Privacy Plan defining Corporate-Owned, Business-Operated (COBO) Mobile devices within the Secure-Mobile architecture."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-mobile:platform",
+      "remarks": "This SSPP inherits all constraints, guardrails, and trust semantics from the Secure-Mobile Platform SSPP."
+    },
+
+    "system-characteristics": {
+      "system-name": "COBO Mobile",
+      "system-description": "COBO Mobile devices are institution-owned mobile devices operated strictly for business purposes. They provide a high level of administrative control and policy enforcement while remaining constrained to signal-based trust and non-execution semantics under the Secure-Mobile model.",
+      "security-sensitivity-level": "moderate-high",
+
+      "props": [
+        {
+          "name": "ownership-model",
+          "class": "mobile-ownership",
+          "value": "corporate-owned",
+          "remarks": "The institution owns and controls the mobile hardware."
+        },
+        {
+          "name": "use-model",
+          "class": "mobile-use",
+          "value": "business-only",
+          "remarks": "COBO Mobile devices are restricted to institutional business use only."
+        },
+        {
+          "name": "management-authority",
+          "class": "device-control",
+          "value": "full",
+          "remarks": "The institution retains full management, configuration, and wipe authority."
+        },
+        {
+          "name": "container-model",
+          "class": "data-boundary",
+          "value": "global-managed",
+          "remarks": "All data and applications on the device are institution-managed."
+        },
+        {
+          "name": "execution-trust",
+          "class": "explicit-prohibition",
+          "value": "not-granted",
+          "remarks": "COBO Mobile devices are never treated as trusted execution environments."
+        },
+        {
+          "name": "daw-eligibility",
+          "class": "explicit-prohibition",
+          "value": "never",
+          "remarks": "COBO Mobile devices may not be used for DAW or privileged access workflows."
+        },
+        {
+          "name": "baseline-security-posture",
+          "class": "requirement",
+          "value": "preventive-monitored-and-contained",
+          "remarks": "COBO Mobile enforces baseline hardening (CIS L2), continuous health evaluation, and runtime threat protection."
+        },
+        {
+          "name": "admin-context",
+          "class": "explicit-prohibition",
+          "value": "not-supported",
+          "remarks": "Administrative, break-glass, and emergency override contexts are not supported on COBO Mobile."
+        },
+        {
+          "name": "data-classification-ceiling",
+          "class": "eligibility-constraint",
+          "value": "level-3",
+          "remarks": "COBO Mobile devices may access data up to Classification Level 3, subject to Secure-Mobile containment rules."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "COBO Mobile is implemented by applying the full Secure-Mobile pattern stack with institution-wide enforcement. Unlike COPE or BYOD Mobile, COBO Mobile does not require privacy separation between personal and managed data due to its business-only usage model.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-core",
+          "type": "pattern-reference",
+          "title": "Mobile Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-application-trust",
+          "type": "pattern-reference",
+          "title": "Mobile Application Trust"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-data-containment",
+          "type": "pattern-reference",
+          "title": "Mobile Data Containment"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-posture-compliance",
+          "type": "pattern-reference",
+          "title": "Mobile Posture & Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-threat-protection",
+          "type": "pattern-reference",
+          "title": "Mobile Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-telemetry-normalization",
+          "type": "pattern-reference",
+          "title": "Mobile Telemetry Normalization"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-admin-breakglass-clarifier",
+          "type": "pattern-reference",
+          "title": "Mobile Admin / Break-Glass Clarifier"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-lifecycle",
+          "type": "pattern-reference",
+          "title": "Mobile Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-cobo-mobile-owner",
+        "title": "COBO Mobile Service Owner",
+        "remarks": "Owns the COBO Mobile service offering and ensures adherence to Secure-Mobile constraints."
+      },
+      {
+        "id": "role-cobo-mobile-operations",
+        "title": "COBO Mobile Operations",
+        "remarks": "Operates COBO Mobile devices, posture services, and lifecycle actions in accordance with this SSPP."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Security and privacy controls are inherited from the Secure-Mobile Platform and enforced through pattern-conformant mobile management and access systems. This SSPP does not restate individual control implementations."
+    }
+  }
+}

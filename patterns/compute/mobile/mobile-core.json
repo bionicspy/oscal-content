@@ -1,0 +1,207 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:mobile-core",
+
+    "metadata": {
+      "title": "Mobile Core",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T00:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC455",
+          "remarks": "Business capability defining baseline trust requirements for mobile devices accessing institutional systems."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD245",
+          "remarks": "Mobile platforms, mobile operating systems, platform security features, and device enrollment services."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP360",
+          "remarks": "Foundational Zero Trust pattern defining signal‑based trust for mobile devices without execution trust."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "mobile-foundation",
+          "value": "SP 800-53 Rev.5; SP 800-124 Rev.2; SP 800-207",
+          "remarks": "Mobile Core aligns with NIST guidance for mobile device security and Zero Trust."
+        }
+      ],
+
+      "remarks": "Mobile Core defines the immutable baseline capabilities a mobile device must satisfy before it can be considered for conditional access. This pattern explicitly excludes execution trust, configuration hardening, application controls, and lifecycle policy."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-device-enrollment-and-accountability",
+        "type": "capability",
+        "title": "Mobile Device Enrollment and Accountability",
+        "description": "Ensures mobile devices are formally enrolled, uniquely identifiable, and attributable to an owner or custodian.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078",
+            "remarks": "Use of unmanaged or unauthorized devices to access services."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0004",
+            "remarks": "Formal enrollment and device registration establish accountability."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-enrollment",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-8",
+                "remarks": "Authorized mobile devices are inventoried."
+              },
+              {
+                "control-id": "IA-3",
+                "remarks": "Devices are uniquely identified prior to access."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-platform-integrity",
+        "type": "capability",
+        "title": "Mobile Platform Integrity",
+        "description": "Establishes baseline integrity of the mobile operating system and platform security features.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1625",
+            "remarks": "Impairment of mobile OS defenses through rooting or jailbreaking."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0067",
+            "remarks": "Platform‑enforced integrity and verified boot prevent unauthorized modification."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-platform-integrity",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-7",
+                "remarks": "Mechanisms detect unauthorized changes to mobile platform components."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-device-protection",
+        "type": "capability",
+        "title": "Mobile Device Protection",
+        "description": "Ensures mobile devices enforce cryptographic protection and user authentication controls.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1417",
+            "remarks": "Access to data on lost or stolen mobile devices."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0021",
+            "remarks": "Encryption and lock‑screen authentication protect mobile data."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-device-protection",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SC-28",
+                "remarks": "Mobile device data is protected at rest."
+              },
+              {
+                "control-id": "IA-7",
+                "remarks": "Mobile devices enforce authentication prior to access."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-observability",
+        "type": "capability",
+        "title": "Mobile Observability",
+        "description": "Ensures security‑relevant mobile device state and events are observable for trust decisions.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1107",
+            "remarks": "Suppression of security signals to evade detection."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0061",
+            "remarks": "Posture and telemetry reporting enable detection and response."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-observability",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AU-2",
+                "remarks": "Mobile security‑relevant events are captured."
+              },
+              {
+                "control-id": "AU-12",
+                "remarks": "Audit generation is enabled for mobile platforms."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

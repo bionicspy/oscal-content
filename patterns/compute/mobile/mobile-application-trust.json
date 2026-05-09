@@ -1,0 +1,203 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:mobile-application-trust",
+
+    "metadata": {
+      "title": "Mobile Application Trust",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T00:15:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC455",
+          "remarks": "Business capability for ensuring only explicitly trusted mobile applications may access institutional services and data."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD250",
+          "remarks": "Mobile applications, application stores, enterprise distribution channels, signing authorities, and runtime policy enforcement."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP370",
+          "remarks": "Foundational Zero Trust pattern expressing application‑centric trust and explicit allow‑listing for mobile access."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "mobile-application-security",
+          "value": "SP 800-53 Rev.5; SP 800-124 Rev.2; SP 800-207",
+          "remarks": "Mobile Application Trust aligns with least functionality, integrity, and Zero Trust guidance for mobile platforms."
+        }
+      ],
+
+      "remarks": "Mobile Application Trust defines the conditions under which a mobile application is permitted to participate in institutional workflows. This pattern explicitly rejects device execution trust and enforces application‑centric authorization."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-application-origin-control",
+        "type": "capability",
+        "title": "Authorized Application Origin Control",
+        "description": "Ensures mobile applications originate only from institution‑approved app stores or enterprise distribution channels.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1475",
+            "remarks": "Delivery of malicious mobile applications through untrusted or third‑party distribution channels."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0035",
+            "remarks": "Controlled software distribution prevents installation of untrusted applications."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-application-origin",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-10",
+                "remarks": "Restrictions on mobile software installation sources are enforced."
+              },
+              {
+                "control-id": "CM-11",
+                "remarks": "Approved software lists are maintained for mobile platforms."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-application-integrity",
+        "type": "capability",
+        "title": "Mobile Application Integrity Verification",
+        "description": "Ensures mobile applications are cryptographically signed and validated prior to execution and service access.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1601",
+            "remarks": "Modification of application binaries to introduce malicious behavior."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0011",
+            "remarks": "Code signing validates application publisher identity and integrity."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-application-integrity",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-7",
+                "remarks": "Integrity verification mechanisms detect unauthorized application modification."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-application-allowlisting",
+        "type": "capability",
+        "title": "Mobile Application Allow‑Listing",
+        "description": "Restricts access to institutional services and data to explicitly approved mobile applications.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1413",
+            "remarks": "Abuse of application permissions to access sensitive data."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0042",
+            "remarks": "Application allow‑listing enforces least functionality."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-application-allowlist",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "CM-7",
+                "remarks": "Least functionality is enforced through mobile application allow‑listing."
+              },
+              {
+                "control-id": "AC-19",
+                "remarks": "Mobile access is restricted based on approved applications."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-application-risk-evaluation",
+        "type": "capability",
+        "title": "Mobile Application Risk Evaluation",
+        "description": "Evaluates application behavior, permissions, and risk signals before permitting access to institutional resources.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1426",
+            "remarks": "Use of excessive or misleading permissions by mobile applications."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0052",
+            "remarks": "Dynamic risk assessment identifies unsafe application behavior."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-application-risk",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "RA-5",
+                "remarks": "Ongoing evaluation of application vulnerabilities and risk indicators."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

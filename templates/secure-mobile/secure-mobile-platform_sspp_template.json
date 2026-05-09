@@ -1,0 +1,132 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-mobile:platform",
+
+    "metadata": {
+      "title": "Secure-Mobile Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T03:50:00Z",
+      "remarks": "System Security and Privacy Plan establishing the Secure-Mobile Platform as the authoritative trust framework for mobile device access to institutional systems."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:secure-mobile",
+      "remarks": "This SSPP imports and relies exclusively on the Secure-Mobile composite pattern and its constituent patterns."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure-Mobile Platform",
+      "system-description": "The Secure-Mobile Platform defines how mobile devices may interact with institutional systems using signal-based Zero Trust principles without granting execution or administrative trust. It governs eligibility, application trust, data containment, posture evaluation, threat signaling, privacy boundaries, telemetry normalization, and lifecycle controls.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "platform-role",
+          "class": "authoritative-trust-plane",
+          "value": "mobile",
+          "remarks": "Authoritative trust plane governing all mobile access to institutional resources."
+        },
+        {
+          "name": "trust-model",
+          "class": "foundational-constraint",
+          "value": "signal-based-zero-trust",
+          "remarks": "Mobile access decisions are based on posture, application, and risk signals, not device execution trust."
+        },
+        {
+          "name": "execution-trust",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Mobile platforms are never considered trusted execution environments."
+        },
+        {
+          "name": "daw-eligibility",
+          "class": "explicit-prohibition",
+          "value": "never",
+          "remarks": "Mobile platforms are categorically excluded from DAW or privileged access workflows."
+        },
+        {
+          "name": "admin-context",
+          "class": "explicit-prohibition",
+          "value": "not-supported",
+          "remarks": "Administrative and break-glass contexts are forbidden on mobile platforms."
+        },
+        {
+          "name": "data-classification-ceiling",
+          "class": "eligibility-constraint",
+          "value": "level-3",
+          "remarks": "Mobile platforms may only access institutional data up to Data Classification Level 3, subject to containment and policy."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "The Secure-Mobile Platform is implemented through layered pattern enforcement. It does not define enforcement technologies, vendors, or configuration details. All mobile SSPPs inherit this platform contract and refine it by ownership and operating system.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-core",
+          "type": "pattern-reference",
+          "title": "Mobile Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-application-trust",
+          "type": "pattern-reference",
+          "title": "Mobile Application Trust"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-data-containment",
+          "type": "pattern-reference",
+          "title": "Mobile Data Containment"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-posture-compliance",
+          "type": "pattern-reference",
+          "title": "Mobile Posture & Compliance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-threat-protection",
+          "type": "pattern-reference",
+          "title": "Mobile Threat Protection"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-telemetry-normalization",
+          "type": "pattern-reference",
+          "title": "Mobile Telemetry Normalization"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-privacy-boundaries",
+          "type": "pattern-reference",
+          "title": "Mobile Privacy Boundaries"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-admin-breakglass-clarifier",
+          "type": "pattern-reference",
+          "title": "Mobile Admin / Break-Glass Clarifier"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:mobile-lifecycle",
+          "type": "pattern-reference",
+          "title": "Mobile Lifecycle"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-secure-mobile-governance",
+        "title": "Secure-Mobile Governance Authority",
+        "remarks": "Owns the Secure-Mobile Platform, approves mobile SSPPs, and enforces architectural guardrails."
+      },
+      {
+        "id": "role-secure-mobile-operations",
+        "title": "Secure-Mobile Operations",
+        "remarks": "Operates mobile posture, telemetry, and lifecycle services in accordance with this SSPP."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Control satisfaction is achieved through inheritance from Secure-Mobile patterns and downstream SSPPs. This platform SSPP intentionally does not restate individual control implementations."
+    }
+  }
+}

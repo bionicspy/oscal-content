@@ -1,0 +1,203 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:mobile-privacy-boundaries",
+
+    "metadata": {
+      "title": "Mobile Privacy Boundaries",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T02:40:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC480",
+          "remarks": "Business capability for enforcing privacy boundaries between institutional security controls and personal mobile device data."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD275",
+          "remarks": "Mobile privacy controls, data minimization mechanisms, container separation, and telemetry scoping for mobile platforms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP420",
+          "remarks": "Foundational pattern defining explicit privacy boundaries and least‑visibility guarantees within Zero Trust mobile architectures."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "mobile-privacy",
+          "value": "SP 800-53 Rev.5; SP 800-207; SP 800-124 Rev.2; NIST Privacy Framework",
+          "remarks": "Mobile Privacy Boundaries align with NIST privacy engineering, data minimization, and Zero Trust guidance."
+        }
+      ],
+
+      "remarks": "Mobile Privacy Boundaries defines the explicit limits on institutional visibility, control, and data collection for mobile devices. This pattern ensures privacy preservation is enforced as an architectural property rather than a policy afterthought."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-observation-minimization",
+        "type": "capability",
+        "title": "Mobile Observation Minimization",
+        "description": "Restricts institutional telemetry collection to only data strictly required for security and access decisions.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1082",
+            "remarks": "System information discovery beyond legitimate security needs."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0073",
+            "remarks": "Telemetry scoping enforces data minimization."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-observation-minimization",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "PL-8",
+                "remarks": "Security and privacy safeguards are defined and limited in scope."
+              },
+              {
+                "control-id": "SI-12",
+                "remarks": "Collection of information is limited to authorized purposes."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-container-privacy-separation",
+        "type": "capability",
+        "title": "Managed and Personal Data Separation",
+        "description": "Ensures institutional security controls apply only to managed application containers and do not extend into personal data spaces.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1413",
+            "remarks": "Unauthorized access to personal data through over‑privileged management controls."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0047",
+            "remarks": "Container separation isolates institutional controls from personal data."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-container-privacy",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-4",
+                "remarks": "Information flow control prevents access to personal data spaces."
+              },
+              {
+                "control-id": "PT-7",
+                "remarks": "Personal data boundaries are explicitly respected."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-selective-control-limits",
+        "type": "capability",
+        "title": "Selective Control Limits",
+        "description": "Restricts institutional control actions on mobile devices to explicitly authorized scopes.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1562",
+            "remarks": "Security controls abused to exert excessive influence over endpoints."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0070",
+            "remarks": "Strict enforcement boundaries prevent control overreach."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-control-limits",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "AC-6",
+                "remarks": "Least privilege applies to security administration actions."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:mobile-user-transparency",
+        "type": "capability",
+        "title": "Mobile User Transparency",
+        "description": "Ensures mobile users are informed of institutional control boundaries and data visibility.",
+
+        "props": [
+          {
+            "name": "attack-technique",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1083",
+            "remarks": "Covert enumeration of user data without awareness."
+          },
+          {
+            "name": "defense-technique",
+            "ns": "urn:mitre:d3fend",
+            "class": "technique",
+            "value": "D3FEND-0080",
+            "remarks": "Control transparency reduces distrust and misuse."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:mobile-transparency",
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              {
+                "control-id": "TR-1",
+                "remarks": "Transparency mechanisms inform users of data and control boundaries."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

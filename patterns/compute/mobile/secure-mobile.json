@@ -1,0 +1,102 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-mobile",
+
+    "metadata": {
+      "title": "Secure Mobile",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-05T03:35:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC440",
+          "remarks": "Business capability for providing controlled, risk‑aware access to institutional services and data from mobile platforms."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD230",
+          "remarks": "Mobile platforms, mobile operating systems, application containers, posture signals, threat telemetry, and access mediation."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:AP320",
+          "remarks": "Composite Zero Trust pattern governing mobile access through layered eligibility, application trust, data containment, and continuous risk evaluation."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "secure-mobile",
+          "value": "SP 800-53 Rev.5; SP 800-124 Rev.2; SP 800-207",
+          "remarks": "Secure Mobile aligns with NIST mobile security and Zero Trust guidance, explicitly excluding execution trust and privileged access from mobile platforms."
+        }
+      ],
+
+      "remarks": "Secure Mobile composes all mobile security patterns into a coherent Zero Trust model. It defines how mobile devices may participate in institutional systems without granting execution or administrative trust. This composite establishes strict boundaries between mobile access, Secure Endpoint, and DAW environments."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:pattern:mobile-core",
+        "type": "component-reference",
+        "title": "Mobile Core",
+        "description": "Defines baseline eligibility requirements for mobile devices prior to conditional access."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:mobile-application-trust",
+        "type": "component-reference",
+        "title": "Mobile Application Trust",
+        "description": "Defines which mobile applications are trusted to access institutional resources."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:mobile-data-containment",
+        "type": "component-reference",
+        "title": "Mobile Data Containment",
+        "description": "Constrains how trusted applications store, access, and share institutional data on mobile devices."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:mobile-posture-compliance",
+        "type": "component-reference",
+        "title": "Mobile Posture & Compliance",
+        "description": "Produces device posture and compliance signals for risk‑based access decisions."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:mobile-threat-protection",
+        "type": "component-reference",
+        "title": "Mobile Threat Protection",
+        "description": "Detects mobile threats and generates normalized threat signals."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:mobile-telemetry-normalization",
+        "type": "component-reference",
+        "title": "Mobile Telemetry Normalization",
+        "description": "Normalizes mobile telemetry into decision‑grade security signals."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:mobile-privacy-boundaries",
+        "type": "component-reference",
+        "title": "Mobile Privacy Boundaries",
+        "description": "Enforces privacy and visibility limits between institutional controls and personal mobile data."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:mobile-admin-breakglass-clarifier",
+        "type": "component-reference",
+        "title": "Mobile Admin / Break‑Glass Clarifier",
+        "description": "Explicitly prohibits administrative and break‑glass access paths on mobile platforms."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:mobile-lifecycle",
+        "type": "component-reference",
+        "title": "Mobile Lifecycle",
+        "description": "Governs enrollment, suspension, data removal, and decommissioning of mobile devices."
+      }
+    ]
+  }
+}
