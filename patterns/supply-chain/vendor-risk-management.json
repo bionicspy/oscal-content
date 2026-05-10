@@ -1,0 +1,203 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:vendor-risk-management",
+
+    "metadata": {
+      "title": "Vendor Risk Management",
+      "version": "2.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T09:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC330",
+          "remarks": "Business capability for assessing, approving, and monitoring risk associated with third‑party vendors without granting system trust, access, or execution authority."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD045",
+          "remarks": "Vendor governance systems, risk assessment platforms, contract management, and supplier compliance tooling."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP610",
+          "remarks": "Solution pattern governing vendor trust decisions under Zero Trust principles."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "vendor-risk-data",
+          "value": "urn:utoronto:cae2:drm:DP610",
+          "remarks": "Defines vendor profiles, risk ratings, due‑diligence evidence, and contractual constraints as trust‑relevant data."
+        },
+        {
+          "name": "nist-controls",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-families",
+          "value": "SR, RA, SA, PL",
+          "remarks": "Vendor Risk Management implements supply‑chain risk governance and planning controls."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "primary-guidance",
+          "value": "SP 800-161r1",
+          "remarks": "Cybersecurity Supply Chain Risk Management Practices."
+        }
+      ],
+
+      "remarks": "Vendor Risk Management governs how third‑party vendors are assessed and approved from a risk perspective. Vendor approval does not imply system access, software trust, deployment authority, or runtime execution permission."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:vendor-identification",
+        "type": "capability",
+        "title": "Vendor Identification and Classification",
+        "description": "Identifies and classifies vendors based on criticality, data access, system interaction, and operational dependency.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SR-2" },
+              { "control-id": "PL-2" }
+            ]
+          }
+        ],
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-RISK",
+              "name": "Risk Classification",
+              "remarks": "Classification of vendors based on potential impact and exposure."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:vendor-due-diligence",
+        "type": "capability",
+        "title": "Vendor Due Diligence and Assessment",
+        "description": "Evaluates vendor security posture, practices, and history prior to onboarding or engagement.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SR-3" },
+              { "control-id": "RA-3" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1195",
+              "name": "Supply Chain Compromise",
+              "remarks": "Use of compromised or high‑risk vendors as an attack vector."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-ASSESS",
+              "name": "Security Assessment",
+              "remarks": "Assessment of vendor security maturity and risk posture."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:vendor-contractual-controls",
+        "type": "capability",
+        "title": "Contractual Risk Controls",
+        "description": "Ensures contracts and agreements include enforceable security, audit, and notification requirements.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SR-5" },
+              { "control-id": "SA-9" }
+            ]
+          }
+        ],
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-POL",
+              "name": "Policy Enforcement",
+              "remarks": "Use of contractual and policy mechanisms to constrain vendor behavior."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:vendor-ongoing-monitoring",
+        "type": "capability",
+        "title": "Ongoing Vendor Risk Monitoring",
+        "description": "Continuously monitors vendor risk posture and responds to changes or incidents.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SR-6" },
+              { "control-id": "RA-5" }
+            ]
+          }
+        ],
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-MON",
+              "name": "Risk Monitoring",
+              "remarks": "Monitoring of vendor security posture over time."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:vendor-non-equivalence",
+        "type": "capability",
+        "title": "Vendor Risk Non‑Equivalence Constraints",
+        "description": "Defines what vendor approval or risk acceptance does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SR-2" }
+            ]
+          }
+        ],
+
+        "remarks": "Vendor approval, acceptable risk ratings, or contractual compliance do not imply system access, software trust, deployability, safety certification, or runtime execution authority."
+      }
+    ]
+  }
+}

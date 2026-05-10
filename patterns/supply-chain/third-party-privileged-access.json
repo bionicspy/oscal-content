@@ -1,0 +1,192 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:third-party-privileged-access",
+
+    "metadata": {
+      "title": "Third‑Party Privileged Access",
+      "version": "2.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T09:25:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC330",
+          "remarks": "Business capability for governing and constraining privileged access by vendors, contractors, and third‑party service providers without granting trust or authority."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD050",
+          "remarks": "Identity systems, privileged access management, remote access, support channels, and service connectivity mechanisms."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP630",
+          "remarks": "Solution pattern governing third‑party privileged access under Zero Trust principles."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "third-party-access-data",
+          "value": "urn:utoronto:cae2:drm:DP630",
+          "remarks": "Defines third‑party identities, access approvals, session records, and audit evidence as trust‑relevant data."
+        },
+        {
+          "name": "nist-controls",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-families",
+          "value": "IA, AC, AU",
+          "remarks": "Third‑Party Privileged Access implements identification, access control, and accountability controls."
+        }
+      ],
+
+      "remarks": "Third‑Party Privileged Access governs how external parties access systems, environments, and services. Granting access does not imply trust, safety, vendor approval, or permission to deploy or execute software."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:third-party-identity-establishment",
+        "type": "capability",
+        "title": "Third‑Party Identity Establishment",
+        "description": "Establishes unique, non‑shared identities for third‑party personnel and systems requiring access.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-2" },
+              { "control-id": "IA-5" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1078",
+              "name": "Valid Accounts",
+              "remarks": "Use of compromised or misused third‑party credentials."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-AUTH",
+              "name": "Strong Authentication",
+              "remarks": "Strong authentication for third‑party identities."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:privileged-access-authorization",
+        "type": "capability",
+        "title": "Third‑Party Privileged Access Authorization",
+        "description": "Explicitly authorizes scoped and time‑bound privileged access for third‑party identities.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-2" },
+              { "control-id": "AC-6" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1068",
+              "name": "Exploitation for Privilege Escalation",
+              "remarks": "Abuse of excessive or persistent third‑party privileges."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-PERM",
+              "name": "Permission Restriction",
+              "remarks": "Least‑privilege and just‑in‑time access enforcement."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:third-party-session-control",
+        "type": "capability",
+        "title": "Third‑Party Session Control and Monitoring",
+        "description": "Monitors, records, and constrains third‑party privileged sessions for accountability and incident response.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AU-12" },
+              { "control-id": "AC-17" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1021",
+              "name": "Remote Services",
+              "remarks": "Abuse of remote access channels by third parties."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-LOG",
+              "name": "Session Logging",
+              "remarks": "Recording and monitoring of privileged sessions."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:third-party-access-non-equivalence",
+        "type": "capability",
+        "title": "Third‑Party Access Non‑Equivalence Constraints",
+        "description": "Defines what third‑party access does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-2" }
+            ]
+          }
+        ],
+
+        "remarks": "Third‑party privileged access does not imply vendor trust, software approval, deployment permission, safety certification, or runtime execution authority."
+      }
+    ]
+  }
+}

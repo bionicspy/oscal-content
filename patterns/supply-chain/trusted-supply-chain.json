@@ -1,63 +1,84 @@
 {
   "component-definition": {
     "uuid": "urn:utoronto:security:pattern:trusted-supply-chain",
+
     "metadata": {
       "title": "Trusted Supply Chain",
-      "version": "1.1.0",
+      "version": "2.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T07:25:00Z",
+      "last-modified": "2026-05-07T10:05:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC350",
-          "remarks": "Business capability for managing and governing supply chain and third-party risk across vendors, access, and software dependencies."
+          "value": "urn:utoronto:cae2:brm:BC330",
+          "remarks": "Business capability for governing third‑party trust, vendor risk, and software supply chain exposure without granting system access, execution authority, or safety guarantees."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD070",
-          "remarks": "Supply chain security, third-party risk management, and software composition governance technologies."
+          "value": "urn:utoronto:cae2:trm:TD045",
+          "remarks": "Vendor governance, third‑party access management, software dependencies, toolchains, and external SDLC inputs."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "composite-pattern",
-          "value": "urn:utoronto:cae2:arm:AP195",
-          "remarks": "Composite pattern asserting that external vendors, third-party access, and software supply chains are governed and trustworthy."
+          "value": "urn:utoronto:cae2:arm:AP600",
+          "remarks": "Composite pattern assembling all Trusted Supply Chain solution patterns into a single governance and trust domain."
+        },
+        {
+          "name": "trust-model",
+          "class": "foundational-principle",
+          "value": "external-untrusted-by-default",
+          "remarks": "All external vendors, software, and services are untrusted until explicitly assessed and constrained."
+        },
+        {
+          "name": "nist-controls",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-families",
+          "value": "SR, RA, IA, AC, AU, SI, CM, SA, PL",
+          "remarks": "Trusted Supply Chain governs supply chain risk and third‑party trust controls across the enterprise."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "primary-guidance",
+          "value": "SP 800-161r1",
+          "remarks": "Cybersecurity Supply Chain Risk Management Practices."
         }
       ],
 
-      "remarks": "Trusted Supply Chain is a composite pattern asserting that third-party relationships, privileged access, software dependencies, and component transparency are understood, constrained, and actively governed. This pattern introduces no independent controls and may be claimed only when all constituent supply chain patterns are realized."
+      "remarks": "Trusted Supply Chain composes governance and technical patterns that assess, constrain, and monitor third‑party and supply‑chain risk. Trust signals produced by this domain do not imply deployment authority, runtime execution permission, or safety certification."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:pattern-ref:vendor-risk-management",
-        "type": "component",
+        "uuid": "urn:utoronto:security:pattern:vendor-risk-management",
+        "type": "component-reference",
         "title": "Vendor Risk Management",
-        "description": "Identification, assessment, approval, and ongoing governance of external vendor risk."
+        "description": "Assesses and governs organizational risk posed by third‑party vendors."
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:third-party-privileged-access",
-        "type": "component",
-        "title": "Third-Party Privileged Access",
-        "description": "Constraint, monitoring, and revocation of elevated access granted to vendors and external parties."
+        "uuid": "urn:utoronto:security:pattern:third-party-privileged-access",
+        "type": "component-reference",
+        "title": "Third‑Party Privileged Access",
+        "description": "Constrains and monitors privileged access granted to external personnel or systems."
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:software-supply-chain",
-        "type": "component",
+        "uuid": "urn:utoronto:security:pattern:software-supply-chain",
+        "type": "component-reference",
         "title": "Software Supply Chain",
-        "description": "Governance of risk introduced by third-party and open-source software components."
+        "description": "Governs ingestion and integrity of third‑party software, tooling, and build inputs."
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:dependency-transparency",
-        "type": "component",
-        "title": "Dependency Transparency (SBOM)",
-        "description": "Visibility into software composition through SBOMs and dependency inventories."
+        "uuid": "urn:utoronto:security:pattern:dependency-transparency",
+        "type": "component-reference",
+        "title": "Dependency Transparency",
+        "description": "Provides visibility into software composition and dependency relationships."
       }
     ]
   }

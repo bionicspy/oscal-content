@@ -1,0 +1,126 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:trusted-supply-chain:platform",
+
+    "metadata": {
+      "title": "Trusted Supply Chain Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T08:05:00Z",
+      "remarks": "System Security and Privacy Plan establishing the Trusted Supply Chain domain as the authoritative framework for vendor trust, third‑party risk, and supply‑chain governance."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:trusted-supply-chain",
+      "remarks": "This SSPP inherits the Trusted Supply Chain composite pattern, including vendor risk management, third‑party privileged access, software supply chain, and dependency transparency patterns."
+    },
+
+    "system-characteristics": {
+      "system-name": "Trusted Supply Chain Platform",
+      "system-description": "The Trusted Supply Chain Platform governs how vendors, third parties, dependencies, and external software inputs are assessed, approved, and constrained. It establishes non‑equivalence between procurement, transparency, provenance, and runtime trust or authorization.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "platform-role",
+          "class": "authoritative-trust-plane",
+          "value": "supply-chain-and-third-party-risk",
+          "remarks": "Authoritative plane for supply‑chain trust decisions."
+        },
+        {
+          "name": "trust-assumption",
+          "class": "default-posture",
+          "value": "external-untrusted",
+          "remarks": "All external vendors, software, and services are untrusted by default."
+        },
+        {
+          "name": "non-equivalence",
+          "class": "architectural-invariant",
+          "value": "trust-does-not-imply-execution",
+          "remarks": "Vendor approval, provenance, SBOMs, or contracts do not imply deployment, access, or execution permission."
+        },
+        {
+          "name": "implicit-authority",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Procurement approval or vendor onboarding must not grant system access or runtime trust."
+        },
+        {
+          "name": "domain-precedence",
+          "class": "authority-hierarchy",
+          "value": "sdlc-device-and-resilience",
+          "remarks": "Secure‑SDLC, Secure‑Device, and Secure‑Resilience SSPPs override supply‑chain trust signals."
+        },
+        {
+          "name": "lifecycle-scope",
+          "class": "governance-scope",
+          "value": "pre-runtime-and-governance-only",
+          "remarks": "This platform governs trust decisions, not runtime behavior or recovery."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "The Trusted Supply Chain Platform is implemented through governance, risk assessment, and explicit trust signaling. It does not authorize runtime access, deployment, execution, or privileged operations.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:vendor-risk-management",
+          "type": "pattern-inheritance",
+          "title": "Vendor Risk Management",
+          "remarks": "Defines how vendors are assessed and approved without implying trust at runtime."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:third-party-privileged-access",
+          "type": "pattern-inheritance",
+          "title": "Third‑Party Privileged Access",
+          "remarks": "Constrains and governs third‑party human and system access."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:software-supply-chain",
+          "type": "pattern-inheritance",
+          "title": "Software Supply Chain",
+          "remarks": "Governs software dependencies, build tools, and external inputs."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:dependency-transparency",
+          "type": "pattern-inheritance",
+          "title": "Dependency Transparency",
+          "remarks": "Provides visibility into composition without asserting trust."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-supply-chain-architecture",
+        "title": "Supply Chain Architecture",
+        "remarks": "Defines supply‑chain trust boundaries and non‑equivalence rules."
+      },
+      {
+        "id": "role-supply-chain-governance",
+        "title": "Supply Chain Governance",
+        "remarks": "Approves acceptable supply‑chain risk and trust posture."
+      },
+      {
+        "id": "role-vendor-risk",
+        "title": "Vendor Risk Management",
+        "remarks": "Assesses and manages vendor and supplier risk."
+      },
+      {
+        "id": "role-procurement",
+        "title": "Procurement",
+        "remarks": "Sources vendors without granting system trust or access."
+      },
+      {
+        "id": "role-supply-chain-monitoring",
+        "title": "Supply Chain Monitoring",
+        "remarks": "Monitors violations of supply‑chain trust boundaries."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through interpretation of NIST SP 800‑53r5 control families SR, SA, IA, AC, AU, SI, and RA. This SSPP introduces no runtime controls and provides no authorization for system access or execution."
+    }
+  }
+}

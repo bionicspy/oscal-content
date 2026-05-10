@@ -1,152 +1,239 @@
-# Supply Chain & Third‑Party Risk - Trust Plane Overview
+# Trusted Supply Chain
+## Patterns and Architecture Overview
 
-The Supply Chain & Third‑Party Risk trust plane defines how the institution assesses, governs, constrains, and monitors risks introduced by external vendors, suppliers, and third‑party software components.
-
-This plane recognizes that modern systems are composed ecosystems, not closed environments. It establishes trust boundaries, accountability, and assurance for:
-* vendors and service providers,
-* third‑party identities and access,
-* software supply chains and dependencies,
-* and transparency into what external components are present.
-
-The focus is risk ownership and trust decisions, not detection or recovery.
+---
 
 ## Purpose
-The purpose of the Supply Chain & Third‑Party Risk trust plane is to ensure that:
-* External vendors are assessed and governed proportionally to risk
-* Third‑party access is explicit, limited, and auditable
-* Software supply chains are understood and constrained
-* Dependencies are transparent and traceable
-* External risk does not silently bypass internal controls
-* Institutional accountability for third‑party risk is clear
 
-This plane allows the institution to assert:
-* “We understand and control the risks introduced by third parties.”
+**Trusted Supply Chain** defines the enterprise architecture for **governing third‑party trust, vendor risk, and software supply‑chain exposure** under Zero Trust principles.
 
-## Scope
-### In Scope
-The Supply Chain & Third‑Party Risk trust plane applies to:
-* Vendor onboarding, assessment, and ongoing risk review
-* Third‑party identities and privileged access
-* External service providers and SaaS platforms
-* Software supply chains (build tools, packages, image bases)
-* Dependency visibility and SBOMs
-* Contractual and technical third‑party controls
+It answers a single question across all domains:
 
-### Out of Scope
-This trust plane does not define:
-* Internal identity governance (Identity plane)
-* Network enforcement or segmentation (Network plane)
-* Runtime defenses or exploit prevention (Compute planes)
-* Security monitoring or response (Security Operations)
-* Business continuity and recovery (Resilience plane)
+> **What external parties, software, and services may be relied upon — and under what constraints — without ever granting implicit access, execution, or safety authority?**
 
-Those planes consume supply‑chain trust decisions, but do not establish them.
+Trusted Supply Chain applies across:
+- IT
+- OT
+- IoT
+- IoMT
+- Cloud, on‑prem, and hybrid environments
 
-## Pattern Decomposition
+---
+
+## Core Architectural Principle
+
+> **Trust is a governance decision, not an execution permission.**
+
+Trusted Supply Chain:
+- produces **trust signals**
+- enables **risk‑informed decisions**
+- explicitly **does not authorize** access, deployment, execution, or safety‑critical operation
+
+---
+
+## What Trusted Supply Chain Is (and Is Not)
+
+### ✅ Trusted Supply Chain **IS**
+- A **governance and trust plane**
+- Focused on **external risk**
+- Vendor‑, access‑, and software‑centric
+- Independent of SDLC tooling and runtime operations
+- Aligned with NIST SP 800‑53 Rev.5 SR controls
+- Compatible with Secure‑SDLC and Secure‑Resilience
+
+### ❌ Trusted Supply Chain **IS NOT**
+- A runtime authorization system
+- A deployment gate
+- A resilience or recovery mechanism
+- A safety or clinical approval process
+- A substitute for Secure‑Device or Secure‑Resilience
+
+---
+
+## Trusted Supply Chain Structural Model
 ```
-supply-chain/
-├── vendor-risk-management
-├── third-party-privileged-access
-├── software-supply-chain
-├── dependency-transparency (SBOM)
-└── trusted-supply-chain (composite)
+Trusted Supply Chain
+│
+├─ Solution Patterns
+│   ├─ Vendor Risk Management
+│   ├─ Third‑Party Privileged Access
+│   ├─ Software Supply Chain
+│   └─ Dependency Transparency
+│
+└─ Composite
+    └─ Trusted Supply Chain
 ```
-Each pattern answers a distinct third‑party trust question, avoiding overlap between organizational risk, access control, and software composition.
 
-### 1. vendor-risk-management
-Governs institutional risk arising from external vendors and service providers.
-#### Purpose
-To ensure vendors are assessed, approved, and monitored according to risk.
-#### Scope
-* Vendor due diligence and onboarding
-* Periodic reassessment and assurance
-* Contractual and control expectations
+---
 
-#### Components
-* vendor-identification-and-classification
-  * Categorization of vendors by risk and criticality
-* risk-assessment-and-due-diligence
-  * Initial and ongoing vendor risk evaluation
-* contractual-and-control-requirements
-  * Enforceable requirements and assurances
+## Solution Patterns
 
-#### Answers the Question
-“Can this vendor be trusted?”
+### **Vendor Risk Management**
 
-### 2. third-party-privileged-access
-Controls elevated access granted to third parties.
-#### Purpose
-To prevent vendors from becoming unbounded insiders.
-#### Scope
-* Privileged access by vendors
-* Identity and access constraints
-* Session monitoring and termination
+Governs **organizational trust** of third‑party vendors.
 
-#### Components
-* third-party-identity-governance
-  * Managed vendor identities
-* privileged-access-constraints
-  * Least‑privilege and just‑in‑time access
-* access-monitoring-and-revocation
-  * Oversight and rapid removal
+Covers:
+- vendor identification and classification
+- due diligence and assessment
+- contractual risk controls
+- ongoing monitoring
 
-#### Answers the Question
-“What can vendors do inside our environment?”
+**Important rule:**  
+> Vendor approval ≠ system access ≠ software trust ≠ deploy permission
 
-### 3. software-supply-chain
-Manages risk from third‑party software and build inputs.
-#### Purpose
-To ensure software trust is not undermined upstream.
-#### Scope
-* External libraries and packages
-* Build tools and pipelines
-* Artifact provenance
+---
 
-#### Components
-* third-party-software-identification
-  * Identification of external components
-* supply-chain-risk-evaluation
-  * Risk assessment of dependencies
-* artifact-provenance-verification
-  * Validation of software origin
+### **Third‑Party Privileged Access**
 
-#### Answers the Question
-“Can we trust the software we did not write?”
+Governs **human and system access** for external parties.
 
-### 4. dependency-transparency (SBOM)
-Provides visibility into software composition.
-#### Purpose
-To make dependencies known, queryable, and governable.
-#### Scope
-* Software Bills of Materials (SBOMs)
-* Dependency inventories
-* Vulnerability correlation
+Covers:
+- identity establishment
+- scoped and time‑bound privilege
+- session monitoring and auditability
 
-#### Components
-* sbom-generation-and-maintenance
-  * Creation of SBOMs
-* dependency-inventory-and-tracking
-  * Ongoing visibility into components
-* dependency-risk-analysis
-  * Linking dependencies to risk intelligence
+**Important rule:**  
+> Access ≠ trust ≠ approval ≠ authority
 
-#### Answers the Question
-“What third‑party components are we running?”
+---
 
-### 5. trusted-supply-chain (Composite)
-Asserts holistic trust in third‑party relationships and software supply chains.
-#### Purpose
-To provide an enterprise‑level assertion of controlled supply‑chain risk.
-#### Scope
-* Composition only
-* No independent controls
+### **Software Supply Chain**
 
-#### Components (References)
-```
-vendor-risk-management
-third-party-privileged-access
-software-supply-chain
-dependency-transparency
-```
-#### Answers the Question
-“Is our supply chain governed and trustworthy?”
+Governs **external software inputs** to the SDLC.
+
+Covers:
+- third‑party libraries
+- build tools and pipelines
+- images, IaC modules, policy‑as‑code
+- artifact provenance and integrity
+
+**Important rule:**  
+> Provenance or integrity ≠ deployability ≠ runtime trust
+
+---
+
+### **Dependency Transparency (SBOM)**
+
+Provides **visibility** into software composition.
+
+Covers:
+- SBOM generation
+- dependency inventories
+- vulnerability correlation
+
+**Important rule:**  
+> Transparency ≠ safety ≠ approval ≠ execution permission
+
+SBOMs are **inputs**, not decisions.
+
+---
+
+## Composite Pattern: **Trusted Supply Chain**
+
+The Trusted Supply Chain composite:
+- assembles all supply‑chain trust surfaces
+- declares domain‑level non‑equivalence
+- provides an executive and audit anchor
+
+It asserts:
+
+- Vendor trust does not imply access
+- Access does not imply approval
+- Software composition does not imply safety
+- Procurement does not imply deployment
+- Contracts do not imply execution authority
+
+---
+
+## Threat & Defense Modeling
+
+### MITRE ATT&CK
+- Applied **only at the component (capability) level**
+- Models concrete attack paths:
+  - vendor compromise
+  - credential misuse
+  - supply‑chain poisoning
+  - trust subversion
+
+### MITRE D3FEND
+- Applied **only at the component level**
+- Models enforceable techniques:
+  - strong authentication
+  - provenance capture
+  - dependency analysis
+  - session monitoring
+
+**ATT&CK and D3FEND are intentionally omitted at the composite level.**
+
+---
+
+## Standards & Control Alignment
+
+### NIST SP 800‑53 Rev.5
+Trusted Supply Chain governs controls across:
+
+- SR — Supply Chain Risk Management
+- RA — Risk Assessment
+- IA — Identification & Authentication
+- AC — Access Control
+- AU — Audit & Accountability
+- SI — System Integrity
+- CM — Configuration Management
+- SA — System & Services Acquisition
+- PL — Planning
+
+### NIST Guidance
+- **SP 800‑161r1** — Cybersecurity Supply Chain Risk Management Practices
+
+---
+
+## Relationship to Other Secure‑* Domains
+
+| Domain | Relationship |
+|------|-------------|
+| Secure‑SDLC | Consumes trusted supplier inputs |
+| Secure‑Device | Enforces execution safety |
+| Secure‑Resilience | Decides runtime eligibility |
+| Secure‑Integration | Governs propagation |
+| Secure‑Network | Governs connectivity |
+
+Trusted Supply Chain provides **trust context**, never **runtime authority**.
+
+---
+
+## SSPPs in This Domain
+
+### Mandatory
+- **Trusted Supply Chain Platform SSPP**
+- **Trusted Supply Chain Relying System SSPP**
+
+### Optional (Domain‑Specific)
+- IT Supply Chain SSPP
+- OT Supply Chain SSPP
+- IoMT Supply Chain SSPP
+
+---
+
+## Common Failure Modes This Architecture Prevents
+
+- Vendor approved ⇒ access granted
+- SBOM present ⇒ software safe
+- Contract signed ⇒ deploy allowed
+- Dependency verified ⇒ trusted runtime
+- Risk accepted ⇒ authority granted
+
+All of the above are **architecturally forbidden**.
+
+---
+
+## Executive Summary
+
+> **Trusted Supply Chain ensures that external trust never becomes an implicit shortcut to access, execution, or safety.**
+
+It:
+- governs third‑party risk holistically
+- integrates cleanly with Secure‑SDLC
+- preserves Zero Trust across vendors, software, and access
+- scales safely to automation, CI/CD, and AI
+
+This completes the **Trusted Supply Chain trust plane** as a first‑class enterprise security domain.
