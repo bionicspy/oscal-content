@@ -1,0 +1,240 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:storage-telemetry-audit",
+    "metadata": {
+      "title": "Storage Telemetry & Audit Pattern",
+      "version": "1.5.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines how storage platforms generate authoritative, evidentiary telemetry and audit records describing data access, configuration changes, lifecycle events, and protection state, independent of application or workload narratives.",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:SecurityMonitoringAndAssurance",
+          "remarks": "Business capability responsible for maintaining visibility, oversight, and assurance over the security posture of institutional systems and data assets."
+        },
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:AuditAndAccountability",
+          "remarks": "Business capability responsible for evidence collection, auditability, and post-incident analysis."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:StorageTechnologies",
+          "remarks": "Storage platforms that emit access, lifecycle, and protection telemetry."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:MonitoringAndObservationTechnologies",
+          "remarks": "Technologies that collect, transport, and retain telemetry and audit records."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:ObservablePlatformServices",
+          "remarks": "Establishes platform services that emit authoritative, non-repudiable telemetry for governance and security operations."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:AuditData",
+          "remarks": "Data generated to record actions, events, and changes for accountability and oversight."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:Evidence",
+          "remarks": "Data preserved to support investigations, audits, and compliance activities."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:SP-800-209",
+          "class": "guidance-reference",
+          "value": "4.1, 4.3, 4.4",
+          "remarks": "Defines data-centric requirements for traceability, evidentiary integrity, and visibility into data access and lifecycle events."
+        }
+      ]
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:storage-telemetry:capability:access-auditing",
+        "type": "capability",
+        "title": "Storage Access Auditing",
+        "description": "Records read, write, delete, and metadata access events with identity, object, and context attribution.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0009",
+            "remarks": "Data collection activities depend on unobserved or weakly logged access paths."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1005, T1039",
+            "remarks": "Adversaries enumerate and collect data from storage lacking access auditing."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-LOGGING.AUDIT",
+            "remarks": "Produces authoritative access records for investigation and accountability."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AU-2",  "remarks": "Storage generates audit records for defined access events." },
+              { "control-id": "AU-6",  "remarks": "Audit records support review and analysis of storage access." },
+              { "control-id": "AU-12", "remarks": "Audit logging is enabled across all storage access interfaces." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-telemetry:capability:control-plane-logging",
+        "type": "capability",
+        "title": "Control Plane and Configuration Logging",
+        "description": "Logs changes to storage configuration, access policies, encryption state, retention rules, and replication settings.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0005",
+            "remarks": "Defense evasion often targets configuration and control-plane changes."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1562",
+            "remarks": "Attackers modify or disable controls to obscure malicious activity."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-CONFIGMON.CHANGE",
+            "remarks": "Detects and records changes to protection and governance settings."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "CM-3", "remarks": "Storage configuration changes are logged and reviewable." },
+              { "control-id": "AU-6", "remarks": "Control-plane logs support detection of unauthorized changes." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-telemetry:capability:lifecycle-event-logging",
+        "type": "capability",
+        "title": "Lifecycle and Replication Event Logging",
+        "description": "Captures retention changes, legal hold events, replication actions, and data deletion operations.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0040",
+            "remarks": "Impact activity often attempts to delete data or bypass retention."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1485, T1490",
+            "remarks": "Data destruction and inhibition of recovery exploit weak lifecycle visibility."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-DATAPROTECT.RETENTIONMON",
+            "remarks": "Monitors and records lifecycle and retention enforcement actions."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AU-12", "remarks": "Lifecycle and replication events are logged for audit." },
+              { "control-id": "IR-6", "remarks": "Lifecycle logs preserve evidentiary data for incidents." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-telemetry:capability:evidence-grade-logging",
+        "type": "capability",
+        "title": "Evidence-Grade Logging and Preservation",
+        "description": "Ensures storage audit records are tamper-evident, time-consistent, retained independently, and suitable for forensic and regulatory use.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0040",
+            "remarks": "Attackers attempt to erase or alter logs to conceal malicious actions."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Indicator and log removal undermines investigations and audits."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-FORENSICS.LOGPRESERVE",
+            "remarks": "Preserves audit and evidentiary logs with integrity guarantees."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AU-9",  "remarks": "Audit logs are protected from unauthorized modification or deletion." },
+              { "control-id": "AU-11", "remarks": "Audit and evidence records are retained for accountability and review." }
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}

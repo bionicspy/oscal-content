@@ -1,0 +1,160 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:operations",
+    "metadata": {
+      "title": "Secure Storage Operations SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines how secure storage capabilities are operated, coordinated, and sustained as an ongoing service. This SSPP governs operational responsibilities, assurance coordination, and escalation interfaces while explicitly excluding policy definition, risk acceptance, and incident response."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:authority",
+        "urn:utoronto:sspp:secure-storage:access-control",
+        "urn:utoronto:sspp:secure-storage:cryptographic-protection",
+        "urn:utoronto:sspp:secure-storage:integrity-immutability",
+        "urn:utoronto:sspp:secure-storage:lifecycle-retention",
+        "urn:utoronto:sspp:secure-storage:telemetry-audit",
+        "urn:utoronto:sspp:secure-storage:violation-drift",
+        "urn:utoronto:sspp:secure-storage:platform",
+        "urn:utoronto:sspp:secure-storage:relying-systems"
+      ],
+      "remarks": "Secure storage operations derive from all Secure Storage SSPPs and SHALL coordinate their enforcement without redefining authority, policy intent, or control ownership."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Storage Operations",
+      "system-description": "Defines operational coordination, assurance, and escalation responsibilities for secure storage services.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Secure storage operations SHALL ensure continuous enforcement, observability, and coordination of secure storage capabilities. Operations SHALL surface violations and drift but SHALL NOT adjudicate risk or perform incident response.",
+
+      "components": [
+        {
+          "id": "secure-storage-operations-coordination",
+          "description": "Operational coordination function maintaining alignment across secure storage platforms, relying systems, and governance."
+        },
+        {
+          "id": "secure-storage-assurance-operations",
+          "description": "Assurance function verifying continuous enforcement and visibility of secure storage requirements."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-secure-storage-operations",
+          "title": "Secure Storage Operations",
+          "remarks": "Operates secure storage services within approved constraints and ensures continuous availability of secure storage guarantees.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OM-OPS"
+            }
+          ]
+        },
+        {
+          "id": "role-secure-storage-operations-oversight",
+          "title": "Secure Storage Operations Oversight",
+          "remarks": "Verifies that secure storage operations maintain enforcement, visibility, and escalation integrity.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "operational-requirements": [
+        {
+          "id": "continuous-enforcement",
+          "statement": "Secure storage operations SHALL ensure secure storage controls remain continuously enforced across all supported platforms.",
+          "responsible-role": "role-secure-storage-operations"
+        },
+        {
+          "id": "telemetry-availability",
+          "statement": "Secure storage operations SHALL ensure required telemetry and audit data remain available to governance and SecOps.",
+          "responsible-role": "role-secure-storage-operations"
+        },
+        {
+          "id": "change-coordination",
+          "statement": "Operational changes affecting secure storage SHALL be coordinated to preserve enforcement and audit guarantees.",
+          "responsible-role": "role-secure-storage-operations"
+        }
+      ],
+
+      "prohibited-operational-actions": [
+        {
+          "id": "no-risk-decision",
+          "statement": "Secure storage operations SHALL NOT accept, override, or normalize storage security risk."
+        },
+        {
+          "id": "no-incident-response",
+          "statement": "Secure storage operations SHALL NOT perform incident detection or response activities reserved for SecOps."
+        },
+        {
+          "id": "no-control-override",
+          "statement": "Operations SHALL NOT disable or bypass secure storage controls to restore service."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "violation-escalation",
+          "statement": "Detected storage security violations or drift SHALL escalate in accordance with the Secure Storage Violation & Drift SSPP.",
+          "responsible-role": "role-secure-storage-operations-oversight"
+        },
+        {
+          "id": "coordination-escalation",
+          "statement": "Operational conditions that threaten enforcement or auditability SHALL escalate to governance and SecOps.",
+          "responsible-role": "role-secure-storage-operations-oversight"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Operational controls ensure secure storage services are sustained without compromising governance or enforcement.",
+      "implemented-requirements": [
+        {
+          "control-id": "CA-7",
+          "remarks": "Continuous monitoring supports operational awareness of secure storage enforcement."
+        },
+        {
+          "control-id": "IR-8",
+          "remarks": "Operational escalation thresholds are defined without performing incident response."
+        },
+        {
+          "control-id": "CM-3",
+          "remarks": "Operational changes are coordinated and reviewed for security impact."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "storage-operations-invariant-1",
+        "statement": "Secure storage operations SHALL preserve enforcement, visibility, and evidence under all operating conditions."
+      },
+      {
+        "id": "storage-operations-invariant-2",
+        "statement": "Operational continuity SHALL NOT justify weakening secure storage guarantees."
+      },
+      {
+        "id": "storage-operations-invariant-3",
+        "statement": "Operations SHALL escalate issues rather than silently compensating for them."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "This SSPP completes the Secure Storage SSPP family. Platform and relying systems SHALL operate within these constraints, and SecOps SHALL consume escalated signals without delegating response authority to storage operations."
+    }
+  }
+}

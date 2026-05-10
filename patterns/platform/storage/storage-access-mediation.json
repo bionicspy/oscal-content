@@ -1,0 +1,233 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:storage-access-mediation",
+    "metadata": {
+      "title": "Storage Access & Mediation Pattern",
+      "version": "1.5.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines how access to stored data is explicitly mediated, scoped, and authorized by storage platforms, preventing implicit or inherited authority from applications, automation, or administrative context.",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:InformationAccessManagement",
+          "remarks": "Business capability responsible for governing who may access institutional information assets and under what conditions."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:StorageTechnologies",
+          "remarks": "Persistent storage technologies providing block, file, object, and virtualized access mechanisms."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:AccessManagementTechnologies",
+          "remarks": "Technologies that enforce identity-based access decisions for services, systems, and data."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:PlatformMediatedAccess",
+          "remarks": "Establishes explicit mediation between identities and platform services to prevent implicit trust and authority inheritance."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:ControlledData",
+          "remarks": "Information assets that require governed and auditable access controls."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:SensitiveData",
+          "remarks": "Data whose confidentiality and access must be strictly controlled due to risk or regulatory considerations."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:SP-800-209",
+          "class": "guidance-reference",
+          "value": "2.2, 2.3, 3.1",
+          "remarks": "Defines data-centric access mediation principles, role separation, and enforcement of policy independent of application logic."
+        }
+
+      ]
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:storage-access:capability:explicit-mediation",
+        "type": "capability",
+        "title": "Explicit Access Mediation",
+        "description": "Ensures all access to storage resources occurs through explicit, policy-enforced mediation points rather than implicit trust paths.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0001, TA0003",
+            "remarks": "Initial access and persistence often exploit direct or implicitly trusted access paths."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078, T1548",
+            "remarks": "Valid account abuse and privilege escalation rely on unmediated access."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-ACCTMGR.ACCESSCONTROL",
+            "remarks": "Centralizes and enforces access control through explicit mediation."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-3",  "remarks": "Access to storage resources is explicitly enforced." },
+              { "control-id": "AC-17", "remarks": "Remote and programmatic storage access is mediated and controlled." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-access:capability:identity-separation",
+        "type": "capability",
+        "title": "Identity Role Separation",
+        "description": "Separates identities used for human access, application access, automation, and platform administration to prevent authority collapse.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0006",
+            "remarks": "Over-privileged or shared identities are prime targets for credential compromise."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1003, T1550",
+            "remarks": "Credential dumping and token reuse exploit role overlap."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-AUTHN.SEPARATION",
+            "remarks": "Prevents lateral authority inheritance across identities."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-2", "remarks": "Unique identification is enforced for all storage access." },
+              { "control-id": "CM-5", "remarks": "Separation of duties is enforced between storage administration and data access." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-access:capability:least-privilege-object-access",
+        "type": "capability",
+        "title": "Least-Privilege Object Access",
+        "description": "Restricts access to specific data objects, operations, and contexts rather than broad storage scopes.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0009",
+            "remarks": "Excessive read or write privileges enable silent data collection."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1005, T1039",
+            "remarks": "Collection from network and cloud storage relies on broad permissions."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-DATAPROTECT.ACCESSMIN",
+            "remarks": "Minimizes accessible data scope per identity and operation."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AC-6",  "remarks": "Least privilege is enforced for storage access." },
+              { "control-id": "AC-16", "remarks": "Fine-grained object-level access restrictions are applied." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-access:capability:automation-guardrails",
+        "type": "capability",
+        "title": "Automation Access Guardrails",
+        "description": "Explicitly constrains automation access to prevent pipelines, scripts, and tools from becoming implicit data owners.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0040",
+            "remarks": "Automation misuse can directly destroy or exfiltrate data."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1485, T1490",
+            "remarks": "Destructive automation inhibits data availability and recovery."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-AUTOMATION.GOVERN",
+            "remarks": "Prevents automation from exceeding authorized access scope."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "CM-7", "remarks": "Automation is limited to explicitly required functionality." },
+              { "control-id": "AC-2", "remarks": "Automation identities are managed and reviewed." }
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}

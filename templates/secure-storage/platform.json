@@ -1,0 +1,167 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:platform",
+    "metadata": {
+      "title": "Secure Storage Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines mandatory security, isolation, and enforcement requirements for storage platforms that provide secure storage services. This SSPP governs how storage platforms SHALL implement secure storage patterns and SSPPs without assuming authority or policy ownership."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:authority",
+        "urn:utoronto:sspp:secure-storage:access-control",
+        "urn:utoronto:sspp:secure-storage:cryptographic-protection",
+        "urn:utoronto:sspp:secure-storage:integrity-immutability",
+        "urn:utoronto:sspp:secure-storage:lifecycle-retention",
+        "urn:utoronto:sspp:secure-storage:telemetry-audit",
+        "urn:utoronto:sspp:secure-storage:violation-drift"
+      ],
+      "remarks": "Secure storage platform requirements derive from Secure Storage Authority SSPP and implement all secure storage base SSPPs. This SSPP SHALL NOT redefine authority, policy intent, or risk acceptance."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Storage Platform",
+      "system-description": "Defines implementation and operational constraints for storage platforms providing secure storage capabilities.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Storage platforms SHALL enforce secure storage controls by construction. Security guarantees SHALL persist regardless of workload, administrator action, or automation behavior.",
+
+      "components": [
+        {
+          "id": "storage-platform-control-plane",
+          "description": "Platform control plane managing storage configuration, protection features, and policy enforcement."
+        },
+        {
+          "id": "storage-data-plane",
+          "description": "Data plane enforcing encryption, integrity, immutability, and access mediation for stored data."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-secure-storage-platform-operations",
+          "title": "Secure Storage Platform Operations",
+          "remarks": "Operates storage platforms within approved security constraints and ensures continuous enforcement of secure storage requirements.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OM-OPS"
+            }
+          ]
+        },
+        {
+          "id": "role-secure-storage-platform-assurance",
+          "title": "Secure Storage Platform Assurance",
+          "remarks": "Verifies that storage platform implementations conform to secure storage SSPPs and do not degrade security guarantees.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "platform-requirements": [
+        {
+          "id": "mandatory-encryption-enforcement",
+          "statement": "Storage platforms SHALL enforce encryption at rest and in transit by default and SHALL NOT permit unencrypted operation.",
+          "responsible-role": "role-secure-storage-platform-operations"
+        },
+        {
+          "id": "non-bypassable-integrity-controls",
+          "statement": "Integrity and immutability controls SHALL be non-bypassable, including by administrators and automation.",
+          "responsible-role": "role-secure-storage-platform-operations"
+        },
+        {
+          "id": "independent-enforcement",
+          "statement": "Security enforcement mechanisms SHALL operate independently of workload and application logic.",
+          "responsible-role": "role-secure-storage-platform-operations"
+        },
+        {
+          "id": "policy-driven-lifecycle",
+          "statement": "Retention, hold, and destruction behavior SHALL be enforced by the platform according to approved lifecycle policies.",
+          "responsible-role": "role-secure-storage-platform-operations"
+        },
+        {
+          "id": "authoritative-telemetry",
+          "statement": "Storage platforms SHALL generate complete, tamper-evident telemetry for access, configuration, and lifecycle events.",
+          "responsible-role": "role-secure-storage-platform-operations"
+        }
+      ],
+
+      "prohibited-platform-actions": [
+        {
+          "id": "no-security-disablement",
+          "statement": "Storage platforms SHALL NOT provide mechanisms to disable, bypass, or downgrade required security features."
+        },
+        {
+          "id": "no-implicit-authority",
+          "statement": "Platform operators and services SHALL NOT assume authority to weaken or override secure storage requirements."
+        },
+        {
+          "id": "no-silent-failure",
+          "statement": "Failure or degradation of storage security controls SHALL NOT occur silently."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "platform-security-failure-escalation",
+          "statement": "Detected platform security failures or inability to enforce secure storage requirements SHALL escalate in accordance with the Secure Storage Violation & Drift SSPP.",
+          "responsible-role": "role-secure-storage-platform-assurance"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Platform controls ensure secure storage guarantees are enforced by design and operation.",
+      "implemented-requirements": [
+        {
+          "control-id": "SC-12",
+          "remarks": "Cryptographic protections are enforced by the storage platform."
+        },
+        {
+          "control-id": "SI-7",
+          "remarks": "Integrity mechanisms detect and prevent unauthorized modification."
+        },
+        {
+          "control-id": "CM-7",
+          "remarks": "The platform enforces only necessary functionality and prevents insecure configurations."
+        },
+        {
+          "control-id": "AU-6",
+          "remarks": "Platform telemetry supports review, analysis, and assurance."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "storage-platform-invariant-1",
+        "statement": "Secure storage platforms SHALL enforce security by construction, not by convention."
+      },
+      {
+        "id": "storage-platform-invariant-2",
+        "statement": "Operator access SHALL NOT imply authority over storage security posture."
+      },
+      {
+        "id": "storage-platform-invariant-3",
+        "statement": "Platform failure modes SHALL favor safety, integrity, and evidence preservation."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All storage platforms providing secure storage services SHALL conform to this SSPP. Relying system SSPPs SHALL assume these guarantees but SHALL NOT attempt to reimplement them."
+    }
+  }
+}

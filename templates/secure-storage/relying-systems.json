@@ -1,0 +1,163 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:relying-systems",
+    "metadata": {
+      "title": "Secure Storage Relying Systems SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines mandatory behavioral and integration constraints for systems that rely on secure storage services. This SSPP ensures consuming systems do not weaken, bypass, or undermine secure storage security guarantees."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:authority",
+        "urn:utoronto:sspp:secure-storage:access-control",
+        "urn:utoronto:sspp:secure-storage:cryptographic-protection",
+        "urn:utoronto:sspp:secure-storage:integrity-immutability",
+        "urn:utoronto:sspp:secure-storage:lifecycle-retention",
+        "urn:utoronto:sspp:secure-storage:telemetry-audit",
+        "urn:utoronto:sspp:secure-storage:violation-drift",
+        "urn:utoronto:sspp:secure-storage:platform"
+      ],
+      "remarks": "Relying system obligations derive from all secure storage SSPPs and SHALL NOT reimplement or override platform-level security guarantees."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Storage Relying Systems",
+      "system-description": "Defines how applications, services, pipelines, and automation must interact with secure storage systems.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Systems consuming secure storage SHALL rely on platform-enforced security guarantees and SHALL NOT attempt to compensate for, bypass, or reimplement storage security controls.",
+
+      "components": [
+        {
+          "id": "storage-consumption-interface",
+          "description": "Interfaces through which applications and services read from and write to secure storage."
+        },
+        {
+          "id": "storage-integration-logic",
+          "description": "Application logic and automation that interacts with secure storage services."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-storage-relying-architecture",
+          "title": "Secure Storage Relying Architecture",
+          "remarks": "Designs integration patterns that correctly consume secure storage services without weakening platform guarantees.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "SP-ARC"
+            }
+          ]
+        },
+        {
+          "id": "role-storage-relying-oversight",
+          "title": "Secure Storage Relying Oversight",
+          "remarks": "Verifies that relying systems use secure storage correctly and do not introduce security drift.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "relying-system-requirements": [
+        {
+          "id": "platform-native-usage",
+          "statement": "Relying systems SHALL use secure storage services as provided and SHALL NOT implement alternative or compensating storage security mechanisms.",
+          "responsible-role": "role-storage-relying-architecture"
+        },
+        {
+          "id": "no-security-offload",
+          "statement": "Relying systems SHALL NOT offload encryption, integrity, immutability, or lifecycle enforcement to application logic.",
+          "responsible-role": "role-storage-relying-architecture"
+        },
+        {
+          "id": "respect-retention-and-holds",
+          "statement": "Relying systems SHALL respect retention, legal hold, and immutability constraints enforced by the storage platform.",
+          "responsible-role": "role-storage-relying-architecture"
+        },
+        {
+          "id": "identity-bound-access",
+          "statement": "Relying systems SHALL access secure storage using their own dedicated identities and SHALL NOT share credentials or access tokens.",
+          "responsible-role": "role-storage-relying-architecture"
+        }
+      ],
+
+      "prohibited-relying-actions": [
+        {
+          "id": "no-direct-backend-access",
+          "statement": "Relying systems SHALL NOT access storage backends through unmanaged or undocumented paths."
+        },
+        {
+          "id": "no-privilege-escalation",
+          "statement": "Relying systems SHALL NOT request or assume privileged storage roles beyond their authorized scope."
+        },
+        {
+          "id": "no-lifecycle-bypass",
+          "statement": "Relying systems SHALL NOT attempt to bypass retention, immutability, or destruction controls."
+        },
+        {
+          "id": "no-telemetry-suppression",
+          "statement": "Relying systems SHALL NOT suppress, filter, or alter storage-generated telemetry."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "relying-misuse-escalation",
+          "statement": "Detected misuse or attempted bypass of secure storage by relying systems SHALL escalate in accordance with the Secure Storage Violation & Drift SSPP.",
+          "responsible-role": "role-storage-relying-oversight"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Relying system controls ensure secure storage is consumed without weakening platform guarantees.",
+      "implemented-requirements": [
+        {
+          "control-id": "AC-6",
+          "remarks": "Least-privilege access is enforced for relying systems."
+        },
+        {
+          "control-id": "SA-8",
+          "remarks": "Security architecture dependencies are preserved across system boundaries."
+        },
+        {
+          "control-id": "CM-7",
+          "remarks": "Relying systems operate only with necessary functionality."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "storage-relying-invariant-1",
+        "statement": "Relying systems SHALL trust and consume storage security guarantees rather than reimplement them."
+      },
+      {
+        "id": "storage-relying-invariant-2",
+        "statement": "Relying systems SHALL NOT become de facto storage security authorities."
+      },
+      {
+        "id": "storage-relying-invariant-3",
+        "statement": "Misuse of secure storage SHALL be treated as a security violation."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All systems relying on secure storage services SHALL conform to this SSPP. Environment-specific overlays MAY further constrain behavior but SHALL NOT weaken these requirements."
+    }
+  }
+}

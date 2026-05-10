@@ -1,0 +1,184 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:violation-drift",
+    "metadata": {
+      "title": "Secure Storage Violation & Drift SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines what constitutes a security violation or unacceptable drift within secure storage systems and establishes mandatory escalation requirements. This SSPP prevents normalization of insecure states and ensures governance visibility."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:authority",
+        "urn:utoronto:sspp:secure-storage:cryptographic-protection",
+        "urn:utoronto:sspp:secure-storage:integrity-immutability",
+        "urn:utoronto:sspp:secure-storage:lifecycle-retention",
+        "urn:utoronto:sspp:secure-storage:telemetry-audit"
+      ],
+      "remarks": "Violation and drift conditions derive from secure storage SSPPs governing cryptography, integrity, lifecycle, and telemetry and SHALL NOT redefine authority or operational response."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Storage Violation & Drift",
+      "system-description": "Defines violation classification, drift detection expectations, and escalation triggers for secure storage systems.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Secure storage SHALL NOT operate in a violated or drifted state without governance awareness. Violations and unacceptable drift SHALL trigger mandatory escalation.",
+
+      "components": [
+        {
+          "id": "storage-violation-classification",
+          "description": "Logical framework for identifying and classifying storage security violations and drift conditions."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-storage-violation-architecture",
+          "title": "Secure Storage Violation Architecture",
+          "remarks": "Defines violation and drift classification criteria for secure storage systems.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "SP-ARC"
+            }
+          ]
+        },
+        {
+          "id": "role-storage-violation-oversight",
+          "title": "Secure Storage Violation Oversight",
+          "remarks": "Ensures detected storage violations and drift escalate appropriately and cannot be suppressed.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        },
+        {
+          "id": "role-storage-risk-governance",
+          "title": "Secure Storage Risk Governance",
+          "remarks": "Accepts, rejects, or mandates remediation of storage security violations.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OV-MGT"
+            }
+          ]
+        }
+      ],
+
+      "violation-definitions": [
+        {
+          "id": "crypto-violation",
+          "statement": "Any loss, weakening, or bypass of required cryptographic protection constitutes a storage security violation.",
+          "responsible-role": "role-storage-violation-architecture"
+        },
+        {
+          "id": "immutability-violation",
+          "statement": "Unauthorized modification, deletion, or rollback of immutable data constitutes a storage security violation.",
+          "responsible-role": "role-storage-violation-architecture"
+        },
+        {
+          "id": "retention-violation",
+          "statement": "Premature deletion or expiration of data subject to retention or legal hold constitutes a storage security violation.",
+          "responsible-role": "role-storage-violation-architecture"
+        },
+        {
+          "id": "telemetry-violation",
+          "statement": "Suppression, loss, or corruption of required storage telemetry constitutes a storage security violation.",
+          "responsible-role": "role-storage-violation-architecture"
+        }
+      ],
+
+      "drift-definitions": [
+        {
+          "id": "configuration-drift",
+          "statement": "Deviation of storage configuration from approved secure storage SSPPs constitutes unacceptable drift.",
+          "responsible-role": "role-storage-violation-architecture"
+        },
+        {
+          "id": "policy-drift",
+          "statement": "Deviation of effective storage behavior from approved policy intent constitutes unacceptable drift.",
+          "responsible-role": "role-storage-violation-architecture"
+        }
+      ],
+
+      "prohibited-drift-actions": [
+        {
+          "id": "no-drift-acceptance",
+          "statement": "Storage security drift SHALL NOT be accepted as a normal operational condition."
+        },
+        {
+          "id": "no-silent-reconfiguration",
+          "statement": "Storage platforms SHALL NOT self-correct or mask drift without governance visibility."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "mandatory-violation-escalation",
+          "statement": "Detected storage security violations SHALL escalate to governance and SecOps without suppression.",
+          "responsible-role": "role-storage-violation-oversight"
+        },
+        {
+          "id": "drift-escalation",
+          "statement": "Unacceptable storage drift SHALL escalate for review and resolution.",
+          "responsible-role": "role-storage-violation-oversight"
+        },
+        {
+          "id": "risk-decision-required",
+          "statement": "Resolved or unresolved violations SHALL require a documented risk decision.",
+          "responsible-role": "role-storage-risk-governance"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Violation and drift controls ensure insecure storage states are visible, classified, and escalated.",
+      "implemented-requirements": [
+        {
+          "control-id": "CA-7",
+          "remarks": "Continuous monitoring detects violations and drift."
+        },
+        {
+          "control-id": "IR-8",
+          "remarks": "Escalation and response thresholds are defined for security violations."
+        },
+        {
+          "control-id": "CM-3",
+          "remarks": "Configuration changes and deviations are controlled and reviewed."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "storage-violation-invariant-1",
+        "statement": "Storage security violations SHALL NOT be silently tolerated."
+      },
+      {
+        "id": "storage-violation-invariant-2",
+        "statement": "Drift is a governance concern, not an operational inconvenience."
+      },
+      {
+        "id": "storage-violation-invariant-3",
+        "statement": "All storage violations SHALL result in an explicit risk decision."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "Platform, relying system, and operations SSPPs SHALL enforce escalation behavior consistent with this SSPP."
+    }
+  }
+}

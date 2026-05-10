@@ -1,0 +1,232 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:storage-core-security",
+    "metadata": {
+      "title": "Storage Core Security Pattern",
+      "version": "1.5.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines the foundational security guarantees enforced directly by storage platforms, providing data-centric confidentiality and protection independent of applications, compute, orchestration, or automation context.",
+
+      "props": [
+
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:ResearchDataManagement",
+          "remarks": "Business capability responsible for managing the secure storage, protection, and stewardship of research datasets throughout their lifecycle."
+        },
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:RecordsManagement",
+          "remarks": "Business capability responsible for the secure and compliant storage of institutional records and governed information assets."
+        },
+
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:StorageTechnologies",
+          "remarks": "Persistent storage technologies, including block, file, object, and virtualized storage platforms providing data durability and access."
+        },
+
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:PlatformStorageServices",
+          "remarks": "Establishes baseline trust assumptions for platform-level storage services that persist and protect data independently of consuming applications or compute environments."
+        },
+
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:ResearchData",
+          "remarks": "Research datasets requiring durable confidentiality and protection across platforms and time."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:Records",
+          "remarks": "Institutional records subject to legal, regulatory, and policy obligations."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:SP-800-209",
+          "class": "guidance-reference",
+          "value": "2.1, 3.2, 3.3, 3.4",
+          "remarks": "Defines data-centric security architecture principles requiring confidentiality and cryptographic protection to bind directly to data regardless of platform, workload, or application context."
+        }
+
+      ]
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:storage-core:capability:encryption-at-rest",
+        "type": "capability",
+        "title": "Encryption at Rest Enforcement",
+        "description": "Enforces cryptographic protection of stored data regardless of workload, application, or access method.",
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0006, TA0040",
+            "remarks": "Adversaries seek plaintext data via credential abuse or destructive impact on unprotected storage."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1003, T1485",
+            "remarks": "Credential dumping and data destruction target unencrypted data at rest."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-DATAPROTECT.ENCRYPTION",
+            "remarks": "Renders exposed or stolen storage content unreadable through encryption."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SC-28", "remarks": "Storage encrypts data at rest." },
+              { "control-id": "SC-12", "remarks": "Cryptographic key establishment and management are enforced." },
+              { "control-id": "KM-1",  "remarks": "Storage encryption keys are centrally managed." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-core:capability:encryption-in-transit",
+        "type": "capability",
+        "title": "Encryption in Transit Enforcement",
+        "description": "Ensures all access paths to storage services are cryptographically protected against interception or manipulation.",
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0007, TA0011",
+            "remarks": "Network discovery and command-and-control activity exploit cleartext storage access."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1046, T1071",
+            "remarks": "Protocol abuse targets unencrypted storage traffic."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-NETPROTECT.ENCRYPT",
+            "remarks": "Protects storage access via encrypted transport."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SC-8",  "remarks": "Transmission confidentiality is enforced." },
+              { "control-id": "SC-16", "remarks": "Transmission integrity is preserved." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-core:capability:data-key-binding",
+        "type": "capability",
+        "title": "Data-to-Key Binding",
+        "description": "Binds stored data to cryptographic keys that remain valid across workload and lifecycle changes.",
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0006",
+            "remarks": "Key compromise enables offline data decryption."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1552",
+            "remarks": "Secret and key material harvesting enables unauthorized data access."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-KEYMGMT.KEYISOLATION",
+            "remarks": "Separates key access from data access to reduce blast radius."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "KM-1", "remarks": "Keys are managed independently of workloads." },
+              { "control-id": "KM-3", "remarks": "Key usage is bound to authorized storage contexts." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-core:capability:enforcement-independence",
+        "type": "capability",
+        "title": "Enforcement Independence from Compute",
+        "description": "Ensures storage security remains effective even if compute or orchestration layers are compromised.",
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0003",
+            "remarks": "Persistence mechanisms abuse compromised execution environments."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1547",
+            "remarks": "Autostart persistence maintains durable access paths."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-ARCH.CONTROLISOLATION",
+            "remarks": "Isolates storage enforcement from compute compromise."
+          }
+        ],
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SA-8", "remarks": "Storage controls are isolated from application components." },
+              { "control-id": "SR-5", "remarks": "Dependency and supply chain risk to data protection is reduced." },
+              { "control-id": "CM-7", "remarks": "Only essential storage functionality is enabled." }
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:composite:secure-storage-operations",
+    "metadata": {
+      "title": "Secure Storage Operations Composite Pattern",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines how storage security patterns operate together as a governed, observable, and escalation-aware system, without collapsing data governance, security operations, or platform responsibilities.",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:SecureInfrastructureOperations",
+          "remarks": "Business capability responsible for operating shared infrastructure platforms in a manner that preserves confidentiality, integrity, availability, and accountability."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "composite-pattern",
+          "value": "urn:utoronto:cae2:arm:SecureStorageOperations",
+          "remarks": "Composes storage security patterns into a coherent operational system that exposes assurance signals and escalates violations without performing response or governance actions."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:SP-800-209",
+          "class": "guidance-reference",
+          "value": "2.1, 4.1, 4.3, 4.4",
+          "remarks": "Establishes the need for data-centric protection, lifecycle traceability, and escalation of violations independent of application or platform context."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:SP-800-61",
+          "class": "guidance-reference",
+          "value": "3.4, 3.6",
+          "remarks": "Defines integration points between security operations and platform-generated evidentiary signals, without allowing platform systems to initiate incident response."
+        }
+      ]
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:secure-storage-ops:binding:core",
+        "type": "composite-binding",
+        "title": "Storage Core Security Binding",
+        "description": "Ensures storage-enforced confidentiality and protection guarantees remain continuously active and verifiable.",
+        "props": [
+          {
+            "name": "composes-pattern",
+            "value": "urn:utoronto:security:pattern:storage-core-security"
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:secure-storage-ops:binding:access",
+        "type": "composite-binding",
+        "title": "Storage Access Mediation Binding",
+        "description": "Ensures all access to stored data remains explicitly mediated and attributable.",
+        "props": [
+          {
+            "name": "composes-pattern",
+            "value": "urn:utoronto:security:pattern:storage-access-mediation"
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:secure-storage-ops:binding:integrity",
+        "type": "composite-binding",
+        "title": "Storage Integrity & Immutability Binding",
+        "description": "Ensures stored data remains trustworthy, non-repudiable, and resistant to tampering or silent destruction.",
+        "props": [
+          {
+            "name": "composes-pattern",
+            "value": "urn:utoronto:security:pattern:storage-integrity-immutability"
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:secure-storage-ops:binding:lifecycle",
+        "type": "composite-binding",
+        "title": "Storage Lifecycle & Retention Binding",
+        "description": "Ensures authoritative control over data lifespan, preservation, and deletion.",
+        "props": [
+          {
+            "name": "composes-pattern",
+            "value": "urn:utoronto:security:pattern:storage-lifecycle-retention"
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:secure-storage-ops:binding:telemetry",
+        "type": "composite-binding",
+        "title": "Storage Telemetry & Audit Binding",
+        "description": "Ensures storage behavior is observable, evidentiary, and consumable by governance and security operations.",
+        "props": [
+          {
+            "name": "composes-pattern",
+            "value": "urn:utoronto:security:pattern:storage-telemetry-audit"
+          }
+        ]
+      }
+
+    ]
+  }
+}

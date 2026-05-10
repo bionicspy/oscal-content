@@ -1,0 +1,247 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:storage-lifecycle-retention",
+    "metadata": {
+      "title": "Storage Lifecycle & Retention Pattern",
+      "version": "1.5.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines how storage platforms enforce the governed lifespan of data, including retention, legal holds, controlled replication, and secure deletion, independent of applications, automation, or operational convenience.",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:RecordsAndInformationManagement",
+          "remarks": "Business capability responsible for defining and enforcing how long institutional information assets are retained and when they may be disposed."
+        },
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:LegalAndComplianceManagement",
+          "remarks": "Business capability responsible for ensuring data retention, preservation, and destruction meet legal, regulatory, and contractual obligations."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:StorageTechnologies",
+          "remarks": "Persistent storage platforms responsible for holding and deleting data according to governed lifecycle rules."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:RecordsAndArchiveTechnologies",
+          "remarks": "Technologies providing archival, records management, and long-term data preservation capabilities."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:LifecycleGovernedPlatformStorage",
+          "remarks": "Establishes platform storage services whose data lifecycle is governed by authoritative retention and disposal rules rather than application logic."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:Records",
+          "remarks": "Institutional records subject to retention schedules and controlled disposal."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:RegulatedData",
+          "remarks": "Data subject to legal, regulatory, or contractual retention and deletion requirements."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:Obligations",
+          "remarks": "Data whose lifecycle is tied to institutional, legal, or compliance obligations."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:SP-800-209",
+          "class": "guidance-reference",
+          "value": "3.4, 4.2",
+          "remarks": "Defines data-centric lifecycle governance, including retention enforcement, preservation obligations, and controlled destruction of data independent of consuming systems."
+        }
+
+      ]
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:storage-lifecycle:capability:retention-enforcement",
+        "type": "capability",
+        "title": "Retention Enforcement",
+        "description": "Prevents premature deletion or expiration of data before the minimum governed retention period has elapsed.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0040",
+            "remarks": "Attackers and insiders may attempt early deletion to erase impact or evidence."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1485",
+            "remarks": "Data destruction exploits short or unenforced retention."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-DATAPROTECT.RETENTION",
+            "remarks": "Enforces minimum retention independent of operational or user intent."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "MP-7", "remarks": "Data is retained according to defined retention requirements." },
+              { "control-id": "SI-12", "remarks": "Retention supports system availability and investigative needs." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-lifecycle:capability:legal-regulatory-holds",
+        "type": "capability",
+        "title": "Legal and Regulatory Holds",
+        "description": "Allows authorized suspension of deletion and overwrite actions to preserve data required for legal, regulatory, or investigative purposes.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0040",
+            "remarks": "Adversaries may attempt to eliminate data subject to investigation or review."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Indicator and data removal undermines accountability."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-FORENSICS.HOLD",
+            "remarks": "Preserves data under authoritative legal or regulatory hold conditions."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IR-6", "remarks": "Evidentiary data is preserved to support investigations." },
+              { "control-id": "PL-8", "remarks": "Legal and regulatory requirements are integrated into data lifecycle controls." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-lifecycle:capability:replication-residency-governance",
+        "type": "capability",
+        "title": "Replication and Residency Governance",
+        "description": "Controls where data may be replicated and prevents unauthorized cross-boundary propagation.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0010",
+            "remarks": "Replication channels can mask large-scale data exfiltration."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1030",
+            "remarks": "Unauthorized data transfer abuses replication pathways."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-DATAFLOW.GOVERN",
+            "remarks": "Constrains and governs approved data movement and residency."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SC-7", "remarks": "Logical and geographic boundaries are enforced on data flows." },
+              { "control-id": "SR-4", "remarks": "Third-party and offshore storage risks are governed." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-lifecycle:capability:secure-verifiable-deletion",
+        "type": "capability",
+        "title": "Secure and Verifiable Deletion",
+        "description": "Ensures data destruction occurs only when authorized and is irreversible, auditable, and non-repudiable.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0040",
+            "remarks": "Malicious or premature deletion undermines governance and accountability."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1485",
+            "remarks": "Uncontrolled deletion disrupts operations and investigations."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-DATAPROTECT.DESTROY",
+            "remarks": "Performs deliberate, governed, and auditable data destruction."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "MP-6", "remarks": "Data is securely sanitized upon authorized disposal." },
+              { "control-id": "AU-10", "remarks": "Deletion actions are non-repudiable and auditable." }
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}

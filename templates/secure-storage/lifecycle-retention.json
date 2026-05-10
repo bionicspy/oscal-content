@@ -1,0 +1,166 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:lifecycle-retention",
+    "metadata": {
+      "title": "Secure Storage Lifecycle & Retention SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines how the lifespan, preservation, and destruction of data stored in secure storage SHALL be governed. This SSPP enforces retention, legal holds, replication constraints, and controlled deletion once authority, access, cryptography, and integrity requirements are in place."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:authority",
+        "urn:utoronto:sspp:secure-storage:integrity-immutability"
+      ],
+      "remarks": "Lifecycle and retention requirements derive from Secure Storage Authority SSPP and Secure Storage Integrity & Immutability SSPP and SHALL NOT redefine access control or cryptographic behavior."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Storage Lifecycle & Retention",
+      "system-description": "Defines retention enforcement, preservation obligations, replication governance, and secure destruction requirements for secure storage.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Secure storage SHALL enforce authoritative data retention and lifecycle rules. Deletion, replication, and movement of data SHALL occur only in accordance with approved lifecycle requirements.",
+
+      "components": [
+        {
+          "id": "storage-lifecycle-enforcement",
+          "description": "Platform-level lifecycle controls enforcing retention, preservation, replication boundaries, and deletion constraints."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-storage-lifecycle-architecture",
+          "title": "Secure Storage Lifecycle Architecture",
+          "remarks": "Designs and approves lifecycle, retention, and destruction models for secure storage platforms.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "SP-ARC"
+            }
+          ]
+        },
+        {
+          "id": "role-storage-lifecycle-governance",
+          "title": "Secure Storage Lifecycle Governance",
+          "remarks": "Controls and approves retention schedules, legal holds, and authorization for data destruction.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OV-LGA"
+            }
+          ]
+        },
+        {
+          "id": "role-storage-lifecycle-oversight",
+          "title": "Secure Storage Lifecycle Oversight",
+          "remarks": "Verifies enforcement of lifecycle rules, preservation guarantees, and auditable deletion.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "lifecycle-requirements": [
+        {
+          "id": "minimum-retention-enforcement",
+          "statement": "Secure storage SHALL retain data for at least the minimum approved retention period.",
+          "responsible-role": "role-storage-lifecycle-governance"
+        },
+        {
+          "id": "legal-hold-preservation",
+          "statement": "Data subject to legal or regulatory hold SHALL NOT be modified, deleted, or expired until the hold is explicitly released.",
+          "responsible-role": "role-storage-lifecycle-governance"
+        },
+        {
+          "id": "replication-governance",
+          "statement": "Replication and geographic placement of data SHALL be governed and constrained by approved lifecycle policies.",
+          "responsible-role": "role-storage-lifecycle-architecture"
+        },
+        {
+          "id": "authorized-destruction-only",
+          "statement": "Data destruction SHALL occur only after explicit authorization and verification that retention and hold requirements have been satisfied.",
+          "responsible-role": "role-storage-lifecycle-governance"
+        }
+      ],
+
+      "prohibited-lifecycle-actions": [
+        {
+          "id": "no-premature-deletion",
+          "statement": "Deletion or expiration of data before completion of approved retention periods SHALL NOT be permitted."
+        },
+        {
+          "id": "no-automation-destruction",
+          "statement": "Automation SHALL NOT independently authorize or execute irreversible data destruction."
+        },
+        {
+          "id": "no-unapproved-replication",
+          "statement": "Unapproved replication or relocation of data across environments or jurisdictions SHALL NOT be permitted."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "lifecycle-violation-escalation",
+          "statement": "Violations of retention, preservation, or destruction requirements SHALL escalate in accordance with the Secure Storage Violation & Drift SSPP.",
+          "responsible-role": "role-storage-lifecycle-oversight"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Lifecycle and retention controls ensure data remains available, preserved, or destroyed only in accordance with approved requirements.",
+      "implemented-requirements": [
+        {
+          "control-id": "MP-7",
+          "remarks": "Data is retained in accordance with approved retention requirements."
+        },
+        {
+          "control-id": "SI-12",
+          "remarks": "Information management and retention support system availability and investigation."
+        },
+        {
+          "control-id": "PL-8",
+          "remarks": "Legal and regulatory requirements are incorporated into system lifecycle controls."
+        },
+        {
+          "control-id": "MP-6",
+          "remarks": "Data is securely and verifiably destroyed when authorized."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "storage-lifecycle-invariant-1",
+        "statement": "Retention and lifecycle enforcement SHALL be authoritative and non-optional."
+      },
+      {
+        "id": "storage-lifecycle-invariant-2",
+        "statement": "Irreversible data destruction SHALL be treated as a governance action, not an operational task."
+      },
+      {
+        "id": "storage-lifecycle-invariant-3",
+        "statement": "Lifecycle controls SHALL fail closed and preserve evidence."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "Platform and relying system SSPPs SHALL implement lifecycle and retention behavior consistent with this SSPP and SHALL NOT weaken its guarantees."
+    }
+  }
+}

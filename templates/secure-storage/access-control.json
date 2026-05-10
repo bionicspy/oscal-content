@@ -1,0 +1,152 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:access-control",
+    "metadata": {
+      "title": "Secure Storage Access Control SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines how access to secure storage resources SHALL be mediated, constrained, and attributed. This SSPP governs access enforcement mechanics and prohibitions once authority has been established by the Secure Storage Authority SSPP."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:authority"
+      ],
+      "remarks": "Access control rules derive from Secure Storage Authority SSPP and SHALL NOT redefine authority or risk ownership."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Storage Access Control",
+      "system-description": "Defines access mediation, identity separation, least‑privilege enforcement, and attribution requirements for secure storage systems.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "All access to secure storage SHALL be explicitly mediated, attributable, and least‑privileged. No access SHALL be implicit, inherited, or unaudited.",
+
+      "components": [
+        {
+          "id": "storage-access-mediation",
+          "description": "Storage access mediation layer enforcing authentication, authorization, and attribution boundaries."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-storage-access-architecture",
+          "title": "Secure Storage Access Architecture",
+          "remarks": "Designs and approves storage access mediation models, identity separation requirements, and privilege boundaries.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "SP-ARC"
+            }
+          ]
+        },
+        {
+          "id": "role-storage-access-oversight",
+          "title": "Secure Storage Access Oversight",
+          "remarks": "Verifies that storage access enforcement, segregation of identities, and auditability are correctly implemented.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "access-control-rules": [
+        {
+          "id": "explicit-mediation-required",
+          "statement": "All access to secure storage SHALL be mediated through approved access control mechanisms.",
+          "responsible-role": "role-storage-access-architecture"
+        },
+        {
+          "id": "no-direct-access-paths",
+          "statement": "Direct, unmanaged, or implicit access paths to secure storage SHALL NOT be permitted.",
+          "responsible-role": "role-storage-access-architecture"
+        },
+        {
+          "id": "identity-separation",
+          "statement": "Human, service, automation, and administrative identities SHALL be logically and operationally separated.",
+          "responsible-role": "role-storage-access-architecture"
+        },
+        {
+          "id": "least-privilege-enforcement",
+          "statement": "Storage access SHALL be limited to the minimum required objects, operations, and duration.",
+          "responsible-role": "role-storage-access-architecture"
+        }
+      ],
+
+      "prohibited-access-actions": [
+        {
+          "id": "no-storage-admin-data-access",
+          "statement": "Storage administrative privileges SHALL NOT confer data access unless separately authorized."
+        },
+        {
+          "id": "no-automation-owner",
+          "statement": "Automation SHALL NOT be treated as a data owner or granted blanket access."
+        },
+        {
+          "id": "no-cross-domain-inheritance",
+          "statement": "Access privileges SHALL NOT be inherited across tenants, security domains, or environments."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "access-violation-escalation",
+          "statement": "Unauthorized or anomalous access attempts SHALL escalate in accordance with the Secure Storage Violation & Drift SSPP.",
+          "responsible-role": "role-storage-access-oversight"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Access control implementations ensure storage access is mediated, least‑privileged, and auditable.",
+      "implemented-requirements": [
+        {
+          "control-id": "AC-3",
+          "remarks": "Access enforcement mechanisms mediate all storage access."
+        },
+        {
+          "control-id": "AC-6",
+          "remarks": "Least privilege is enforced for all storage access."
+        },
+        {
+          "control-id": "IA-2",
+          "remarks": "Unique identification is enforced for all accessing entities."
+        },
+        {
+          "control-id": "AU-2",
+          "remarks": "Storage access events are auditable."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "storage-access-invariant-1",
+        "statement": "Storage access SHALL always be explicit, attributable, and auditable."
+      },
+      {
+        "id": "storage-access-invariant-2",
+        "statement": "No entity SHALL gain storage access by proximity, role convenience, or automation."
+      },
+      {
+        "id": "storage-access-invariant-3",
+        "statement": "Storage access failures SHALL fail closed."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "Platform and relying system SSPPs SHALL implement access behaviors consistent with this SSPP and SHALL NOT weaken its constraints."
+    }
+  }
+}

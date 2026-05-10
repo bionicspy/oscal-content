@@ -1,0 +1,160 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:cryptographic-protection",
+    "metadata": {
+      "title": "Secure Storage Cryptographic Protection SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines mandatory cryptographic protection requirements for secure storage, including encryption at rest and in transit, key management boundaries, and key usage constraints. This SSPP governs how cryptography SHALL be enforced once authority is established."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:authority"
+      ],
+      "remarks": "Cryptographic protection requirements derive from Secure Storage Authority SSPP and SHALL NOT redefine authority, classification, or retention obligations."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Storage Cryptographic Protection",
+      "system-description": "Defines cryptographic enforcement requirements for all secure storage platforms and services.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "All data stored in secure storage SHALL be cryptographically protected by default. Cryptographic protections SHALL be enforced by the storage platform and SHALL NOT depend on application behavior.",
+
+      "components": [
+        {
+          "id": "storage-cryptographic-enforcement",
+          "description": "Platform-level cryptographic controls providing confidentiality and integrity protection for stored data."
+        },
+        {
+          "id": "storage-key-management",
+          "description": "Key management services and boundaries supporting secure generation, storage, rotation, and revocation of cryptographic material."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-storage-crypto-architecture",
+          "title": "Secure Storage Cryptographic Architecture",
+          "remarks": "Designs and approves cryptographic standards, algorithms, key usage models, and enforcement boundaries for secure storage.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "SP-ARC"
+            }
+          ]
+        },
+        {
+          "id": "role-storage-crypto-oversight",
+          "title": "Secure Storage Cryptographic Oversight",
+          "remarks": "Verifies that storage cryptographic controls are enforced, monitored, and compliant with approved standards.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "cryptographic-requirements": [
+        {
+          "id": "encryption-at-rest-required",
+          "statement": "All data stored in secure storage SHALL be encrypted at rest using approved cryptographic algorithms and key lengths.",
+          "responsible-role": "role-storage-crypto-architecture"
+        },
+        {
+          "id": "encryption-in-transit-required",
+          "statement": "All access to secure storage SHALL use cryptographically protected communication channels.",
+          "responsible-role": "role-storage-crypto-architecture"
+        },
+        {
+          "id": "platform-enforced-crypto",
+          "statement": "Cryptographic enforcement SHALL be performed by the storage platform and SHALL NOT be delegable to consuming applications.",
+          "responsible-role": "role-storage-crypto-architecture"
+        },
+        {
+          "id": "key-separation",
+          "statement": "Cryptographic keys used for storage encryption SHALL be logically and administratively separated from application and workload identities.",
+          "responsible-role": "role-storage-crypto-architecture"
+        }
+      ],
+
+      "prohibited-cryptographic-actions": [
+        {
+          "id": "no-plaintext-storage",
+          "statement": "Storage of plaintext data in secure storage SHALL NOT be permitted."
+        },
+        {
+          "id": "no-shared-root-keys",
+          "statement": "Shared, static, or hardcoded encryption keys SHALL NOT be used for secure storage."
+        },
+        {
+          "id": "no-application-key-authority",
+          "statement": "Applications and automation SHALL NOT control, rotate, or disable storage encryption keys."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "crypto-control-failure",
+          "statement": "Failure or weakening of storage cryptographic protection SHALL escalate in accordance with the Secure Storage Violation & Drift SSPP.",
+          "responsible-role": "role-storage-crypto-oversight"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Cryptographic protection implementations ensure confidentiality and integrity of data stored in secure storage systems.",
+      "implemented-requirements": [
+        {
+          "control-id": "SC-12",
+          "remarks": "Cryptographic key establishment and management are enforced for storage systems."
+        },
+        {
+          "control-id": "SC-13",
+          "remarks": "Approved cryptographic mechanisms protect data confidentiality."
+        },
+        {
+          "control-id": "SC-28",
+          "remarks": "Data at rest is protected by cryptographic encryption."
+        },
+        {
+          "control-id": "KM-1",
+          "remarks": "Key management responsibilities are formally defined and enforced."
+        },
+        {
+          "control-id": "KM-3",
+          "remarks": "Cryptographic key usage is restricted to authorized storage contexts."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "storage-crypto-invariant-1",
+        "statement": "Cryptographic protection SHALL be mandatory and non-optional for secure storage."
+      },
+      {
+        "id": "storage-crypto-invariant-2",
+        "statement": "Loss of cryptographic protection SHALL be treated as a security violation, not a configuration preference."
+      },
+      {
+        "id": "storage-crypto-invariant-3",
+        "statement": "Cryptographic controls SHALL fail closed."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "Platform and relying system SSPPs SHALL implement cryptographic behavior consistent with this SSPP and SHALL NOT weaken its requirements."
+    }
+  }
+}

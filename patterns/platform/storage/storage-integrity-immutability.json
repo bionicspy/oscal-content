@@ -1,0 +1,248 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:storage-integrity-immutability",
+    "metadata": {
+      "title": "Storage Integrity & Immutability Pattern",
+      "version": "1.5.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines how storage platforms preserve the integrity, consistency, and trustworthiness of data over time, preventing unauthorized modification, rollback, or deletion regardless of application, automation, or operational behavior.",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:RiskAndComplianceManagement",
+          "remarks": "Business capability responsible for ensuring institutional data assets remain trustworthy, auditable, and compliant with regulatory and legal obligations."
+        },
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BusinessContinuityAndResilience",
+          "remarks": "Business capability concerned with preserving recoverability and continuity of critical information assets."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:StorageTechnologies",
+          "remarks": "Persistent storage platforms responsible for data durability and protection."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:DataBackupAndArchiveTechnologies",
+          "remarks": "Technologies providing backup, snapshot, and archival storage capabilities."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:ResilientPlatformStorage",
+          "remarks": "Establishes immutable and integrity-preserving storage services as a foundational platform capability."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:Records",
+          "remarks": "Institutional records that must remain complete, authentic, and non-repudiable."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:Evidence",
+          "remarks": "Data preserved to support audits, investigations, and legal discovery."
+        },
+        {
+          "name": "data-domain",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-domain",
+          "value": "urn:utoronto:cae2:drm:Obligations",
+          "remarks": "Data whose integrity is tied to legal, regulatory, or contractual obligations."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:SP-800-209",
+          "class": "guidance-reference",
+          "value": "3.4, 3.5, 4.1",
+          "remarks": "Defines requirements for persistent protection, integrity assurance, and evidentiary traceability in a data-centric security architecture."
+        }
+
+      ]
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:storage-integrity:capability:immutability-enforcement",
+        "type": "capability",
+        "title": "Immutability Enforcement",
+        "description": "Prevents modification or deletion of protected data once written, regardless of user, application, or automation intent.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0040",
+            "remarks": "Impact-stage attacks aim to destroy or corrupt data to deny availability or erase evidence."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1485, T1490",
+            "remarks": "Data destruction and inhibition of recovery are core ransomware objectives."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-BACKUP.IMMUTABLE",
+            "remarks": "Uses write-once or append-only protections to prevent tampering."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SI-7", "remarks": "Storage mechanisms prevent unauthorized modification or destruction." },
+              { "control-id": "CP-9", "remarks": "Immutable backups and recovery copies are protected against alteration." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-integrity:capability:snapshot-versioning",
+        "type": "capability",
+        "title": "Snapshot and Versioning Guarantees",
+        "description": "Provides verifiable recovery points through time-consistent snapshots and versioning that cannot be silently altered or rolled back.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0040",
+            "remarks": "Attackers frequently attempt to sabotage backups and recovery points."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1490",
+            "remarks": "Inhibition of system recovery targets backup and snapshot mechanisms."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-BACKUP.VERSIONING",
+            "remarks": "Maintains historical versions to enable trusted rollback and recovery."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "CP-6", "remarks": "Recovery mechanisms support restoration to known-good states." },
+              { "control-id": "CP-9", "remarks": "Snapshots and versions are preserved to support recovery objectives." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-integrity:capability:integrity-verification",
+        "type": "capability",
+        "title": "Integrity Verification and Tamper Evidence",
+        "description": "Detects unauthorized modification through cryptographic checks and tamper-evident metadata.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0005",
+            "remarks": "Defense evasion often involves subtle or silent data modification."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1552",
+            "remarks": "Secret and metadata manipulation can mask unauthorized changes."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-INTEGRITY.VERIFY",
+            "remarks": "Uses cryptographic integrity checks to detect tampering."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SI-7",  "remarks": "Integrity checks detect unauthorized data changes." },
+              { "control-id": "SC-16", "remarks": "Cryptographic mechanisms ensure message and data integrity." }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:storage-integrity:capability:forensic-preservation",
+        "type": "capability",
+        "title": "Forensic Preservation Compatibility",
+        "description": "Ensures data and metadata remain suitable for forensic analysis, legal proceedings, and regulatory review.",
+
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0040",
+            "remarks": "Attackers attempt to erase traces after causing damage."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1070",
+            "remarks": "Indicator and log removal undermines investigations."
+          },
+          {
+            "name": "defensive-techniques",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "D3-FORENSICS.PRESERVE",
+            "remarks": "Preserves evidentiary data and metadata for investigation."
+          }
+        ],
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IR-6", "remarks": "Incident-related data is preserved to support analysis." },
+              { "control-id": "AU-9", "remarks": "Audit and evidence data are protected from modification." },
+              { "control-id": "AU-11","remarks": "Forensic-relevant data is retained for accountability." }
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}

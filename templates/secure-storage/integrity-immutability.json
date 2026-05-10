@@ -1,0 +1,153 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:integrity-immutability",
+    "metadata": {
+      "title": "Secure Storage Integrity & Immutability SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines requirements ensuring that data stored in secure storage remains trustworthy, non-repudiable, and resistant to unauthorized modification, rollback, or destruction over time. This SSPP governs integrity and immutability mechanisms once authority and cryptographic protection are established."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:authority",
+        "urn:utoronto:sspp:secure-storage:cryptographic-protection"
+      ],
+      "remarks": "Integrity and immutability requirements derive from Secure Storage Authority SSPP and Secure Storage Cryptographic Protection SSPP and SHALL NOT redefine authority, access control, or data lifecycle intent."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Storage Integrity & Immutability",
+      "system-description": "Defines integrity preservation, immutability guarantees, and forensic trust requirements for secure storage systems.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Secure storage SHALL preserve data integrity over time and SHALL provide immutability guarantees where required. Integrity mechanisms SHALL be enforced by the storage platform and SHALL NOT depend on application behavior.",
+
+      "components": [
+        {
+          "id": "storage-integrity-enforcement",
+          "description": "Platform-level mechanisms ensuring data integrity, tamper resistance, and verifiable immutability."
+        },
+        {
+          "id": "snapshot-versioning-services",
+          "description": "Storage-provided snapshot and versioning mechanisms supporting trusted recovery and rollback protection."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-storage-integrity-architecture",
+          "title": "Secure Storage Integrity Architecture",
+          "remarks": "Designs and approves integrity and immutability mechanisms, including snapshot, versioning, and tamper-evidence approaches.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "SP-ARC"
+            }
+          ]
+        },
+        {
+          "id": "role-storage-integrity-oversight",
+          "title": "Secure Storage Integrity Oversight",
+          "remarks": "Verifies integrity enforcement, immutability guarantees, and evidentiary preservation across storage platforms.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "integrity-requirements": [
+        {
+          "id": "immutability-required",
+          "statement": "Data designated as immutable SHALL NOT be modified or deleted during the enforced immutability period.",
+          "responsible-role": "role-storage-integrity-architecture"
+        },
+        {
+          "id": "tamper-evidence",
+          "statement": "Secure storage SHALL provide mechanisms to detect and evidence unauthorized modification of stored data.",
+          "responsible-role": "role-storage-integrity-architecture"
+        },
+        {
+          "id": "trusted-recovery-points",
+          "statement": "Snapshot and versioning mechanisms SHALL produce verifiable, trusted recovery points resistant to tampering.",
+          "responsible-role": "role-storage-integrity-architecture"
+        },
+        {
+          "id": "forensic-preservation",
+          "statement": "Integrity and immutability mechanisms SHALL support forensic preservation and investigation requirements.",
+          "responsible-role": "role-storage-integrity-architecture"
+        }
+      ],
+
+      "prohibited-integrity-actions": [
+        {
+          "id": "no-retroactive-modification",
+          "statement": "Retroactive modification or deletion of immutable data SHALL NOT be permitted."
+        },
+        {
+          "id": "no-silent-rollback",
+          "statement": "Silent rollback to earlier data versions without explicit authorization and audit SHALL NOT be permitted."
+        },
+        {
+          "id": "no-integrity-bypass",
+          "statement": "Administrative access SHALL NOT bypass storage integrity or immutability controls."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "integrity-violation-escalation",
+          "statement": "Detected integrity violations, immutability breaches, or rollback attempts SHALL escalate in accordance with the Secure Storage Violation & Drift SSPP.",
+          "responsible-role": "role-storage-integrity-oversight"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Integrity and immutability controls ensure stored data remains trustworthy and resistant to unauthorized change.",
+      "implemented-requirements": [
+        {
+          "control-id": "SI-7",
+          "remarks": "Integrity verification mechanisms detect unauthorized modification of information."
+        },
+        {
+          "control-id": "CP-9",
+          "remarks": "Trusted backups and recovery mechanisms preserve data integrity."
+        },
+        {
+          "control-id": "CP-10",
+          "remarks": "Recovery mechanisms support trustworthy restoration of data following corruption or destructive events."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "storage-integrity-invariant-1",
+        "statement": "Integrity and immutability SHALL be enforced by default for secure storage."
+      },
+      {
+        "id": "storage-integrity-invariant-2",
+        "statement": "Loss of data integrity SHALL be treated as a security incident, not an operational error."
+      },
+      {
+        "id": "storage-integrity-invariant-3",
+        "statement": "Integrity controls SHALL fail closed and preserve evidence."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "Platform and relying system SSPPs SHALL implement integrity and immutability behavior consistent with this SSPP and SHALL NOT weaken its guarantees."
+    }
+  }
+}

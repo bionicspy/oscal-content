@@ -1,0 +1,200 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:authority",
+    "metadata": {
+      "title": "Secure Storage Authority SSPP",
+      "version": "1.3.1",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines authoritative roles, decision boundaries, and escalation constraints governing secure storage systems. This SSPP establishes who may decide, approve, override, suspend, or accept risk for secure storage behavior and explicitly prohibits implicit or delegated authority within storage platforms, automation, or relying systems."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:security:authority",
+        "urn:utoronto:sspp:data-governance:authority"
+      ],
+      "remarks": "Secure storage authority derives from enterprise security authority and data governance authority and SHALL NOT redefine or dilute those authorities."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Storage Authority",
+      "system-description": "Defines authority, accountability, and separation-of-duties for secure storage platforms and all systems relying on storage services.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Secure storage authority SHALL be explicit, human-owned, and governance-approved. Storage platforms, administrators, automation, and relying systems SHALL NOT assume or infer authority under any circumstances.",
+
+      "authority-domains": [
+        {
+          "id": "secure-storage-security-authority",
+          "description": "Authority over storage security posture, cryptographic protections, access mediation requirements, immutability guarantees, retention enforcement, and auditability."
+        },
+        {
+          "id": "data-governance-authority",
+          "description": "Authority over data classification, retention obligations, preservation requirements, and lawful disposition."
+        },
+        {
+          "id": "platform-operator-authority",
+          "description": "Authority to operate storage platforms within approved constraints, without power to weaken, bypass, or override storage security requirements."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-secure-storage-architecture-authority",
+          "title": "Secure Storage Architecture Authority",
+          "remarks": "Responsible for defining and approving secure storage architecture, including cryptographic protection, access mediation, immutability, lifecycle enforcement, and enforcement independence from compute.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "SP-ARC"
+            }
+          ]
+        },
+        {
+          "id": "role-secure-storage-risk-governance",
+          "title": "Secure Storage Risk & Governance Authority",
+          "remarks": "Accountable for storage security risk posture and approval or rejection of deviations from approved secure storage patterns and SSPPs.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OV-MGT"
+            }
+          ]
+        },
+        {
+          "id": "role-secure-storage-assurance-oversight",
+          "title": "Secure Storage Assurance & Oversight",
+          "remarks": "Responsible for verifying enforcement, monitoring, and auditability of secure storage controls across platforms and environments.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        },
+        {
+          "id": "role-secure-storage-data-stewardship",
+          "title": "Secure Storage Data Stewardship Authority",
+          "remarks": "Responsible for defining and enforcing data-centric obligations for retention, preservation, and lawful destruction.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OV-LGA"
+            }
+          ]
+        },
+        {
+          "id": "role-secure-storage-forensic-advisory",
+          "title": "Secure Storage Forensic Advisory",
+          "remarks": "Advises on evidentiary preservation and forensic handling of storage systems during investigations.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-IR"
+            }
+          ]
+        }
+      ],
+
+      "authorization-rules": [
+        {
+          "id": "explicit-approval-required",
+          "statement": "All deviations from approved secure storage patterns or SSPPs SHALL require explicit, documented authorization.",
+          "responsible-role": "role-secure-storage-risk-governance"
+        },
+        {
+          "id": "architecture-approval-required",
+          "statement": "Changes to secure storage architecture SHALL be approved prior to implementation.",
+          "responsible-role": "role-secure-storage-architecture-authority"
+        },
+        {
+          "id": "data-governance-primacy",
+          "statement": "Data governance decisions SHALL take precedence over platform convenience, performance, or cost considerations.",
+          "responsible-role": "role-secure-storage-data-stewardship"
+        }
+      ],
+
+      "prohibited-authority-actions": [
+        {
+          "id": "automation-no-approval",
+          "statement": "Automation SHALL NOT approve, persist, or normalize storage security exceptions."
+        },
+        {
+          "id": "no-silent-degradation",
+          "statement": "Storage platforms SHALL NOT silently weaken or disable encryption, immutability, retention, or audit capabilities."
+        },
+        {
+          "id": "no-local-risk-acceptance",
+          "statement": "Risk acceptance related to secure storage SHALL NOT occur at the team, project, or platform level."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "violation-escalation",
+          "statement": "Detected storage security violations or control drift SHALL escalate in accordance with the Secure Storage Violation & Drift SSPP.",
+          "responsible-role": "role-secure-storage-assurance-oversight"
+        },
+        {
+          "id": "irreversible-action-approval",
+          "statement": "Any action that risks irreversible data loss or evidentiary compromise SHALL require prior governance approval.",
+          "responsible-role": "role-secure-storage-risk-governance"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Authority controls ensure secure storage decisions are explicit, accountable, and separated from implementation.",
+      "implemented-requirements": [
+        {
+          "control-id": "IA-1",
+          "remarks": "Roles and responsibilities for secure storage authority are formally defined."
+        },
+        {
+          "control-id": "PL-2",
+          "remarks": "Secure storage authority is defined as part of system security planning."
+        },
+        {
+          "control-id": "CM-5",
+          "remarks": "Separation of duties prevents unauthorized weakening of storage security controls."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "storage-authority-invariant-1",
+        "statement": "Secure storage authority SHALL be explicit, human-owned, and governance-approved."
+      },
+      {
+        "id": "storage-authority-invariant-2",
+        "statement": "Operational urgency SHALL NOT override storage security authority."
+      },
+      {
+        "id": "storage-authority-invariant-3",
+        "statement": "Automation SHALL always operate as an executor, never as a decision authority."
+      },
+      {
+        "id": "storage-authority-invariant-4",
+        "statement": "Storage platforms SHALL fail safe when authority is unclear, absent, or contested."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All secure storage SSPPs, platform SSPPs, relying systems SSPPs, operations SSPPs, and overlays SHALL defer to this SSPP for authority interpretation."
+    }
+  }
+}

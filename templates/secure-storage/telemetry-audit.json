@@ -1,0 +1,159 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:telemetry-audit",
+    "metadata": {
+      "title": "Secure Storage Telemetry & Audit SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines how secure storage systems SHALL emit authoritative, evidentiary telemetry and audit records describing access, configuration changes, lifecycle events, and protection state. This SSPP governs observability and auditability requirements without performing detection or response."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:authority",
+        "urn:utoronto:sspp:secure-storage:access-control",
+        "urn:utoronto:sspp:secure-storage:integrity-immutability",
+        "urn:utoronto:sspp:secure-storage:lifecycle-retention"
+      ],
+      "remarks": "Telemetry and audit requirements derive from Secure Storage Authority SSPP and reflect storage behavior governed by access, integrity, and lifecycle SSPPs."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure Storage Telemetry & Audit",
+      "system-description": "Defines observability, audit logging, and evidentiary preservation requirements for secure storage systems.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Secure storage SHALL emit complete, accurate, and tamper‑evident telemetry describing all security‑relevant actions. Telemetry SHALL be authoritative and SHALL NOT depend on application‑generated logs.",
+
+      "components": [
+        {
+          "id": "storage-access-telemetry",
+          "description": "Telemetry capturing read, write, delete, and metadata access with identity and object attribution."
+        },
+        {
+          "id": "storage-control-plane-telemetry",
+          "description": "Telemetry capturing configuration, policy, encryption, replication, retention, and immutability changes."
+        },
+        {
+          "id": "storage-lifecycle-telemetry",
+          "description": "Telemetry capturing retention actions, legal holds, replication events, and data destruction."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-storage-telemetry-architecture",
+          "title": "Secure Storage Telemetry Architecture",
+          "remarks": "Designs and approves storage telemetry, logging, and audit models to ensure evidentiary completeness and correctness.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "SP-ARC"
+            }
+          ]
+        },
+        {
+          "id": "role-storage-telemetry-oversight",
+          "title": "Secure Storage Telemetry Oversight",
+          "remarks": "Verifies that secure storage telemetry is complete, tamper‑evident, retained, and suitable for audit and investigation.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "telemetry-requirements": [
+        {
+          "id": "access-event-logging",
+          "statement": "All access to secure storage SHALL generate audit records with identity, object, operation, and timestamp attribution.",
+          "responsible-role": "role-storage-telemetry-architecture"
+        },
+        {
+          "id": "control-plane-logging",
+          "statement": "All storage configuration and policy changes SHALL be logged and attributable.",
+          "responsible-role": "role-storage-telemetry-architecture"
+        },
+        {
+          "id": "lifecycle-event-logging",
+          "statement": "Retention actions, legal holds, replication, and destruction events SHALL generate audit records.",
+          "responsible-role": "role-storage-telemetry-architecture"
+        },
+        {
+          "id": "tamper-evident-logging",
+          "statement": "Storage telemetry SHALL be protected from unauthorized modification or deletion.",
+          "responsible-role": "role-storage-telemetry-architecture"
+        }
+      ],
+
+      "prohibited-telemetry-actions": [
+        {
+          "id": "no-telemetry-suppression",
+          "statement": "Storage platforms, administrators, and automation SHALL NOT suppress, filter, or rewrite security‑relevant telemetry."
+        },
+        {
+          "id": "no-log-co-location",
+          "statement": "Audit records SHALL NOT be stored only in the same trust boundary as the data they describe."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "telemetry-gap-escalation",
+          "statement": "Loss, corruption, or suppression of required telemetry SHALL escalate in accordance with the Secure Storage Violation & Drift SSPP.",
+          "responsible-role": "role-storage-telemetry-oversight"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Telemetry and audit controls ensure storage actions are observable, attributable, and evidentiary.",
+      "implemented-requirements": [
+        {
+          "control-id": "AU-2",
+          "remarks": "Audit events are defined and generated for secure storage actions."
+        },
+        {
+          "control-id": "AU-6",
+          "remarks": "Audit records support review, analysis, and investigation."
+        },
+        {
+          "control-id": "AU-9",
+          "remarks": "Audit records are protected from unauthorized modification or deletion."
+        },
+        {
+          "control-id": "AU-11",
+          "remarks": "Audit records are retained to support accountability and oversight."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "storage-telemetry-invariant-1",
+        "statement": "All security‑relevant storage actions SHALL be observable and attributable."
+      },
+      {
+        "id": "storage-telemetry-invariant-2",
+        "statement": "Auditability SHALL NOT be sacrificed for performance or convenience."
+      },
+      {
+        "id": "storage-telemetry-invariant-3",
+        "statement": "Telemetry failure SHALL be treated as a security condition, not a logging issue."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "Platform and relying system SSPPs SHALL emit and preserve telemetry in accordance with this SSPP and SHALL NOT weaken its guarantees."
+    }
+  }
+}
