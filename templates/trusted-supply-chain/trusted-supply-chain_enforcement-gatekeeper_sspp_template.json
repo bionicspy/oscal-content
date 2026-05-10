@@ -1,0 +1,107 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:supply-chain:enforcement-gatekeeper",
+    "metadata": {
+      "title": "Supply Chain Enforcement / Gatekeeper SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T11:45:00Z",
+      "remarks": "System Security and Privacy Plan governing enforcement points that translate advisory supply-chain trust signals into explicit allow/deny decisions, without minting trust or overriding safety, runtime, or governance authorities."
+    },
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:supply-chain-enforcement",
+      "remarks": "This SSPP enforces decisions derived from Supply Chain Relying SSPPs and explicitly forbids implicit authorization paths."
+    },
+    "system-characteristics": {
+      "system-name": "Supply Chain Enforcement / Gatekeeper",
+      "system-description": "The Supply Chain Enforcement / Gatekeeper SSPP governs technical and procedural control points where supply-chain trust signals are evaluated and enforced. It converts contextual inputs into explicit allow, deny, or require-human-approval outcomes, while preventing trust persistence, authority inheritance, or safety bypass.",
+      "security-sensitivity-level": "high",
+      "props": [
+        {
+          "name": "system-role",
+          "class": "enforcement-plane",
+          "value": "decision-enforcer",
+          "remarks": "This system enforces decisions but does not originate trust or risk acceptance."
+        },
+        {
+          "name": "authority-boundary",
+          "class": "architectural-invariant",
+          "value": "no-trust-minting",
+          "remarks": "Gatekeepers must not create, elevate, or persist trust."
+        },
+        {
+          "name": "decision-mode",
+          "class": "enforcement-constraint",
+          "value": "explicit-only",
+          "remarks": "All outcomes must be explicit: allow, deny, or escalate."
+        },
+        {
+          "name": "non-equivalence",
+          "class": "architectural-invariant",
+          "value": "signal-not-sufficient",
+          "remarks": "No single supply-chain signal is sufficient for allow decisions."
+        },
+        {
+          "name": "precedence-rule",
+          "class": "override-constraint",
+          "value": "sdlc-runtime-safety-dominate",
+          "remarks": "Secure‑SDLC, Secure‑Resilience, and Safety Governance SSPPs override gatekeeper outcomes."
+        },
+        {
+          "name": "forbidden-behavior",
+          "class": "explicit-prohibition",
+          "value": "implicit-allow",
+          "remarks": "Implicit or default allow behaviors are forbidden."
+        }
+      ]
+    },
+    "system-implementation": {
+      "remarks": "Gatekeepers operate as enforcement points within pipelines, access brokers, deployment systems, and integration layers. They consume inputs from relying SSPPs and negative-pattern SSPPs and produce auditable decisions.",
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:supply-chain-relying-system",
+          "type": "input-consumption",
+          "title": "Relying System Inputs",
+          "remarks": "Consumes advisory trust interpretations from IT, OT, and IoMT relying systems."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:negative-patterns",
+          "type": "constraint-consumption",
+          "title": "Negative‑Pattern Enforcement",
+          "remarks": "Explicitly denies architectures or flows defined as forbidden."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:secure-sdlc",
+          "type": "precedence-alignment",
+          "title": "Secure‑SDLC Alignment",
+          "remarks": "Build, test, and deployment controls override supply-chain inputs."
+        }
+      ]
+    },
+    "roles": [
+      {
+        "id": "role-platform-security",
+        "title": "Platform Security",
+        "remarks": "Defines and enforces gatekeeper policies."
+      },
+      {
+        "id": "role-devops-enforcement",
+        "title": "DevOps Enforcement Operations",
+        "remarks": "Operates pipeline gates and deployment controls."
+      },
+      {
+        "id": "role-security-architecture",
+        "title": "Security Architecture",
+        "remarks": "Ensures enforcement logic preserves architectural boundaries."
+      },
+      {
+        "id": "role-audit-assurance",
+        "title": "Audit & Assurance",
+        "remarks": "Validates that enforcement decisions are explicit and traceable."
+      }
+    ],
+    "control-implementation": {
+      "remarks": "Controls are enforced across NIST SP 800‑53r5 SA, SR, CM, AC, IA, PL, RA, and SI families. Enforcement logic requires multiple corroborating inputs and denies on uncertainty."
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:supply-chain:violation-drift-detection",
+    "metadata": {
+      "title": "Supply Chain Violation & Drift Detection SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T12:30:00Z",
+      "remarks": "System Security and Privacy Plan governing detection, classification, and escalation of violations and drift related to supply-chain trust, enforcement decisions, and runtime behavior."
+    },
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:violation-and-drift-detection",
+      "remarks": "This SSPP provides independent detection of architectural violations and trust drift without enforcing or remediating conditions."
+    },
+    "system-characteristics": {
+      "system-name": "Supply Chain Violation & Drift Detection",
+      "system-description": "The Violation & Drift Detection SSPP identifies when systems, pipelines, integrations, or devices diverge from enforced supply-chain decisions, architectural constraints, or negative-pattern prohibitions. It provides authoritative evidence of non-compliance and escalation signals without modifying system behavior.",
+      "security-sensitivity-level": "high",
+      "props": [
+        {
+          "name": "system-role",
+          "class": "detection-plane",
+          "value": "violation-observer",
+          "remarks": "Observes and records violations; does not enforce or correct."
+        },
+        {
+          "name": "authority-boundary",
+          "class": "architectural-invariant",
+          "value": "no-self-healing",
+          "remarks": "Detection systems must not auto-remediate or silently correct violations."
+        },
+        {
+          "name": "truth-source",
+          "class": "assurance-invariant",
+          "value": "runtime-and-architecture-facts",
+          "remarks": "Detection relies on observed facts, not declared intent or approval history."
+        },
+        {
+          "name": "non-equivalence",
+          "class": "detection-invariant",
+          "value": "approved-not-equal-running",
+          "remarks": "Approval history does not override current runtime or architectural violations."
+        },
+        {
+          "name": "forbidden-behavior",
+          "class": "explicit-prohibition",
+          "value": "silent-violation-absorption",
+          "remarks": "Violations must be surfaced and escalated, not normalized."
+        }
+      ]
+    },
+    "system-implementation": {
+      "remarks": "Violation and drift detection mechanisms correlate runtime telemetry, configuration state, pipeline behavior, and architectural topology against enforced decisions and negative-pattern definitions.",
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:supply-chain:runtime-assurance",
+          "type": "input-source",
+          "title": "Runtime Assurance Signals",
+          "remarks": "Provides observed runtime state and integrity data."
+        },
+        {
+          "uuid": "urn:utoronto:sspp:supply-chain:enforcement-gatekeeper",
+          "type": "baseline-reference",
+          "title": "Enforcement Decision Baseline",
+          "remarks": "Defines what was explicitly allowed or denied."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:negative-patterns",
+          "type": "violation-definition",
+          "title": "Negative‑Pattern Registry",
+          "remarks": "Defines architectures and trust flows that are invalid by design."
+        }
+      ]
+    },
+    "roles": [
+      {
+        "id": "role-detection-engineering",
+        "title": "Detection Engineering",
+        "remarks": "Develops and maintains detection logic and correlation rules."
+      },
+      {
+        "id": "role-security-operations",
+        "title": "Security Operations",
+        "remarks": "Receives and triages violation findings."
+      },
+      {
+        "id": "role-security-architecture",
+        "title": "Security Architecture",
+        "remarks": "Defines what constitutes drift, violation, and escalation thresholds."
+      },
+      {
+        "id": "role-governance-escalation",
+        "title": "Governance & Escalation",
+        "remarks": "Determines response, exception, or corrective action outside the detection plane."
+      }
+    ],
+    "control-implementation": {
+      "remarks": "Controls align with NIST SP 800‑53r5 CA, CM, SI, IR, PL, and SR families. This SSPP emphasizes evidence creation, traceability, and escalation rather than prevention or enforcement."
+    }
+  }
+}

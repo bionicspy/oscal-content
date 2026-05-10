@@ -1,0 +1,107 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:supply-chain:relying-system:it",
+    "metadata": {
+      "title": "IT Supply Chain Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T10:45:00Z",
+      "remarks": "IT-specific variant of the Supply Chain Relying System SSPP. Applies to enterprise IT systems, CI/CD platforms, and integration services consuming supply-chain trust signals without inheriting authority or permanence."
+    },
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:supply-chain-relying-system",
+      "remarks": "This SSPP is an IT-scoped instantiation of the Supply Chain Relying System pattern and inherits all non-equivalence and revocation constraints."
+    },
+    "system-characteristics": {
+      "system-name": "IT Supply Chain Relying System",
+      "system-description": "This SSPP governs enterprise IT systems that consume supply-chain trust signals, including CI/CD pipelines, artifact repositories, deployment automation, and SaaS/PaaS integrations. It ensures that vendor approval, dependency visibility, and SBOM availability do not translate into automatic deployment, execution, or persistent access in IT environments.",
+      "security-sensitivity-level": "moderate",
+      "props": [
+        {
+          "name": "environment-scope",
+          "class": "it-domain",
+          "value": "enterprise-it",
+          "remarks": "Applies to corporate IT systems, excluding OT and clinical/medical environments."
+        },
+        {
+          "name": "system-role",
+          "class": "trust-consumer",
+          "value": "it-relying-system",
+          "remarks": "Consumes supply-chain trust signals for decision support only."
+        },
+        {
+          "name": "trust-consumption-mode",
+          "class": "constraint",
+          "value": "gate-and-observe",
+          "remarks": "Trust signals may gate pipeline steps but never authorize deployment alone."
+        },
+        {
+          "name": "non-equivalence",
+          "class": "architectural-invariant",
+          "value": "dependency-approved-not-deployable",
+          "remarks": "Approved dependencies in IT repositories still require policy, vulnerability, and context evaluation."
+        },
+        {
+          "name": "non-equivalence",
+          "class": "architectural-invariant",
+          "value": "vendor-trusted-not-runtime-trusted",
+          "remarks": "Vendor trust does not persist into runtime authorization or access."
+        },
+        {
+          "name": "lifecycle-boundary",
+          "class": "sdlc-alignment",
+          "value": "build-test-deploy-separation",
+          "remarks": "Trust evaluation is repeated independently at each SDLC stage."
+        }
+      ]
+    },
+    "system-implementation": {
+      "remarks": "IT relying systems enforce negative and contextual controls over supply-chain trust. They integrate trust signals into SDLC workflows while preserving Secure‑SDLC and Secure‑Resilience precedence.",
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:software-supply-chain",
+          "type": "pattern-consumption",
+          "title": "Software Supply Chain (IT Constrained)",
+          "remarks": "Used to inform build and deployment decisions without granting implicit authorization."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:dependency-transparency",
+          "type": "pattern-consumption",
+          "title": "Dependency Transparency (IT Visibility)",
+          "remarks": "SBOMs and dependency metadata support risk analysis but do not assert safety."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:vendor-risk-management",
+          "type": "pattern-alignment",
+          "title": "Vendor Risk Management (Non-Authoritative)",
+          "remarks": "Vendor assessments are advisory inputs only for IT relying systems."
+        }
+      ]
+    },
+    "roles": [
+      {
+        "id": "role-it-platform-engineering",
+        "title": "IT Platform Engineering",
+        "remarks": "Implements policy gates and trust signal ingestion in IT pipelines."
+      },
+      {
+        "id": "role-it-security-architecture",
+        "title": "IT Security Architecture",
+        "remarks": "Defines enforcement boundaries between trust signals and authorization."
+      },
+      {
+        "id": "role-devops",
+        "title": "DevOps / CI-CD Operations",
+        "remarks": "Operates pipelines under strict non-equivalence rules."
+      },
+      {
+        "id": "role-it-risk-management",
+        "title": "IT Risk Management",
+        "remarks": "Monitors misuse of supply-chain trust signals in IT systems."
+      }
+    ],
+    "control-implementation": {
+      "remarks": "Controls are primarily satisfied through constrained interpretation of NIST SP 800‑53r5 SA, SR, CM, AC, IA, RA, and SI control families in an enterprise IT context. No control may be satisfied solely through vendor trust or dependency approval."
+    }
+  }
+}

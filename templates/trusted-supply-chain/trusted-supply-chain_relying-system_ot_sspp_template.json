@@ -1,0 +1,113 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:supply-chain:relying-system:ot",
+    "metadata": {
+      "title": "OT Supply Chain Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T11:05:00Z",
+      "remarks": "OT-specific variant of the Supply Chain Relying System SSPP. Applies where vendors, dependencies, or integrations interact with operational technology, industrial control systems, or safety-relevant environments."
+    },
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:supply-chain-relying-system",
+      "remarks": "This SSPP inherits all base relying-system constraints and further restricts trust consumption for OT environments."
+    },
+    "system-characteristics": {
+      "system-name": "OT Supply Chain Relying System",
+      "system-description": "This SSPP governs the consumption of supply-chain trust signals within Operational Technology environments. It strictly limits how CI/CD pipelines, update mechanisms, vendor integrations, and support access influence OT systems, ensuring that no supply-chain signal enables automatic deployment, remote execution, or persistent access in OT contexts.",
+      "security-sensitivity-level": "high",
+      "props": [
+        {
+          "name": "environment-scope",
+          "class": "ot-domain",
+          "value": "operational-technology",
+          "remarks": "Applies to ICS, SCADA, BAS, manufacturing, facilities, and safety-relevant OT systems."
+        },
+        {
+          "name": "system-role",
+          "class": "trust-consumer",
+          "value": "ot-relying-system",
+          "remarks": "Consumes trust signals under strict safety and availability constraints."
+        },
+        {
+          "name": "trust-consumption-mode",
+          "class": "constraint",
+          "value": "informational-only",
+          "remarks": "Supply-chain trust signals may inform risk decisions but never gate or trigger OT actions."
+        },
+        {
+          "name": "non-equivalence",
+          "class": "architectural-invariant",
+          "value": "vendor-approved-not-ot-authorized",
+          "remarks": "Vendor approval or contract status does not authorize access to OT systems."
+        },
+        {
+          "name": "non-equivalence",
+          "class": "architectural-invariant",
+          "value": "signed-update-not-ot-deployable",
+          "remarks": "Cryptographically signed updates do not imply deployability in OT environments."
+        },
+        {
+          "name": "safety-precedence",
+          "class": "environmental-constraint",
+          "value": "safety-and-availability-first",
+          "remarks": "Safety, determinism, and uptime override all supply-chain trust considerations."
+        },
+        {
+          "name": "forbidden-inference",
+          "class": "explicit-prohibition",
+          "value": "ci-cd-to-ot-direct-deploy",
+          "remarks": "IT CI/CD pipelines must never directly deploy into OT environments."
+        }
+      ]
+    },
+    "system-implementation": {
+      "remarks": "OT relying systems treat supply-chain trust as advisory only. All changes to OT systems require independent safety review, change management, and explicit authorization outside of supply-chain trust mechanisms.",
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:software-supply-chain",
+          "type": "pattern-consumption",
+          "title": "Software Supply Chain (OT Restricted)",
+          "remarks": "Used for provenance awareness only; never for automated OT deployment."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:dependency-transparency",
+          "type": "pattern-consumption",
+          "title": "Dependency Transparency (OT Awareness)",
+          "remarks": "Dependency data supports risk review but does not assert compatibility or safety."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:third-party-privileged-access",
+          "type": "pattern-alignment",
+          "title": "Third-Party OT Access Constraints",
+          "remarks": "All third-party OT access is session-based, supervised, and independently approved."
+        }
+      ]
+    },
+    "roles": [
+      {
+        "id": "role-ot-engineering",
+        "title": "OT Engineering",
+        "remarks": "Evaluates operational impact and safety risk of supply-chain changes."
+      },
+      {
+        "id": "role-ot-security-architecture",
+        "title": "OT Security Architecture",
+        "remarks": "Defines hard boundaries between IT supply-chain processes and OT systems."
+      },
+      {
+        "id": "role-ot-operations",
+        "title": "OT Operations",
+        "remarks": "Executes approved changes using controlled and auditable procedures."
+      },
+      {
+        "id": "role-safety-management",
+        "title": "Safety Management",
+        "remarks": "Ensures that no supply-chain signal bypasses safety review or shutdown authority."
+      }
+    ],
+    "control-implementation": {
+      "remarks": "Controls align primarily with NIST SP 800‑53r5 SA, SR, AC, CM, CP, PL, RA, and SI families, interpreted through an OT lens. No OT control may be satisfied solely through vendor trust, dependency approval, or software provenance."
+    }
+  }
+}

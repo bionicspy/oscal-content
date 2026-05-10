@@ -1,0 +1,119 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:supply-chain:negative-patterns",
+    "metadata": {
+      "title": "Supply Chain Negative‑Pattern SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T12:50:00Z",
+      "remarks": "System Security and Privacy Plan defining explicitly forbidden architectures, trust flows, and system behaviors related to the supply chain. Negative patterns are invalid by existence and may not be overridden by approval, risk acceptance, or operational convenience."
+    },
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:negative-patterns",
+      "remarks": "This SSPP enumerates architectural anti‑patterns that must be rejected at design time, enforcement time, and runtime detection."
+    },
+    "system-characteristics": {
+      "system-name": "Supply Chain Negative‑Pattern Registry",
+      "system-description": "The Negative‑Pattern SSPP defines system architectures, trust flows, and operational behaviors that are prohibited across the supply‑chain ecosystem. These patterns represent categorical failures that no control, approval, or exception may legitimize.",
+      "security-sensitivity-level": "high",
+      "props": [
+        {
+          "name": "system-role",
+          "class": "constitutional-layer",
+          "value": "architecture-prohibition",
+          "remarks": "Defines what architectures must never exist."
+        },
+        {
+          "name": "override-rule",
+          "class": "absolute-invariant",
+          "value": "no-exceptions",
+          "remarks": "Negative patterns cannot be overridden by risk acceptance or compensating controls."
+        },
+        {
+          "name": "decision-scope",
+          "class": "architectural-boundary",
+          "value": "pre-runtime",
+          "remarks": "Prohibited patterns apply before deployment, during enforcement, and at runtime."
+        },
+        {
+          "name": "forbidden-behavior",
+          "class": "explicit-prohibition",
+          "value": "implicit-trust-flow",
+          "remarks": "Any implicit inheritance of trust is invalid."
+        }
+      ]
+    },
+    "system-implementation": {
+      "remarks": "Negative patterns are enforced through design review, gatekeeper enforcement, runtime detection, and governance escalation. Existence of a negative pattern constitutes an architectural violation.",
+      "components": [
+        {
+          "uuid": "urn:utoronto:negative-pattern:procurement-deployment-coupling",
+          "type": "forbidden-architecture",
+          "title": "Procurement Equals Deployment",
+          "remarks": "Any architecture where procurement approval enables or triggers deployment is forbidden."
+        },
+        {
+          "uuid": "urn:utoronto:negative-pattern:vendor-runtime-authority",
+          "type": "forbidden-trust-flow",
+          "title": "Vendor Approval Grants Runtime Authority",
+          "remarks": "Vendor trust status must not grant runtime access, credentials, or execution rights."
+        },
+        {
+          "uuid": "urn:utoronto:negative-pattern:dependency-auto-deploy",
+          "type": "forbidden-automation",
+          "title": "Approved Dependency Automatically Deployed",
+          "remarks": "Dependency approval or SBOM presence must not enable automated deployment."
+        },
+        {
+          "uuid": "urn:utoronto:negative-pattern:ci-cd-direct-ot",
+          "type": "forbidden-path",
+          "title": "CI/CD Directly Deploys to OT",
+          "remarks": "Any CI/CD pipeline with direct reach into OT environments is invalid."
+        },
+        {
+          "uuid": "urn:utoronto:negative-pattern:trust-persistence",
+          "type": "forbidden-state",
+          "title": "Persistent Supply‑Chain Trust",
+          "remarks": "Supply‑chain trust must not persist beyond its original context or decision window."
+        },
+        {
+          "uuid": "urn:utoronto:negative-pattern:signed-equals-safe",
+          "type": "false-equivalence",
+          "title": "Signed Artifact Equals Safe to Run",
+          "remarks": "Cryptographic assurance does not imply safety, suitability, or authorization."
+        },
+        {
+          "uuid": "urn:utoronto:negative-pattern:iomt-auto-action",
+          "type": "forbidden-behavior",
+          "title": "Supply‑Chain Signal Triggers IoMT Action",
+          "remarks": "No supply‑chain signal may directly initiate device action, update, or configuration change in clinical environments."
+        }
+      ]
+    },
+    "roles": [
+      {
+        "id": "role-security-architecture",
+        "title": "Security Architecture",
+        "remarks": "Defines and curates negative patterns."
+      },
+      {
+        "id": "role-platform-enforcement",
+        "title": "Platform Enforcement",
+        "remarks": "Blocks implementations that match negative patterns."
+      },
+      {
+        "id": "role-runtime-detection",
+        "title": "Runtime Detection",
+        "remarks": "Detects presence of forbidden architectures at runtime."
+      },
+      {
+        "id": "role-governance-authority",
+        "title": "Governance Authority",
+        "remarks": "Responds to confirmed violations; cannot grant exceptions."
+      }
+    ],
+    "control-implementation": {
+      "remarks": "Negative patterns affect all relevant NIST SP 800‑53r5 families by invalidating architectures at a structural level. Controls cannot be used to compensate for forbidden designs."
+    }
+  }
+}

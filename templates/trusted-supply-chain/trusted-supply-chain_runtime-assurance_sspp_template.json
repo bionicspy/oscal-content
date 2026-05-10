@@ -1,0 +1,101 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:supply-chain:runtime-assurance",
+    "metadata": {
+      "title": "Supply Chain Runtime Assurance SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T12:10:00Z",
+      "remarks": "System Security and Privacy Plan governing runtime verification that deployed systems remain consistent with enforced supply-chain decisions, architectural constraints, and safety requirements over time."
+    },
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:runtime-assurance",
+      "remarks": "This SSPP provides continuous runtime validation independent of supply-chain trust origination and enforcement."
+    },
+    "system-characteristics": {
+      "system-name": "Supply Chain Runtime Assurance",
+      "system-description": "The Runtime Assurance SSPP ensures that software, services, integrations, and devices operating in production remain consistent with approved supply-chain decisions and architectural constraints. It detects drift, decay, and unauthorized inheritance of trust without relying on upstream assurances.",
+      "security-sensitivity-level": "high",
+      "props": [
+        {
+          "name": "system-role",
+          "class": "runtime-plane",
+          "value": "assurance-and-verification",
+          "remarks": "Validates runtime state rather than making authorization decisions."
+        },
+        {
+          "name": "trust-assumption",
+          "class": "architectural-invariant",
+          "value": "trust-can-expire",
+          "remarks": "All upstream trust assumptions are treated as perishable."
+        },
+        {
+          "name": "decision-boundary",
+          "class": "authority-constraint",
+          "value": "no-allow-no-deny",
+          "remarks": "Runtime assurance must not authorize or deny actions directly."
+        },
+        {
+          "name": "non-equivalence",
+          "class": "runtime-invariant",
+          "value": "running-equals-approved",
+          "remarks": "Runtime state must continuously match enforced policy, not historical approval."
+        },
+        {
+          "name": "forbidden-behavior",
+          "class": "explicit-prohibition",
+          "value": "sticky-trust",
+          "remarks": "Long-lived or inherited trust without revalidation is forbidden."
+        }
+      ]
+    },
+    "system-implementation": {
+      "remarks": "Runtime assurance mechanisms verify integrity, configuration, provenance, and behavior of running systems. Findings are surfaced through evidence and telemetry and do not directly modify runtime behavior.",
+      "components": [
+        {
+          "uuid": "urn:utoronto:sspp:supply-chain:enforcement-gatekeeper",
+          "type": "upstream-reference",
+          "title": "Supply Chain Enforcement / Gatekeeper",
+          "remarks": "Provides the baseline of what was explicitly allowed."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:secure-resilience",
+          "type": "alignment",
+          "title": "Secure‑Resilience Alignment",
+          "remarks": "Runtime protection and recovery override supply‑chain assumptions."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:negative-patterns",
+          "type": "runtime-evaluation",
+          "title": "Negative‑Pattern Detection",
+          "remarks": "Identifies forbidden architectures or behaviors at runtime."
+        }
+      ]
+    },
+    "roles": [
+      {
+        "id": "role-runtime-security-operations",
+        "title": "Runtime Security Operations",
+        "remarks": "Monitors runtime state and integrity signals."
+      },
+      {
+        "id": "role-platform-observability",
+        "title": "Platform Observability",
+        "remarks": "Provides telemetry, logs, and configuration state."
+      },
+      {
+        "id": "role-security-architecture",
+        "title": "Security Architecture",
+        "remarks": "Defines acceptable runtime states and drift thresholds."
+      },
+      {
+        "id": "role-incident-response",
+        "title": "Incident Response",
+        "remarks": "Responds when runtime state violates enforced constraints."
+      }
+    ],
+    "control-implementation": {
+      "remarks": "Controls align primarily with NIST SP 800‑53r5 SI, CM, CA, IR, CP, and SR families. Runtime assurance focuses on detection, evidence, and notification rather than enforcement."
+    }
+  }
+}

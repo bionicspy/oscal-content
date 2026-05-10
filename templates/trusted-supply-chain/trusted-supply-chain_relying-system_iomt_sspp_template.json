@@ -1,0 +1,113 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:supply-chain:relying-system:iomt",
+    "metadata": {
+      "title": "IoMT Supply Chain Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T11:25:00Z",
+      "remarks": "IoMT-specific variant of the Supply Chain Relying System SSPP. Applies to environments involving clinical devices, medical services, health data systems, and safety‑critical patient‑adjacent technology."
+    },
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:supply-chain-relying-system",
+      "remarks": "This SSPP inherits all base relying-system constraints and introduces patient safety, clinical governance, and regulatory precedence requirements."
+    },
+    "system-characteristics": {
+      "system-name": "IoMT Supply Chain Relying System",
+      "system-description": "This SSPP governs how supply-chain trust signals are consumed by Internet of Medical Things (IoMT) systems and supporting platforms. It ensures that vendor approval, signed firmware, SBOMs, or dependency transparency never imply clinical suitability, deployability to medical devices, or ongoing runtime trust without explicit clinical, safety, and regulatory authorization.",
+      "security-sensitivity-level": "high",
+      "props": [
+        {
+          "name": "environment-scope",
+          "class": "iomt-domain",
+          "value": "clinical-and-medical",
+          "remarks": "Applies to medical devices, clinical services, diagnostic platforms, and patient-adjacent systems."
+        },
+        {
+          "name": "system-role",
+          "class": "trust-consumer",
+          "value": "iomt-relying-system",
+          "remarks": "Consumes supply-chain trust signals for awareness and risk assessment only."
+        },
+        {
+          "name": "trust-consumption-mode",
+          "class": "constraint",
+          "value": "clinical-advisory-only",
+          "remarks": "Supply-chain trust informs governance processes but never initiates device action."
+        },
+        {
+          "name": "non-equivalence",
+          "class": "architectural-invariant",
+          "value": "vendor-approved-not-clinically-approved",
+          "remarks": "Vendor trust does not equate to clinical approval or safety certification."
+        },
+        {
+          "name": "non-equivalence",
+          "class": "architectural-invariant",
+          "value": "signed-firmware-not-device-authorized",
+          "remarks": "Cryptographic integrity does not imply clinical safety or patient suitability."
+        },
+        {
+          "name": "patient-safety-precedence",
+          "class": "environmental-constraint",
+          "value": "patient-safety-over-trust-signals",
+          "remarks": "Patient safety, clinical effectiveness, and regulatory compliance override all supply-chain trust considerations."
+        },
+        {
+          "name": "forbidden-inference",
+          "class": "explicit-prohibition",
+          "value": "supply-chain-trust-to-device-automation",
+          "remarks": "No supply-chain trust signal may directly trigger configuration change, firmware update, or device behavior."
+        }
+      ]
+    },
+    "system-implementation": {
+      "remarks": "IoMT relying systems treat supply-chain trust signals as inputs into governance, review, and assurance workflows. All clinical actions, deployments, and updates require independent validation and authorization outside the supply-chain trust plane.",
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:software-supply-chain",
+          "type": "pattern-consumption",
+          "title": "Software Supply Chain (IoMT Restricted)",
+          "remarks": "Used to understand provenance and update origin without implying clinical acceptability."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:dependency-transparency",
+          "type": "pattern-consumption",
+          "title": "Dependency Transparency (IoMT Awareness)",
+          "remarks": "Dependency data supports regulatory, safety, and risk review only."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:vendor-risk-management",
+          "type": "pattern-alignment",
+          "title": "Vendor Risk Management (Clinical Context)",
+          "remarks": "Vendor assessments inform contracting and governance but never device runtime trust."
+        }
+      ]
+    },
+    "roles": [
+      {
+        "id": "role-clinical-engineering",
+        "title": "Clinical Engineering",
+        "remarks": "Evaluates medical device safety, compatibility, and operational impact."
+      },
+      {
+        "id": "role-clinical-governance",
+        "title": "Clinical Governance",
+        "remarks": "Provides approval authority for clinical deployment and device changes."
+      },
+      {
+        "id": "role-iomt-security-architecture",
+        "title": "IoMT Security Architecture",
+        "remarks": "Defines technical boundaries separating supply-chain trust from clinical authorization."
+      },
+      {
+        "id": "role-regulatory-compliance",
+        "title": "Regulatory & Privacy Compliance",
+        "remarks": "Ensures alignment with medical, health, and patient data regulations."
+      }
+    ],
+    "control-implementation": {
+      "remarks": "Controls align with NIST SP 800‑53r5 SA, SR, AC, CM, IA, PL, RA, SI families, interpreted for clinical and medical contexts. No IoMT control may be satisfied solely through vendor trust, signed artifacts, or supply-chain transparency."
+    }
+  }
+}
