@@ -1,0 +1,185 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:sdlc-assurance",
+
+    "metadata": {
+      "title": "SDLC Assurance",
+      "version": "2.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T04:00:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC320",
+          "remarks": "Business capability for producing and maintaining security assurance evidence for SDLC artifacts without granting authorization to deploy or execute."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD040",
+          "remarks": "Software assurance tooling, CI/CD testing stages, static and dynamic analysis pipelines."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP530",
+          "remarks": "Solution pattern for generating SDLC assurance evidence."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "sdlc-assurance-data",
+          "value": "urn:utoronto:cae2:drm:DP530",
+          "remarks": "Defines test results, scan output, validation artifacts, and assurance attestations as trust-relevant SDLC data."
+        },
+        {
+          "name": "nist-controls",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-families",
+          "value": "SA, CA, SI",
+          "remarks": "SDLC Assurance implements assessment and integrity-related controls."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "primary-guidance",
+          "value": "SP 800-218 (SSDF)",
+          "remarks": "Secure Software Development Framework guidance for software assurance practices."
+        }
+      ],
+
+      "remarks": "SDLC Assurance produces security assurance evidence for SDLC artifacts. Assurance demonstrates assessed properties but does not imply authorization, deployment approval, or runtime safety."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-assurance-scope",
+        "type": "capability",
+        "title": "SDLC Assurance Scope",
+        "description": "Defines which SDLC artifacts are subject to security assurance activities.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [{ "control-id": "SA-11" }]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-static-analysis",
+        "type": "capability",
+        "title": "Static Assurance Analysis",
+        "description": "Performs static analysis on SDLC artifacts such as source code, scripts, IaC, and policy-as-code.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [{ "control-id": "SA-11" }]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1195",
+              "name": "Supply Chain Compromise",
+              "remarks": "Insertion of malicious logic or insecure constructs into SDLC artifacts."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-SAST",
+              "name": "Static Code Analysis",
+              "remarks": "Detection of insecure patterns prior to build or release."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-dynamic-analysis",
+        "type": "capability",
+        "title": "Dynamic and Runtime Assurance Testing",
+        "description": "Performs dynamic analysis and testing in controlled environments.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "CA-7" },
+              { "control-id": "SA-11" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1623",
+              "name": "Process Injection",
+              "remarks": "Injected runtime behavior revealed during dynamic testing."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-DAST",
+              "name": "Dynamic Application Testing",
+              "remarks": "Runtime behavior testing to validate assurance claims."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-assurance-evidence",
+        "type": "capability",
+        "title": "Assurance Evidence Preservation",
+        "description": "Preserves assurance results for audit, review, and downstream decision-making.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "CA-7" },
+              { "control-id": "SI-7" }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-assurance-non-equivalence",
+        "type": "capability",
+        "title": "Assurance Non-Equivalence Constraints",
+        "description": "Defines what assurance results do not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [{ "control-id": "SA-11" }]
+          }
+        ],
+
+        "remarks": "Passing assurance checks does not imply approval to deploy, authority to execute, or safety in OT or IoMT environments."
+      }
+    ]
+  }
+}

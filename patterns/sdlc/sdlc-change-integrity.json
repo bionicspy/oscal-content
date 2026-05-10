@@ -1,0 +1,179 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:sdlc-change-integrity",
+
+    "metadata": {
+      "title": "SDLC Change Integrity",
+      "version": "2.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T03:40:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC320",
+          "remarks": "Business capability for ensuring integrity and authorization of software delivery changes without granting deployment or execution authority."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD040",
+          "remarks": "CI/CD pipelines, build systems, source repositories, artifact registries, and delivery automation."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP520",
+          "remarks": "Solution pattern enforcing integrity and authorization of SDLC changes."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "sdlc-integrity-data",
+          "value": "urn:utoronto:cae2:drm:DP520",
+          "remarks": "Defines change records, approvals, signatures, and artifact hashes as trust-relevant SDLC data."
+        },
+        {
+          "name": "nist-controls",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-families",
+          "value": "CM, SI",
+          "remarks": "SDLC Change Integrity implements configuration and system integrity controls."
+        }
+      ],
+
+      "remarks": "SDLC Change Integrity ensures that all software delivery changes are authorized, attributable, and protected from tampering. Integrity does not imply correctness, assurance, or permission to deploy."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-change-authorization",
+        "type": "capability",
+        "title": "SDLC Change Authorization",
+        "description": "Ensures changes to SDLC artifacts are formally authorized prior to inclusion in the delivery pipeline.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "CM-3" },
+              { "control-id": "CM-5" }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-artifact-integrity",
+        "type": "capability",
+        "title": "SDLC Artifact Integrity",
+        "description": "Protects SDLC artifacts from unauthorized modification across repositories, pipelines, and registries.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SI-7" },
+              { "control-id": "CM-2" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1553",
+              "name": "Subvert Trust Controls",
+              "remarks": "Attempting to bypass or weaken trust in signed or validated artifacts."
+            },
+            {
+              "technique-id": "T1608",
+              "name": "Stage Capabilities",
+              "remarks": "Insertion of malicious code or configuration into the build pipeline."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-SIGN",
+              "name": "Code Signing",
+              "remarks": "Cryptographic signing of SDLC artifacts."
+            },
+            {
+              "technique-id": "D3-VER",
+              "name": "Artifact Verification",
+              "remarks": "Verification of artifact integrity prior to promotion or handover."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-pipeline-integrity",
+        "type": "capability",
+        "title": "CI/CD Pipeline Integrity",
+        "description": "Ensures the integrity of SDLC automation and delivery pipelines against tampering or abuse.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SI-7" },
+              { "control-id": "CM-5" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1068",
+              "name": "Exploitation for Privilege Escalation",
+              "remarks": "Abuse of pipeline permissions or execution context."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-PERM",
+              "name": "Permission Hardening",
+              "remarks": "Restricting pipeline permissions and execution scope."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-integrity-non-equivalence",
+        "type": "capability",
+        "title": "Change Integrity Non-Equivalence Constraints",
+        "description": "Defines what integrity protections do not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "CM-3" }
+            ]
+          }
+        ],
+
+        "remarks": "Authorized and integrity-protected changes do not imply security assurance, deployment approval, or runtime execution permission."
+      }
+    ]
+  }
+}

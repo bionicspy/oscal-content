@@ -1,0 +1,170 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:secure-sdlc-core",
+
+    "metadata": {
+      "title": "Secure Software Development Lifecycle (SDLC) Core",
+      "version": "2.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T03:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC320",
+          "remarks": "Business capability for governing creation and delivery of software artifacts without granting deployment or execution authority."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD040",
+          "remarks": "Software factories, CI/CD systems, infrastructure-as-code, configuration and policy-as-code, and delivery pipelines."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "foundational-pattern",
+          "value": "urn:utoronto:cae2:arm:AP510",
+          "remarks": "Foundational Zero Trust SDLC pattern defining scope, legitimacy, and non-equivalence rules for software delivery."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "sdlc-trust-data",
+          "value": "urn:utoronto:cae2:drm:DP510",
+          "remarks": "Defines SDLC artifacts, provenance, attribution, and assurance evidence as trust-relevant data."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "primary-guidance",
+          "value": "SP 800-218 (SSDF)",
+          "remarks": "Secure Software Development Framework guidance."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "architectural-guidance",
+          "value": "SP 800-160",
+          "remarks": "Systems security engineering lifecycle guidance."
+        },
+        {
+          "name": "nist-controls",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-families",
+          "value": "SA, CM, IA, AU, SI, SR",
+          "remarks": "SDLC Core interprets but does not implement these control families."
+        }
+      ],
+
+      "remarks": "SDLC Core defines what constitutes legitimate software delivery under Zero Trust principles. It governs application code, scripts, infrastructure-as-code, configuration, and policy-as-code. This pattern establishes explicit non-equivalence between build, test, approval, and deployment."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-scope-legitimacy",
+        "type": "capability",
+        "title": "SDLC Scope and Legitimacy",
+        "description": "Defines which software delivery activities, artifacts, and pipelines are in scope for Secure-SDLC governance.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [{ "control-id": "SA-8" }]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-artifact-coverage",
+        "type": "capability",
+        "title": "Unified SDLC Artifact Coverage",
+        "description": "Treats software code, scripts, configuration, infrastructure-as-code, and policy-as-code as governed SDLC artifacts.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [{ "control-id": "CM-2" }]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1608",
+              "name": "Stage Capabilities",
+              "remarks": "Staging malicious code, scripts, or IaC artifacts in the build environment."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-VER",
+              "name": "Artifact Verification",
+              "remarks": "Verification of artifact integrity and provenance."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-non-equivalence",
+        "type": "capability",
+        "title": "SDLC Non-Equivalence Constraints",
+        "description": "Defines what SDLC signals do not grant or imply (e.g., build success ≠ deploy permission).",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [{ "control-id": "SA-10" }]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-boundary-definition",
+        "type": "capability",
+        "title": "SDLC Boundary Definition",
+        "description": "Defines the boundary between SDLC delivery and runtime deployment or execution.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [{ "control-id": "SA-15" }]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1553",
+              "name": "Subvert Trust Controls",
+              "remarks": "Attempt to treat SDLC output as implicit deployment authority."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-AUTH",
+              "name": "Authorization Enforcement",
+              "remarks": "Explicit separation of delivery and deployment authority."
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

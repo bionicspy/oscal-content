@@ -1,0 +1,191 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:sdlc-operations-handover",
+
+    "metadata": {
+      "title": "SDLC Operations Handover",
+      "version": "2.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T04:20:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC320",
+          "remarks": "Business capability for securely transferring SDLC artifacts and associated trust evidence to operations without granting execution or deployment authority."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD040",
+          "remarks": "Release management, artifact promotion, operational intake, and SDLC-to-operations trust boundaries."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP540",
+          "remarks": "Solution pattern governing the SDLC-to-operations handover boundary."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "sdlc-handover-data",
+          "value": "urn:utoronto:cae2:drm:DP540",
+          "remarks": "Defines release artifacts, provenance, assurance evidence, and handover metadata as trust-relevant data."
+        },
+        {
+          "name": "nist-controls",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-families",
+          "value": "CM, SA, SI",
+          "remarks": "Operations Handover implements SDLC-to-operations transition and integrity controls."
+        }
+      ],
+
+      "remarks": "SDLC Operations Handover governs the controlled transfer of artifacts and evidence from software delivery to operations. Handover does not authorize deployment, execution, or runtime activation."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-handover-artifact-transfer",
+        "type": "capability",
+        "title": "Artifact and Release Transfer",
+        "description": "Defines the controlled transfer of SDLC artifacts, including code, scripts, infrastructure-as-code, configuration, and policy-as-code, to operational custody.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "CM-3" },
+              { "control-id": "CM-5" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1578",
+              "name": "Modify Cloud Compute Infrastructure",
+              "remarks": "Altering handover artifacts or environments during promotion to operations."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-VER",
+              "name": "Artifact Verification",
+              "remarks": "Verification of artifact integrity at promotion boundaries."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-handover-provenance",
+        "type": "capability",
+        "title": "Provenance and Evidence Transfer",
+        "description": "Ensures assurance results, provenance, and attribution metadata accompany artifacts into operations.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SA-11" },
+              { "control-id": "SI-7" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1553",
+              "name": "Subvert Trust Controls",
+              "remarks": "Separating artifacts from their assurance or provenance metadata."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-ATT",
+              "name": "Attribution",
+              "remarks": "Maintaining binding between artifacts and assurance evidence."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-handover-boundary-enforcement",
+        "type": "capability",
+        "title": "Handover Boundary Enforcement",
+        "description": "Enforces clear separation between SDLC completion and operational deployment or execution.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SA-15" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1553",
+              "name": "Subvert Trust Controls",
+              "remarks": "Treating SDLC handover as implicit permission to deploy or execute."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-AUTH",
+              "name": "Authorization Enforcement",
+              "remarks": "Explicit separation of delivery completion from operational authorization."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-handover-non-equivalence",
+        "type": "capability",
+        "title": "Operations Handover Non-Equivalence Constraints",
+        "description": "Defines what SDLC handover does not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "CM-3" }
+            ]
+          }
+        ],
+
+        "remarks": "Successful handover does not imply authorization to deploy, execute, energize hardware, or enable therapy in OT or IoMT environments."
+      }
+    ]
+  }
+}

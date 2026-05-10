@@ -3,71 +3,94 @@
     "uuid": "urn:utoronto:security:pattern:secure-sdlc",
 
     "metadata": {
-      "title": "Secure SDLC",
-      "version": "1.0.0",
+      "title": "Secure Software Development Lifecycle (Secure‑SDLC)",
+      "version": "2.1.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T00:30:00Z",
+      "last-modified": "2026-05-07T05:30:00Z",
 
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC320"
+          "value": "urn:utoronto:cae2:brm:BC320",
+          "remarks": "Business capability for delivering software artifacts securely and verifiably without granting deployment or execution authority."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
-          "value": "urn:utoronto:cae2:trm:TD040"
+          "value": "urn:utoronto:cae2:trm:TD040",
+          "remarks": "Software factories, CI/CD pipelines, infrastructure-as-code, configuration, policy-as-code, and SDLC tooling."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "composite-pattern",
-          "value": "urn:utoronto:cae2:arm:AP149"
+          "value": "urn:utoronto:cae2:arm:AP500",
+          "remarks": "Composite pattern assembling all Secure‑SDLC solution and foundational patterns."
+        },
+        {
+          "name": "sdlc-model",
+          "class": "foundational-principle",
+          "value": "delivery-without-deployment",
+          "remarks": "Secure‑SDLC guarantees integrity, attribution, and assurance of artifacts but does not authorize deployment or execution."
+        },
+        {
+          "name": "nist-controls",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-families",
+          "value": "SR, SA, SI, IA, CM, RA",
+          "remarks": "Secure‑SDLC implements controls for secure development, supply chain risk management, change integrity, and assurance."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "primary-guidance",
+          "value": ["SP 800-218", "SP 800-160"],
+          "remarks": "SP 800-218 provides Secure SDLC practices; SP 800-160 provides supply chain risk management practices."
         }
       ],
 
-      "remarks": "Secure SDLC is a composite pattern asserting that software is developed, built, tested, and delivered through a governed, attributable, integrity-protected, and auditable software delivery lifecycle. This pattern introduces no independent controls and may be claimed only when all constituent SDLC patterns are realized and assessed."
+      "remarks": "Secure‑SDLC composes foundational semantics and solution patterns governing software delivery. It applies to application code, scripts, automation, infrastructure-as-code, configuration, and policy-as-code artifacts. Secure‑SDLC outputs are necessary but insufficient for runtime execution."
     },
 
     "components": [
       {
-        "uuid": "urn:utoronto:security:pattern-ref:sdlc-core",
-        "type": "component",
+        "uuid": "urn:utoronto:security:pattern:secure-sdlc-core",
+        "type": "component-reference",
         "title": "SDLC Core",
-        "description": "Definition of institutional software delivery scope, models, and baseline expectations."
+        "description": "Defines SDLC scope, legitimacy, artifact coverage, and non‑equivalence rules."
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:sdlc-identity-and-attribution",
-        "type": "component",
+        "uuid": "urn:utoronto:security:pattern:sdlc-identity-and-attribution",
+        "type": "component-reference",
         "title": "SDLC Identity and Attribution",
-        "description": "Identification and attribution of software changes to responsible human and automated actors."
+        "description": "Provides attribution of SDLC actions to accountable human and automation identities."
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:sdlc-change-integrity",
-        "type": "component",
+        "uuid": "urn:utoronto:security:pattern:sdlc-change-integrity",
+        "type": "component-reference",
         "title": "SDLC Change Integrity",
-        "description": "Authorization, review, and integrity protection of software changes across delivery pipelines."
+        "description": "Ensures authorization and integrity of SDLC changes without granting deployment authority."
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:sdlc-supply-chain",
-        "type": "component",
-        "title": "SDLC Supply Chain",
-        "description": "Identification, risk evaluation, and provenance tracking of third-party software components."
-      },
-      {
-        "uuid": "urn:utoronto:security:pattern-ref:sdlc-assurance",
-        "type": "component",
+        "uuid": "urn:utoronto:security:pattern:sdlc-assurance",
+        "type": "component-reference",
         "title": "SDLC Assurance",
-        "description": "Embedded security assurance activities and evidence generation within the delivery lifecycle."
+        "description": "Produces security assurance evidence for SDLC artifacts."
       },
       {
-        "uuid": "urn:utoronto:security:pattern-ref:sdlc-operations-handover",
-        "type": "component",
+        "uuid": "urn:utoronto:security:pattern:sdlc-supply-chain",
+        "type": "component-reference",
+        "title": "SDLC Supply Chain",
+        "description": "Constrains and verifies third‑party and external inputs into the SDLC."
+      },
+      {
+        "uuid": "urn:utoronto:security:pattern:sdlc-operations-handover",
+        "type": "component-reference",
         "title": "SDLC Operations Handover",
-        "description": "Controlled transition of verified software artifacts and assurance context into operations."
+        "description": "Defines the trust boundary between SDLC completion and operational custody."
       }
     ]
   }

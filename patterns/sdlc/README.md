@@ -1,205 +1,274 @@
-# Secure Software Delivery (SDLC) - Trust Plane Overview
+# Secure‑SDLC
+## Patterns and Architecture Overview
 
-Description
-The Secure Software Delivery (SDLC) trust plane defines how software is designed, built, changed, verified, and handed over to operations in a secure, attributable, and auditable way.
-
-This trust plane establishes trust in the software production process, not in runtime execution or business logic. It governs:
-* who can introduce change,
-* how change is authorized and protected,
-* how software artifacts are produced and verified,
-* and how assurance is carried from development into operations.
-
-The SDLC trust plane is foundational to DevSecOps, Infrastructure‑as‑Code, and software supply chain security.
+---
 
 ## Purpose
-The purpose of the Secure SDLC trust plane is to ensure that:
-* All software changes are attributable to identities
-* Changes are authorized, reviewed, and protected from tampering
-* Build and deployment pipelines are integrity‑preserving
-* Software supply chain risks are managed and constrained
-* Security assurance is built into delivery, not bolted on
-* Operational handover preserves assurance continuity
-* Software entering production is defensible, repeatable, and auditable
 
-This trust plane allows the institution to assert that software arriving in execution environments is trustworthy by origin and process.
+**Secure‑SDLC** defines the enterprise architecture for **creating, verifying, and transferring software delivery artifacts** under Zero Trust principles—**without granting deployment or execution authority**.
 
-## Scope
-### In Scope
-The Secure SDLC trust plane applies to:
-* Application code
-* Infrastructure as Code (IaC)
-* Build, test, and deployment pipelines
-* Software artifacts and images
-* Dependency and package supply chains
-* Security testing and assurance activities
-* Promotion and release processes
-* Operational handover and evidence preservation
+It governs **how software is built and prepared**, not **where or whether it runs**.
 
-### Out of Scope
-This trust plane does not define:
-* Runtime execution security (Endpoint / Server planes)
-* Network delivery paths (Network plane)
-* Data classification or protection (Data plane)
-* End‑user access controls (Identity plane)
-* Business logic authorization
+Secure‑SDLC applies uniformly to:
+- application source code
+- scripts and automation
+- infrastructure‑as‑code (IaC)
+- configuration artifacts
+- policy‑as‑code
+- CI/CD pipelines and tooling
 
-Those concerns consume SDLC trust, but do not establish it.
+It establishes **strong assurance, integrity, attribution, and supply‑chain controls**, while explicitly preventing unsafe shortcuts such as:
 
-## Pattern Decomposition
+> *“The build succeeded, therefore we can deploy.”*
+
+---
+
+## Core Architectural Principle
+
+> **Software delivery is necessary but never sufficient for runtime execution.**
+
+Secure‑SDLC produces **trusted delivery artifacts**, not **trusted runtime systems**.
+
+Deployment, execution, safety, and recovery decisions are governed by:
+- Secure‑Device
+- Secure‑Resilience
+- domain‑specific SSPPs (IT, OT, IoT, IoMT)
+
+---
+
+## What Secure‑SDLC Is (and Is Not)
+
+### ✅ Secure‑SDLC **IS**
+- A **pre‑runtime trust domain**
+- A **Zero Trust SDLC architecture**
+- Artifact‑centric, not application‑centric
+- Uniform across IT, OT, IoT, and IoMT development
+- Compatible with automation, CI/CD, and AI‑driven pipelines
+- Fully aligned with NIST SP 800‑53r5 and SSDF
+
+### ❌ Secure‑SDLC **IS NOT**
+- A deployment or release system
+- A runtime authorization layer
+- A safety or clinical approval mechanism
+- A substitute for Secure‑Resilience or Secure‑Device
+- A collection of tools or pipelines
+
+---
+
+## Secure‑SDLC Structural Model
 ```
-sdlc/
-├── sdlc-core
-├── sdlc-identity-and-attribution
-├── sdlc-change-integrity
-├── sdlc-supply-chain
-├── sdlc-assurance
-├── sdlc-operations-handover
-└── secure-sdlc (composite)
+Secure‑SDLC
+│
+├─ Foundational Semantics
+│   └─ SDLC Core
+│
+├─ Solution Patterns
+│   ├─ SDLC Identity & Attribution
+│   ├─ SDLC Change Integrity
+│   ├─ SDLC Assurance
+│   ├─ SDLC Supply Chain
+│   └─ SDLC Operations Handover
+│
+└─ Composite
+    └─ Secure‑SDLC
 ```
-Each pattern answers a distinct trust question about software delivery.
 
-Pattern‑by‑Pattern Overview
+---
 
-### 1. sdlc-core
-Defines what constitutes institutional software delivery and establishes baseline expectations.
-#### Purpose
-To establish legitimacy and scope for software delivery activities before controls are applied.
-#### Scope
-* Definition of SDLC activities
-* Supported delivery models
-* Baseline expectations for automation and governance
+## Foundational Pattern
 
-#### Components
-* sdlc-scope-definition
-  * Defines what delivery activities fall under institutional SDLC
-* delivery-models
-  * Defines supported delivery models (CI/CD, IaC, etc.)
-* baseline-sdlc-trust-assumptions
-  * Establishes minimum delivery expectations
+### **SDLC Core**
 
-#### Answers the Question
-“What software delivery activities are governed by the institution?”
+The SDLC Core defines **what counts as legitimate software delivery** and establishes **non‑equivalence rules** that prevent authority leakage.
 
+It enforces architectural invariants such as:
 
-### 2. sdlc-identity-and-attribution
-Establishes identity, accountability, and attribution for changes.
-#### Purpose
-To ensure every software change is traceable to a responsible identity.
-#### Scope
-* Developer identities
-* Service and pipeline identities
-* Commit, build, and deployment attribution
+- Build ≠ Release  
+- Test ≠ Approval  
+- Signed artifact ≠ Deployable  
+- Provenance ≠ Trust  
+- Assurance ≠ Safety  
+- SDLC completion ≠ Runtime execution  
 
-#### Components
-* developer-and-contributor-identity
-  * Identity of human contributors
-* pipeline-and-automation-identity
-  * Identity of CI/CD and automation actors
-* change-attribution
-  * Binding of changes to identities
+The SDLC Core covers **all delivery artifacts**:
+- code
+- scripts
+- IaC
+- configuration
+- policy‑as‑code
 
-#### Answers the Question
-“Who introduced this software change?”
+---
 
+## Secure‑SDLC Solution Patterns
 
-### 3. sdlc-change-integrity
-Protects the integrity of software changes throughout the delivery pipeline.
-#### Purpose
-To prevent tampering, unauthorized changes, and unreviewed modifications.
-#### Scope
-* Source control protection
-* Change approval and review
-* Artifact immutability
+### **SDLC Identity & Attribution**
 
-#### Components
-* change-authorization-and-approval
-  * Required approvals for changes
-* source-and-artifact-integrity
-  * Protection of code and build outputs
-* pipeline-integrity-controls
-  * Integrity of CI/CD execution
+Ensures every SDLC action is attributable to:
+- authenticated human developers
+- distinct non‑human identities (CI/CD, bots, build agents)
 
-#### Answers the Question
-“Has this change been authorized and protected from tampering?”
+**Important rule:**
+> Attribution ≠ authorization
 
+Identity establishes accountability, not permission.
 
-### 4. sdlc-supply-chain
-Manages risks introduced by third‑party and open‑source components.
-#### Purpose
-To ensure dependencies do not undermine software trust.
-#### Scope
-* External libraries and packages
-* Build tools and base images
-* Artifact provenance
+---
 
-#### Components
-* dependency-identification-and-inventory
-  * Identification of included components
-* supply-chain-risk-evaluation
-  * Assessment of third‑party risk
-* provenance-and-origin-tracking
-  * Tracking component origin
+### **SDLC Change Integrity**
 
-#### Answers the Question
-“Where did this software come from?”
+Ensures:
+- changes are authorized
+- artifacts and pipelines are tamper‑protected
+- integrity evidence is preserved
 
+Covers:
+- source repositories
+- build pipelines
+- artifact registries
+- IaC and configuration changes
 
-### 5. sdlc-assurance
-Provides security assurance during software delivery.
-#### Purpose
-To detect defects and weaknesses before production release.
-#### Scope
-* Security testing
-* Policy checks
-* Compliance validation
+**Important rule:**
+> Integrity ≠ approval ≠ deploy authorization
 
-#### Components
-* secure-development-practices
-  * Required secure coding expectations
-* automated-and-manual-testing
-  * SAST, DAST, SCA, reviews
-* assurance-evidence-generation
-  * Evidence for audits and traceability
+---
 
-#### Answers the Question
-“Has this software been evaluated for security and policy compliance?”
+### **SDLC Assurance**
 
-### 6. sdlc-operations-handover
-Ensures secure and complete transition from delivery to operations.
-#### Purpose
-To preserve SDLC assurance into runtime environments.
-#### Scope
-* Release promotion
-* Deployment handover
-* Operational documentation
+Produces **security assurance evidence**, including:
+- static analysis
+- dynamic testing
+- vulnerability discovery
+- validation results
 
-#### Components
-* release-authorization-and-promotion
-  * Controlled promotion to environments
-* deployment-artifact-integrity
-  * Integrity of deployed artifacts
-* assurance-continuity
-  * Preservation of assurance context
+Covers all SDLC artifacts, not just application code.
 
-#### Answers the Question
-“Can operations trust what they are deploying?”
+**Important rule:**
+> Passing tests ≠ authorization to deploy or execute
 
-### 7. secure-sdlc (Composite)
-Asserts holistic trust in the software delivery process.
-#### Purpose
-To provide an enterprise‑level assertion that software is delivered securely.
-#### Scope
-* Composition only
-* No independent controls
+Assurance is evidence, not authority.
 
-#### Components (References)
-```
-sdlc-core
-sdlc-identity-and-attribution
-sdlc-change-integrity
-sdlc-supply-chain
-sdlc-assurance
-sdlc-operations-handover
-```
-#### Answers the Question
-“Can the institution trust this software delivery process?”
+---
+
+### **SDLC Supply Chain**
+
+Governs third‑party and external inputs:
+- libraries and packages
+- container images
+- build tools
+- IaC modules
+- policy‑as‑code sources
+- CI/CD tooling
+
+Controls:
+- ingestion
+- provenance
+- integrity verification
+
+**Important rule:**
+> Provenance and verification ≠ trust ≠ permission to deploy
+
+---
+
+### **SDLC Operations Handover**
+
+Defines the **trust boundary between SDLC and Operations**.
+
+Ensures:
+- artifacts are transferred with integrity and evidence
+- assurance and provenance remain bound to artifacts
+- no implicit deployment authority is granted
+
+**Important rule:**
+> Handover ≠ deploy ≠ execute
+
+---
+
+## Composite Pattern: **Secure‑SDLC**
+
+The Secure‑SDLC composite assembles all SDLC patterns and declares:
+
+> Secure‑SDLC delivers trusted software artifacts **without granting runtime authority**.
+
+It is:
+- necessary for all deployments
+- insufficient by itself for execution
+- consumed by Secure‑Resilience and Secure‑Device
+
+---
+
+## Threat & Defense Modeling
+
+### MITRE ATT&CK
+- Applied **only at the component (capability) level**
+- Models how attackers compromise SDLC activities:
+  - supply‑chain poisoning
+  - pipeline abuse
+  - credential misuse
+
+### MITRE D3FEND
+- Applied **only at the component level**
+- Describes concrete defensive techniques:
+  - artifact signing
+  - provenance verification
+  - credential hardening
+
+**ATT&CK and D3FEND are intentionally not referenced at the composite level.**
+
+---
+
+## Standards & Control Alignment
+
+### NIST SP 800‑53r5
+Secure‑SDLC interprets and implements controls from:
+
+- SA — System & Services Acquisition
+- CM — Configuration Management
+- IA — Identification & Authentication
+- AU — Audit & Accountability
+- SI — System Integrity
+- SR — Supply Chain Risk Management
+
+### NIST Guidance
+- **SP 800‑218 (SSDF)** — Secure software development practices
+- **SP 800‑160** — Systems security engineering
+
+---
+
+## Relationship to Other Secure‑* Domains
+
+| Domain | Relationship |
+|------|-------------|
+| Secure‑Device | Consumes SDLC artifacts but enforces safety |
+| Secure‑Resilience | Decides if execution may occur |
+| Secure‑Integration | Governs propagation, not delivery |
+| Secure‑Network | Governs transport, not artifact trust |
+
+Secure‑SDLC is **upstream** of every runtime domain.
+
+---
+
+## Common Failure Modes Secure‑SDLC Prevents
+
+- CI/CD success ⇒ deploy
+- Signed artifact ⇒ trusted runtime
+- Provenance ⇒ safety
+- Assurance scan ⇒ approval
+- SDLC completion ⇒ execution
+
+All of these are **architecturally forbidden**.
+
+---
+
+## Executive Summary
+
+> **Secure‑SDLC ensures software delivery is trustworthy without ever becoming a shortcut to unsafe execution.**
+
+It enables:
+- automation without blind trust
+- assurance without authority leakage
+- supply‑chain control without false confidence
+- safe integration with IT, OT, IoT, and IoMT environments
+
+Secure‑SDLC is the **only defensible way** to scale software delivery under Zero Trust.
+
+---

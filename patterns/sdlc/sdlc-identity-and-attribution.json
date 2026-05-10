@@ -1,0 +1,180 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:sdlc-identity-and-attribution",
+
+    "metadata": {
+      "title": "SDLC Identity and Attribution",
+      "version": "2.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T04:45:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC320",
+          "remarks": "Business capability for unambiguous attribution of SDLC actions to accountable human and non-human identities without granting authority to deploy or execute."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD040",
+          "remarks": "Identity systems, CI/CD automation identities, source repositories, and audit logging within software delivery pipelines."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP525",
+          "remarks": "Solution pattern governing identity binding and attribution across SDLC activities."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "sdlc-attribution-data",
+          "value": "urn:utoronto:cae2:drm:DP525",
+          "remarks": "Defines identity claims, commit signatures, pipeline actor identifiers, and audit trails as trust-relevant SDLC data."
+        },
+        {
+          "name": "nist-controls",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-families",
+          "value": "IA, AU, CM",
+          "remarks": "SDLC Identity and Attribution implements identification and audit-related controls."
+        }
+      ],
+
+      "remarks": "SDLC Identity and Attribution ensures that every SDLC action is attributable to a responsible identity. Attribution does not imply authorization, assurance, or permission to deploy or execute."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-human-identity",
+        "type": "capability",
+        "title": "Human Developer Identity Attribution",
+        "description": "Binds SDLC actions to authenticated human identities for accountability and auditability.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-2" },
+              { "control-id": "AU-2" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1078",
+              "name": "Valid Accounts",
+              "remarks": "Use of compromised or misused developer credentials."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-AUTH",
+              "name": "Strong Authentication",
+              "remarks": "Strong authentication for developers performing SDLC actions."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-automation-identity",
+        "type": "capability",
+        "title": "Non-Human (Automation) Identity Attribution",
+        "description": "Distinct attribution of automated SDLC actors such as CI/CD pipelines, build agents, and bots.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-4" },
+              { "control-id": "CM-5" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1553",
+              "name": "Subvert Trust Controls",
+              "remarks": "Abuse of CI/CD service identities to perform unauthorized actions."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-PERM",
+              "name": "Credential Hardening",
+              "remarks": "Restricting scope and permissions of automation identities."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-attribution-logging",
+        "type": "capability",
+        "title": "Attribution Logging and Traceability",
+        "description": "Maintains immutable audit trails linking SDLC actions to identities and artifacts.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "AU-12" },
+              { "control-id": "SI-7" }
+            ]
+          }
+        ],
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-LOG",
+              "name": "Event Logging",
+              "remarks": "Comprehensive logging for accountability and incident investigation."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-identity-non-equivalence",
+        "type": "capability",
+        "title": "Identity Non-Equivalence Constraints",
+        "description": "Defines what identity and attribution do not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "IA-2" }
+            ]
+          }
+        ],
+
+        "remarks": "Attribution to a valid identity does not imply authorization, approval, or permission to deploy or execute software."
+      }
+    ]
+  }
+}

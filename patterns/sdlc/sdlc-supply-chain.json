@@ -1,0 +1,192 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:sdlc-supply-chain",
+
+    "metadata": {
+      "title": "SDLC Supply Chain Security",
+      "version": "2.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T05:10:00Z",
+
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC320",
+          "remarks": "Business capability for managing and constraining software supply chain risk within the Secure-SDLC."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD040",
+          "remarks": "Software dependencies, build tools, container images, CI/CD components, IaC modules, and policy-as-code sources."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP535",
+          "remarks": "Solution pattern governing ingestion, verification, and bounded trust of supply chain inputs."
+        },
+        {
+          "name": "data-pattern",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "sdlc-supply-chain-data",
+          "value": "urn:utoronto:cae2:drm:DP535",
+          "remarks": "Defines dependency inventories, provenance attestations, integrity evidence, and supplier metadata as trust-relevant SDLC data."
+        },
+        {
+          "name": "nist-controls",
+          "ns": "urn:nist.gov:800-53",
+          "class": "control-families",
+          "value": "SR, SA, SI, CM",
+          "remarks": "SDLC Supply Chain implements supply chain risk and integrity controls."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov",
+          "class": "primary-guidance",
+          "value": "SP 800-161r1",
+          "remarks": "Cybersecurity Supply Chain Risk Management Practices."
+        }
+      ],
+
+      "remarks": "SDLC Supply Chain governs third-party and external inputs to the SDLC, including source dependencies, tooling, images, and automation. Supply chain integrity and provenance do not imply trust, safety, or permission to deploy."
+    },
+
+    "components": [
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-dependency-ingestion",
+        "type": "capability",
+        "title": "Dependency and Tooling Ingestion",
+        "description": "Controls the introduction of third-party code, libraries, IaC modules, images, and tools into the SDLC.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SR-3" },
+              { "control-id": "SR-5" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1195",
+              "name": "Supply Chain Compromise",
+              "remarks": "Malicious code or tooling inserted via dependencies or build tools."
+            },
+            {
+              "technique-id": "T1608",
+              "name": "Stage Capabilities",
+              "remarks": "Staging compromised dependencies for later execution."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-DEP",
+              "name": "Dependency Verification",
+              "remarks": "Validating integrity and origin of dependencies."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-provenance",
+        "type": "capability",
+        "title": "Supply Chain Provenance",
+        "description": "Captures and preserves origin, supplier, and build provenance for all SDLC inputs.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SR-4" },
+              { "control-id": "SI-7" }
+            ]
+          }
+        ],
+
+        "threat-model": {
+          "framework": "MITRE ATT&CK",
+          "domain": "Enterprise",
+          "techniques": [
+            {
+              "technique-id": "T1553",
+              "name": "Subvert Trust Controls",
+              "remarks": "Forging or obscuring provenance to make malicious inputs appear legitimate."
+            }
+          ]
+        },
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-PROV",
+              "name": "Provenance Capture",
+              "remarks": "Recording and validating origin and chain-of-custody of SDLC inputs."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-supply-chain-integrity",
+        "type": "capability",
+        "title": "Supply Chain Integrity Verification",
+        "description": "Verifies integrity of supply chain artifacts prior to use in builds or pipelines.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SI-7" },
+              { "control-id": "CM-2" }
+            ]
+          }
+        ],
+
+        "defensive-model": {
+          "framework": "MITRE D3FEND",
+          "techniques": [
+            {
+              "technique-id": "D3-VER",
+              "name": "Artifact Verification",
+              "remarks": "Cryptographic integrity checks before consumption."
+            }
+          ]
+        }
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:sdlc-supply-chain-non-equivalence",
+        "type": "capability",
+        "title": "Supply Chain Non-Equivalence Constraints",
+        "description": "Defines what supply chain integrity and provenance do not grant or imply.",
+
+        "control-implementations": [
+          {
+            "source": "urn:nist.gov:800-53:r5",
+            "implemented-requirements": [
+              { "control-id": "SR-6" }
+            ]
+          }
+        ],
+
+        "remarks": "Verified provenance or integrity of a dependency does not imply safety, correctness, approval, or permission to deploy or execute."
+      }
+    ]
+  }
+}
