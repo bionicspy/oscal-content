@@ -1,0 +1,178 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-resilience:it-server",
+
+    "metadata": {
+      "title": "Secure‑Resilience IT / Server SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T00:30:00Z",
+      "remarks": "System Security and Privacy Plan governing how IT and server systems may rely on Secure‑Resilience eligibility signals without introducing unsafe recovery or unauthorized resumption."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-resilience:platform",
+      "remarks": "This SSPP inherits Secure‑Resilience Platform semantics and specializes them for IT and general-purpose server environments."
+    },
+
+    "system-characteristics": {
+      "system-name": "IT / Server Resilience Environment",
+      "system-description": "IT and server systems include general-purpose compute platforms, virtual infrastructure, operating systems, middleware, and enterprise applications. This SSPP assumes that most system state is reversible, while still enforcing explicit eligibility, safety gating, and non-automatic resumption.",
+      "security-sensitivity-level": "moderate-to-high",
+
+      "props": [
+        {
+          "name": "domain",
+          "class": "execution-environment",
+          "value": "general-it-and-servers",
+          "remarks": "Applies to non-cyber-physical, non-clinical server environments."
+        },
+        {
+          "name": "state-assumption",
+          "class": "default-assumption",
+          "value": "primarily-reversible",
+          "remarks": "Most IT and server state is assumed reversible unless explicitly classified otherwise."
+        },
+        {
+          "name": "preferred-resilience-outcome",
+          "class": "operational-bias",
+          "value": "restore-or-degrade",
+          "remarks": "Restore or degraded operation is generally preferred over halt, subject to eligibility."
+        },
+        {
+          "name": "implicit-resume",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Successful restore, backup, or failover does not imply permission to resume operation."
+        },
+        {
+          "name": "automation-constraint",
+          "class": "safety-invariant",
+          "value": "resume-gated",
+          "remarks": "Automation may restore but must not resume without explicit eligibility."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "IT / Server resilience is implemented by applying Secure‑Resilience eligibility semantics to backup, recovery, disaster recovery, ransomware response, and continuity mechanisms. Restore and resume actions remain explicitly gated.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:secure-resilience-core",
+          "type": "pattern-inheritance",
+          "title": "Secure‑Resilience Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-state-reversibility",
+          "type": "pattern-inheritance",
+          "title": "Reversible vs Irreversible State"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-safe-halt-vs-restore",
+          "type": "pattern-inheritance",
+          "title": "Safe‑Halt vs Restore"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-degradation-vs-continuity",
+          "type": "pattern-inheritance",
+          "title": "Degradation vs Continuity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-recall-driven-recovery",
+          "type": "pattern-inheritance",
+          "title": "Recall‑Driven Recovery"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-resume-eligibility",
+          "type": "pattern-inheritance",
+          "title": "Resume Eligibility"
+        },
+
+        {
+          "uuid": "urn:utoronto:security:pattern:backup-and-recovery",
+          "type": "pattern-specialization",
+          "title": "Backup and Recovery",
+          "remarks": "Restore is generally permitted subject to reversibility and resume eligibility."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:disaster-recovery",
+          "type": "pattern-specialization",
+          "title": "Disaster Recovery",
+          "remarks": "Failover is permitted subject to resume eligibility gating."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:ransomware-resilience",
+          "type": "pattern-specialization",
+          "title": "Ransomware Resilience",
+          "remarks": "Clean restore permitted only after containment and eligibility confirmation."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:continuity-of-operations",
+          "type": "pattern-specialization",
+          "title": "Continuity of Operations",
+          "remarks": "Degraded modes are preferred when integrity is uncertain."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-it-resilience-architecture",
+        "title": "IT / Server Resilience Architecture",
+        "remarks": "Defines server resilience interpretations and eligibility assumptions.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-it-resilience-governance",
+        "title": "IT / Server Resilience Governance",
+        "remarks": "Approves resume eligibility criteria and risk tolerance for IT systems.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-it-resilience-operations",
+        "title": "IT / Server Resilience Operations",
+        "remarks": "Executes recovery and continuity actions under Secure‑Resilience constraints.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-it-resilience-monitoring",
+        "title": "IT / Server Resilience Monitoring",
+        "remarks": "Monitors restore activity, unsafe resume attempts, and automation violations.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through Secure‑Resilience constraints applied to NIST SP 800‑53 CP controls. This SSPP introduces no additional control requirements."
+    }
+  }
+}

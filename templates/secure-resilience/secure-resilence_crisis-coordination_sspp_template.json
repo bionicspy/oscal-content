@@ -1,0 +1,148 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-resilience:crisis-coordination",
+
+    "metadata": {
+      "title": "Secure‑Resilience Crisis & Coordination SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T02:30:00Z",
+      "remarks": "System Security and Privacy Plan governing human coordination, communication, and escalation during resilience and crisis events, aligned with NIST SP 800‑184."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-resilience:platform",
+      "remarks": "This SSPP inherits Secure‑Resilience Platform rules and applies them to crisis coordination activities."
+    },
+
+    "system-characteristics": {
+      "system-name": "Crisis & Coordination Environment",
+      "system-description": "Crisis and coordination environments encompass executive leadership, incident command, legal, safety authorities, clinical leadership, communications teams, and external coordination bodies. This SSPP ensures that coordination supports Secure‑Resilience decisions without overriding eligibility or safety constraints.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "domain",
+          "class": "governance-environment",
+          "value": "crisis-and-coordination",
+          "remarks": "Applies to crisis response and coordination functions."
+        },
+        {
+          "name": "authoritative-guidance",
+          "class": "coordination-framework",
+          "value": "nist-sp-800-184",
+          "remarks": "NIST guidance for cyber incident coordination."
+        },
+        {
+          "name": "coordination-boundary",
+          "class": "non-equivalence-invariant",
+          "value": "coordination-is-not-authority",
+          "remarks": "Coordination, escalation, or executive involvement does not grant recovery or resume authority."
+        },
+        {
+          "name": "decision-hierarchy",
+          "class": "architectural-invariant",
+          "value": "safety-and-eligibility-first",
+          "remarks": "Safety overlays and resilience eligibility cannot be overridden by crisis pressure."
+        },
+        {
+          "name": "automation-influence",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Crisis coordination must not instruct automation to bypass Secure‑Resilience eligibility."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Crisis coordination is implemented through structured communication, escalation, and documentation aligned with Secure‑Resilience decisions. This SSPP does not authorize or execute technical recovery actions.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:secure-resilience-core",
+          "type": "pattern-consumption",
+          "title": "Secure‑Resilience Core",
+          "remarks": "Defines permitted resilience outcomes that coordination must respect."
+        },
+        {
+          "uuid": "urn:nist.gov:800-184",
+          "type": "guidance-reference",
+          "title": "NIST SP 800‑184",
+          "remarks": "Provides coordination, communication, and escalation guidance."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-crisis-commander",
+        "title": "Crisis Coordination Lead",
+        "remarks": "Coordinates response activities and information flow without overriding resilience eligibility.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-IR"
+          }
+        ]
+      },
+      {
+        "id": "role-executive-sponsor",
+        "title": "Executive Crisis Sponsor",
+        "remarks": "Provides executive oversight and decision support; does not authorize technical resume.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-EX"
+          }
+        ]
+      },
+      {
+        "id": "role-legal-and-regulatory",
+        "title": "Legal and Regulatory Coordination",
+        "remarks": "Ensures regulatory notifications and legal obligations are met.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-safety-or-clinical-authority",
+        "title": "Safety / Clinical Authority",
+        "remarks": "Provides safety or clinical input; may authorize resume within applicable SSPPs.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-MED"
+          }
+        ]
+      },
+      {
+        "id": "role-communications",
+        "title": "Crisis Communications",
+        "remarks": "Manages internal and external messaging aligned with factual system state.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-COMM"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "This SSPP supports NIST SP 800‑184 coordination objectives and operates in conjunction with NIST SP 800‑53 CP and IR controls. It introduces no additional control requirements and does not replace technical enforcement."
+    }
+  }
+}

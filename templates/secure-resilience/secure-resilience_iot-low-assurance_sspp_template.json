@@ -1,0 +1,190 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-resilience:iot-low-assurance",
+
+    "metadata": {
+      "title": "Secure‑Resilience IoT / Low‑Assurance SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T02:10:00Z",
+      "remarks": "System Security and Privacy Plan specializing Secure‑Resilience for IoT and low‑assurance devices where trust, updateability, and state reversibility are limited or opaque."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-resilience:platform",
+      "remarks": "This SSPP inherits Secure‑Resilience Platform rules and applies conservative constraints appropriate for low‑assurance IoT environments."
+    },
+
+    "system-characteristics": {
+      "system-name": "IoT / Low‑Assurance Resilience Environment",
+      "system-description": "IoT and low‑assurance environments include commodity, consumer‑grade, vendor‑managed, externally connected, or constrained devices. This SSPP emphasizes isolation, suppression, and replacement over restore or resume, due to limited assurance of integrity and lifecycle control.",
+      "security-sensitivity-level": "moderate",
+
+      "props": [
+        {
+          "name": "domain",
+          "class": "execution-environment",
+          "value": "iot-low-assurance",
+          "remarks": "Applies to IoT and externally managed devices with limited controls."
+        },
+        {
+          "name": "trust-assumption",
+          "class": "default-assumption",
+          "value": "minimal",
+          "remarks": "IoT devices are assumed minimally trusted by default."
+        },
+        {
+          "name": "state-assumption",
+          "class": "default-assumption",
+          "value": "unknown-or-partially-irreversible",
+          "remarks": "Device state is often opaque or partially irreversible."
+        },
+        {
+          "name": "preferred-resilience-outcome",
+          "class": "operational-bias",
+          "value": "isolate-or-replace",
+          "remarks": "Isolation or replacement is preferred over restore or resume."
+        },
+        {
+          "name": "implicit-restore",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Backup restore or firmware rollback must not occur automatically."
+        },
+        {
+          "name": "implicit-resume",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "No IoT device may resume operation without explicit eligibility."
+        },
+        {
+          "name": "update-expectation",
+          "class": "operational-principle",
+          "value": "best-effort",
+          "remarks": "Updates may be unavailable, delayed, or vendor‑controlled."
+        },
+        {
+          "name": "replacement-bias",
+          "class": "operational-principle",
+          "value": "replace-over-remediate",
+          "remarks": "Replace devices when trust degrades rather than attempt deep remediation."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "IoT resilience is implemented through strict Secure‑Resilience gating, aggressive isolation, and rapid decommissioning or replacement. Restore and resume are exceptional and require explicit eligibility.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:secure-resilience-core",
+          "type": "pattern-inheritance",
+          "title": "Secure‑Resilience Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-state-reversibility",
+          "type": "pattern-inheritance",
+          "title": "Reversible vs Irreversible State"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-safe-halt-vs-restore",
+          "type": "pattern-inheritance",
+          "title": "Safe‑Halt vs Restore"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-degradation-vs-continuity",
+          "type": "pattern-inheritance",
+          "title": "Degradation vs Continuity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-recall-driven-recovery",
+          "type": "pattern-inheritance",
+          "title": "Recall‑Driven Recovery"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-resume-eligibility",
+          "type": "pattern-inheritance",
+          "title": "Resume Eligibility"
+        },
+
+        {
+          "uuid": "urn:utoronto:security:pattern:backup-and-recovery",
+          "type": "pattern-specialization",
+          "title": "Backup and Recovery",
+          "remarks": "Backups, if any, are primarily for evidence and configuration reference; restore is rare."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:disaster-recovery",
+          "type": "pattern-specialization",
+          "title": "Disaster Recovery",
+          "remarks": "DR generally applies to backend services, not IoT endpoints."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:continuity-of-operations",
+          "type": "pattern-specialization",
+          "title": "Continuity of Operations",
+          "remarks": "Continuity favors isolation, reduced functionality, or replacement."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-iot-resilience-architecture",
+        "title": "IoT / Low‑Assurance Resilience Architecture",
+        "remarks": "Defines conservative resilience constraints and replacement criteria.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-iot-resilience-governance",
+        "title": "IoT Resilience Governance",
+        "remarks": "Approves risk tolerance, isolation thresholds, and replacement decisions.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-iot-resilience-operations",
+        "title": "IoT Resilience Operations",
+        "remarks": "Executes isolation, decommissioning, and replacement actions.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-iot-resilience-monitoring",
+        "title": "IoT Resilience Monitoring",
+        "remarks": "Monitors device behavior, trust degradation, and unsafe recovery attempts.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "IoT resilience relies on Secure‑Resilience constraints applied to NIST SP 800‑53 CP controls and conservative operational principles. This SSPP introduces no additional control requirements."
+    }
+  }
+}

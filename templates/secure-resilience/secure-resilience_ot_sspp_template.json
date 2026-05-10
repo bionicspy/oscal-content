@@ -1,0 +1,196 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-resilience:ot",
+
+    "metadata": {
+      "title": "Secure‑Resilience OT SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T01:15:00Z",
+      "remarks": "System Security and Privacy Plan specializing Secure‑Resilience for Operational Technology (OT) environments where physical and process safety supersede availability and recovery speed."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-resilience:platform",
+      "remarks": "This SSPP inherits Secure‑Resilience Platform rules and applies OT‑specific safety and operational constraints."
+    },
+
+    "system-characteristics": {
+      "system-name": "Operational Technology Resilience Environment",
+      "system-description": "OT systems include industrial control systems, building automation, utilities, robotics, lab equipment, and safety‑critical cyber‑physical infrastructure. This SSPP enforces safe‑halt dominance, strict resume authorization, and conservative recovery to prevent physical harm or unsafe process states.",
+      "security-sensitivity-level": "very-high",
+
+      "props": [
+        {
+          "name": "domain",
+          "class": "execution-environment",
+          "value": "operational-technology",
+          "remarks": "Applies to OT systems controlling physical processes."
+        },
+        {
+          "name": "safety-authority",
+          "class": "regulatory-anchor",
+          "value": "iec-62443",
+          "remarks": "OT resilience is governed by IEC 62443 safety and security principles."
+        },
+        {
+          "name": "supporting-guidance",
+          "class": "interpretive-guidance",
+          "value": "nist-sp-800-82r3",
+          "remarks": "NIST guidance for securing and operating ICS environments."
+        },
+        {
+          "name": "state-assumption",
+          "class": "default-assumption",
+          "value": "often-irreversible",
+          "remarks": "OT system state is frequently irreversible due to physical outcomes."
+        },
+        {
+          "name": "preferred-resilience-outcome",
+          "class": "operational-bias",
+          "value": "safe-halt-or-isolate",
+          "remarks": "Halt, isolate, or de‑energize is preferred over restore or resume."
+        },
+        {
+          "name": "implicit-restore",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Backup restore or DR failover must not occur automatically."
+        },
+        {
+          "name": "implicit-resume",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "No OT system may resume operation without explicit safety authorization."
+        },
+        {
+          "name": "manual-override-preference",
+          "class": "safety-invariant",
+          "value": "preferred",
+          "remarks": "Manual or local control is preferred during resilience events."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "OT resilience is implemented through strict application of Secure‑Resilience semantics with safety dominance. Recovery tooling is constrained to prevent unsafe physical actions.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:secure-resilience-core",
+          "type": "pattern-inheritance",
+          "title": "Secure‑Resilience Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-state-reversibility",
+          "type": "pattern-inheritance",
+          "title": "Reversible vs Irreversible State"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-safe-halt-vs-restore",
+          "type": "pattern-inheritance",
+          "title": "Safe‑Halt vs Restore"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-degradation-vs-continuity",
+          "type": "pattern-inheritance",
+          "title": "Degradation vs Continuity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-recall-driven-recovery",
+          "type": "pattern-inheritance",
+          "title": "Recall‑Driven Recovery"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-resume-eligibility",
+          "type": "pattern-inheritance",
+          "title": "Resume Eligibility"
+        },
+
+        {
+          "uuid": "urn:utoronto:security:pattern:device-ot-safety-overlay",
+          "type": "pattern-specialization",
+          "title": "OT Safety Overlay",
+          "remarks": "Safety semantics from Secure‑Device override recovery actions."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:backup-and-recovery",
+          "type": "pattern-specialization",
+          "title": "Backup and Recovery",
+          "remarks": "Backups are primarily forensic; restore is rare and tightly controlled."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:disaster-recovery",
+          "type": "pattern-specialization",
+          "title": "Disaster Recovery",
+          "remarks": "Alternate processing is limited and often excluded for OT systems."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:continuity-of-operations",
+          "type": "pattern-specialization",
+          "title": "Continuity of Operations",
+          "remarks": "Continuity defaults to safe‑halt, manual operation, or isolation."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-ot-resilience-architecture",
+        "title": "OT Resilience Architecture",
+        "remarks": "Defines OT‑specific resilience and safety constraints.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-ot-resilience-governance",
+        "title": "OT Resilience Governance",
+        "remarks": "Approves resume eligibility and safety authority decisions.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-ot-resilience-operations",
+        "title": "OT Resilience Operations",
+        "remarks": "Executes halt, isolate, and controlled recovery actions under safety dominance.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-ot-resilience-monitoring",
+        "title": "OT Resilience Monitoring",
+        "remarks": "Detects unsafe recovery attempts and physical risk escalation.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "OT resilience is implemented through Secure‑Resilience constraints interpreted under IEC 62443 requirements and NIST SP 800‑53 CP controls. No new control requirements are introduced."
+    }
+  }
+}

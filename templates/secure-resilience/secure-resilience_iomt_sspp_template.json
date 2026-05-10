@@ -1,0 +1,209 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-resilience:iomt",
+
+    "metadata": {
+      "title": "Secure‑Resilience IoMT SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T01:40:00Z",
+      "remarks": "System Security and Privacy Plan specializing Secure‑Resilience for Internet of Medical Things (IoMT) systems where patient safety and clinical authority override availability and recovery speed."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-resilience:platform",
+      "remarks": "This SSPP inherits Secure‑Resilience Platform rules and applies medical‑device‑specific patient safety and regulatory constraints."
+    },
+
+    "system-characteristics": {
+      "system-name": "Internet of Medical Things (IoMT) Resilience Environment",
+      "system-description": "IoMT systems include connected and programmable medical devices, life‑sustaining equipment, diagnostic systems, clinical monitoring devices, and therapy‑delivery platforms. This SSPP enforces patient‑safety supremacy, strict recall authority, and highly conservative recovery and resumption semantics.",
+      "security-sensitivity-level": "very-high",
+
+      "props": [
+        {
+          "name": "domain",
+          "class": "execution-environment",
+          "value": "internet-of-medical-things",
+          "remarks": "Applies to network‑connected medical devices and clinical systems."
+        },
+        {
+          "name": "safety-authority",
+          "class": "regulatory-anchor",
+          "value": "fda-eu-mdr",
+          "remarks": "Medical device resilience is governed by FDA guidance and EU MDR requirements."
+        },
+        {
+          "name": "supporting-standards",
+          "class": "interpretive-guidance",
+          "value": "iec-80001-iso-13485",
+          "remarks": "IEC 80001 governs networked medical risk; ISO 13485 governs quality and lifecycle."
+        },
+        {
+          "name": "state-assumption",
+          "class": "default-assumption",
+          "value": "often-irreversible",
+          "remarks": "Medical device actions frequently produce irreversible patient outcomes."
+        },
+        {
+          "name": "preferred-resilience-outcome",
+          "class": "operational-bias",
+          "value": "halt-or-monitor-only",
+          "remarks": "Halt or monitoring‑only operation is preferred over restore or resume."
+        },
+        {
+          "name": "implicit-restore",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Backup restore or system rollback must not occur automatically."
+        },
+        {
+          "name": "implicit-resume",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "No IoMT system may resume therapy or actuation without explicit clinical authorization."
+        },
+        {
+          "name": "recall-precedence",
+          "class": "absolute-override",
+          "value": "mandatory",
+          "remarks": "Medical device recall or safety notice overrides all recovery actions."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "IoMT resilience is implemented by applying Secure‑Resilience semantics with patient‑safety dominance. Recovery tooling is tightly constrained to prevent unsafe re‑activation of therapy or device actuation.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:secure-resilience-core",
+          "type": "pattern-inheritance",
+          "title": "Secure‑Resilience Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-state-reversibility",
+          "type": "pattern-inheritance",
+          "title": "Reversible vs Irreversible State"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-safe-halt-vs-restore",
+          "type": "pattern-inheritance",
+          "title": "Safe‑Halt vs Restore"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-degradation-vs-continuity",
+          "type": "pattern-inheritance",
+          "title": "Degradation vs Continuity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-recall-driven-recovery",
+          "type": "pattern-inheritance",
+          "title": "Recall‑Driven Recovery"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-resume-eligibility",
+          "type": "pattern-inheritance",
+          "title": "Resume Eligibility"
+        },
+
+        {
+          "uuid": "urn:utoronto:security:pattern:device-iomt-patient-safety-overlay",
+          "type": "pattern-specialization",
+          "title": "IoMT Patient Safety Overlay",
+          "remarks": "Patient safety constraints override all resilience actions."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:backup-and-recovery",
+          "type": "pattern-specialization",
+          "title": "Backup and Recovery",
+          "remarks": "Backups are primarily forensic and evidence‑supporting; restore is exceptional."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:disaster-recovery",
+          "type": "pattern-specialization",
+          "title": "Disaster Recovery",
+          "remarks": "DR is limited to non‑actuating systems and requires clinical authorization."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:continuity-of-operations",
+          "type": "pattern-specialization",
+          "title": "Continuity of Operations",
+          "remarks": "Continuity favors monitoring‑only or non‑therapeutic operation."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-iomt-resilience-architecture",
+        "title": "IoMT Resilience Architecture",
+        "remarks": "Defines patient‑safety‑first resilience constraints for medical systems.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-iomt-resilience-governance",
+        "title": "IoMT Resilience Governance",
+        "remarks": "Approves resume eligibility and recall handling in alignment with clinical and regulatory authority.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-iomt-clinical-authorization",
+        "title": "Clinical Authorization Authority",
+        "remarks": "Provides explicit clinical approval for any resumption of therapeutic operation.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-MED"
+          }
+        ]
+      },
+      {
+        "id": "role-iomt-resilience-operations",
+        "title": "IoMT Resilience Operations",
+        "remarks": "Executes halt, isolate, monitoring‑only, or approved recovery actions.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-iomt-resilience-monitoring",
+        "title": "IoMT Safety and Resilience Monitoring",
+        "remarks": "Monitors unsafe recovery attempts, recall violations, and patient safety risk escalation.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "IoMT resilience is implemented through Secure‑Resilience constraints interpreted under FDA, EU MDR, IEC 80001, ISO 13485, and NIST SP 800‑53 CP controls. No additional control requirements are introduced."
+    }
+  }
+}

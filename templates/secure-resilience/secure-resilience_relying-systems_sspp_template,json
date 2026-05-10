@@ -1,0 +1,158 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-resilience:relying-system",
+
+    "metadata": {
+      "title": "Secure‑Resilience Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "remarks": "System Security and Privacy Plan governing how systems, automation, tools, and operators may rely on Secure‑Resilience eligibility signals without introducing unsafe recovery or unauthorized resumption."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-resilience:platform",
+      "remarks": "This SSPP inherits all Secure‑Resilience Platform rules and constrains reliance on resilience signals."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure‑Resilience Relying Systems",
+      "system-description": "A Secure‑Resilience Relying System consumes resilience eligibility signals to decide whether to perform restore, failover, degrade, halt, isolate, decommission, or resume actions. This SSPP ensures reliance is bounded, explicit, and safety‑first.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "relying-role",
+          "class": "decision-consumer",
+          "value": "resilience-eligibility-signals",
+          "remarks": "Consumes Secure‑Resilience eligibility and non‑equivalence signals."
+        },
+        {
+          "name": "trust-consumption-model",
+          "class": "enforcement-constraint",
+          "value": "non-transitive",
+          "remarks": "Resilience eligibility signals are contextual and must not be cached, assumed, or reused across events."
+        },
+        {
+          "name": "implicit-resume",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Restore success, failover success, or service availability must not imply permission to resume."
+        },
+        {
+          "name": "automation-default",
+          "class": "safety-invariant",
+          "value": "halt-or-isolate",
+          "remarks": "Automation defaults to halt or isolate when eligibility is unclear or negative."
+        },
+        {
+          "name": "coordination-boundary",
+          "class": "explicit-constraint",
+          "value": "coordination-is-not-authority",
+          "remarks": "Incident coordination (including SP 800‑184 processes) does not grant recovery or resume authority."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure‑Resilience Relying Systems interpret resilience signals as permissions or prohibitions for action. They do not determine eligibility independently and may not override safety or recall conditions.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:secure-resilience-core",
+          "type": "pattern-consumption",
+          "title": "Secure‑Resilience Core",
+          "remarks": "Provides authoritative resilience eligibility and non‑equivalence rules."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-state-reversibility",
+          "type": "pattern-consumption",
+          "title": "Reversible vs Irreversible State",
+          "remarks": "Indicates whether restore or replay is feasible."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-safe-halt-vs-restore",
+          "type": "pattern-consumption",
+          "title": "Safe‑Halt vs Restore",
+          "remarks": "Indicates when halt suppresses restore."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-degradation-vs-continuity",
+          "type": "pattern-consumption",
+          "title": "Degradation vs Continuity",
+          "remarks": "Indicates whether degraded operation is permitted."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-recall-driven-recovery",
+          "type": "pattern-consumption",
+          "title": "Recall‑Driven Recovery",
+          "remarks": "Indicates mandatory suppression of restore and resume."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:resilience-resume-eligibility",
+          "type": "pattern-consumption",
+          "title": "Resume Eligibility",
+          "remarks": "Indicates whether explicit authorization to resume exists."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-resilience-relying-architecture",
+        "title": "Resilience Relying Architecture",
+        "remarks": "Defines how resilience eligibility signals are consumed without unsafe inference.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-resilience-relying-governance",
+        "title": "Resilience Relying Governance",
+        "remarks": "Approves reliance rules for automation, tooling, and operator actions.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-resilience-automation-operator",
+        "title": "Resilience Automation and Operations",
+        "remarks": "Operates recovery, DR, ransomware, and continuity tooling under strict eligibility constraints.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-SA"
+          }
+        ]
+      },
+      {
+        "id": "role-resilience-relying-monitoring",
+        "title": "Resilience Relying Monitoring",
+        "remarks": "Detects unsafe reliance, unauthorized resume attempts, and automation violations.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through constrained reliance on resilience eligibility signals and adherence to NIST SP 800‑53 CP family controls. This SSPP does not introduce or re‑map controls."
+    }
+  }
+}
