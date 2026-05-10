@@ -1,0 +1,150 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-sdlc:ot",
+
+    "metadata": {
+      "title": "Secure‑SDLC OT / Safety‑Critical SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T07:05:00Z",
+      "remarks": "System Security and Privacy Plan specializing Secure‑SDLC for Operational Technology (OT) and safety‑critical software development contexts."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-sdlc:platform",
+      "remarks": "This SSPP inherits Secure‑SDLC Platform rules and applies additional safety-critical constraints appropriate for OT environments."
+    },
+
+    "system-characteristics": {
+      "system-name": "OT Secure‑SDLC Environment",
+      "system-description": "This environment governs development of software, logic, and configuration that may directly or indirectly affect physical processes, equipment, or safety systems. It enforces conservative delivery practices, explicit manual authorization, and strict separation between SDLC completion and operational enablement.",
+      "security-sensitivity-level": "very-high",
+
+      "props": [
+        {
+          "name": "domain",
+          "class": "execution-environment",
+          "value": "operational-technology",
+          "remarks": "Applies to PLC logic, robotics software, industrial controllers, building automation, and safety‑critical control systems."
+        },
+        {
+          "name": "state-assumption",
+          "class": "default-assumption",
+          "value": "often-irreversible",
+          "remarks": "OT software may cause irreversible physical effects."
+        },
+        {
+          "name": "delivery-frequency",
+          "class": "operational-characteristic",
+          "value": "low",
+          "remarks": "Changes are infrequent and carefully staged."
+        },
+        {
+          "name": "automation-level",
+          "class": "operational-characteristic",
+          "value": "restricted",
+          "remarks": "CI/CD automation is limited and subject to manual safety review."
+        },
+        {
+          "name": "implicit-deploy",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "No SDLC outcome may automatically deploy or activate OT software."
+        },
+        {
+          "name": "implicit-energization",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Signed or assured software must not energize, actuate, or control equipment without explicit operational authorization."
+        },
+        {
+          "name": "authority-source",
+          "class": "deployment-authority",
+          "value": "outside-sdlc-and-under-safety-governance",
+          "remarks": "Operational enablement authority resides with OT safety governance, not SDLC."
+        },
+        {
+          "name": "manual-review",
+          "class": "safety-invariant",
+          "value": "mandatory",
+          "remarks": "Human safety review is required prior to any OT software promotion."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "OT SDLC is implemented through Secure‑SDLC patterns with strict constraints on automation, mandatory safety review, and explicit separation between delivery and physical enablement.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:secure-sdlc-core",
+          "type": "pattern-inheritance",
+          "title": "SDLC Core",
+          "remarks": "Defines SDLC legitimacy and non‑equivalence rules."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-identity-and-attribution",
+          "type": "pattern-inheritance",
+          "title": "SDLC Identity and Attribution",
+          "remarks": "Maintains human accountability for all OT‑related SDLC actions."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-change-integrity",
+          "type": "pattern-inheritance",
+          "title": "SDLC Change Integrity",
+          "remarks": "Ensures OT software and configuration integrity without authorizing execution."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-assurance",
+          "type": "pattern-inheritance",
+          "title": "SDLC Assurance",
+          "remarks": "Provides assurance evidence, not safety certification."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-supply-chain",
+          "type": "pattern-inheritance",
+          "title": "SDLC Supply Chain",
+          "remarks": "Constrains external OT software components and tooling."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-operations-handover",
+          "type": "pattern-inheritance",
+          "title": "SDLC Operations Handover",
+          "remarks": "Transfers custody of OT software artifacts without enabling execution."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-ot-sdlc-architecture",
+        "title": "OT SDLC Architecture",
+        "remarks": "Defines SDLC constraints specific to OT and safety‑critical software."
+      },
+      {
+        "id": "role-ot-sdlc-governance",
+        "title": "OT SDLC Governance",
+        "remarks": "Owns OT software lifecycle policies and approval thresholds."
+      },
+      {
+        "id": "role-ot-safety-authority",
+        "title": "OT Safety Authority",
+        "remarks": "Provides explicit authorization prior to any operational activation."
+      },
+      {
+        "id": "role-ot-sdlc-operations",
+        "title": "OT SDLC Operations",
+        "remarks": "Manages SDLC tooling without deployment authority."
+      },
+      {
+        "id": "role-ot-deployment-operations",
+        "title": "OT Deployment Operations",
+        "remarks": "Executes physical enablement and commissioning under safety governance."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through Secure‑SDLC interpretation of NIST SP 800‑53 control families SA, CM, IA, AU, SI, and SR, with operational safety enforced through Secure‑Resilience and Secure‑Device SSPPs."
+    }
+  }
+}

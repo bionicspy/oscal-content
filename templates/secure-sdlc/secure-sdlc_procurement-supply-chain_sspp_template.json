@@ -1,0 +1,120 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-sdlc:procurement-supply-chain",
+
+    "metadata": {
+      "title": "Secure‑SDLC Procurement & Supply Chain SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T07:50:00Z",
+      "remarks": "System Security and Privacy Plan extending Secure‑SDLC governance into software procurement, vendor supply chains, and third‑party development relationships."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-sdlc:platform",
+      "remarks": "This SSPP inherits Secure‑SDLC Platform rules and applies them to procurement, vendor onboarding, and third‑party software supply relationships."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure‑SDLC Procurement & Supply Chain Environment",
+      "system-description": "This environment governs how third‑party software, services, toolchains, and development outputs are procured and introduced into the Secure‑SDLC. It ensures that procurement decisions do not bypass SDLC trust boundaries, assurance requirements, or deployment authority.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "domain",
+          "class": "governance-environment",
+          "value": "procurement-and-supply-chain",
+          "remarks": "Applies to vendor sourcing, software procurement, and third‑party development."
+        },
+        {
+          "name": "authority-boundary",
+          "class": "architectural-invariant",
+          "value": "procurement-does-not-authorize-use",
+          "remarks": "Procurement approval does not imply permission to build, deploy, or execute software."
+        },
+        {
+          "name": "trust-assumption",
+          "class": "default-assumption",
+          "value": "third-party-untrusted-until-validated",
+          "remarks": "Third‑party software and services are untrusted by default."
+        },
+        {
+          "name": "contractual-reliance",
+          "class": "explicit-constraint",
+          "value": "supplemental-not-authoritative",
+          "remarks": "Contractual assurances supplement but do not replace Secure‑SDLC controls."
+        },
+        {
+          "name": "sbom-status",
+          "class": "non-equivalence",
+          "value": "sbom-not-safety-proof",
+          "remarks": "Presence of an SBOM does not imply trust, approval, or deployability."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Procurement and supply chain governance integrates Secure‑SDLC requirements into vendor selection, contracts, and onboarding processes. SDLC outputs from third parties must meet the same Secure‑SDLC requirements as internal development.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-supply-chain",
+          "type": "pattern-consumption",
+          "title": "SDLC Supply Chain",
+          "remarks": "Defines provenance, integrity, and verification requirements for third‑party inputs."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-assurance",
+          "type": "pattern-consumption",
+          "title": "SDLC Assurance",
+          "remarks": "Defines assurance evidence expectations for vendor‑supplied software."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-change-integrity",
+          "type": "pattern-consumption",
+          "title": "SDLC Change Integrity",
+          "remarks": "Requires integrity and authorization controls for third‑party delivered artifacts."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-identity-and-attribution",
+          "type": "pattern-consumption",
+          "title": "SDLC Identity & Attribution",
+          "remarks": "Requires attribution for vendor and contractor SDLC actions."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-procurement-governance",
+        "title": "Procurement Governance",
+        "remarks": "Defines software procurement requirements aligned with Secure‑SDLC."
+      },
+      {
+        "id": "role-supply-chain-risk",
+        "title": "Supply Chain Risk Management",
+        "remarks": "Assesses and manages software supply chain risk."
+      },
+      {
+        "id": "role-legal-and-contracts",
+        "title": "Legal & Contracts",
+        "remarks": "Ensures contracts include Secure‑SDLC‑aligned requirements."
+      },
+      {
+        "id": "role-vendor-management",
+        "title": "Vendor Management",
+        "remarks": "Manages vendor onboarding and ongoing SDLC compliance."
+      },
+      {
+        "id": "role-sdlc-architecture",
+        "title": "SDLC Architecture",
+        "remarks": "Ensures third‑party software complies with Secure‑SDLC patterns."
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through Secure‑SDLC interpretation of NIST SP 800‑53 control families SR, SA, CM, IA, AU, and SI. This SSPP does not authorize deployment or execution of procured software."
+    }
+  }
+}

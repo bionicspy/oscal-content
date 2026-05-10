@@ -1,0 +1,159 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-sdlc:platform",
+
+    "metadata": {
+      "title": "Secure‑SDLC Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T05:55:00Z",
+      "remarks": "System Security and Privacy Plan establishing Secure‑SDLC as the authoritative framework for software delivery without granting deployment or execution authority."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:pattern:secure-sdlc",
+      "remarks": "This SSPP inherits the Secure‑SDLC composite pattern, including the SDLC Core and all SDLC solution patterns."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure‑SDLC Platform",
+      "system-description": "The Secure‑SDLC Platform governs how software delivery artifacts are created, assured, protected, and handed to operations. It enforces strict non‑equivalence between SDLC completion and runtime deployment or execution.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "platform-role",
+          "class": "authoritative-delivery-plane",
+          "value": "software-delivery",
+          "remarks": "Authoritative plane for software delivery artifacts only."
+        },
+        {
+          "name": "sdlc-scope",
+          "class": "governance-scope",
+          "value": "pre-runtime-only",
+          "remarks": "Secure‑SDLC applies only before runtime execution."
+        },
+        {
+          "name": "non-equivalence",
+          "class": "architectural-invariant",
+          "value": "delivery-does-not-authorize-execution",
+          "remarks": "SDLC outputs are necessary but insufficient for deployment or execution."
+        },
+        {
+          "name": "implicit-authority",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "Build success, signatures, provenance, or assurance must not imply deploy or execute permission."
+        },
+        {
+          "name": "automation-boundary",
+          "class": "safety-invariant",
+          "value": "no-optimistic-deploy",
+          "remarks": "Automation must not infer deployment authority from SDLC outcomes."
+        },
+        {
+          "name": "domain-override",
+          "class": "authority-precedence",
+          "value": "device-and-resilience-domains",
+          "remarks": "Secure‑Device and Secure‑Resilience SSPPs override Secure‑SDLC outcomes."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "The Secure‑SDLC Platform is implemented through governance, eligibility signaling, and strict boundary enforcement. It does not perform builds, tests, deployments, or runtime actions.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:secure-sdlc-core",
+          "type": "pattern-inheritance",
+          "title": "SDLC Core"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-identity-and-attribution",
+          "type": "pattern-inheritance",
+          "title": "SDLC Identity and Attribution"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-change-integrity",
+          "type": "pattern-inheritance",
+          "title": "SDLC Change Integrity"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-assurance",
+          "type": "pattern-inheritance",
+          "title": "SDLC Assurance"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-supply-chain",
+          "type": "pattern-inheritance",
+          "title": "SDLC Supply Chain"
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-operations-handover",
+          "type": "pattern-inheritance",
+          "title": "SDLC Operations Handover"
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-sdlc-architecture",
+        "title": "SDLC Architecture",
+        "remarks": "Defines Secure‑SDLC semantics, scope, and non‑equivalence rules.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-sdlc-governance",
+        "title": "SDLC Governance",
+        "remarks": "Approves SDLC policies and acceptable reliance boundaries.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-sdlc-operations",
+        "title": "SDLC Operations",
+        "remarks": "Operates software delivery pipelines within Secure‑SDLC constraints.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-DEV"
+          }
+        ]
+      },
+      {
+        "id": "role-sdlc-monitoring",
+        "title": "SDLC Monitoring",
+        "remarks": "Monitors violations of SDLC trust boundaries and unsafe reliance attempts.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through Secure‑SDLC interpretation of NIST SP 800‑53 control families SA, CM, IA, AU, SI, and SR. This SSPP introduces no new control requirements and does not authorize deployment or execution."
+    }
+  }
+}

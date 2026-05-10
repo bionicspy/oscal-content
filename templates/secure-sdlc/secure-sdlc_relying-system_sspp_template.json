@@ -1,0 +1,165 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-sdlc:relying-system",
+
+    "metadata": {
+      "title": "Secure‑SDLC Relying System SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-07T06:15:00Z",
+      "remarks": "System Security and Privacy Plan governing how systems, automation, tools, and humans may rely on Secure‑SDLC outputs without creating implicit deployment or execution authority."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secure-sdlc:platform",
+      "remarks": "This SSPP inherits Secure‑SDLC Platform rules and constrains reliance on SDLC outputs."
+    },
+
+    "system-characteristics": {
+      "system-name": "Secure‑SDLC Relying Systems",
+      "system-description": "Secure‑SDLC Relying Systems consume SDLC outputs such as build artifacts, assurance results, integrity evidence, provenance data, and handover metadata. This SSPP ensures that reliance on these signals is explicit, bounded, and never treated as deployment or execution authority.",
+      "security-sensitivity-level": "high",
+
+      "props": [
+        {
+          "name": "relying-role",
+          "class": "decision-consumer",
+          "value": "sdlc-signals",
+          "remarks": "Consumes Secure‑SDLC outputs as inputs to downstream decisions."
+        },
+        {
+          "name": "trust-consumption-model",
+          "class": "enforcement-constraint",
+          "value": "non-transitive",
+          "remarks": "SDLC trust signals are contextual, ephemeral, and must not be cached or assumed."
+        },
+        {
+          "name": "implicit-deploy",
+          "class": "explicit-prohibition",
+          "value": "not-permitted",
+          "remarks": "SDLC completion, signatures, provenance, or assurance must not imply deploy or execute permission."
+        },
+        {
+          "name": "automation-default",
+          "class": "safety-invariant",
+          "value": "deny-or-hold",
+          "remarks": "Automation defaults to denial, hold, or escalation when authority is unclear."
+        },
+        {
+          "name": "ai-reliance-boundary",
+          "class": "explicit-constraint",
+          "value": "no-autonomous-authority-escalation",
+          "remarks": "AI systems must not infer deployment authority from SDLC outcomes."
+        },
+        {
+          "name": "domain-precedence",
+          "class": "authority-hierarchy",
+          "value": "device-and-resilience-domains",
+          "remarks": "Secure‑Device and Secure‑Resilience SSPPs override any SDLC‑derived signals."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure‑SDLC Relying Systems interpret SDLC outputs as advisory signals. They are prohibited from making deployment, execution, energization, or therapy‑enablement decisions without additional domain authorization.",
+
+      "components": [
+        {
+          "uuid": "urn:utoronto:security:pattern:secure-sdlc-core",
+          "type": "pattern-consumption",
+          "title": "SDLC Core",
+          "remarks": "Defines SDLC scope and non‑equivalence rules that relying systems must respect."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-identity-and-attribution",
+          "type": "pattern-consumption",
+          "title": "SDLC Identity and Attribution",
+          "remarks": "Provides attribution information without granting authority."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-change-integrity",
+          "type": "pattern-consumption",
+          "title": "SDLC Change Integrity",
+          "remarks": "Provides integrity evidence that does not imply approval or deployability."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-assurance",
+          "type": "pattern-consumption",
+          "title": "SDLC Assurance",
+          "remarks": "Provides assurance evidence that must not be treated as authorization."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-supply-chain",
+          "type": "pattern-consumption",
+          "title": "SDLC Supply Chain",
+          "remarks": "Provides provenance and verification signals without trust escalation."
+        },
+        {
+          "uuid": "urn:utoronto:security:pattern:sdlc-operations-handover",
+          "type": "pattern-consumption",
+          "title": "SDLC Operations Handover",
+          "remarks": "Marks SDLC completion without authorizing runtime execution."
+        }
+      ]
+    },
+
+    "roles": [
+      {
+        "id": "role-sdlc-relying-architecture",
+        "title": "SDLC Relying System Architecture",
+        "remarks": "Defines how SDLC signals are consumed safely by downstream systems.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "SP-ARC"
+          }
+        ]
+      },
+      {
+        "id": "role-sdlc-relying-governance",
+        "title": "SDLC Relying System Governance",
+        "remarks": "Approves trust consumption rules and automation limits.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OV-GRC"
+          }
+        ]
+      },
+      {
+        "id": "role-sdlc-relying-operations",
+        "title": "Deployment and Automation Operations",
+        "remarks": "Operates systems that may receive SDLC outputs but does not gain deployment authority.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "OM-ADM"
+          }
+        ]
+      },
+      {
+        "id": "role-sdlc-relying-monitoring",
+        "title": "SDLC Reliance Monitoring",
+        "remarks": "Detects unsafe reliance, authority escalation, and policy violations.",
+        "props": [
+          {
+            "name": "nice-work-role",
+            "ns": "urn:nist.gov:nice",
+            "class": "work-role",
+            "value": "PR-CDA"
+          }
+        ]
+      }
+    ],
+
+    "control-implementation": {
+      "remarks": "Controls are satisfied through constrained reliance on Secure‑SDLC outputs using NIST SP 800‑53 control families SA, CM, IA, AU, SI, and SR. This SSPP does not authorize deployment, execution, or runtime operation."
+    }
+  }
+}
