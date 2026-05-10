@@ -1,165 +1,216 @@
-# Monitoring, Detection & Response - Trust Plane Overview
-
-The Monitoring, Detection & Response trust plane defines how the institution observes, detects, investigates, and responds to security‑relevant activity across systems, networks, data, and software delivery pipelines.
-
-This trust plane establishes operational security awareness and response capability. It does not create security decisions or protections by itself; instead, it consumes signals from all other trust planes and enables timely, coordinated action when security conditions deviate from expectations.
-
-This plane is the architectural home of security operations (SecOps / SOC).
+# Security Operations Patterns
 
 ## Purpose
-The purpose of the Monitoring, Detection & Response trust plane is to ensure that:
-* Security‑relevant activity is consistently observed
-* Telemetry is collected, preserved, and trusted
-* Suspicious or malicious activity is detected reliably
-* Security incidents are analyzed, contained, and resolved
-* Evidence is preserved for investigation and audit
-* Institutional response is coordinated, repeatable, and auditable
 
-This trust plane allows the institution to assert that it can see and respond to security events, not merely define rules or deploy controls.
+The **Security Operations (SecOps) patterns** define the architectural primitives and operational control plane used to **observe, detect, respond to, investigate, and govern security events** across the enterprise.
 
-## Scope
+These patterns are intentionally designed to:
+- preserve **clear separation of concerns**
+- prevent **tool‑driven authority collapse**
+- support **safe automation (SOAR)** without sacrificing accountability
+- enable **defensible SSPPs** and audits
+
+SecOps patterns do **not** represent specific tools or products.  
+They represent **capabilities, responsibilities, and decision boundaries**.
+
+---
+
+## Scope and Non‑Goals
+
 ### In Scope
-The Monitoring, Detection & Response trust plane applies to:
-* Logging and telemetry from systems, networks, applications, and pipelines
-* Security event correlation and alerting
-* Threat detection and analysis
-* Incident response processes and actions
-* Digital forensics and evidence handling
-* Cross‑plane signal consumption (Identity, Network, Compute, Data, SDLC)
+- Security signal production, observation, analysis, response, and investigation
+- Operational authority, workflow, escalation, and automation governance
+- Alignment with NIST guidance and MITRE frameworks (ATT&CK, D3FEND)
 
-### Out of Scope
-This trust plane does not define:
-* Preventive security controls (other trust planes)
-* Access authorization decisions (Identity plane)
-* Network enforcement or segmentation (Network plane)
-* Runtime protection mechanisms (Endpoint / Server planes)
-* Data classification or encryption (Data plane)
-* How software is built (SDLC plane)
+### Explicitly Out of Scope
+- Application security design
+- Secure SDLC enforcement
+- Runtime protection and resilience mechanisms
+- Business continuity and disaster recovery execution
 
-Those planes emit signals; this plane consumes and acts on them.
+> Secure‑SDLC SSPPs and Secure‑Resilience SSPPs exist **outside** this pattern family and retain independent authority over build, deployment, and runtime behavior.
 
-## Pattern Decomposition
-```
-security-operations/
-├── logging-and-telemetry
-├── security-monitoring
-├── threat-detection
-├── incident-response
-├── digital-forensics
-└── security-operations (composite)
+---
+
+## SecOps Pattern Set Overview
+
+The SecOps patterns are layered to form a **one‑way flow of responsibility**, not a loop of tools:
+
+```text
+Signals → Observation → Determination → Action → Truth
 ```
 
-Each pattern answers a distinct operational trust question, ensuring responsibility clarity between detection, analysis, and response.
+| Layer | Pattern | Responsibility |
+|------|---------|----------------|
+| Signal Production | Logging & Telemetry | Produce trustworthy security signals |
+| Observation | Security Monitoring | Correlate and observe activity |
+| Determination | Threat Detection | Decide if activity is suspicious or malicious |
+| Action | Incident Response | Coordinate containment and recovery |
+| Truth | Digital Forensics | Establish evidentiary tru
 
-### 1. logging-and-telemetry
-Defines what telemetry is collected and how it is preserved.
-#### Purpose
-To ensure security‑relevant activity is observable and trustworthy.
-#### Scope
-* Log generation requirements
-* Telemetry sources and coverage
-* Time synchronization and integrity
+Each pattern has exactly one primary responsibility.
 
-#### Components
-* telemetry-sources-and-coverage
-  * Defines what systems must emit security telemetry
-* log-collection-and-transport
-  * Secure aggregation of logs and events
-* log-integrity-and-retention
-  * Protection and retention of security telemetry
 
-#### Answers the Question
-“Can we reliably see what is happening?”
+## Base SecOps Patterns
 
-### 2. security-monitoring
-Continuously analyzes telemetry for security relevance.
-#### Purpose
-To establish situational awareness across the environment.
-#### Scope
-* Log aggregation and normalization
-* Baseline behavior analysis
-* Alert generation
+The **Base Security Operations (SecOps) Patterns** define the foundational capabilities required to operate a modern, defensible security operations function. Each pattern represents a **single responsibility**, with explicit boundaries to prevent authority collapse, tool sprawl, or unintended automation.
 
-#### Components
-* event-correlation-and-analysis – Correlation of telemetry across sources
-* baseline-and-anomaly-detection – Identification of abnormal behavior
-* alerting-and-visibility – Actionable alert generation and dashboards
+These patterns are **primitive building blocks**, not end‑to‑end solutions. They are composed later by the **Security Operations composite** and governed through **SSPPs**.
 
-#### Answers the Question
-“Is anything unusual or concerning occurring?”
-
-### 3. threat-detection
-Identifies malicious activity and threat patterns.
-#### Purpose
-To separate true threats from noise.
-#### Scope
-* Detection logic and rules
-* Threat intelligence integration
-* Triage and prioritization
-
-#### Components
-* detection-rules-and-analytics – Known and behavioral threat detection
-* threat-intelligence-integration – External intelligence enrichment
-* threat-triage-and-prioritization – Severity and impact assessment
-
-#### Answers the Question
-“Is this activity malicious?”
-
-### 4. incident-response
-Coordinates response actions when security incidents occur.
-#### Purpose
-To ensure timely, consistent, and effective response.
-#### Scope
-* Incident classification
-* Containment and remediation
-* Communication and escalation
-
-#### Components
-* incident-identification-and-classification
-  * Formal incident recognition
-* containment-and-remediation
-  * Actions to limit and resolve incidents
-* coordination-and-communication
-  * Cross‑team and leadership engagement
-
-#### Answers the Question
-“How do we respond?”
-
-### 5. digital-forensics
-Preserves and analyzes evidence to support investigations.
-#### Purpose
-To enable root‑cause analysis, accountability, and learning.
-#### Scope
-* Evidence collection and preservation
-* Forensic analysis
-* Chain of custody
-
-#### Components
-* evidence-collection-and-preservation
-  * Forensically sound data capture
-* forensic-analysis
-  * Root cause and impact determination
-* chain-of-custody-and-integrity
-    * Legal and audit defensibility
-
-#### Answers the Question
-“What happened, how, and why?”
-
-### 6. security-operations (Composite)
-Asserts holistic operational security capability.
-#### Purpose
-To provide an enterprise‑level assertion that security operations are effective.
-#### Scope
-* Composition only
-* No independent controls
-
-#### Components (References)
+The base patterns deliberately form a **one‑way flow**:
 ```
-logging-and-telemetry
-security-monitoring
-threat-detection
-incident-response
-digital-forensics
+Signal Production → Observation → Determination → Action → Truth
 ```
-#### Answers the Question
-“Can the institution detect and respond to security events?”
+
+No pattern may assume the responsibilities of another.
+
+---
+
+### Logging & Telemetry Pattern
+
+**Purpose:**  
+Produce accurate, complete, and integrity‑protected security telemetry.
+
+**What this pattern does**
+- Generates logs, events, metrics, and traces
+- Ensures time synchronization and integrity protection
+- Preserves telemetry for downstream analysis and forensics
+
+**What this pattern does NOT do**
+- Analyze data
+- Correlate events
+- Detect threats
+- Trigger alerts or actions
+
+**Why it exists**
+Telemetry must exist *before* any security decision can be made.  
+Without disciplined logging, all downstream security functions collapse into speculation.
+
+---
+
+### Security Monitoring Pattern
+
+**Purpose:**  
+Continuously observe and correlate telemetry to establish situational awareness.
+
+**What this pattern does**
+- Ingests and normalizes telemetry
+- Correlates events across systems
+- Surfaces observable patterns and anomalies
+- Provides analyst visibility
+
+**What this pattern does NOT do**
+- Declare activity malicious
+- Generate detections
+- Trigger response actions
+
+**Why it exists**
+Many adversary behaviors are only visible when events are viewed *together*.  
+Monitoring exists to **observe**, not to judge.
+
+---
+
+### Threat Detection Pattern
+
+**Purpose:**  
+Determine whether observed activity represents suspected malicious behavior.
+
+**What this pattern does**
+- Applies analytics and reasoning to monitored data
+- Produces detections and findings with confidence and scope
+- Classifies behavior using adversary tradecraft
+
+**What this pattern does NOT do**
+- Contain or remediate threats
+- Execute response actions
+- Modify systems or data
+
+**Why it exists**
+Detection is a **decision function**.  
+Separating determination from action prevents premature or unsafe responses.
+
+---
+
+### Incident Response Pattern
+
+**Purpose:**  
+Coordinate action once malicious activity is confirmed.
+
+**What this pattern does**
+- Triage and classify incidents
+- Contain and eradicate adversary presence
+- Restore systems to trusted states
+- Escalate incidents and coordinate stakeholders
+
+**What this pattern does NOT do**
+- Perform monitoring or detection
+- Conduct forensic investigations
+- Establish evidentiary truth
+
+**Why it exists**
+Response must be **coordinated, governed, and deliberate**.  
+Collapsing response into detection or monitoring leads to uncontrolled automation and loss of accountability.
+
+---
+
+### Digital Forensics Pattern
+
+**Purpose:**  
+Establish evidentiary truth after an incident.
+
+**What this pattern does**
+- Preserve and acquire digital evidence
+- Maintain chain of custody
+- Reconstruct timelines and root cause
+- Support legal, regulatory, and governance needs
+
+**What this pattern does NOT do**
+- Detect threats
+- Respond to incidents
+- Enforce controls
+
+**Why it exists**
+Truth must be established **independently of operations**.  
+Forensics exists to answer “what actually happened,” not “what should we do next.”
+
+---
+
+## Shared Architectural Principles
+
+Across all base SecOps patterns:
+
+1. **Each pattern has exactly one responsibility**
+2. **Authority never flows backward**
+3. **Automation never replaces judgment**
+4. **Evidence is never sacrificed for speed**
+5. **Patterns define capability; SSPPs define control**
+
+Violations of these principles constitute **architecture defects**, not tooling gaps.
+
+---
+
+## Relationship to the Security Operations Composite
+
+The base patterns **do not operate in isolation**.
+
+They are explicitly bound by the **Security Operations composite**, which:
+- Defines authority and roles
+- Governs workflow and escalation
+- Constrains automation (SOAR)
+- Ensures evidence preservation
+
+Base patterns define *what is possible*.  
+The composite defines *how it operates safely*.
+
+---
+
+## What Comes Next
+
+With base patterns complete, the architecture is ready for:
+
+- The **Security Operations composite** (completed)
+- **SSPP derivation**, starting with authority and governance
+- Bounded automation and SOAR enablement
+
+No additional base SecOps patterns are required.
+The foundation is complete.

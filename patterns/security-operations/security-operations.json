@@ -1,70 +1,108 @@
 {
   "component-definition": {
-    "uuid": "urn:utoronto:security:pattern:security-operations",
+    "uuid": "urn:utoronto:security:composite:security-operations",
     "metadata": {
-      "title": "Security Operations",
-      "version": "1.1.0",
+      "title": "Security Operations (SecOps)",
+      "version": "1.0.0",
       "oscal-version": "1.1.3",
-      "last-modified": "2026-04-29T03:20:00Z",
-
+      "last-modified": "2026-05-11T03:10:00Z",
       "props": [
         {
           "name": "capability",
           "ns": "urn:utoronto:cae2:brm",
           "class": "business-capability",
-          "value": "urn:utoronto:cae2:brm:BC330",
-          "remarks": "Business capability for monitoring, detecting, investigating, and responding to security events."
+          "value": "urn:utoronto:cae2:brm:BC300",
+          "remarks": "Enterprise capability for operating, governing, and coordinating security monitoring, detection, response, investigation, and automation."
         },
         {
           "name": "technology-domain",
           "ns": "urn:utoronto:cae2:trm",
           "class": "trm-domain",
           "value": "urn:utoronto:cae2:trm:TD050",
-          "remarks": "Security operations, monitoring, detection, and response technologies."
+          "remarks": "Security operations platforms, orchestration systems, workflow tooling, and human-operated SOC capabilities."
         },
         {
           "name": "architecture-pattern",
           "ns": "urn:utoronto:cae2:arm",
           "class": "composite-pattern",
-          "value": "urn:utoronto:cae2:arm:AP160",
-          "remarks": "Composite pattern for end-to-end security operations and incident handling capability."
+          "value": "urn:utoronto:cae2:arm:CP500",
+          "remarks": "Composite control plane binding SecOps patterns under explicit authority, workflow, escalation, and automation constraints."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE500",
+          "remarks": "Operational cases, workflows, escalations, approvals, audit trails, and automation decisions."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-61r2",
+          "class": "incident-response-governance",
+          "value": "1, 2",
+          "remarks": "Defines organizational roles, responsibilities, and coordination for incident response operations."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-137",
+          "class": "continuous-monitoring-governance",
+          "value": "1, 2",
+          "remarks": "Defines governance and management oversight of continuous monitoring programs."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53r5",
+          "class": "control-catalog-reference",
+          "value": "IR-1, IR-2, CA-7, PL-2",
+          "remarks": "Controls governing security operations policy, roles, continuous monitoring oversight, and planning."
         }
       ],
-
-      "remarks": "Security Operations is a composite pattern asserting that the institution has effective capabilities to observe security-relevant activity, detect and validate threats, respond to incidents, and conduct forensic investigation. This pattern introduces no independent controls and may be claimed only when all constituent security operations patterns are realized."
+      "remarks": "The Security Operations composite defines the operational authority and governance layer that binds security telemetry, monitoring, detection, response, forensics, and automation. This composite does not generate signals, perform analytics, or execute forensic analysis. Its role is to ensure that decisions, escalation, and automation occur under explicit authority and preserve evidentiary and governance integrity."
     },
 
     "components": [
+
       {
-        "uuid": "urn:utoronto:security:pattern-ref:logging-and-telemetry",
-        "type": "component",
-        "title": "Logging and Telemetry",
-        "description": "Generation, collection, and protection of security-relevant logs and telemetry."
+        "uuid": "urn:utoronto:security:secops:authority-and-roles",
+        "type": "capability",
+        "title": "Security Operations Authority and Roles",
+        "description": "Definition of operational authority, role separation, and decision ownership across SecOps functions.",
+        "remarks": "This component exists to prevent tool-driven authority drift and ensure accountability for security decisions."
       },
+
       {
-        "uuid": "urn:utoronto:security:pattern-ref:security-monitoring",
-        "type": "component",
-        "title": "Security Monitoring",
-        "description": "Continuous analysis and correlation of telemetry for situational awareness."
+        "uuid": "urn:utoronto:security:secops:workflow-and-escalation",
+        "type": "capability",
+        "title": "Operational Workflow and Escalation Control",
+        "description": "Definition of approved workflows from detection to incident to investigation, including escalation thresholds and governance handoff.",
+        "remarks": "Ensures that detections do not silently normalize into acceptable states and that violations escalate appropriately."
       },
+
       {
-        "uuid": "urn:utoronto:security:pattern-ref:threat-detection",
-        "type": "component",
-        "title": "Threat Detection",
-        "description": "Identification, confirmation, and prioritization of malicious activity."
+        "uuid": "urn:utoronto:security:secops:automation-governance",
+        "type": "capability",
+        "title": "Automation and SOAR Governance",
+        "description": "Constraints governing where automation may be used and what actions may be executed without human approval.",
+        "remarks": "This component explicitly bounds SOAR to pre-approved, reversible actions and forbids autonomous decision-making."
       },
+
       {
-        "uuid": "urn:utoronto:security:pattern-ref:incident-response",
-        "type": "component",
-        "title": "Incident Response",
-        "description": "Coordination and execution of response actions for confirmed security incidents."
+        "uuid": "urn:utoronto:security:secops:evidence-preservation",
+        "type": "capability",
+        "title": "Evidence Preservation and Coordination",
+        "description": "Operational safeguards ensuring that response and automation do not destroy or contaminate forensic evidence.",
+        "remarks": "Ensures clean handoff to Digital Forensics and preserves legal and investigative integrity."
       },
+
       {
-        "uuid": "urn:utoronto:security:pattern-ref:digital-forensics",
-        "type": "component",
-        "title": "Digital Forensics",
-        "description": "Preservation and analysis of evidence to support investigation and accountability."
+        "uuid": "urn:utoronto:security:secops:pattern-binding",
+        "type": "capability",
+        "title": "SecOps Pattern Binding",
+        "description": "Explicit binding of Logging & Telemetry, Security Monitoring, Threat Detection, Incident Response, and Digital Forensics under a unified operational authority.",
+        "remarks": "Prevents collapse of responsibilities across base patterns while enabling coordinated operations."
       }
+
     ]
   }
 }

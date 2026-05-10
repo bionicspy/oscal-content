@@ -1,0 +1,195 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:digital-forensics",
+    "metadata": {
+      "title": "Digital Forensics",
+      "version": "1.3.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T02:25:00Z",
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC330",
+          "remarks": "Business capability for post‑incident investigation, evidentiary preservation, and defensible reconstruction of security events."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD050",
+          "remarks": "Digital forensics and investigative technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP154",
+          "remarks": "Forensically sound investigation and evidence‑preservation architecture."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE544",
+          "remarks": "Digital evidence, forensic images, artifacts, timelines, and investigative findings."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-101r1",
+          "class": "digital-forensics-guideline",
+          "value": "1, 2, 3, 5",
+          "remarks": "Defines the digital forensics discipline, forensic lifecycle, evidence acquisition, analysis, and chain‑of‑custody requirements."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-61r2",
+          "class": "incident-response-integration",
+          "value": "3.4, 4.4",
+          "remarks": "Establishes how digital forensics supports incident response, evidence handling, and post‑incident analysis."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53r5",
+          "class": "control-catalog-reference",
+          "value": "IR-6, IR-7, AU-9, AU-11",
+          "remarks": "Controls governing forensic support, evidence integrity, record protection, and retention."
+        }
+      ],
+      "remarks": "The Digital Forensics pattern defines post‑incident capabilities for preserving, analyzing, and reconstructing security‑relevant activity. This pattern does not detect, prevent, or respond to incidents. Its sole purpose is to establish evidentiary truth and support accountability and root‑cause determination."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:evidence-acquisition-and-preservation",
+        "type": "capability",
+        "title": "Evidence Acquisition and Preservation",
+        "description": "Forensically sound acquisition and preservation of digital artifacts to maintain evidentiary integrity.",
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0001, TA0003, TA0006",
+            "remarks": "Evidence acquisition exists to capture artifacts from Initial Access, Persistence, and Credential Access activities before they are lost or altered."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1078, T1547, T1003",
+            "remarks": "These techniques leave volatile or semi‑persistent artifacts that require timely forensic preservation."
+          },
+          {
+            "name": "d3fend-mitigations",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "EvidencePreservation, DataCapture",
+            "remarks": "This component operationalizes D3FEND evidence preservation and capture mitigations."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:evidence-acquisition",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IR-6",
+                "remarks": "Evidence is collected and protected in accordance with SP 800-101 Section 3."
+              },
+              {
+                "control-id": "AU-9",
+                "remarks": "Forensic artifacts are protected against unauthorized modification or deletion."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:forensic-analysis-and-reconstruction",
+        "type": "capability",
+        "title": "Forensic Analysis and Event Reconstruction",
+        "description": "Analysis of preserved evidence to reconstruct timelines, actions, and root cause.",
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0002, TA0007, TA0008, TA0011",
+            "remarks": "Analysis focuses on Execution, Discovery, Lateral Movement, and Command and Control behaviors."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1059, T1087, T1021, T1071",
+            "remarks": "These techniques require multi‑artifact correlation to accurately reconstruct adversary activity."
+          },
+          {
+            "name": "d3fend-mitigations",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "ForensicAnalysis, TimelineReconstruction",
+            "remarks": "This component applies D3FEND forensic analysis and reconstruction mitigations."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:forensic-analysis",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IR-7",
+                "remarks": "Forensic analysis supports post‑incident review and improvement activities."
+              },
+              {
+                "control-id": "AU-11",
+                "remarks": "Forensic data is retained to support investigation and accountability."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:chain-of-custody-and-integrity",
+        "type": "capability",
+        "title": "Chain of Custody and Evidence Integrity",
+        "description": "Maintenance of evidentiary integrity and verifiable chain of custody throughout the forensic lifecycle.",
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0040",
+            "remarks": "Chain of custody is critical for Impact‑stage investigations involving data loss, corruption, or legal consequences."
+          },
+          {
+            "name": "d3fend-mitigations",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "EvidenceIntegrity, EvidenceRetention",
+            "remarks": "This component enforces D3FEND evidence integrity and retention mitigations."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:chain-of-custody",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IR-6",
+                "remarks": "Chain‑of‑custody documentation supports reporting and external coordination per SP 800-101 Section 5."
+              }
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}

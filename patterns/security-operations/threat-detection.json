@@ -1,0 +1,193 @@
+{
+  "component-definition": {
+    "uuid": "urn:utoronto:security:pattern:threat-detection",
+    "metadata": {
+      "title": "Threat Detection",
+      "version": "1.3.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T00:05:00Z",
+      "props": [
+        {
+          "name": "capability",
+          "ns": "urn:utoronto:cae2:brm",
+          "class": "business-capability",
+          "value": "urn:utoronto:cae2:brm:BC327",
+          "remarks": "Business capability for identifying and characterizing suspected malicious activity from monitored security telemetry."
+        },
+        {
+          "name": "technology-domain",
+          "ns": "urn:utoronto:cae2:trm",
+          "class": "trm-domain",
+          "value": "urn:utoronto:cae2:trm:TD050",
+          "remarks": "Threat analytics and security detection technologies."
+        },
+        {
+          "name": "architecture-pattern",
+          "ns": "urn:utoronto:cae2:arm",
+          "class": "solution-pattern",
+          "value": "urn:utoronto:cae2:arm:AP155",
+          "remarks": "Analytics-driven threat detection architecture consuming correlated monitoring outputs and producing actionable findings."
+        },
+        {
+          "name": "data-entity",
+          "ns": "urn:utoronto:cae2:drm",
+          "class": "data-entity",
+          "value": "urn:utoronto:cae2:drm:DE545",
+          "remarks": "Threat detections, analytic findings, confidence scores, and adversary behavior classifications."
+        },
+
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-94",
+          "class": "intrusion-detection-guideline",
+          "value": "1, 2, 3, 4",
+          "remarks": "Defines intrusion detection principles, detection methodologies, analytic approaches, and limitations."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-137",
+          "class": "continuous-monitoring",
+          "value": "3.2, 3.3",
+          "remarks": "Defines analytic detection as a contributor to continuous monitoring and organizational risk awareness."
+        },
+        {
+          "name": "nist-guidance",
+          "ns": "urn:nist.gov:800-53r5",
+          "class": "control-catalog-reference",
+          "value": "SI-4, IR-4",
+          "remarks": "Controls governing detection of malicious activity and escalation of validated detections to incident response."
+        }
+      ],
+      "remarks": "The Threat Detection pattern defines analytic capabilities that determine whether observed activity represents suspected malicious behavior. It does not perform monitoring, response, containment, or forensic investigation. Its sole output is defensible detections suitable for escalation."
+    },
+
+    "components": [
+
+      {
+        "uuid": "urn:utoronto:security:capability:behavioral-analytic-detection",
+        "type": "capability",
+        "title": "Behavioral Analytic Detection",
+        "description": "Analysis of correlated telemetry to identify adversary behaviors indicative of intrusion or active compromise.",
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0001, TA0002, TA0003, TA0006",
+            "remarks": "This component exists to detect adversary behaviors associated with Initial Access, Execution, Persistence, and Credential Access."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1059, T1078, T1547, T1003",
+            "remarks": "These techniques represent common early-stage compromise behaviors detectable through analytics."
+          },
+          {
+            "name": "d3fend-mitigations",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "BehavioralAnalysis, AnomalyDetection",
+            "remarks": "This component operationalizes D3FEND behavioral and anomaly analysis to surface suspicious activity."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:behavioral-analytics",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-4",
+                "remarks": "Analytic mechanisms identify indicators of compromise consistent with SP 800-94 Sections 2 and 3."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:threat-contextualization",
+        "type": "capability",
+        "title": "Threat Contextualization and Confidence Assessment",
+        "description": "Correlation and enrichment of detections to assess confidence, scope, and potential impact.",
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0007, TA0008, TA0011",
+            "remarks": "Contextualization focuses on Discovery, Lateral Movement, and Command and Control behaviors."
+          },
+          {
+            "name": "attack-techniques",
+            "ns": "urn:mitre:attack",
+            "class": "technique",
+            "value": "T1087, T1021, T1071",
+            "remarks": "These techniques benefit from multi-source correlation to assess adversary intent and reach."
+          },
+          {
+            "name": "d3fend-mitigations",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "ThreatInformationCorrelation, ContextualAnalysis",
+            "remarks": "This component exists to operationalize D3FEND correlation and contextual analysis to reduce false positives."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:contextualization",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "control-id": "SI-4",
+                "remarks": "Detections are enriched and correlated to improve analytic confidence and prioritization."
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "uuid": "urn:utoronto:security:capability:detection-escalation",
+        "type": "capability",
+        "title": "Detection Escalation and Handoff",
+        "description": "Formal escalation of validated detections to Incident Response.",
+        "props": [
+          {
+            "name": "attack-tactics",
+            "ns": "urn:mitre:attack",
+            "class": "tactic",
+            "value": "TA0040",
+            "remarks": "Impact-stage behaviors require escalation to coordinated response."
+          },
+          {
+            "name": "d3fend-mitigations",
+            "ns": "urn:mitre:d3fend",
+            "class": "mitigation",
+            "value": "IncidentEscalation",
+            "remarks": "This component ensures detections transition to response rather than remaining observational."
+          },
+          {
+            "name": "process-boundary",
+            "class": "handoff",
+            "value": "Incident Response",
+            "remarks": "Defines the architectural boundary between detection and coordinated response."
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "urn:utoronto:security:ci:escalation",
+            "source": "urn:nist:sp800-53-r5",
+            "implemented-requirements": [
+              {
+                "control-id": "IR-4",
+                "remarks": "Validated detections are escalated in accordance with SP 800-61 Section 3."
+              }
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}
