@@ -1,0 +1,123 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:security-monitoring",
+    "metadata": {
+      "title": "Security Monitoring SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T07:05:00Z",
+      "remarks": "This SSPP defines how security telemetry is continuously observed, correlated, and contextualized to provide situational awareness for Security Operations. It explicitly separates observation from detection, decision, and response."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secops:authority",
+        "urn:utoronto:sspp:secops:workflow-escalation",
+        "urn:utoronto:sspp:secops:violation-drift-escalation",
+        "urn:utoronto:sspp:secops:logging-telemetry"
+      ],
+      "remarks": "This SSPP inherits authority, workflow, escalation, and telemetry requirements and SHALL NOT redefine those concerns."
+    },
+
+    "system-characteristics": {
+      "system-name": "Security Monitoring",
+      "system-description": "Defines requirements for continuous observation and correlation of security-relevant telemetry to maintain situational awareness without declaring maliciousness or initiating response.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Security monitoring provides visibility and context only. Monitoring outputs SHALL inform detection and response but SHALL NOT independently trigger actions.",
+
+      "monitoring-scope": [
+        {
+          "id": "identity-monitoring",
+          "description": "Observation of authentication, authorization, and privilege-use behavior."
+        },
+        {
+          "id": "endpoint-monitoring",
+          "description": "Observation of host, process, service, and configuration activity."
+        },
+        {
+          "id": "network-monitoring",
+          "description": "Observation of network connections, flows, and protocol activity."
+        },
+        {
+          "id": "application-monitoring",
+          "description": "Observation of application and platform behavior relevant to security context."
+        }
+      ],
+
+      "monitoring-requirements": [
+        {
+          "id": "req-continuous",
+          "statement": "Security-relevant telemetry SHALL be continuously observed for context and pattern identification."
+        },
+        {
+          "id": "req-correlation",
+          "statement": "Monitoring SHALL correlate telemetry across domains to surface cross-system activity patterns."
+        },
+        {
+          "id": "req-context",
+          "statement": "Monitoring outputs SHALL include contextual information sufficient to support downstream detection analysis."
+        },
+        {
+          "id": "req-visibility",
+          "statement": "Security Operations SHALL maintain visibility into monitoring coverage and blind spots."
+        }
+      ],
+
+      "blind-spot-handling": [
+        {
+          "id": "blind-spot-detection",
+          "statement": "Gaps in monitoring coverage SHALL be explicitly identified and documented."
+        },
+        {
+          "id": "blind-spot-escalation",
+          "statement": "Persisting blind spots SHALL escalate as control violations under the Violation & Drift Escalation SSPP."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls ensure that monitoring supports situational awareness, detection analysis, and governance oversight.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "SI-4",
+          "remarks": "Systems are monitored for security-relevant activity."
+        },
+        {
+          "control-id": "AU-6",
+          "remarks": "Audit and monitoring information is correlated and reviewed to support situational awareness."
+        },
+        {
+          "control-id": "CA-7",
+          "remarks": "Continuous monitoring supports ongoing security assessment."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "monitoring-invariant-1",
+        "statement": "Security Monitoring SHALL NOT declare incidents or initiate response actions."
+      },
+      {
+        "id": "monitoring-invariant-2",
+        "statement": "Monitoring outputs SHALL be advisory inputs to Threat Detection, not decisions."
+      },
+      {
+        "id": "monitoring-invariant-3",
+        "statement": "Operational convenience SHALL NOT justify reduced monitoring coverage."
+      },
+      {
+        "id": "monitoring-invariant-4",
+        "statement": "Monitoring blind spots SHALL be treated as security control failures."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "Downstream SSPPs for Threat Detection, Incident Response, SOAR, and Digital Forensics SHALL rely on monitoring outputs defined by this SSPP."
+    }
+  }
+}

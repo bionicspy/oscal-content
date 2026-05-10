@@ -1,0 +1,126 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:soar-action-boundary",
+    "metadata": {
+      "title": "SOAR Action Boundary SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T09:45:00Z",
+      "remarks": "This SSPP defines absolute boundaries on security automation actions. It specifies actions, systems, and data that SOAR automation must never affect, regardless of playbook approval or detection confidence."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secops:authority",
+        "urn:utoronto:sspp:secops:workflow-escalation",
+        "urn:utoronto:sspp:secops:violation-drift-escalation",
+        "urn:utoronto:sspp:secops:incident-response",
+        "urn:utoronto:sspp:secops:soar-authority",
+        "urn:utoronto:sspp:secops:soar-playbooks",
+        "urn:utoronto:sspp:secops:digital-forensics"
+      ],
+      "remarks": "This SSPP inherits authority, workflow, response, and forensic constraints and enforces non-negotiable automation boundaries."
+    },
+
+    "system-characteristics": {
+      "system-name": "SOAR Action Boundary",
+      "system-description": "Defines immutable constraints that prevent unsafe, irreversible, or governance-bypassing automation actions.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Action boundaries defined in this SSPP are absolute. No playbook, authority, or emergency condition may override these constraints.",
+
+      "forbidden-action-categories": [
+        {
+          "id": "forbidden-decision-actions",
+          "description": "Actions that declare maliciousness, incidents, severity, or risk acceptance."
+        },
+        {
+          "id": "forbidden-forensic-actions",
+          "description": "Actions that acquire, alter, delete, or analyze forensic evidence."
+        },
+        {
+          "id": "forbidden-architectural-actions",
+          "description": "Actions that change system architecture, control posture, or logging/telemetry configuration."
+        },
+        {
+          "id": "forbidden-governance-actions",
+          "description": "Actions that bypass escalation, suppress reporting, or close violations."
+        }
+      ],
+
+      "forbidden-systems": [
+        {
+          "id": "forensics-systems",
+          "description": "Systems designated for forensic acquisition, evidence storage, or investigation."
+        },
+        {
+          "id": "identity-authority-systems",
+          "description": "Root identity stores, trust anchors, and governance identity platforms."
+        },
+        {
+          "id": "monitoring-and-detection-systems",
+          "description": "Security monitoring and detection platforms themselves."
+        }
+      ],
+
+      "automation-hard-stops": [
+        {
+          "id": "hard-stop-forensics",
+          "statement": "SOAR SHALL halt execution when a forensic hold is active or evidence integrity is at risk."
+        },
+        {
+          "id": "hard-stop-escalation",
+          "statement": "SOAR SHALL NOT suppress escalation paths or downgrade severity."
+        },
+        {
+          "id": "hard-stop-architecture",
+          "statement": "SOAR SHALL NOT deploy configuration changes that alter baseline security architecture."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls ensure automation boundaries are enforced and violations are escalated.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "CM-7",
+          "remarks": "Automation capabilities are restricted to approved and least-privileged actions."
+        },
+        {
+          "control-id": "CM-5",
+          "remarks": "Separation of duties prevents automation from assuming decision authority."
+        },
+        {
+          "control-id": "IR-4",
+          "remarks": "Automation supports response only within defined, bounded actions."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "soar-boundary-invariant-1",
+        "statement": "SOAR SHALL NOT perform actions that are irreversible or governance-impacting."
+      },
+      {
+        "id": "soar-boundary-invariant-2",
+        "statement": "Playbook approval SHALL NOT override action boundaries defined in this SSPP."
+      },
+      {
+        "id": "soar-boundary-invariant-3",
+        "statement": "Boundary violations SHALL be treated as control violations under the Violation & Drift Escalation SSPP."
+      },
+      {
+        "id": "soar-boundary-invariant-4",
+        "statement": "Emergency response conditions SHALL NOT suspend automation boundaries."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All SOAR execution engines MUST enforce these boundaries at runtime. Lack of enforcement constitutes a critical architecture defect."
+    }
+  }
+}

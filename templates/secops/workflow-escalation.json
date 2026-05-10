@@ -1,0 +1,135 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:workflow-escalation",
+    "metadata": {
+      "title": "Security Operations Workflow & Escalation SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T05:45:00Z",
+      "remarks": "This SSPP defines how security signals, observations, detections, incidents, investigations, and violations flow through Security Operations, including mandatory escalation conditions and governance handoffs. It operationalizes authority defined in the Security Operations Authority SSPP."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:sspp:secops:authority",
+      "remarks": "This SSPP depends on the Security Operations Authority SSPP and SHALL NOT redefine roles or decision ownership."
+    },
+
+    "system-characteristics": {
+      "system-name": "Security Operations Workflow & Escalation",
+      "system-description": "Defines mandatory workflows, transition points, and escalation requirements across security monitoring, detection, incident response, digital forensics, and governance.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "All Security Operations workflows SHALL follow defined state transitions. No observation, detection, or incident may terminate without an explicit disposition and accountable owner.",
+
+      "flow-definitions": [
+        {
+          "id": "workflow-observation-to-detection",
+          "title": "Observation to Detection",
+          "description": "Defines the transition from monitoring observations to analytic detections.",
+          "rules": [
+            "Monitoring outputs SHALL be reviewed or evaluated by threat detection logic.",
+            "Detections SHALL include confidence, scope, and affected assets.",
+            "Observations SHALL NOT directly trigger response actions."
+          ]
+        },
+        {
+          "id": "workflow-detection-to-incident",
+          "title": "Detection to Incident",
+          "description": "Defines when a detection becomes a declared incident.",
+          "rules": [
+            "A detection SHALL escalate to an incident when confidence thresholds are met.",
+            "Incident declaration SHALL be attributable to an authorized role.",
+            "Automation SHALL NOT independently declare incidents."
+          ]
+        },
+        {
+          "id": "workflow-incident-to-forensics",
+          "title": "Incident to Digital Forensics",
+          "description": "Defines the handoff from response to forensic investigation.",
+          "rules": [
+            "Incidents involving data loss, regulatory impact, insider activity, or repeated exploitation SHALL escalate to Digital Forensics.",
+            "Evidence preservation SHALL take precedence over continued response actions.",
+            "Automation actions SHALL pause or constrain when a forensic hold is declared."
+          ]
+        },
+        {
+          "id": "workflow-violation-to-governance",
+          "title": "Violation to Governance Escalation",
+          "description": "Defines when violations or drift escalate beyond operations.",
+          "rules": [
+            "Repeated incidents of the same class SHALL escalate to governance review.",
+            "Architectural violations and negative-pattern matches SHALL escalate immediately.",
+            "Risk acceptance SHALL NOT occur within operational workflows."
+          ]
+        }
+      ],
+
+      "escalation-triggers": [
+        {
+          "id": "trigger-confidence",
+          "description": "Detection confidence exceeds defined thresholds."
+        },
+        {
+          "id": "trigger-impact",
+          "description": "Actual or potential impact exceeds predefined severity levels."
+        },
+        {
+          "id": "trigger-recurrence",
+          "description": "Repeated observation, detection, or incident of the same pattern."
+        },
+        {
+          "id": "trigger-violation",
+          "description": "Detection of forbidden architectures, workflows, or automation behavior."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Workflow and escalation controls ensure traceability, accountability, and governance visibility.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "IR-4",
+          "remarks": "Incidents are handled through defined workflows with documented transitions and approvals."
+        },
+        {
+          "control-id": "IR-6",
+          "remarks": "Incident handling activities and escalations are documented and reported."
+        },
+        {
+          "control-id": "IR-8",
+          "remarks": "Incident handling is integrated with governance, contingency, and risk management."
+        },
+        {
+          "control-id": "CA-7",
+          "remarks": "Continuous monitoring outputs feed escalation and governance decisions."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "workflow-invariant-1",
+        "statement": "No detection or incident SHALL be closed without an explicit disposition and accountable owner."
+      },
+      {
+        "id": "workflow-invariant-2",
+        "statement": "Automation SHALL NOT suppress, downgrade, or terminate escalation paths."
+      },
+      {
+        "id": "workflow-invariant-3",
+        "statement": "Forensic escalation SHALL supersede incident response actions when evidentiary risk exists."
+      },
+      {
+        "id": "workflow-invariant-4",
+        "statement": "Operational workflows SHALL NOT be used to formally accept risk or override negative-pattern constraints."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All downstream SecOps SSPPs SHALL align their workflows and escalation behavior to this SSPP. No SSPP may introduce alternate escalation paths without explicit governance approval."
+    }
+  }
+}

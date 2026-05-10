@@ -1,0 +1,134 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:incident-response",
+    "metadata": {
+      "title": "Incident Response SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T08:00:00Z",
+      "remarks": "This SSPP defines how confirmed threat detections are acted upon through coordinated containment, eradication, recovery, and escalation, under explicit authority and workflow constraints."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secops:authority",
+        "urn:utoronto:sspp:secops:workflow-escalation",
+        "urn:utoronto:sspp:secops:violation-drift-escalation",
+        "urn:utoronto:sspp:secops:threat-detection"
+      ],
+      "remarks": "This SSPP inherits authority, workflow, escalation, and detection requirements and SHALL NOT redefine decision ownership."
+    },
+
+    "system-characteristics": {
+      "system-name": "Incident Response",
+      "system-description": "Defines permissible response actions, severity handling, containment scope, recovery requirements, and escalation rules once malicious activity is confirmed.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Incident Response activities SHALL be coordinated, attributable, and reversible where possible. Response SHALL not compromise evidence integrity or bypass governance escalation.",
+
+      "incident-severity-levels": [
+        {
+          "id": "severity-low",
+          "description": "Confirmed malicious activity with limited scope and negligible business impact."
+        },
+        {
+          "id": "severity-medium",
+          "description": "Confirmed malicious activity with measurable impact or risk of propagation."
+        },
+        {
+          "id": "severity-high",
+          "description": "Confirmed malicious activity causing significant business, regulatory, or safety impact."
+        }
+      ],
+
+      "response-actions": [
+        {
+          "id": "action-containment",
+          "statement": "Response MAY include containment actions such as isolation, access revocation, or process termination."
+        },
+        {
+          "id": "action-eradication",
+          "statement": "Response MAY include eradication of adversary artifacts once containment is confirmed."
+        },
+        {
+          "id": "action-recovery",
+          "statement": "Response SHALL include recovery actions to restore systems to a trusted state."
+        }
+      ],
+
+      "response-constraints": [
+        {
+          "id": "constraint-authority",
+          "statement": "All response actions SHALL be executed under the authority defined in the Security Operations Authority SSPP."
+        },
+        {
+          "id": "constraint-evidence",
+          "statement": "Response actions SHALL preserve evidence when forensic escalation is reasonably anticipated."
+        },
+        {
+          "id": "constraint-scope",
+          "statement": "Response scope SHALL be proportional to confirmed impact and severity."
+        }
+      ],
+
+      "mandatory-escalation": [
+        {
+          "id": "escalate-forensics",
+          "statement": "Incidents involving data loss, regulatory impact, insider activity, or repeated exploitation SHALL escalate to Digital Forensics."
+        },
+        {
+          "id": "escalate-governance",
+          "statement": "High-severity incidents and systemic failures SHALL escalate beyond Security Operations."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls ensure coordinated, accountable, and governed incident handling.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "IR-4",
+          "remarks": "Incidents are handled according to defined procedures and severity."
+        },
+        {
+          "control-id": "IR-5",
+          "remarks": "Incident monitoring supports awareness of response effectiveness."
+        },
+        {
+          "control-id": "IR-6",
+          "remarks": "Incident response activities are documented and reported."
+        },
+        {
+          "control-id": "IR-8",
+          "remarks": "Incident response is integrated with organizational recovery and governance."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "ir-invariant-1",
+        "statement": "Incident Response SHALL NOT be initiated without a confirmed detection."
+      },
+      {
+        "id": "ir-invariant-2",
+        "statement": "Automation SHALL NOT initiate or expand response actions without explicit authorization."
+      },
+      {
+        "id": "ir-invariant-3",
+        "statement": "Incident Response SHALL NOT override forensic holds or chain-of-custody requirements."
+      },
+      {
+        "id": "ir-invariant-4",
+        "statement": "Incident Response SHALL NOT formally accept risk or close architectural violations."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "Downstream SSPPs for SOAR and Digital Forensics SHALL respect response boundaries and escalation requirements defined in this SSPP."
+    }
+  }
+}

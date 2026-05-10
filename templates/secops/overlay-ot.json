@@ -1,0 +1,144 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:overlay:ot",
+    "metadata": {
+      "title": "OT Security Operations Overlay SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T11:45:00Z",
+      "remarks": "This overlay SSPP constrains the Security Operations SSPP stack for Operational Technology (OT) environments. It introduces stricter limitations on automation, response actions, and escalation to preserve safety, availability, and physical process integrity."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secops:authority",
+        "urn:utoronto:sspp:secops:workflow-escalation",
+        "urn:utoronto:sspp:secops:violation-drift-escalation",
+        "urn:utoronto:sspp:secops:logging-telemetry",
+        "urn:utoronto:sspp:secops:security-monitoring",
+        "urn:utoronto:sspp:secops:threat-detection",
+        "urn:utoronto:sspp:secops:incident-response",
+        "urn:utoronto:sspp:secops:digital-forensics",
+        "urn:utoronto:sspp:secops:soar-authority",
+        "urn:utoronto:sspp:secops:soar-playbooks",
+        "urn:utoronto:sspp:secops:soar-action-boundary",
+        "urn:utoronto:sspp:secops:soar-evidence-logging",
+        "urn:utoronto:sspp:secops:negative-pattern-enforcement"
+      ],
+      "remarks": "This overlay constrains—but does not redefine—core SecOps SSPPs for OT environments."
+    },
+
+    "system-characteristics": {
+      "system-name": "OT Security Operations Overlay",
+      "system-description": "Specializes Security Operations behavior for Operational Technology environments, including industrial control systems, SCADA, PLCs, building automation systems, and safety‑critical infrastructure.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "OT environments prioritize human safety, process continuity, and deterministic behavior. Automation and response actions are significantly constrained compared to IT environments.",
+
+      "environment-scope": [
+        {
+          "id": "industrial-control-systems",
+          "description": "ICS, PLCs, RTUs, and embedded control devices."
+        },
+        {
+          "id": "scada-and-hmi",
+          "description": "Supervisory control systems and operator interfaces."
+        },
+        {
+          "id": "building-and-facilities-automation",
+          "description": "OT systems controlling physical facilities and infrastructure."
+        },
+        {
+          "id": "safety-instrumented-systems",
+          "description": "Systems whose failure may cause physical harm or safety incidents."
+        }
+      ],
+
+      "overlay-constraints": [
+        {
+          "id": "constraint-human-in-the-loop",
+          "statement": "Incident Response actions impacting OT systems SHALL require explicit human approval."
+        },
+        {
+          "id": "constraint-automation-restriction",
+          "statement": "SOAR automation SHALL be severely limited in OT environments and restricted primarily to notification and evidence gathering."
+        },
+        {
+          "id": "constraint-availability",
+          "statement": "Availability and deterministic operation SHALL take precedence over containment speed."
+        },
+        {
+          "id": "constraint-change-control",
+          "statement": "Configuration changes to OT systems SHALL NOT be automated and SHALL follow formal change and safety review."
+        }
+      ],
+
+      "environment-specific-guidance": [
+        {
+          "id": "guidance-monitoring",
+          "statement": "OT monitoring SHOULD be passive and non-intrusive wherever possible."
+        },
+        {
+          "id": "guidance-response",
+          "statement": "Response actions SHOULD favor observation, coordination, and external isolation rather than direct device manipulation."
+        },
+        {
+          "id": "guidance-segmentation",
+          "statement": "Network segmentation and external controls SHOULD be favored over device-level intervention."
+        },
+        {
+          "id": "guidance-safety",
+          "statement": "Any response action that could affect safety or physical processes SHALL escalate to governance and safety authorities."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls adapt base SecOps requirements to safety‑critical Operational Technology environments.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "SI-4",
+          "remarks": "OT systems are monitored using methods that minimize operational impact."
+        },
+        {
+          "control-id": "IR-4",
+          "remarks": "Incident handling in OT environments prioritizes safety and availability."
+        },
+        {
+          "control-id": "CM-3",
+          "remarks": "Changes to OT systems follow formal configuration and change management with safety review."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "ot-invariant-1",
+        "statement": "Automation SHALL NOT directly manipulate OT control logic or safety systems."
+      },
+      {
+        "id": "ot-invariant-2",
+        "statement": "Incident Response SHALL prioritize human safety over cyber containment."
+      },
+      {
+        "id": "ot-invariant-3",
+        "statement": "Detection of OT threats SHALL NOT trigger autonomous remediation."
+      },
+      {
+        "id": "ot-invariant-4",
+        "statement": "Negative‑Pattern Enforcement applies with maximum strictness in OT environments."
+      },
+      {
+        "id": "ot-invariant-5",
+        "statement": "Operational convenience SHALL NOT justify shortcuts in safety‑critical systems."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "This overlay is stricter than the IT SecOps Overlay SSPP. IoMT overlays SHALL introduce additional patient‑safety and regulatory constraints on top of this model."
+    }
+  }
+}

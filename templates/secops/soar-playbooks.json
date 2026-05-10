@@ -1,0 +1,159 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:soar-playbooks",
+    "metadata": {
+      "title": "SOAR Playbook SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T09:25:00Z",
+      "remarks": "This SSPP defines the approved catalog, structure, and constraints for Security Orchestration, Automation, and Response (SOAR) playbooks. It ensures automated actions are deliberate, bounded, and accountable."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secops:authority",
+        "urn:utoronto:sspp:secops:workflow-escalation",
+        "urn:utoronto:sspp:secops:violation-drift-escalation",
+        "urn:utoronto:sspp:secops:incident-response",
+        "urn:utoronto:sspp:secops:soar-authority",
+        "urn:utoronto:sspp:secops:digital-forensics"
+      ],
+      "remarks": "This SSPP inherits authority, workflow, escalation, response, and forensic constraints and SHALL NOT redefine any of them."
+    },
+
+    "system-characteristics": {
+      "system-name": "SOAR Playbooks",
+      "system-description": "Defines the approved structure, lifecycle, and execution constraints for security automation playbooks.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "SOAR playbooks are executable representations of pre-approved response actions. Every playbook SHALL be reviewed, approved, and bounded before execution.",
+
+      "playbook-scope": [
+        {
+          "id": "enrichment",
+          "description": "Automated data gathering and contextual enrichment actions."
+        },
+        {
+          "id": "notification",
+          "description": "Automated notification, ticketing, and workflow initiation."
+        },
+        {
+          "id": "contained-response",
+          "description": "Pre-approved, reversible containment actions."
+        }
+      ],
+
+      "playbook-requirements": [
+        {
+          "id": "req-explicit-definition",
+          "statement": "Each playbook SHALL explicitly define trigger conditions, preconditions, actions, and termination criteria."
+        },
+        {
+          "id": "req-approval",
+          "statement": "Each playbook SHALL be explicitly approved by the designated SOAR Authority prior to activation."
+        },
+        {
+          "id": "req-attribution",
+          "statement": "Each playbook execution SHALL be attributable to an approving authority and execution context."
+        },
+        {
+          "id": "req-reversibility",
+          "statement": "Where technically feasible, playbook actions SHALL be reversible."
+        }
+      ],
+
+      "playbook-preconditions": [
+        {
+          "id": "precondition-detection",
+          "statement": "Playbooks SHALL NOT execute without a valid Detection or Incident context."
+        },
+        {
+          "id": "precondition-confidence",
+          "statement": "Automated actions SHALL require confidence thresholds defined in the Threat Detection SSPP."
+        },
+        {
+          "id": "precondition-scope",
+          "statement": "Playbooks SHALL validate affected asset scope before execution."
+        },
+        {
+          "id": "precondition-forensics",
+          "statement": "Playbooks SHALL check for active forensic holds and SHALL NOT execute if evidence integrity would be compromised."
+        }
+      ],
+
+      "playbook-forbidden-actions": [
+        {
+          "id": "forbidden-decision",
+          "statement": "Playbooks SHALL NOT declare incidents, accept risk, or downgrade severity."
+        },
+        {
+          "id": "forbidden-forensics",
+          "statement": "Playbooks SHALL NOT acquire, alter, or analyze forensic evidence."
+        },
+        {
+          "id": "forbidden-architecture",
+          "statement": "Playbooks SHALL NOT modify system architecture, disable logging, or bypass controls."
+        }
+      ],
+
+      "playbook-lifecycle": [
+        {
+          "id": "lifecycle-review",
+          "statement": "Playbooks SHALL be periodically reviewed and reapproved."
+        },
+        {
+          "id": "lifecycle-suspension",
+          "statement": "Playbooks MAY be immediately suspended upon misuse or unexpected behavior."
+        },
+        {
+          "id": "lifecycle-retirement",
+          "statement": "Deprecated or unsafe playbooks SHALL be retired and removed."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls ensure SOAR playbooks are governed, constrained, and auditable.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "IR-4",
+          "remarks": "Automation supports incident handling only within approved procedures."
+        },
+        {
+          "control-id": "CM-3",
+          "remarks": "Playbook changes are managed through formal change control."
+        },
+        {
+          "control-id": "AU-6",
+          "remarks": "Playbook executions are logged and reviewed."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "playbook-invariant-1",
+        "statement": "SOAR playbooks SHALL NOT operate outside explicitly approved contexts."
+      },
+      {
+        "id": "playbook-invariant-2",
+        "statement": "Playbooks SHALL fail closed when preconditions are not met."
+      },
+      {
+        "id": "playbook-invariant-3",
+        "statement": "Unexpected playbook behavior SHALL be treated as a control violation."
+      },
+      {
+        "id": "playbook-invariant-4",
+        "statement": "Automation SHALL never obscure accountability for actions taken."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All SOAR Action Boundary and Evidence SSPPs SHALL enforce constraints defined in this SSPP."
+    }
+  }
+}

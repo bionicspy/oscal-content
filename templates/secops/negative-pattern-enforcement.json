@@ -1,0 +1,134 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:negative-pattern-enforcement",
+    "metadata": {
+      "title": "Negative-Pattern Enforcement SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T10:45:00Z",
+      "remarks": "This SSPP defines forbidden security operation, automation, and architectural patterns that SHALL NOT exist. Negative patterns are invalid by existence and cannot be remediated, bypassed, accepted, or overridden within Security Operations."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secops:authority",
+        "urn:utoronto:sspp:secops:workflow-escalation",
+        "urn:utoronto:sspp:secops:violation-drift-escalation",
+        "urn:utoronto:sspp:secops:incident-response",
+        "urn:utoronto:sspp:secops:soar-authority",
+        "urn:utoronto:sspp:secops:soar-action-boundary",
+        "urn:utoronto:sspp:secops:digital-forensics"
+      ],
+      "remarks": "This SSPP inherits all prior authority, workflow, escalation, response, automation, and forensic constraints and enforces hard prohibitions."
+    },
+
+    "system-characteristics": {
+      "system-name": "Negative-Pattern Enforcement",
+      "system-description": "Defines absolute architectural and operational anti-patterns that indicate unacceptable risk, governance bypass, or unsafe automation.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Negative patterns SHALL be treated as governance violations. They SHALL NOT be resolved through operational tuning, automation, or exception handling.",
+
+      "negative-patterns": [
+        {
+          "id": "np-autonomous-decision",
+          "description": "Any system or automation independently determining maliciousness, incident status, severity, or risk acceptance."
+        },
+        {
+          "id": "np-automation-bypass",
+          "description": "Automation bypassing detection validation, escalation paths, or human authorization."
+        },
+        {
+          "id": "np-forensics-interference",
+          "description": "Response or automation actions that modify, delete, or contaminate forensic evidence."
+        },
+        {
+          "id": "np-observability-suppression",
+          "description": "Disabling, suppressing, or degrading logging, telemetry, monitoring, or automation evidence."
+        },
+        {
+          "id": "np-architecture-mutation",
+          "description": "Automation or operational workflows that alter baseline security architecture outside approved change control."
+        },
+        {
+          "id": "np-silent-normalization",
+          "description": "Repeated incidents or violations treated as expected operational behavior without governance escalation."
+        }
+      ],
+
+      "enforcement-rules": [
+        {
+          "id": "rule-immediate-escalation",
+          "statement": "Any confirmed negative-pattern instance SHALL immediately escalate to governance and SHALL NOT be resolved within Security Operations."
+        },
+        {
+          "id": "rule-no-closure",
+          "statement": "Negative-pattern findings SHALL NOT be closed via operational disposition or risk acceptance."
+        },
+        {
+          "id": "rule-suspend-automation",
+          "statement": "Automation implicated in a negative-pattern occurrence SHALL be suspended pending governance review."
+        }
+      ],
+
+      "detection-sources": [
+        {
+          "id": "source-telemetry",
+          "description": "Logging and telemetry indicating prohibited behavior."
+        },
+        {
+          "id": "source-monitoring",
+          "description": "Monitoring context revealing forbidden operational or automation patterns."
+        },
+        {
+          "id": "source-forensics",
+          "description": "Forensic analysis identifying evidence contamination or governance bypass."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls ensure negative patterns are identified, escalated, and corrected under governance oversight.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "CA-7",
+          "remarks": "Continuous monitoring supports identification of architectural drift and prohibited behavior."
+        },
+        {
+          "control-id": "CM-5",
+          "remarks": "Separation of duties prevents unauthorized authority assumptions."
+        },
+        {
+          "control-id": "PL-2",
+          "remarks": "Negative patterns are governed through formal security planning and oversight."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "negative-invariant-1",
+        "statement": "Negative patterns are invalid by existence and SHALL NOT be justified by operational urgency or efficiency."
+      },
+      {
+        "id": "negative-invariant-2",
+        "statement": "Negative patterns SHALL always trigger governance escalation."
+      },
+      {
+        "id": "negative-invariant-3",
+        "statement": "Automation SHALL NOT remediate or conceal negative patterns."
+      },
+      {
+        "id": "negative-invariant-4",
+        "statement": "Risk acceptance SHALL NOT apply to negative patterns."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All SecOps SSPPs and composites SHALL enforce prohibitions defined in this SSPP. Presence of a negative pattern constitutes a critical architecture defect."
+    }
+  }
+}

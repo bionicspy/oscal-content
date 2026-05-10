@@ -1,0 +1,124 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:threat-detection",
+    "metadata": {
+      "title": "Threat Detection SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T07:30:00Z",
+      "remarks": "This SSPP defines how monitored security telemetry is analyzed and evaluated to determine whether observed behavior constitutes suspected malicious activity requiring escalation."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secops:authority",
+        "urn:utoronto:sspp:secops:workflow-escalation",
+        "urn:utoronto:sspp:secops:violation-drift-escalation",
+        "urn:utoronto:sspp:secops:logging-telemetry",
+        "urn:utoronto:sspp:secops:security-monitoring"
+      ],
+      "remarks": "This SSPP inherits authority, workflow, escalation, telemetry, and monitoring requirements and SHALL NOT redefine those concerns."
+    },
+
+    "system-characteristics": {
+      "system-name": "Threat Detection",
+      "system-description": "Defines analytic, confidence, and escalation requirements for determining whether observed activity is suspicious or malicious.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Threat Detection evaluates observed behavior and produces determinations. It SHALL NOT initiate response actions, modify systems, or bypass escalation pathways.",
+
+      "detection-scope": [
+        {
+          "id": "identity-threats",
+          "description": "Suspicious or malicious identity usage, authentication anomalies, or privilege misuse."
+        },
+        {
+          "id": "endpoint-threats",
+          "description": "Suspicious or malicious process, service, or host behavior."
+        },
+        {
+          "id": "network-threats",
+          "description": "Suspicious or malicious communication patterns or lateral movement indicators."
+        },
+        {
+          "id": "application-threats",
+          "description": "Suspicious or malicious application and API behavior."
+        }
+      ],
+
+      "detection-requirements": [
+        {
+          "id": "req-confidence",
+          "statement": "Detections SHALL include a confidence assessment based on available evidence."
+        },
+        {
+          "id": "req-scope",
+          "statement": "Detections SHALL identify affected assets, identities, and timeframes."
+        },
+        {
+          "id": "req-context",
+          "statement": "Detections SHALL reference monitoring context and supporting telemetry."
+        },
+        {
+          "id": "req-repeatability",
+          "statement": "Detection logic SHALL be repeatable and reviewable."
+        }
+      ],
+
+      "confidence-handling": [
+        {
+          "id": "confidence-low",
+          "description": "Low-confidence detections SHALL remain advisory and SHALL NOT escalate automatically."
+        },
+        {
+          "id": "confidence-medium",
+          "description": "Medium-confidence detections SHALL trigger analyst review."
+        },
+        {
+          "id": "confidence-high",
+          "description": "High-confidence detections SHALL escalate to Incident Response in accordance with workflow rules."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls ensure threat determinations are accurate, attributable, and escalated appropriately.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "SI-4",
+          "remarks": "Analytic mechanisms are employed to identify potential malicious activity."
+        },
+        {
+          "control-id": "IR-4",
+          "remarks": "Confirmed detections are escalated to incident handling according to defined criteria."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "detection-invariant-1",
+        "statement": "Threat Detection SHALL NOT execute response, containment, or remediation actions."
+      },
+      {
+        "id": "detection-invariant-2",
+        "statement": "Automation SHALL NOT independently declare incidents or suppress escalation."
+      },
+      {
+        "id": "detection-invariant-3",
+        "statement": "Uncertain or incomplete telemetry SHALL reduce confidence, not be ignored."
+      },
+      {
+        "id": "detection-invariant-4",
+        "statement": "Detection logic SHALL be subject to review and governance oversight."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "Downstream SSPPs for Incident Response, SOAR, and Digital Forensics SHALL treat detections produced under this SSPP as advisory inputs requiring explicit authorization and workflow transition."
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:overlay:iomt",
+    "metadata": {
+      "title": "IoMT Security Operations Overlay SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T12:10:00Z",
+      "remarks": "This overlay SSPP constrains the Security Operations SSPP stack for Internet of Medical Things (IoMT) and clinical environments. It enforces patient safety, clinical governance, and regulatory precedence over all Security Operations activities."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secops:authority",
+        "urn:utoronto:sspp:secops:workflow-escalation",
+        "urn:utoronto:sspp:secops:violation-drift-escalation",
+        "urn:utoronto:sspp:secops:logging-telemetry",
+        "urn:utoronto:sspp:secops:security-monitoring",
+        "urn:utoronto:sspp:secops:threat-detection",
+        "urn:utoronto:sspp:secops:incident-response",
+        "urn:utoronto:sspp:secops:digital-forensics",
+        "urn:utoronto:sspp:secops:soar-authority",
+        "urn:utoronto:sspp:secops:soar-playbooks",
+        "urn:utoronto:sspp:secops:soar-action-boundary",
+        "urn:utoronto:sspp:secops:soar-evidence-logging",
+        "urn:utoronto:sspp:secops:negative-pattern-enforcement"
+      ],
+      "remarks": "This overlay further constrains the OT SecOps overlay and SHALL NOT redefine authority, workflows, or escalation paths."
+    },
+
+    "system-characteristics": {
+      "system-name": "IoMT Security Operations Overlay",
+      "system-description": "Specializes Security Operations behavior for clinical environments, including medical devices, clinical information systems, diagnostic platforms, and patient-adjacent services.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "IoMT environments prioritize patient safety, clinical effectiveness, and regulatory compliance. Security Operations SHALL defer to clinical governance and SHALL avoid any action that could affect patient care.",
+
+      "environment-scope": [
+        {
+          "id": "medical-devices",
+          "description": "Network-connected medical devices and diagnostic equipment."
+        },
+        {
+          "id": "clinical-systems",
+          "description": "Clinical applications, electronic health systems, and patient-care platforms."
+        },
+        {
+          "id": "patient-adjacent-services",
+          "description": "Systems and services that directly support diagnosis, treatment, or monitoring of patients."
+        },
+        {
+          "id": "clinical-networks",
+          "description": "Networks supporting medical devices and clinical communications."
+        }
+      ],
+
+      "overlay-constraints": [
+        {
+          "id": "constraint-clinical-override",
+          "statement": "Clinical safety and patient care SHALL override all Security Operations response urgency."
+        },
+        {
+          "id": "constraint-human-approval",
+          "statement": "Any response or containment action affecting IoMT systems SHALL require explicit human approval by both Security Operations and clinical authority."
+        },
+        {
+          "id": "constraint-automation-minimal",
+          "statement": "SOAR automation in IoMT environments SHALL be limited to notification, evidence preservation, and workflow coordination."
+        },
+        {
+          "id": "constraint-device-protection",
+          "statement": "Security Operations SHALL NOT manipulate, isolate, reboot, or modify medical devices via automation."
+        }
+      ],
+
+      "environment-specific-guidance": [
+        {
+          "id": "guidance-monitoring",
+          "statement": "Monitoring of IoMT systems SHOULD be passive and SHALL NOT interfere with device operation."
+        },
+        {
+          "id": "guidance-response",
+          "statement": "Response actions SHOULD prioritize coordination with clinical leadership and vendor support."
+        },
+        {
+          "id": "guidance-availability",
+          "statement": "Device availability and clinical continuity SHALL take precedence over cyber containment."
+        },
+        {
+          "id": "guidance-regulatory",
+          "statement": "All Security Operations actions SHALL consider regulatory and patient safety obligations."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls adapt SecOps requirements to clinical and medical environments.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "IR-4",
+          "remarks": "Incident handling accounts for patient safety and clinical impact."
+        },
+        {
+          "control-id": "CM-3",
+          "remarks": "Changes affecting medical devices follow formal change, safety, and regulatory review."
+        },
+        {
+          "control-id": "SI-4",
+          "remarks": "Monitoring of IoMT systems is designed to be non-intrusive and safety-conscious."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "iomt-invariant-1",
+        "statement": "Security Operations SHALL NOT take autonomous actions that could impact patient safety."
+      },
+      {
+        "id": "iomt-invariant-2",
+        "statement": "SOAR SHALL NOT directly interact with medical devices."
+      },
+      {
+        "id": "iomt-invariant-3",
+        "statement": "Incident Response SHALL involve clinical governance before executing containment actions."
+      },
+      {
+        "id": "iomt-invariant-4",
+        "statement": "Negative-Pattern Enforcement applies with absolute strictness in IoMT environments."
+      },
+      {
+        "id": "iomt-invariant-5",
+        "statement": "Operational convenience SHALL NEVER override patient safety or clinical obligations."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "This overlay represents the strictest specialization of the SecOps SSPP stack. No future overlay may relax constraints defined here."
+    }
+  }
+}

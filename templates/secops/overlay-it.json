@@ -1,0 +1,136 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:overlay:it",
+    "metadata": {
+      "title": "IT Security Operations Overlay SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T11:15:00Z",
+      "remarks": "This overlay SSPP constrains the Security Operations SSPP stack for standard enterprise IT environments. It introduces no new authority and does not modify base SecOps roles or workflows."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secops:authority",
+        "urn:utoronto:sspp:secops:workflow-escalation",
+        "urn:utoronto:sspp:secops:violation-drift-escalation",
+        "urn:utoronto:sspp:secops:logging-telemetry",
+        "urn:utoronto:sspp:secops:security-monitoring",
+        "urn:utoronto:sspp:secops:threat-detection",
+        "urn:utoronto:sspp:secops:incident-response",
+        "urn:utoronto:sspp:secops:digital-forensics",
+        "urn:utoronto:sspp:secops:soar-authority",
+        "urn:utoronto:sspp:secops:soar-playbooks",
+        "urn:utoronto:sspp:secops:soar-action-boundary",
+        "urn:utoronto:sspp:secops:soar-evidence-logging",
+        "urn:utoronto:sspp:secops:negative-pattern-enforcement"
+      ],
+      "remarks": "This overlay constrains—but does not redefine—core SecOps SSPPs."
+    },
+
+    "system-characteristics": {
+      "system-name": "IT Security Operations Overlay",
+      "system-description": "Specializes Security Operations behavior for enterprise IT systems, including endpoints, servers, identities, applications, and cloud platforms.",
+      "security-sensitivity-level": "moderate"
+    },
+
+    "system-implementation": {
+      "remarks": "IT environments prioritize scale, repeatability, and recoverability. Automation is permitted more broadly than OT or IoMT, but remains bounded by SecOps authority and forensic constraints.",
+
+      "environment-scope": [
+        {
+          "id": "enterprise-endpoints",
+          "description": "User workstations, laptops, and managed endpoint devices."
+        },
+        {
+          "id": "enterprise-servers",
+          "description": "Virtual and physical servers supporting business applications."
+        },
+        {
+          "id": "identity-and-access",
+          "description": "Enterprise identity platforms, directory services, and authentication systems."
+        },
+        {
+          "id": "cloud-and-saas",
+          "description": "IaaS, PaaS, SaaS, and cloud-native control planes."
+        }
+      ],
+
+      "overlay-constraints": [
+        {
+          "id": "constraint-automation-scope",
+          "statement": "SOAR automation MAY be applied more broadly in IT environments but SHALL remain subject to SOAR Authority and Action Boundary SSPPs."
+        },
+        {
+          "id": "constraint-reversibility",
+          "statement": "Automated containment actions in IT environments SHOULD be reversible where feasible."
+        },
+        {
+          "id": "constraint-scale",
+          "statement": "Incident Response in IT environments SHALL account for scale and distributed impact."
+        },
+        {
+          "id": "constraint-cloud-integration",
+          "statement": "Cloud-native monitoring, detection, and response tooling SHALL adhere to same authority and evidence requirements as on-premises systems."
+        }
+      ],
+
+      "environment-specific-guidance": [
+        {
+          "id": "guidance-endpoints",
+          "statement": "Endpoint isolation, credential revocation, and process termination MAY be automated when preconditions are met."
+        },
+        {
+          "id": "guidance-identities",
+          "statement": "Identity actions such as account disablement MAY be automated, but SHALL be logged and attributable."
+        },
+        {
+          "id": "guidance-cloud",
+          "statement": "Cloud resource quarantine and network segmentation MAY be automated if reversible and observable."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls adapt base SecOps requirements for enterprise IT scale.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "SI-4",
+          "remarks": "IT systems are monitored at scale for security-relevant activity."
+        },
+        {
+          "control-id": "IR-4",
+          "remarks": "Incident handling accounts for distributed enterprise IT environments."
+        },
+        {
+          "control-id": "CM-7",
+          "remarks": "Automation actions are constrained to least-privilege capabilities."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "it-invariant-1",
+        "statement": "IT scale SHALL NOT justify bypassing escalation, forensic, or evidence requirements."
+      },
+      {
+        "id": "it-invariant-2",
+        "statement": "Cloud or managed service abstractions SHALL NOT introduce implicit authority."
+      },
+      {
+        "id": "it-invariant-3",
+        "statement": "Automation failures in IT environments SHALL escalate as control violations."
+      },
+      {
+        "id": "it-invariant-4",
+        "statement": "Enterprise convenience SHALL NOT override Negative-Pattern Enforcement SSPP constraints."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "This overlay is the default SecOps specialization. OT and IoMT overlays SHALL introduce stricter constraints, not looser ones."
+    }
+  }
+}

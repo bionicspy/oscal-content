@@ -1,0 +1,120 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:soar-authority",
+    "metadata": {
+      "title": "SOAR Authority SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T09:00:00Z",
+      "remarks": "This SSPP defines authoritative decision boundaries for Security Orchestration, Automation, and Response (SOAR). It ensures automation accelerates approved actions without assuming detection, response, or governance authority."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secops:authority",
+        "urn:utoronto:sspp:secops:workflow-escalation",
+        "urn:utoronto:sspp:secops:violation-drift-escalation",
+        "urn:utoronto:sspp:secops:incident-response",
+        "urn:utoronto:sspp:secops:digital-forensics"
+      ],
+      "remarks": "This SSPP inherits Security Operations authority and workflow constraints and SHALL NOT redefine decision ownership."
+    },
+
+    "system-characteristics": {
+      "system-name": "SOAR Authority",
+      "system-description": "Defines who may approve, enable, suspend, constrain, or revoke automated security actions and under what conditions automation may operate.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "SOAR is an execution accelerator, not a decision authority. Automation operates only within explicitly approved bounds and is always attributable to a human authority.",
+
+      "automation-authority-scope": [
+        {
+          "id": "approve-automation",
+          "description": "Authority to approve the use of automation for specific response scenarios."
+        },
+        {
+          "id": "suspend-automation",
+          "description": "Authority to immediately suspend or disable automation when unsafe, incorrect, or violating constraints."
+        },
+        {
+          "id": "revoke-automation",
+          "description": "Authority to permanently revoke automation privileges or playbooks."
+        }
+      ],
+
+      "authority-requirements": [
+        {
+          "id": "req-attribution",
+          "statement": "All automated actions SHALL be attributable to a specific, authorized human role."
+        },
+        {
+          "id": "req-explicit-approval",
+          "statement": "Automation SHALL NOT be enabled by default or through implicit tool behavior."
+        },
+        {
+          "id": "req-revocation",
+          "statement": "Automation authority SHALL be revocable at any time without system dependency."
+        }
+      ],
+
+      "automation-constraints": [
+        {
+          "id": "constraint-no-decision",
+          "statement": "SOAR SHALL NOT independently determine maliciousness, incident status, or severity."
+        },
+        {
+          "id": "constraint-no-forensics",
+          "statement": "SOAR SHALL NOT perform forensic acquisition, analysis, or evidence modification."
+        },
+        {
+          "id": "constraint-no-risk-acceptance",
+          "statement": "SOAR SHALL NOT accept risk or close violations."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls ensure automation authority is explicit, attributable, and governed.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "IR-1",
+          "remarks": "Automation authority and responsibilities are formally defined."
+        },
+        {
+          "control-id": "IR-4",
+          "remarks": "Automation supports incident handling only within approved procedures."
+        },
+        {
+          "control-id": "PL-2",
+          "remarks": "Automation authority is governed as part of security planning."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "soar-invariant-1",
+        "statement": "SOAR SHALL NOT be used to bypass detection validation, response authority, or governance escalation."
+      },
+      {
+        "id": "soar-invariant-2",
+        "statement": "Automation SHALL fail closed when authority, preconditions, or evidence integrity is uncertain."
+      },
+      {
+        "id": "soar-invariant-3",
+        "statement": "Human authority SHALL override automation under all circumstances."
+      },
+      {
+        "id": "soar-invariant-4",
+        "statement": "Automation misuse SHALL be treated as a control violation under the Violation & Drift Escalation SSPP."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All SOAR-related SSPPs and playbooks MUST reference this SSPP. No automation may operate outside boundaries established here."
+    }
+  }
+}

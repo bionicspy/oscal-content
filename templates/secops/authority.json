@@ -1,0 +1,140 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:authority",
+    "metadata": {
+      "title": "Security Operations Authority SSPP",
+      "version": "1.1.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T05:05:00Z",
+      "remarks": "This SSPP defines authoritative decision, approval, and accountability boundaries for Security Operations (SecOps). It is the keystone SSPP on which all other SecOps SSPPs depend and explicitly prevents tool-, vendor-, or automation-driven authority drift."
+    },
+
+    "import-profile": {
+      "href": "urn:utoronto:security:composite:security-operations",
+      "remarks": "Instantiates the Security Operations composite and binds authority to its capabilities."
+    },
+
+    "system-characteristics": {
+      "system-name": "Security Operations Authority",
+      "system-description": "Defines who may make security decisions, approve actions, enable or disable automation, accept operational risk, and own outcomes across Security Operations.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Authority within Security Operations is explicitly role-based and human-owned. No technology, platform, integration, or automation system may exercise authority unless expressly permitted by this SSPP.",
+
+      "roles": [
+        {
+          "id": "secops-authority-owner",
+          "title": "Security Operations Authority Owner",
+          "remarks": "Holds final authority over SecOps policy, decision boundaries, escalation rules, and approval of automation constraints.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OV-MGT"
+            }
+          ]
+        },
+        {
+          "id": "soc-manager",
+          "title": "Security Operations Center Manager",
+          "remarks": "Operational owner responsible for day-to-day SOC execution within defined authority boundaries.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CIR-001"
+            }
+          ]
+        },
+        {
+          "id": "incident-commander",
+          "title": "Incident Commander",
+          "remarks": "Temporarily vested authority to coordinate containment, eradication, and recovery actions during declared incidents.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CIR-001"
+            }
+          ]
+        },
+        {
+          "id": "forensic-authority",
+          "title": "Digital Forensics Authority",
+          "remarks": "Exclusive authority over evidence handling, forensic procedures, investigative methods, and chain-of-custody decisions.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-FOR-001"
+            }
+          ]
+        },
+        {
+          "id": "automation-authority",
+          "title": "Security Automation (SOAR) Authority",
+          "remarks": "Authority to approve, revoke, suspend, or constrain security automation and playbooks.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-OPS-001"
+            }
+          ]
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls ensure that Security Operations authority is explicit, attributable, auditable, and revocable.",
+      "implemented-requirements": [
+        {
+          "control-id": "IR-1",
+          "remarks": "Incident response roles, responsibilities, and authorities are formally defined and assigned."
+        },
+        {
+          "control-id": "IR-2",
+          "remarks": "Security Operations personnel exercising authority are trained and approved prior to assuming decision roles."
+        },
+        {
+          "control-id": "PL-2",
+          "remarks": "Security Operations authority is documented and governed as part of organizational security planning."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "authority-invariant-1",
+        "statement": "Security monitoring systems, detection engines, analytics platforms, and dashboards SHALL NOT be granted authority to declare incidents or initiate response actions."
+      },
+      {
+        "id": "authority-invariant-2",
+        "statement": "Automation (SOAR) SHALL NOT autonomously determine maliciousness, incident status, or risk acceptance."
+      },
+      {
+        "id": "authority-invariant-3",
+        "statement": "All automated actions SHALL be attributable to a human-approved authority and fully auditable."
+      },
+      {
+        "id": "authority-invariant-4",
+        "statement": "Digital forensics authority SHALL NOT be overridden or bypassed by incident response or automation activities."
+      },
+      {
+        "id": "authority-invariant-5",
+        "statement": "No tool, vendor, service provider, or managed service SHALL inherit authority by virtue of access, integration, or configuration."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All downstream SecOps SSPPs MUST reference this SSPP and SHALL NOT redefine authority independently."
+    }
+  }
+}

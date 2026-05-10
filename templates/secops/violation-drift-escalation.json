@@ -1,0 +1,125 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:violation-drift-escalation",
+    "metadata": {
+      "title": "Violation & Drift Escalation SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T06:10:00Z",
+      "remarks": "This SSPP defines how control violations, architectural drift, negative-pattern matches, and persistent security failures are identified, classified, and escalated beyond routine Security Operations."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secops:authority",
+        "urn:utoronto:sspp:secops:workflow-escalation"
+      ],
+      "remarks": "This SSPP depends on SecOps Authority and Workflow & Escalation SSPPs and SHALL NOT redefine authority or workflow."
+    },
+
+    "system-characteristics": {
+      "system-name": "Violation & Drift Escalation",
+      "system-description": "Defines mandatory escalation rules for violations and drift that indicate systemic weakness, architectural noncompliance, or unacceptable risk accumulation.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Violations and drift SHALL be treated as governance concerns, not operational noise. No violation may be permanently resolved within routine Security Operations workflows.",
+
+      "violation-categories": [
+        {
+          "id": "control-violation",
+          "description": "Failure or absence of required security controls, telemetry, monitoring, or response mechanisms."
+        },
+        {
+          "id": "architectural-drift",
+          "description": "Deviation from approved architecture, SSPPs, composites, or negative-pattern constraints."
+        },
+        {
+          "id": "automation-violation",
+          "description": "Automation or SOAR behavior exceeding approved authority, scope, or evidence-preservation boundaries."
+        },
+        {
+          "id": "recurring-incident",
+          "description": "Repeated incidents of the same class indicating unresolved root cause."
+        }
+      ],
+
+      "mandatory-escalation-rules": [
+        {
+          "id": "rule-drift-immediate",
+          "statement": "Any confirmed architectural drift or negative-pattern match SHALL be escalated immediately to governance."
+        },
+        {
+          "id": "rule-control-failure",
+          "statement": "Persistent control failures SHALL escalate beyond Security Operations regardless of incident severity."
+        },
+        {
+          "id": "rule-recurring-incident",
+          "statement": "Recurring incidents of the same pattern SHALL be classified as a systemic violation."
+        },
+        {
+          "id": "rule-automation-overreach",
+          "statement": "Any automation action outside approved boundaries SHALL trigger immediate escalation and suspension."
+        }
+      ],
+
+      "non-closable-conditions": [
+        {
+          "id": "non-closable-architecture",
+          "description": "Architectural violations SHALL NOT be closed until remediation is approved and verified."
+        },
+        {
+          "id": "non-closable-negative-pattern",
+          "description": "Negative-pattern matches SHALL NEVER be closed via operational disposition."
+        },
+        {
+          "id": "non-closable-risk",
+          "description": "Risk acceptance SHALL NOT occur within Security Operations."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls ensure violations and drift trigger governance visibility and corrective action.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "CA-7",
+          "remarks": "Continuous monitoring outputs are used to identify control and architectural drift."
+        },
+        {
+          "control-id": "PL-2",
+          "remarks": "Architectural and security planning governs remediation of violations."
+        },
+        {
+          "control-id": "IR-8",
+          "remarks": "Systemic violations are integrated with organizational response and risk processes."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "violation-invariant-1",
+        "statement": "Security Operations SHALL NOT normalize repeated security failures as acceptable risk."
+      },
+      {
+        "id": "violation-invariant-2",
+        "statement": "Operational efficiency SHALL NOT override architectural correctness or governance requirements."
+      },
+      {
+        "id": "violation-invariant-3",
+        "statement": "Automation SHALL NOT remediate violations without governance visibility and approval."
+      },
+      {
+        "id": "violation-invariant-4",
+        "statement": "Risk acceptance SHALL be a governance decision, not an operational one."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "Downstream SSPPs SHALL reference this SSPP to ensure violations and drift always escalate beyond routine operations."
+    }
+  }
+}

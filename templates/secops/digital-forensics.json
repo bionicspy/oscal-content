@@ -1,0 +1,127 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secops:digital-forensics",
+    "metadata": {
+      "title": "Digital Forensics SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-11T08:30:00Z",
+      "remarks": "This SSPP defines the authority, constraints, and requirements for preservation, analysis, and reconstruction of evidentiary truth following security incidents."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secops:authority",
+        "urn:utoronto:sspp:secops:workflow-escalation",
+        "urn:utoronto:sspp:secops:violation-drift-escalation",
+        "urn:utoronto:sspp:secops:incident-response"
+      ],
+      "remarks": "This SSPP inherits authority, escalation rules, and response constraints and SHALL NOT redefine operational decision-making."
+    },
+
+    "system-characteristics": {
+      "system-name": "Digital Forensics",
+      "system-description": "Defines requirements for evidentiary preservation, chain of custody, forensic analysis, and post-incident reconstruction to establish defensible truth.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Digital Forensics is a truth-establishment function. It SHALL NOT be optimized for speed, operational efficiency, or automation beyond evidence integrity requirements.",
+
+      "forensic-scope": [
+        {
+          "id": "evidence-acquisition",
+          "description": "Collection of digital artifacts, logs, memory, storage, and relevant system state."
+        },
+        {
+          "id": "evidence-preservation",
+          "description": "Protection of evidence integrity and prevention of contamination or loss."
+        },
+        {
+          "id": "forensic-analysis",
+          "description": "Analysis and correlation of preserved artifacts to reconstruct timelines and root cause."
+        },
+        {
+          "id": "chain-of-custody",
+          "description": "Documentation of evidence handling, access, transfer, and retention."
+        }
+      ],
+
+      "forensic-requirements": [
+        {
+          "id": "req-authority",
+          "statement": "All forensic activities SHALL be conducted under the authority of the designated Digital Forensics Authority."
+        },
+        {
+          "id": "req-integrity",
+          "statement": "Evidence SHALL be preserved in a manner that prevents unauthorized modification or loss."
+        },
+        {
+          "id": "req-documentation",
+          "statement": "All forensic actions SHALL be documented to support traceability and defensibility."
+        },
+        {
+          "id": "req-isolation",
+          "statement": "Forensic evidence SHALL be isolated from operational systems where practicable."
+        }
+      ],
+
+      "forensic-holds": [
+        {
+          "id": "hold-declaration",
+          "statement": "When a forensic hold is declared, all response and automation actions SHALL constrain or suspend activities that risk evidence integrity."
+        },
+        {
+          "id": "hold-override",
+          "statement": "Forensic holds SHALL NOT be overridden by Incident Response or automation under any circumstances."
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Controls ensure evidentiary integrity, accountability, and defensibility of forensic outcomes.",
+
+      "implemented-requirements": [
+        {
+          "control-id": "IR-6",
+          "remarks": "Incident evidence is collected, protected, and retained."
+        },
+        {
+          "control-id": "IR-7",
+          "remarks": "Post-incident analysis supports corrective action and accountability."
+        },
+        {
+          "control-id": "AU-9",
+          "remarks": "Audit and forensic data are protected from unauthorized modification or deletion."
+        },
+        {
+          "control-id": "AU-11",
+          "remarks": "Forensic records are retained to support investigation and legal requirements."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "forensics-invariant-1",
+        "statement": "Digital Forensics SHALL operate independently of Security Operations performance objectives."
+      },
+      {
+        "id": "forensics-invariant-2",
+        "statement": "Automation SHALL NOT perform forensic analysis or alter forensic evidence."
+      },
+      {
+        "id": "forensics-invariant-3",
+        "statement": "Incident Response SHALL NOT sacrifice evidence integrity for containment speed."
+      },
+      {
+        "id": "forensics-invariant-4",
+        "statement": "Forensic conclusions SHALL NOT be modified to support operational narratives."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All SecOps SSPPs involving response, automation, and escalation SHALL defer to this SSPP once a forensic hold is declared."
+    }
+  }
+}
