@@ -1,0 +1,162 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-application:operations",
+    "metadata": {
+      "title": "Secure Application Operations SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T12:00:00Z",
+      "remarks": "Defines operational responsibilities for sustaining secure application behavior over time. This SSPP governs monitoring, coordination, and escalation of application trust conditions while explicitly excluding authority, authorization logic, and incident response."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-application:authority",
+        "urn:utoronto:sspp:secure-application:platform",
+        "urn:utoronto:sspp:secure-application:relying-systems"
+      ],
+      "remarks": "Application operations derive authority from Secure Application Authority SSPP and coordinate enforcement across Platform and Relying Systems SSPPs. This SSPP SHALL NOT redefine application behavior or risk ownership."
+    },
+
+    "pattern-bindings": [
+      {
+        "pattern-id": "application-observability-and-governance",
+        "type": "base-pattern",
+        "remarks": "Implements operational aspects of application observability and governance required to sustain trust over time."
+      },
+      {
+        "pattern-id": "trusted-application",
+        "type": "composite-pattern",
+        "remarks": "Supports continued assertion of the Trusted Application composite by preserving observability, integrity, and escalation pathways."
+      }
+    ],
+
+    "system-characteristics": {
+      "system-name": "Secure Application Operations",
+      "system-description": "Operational processes and capabilities supporting the sustained trust of institutional applications.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Application operations SHALL ensure continued observability, correctness, and escalation of application trust conditions. Operations SHALL coordinate but SHALL NOT make trust, authorization, or risk acceptance decisions.",
+
+      "components": [
+        {
+          "id": "application-observability-operations",
+          "description": "Operational functions supporting collection, retention, and availability of application telemetry and audit evidence."
+        },
+        {
+          "id": "application-operations-coordination",
+          "description": "Coordination mechanisms for deployment, runtime support, and change activity affecting application trust assumptions."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-application-operations",
+          "title": "Application Operations",
+          "remarks": "Operates applications in accordance with approved trust constraints and ensures continuous availability of observability signals.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OM-OPS"
+            }
+          ]
+        },
+        {
+          "id": "role-application-operations-oversight",
+          "title": "Application Operations Oversight",
+          "remarks": "Verifies that operations preserve application trust guarantees and escalate deviations appropriately.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "operational-requirements": [
+        {
+          "id": "continuous-observability",
+          "statement": "Application operations SHALL ensure that required telemetry, logs, and decision traces remain continuously available for governance and oversight.",
+          "responsible-role": "role-application-operations"
+        },
+        {
+          "id": "change-coordination",
+          "statement": "Operational changes affecting application runtime, dependencies, or configuration SHALL be coordinated to preserve application trust assumptions.",
+          "responsible-role": "role-application-operations"
+        },
+        {
+          "id": "trust-signal-preservation",
+          "statement": "Operations SHALL preserve application trust signals and SHALL NOT modify, filter, or suppress evidence of application behavior.",
+          "responsible-role": "role-application-operations"
+        }
+      ],
+
+      "prohibited-operational-actions": [
+        {
+          "id": "no-policy-decision",
+          "statement": "Application operations SHALL NOT interpret or override application authorization, policy, or business logic."
+        },
+        {
+          "id": "no-risk-acceptance",
+          "statement": "Application operations SHALL NOT accept, normalize, or conceal application trust risk."
+        },
+        {
+          "id": "no-silent-remediation",
+          "statement": "Operations SHALL NOT silently remediate trust violations without escalation and governance awareness."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "application-trust-escalation",
+          "statement": "Detected violations of application trust guarantees SHALL escalate for governance and security review.",
+          "responsible-role": "role-application-operations-oversight"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Operational controls ensure application trust is preserved, observable, and escalated without collapsing authority boundaries.",
+      "implemented-requirements": [
+        {
+          "control-id": "CA-7",
+          "remarks": "Continuous monitoring supports operational awareness of application trust conditions."
+        },
+        {
+          "control-id": "AU-6",
+          "remarks": "Audit records are available for review and investigation."
+        },
+        {
+          "control-id": "CM-3",
+          "remarks": "Operational changes are tracked and coordinated to prevent unintended trust degradation."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "application-operations-invariant-1",
+        "statement": "Application operations SHALL preserve observability, authority boundaries, and evidence under all conditions."
+      },
+      {
+        "id": "application-operations-invariant-2",
+        "statement": "Operational continuity SHALL NOT justify weakening application trust guarantees."
+      },
+      {
+        "id": "application-operations-invariant-3",
+        "statement": "Trust violations SHALL escalate rather than self-resolve."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "This SSPP completes the Secure Application SSPP family. High-assurance or environment-specific overlays MAY further constrain operations but SHALL NOT weaken these requirements."
+    }
+  }
+}

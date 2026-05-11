@@ -1,0 +1,163 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-application:authority",
+    "metadata": {
+      "title": "Secure Application Authority SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T10:00:00Z",
+      "remarks": "Defines authoritative decision boundaries governing application behavior. This SSPP establishes who may define, approve, constrain, or accept risk for application intent, authorization semantics, data handling decisions, and governance posture. It explicitly prohibits implicit or delegated authority within applications, platforms, automation, or relying systems."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:security:authority"
+      ],
+      "remarks": "Application authority derives from enterprise security authority and SHALL NOT redefine organizational governance or risk ownership."
+    },
+
+    "pattern-bindings": [
+      {
+        "pattern-id": "trusted-application",
+        "type": "composite-pattern",
+        "remarks": "Establishes authority over all application trust patterns, including identity, authorization, data handling, execution boundaries, and observability."
+      }
+    ],
+
+    "system-characteristics": {
+      "system-name": "Secure Application Authority",
+      "system-description": "Governs application trust decisions across all application patterns and implementations.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Application authority SHALL be explicit, human-owned, and governance-approved. Applications, frameworks, middleware, automation, and platforms SHALL NOT assume or infer authority to weaken application trust guarantees.",
+
+      "authority-domains": [
+        {
+          "id": "application-trust-authority",
+          "description": "Authority over application intent, authorization semantics, decision boundaries, and acceptable behavior."
+        },
+        {
+          "id": "application-risk-acceptance-authority",
+          "description": "Authority to accept application-level risk, approve deviations, or mandate compensating controls."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-application-architecture-authority",
+          "title": "Application Architecture Authority",
+          "remarks": "Defines and approves application trust architecture, including authorization semantics, execution assumptions, and governance boundaries.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "SP-ARC"
+            }
+          ]
+        },
+        {
+          "id": "role-application-risk-governance",
+          "title": "Application Risk & Governance Authority",
+          "remarks": "Owns accountability for application trust risk and approves or rejects deviations from approved application patterns and SSPPs.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OV-MGT"
+            }
+          ]
+        },
+        {
+          "id": "role-application-assurance-oversight",
+          "title": "Application Assurance Oversight",
+          "remarks": "Verifies enforcement, observability, and compliance of application trust requirements.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "authorization-rules": [
+        {
+          "id": "explicit-architecture-approval",
+          "statement": "All application trust architecture decisions SHALL require explicit approval by Application Architecture Authority.",
+          "responsible-role": "role-application-architecture-authority"
+        },
+        {
+          "id": "explicit-risk-acceptance",
+          "statement": "All deviations from approved application trust patterns or SSPPs SHALL require explicit risk acceptance.",
+          "responsible-role": "role-application-risk-governance"
+        }
+      ],
+
+      "prohibited-authority-actions": [
+        {
+          "id": "no-implicit-application-authority",
+          "statement": "Applications SHALL NOT infer trust authority from execution context, platform guarantees, or upstream authentication."
+        },
+        {
+          "id": "no-automation-risk-acceptance",
+          "statement": "Automation SHALL NOT accept, normalize, or conceal application trust risk."
+        },
+        {
+          "id": "no-framework-delegation",
+          "statement": "Application frameworks or middleware SHALL NOT redefine or override application trust authority."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "application-trust-violation-escalation",
+          "statement": "Detected violations of application trust guarantees SHALL escalate for governance review.",
+          "responsible-role": "role-application-assurance-oversight"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Authority controls ensure application trust decisions are explicit, accountable, and separated from execution.",
+      "implemented-requirements": [
+        {
+          "control-id": "IA-1",
+          "remarks": "Application trust roles and responsibilities are formally defined."
+        },
+        {
+          "control-id": "PL-2",
+          "remarks": "Application trust authority is defined as part of system security planning."
+        },
+        {
+          "control-id": "CM-5",
+          "remarks": "Separation of duties prevents unauthorized modification of application trust decisions."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "application-authority-invariant-1",
+        "statement": "Application trust authority SHALL be explicit and human-owned."
+      },
+      {
+        "id": "application-authority-invariant-2",
+        "statement": "Execution context SHALL NOT imply authority."
+      },
+      {
+        "id": "application-authority-invariant-3",
+        "statement": "Unapproved application behavior SHALL escalate rather than self-correct."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All Application SSPPs, platform SSPPs, relying system SSPPs, operations SSPPs, and overlays SHALL defer to this SSPP for interpretation of application trust authority."
+    }
+  }
+}

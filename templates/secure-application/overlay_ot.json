@@ -1,0 +1,77 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-application:overlay:ot",
+    "metadata": {
+      "title": "Secure Application OT Overlay SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T13:00:00Z",
+      "remarks": "Applies operational technology (OT) environmental constraints to applications whose behavior directly influences physical processes, equipment safety, or control systems. This SSPP tightens application trust requirements where incorrect behavior may cause physical damage or safety impact."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-application:high-assurance"
+      ],
+      "remarks": "This overlay applies only to applications whose execution context materially alters risk due to OT interaction and SHALL further restrict operational tolerance."
+    },
+
+    "pattern-bindings": [
+      {
+        "pattern-id": "trusted-application",
+        "type": "composite-pattern",
+        "remarks": "Applies OT-specific constraints across all application trust dimensions, focusing on safety, determinism, and predictable behavior."
+      }
+    ],
+
+    "system-characteristics": {
+      "system-name": "Secure Application OT Overlay",
+      "system-description": "Applications operating in or influencing operational technology environments.",
+      "security-sensitivity-level": "very-high",
+      "props": [
+        {
+          "name": "application-environment",
+          "value": "ot",
+          "remarks": "Identifies the application as operating within or influencing an OT environment."
+        },
+        {
+          "name": "failure-tolerance",
+          "value": "minimal",
+          "remarks": "Application failure may directly impact physical systems and must be tightly bounded."
+        },
+        {
+          "name": "availability-model",
+          "value": "deterministic",
+          "remarks": "Predictable and well-defined behavior is prioritized over dynamic scaling or optimization."
+        },
+        {
+          "name": "change-cadence",
+          "value": "restricted",
+          "remarks": "Changes to application code or configuration are tightly controlled due to safety considerations."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Applications in OT environments SHALL prioritize safety, determinism, and containment. Ambiguous behavior or implicit trust assumptions are not acceptable.",
+
+      "prohibited-operational-actions": [
+        {
+          "id": "no-ot-dynamic-behavior",
+          "statement": "Dynamic or adaptive behavior that alters application decision logic at runtime SHALL NOT be permitted without explicit governance approval."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "ot-application-escalation",
+          "statement": "Any deviation from approved application behavior in an OT context SHALL escalate immediately due to potential safety impact."
+        }
+      ]
+    },
+
+    "back-matter": {
+      "remarks": "This overlay applies only where application behavior materially affects physical safety or system integrity. It SHALL NOT be applied to general enterprise IT applications."
+    }
+  }
+}

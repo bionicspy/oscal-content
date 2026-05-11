@@ -1,0 +1,167 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-application:platform",
+    "metadata": {
+      "title": "Secure Application Platform SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T10:30:00Z",
+      "remarks": "Defines mandatory trust assumptions, constraints, and enforcement expectations for platforms that host and execute applications. This SSPP governs how application platforms SHALL provide execution isolation, enforce runtime boundaries, and preserve application trust guarantees without assuming application decision authority."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-application:authority",
+        "urn:utoronto:sspp:platform",
+        "urn:utoronto:sspp:secure-storage:platform"
+      ],
+      "remarks": "The Secure Application Platform SSPP derives authority from Secure Application Authority SSPP and depends on Platform and Secure Storage Platform SSPPs to provide foundational execution and persistence guarantees."
+    },
+
+    "pattern-bindings": [
+      {
+        "pattern-id": "application-runtime-and-execution-boundaries",
+        "type": "base-pattern",
+        "remarks": "Implements application runtime isolation, execution containment, and dependency boundaries defined by the Application Runtime and Execution Boundaries pattern."
+      },
+      {
+        "pattern-id": "trusted-application",
+        "type": "composite-pattern",
+        "remarks": "Implements the platform-facing aspects of the Trusted Application composite pattern by preserving execution and isolation assumptions."
+      }
+    ],
+
+    "system-characteristics": {
+      "system-name": "Secure Application Platform",
+      "system-description": "Application execution platforms providing runtime environments for institutional applications.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Application platforms SHALL enforce application trust guarantees by construction. Platforms provide isolation, execution boundaries, and fail-safe behavior but SHALL NOT interpret application intent, authorization logic, or business rules.",
+
+      "components": [
+        {
+          "id": "application-runtime-environment",
+          "description": "Runtime environment in which application code executes, including process isolation, execution privileges, and dependency constraints."
+        },
+        {
+          "id": "application-control-plane",
+          "description": "Platform control mechanisms for deploying, starting, stopping, and supervising application execution."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-application-platform-operations",
+          "title": "Application Platform Operations",
+          "remarks": "Operates application platforms to ensure continuous enforcement of runtime isolation and execution boundaries.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OM-OPS"
+            }
+          ]
+        },
+        {
+          "id": "role-application-platform-assurance",
+          "title": "Application Platform Assurance",
+          "remarks": "Verifies that application platforms enforce execution isolation and do not weaken application trust guarantees.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "platform-requirements": [
+        {
+          "id": "isolation-enforcement",
+          "statement": "The platform SHALL enforce execution isolation between applications such that compromise of one application does not directly compromise others.",
+          "responsible-role": "role-application-platform-operations"
+        },
+        {
+          "id": "least-privilege-execution",
+          "statement": "Applications SHALL execute with the minimum privileges required and SHALL NOT inherit platform administrative authority.",
+          "responsible-role": "role-application-platform-operations"
+        },
+        {
+          "id": "dependency-boundaries",
+          "statement": "The platform SHALL enforce declared dependency boundaries and prevent unauthorized access to shared components.",
+          "responsible-role": "role-application-platform-operations"
+        },
+        {
+          "id": "fail-safe-behavior",
+          "statement": "On failure or uncertainty, the platform SHALL fail closed in a manner that preserves application integrity and evidence.",
+          "responsible-role": "role-application-platform-operations"
+        }
+      ],
+
+      "prohibited-platform-actions": [
+        {
+          "id": "no-authorization-logic",
+          "statement": "The platform SHALL NOT perform application-level authorization or interpret business rules."
+        },
+        {
+          "id": "no-implicit-trust-escalation",
+          "statement": "Execution on the platform SHALL NOT imply increased trust, authority, or privilege for the application."
+        },
+        {
+          "id": "no-silent-constraint-relaxation",
+          "statement": "Platform mechanisms SHALL NOT silently relax execution boundaries for availability or performance reasons."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "platform-violation-escalation",
+          "statement": "Detected failures or weakening of execution isolation or runtime boundaries SHALL escalate in accordance with Secure Application Operations SSPP.",
+          "responsible-role": "role-application-platform-assurance"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Platform controls ensure application execution isolation and containment without assuming application authority.",
+      "implemented-requirements": [
+        {
+          "control-id": "CM-7",
+          "remarks": "The platform enforces least functionality in application execution environments."
+        },
+        {
+          "control-id": "SC-7",
+          "remarks": "Boundary protection mechanisms isolate application execution contexts."
+        },
+        {
+          "control-id": "SA-8",
+          "remarks": "Application execution aligns with approved security architecture."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "application-platform-invariant-1",
+        "statement": "The application platform SHALL preserve application trust assumptions regardless of workload behavior."
+      },
+      {
+        "id": "application-platform-invariant-2",
+        "statement": "Platform availability SHALL NOT override execution isolation or containment."
+      },
+      {
+        "id": "application-platform-invariant-3",
+        "statement": "Application platforms SHALL enforce but not interpret application trust."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All application execution platforms SHALL conform to this SSPP. Relying system and operations SSPPs SHALL assume these guarantees and SHALL NOT reimplement them."
+    }
+  }
+}

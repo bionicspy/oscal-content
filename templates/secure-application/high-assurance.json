@@ -1,0 +1,170 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-application:high-assurance",
+    "metadata": {
+      "title": "Secure Application High-Assurance SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T11:30:00Z",
+      "remarks": "Defines a high-assurance overlay for applications whose failure, misuse, or compromise would result in disproportionate institutional, safety, legal, or reputational impact. This SSPP tightens Secure Application requirements without introducing new authority domains or redefining base application trust behavior."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-application:authority",
+        "urn:utoronto:sspp:secure-application:platform",
+        "urn:utoronto:sspp:secure-application:relying-systems",
+        "urn:utoronto:sspp:secure-application:operations"
+      ],
+      "remarks": "This SSPP overlays all Secure Application SSPPs and SHALL only impose stricter constraints. It SHALL NOT weaken, override, or reinterpret baseline application trust requirements."
+    },
+
+    "pattern-bindings": [
+      {
+        "pattern-id": "trusted-application",
+        "type": "composite-pattern",
+        "remarks": "Applies elevated assurance constraints across all application trust patterns, including identity and authorization, input handling, runtime boundaries, state management, data handling, and governance."
+      }
+    ],
+
+    "system-characteristics": {
+      "system-name": "Secure Application High-Assurance",
+      "system-description": "Applications designated as high-assurance due to regulatory sensitivity, safety implications, mission criticality, or elevated risk exposure.",
+      "security-sensitivity-level": "very-high",
+      "props": [
+        {
+          "name": "application-assurance-tier",
+          "value": "high",
+          "remarks": "Indicates that the application operates under the highest institutional assurance tier."
+        },
+        {
+          "name": "authorization-strictness",
+          "value": "maximum",
+          "remarks": "Authorization decisions must be explicit, non-ambiguous, and resistant to context inference or implicit trust."
+        },
+        {
+          "name": "drift-tolerance",
+          "value": "minimal",
+          "remarks": "Configuration or behavioral drift is not an acceptable steady state and must escalate immediately."
+        },
+        {
+          "name": "audit-depth",
+          "value": "forensic",
+          "remarks": "Application observability must support evidence-grade reconstruction of decisions and actions."
+        },
+        {
+          "name": "failure-posture",
+          "value": "fail-closed",
+          "remarks": "Application failure modes must preserve integrity, authority boundaries, and auditability over availability."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "High-assurance applications SHALL operate within a reduced tolerance for ambiguity, failure, and exception. All trust assumptions SHALL favor explicit decision-making, containment, and escalation.",
+
+      "roles": [
+        {
+          "id": "role-high-assurance-application-governance",
+          "title": "High-Assurance Application Governance",
+          "remarks": "Provides heightened oversight and governance for applications operating under high-assurance constraints.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OV-MGT"
+            }
+          ]
+        },
+        {
+          "id": "role-high-assurance-application-assurance",
+          "title": "High-Assurance Application Assurance",
+          "remarks": "Verifies continuous adherence to high-assurance application trust requirements, including authorization correctness, execution containment, and observability.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "high-assurance-requirements": [
+        {
+          "id": "explicit-decision-requirement",
+          "statement": "All authorization and policy decisions SHALL be made explicitly and SHALL NOT rely on inferred context or historical trust.",
+          "responsible-role": "role-high-assurance-application-assurance"
+        },
+        {
+          "id": "immediate-drift-escalation",
+          "statement": "Any detected deviation from approved application behavior or configuration SHALL trigger immediate escalation without grace period.",
+          "responsible-role": "role-high-assurance-application-assurance"
+        },
+        {
+          "id": "evidence-grade-observability",
+          "statement": "Observability mechanisms SHALL support forensic reconstruction of application behavior and decisions.",
+          "responsible-role": "role-high-assurance-application-assurance"
+        }
+      ],
+
+      "prohibited-high-assurance-actions": [
+        {
+          "id": "no-operational-exceptions",
+          "statement": "Operational urgency SHALL NOT justify deviation from high-assurance application trust requirements."
+        },
+        {
+          "id": "no-implicit-fallbacks",
+          "statement": "Implicit trust fallbacks or soft-failure authorization paths SHALL NOT be permitted."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "high-assurance-escalation",
+          "statement": "All high-assurance application violations SHALL escalate directly to governance and security oversight.",
+          "responsible-role": "role-high-assurance-application-governance"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "High-assurance overlay tightens application-level expectations for authorization correctness, execution containment, observability, and governance.",
+      "implemented-requirements": [
+        {
+          "control-id": "AC-6",
+          "remarks": "Least privilege is enforced with heightened rigor."
+        },
+        {
+          "control-id": "AU-11",
+          "remarks": "Audit records are retained and protected to support legal and investigative needs."
+        },
+        {
+          "control-id": "CM-3",
+          "remarks": "Change control is strictly governed to prevent unauthorized behavioral drift."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "high-assurance-application-invariant-1",
+        "statement": "High-assurance applications SHALL favor correctness, containment, and accountability over availability."
+      },
+      {
+        "id": "high-assurance-application-invariant-2",
+        "statement": "Uncertainty in high-assurance application behavior SHALL escalate rather than self-resolve."
+      },
+      {
+        "id": "high-assurance-application-invariant-3",
+        "statement": "No implicit trust is acceptable in high-assurance applications."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "This SSPP establishes the highest assurance tier for applications. Environment-specific overlays may further constrain behavior but SHALL NOT reduce these requirements."
+    }
+  }
+}

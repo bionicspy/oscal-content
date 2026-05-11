@@ -1,0 +1,167 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-application:relying-systems",
+    "metadata": {
+      "title": "Secure Application Relying Systems SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T11:00:00Z",
+      "remarks": "Defines mandatory constraints for systems that depend on, invoke, or consume application functionality. This SSPP governs how relying systems SHALL interact with applications without weakening application trust guarantees, assuming authority is defined by the Secure Application Authority SSPP."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-application:authority",
+        "urn:utoronto:sspp:secure-application:platform"
+      ],
+      "remarks": "Relying system obligations derive from Secure Application Authority and Secure Application Platform SSPPs and SHALL NOT redefine application intent, authorization semantics, or runtime guarantees."
+    },
+
+    "pattern-bindings": [
+      {
+        "pattern-id": "application-identity-and-authorization",
+        "type": "base-pattern",
+        "remarks": "Constrains how relying systems present identity and consume authorization outcomes without bypassing application decision logic."
+      },
+      {
+        "pattern-id": "application-input-and-request-handling",
+        "type": "base-pattern",
+        "remarks": "Constrains how relying systems construct, submit, and sequence requests to avoid intent ambiguity or confused-deputy conditions."
+      },
+      {
+        "pattern-id": "trusted-application",
+        "type": "composite-pattern",
+        "remarks": "Ensures relying systems preserve the assumptions required for an application to be treated as trustworthy as a whole."
+      }
+    ],
+
+    "system-characteristics": {
+      "system-name": "Secure Application Relying Systems",
+      "system-description": "Systems that invoke application functionality, including clients, services, workflows, automation, and external integrations.",
+      "security-sensitivity-level": "high"
+    },
+
+    "system-implementation": {
+      "remarks": "Relying systems SHALL treat applications as authoritative decision-makers and SHALL NOT bypass, reinterpret, or weaken application-level trust, authorization, or governance guarantees.",
+
+      "components": [
+        {
+          "id": "application-invocation-interface",
+          "description": "Interfaces used by relying systems to invoke application functions, APIs, or workflows."
+        }
+      ],
+
+      "roles": [
+        {
+          "id": "role-application-relying-architecture",
+          "title": "Application Relying Architecture",
+          "remarks": "Designs and approves how relying systems interact with applications without violating application trust assumptions.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "SP-ARC"
+            }
+          ]
+        },
+        {
+          "id": "role-application-relying-oversight",
+          "title": "Application Relying Oversight",
+          "remarks": "Verifies that relying systems conform to application trust constraints and do not introduce misuse or drift.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "relying-system-requirements": [
+        {
+          "id": "respect-application-authorization",
+          "statement": "Relying systems SHALL rely on application authorization decisions and SHALL NOT replicate or override application-level permissions.",
+          "responsible-role": "role-application-relying-architecture"
+        },
+        {
+          "id": "explicit-identity-presentation",
+          "statement": "Relying systems SHALL present explicit, attributable identities when invoking applications and SHALL NOT share credentials or tokens across trust boundaries.",
+          "responsible-role": "role-application-relying-architecture"
+        },
+        {
+          "id": "intent-preserving-requests",
+          "statement": "Relying systems SHALL construct requests that preserve intent clarity and SHALL NOT exploit ambiguous or undocumented behaviors.",
+          "responsible-role": "role-application-relying-architecture"
+        },
+        {
+          "id": "observability-compatibility",
+          "statement": "Relying systems SHALL support application observability requirements and SHALL NOT suppress or distort application-generated telemetry.",
+          "responsible-role": "role-application-relying-architecture"
+        }
+      ],
+
+      "prohibited-relying-actions": [
+        {
+          "id": "no-authorization-shortcircuit",
+          "statement": "Relying systems SHALL NOT short-circuit application authorization by assuming trust based on prior outcomes or context."
+        },
+        {
+          "id": "no-implicit-trust-caching",
+          "statement": "Relying systems SHALL NOT cache authorization or decision results beyond their explicitly documented validity."
+        },
+        {
+          "id": "no-backend-bypass",
+          "statement": "Relying systems SHALL NOT access application internals or backends through undocumented or unsupported interfaces."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "relying-system-violation-escalation",
+          "statement": "Detected misuse, drift, or attempted bypass by relying systems SHALL escalate for review.",
+          "responsible-role": "role-application-relying-oversight"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "Relying system controls ensure application trust is preserved across consumption boundaries.",
+      "implemented-requirements": [
+        {
+          "control-id": "AC-6",
+          "remarks": "Least privilege is enforced for relying system interactions with applications."
+        },
+        {
+          "control-id": "SA-8",
+          "remarks": "Security architecture dependencies between applications and relying systems are preserved."
+        },
+        {
+          "control-id": "CM-7",
+          "remarks": "Relying systems operate only with documented and necessary interaction capabilities."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "application-relying-invariant-1",
+        "statement": "Relying systems SHALL NOT become de facto decision-makers for application behavior."
+      },
+      {
+        "id": "application-relying-invariant-2",
+        "statement": "Application trust SHALL be preserved across all consumption paths."
+      },
+      {
+        "id": "application-relying-invariant-3",
+        "statement": "Misuse of applications by relying systems SHALL be treated as a trust violation."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "All systems that invoke or consume application functionality SHALL conform to this SSPP. Operations and high-assurance overlays MAY further constrain relying system behavior."
+    }
+  }
+}

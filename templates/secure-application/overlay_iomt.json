@@ -1,0 +1,77 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-application:overlay:iomt",
+    "metadata": {
+      "title": "Secure Application IoMT Overlay SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T13:15:00Z",
+      "remarks": "Applies Internet of Medical Things (IoMT) constraints to applications whose decisions, outputs, or behavior influence clinical workflows, diagnostics, or patient safety. This SSPP tightens application trust posture to reflect heightened safety and regulatory risk."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-application:high-assurance"
+      ],
+      "remarks": "This overlay applies only to applications in IoMT or clinical decision-support contexts and SHALL impose the strictest assurance expectations."
+    },
+
+    "pattern-bindings": [
+      {
+        "pattern-id": "trusted-application",
+        "type": "composite-pattern",
+        "remarks": "Applies patient-safety and clinical-governance constraints across all application trust dimensions."
+      }
+    ],
+
+    "system-characteristics": {
+      "system-name": "Secure Application IoMT Overlay",
+      "system-description": "Applications supporting medical devices, clinical workflows, or patient-related decisions.",
+      "security-sensitivity-level": "maximum",
+      "props": [
+        {
+          "name": "application-environment",
+          "value": "iomt",
+          "remarks": "Identifies the application as operating in a clinical or medical context."
+        },
+        {
+          "name": "decision-impact",
+          "value": "patient-safety",
+          "remarks": "Application decisions may directly influence patient outcomes."
+        },
+        {
+          "name": "authorization-tolerance",
+          "value": "zero-implicit",
+          "remarks": "All authorization and decision logic must be explicit and non-ambiguous."
+        },
+        {
+          "name": "explainability-requirement",
+          "value": "mandatory",
+          "remarks": "Application behavior must be explainable and auditable for clinical and regulatory review."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "IoMT applications SHALL favor correctness, explainability, and evidence preservation over availability or performance.",
+
+      "prohibited-operational-actions": [
+        {
+          "id": "no-iomt-implicit-decisions",
+          "statement": "Implicit trust, heuristic shortcuts, or non-deterministic decision paths SHALL NOT be permitted in IoMT applications."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "iomt-application-escalation",
+          "statement": "Any deviation from approved IoMT application behavior SHALL escalate immediately to governance, clinical leadership, and security oversight."
+        }
+      ]
+    },
+
+    "back-matter": {
+      "remarks": "This overlay defines the highest assurance posture for applications. No subordinate overlay may relax these requirements."
+    }
+  }
+}
