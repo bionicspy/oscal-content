@@ -1,0 +1,83 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:overlay:ot",
+    "metadata": {
+      "title": "Secure Storage OT Overlay SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Applies operational technology (OT) constraints to secure storage systems supporting industrial control, facilities systems, and safety-critical operations."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:high-assurance"
+      ],
+      "remarks": "This overlay applies additional constraints for OT environments and SHALL further restrict operational flexibility."
+    },
+
+    "pattern-bindings": [
+      {
+        "pattern-id": "secure-storage",
+        "type": "composite-pattern",
+        "remarks": "Applies OT-specific trust, safety, and lifecycle constraints to secure storage."
+      }
+    ],
+
+    "system-characteristics": {
+      "system-name": "Secure Storage OT Overlay",
+      "system-description": "Storage environments supporting operational technology and control systems.",
+      "security-sensitivity-level": "very-high",
+      "props": [
+        {
+          "name": "storage-environment",
+          "value": "ot",
+          "remarks": "Identifies this storage as supporting operational technology workloads."
+        },
+        {
+          "name": "availability-priority",
+          "value": "deterministic",
+          "remarks": "Storage behavior must be predictable and failure modes must be controlled."
+        },
+        {
+          "name": "immutability-requirement",
+          "value": "mandatory",
+          "remarks": "Configuration, telemetry, and event data SHALL be immutable."
+        },
+        {
+          "name": "deletion-policy",
+          "value": "exception-only",
+          "remarks": "Data deletion requires explicit governance approval due to safety and forensic considerations."
+        },
+        {
+          "name": "change-tolerance",
+          "value": "minimal",
+          "remarks": "Operational change to storage SHALL be minimized and tightly controlled."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "OT storage SHALL prioritize safety, determinism, and evidence preservation over flexibility or performance.",
+
+      "prohibited-operational-actions": [
+        {
+          "id": "no-ot-automation-deletion",
+          "statement": "Automation SHALL NOT perform deletion or lifecycle modification in OT storage environments."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "ot-storage-escalation",
+          "statement": "Any OT storage deviation SHALL escalate immediately due to potential safety impact.",
+          "responsible-role": "role-high-assurance-storage-oversight"
+        }
+      ]
+    },
+
+    "back-matter": {
+      "remarks": "This overlay applies to all OT-related storage systems and SHALL override IT convenience assumptions."
+    }
+  }
+}

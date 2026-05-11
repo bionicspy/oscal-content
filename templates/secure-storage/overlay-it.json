@@ -1,0 +1,71 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:overlay:it",
+    "metadata": {
+      "title": "Secure Storage IT Overlay SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Applies information technology (IT) environment constraints to secure storage systems used for enterprise applications, collaboration platforms, and institutional services."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:high-assurance"
+      ],
+      "remarks": "This overlay tightens Secure Storage SSPPs for IT environments and SHALL NOT weaken high-assurance requirements."
+    },
+
+    "pattern-bindings": [
+      {
+        "pattern-id": "secure-storage",
+        "type": "composite-pattern",
+        "remarks": "Applies IT-specific operational and governance constraints across all secure storage capabilities."
+      }
+    ],
+
+    "system-characteristics": {
+      "system-name": "Secure Storage IT Overlay",
+      "system-description": "Enterprise IT storage environments supporting institutional applications and services.",
+      "security-sensitivity-level": "high",
+      "props": [
+        {
+          "name": "storage-environment",
+          "value": "it",
+          "remarks": "Identifies this storage as operating in a general enterprise IT context."
+        },
+        {
+          "name": "availability-priority",
+          "value": "high",
+          "remarks": "Enterprise IT storage prioritizes availability while preserving security guarantees."
+        },
+        {
+          "name": "immutability-scope",
+          "value": "selective",
+          "remarks": "Immutability is mandatory for designated data classes, including records and audit data."
+        },
+        {
+          "name": "retention-flexibility",
+          "value": "governed",
+          "remarks": "Retention may vary by data type but must remain governance-authorized."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "Secure storage in IT environments SHALL favor balance between availability, manageability, and governance while preserving all secure storage invariants.",
+
+      "escalation-requirements": [
+        {
+          "id": "it-storage-escalation",
+          "statement": "Storage violations or drift impacting enterprise IT services SHALL escalate via Secure Storage Violation & Drift SSPP.",
+          "responsible-role": "role-high-assurance-storage-oversight"
+        }
+      ]
+    },
+
+    "back-matter": {
+      "remarks": "This overlay applies to all enterprise IT storage deployments and MAY be combined with application-specific overlays."
+    }
+  }
+}

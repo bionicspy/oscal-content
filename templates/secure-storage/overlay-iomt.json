@@ -1,0 +1,83 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:overlay:iomt",
+    "metadata": {
+      "title": "Secure Storage IoMT Overlay SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Applies Internet of Medical Things (IoMT) constraints to secure storage systems handling clinical, diagnostic, and patient-related data."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:high-assurance"
+      ],
+      "remarks": "This overlay applies the strictest constraints due to patient safety, regulatory, and privacy obligations."
+    },
+
+    "pattern-bindings": [
+      {
+        "pattern-id": "secure-storage",
+        "type": "composite-pattern",
+        "remarks": "Applies healthcare and patient-safety constraints across all secure storage capabilities."
+      }
+    ],
+
+    "system-characteristics": {
+      "system-name": "Secure Storage IoMT Overlay",
+      "system-description": "Storage environments supporting medical devices, clinical systems, and patient data.",
+      "security-sensitivity-level": "maximum",
+      "props": [
+        {
+          "name": "storage-environment",
+          "value": "iomt",
+          "remarks": "Identifies this storage as supporting IoMT and clinical workloads."
+        },
+        {
+          "name": "data-criticality",
+          "value": "life-safety",
+          "remarks": "Compromise or loss of data may directly impact patient safety."
+        },
+        {
+          "name": "immutability-requirement",
+          "value": "universal",
+          "remarks": "All clinical data SHALL be immutable for the duration of mandated retention."
+        },
+        {
+          "name": "encryption-exception-policy",
+          "value": "none",
+          "remarks": "No cryptographic exceptions are allowed for IoMT storage."
+        },
+        {
+          "name": "telemetry-retention",
+          "value": "extended",
+          "remarks": "Telemetry and audit records SHALL be retained beyond minimum regulatory periods."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "IoMT storage SHALL favor patient safety, evidentiary integrity, and regulatory compliance above availability or operational convenience.",
+
+      "prohibited-operational-actions": [
+        {
+          "id": "no-iomt-destruction",
+          "statement": "Irreversible data destruction SHALL NOT occur without documented regulatory and governance approval."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "iomt-storage-escalation",
+          "statement": "Any IoMT storage violation SHALL escalate immediately to governance, clinical leadership, and SecOps.",
+          "responsible-role": "role-high-assurance-storage-oversight"
+        }
+      ]
+    },
+
+    "back-matter": {
+      "remarks": "This overlay defines the highest storage assurance tier. No subordinate overlay may relax these constraints."
+    }
+  }
+}

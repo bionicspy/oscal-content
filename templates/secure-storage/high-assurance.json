@@ -1,0 +1,181 @@
+{
+  "system-security-plan": {
+    "uuid": "urn:utoronto:sspp:secure-storage:high-assurance",
+    "metadata": {
+      "title": "Secure Storage High-Assurance SSPP",
+      "version": "1.0.0",
+      "oscal-version": "1.1.3",
+      "last-modified": "2026-05-10T00:00:00Z",
+      "remarks": "Defines additional constraints, stricter assumptions, and reduced tolerance for drift applicable to high-assurance storage environments. This SSPP tightens secure storage requirements without redefining authority, base behavior, or platform implementation."
+    },
+
+    "import-profile": {
+      "hrefs": [
+        "urn:utoronto:sspp:secure-storage:authority",
+        "urn:utoronto:sspp:secure-storage:access-control",
+        "urn:utoronto:sspp:secure-storage:cryptographic-protection",
+        "urn:utoronto:sspp:secure-storage:integrity-immutability",
+        "urn:utoronto:sspp:secure-storage:lifecycle-retention",
+        "urn:utoronto:sspp:secure-storage:telemetry-audit",
+        "urn:utoronto:sspp:secure-storage:violation-drift",
+        "urn:utoronto:sspp:secure-storage:platform",
+        "urn:utoronto:sspp:secure-storage:relying-systems",
+        "urn:utoronto:sspp:secure-storage:operations"
+      ],
+      "remarks": "This SSPP overlays all Secure Storage SSPPs and SHALL only tighten, never weaken, their requirements."
+    },
+
+    "pattern-bindings": [
+      {
+        "pattern-id": "secure-storage",
+        "type": "composite-pattern",
+        "remarks": "Applies high-assurance constraints across all secure storage patterns, including confidentiality, access, integrity, lifecycle, and telemetry."
+      }
+    ],
+
+    "system-characteristics": {
+      "system-name": "Secure Storage High-Assurance",
+      "system-description": "High-assurance storage environments supporting regulated, safety-critical, research-critical, or evidentiary workloads.",
+      "security-sensitivity-level": "very-high",
+      "props": [
+        {
+          "name": "storage-assurance-tier",
+          "value": "high",
+          "remarks": "Indicates this storage system operates under the highest institutional assurance tier."
+        },
+        {
+          "name": "drift-tolerance",
+          "value": "minimal",
+          "remarks": "Configuration drift is not an acceptable steady state and must escalate immediately."
+        },
+        {
+          "name": "immutability-requirement",
+          "value": "mandatory",
+          "remarks": "Immutability is required for all designated data classes without exception."
+        },
+        {
+          "name": "encryption-exception-policy",
+          "value": "none",
+          "remarks": "No cryptographic protection exceptions are permitted in high-assurance storage."
+        },
+        {
+          "name": "deletion-authority",
+          "value": "governance-only",
+          "remarks": "Irreversible data destruction requires explicit governance authorization in all cases."
+        },
+        {
+          "name": "audit-evidence-grade",
+          "value": "forensic",
+          "remarks": "All telemetry and audit records must be suitable for forensic and legal use."
+        }
+      ]
+    },
+
+    "system-implementation": {
+      "remarks": "High-assurance secure storage SHALL operate with reduced tolerance for ambiguity, failure, and operational exception. All enforcement mechanisms SHALL favor preservation, evidence retention, and escalation.",
+
+      "roles": [
+        {
+          "id": "role-high-assurance-storage-oversight",
+          "title": "High-Assurance Secure Storage Oversight",
+          "remarks": "Ensures that high-assurance storage systems operate within the narrowest acceptable risk envelope.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "OV-MGT"
+            }
+          ]
+        },
+        {
+          "id": "role-high-assurance-storage-assurance",
+          "title": "High-Assurance Secure Storage Assurance",
+          "remarks": "Verifies continuous compliance, evidentiary integrity, and enforcement consistency in high-assurance storage.",
+          "props": [
+            {
+              "name": "nice-work-role",
+              "ns": "urn:nist.gov:nice",
+              "class": "work-role",
+              "value": "PR-CDA"
+            }
+          ]
+        }
+      ],
+
+      "high-assurance-requirements": [
+        {
+          "id": "immediate-drift-escalation",
+          "statement": "Any detected deviation from approved secure storage configuration SHALL trigger immediate escalation without grace period.",
+          "responsible-role": "role-high-assurance-storage-assurance"
+        },
+        {
+          "id": "mandatory-immutability",
+          "statement": "Data designated as high-assurance SHALL be stored under immutable controls for the full retention period.",
+          "responsible-role": "role-high-assurance-storage-assurance"
+        },
+        {
+          "id": "forensic-telemetry",
+          "statement": "All storage telemetry SHALL be retained and protected at forensic evidence grade.",
+          "responsible-role": "role-high-assurance-storage-assurance"
+        }
+      ],
+
+      "prohibited-high-assurance-actions": [
+        {
+          "id": "no-operational-exceptions",
+          "statement": "Operational urgency SHALL NOT justify deviation from high-assurance storage requirements."
+        },
+        {
+          "id": "no-temporary-controls",
+          "statement": "Temporary suspension or softening of secure storage controls SHALL NOT be permitted."
+        }
+      ],
+
+      "escalation-requirements": [
+        {
+          "id": "governance-escalation",
+          "statement": "All high-assurance storage violations SHALL escalate directly to governance and SecOps.",
+          "responsible-role": "role-high-assurance-storage-oversight"
+        }
+      ]
+    },
+
+    "control-implementation": {
+      "description": "High-assurance overlay tightens control expectations for cryptographic protection, integrity, auditability, and governance.",
+      "implemented-requirements": [
+        {
+          "control-id": "SR-3",
+          "remarks": "High-assurance supply chain and platform trust assumptions are enforced."
+        },
+        {
+          "control-id": "AU-11",
+          "remarks": "Audit records are retained for extended periods suitable for legal investigation."
+        },
+        {
+          "control-id": "CP-9",
+          "remarks": "Recovery and preservation mechanisms are assured at the highest level."
+        }
+      ]
+    },
+
+    "statements": [
+      {
+        "id": "high-assurance-storage-invariant-1",
+        "statement": "High-assurance storage SHALL favor preservation and evidence over availability."
+      },
+      {
+        "id": "high-assurance-storage-invariant-2",
+        "statement": "Uncertainty in high-assurance storage SHALL escalate, not defer."
+      },
+      {
+        "id": "high-assurance-storage-invariant-3",
+        "statement": "No exceptions are implied by operational pressure."
+      }
+    ],
+
+    "back-matter": {
+      "remarks": "This SSPP establishes the highest secure storage assurance tier. Environment overlays such as IT, OT, or IoMT MAY further constrain behavior but SHALL NOT weaken these requirements."
+    }
+  }
+}

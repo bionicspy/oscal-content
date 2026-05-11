@@ -71,14 +71,21 @@ platform/
 │   ├── cloud-access-security-broker
 │   ├── cross-cloud-governance
 │   └── trusted-cloud (composite)
-└── time/
+├── storage/
+│   ├── storage-core-security
+│   ├── storage-access-and-mediation
+│   ├── storage-integrity-and-immutability
+│   ├── storage-lifecycle-and-retention
+│   ├── storage-telemetry-and-audit
+│   └── secure-storage (composite)
+├── time/
 │   ├── time-core
 │   ├── time-synchronization-and-sources
 │   ├── time-drift-and-correction
 │   ├── time-availability-and-resilience
 │   ├── time-observability-and-telemetry
 │   └── secure-time (composite)
-└── dns/
+├── dns/
 │   ├── dns-core
 │   ├── dns-resolution-and-recursion
 │   ├── dns-caching-and-ttl-behavior
@@ -86,11 +93,11 @@ platform/
 │   ├── dns-resolver-availability-and-resilience
 │   ├── dns-observability-and-telemetry
 │   └── secure-dns (composite)
-└── hpc/
-    ├── hpc-core
-    ├── hpc-identity-and-access
-    ├── hpc-data-protection
-    └── secure-hpc (composite)
+├── hpc/
+│   ├── hpc-core
+│   ├── hpc-identity-and-access
+│   ├── hpc-data-protection
+│   └── secure-hpc (composite)
 ```
 
 ### 3.1 Hosting Model Trust
@@ -150,12 +157,8 @@ To define isolation and integrity guarantees for hypervisor‑mediated execution
 * Host–guest trust boundaries
 * VM‑to‑VM lateral movement risk
 #### Components
-* virtualization-core
-  * Defines baseline trust properties of virtualized execution.
-* hypervisor-trust
-  * Addresses integrity and control of the hypervisor itself.
-* secure-virtualization (composite)
-  * Asserts that virtualization risks are adequately addressed.
+Full virtualization platform trust decomposition, components, and composite assertions are defined in:
+* `platform/virtualization/README.md`
 #### Answers the Question
 Can multiple workloads safely coexist on a shared virtualized host?
 
@@ -170,7 +173,7 @@ To establish explicit trust boundaries and isolation guarantees for containerize
 * Container image provenance and supply‑chain risk
 #### Detailed Decomposition
 Full container platform trust decomposition, components, and composite assertions are defined in:
-➡ `platform/containers/README.md`
+* `platform/containers/README.md`
 #### Answers the Question
 Can containerized workloads run without compromising each other or the host?
 
@@ -185,7 +188,7 @@ To separate cloud trust concerns by service model while enabling consistent gove
 * Observability, third‑party access, and CASB
 #### Detailed Decomposition
 Full cloud platform trust decomposition, components, and composite assertions are defined in:
-➡ `platform/cloud/README.md`
+* `platform/cloud/README.md`
 #### Answers the Question
 Can workloads be safely operated and governed across one or more cloud providers?
 
@@ -200,7 +203,7 @@ To establish trust assumptions for HPC environments that prioritize performance 
 * High‑volume data movement
 #### Detailed Decomposition
 Full HPC trust decomposition, components, and composite assertions are defined in:
-➡ `platform/hpc/README.md`
+* `platform/hpc/README.md`
 #### Answers the Question
 Can shared high‑performance compute resources be safely used across diverse users and workloads?
 
@@ -215,7 +218,7 @@ To ensure that name resolution behaves deterministically and does not introduce 
 * Availability, resilience, and observability of resolvers
 #### Detailed Decomposition
 Full Platform DNS trust decomposition and components are defined in:
-➡ `platform/dns/README.md`
+* `platform/dns/README.md`
 #### Answers the Question
 Can systems reliably resolve names to the correct destinations without unintended visibility?
 
@@ -230,6 +233,24 @@ To provide authoritative, consistent, bounded, and observable time such that aut
 * Observability and telemetry for time anomalies
 #### Detailed Decomposition
 Full Platform Time trust decomposition and components are defined in:
-➡ `platform/time/README.md`
+* `platform/time/README.md`
 #### Answers the Question
 Can systems reliably depend on a correct and consistent notion of time without silent drift or instability?
+
+## 3.10 Storage Platforms
+Treats storage as a **first‑class platform substrate** with its own trust assumptions, enforcement boundaries, and failure modes, rather than as an implicit feature of compute, cloud, or applications.
+### Purpose
+To establish explicit trust guarantees for data persistence systems responsible for storing institutional, research, operational, and evidentiary data across time, environments, and administrative domains.
+### Scope (Summary)
+- Block, file, and object storage platforms  
+- Storage virtualization and abstraction layers  
+- Backup, snapshot, and archival platforms  
+- Cross‑region and cross‑domain replication  
+- Storage control planes and management interfaces  
+- Storage telemetry, auditability, and evidentiary preservation  
+### Components
+Full storage trust decomposition, components, and composite assertions are defined 
+in:
+* `platform/storage/README.md`
+### Answers the Question
+**Can data be persisted, accessed, preserved, and destroyed in a way that remains trustworthy across time, platforms, and administrative control changes?**
